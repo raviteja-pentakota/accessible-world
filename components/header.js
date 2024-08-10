@@ -53,6 +53,11 @@ function addStyles() {
     flex-direction: column;
     align-items: center;
   }
+
+  #datetime {
+    margin-top: 10px;
+    font-size: 18px;
+  }
   `;
 
   const styleSheet = document.createElement("style");
@@ -66,36 +71,58 @@ function getHeader() {
   <header>
     <div class="container">
       <div id="branding">
-        <img src="Accessible_world_logo.jpg" alt="Accessible World Tutorials Logo" id="logo">
+        <img src="Accessible_world_logo.jpg" height="83" alt="Accessible World Tutorials Logo">
         <h1>Welcome to Accessible World Tutorials</h1>
-<p>We believe that learning should be inclusive and accessible to everyone. That's why Accessible World Tutorials offers a range of learning options to suit your needs. Whether you prefer free courses, paid courses, or personalized instruction at a nominal fee, we are here to help you on your learning journey. Utilize these features and learn happily with us!</p>
+<p>"Learning should be inclusive and accessible for all. At Accessible World Tutorials, we offer free courses, paid courses, and personalized instruction to meet your needs. Follow the links below to explore and start your learning journey with us!</p>
+
       </div>
+      <hr role="separator">
       <nav>
-        <ul type="none">
+        <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="html_tutorials.html">HTML Tutorials</a></li>
           <li><a href="javascript_tutorials.html">JavaScript Tutorials</a></li>
           <li><a href="Stock_market.html">Stock Market Tutorials</a></li>
           <li><a href="tech_updates.html">Tech Updates</a></li>
-<li><a href="paied_courses.html">Paied Courses</a></li>
-<li><a href="personal_instructor.html">Personal Instructor</a></li>
-
+          <li><a href="paid_courses.html">Paid Courses</a></li>
+          <li><a href="personal_instructor.html">Personal Instructor</a></li>
         </ul>
       </nav>
+      <hr role="separator">
+      <article>
+        <h2>Latest Update:</h2>
+        <div id="datetime"></div>
+
+        <br>
+<p>Our next Accessibility Testing Batch starts on October 3rd!<br>For full details, visit the Paid Courses section.</p>
+      </article>
+      <hr role="separator">
     </div>
-<artical>
-<p>Video of the day:</p>
-<br>
-<p>We will upload the latest video link here...</p>
-</artical>
   </header>
   `;
 
   return headerContent;
 }
 
+function updateDateTime() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+
+  const formattedDate = `${year}-${month}-${day}`;
+  const formattedTime = `${hours}:${minutes}:${seconds}`;
+
+  document.getElementById('datetime').textContent = `${formattedDate} ${formattedTime}`;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   addStyles();
   const headerContent = document.getElementById("headerContent");
   headerContent.innerHTML = getHeader();
+  updateDateTime();
+  setInterval(updateDateTime, 1000);
 });
