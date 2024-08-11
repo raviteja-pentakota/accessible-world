@@ -91,7 +91,6 @@ function getHeader() {
       <hr role="separator">
       <article>
         <h2>Latest Update:</h2>
-        <div id="datetime"></div>
 
         <br>
 <p>Our next Accessibility Testing Batch starts on October 3rd!<br>For full details, visit the Paid Courses section.</p>
@@ -104,25 +103,9 @@ function getHeader() {
   return headerContent;
 }
 
-function updateDateTime() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  const seconds = String(now.getSeconds()).padStart(2, '0');
-
-  const formattedDate = `${year}-${month}-${day}`;
-  const formattedTime = `${hours}:${minutes}:${seconds}`;
-
-  document.getElementById('datetime').textContent = `${formattedDate} ${formattedTime}`;
-}
 
 document.addEventListener("DOMContentLoaded", function () {
   addStyles();
   const headerContent = document.getElementById("headerContent");
   headerContent.innerHTML = getHeader();
-  updateDateTime();
-  setInterval(updateDateTime, 1000);
 });
