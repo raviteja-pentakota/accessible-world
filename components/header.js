@@ -74,13 +74,13 @@ function getHeader() {
       <hr role="separator">
       <nav>
         <ul>
-          <li><a href="/my_project/index.html">Home</a></li>
-          <li><a href="/my_project/html_tutorials.html">HTML Tutorials</a></li>
-          <li><a href="/my_project/javascript_tutorials.html">JavaScript Tutorials</a></li>
-          <li><a href="/my_project/Stock_market.html">Stock Market Tutorials</a></li>
-          <li><a href="/my_project/tech_updates.html">Tech Updates</a></li>
-          <li><a href="/my_project/paid_courses.html">Paid Courses</a></li>
-          <li><a href="/my_project/personal_instructor.html">Personal Instructor</a></li>
+          <li><a href="my_project/index.html">Home</a></li>
+          <li><a href="my_project/html_tutorials.html">HTML Tutorials</a></li>
+          <li><a href="my_project/javascript_tutorials.html">JavaScript Tutorials</a></li>
+          <li><a href="my_project/Stock_market.html">Stock Market Tutorials</a></li>
+          <li><a href="my_project/tech_updates.html">Tech Updates</a></li>
+          <li><a href="my_project/paid_courses.html">Paid Courses</a></li>
+          <li><a href="my_project/personal_instructor.html">Personal Instructor</a></li>
         </ul>
       </nav>
       <hr role="separator">
