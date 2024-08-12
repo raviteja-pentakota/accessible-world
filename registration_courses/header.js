@@ -75,7 +75,7 @@ function getHeader() {
       <nav>
         <ul>
      <li><a href="/index.html">Home</a></li>
-          <li><a href=/\html_tutorials.html">HTML Tutorials</a></li>
+          <li><a href="/html_tutorials.html">HTML Tutorials</a></li>
           <li><a href="/javascript_tutorials.html">JavaScript Tutorials</a></li>
           <li><a href="/Stock_market.html">Stock Market Tutorials</a></li>
           <li><a href="/tech_updates.html">Tech Updates</a></li>
