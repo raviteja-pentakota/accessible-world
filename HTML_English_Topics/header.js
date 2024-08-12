@@ -74,13 +74,13 @@ function getHeader() {
       <hr role="separator">
       <nav>
         <ul>
-     <li><a href="/index.html">Home</a></li>
-          <li><a href="/html_tutorials.html">HTML Tutorials</a></li>
-          <li><a href="/javascript_tutorials.html">JavaScript Tutorials</a></li>
-          <li><a href="/Stock_market.html">Stock Market Tutorials</a></li>
-          <li><a href="/tech_updates.html">Tech Updates</a></li>
-          <li><a href="/paid_courses.html">Paid Courses</a></li>
-          <li><a href="/personal_instructor.html">Personal Instructor</a></li>
+     <li><a href="https://accessibleworld.in/index.html">Home</a></li>
+          <li><a href="https://accessibleworld.in/html_tutorials.html">HTML Tutorials</a></li>
+          <li><a href="https://accessibleworld.in/javascript_tutorials.html">JavaScript Tutorials</a></li>
+          <li><a href="https://accessibleworld.in/Stock_market.html">Stock Market Tutorials</a></li>
+          <li><a href="https://accessibleworld.in/tech_updates.html">Tech Updates</a></li>
+          <li><a href="https://accessibleworld.in/paid_courses.html">Paid Courses</a></li>
+          <li><a href="https://accessibleworld.in/personal_instructor.html">Personal Instructor</a></li>
         </ul>
       </nav>
       <hr role="separator">
