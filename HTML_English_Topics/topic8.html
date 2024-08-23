@@ -16,7 +16,7 @@
 <a href="#main" class="skip-link">Skip to main content</a>
 <div id="headerContent"></div>
 <main id="main">
-<h2>Enhancing Your Web Pages with Accessible Audio and Video</h2>
+<h1>Enhancing Your Web Pages with Accessible Audio and Video</h1>
 <p>Welcome back to our HTML tutorial series! In this episode, we'll be exploring how to integrate accessible multimedia elements into your web pages. You'll learn how to use the `<audio>` and `<video>` tags to embed audio and video content, ensuring it is accessible to all users.</p>
 <p>By the end of this video, you'll be skilled in embedding and enhancing multimedia content! You'll be able to:</p>
 <ul>
@@ -38,9 +38,33 @@
 
 <h2>Video Tutorial</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HgBL1zjVGFY?si=3JrZ7ffFqXRLNBNJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h2>Topic 8 example code:</h2>
+<button id="viewCode" aria-expanded="false">View example code</button>
+<div id="codeExample" hidden>
 
-<h2>Download Practical file</h2>
-<a href="#">Download topic 1</a>
+    <p>All the below content is the HTML code for the eighth topic:</p>
+    <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Audio and Video&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Audio Player&lt;/h1&gt;
+    &lt;audio controls&gt;
+        &lt;source src=&quot;audio_testing.mp3&quot; type=&quot;audio/mp3&quot;&gt;
+    &lt;/audio&gt;
+    &lt;h1&gt;Video&lt;/h1&gt;
+    &lt;video style=&quot;width: 100%; height: 50%;&quot; controls&gt;
+        &lt;source src=&quot;video_testing.mp4&quot; type=&quot;video/mp4&quot;&gt;
+    &lt;/video&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+</div>
+<script src="viewCode.js"></script>
+
+
 </main>
 <div id="pagination">
 <nav role="region" aria-label="pagenation">
