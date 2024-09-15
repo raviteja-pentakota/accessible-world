@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+<title>Topic1: Coding with Confidence: Your First JavaScript code with Screen Readers [English]</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+
+<script src="header.js"></script>
+<script src="footer.js"></script>
+
+
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<div id="headerContent"></div>
+<main id="main">
+<h1>Coding with Confidence: Your First JavaScript code with Screen Readers [English]</h1>
+
+<p>Welcome to the first episode of our JavaScript tutorial series designed to be accessible with screen readers!</p>
+
+<p>In this lesson, we'll introduce you to the basics of JavaScript and how it can be used to modify web page content dynamically. By working with headings and paragraphs, you'll see how JavaScript can bring interactivity and flexibility to your HTML pages.</p>
+
+<p>By the end of this video, you'll be able to:</p>
+
+<ul>
+  <li>Understand the role of JavaScript in web development.</li>
+  <li>Modify the text content of headings and paragraphs using JavaScript.</li>
+  <li>Use basic JavaScript syntax to select HTML elements and change their properties.</li>
+  <li>Enhance accessibility by ensuring dynamic content changes are compatible with screen readers.</li>
+</ul>
+
+<p>This tutorial is perfect for beginners who want to start learning JavaScript while keeping accessibility in mind. No prior programming experience is needed!</p>
+
+<p>For your reference, a <strong>"View Code"</strong> button will be provided below the video, allowing you to view the practice code used in the lesson.</p>
+
+<p>Let's dive into JavaScript and start making your web pages interactive!</p>
+
+<h2>Video Tutorial</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5pfS490d3lQ?si=VtBXAWrB_g-sH5DL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h2>Topic 1 example code:</h2>
+<button id="viewCode" aria-expanded="false">View example code</button>
+<div id="codeExample" hidden>
+<p>All the below content is the JavaScript code for the first topic:</p>
+<pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;First JS Activity&lt;/title&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1 id=&quot;h1&quot;&gt;&lt;/h1&gt;
+&lt;p id=&quot;p1&quot;&gt;&lt;/p&gt;
+&lt;script&gt;
+document.getElementById(&quot;h1&quot;).innerHTML = &quot;Welcome!&quot;;
+document.getElementById(&quot;p1&quot;).innerHTML = &quot;Please subscribe Accessible World Tutorials &lt;br&gt; Youtube channel...&quot;;
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+</div>
+<script src="viewCode.js"></script>
+
+
+</main>
+<div id="pagination">
+<nav role="region" aria-label="pagenation">
+            <a href="https://accessibleworld.in/javascript_tutorials.html">Back to topic list</a>
+<a href="topic2.html">Next Page</a>
+
+</nav>
+</div>
+
+<div id="footerContent"></div>
+</body>
+</html>
