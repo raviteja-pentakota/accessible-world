@@ -88,7 +88,7 @@ function getHeader() {
         <h2>Latest Update:</h2>
 
         <br>
-        <p>Our next Accessibility Testing Batch starts on October 3rd!<br>For full details, visit the Paid Courses section.</p>
+        <p>Our next Accessibility Testing Batch starts on December 2nd!<br>For full details, visit the Paid Courses section.</p>
       </article>
       <hr role="separator">
     </div>
