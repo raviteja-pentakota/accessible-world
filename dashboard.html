@@ -1,264 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Join and Pay - Accessible Learning and Win</title>
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+  <title>User Dashboard</title>
+  <script type="module">
+    // Firebase config and initialization
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-    }
-    .navbar {
-      background-color: #333;
-      padding: 10px 20px;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .navbar .links a {
-      color: white;
-      margin-right: 15px;
-      text-decoration: none;
-    }
-    .navbar .links a:hover {
-      text-decoration: underline;
-    }
-    .logout-button {
-      background-color: #e53935;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .container {
-      max-width: 800px;
-      margin: 50px auto;
-      background-color: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    h2 {
-      text-align: center;
-      color: #333;
-    }
-    .pay-button {
-      display: block;
-      margin: 30px auto;
-      background-color: #3399cc;
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .pay-button:hover {
-      background-color: #287ba3;
-    }
-    .success-message {
-      text-align: center;
-      font-size: 18px;
-      font-weight: bold;
-      color: green;
-      margin-top: 20px;
-    }
-    .profile-toggle {
-      background-color: #555;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-right: 10px;
-      margin-top: 20px;
-    }
-    .user-details, #referralDashboard {
-      margin-top: 15px;
-      display: none;
-      background-color: #f9f9f9;
-      padding: 15px;
-      border-radius: 5px;
-    }
-    .referral-section {
-      margin-top: 20px;
-      padding: 10px;
-      background-color: #eef6ff;
-      border: 1px dashed #3399cc;
-      border-radius: 5px;
-    }
-    .copy-button {
-      background-color: #4caf50;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      margin-top: 8px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .withdraw-button {
-      background-color: #ff9800;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      margin-top: 20px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <div class="navbar">
-    <div class="links">
-      <a href="dashboard.html">Dashboard</a>
-    </div>
-    <button class="logout-button" id="logoutButton">Logout</button>
-  </div>
-
-  <div class="container">
-    <h2>our mission</h2>
-<p>At Accessible World Tutorials, our mission is to make the digital world accessible to everyone by providing high-quality, accessible learning materials specifically designed for the visually impaired community. We offer comprehensive tutorials in various domains, including HTML, where you can master the fundamentals with clear explanations, practical examples, and video lessons to build robust and accessible web pages. Enhance your web development skills with our JavaScript tutorials, covering everything from basic concepts to advanced techniques, featuring video lessons and practical files for easy learning and practice. Understand the complexities of the stock market with our tutorials tailored for the visually impaired, breaking down key concepts with practical examples in an accessible and easy-to-comprehend manner. Furthermore, we keep you informed and ahead of the curve with our latest tech updates through videos related to new developments in current technologies for both Android and Windows. Choose us because accessibility is our priority, ensuring all materials are usable by everyone, including those with visual impairments. We provide comprehensive resources across a wide range of topics, from web development to stock market education, offering in-depth tutorials and practical files. Our tutorials are created by experts in their respective fields, guaranteeing accurate and up-to-date information. We utilize engaging content in various formats, including videos and interactive examples, to make learning effective and enjoyable.</p>    
-<h2>Get Lifetime Access & Start Earning Today</h2>
-<p>Unlock lifelong access to our extensive library of HTML, JavaScript, Web Accessibility Testing, and other essential courses by joining today for a one-time fee of just ₹1000. Not only will you gain valuable skills and knowledge, but you'll also have the opportunity to earn by referring others to our website. To understand how our referral system works and start earning, click on the following link: [Insert Referral Link Here]</p>
-<button id="payButton" class="pay-button">Join Now - Pay ₹1000</button>
-    <div id="successMessage" class="success-message" style="display: none;">You are already a paid member. Thank you!</div>
-
-    <button class="profile-toggle" onclick="toggleProfile()">Show/Hide Profile</button>
-    <button class="profile-toggle" onclick="toggleReferralDashboard()">Show/Hide Referral Dashboard</button>
-    <div class="user-details" id="userDetails"></div>
-    <div class="user-details" id="referralDashboard"></div>
-  </div>
-
-  <script>
     const firebaseConfig = {
       apiKey: "AIzaSyBZUQXgfdDHrntbBVSVFf8Vvtp9V5qnERg",
       authDomain: "accessible-learn-and-win-ad21f.firebaseapp.com",
       projectId: "accessible-learn-and-win-ad21f",
       storageBucket: "accessible-learn-and-win-ad21f.appspot.com",
       messagingSenderId: "299849578412",
-      appId: "1:299849578412:web:1e66a3292e35578f102c09"
+      appId: "1:299849578412:web:1e66a3292e35578f102c09",
+      measurementId: "G-G832YW57EK"
     };
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const firestore = firebase.firestore();
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const db = getFirestore(app);
 
-    const logoutBtn = document.getElementById("logoutButton");
-    const payBtn = document.getElementById("payButton");
-    const successMessage = document.getElementById("successMessage");
-    const userDetailsDiv = document.getElementById("userDetails");
+    const nameField = document.getElementById("user-name");
+    const emailField = document.getElementById("user-email");
+    const paymentField = document.getElementById("user-payment-status");
+    const referralLinkField = document.getElementById("referral-link");
+    const referralCountField = document.getElementById("referral-count");
+    const earningsField = document.getElementById("total-earnings");
 
-    function toggleProfile() {
-      userDetailsDiv.style.display = userDetailsDiv.style.display === "none" ? "block" : "none";
-    }
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const userId = user.uid;
+        const userDoc = await getDoc(doc(db, "users", userId));
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          nameField.textContent = userData.fullName;
+          emailField.textContent = user.email;
+          paymentField.textContent = userData.paymentStatus || "Pending";
 
-    function toggleReferralDashboard() {
-      const dashboardDiv = document.getElementById("referralDashboard");
-      dashboardDiv.style.display = dashboardDiv.style.display === "none" ? "block" : "none";
+          // Set referral link
+          const link = `${window.location.origin}/register.html?ref=${userId}`;
+          referralLinkField.textContent = link;
 
-      if (dashboardDiv.innerHTML.trim() === "") {
-        const user = auth.currentUser;
-        if (!user) return;
+          // Get referrals
+          const q = query(collection(db, "users"), where("referredBy", "==", userId));
+          const snapshot = await getDocs(q);
+          let referralCount = 0;
+          let totalEarnings = 0;
 
-        firestore.collection("referrals").doc(user.uid).get().then((doc) => {
-          if (doc.exists) {
+          snapshot.forEach(doc => {
+            referralCount++;
             const data = doc.data();
-            let html = "<h3>Referral Dashboard</h3>";
-            html += `<p><strong>Total Referrals:</strong> ${data.totalReferrals || 0}</p>`;
-            html += `<p><strong>Level 1:</strong> ${data.level1 || 0}</p>`;
-            html += `<p><strong>Level 2:</strong> ${data.level2 || 0}</p>`;
-            html += `<p><strong>Level 3:</strong> ${data.level3 || 0}</p>`;
-            html += `<p><strong>Level 4:</strong> ${data.level4 || 0}</p>`;
-            html += `<p><strong>Level 5:</strong> ${data.level5 || 0}</p>`;
-            html += `<p><strong>Total Earnings:</strong> ₹${data.totalEarnings || 0}</p>`;
-            html += `<button class="withdraw-button" onclick="withdrawEarnings()">Withdraw Earnings</button>`;
-            dashboardDiv.innerHTML = html;
-          } else {
-            dashboardDiv.innerHTML = "<p>No referral data found.</p>";
-          }
-        }).catch((error) => {
-          dashboardDiv.innerHTML = `<p>Error fetching referral data: ${error.message}</p>`;
-        });
+            if (data.paymentStatus === "Paid") {
+              totalEarnings += 200; // adjust based on level
+            }
+          });
+
+          referralCountField.textContent = referralCount;
+          earningsField.textContent = `₹${totalEarnings}`;
+        }
+      } else {
+        window.location.href = "login.html";
       }
-    }
-
-    function withdrawEarnings() {
-      alert("Earnings withdrawn successfully.");
-      // Add withdrawal logic here
-    }
-
-    logoutBtn.addEventListener("click", () => {
-      auth.signOut().then(() => {
-        alert("Logged out successfully");
-        window.location.href = "index.html";
-      }).catch((error) => {
-        alert("Logout failed: " + error.message);
-      });
     });
 
-    auth.onAuthStateChanged((user) => {
-      if (!user) {
-        payBtn.onclick = () => {
-          alert("Please log in to make a payment.");
-          window.location.href = "login.html";
-        };
-        return;
+    document.getElementById("toggleReferral").addEventListener("click", () => {
+      const section = document.getElementById("referralSection");
+      if (section.style.display === "none") {
+        section.style.display = "block";
+      } else {
+        section.style.display = "none";
       }
+    });
 
-      firestore.collection("users").doc(user.uid).get().then((doc) => {
-        const data = doc.data();
-        if (data && data.paymentStatus === "paid") {
-          payBtn.style.display = "none";
-          successMessage.style.display = "block";
-        } else {
-          payBtn.onclick = (e) => {
-            e.preventDefault();
-            const options = {
-              key: "rzp_test_65YRKaINc6MqXg",
-              amount: 100000,
-              currency: "INR",
-              name: "Accessible Learning and Win",
-              description: "Membership Access",
-              handler: function (response) {
-                alert("Payment successful! Razorpay Payment ID: " + response.razorpay_payment_id);
-                firestore.collection("users").doc(user.uid).set({ paymentStatus: "paid" }, { merge: true });
-                payBtn.style.display = "none";
-                successMessage.style.display = "block";
-              },
-              prefill: {
-                name: user.displayName || "User",
-                email: user.email,
-                contact: "7731879173"
-              },
-              theme: { color: "#3399cc" }
-            };
-            const rzp1 = new Razorpay(options);
-            rzp1.open();
-          };
-        }
+    document.getElementById("copyLink").addEventListener("click", () => {
+      const text = document.getElementById("referral-link").textContent;
+      navigator.clipboard.writeText(text);
+      alert("Referral link copied to clipboard!");
+    });
 
-        let html = `<p><strong>Name:</strong> ${user.displayName || 'N/A'}</p>`;
-        html += `<p><strong>Email:</strong> ${user.email}</p>`;
-        html += `<p><strong>Payment Status:</strong> ${data && data.paymentStatus === 'paid' ? 'Paid' : 'Not Paid'}</p>`;
-        const referralLink = `${window.location.origin}/register.html?ref=${user.uid}`;
-        html += `<div class="referral-section">
-                   <p><strong>Your Referral Link:</strong></p>
-                   <input type="text" value="${referralLink}" readonly style="width:100%; padding:8px; font-size:14px;">
-                   <button class="copy-button" onclick="navigator.clipboard.writeText('${referralLink}').then(() => alert('Referral link copied!'))">Copy Link</button>
-                 </div>`;
-        userDetailsDiv.innerHTML = html;
+    document.getElementById("logout").addEventListener("click", () => {
+      signOut(auth).then(() => {
+        window.location.href = "index.html";
       });
     });
   </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f0f2f5;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h2>Welcome to Your Dashboard</h2>
+    <p><strong>Name:</strong> <span id="user-name"></span></p>
+    <p><strong>Email:</strong> <span id="user-email"></span></p>
+    <p><strong>Payment Status:</strong> <span id="user-payment-status"></span></p>
+  </div>
+
+  <div class="card">
+    <h3>Your Referral Link</h3>
+    <p id="referral-link"></p>
+    <button id="copyLink">Copy Referral Link</button>
+  </div>
+
+  <button id="toggleReferral">Show/Hide Referral Dashboard</button>
+
+  <div class="card" id="referralSection" style="display: none;">
+    <h3>Referral Dashboard</h3>
+    <p><strong>Total Referrals:</strong> <span id="referral-count">0</span></p>
+    <p><strong>Total Earnings:</strong> <span id="total-earnings">₹0</span></p>
+    <button>Withdraw Earnings</button>
+  </div>
+
+  <button id="logout">Logout</button>
 </body>
+
 </html>

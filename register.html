@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Register - Accessible Learning and Win</title>
-
-  <!-- Firebase SDKs (v9 module style) -->
+  <title>Register</title>
   <script type="module">
+    // Firebase import
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+    import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
+    // Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyBZUQXgfdDHrntbBVSVFf8Vvtp9V5qnERg",
       authDomain: "accessible-learn-and-win-ad21f.firebaseapp.com",
@@ -25,140 +23,99 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById("registerForm");
-      const referralInput = document.getElementById("referral");
+    // Get referral code from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const referralCode = urlParams.get('ref');
 
-      // Step 1: Autofill referral code from URL and make read-only
-      const urlParams = new URLSearchParams(window.location.search);
-      const refCode = urlParams.get('ref');
-      if (refCode) {
-        referralInput.value = refCode;
-        referralInput.readOnly = true;
-      }
+    // Registration function
+    async function registerUser(event) {
+      event.preventDefault();
 
-      // Step 2: Form submission handler
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+      const fullName = document.getElementById("fullName").value;
+      const mobile = document.getElementById("mobile").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
 
-        const fullName = document.getElementById("fullName").value.trim();
-        const mobile = document.getElementById("mobile").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value.trim();
-        const referral = referralInput.value.trim();
+      try {
+        // Create user in Firebase Auth
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        const uid = user.uid;
 
-        try {
-          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-          const userId = userCredential.user.uid;
+        // Generate unique referral ID for this user
+        const generatedReferralCode = uid.substring(0, 8);
 
-          // Step 3: Save user to Firestore
-          await setDoc(doc(db, "users", userId), {
-            fullName,
-            mobile,
-            email,
-            referral,
-            hasPaid: false,
-            registeredAt: new Date().toISOString()
-          });
+        // Create user document
+        await setDoc(doc(db, "users", uid), {
+          fullName,
+          mobile,
+          email,
+          uid,
+          referralCode: generatedReferralCode,
+          referredBy: referralCode || null,
+          paymentStatus: "pending",
+          level1: [],
+          level2: [],
+          level3: [],
+          level4: [],
+          level5: []
+        });
 
-          // Step 4: Add referral entry to the referrer’s document
-          if (referral) {
-            const refDoc = doc(db, "users", referral);
-            const refSnap = await getDoc(refDoc);
-            if (refSnap.exists()) {
-              const referredUserDoc = doc(db, "users", referral, "referrals", userId);
-              await setDoc(referredUserDoc, {
-                referredUserId: userId,
-                referredAt: new Date().toISOString()
-              });
+        // If registered with a referral, update the referrer’s document
+        if (referralCode) {
+          // Find referrer by matching referralCode
+          const allDocs = await getDoc(doc(db, "referralCodes", referralCode));
+          let referrerUID;
+
+          if (allDocs.exists()) {
+            referrerUID = allDocs.data().uid;
+          } else {
+            // fallback to searching in users collection
+            const usersSnapshot = await getDoc(doc(db, "users", referralCode));
+            if (usersSnapshot.exists()) {
+              referrerUID = usersSnapshot.id;
             }
           }
 
-          alert("Registration successful! Redirecting to login...");
-          window.location.href = "index.html";
-        } catch (error) {
-          alert("Error: " + error.message);
+          if (referrerUID) {
+            const referrerRef = doc(db, "users", referrerUID);
+            await updateDoc(referrerRef, {
+              level1: arrayUnion(uid)
+            });
+          }
         }
-      });
+
+        // Redirect to login
+        alert("Registration successful! Please log in.");
+        window.location.href = "index.html";
+
+      } catch (error) {
+        console.error("Error during registration:", error);
+        alert(error.message);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById("registerForm").addEventListener("submit", registerUser);
     });
   </script>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      max-width: 400px;
-      margin: 50px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h2 {
-      text-align: center;
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-    }
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
-    button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 20px;
-      background: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #45a049;
-    }
-    .redirect {
-      text-align: center;
-      margin-top: 15px;
-    }
-  </style>
 </head>
 <body>
+  <h2>Register</h2>
+  <form id="registerForm">
+    <label for="fullName">Full Name:</label><br>
+    <input type="text" id="fullName" required><br>
 
-  <div class="container">
-    <h2>Register</h2>
-    <form id="registerForm">
-      <label for="fullName">Full Name</label>
-      <input type="text" id="fullName" required />
+    <label for="mobile">Mobile:</label><br>
+    <input type="text" id="mobile" required><br>
 
-      <label for="mobile">Mobile Number</label>
-      <input type="tel" id="mobile" required />
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" required><br>
 
-      <label for="email">Email Address</label>
-      <input type="email" id="email" required />
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" required><br><br>
 
-      <label for="password">Password</label>
-      <input type="password" id="password" required />
-
-      <label for="referral">Referral Code (Optional)</label>
-      <input type="text" id="referral" readonly />
-
-      <button type="submit">Register</button>
-    </form>
-
-    <div class="redirect">
-      <p>Already have an account? <a href="login.html">Login here</a></p>
-    </div>
-  </div>
-
+    <button type="submit">Register</button>
+  </form>
 </body>
 </html>
