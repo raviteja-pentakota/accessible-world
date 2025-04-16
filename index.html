@@ -2,53 +2,139 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Login - Accessible world</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home - Accessible World Tutorials</title>
-  <link rel="stylesheet" href="index.css">
-<script src="header.js"></script>
-<script src="footer.js"></script>
 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      padding: 25px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2, p {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background: #3399cc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #287ba3;
+    }
+
+    .redirect {
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
 
-<a href="#main" class="skip-link">Skip to main content</a>
-<div id="headerContent"></div>
+  <div class="container">
+    <h2>Welcome Back!</h2>
+    <p>
+      Ready to turn knowledge into income? With Accessible World, you get training, tools, and a 5-level referral system. 
+      Accessible Learning and Win is a platform that offers free accessibility testing and computer training. 
+      Refer friends, grow together, and earn while learning in a fully inclusive environment!
+    </p>
+<p>Importent Information:
+do not login or register. this sight is under maintainance.</p>
+    <form id="loginForm">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
 
-<main id="main" class="container">
-  <div class="content">
-    <h2>About Us</h2>
-    <p>At Accessible World Tutorials, we are dedicated to making the digital world accessible to everyone. Our mission is to provide high-quality, accessible learning materials specifically designed for the visually impaired community. Whether you're looking to learn the latest web standards, delve into JavaScript programming, or understand the stock market, we have you covered.</p>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="redirect">
+      <p>Don't have an account? <a href="register.html">Register here</a></p>
+    </div>
   </div>
 
-  <div class="content">
-    <h2>What We Offer</h2>
-    <h3>HTML Tutorials</h3>
-    <p>Master the fundamentals of HTML with our accessible tutorials. We provide clear explanations, practical examples, and video lessons to help you build robust and accessible web pages.</p>
-    <h3>JavaScript Tutorials</h3>
-    <p>Enhance your web development skills with our JavaScript tutorials. From basic concepts to advanced techniques, we cover it all. Our tutorials include video lessons and practical files, making it easy for you to follow along and practice.</p>
-    <h3>Stock Market Tutorials</h3>
-    <p>Understand the complexities of the stock market with our tutorials tailored for the visually impaired. We break down key concepts, provide practical examples, and ensure that the content is accessible and easy to comprehend.</p>
-    <h3>Latest Tech Updates</h3>
-    <p>Along with the above topics, we will update videos related to new updates in current technologies for both Android and Windows. Stay informed and ahead of the curve with our latest tech updates.</p>
-  </div>
+  <!-- Firebase SDK -->
+  <script type="module">
+    // Import Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
-  <div class="content">
-    <h2>Why Choose Us?</h2>
-    <p>- Accessibility First: All our materials are designed with accessibility in mind, ensuring they are usable by everyone, including those with visual impairments.</p>
-    <p>- Comprehensive Resources: We cover a wide range of topics, from web development to stock market education, providing in-depth tutorials and practical files.</p>
-    <p>- Expert Guidance: Our tutorials are created by experts in their respective fields, ensuring that you receive accurate and up-to-date information.</p>
-    <p>- Engaging Content: We use a variety of formats, including videos and interactive examples, to make learning engaging and effective.</p>
-  </div>
-  
-  <div class="content">
-    <h2>Join Our Community</h2>
-    <p
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyBZUQXgfdDHrntbBVSVFf8Vvtp9V5qnERg",
+      authDomain: "accessible-learn-and-win-ad21f.firebaseapp.com",
+      projectId: "accessible-learn-and-win-ad21f",
+      storageBucket: "accessible-learn-and-win-ad21f.appspot.com",
+      messagingSenderId: "299849578412",
+      appId: "1:299849578412:web:1e66a3292e35578f102c09",
+      measurementId: "G-G832YW57EK"
+    };
 
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
->Become a part of our growing community of learners. Connect with us on social media and share your learning journey with others.</p>
-  </div>
-</main>
-<div id="footerContent"></div>
+    // Login Functionality
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          alert("Login successful!");
+          window.location.href = "dashboard.html"; // Redirect after login
+        })
+        .catch((error) => {
+          alert("Login failed: " + error.message);
+        });
+    });
+  </script>
+
+  <script>
+    // Automatically focus the email field when the login page loads
+    window.onload = function() {
+      const emailInput = document.getElementById("email");
+      if (emailInput) {
+        emailInput.focus();
+      }
+    }
+  </script>
 
 </body>
 </html>
