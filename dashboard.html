@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,7 +9,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
-    import { getFirestore, doc, getDoc, collection, query, where, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+    import { getFirestore, doc, getDoc, collection, query, where, getDocs, updateDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyBZUQXgfdDHrntbBVSVFf8Vvtp9V5qnERg",
@@ -32,9 +32,14 @@
     const referralCountField = document.getElementById("referral-count");
     const earningsField = document.getElementById("total-earnings");
     const referralDetails = document.getElementById("referral-details");
+    const withdrawBtn = document.getElementById("withdrawBtn");
+    const statusMessage = document.getElementById("withdraw-status");
 
     let currentUserId = null;
     let currentUserName = "";
+    let currentUserPhone = "";
+    let currentUserEmail = "";
+    let currentEarnings = 0;
 
     async function fetchReferralLevels(userId, level = 1, maxLevel = 5, parent = null) {
       if (level > maxLevel) return [];
@@ -61,12 +66,14 @@
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         currentUserId = user.uid;
+        currentUserEmail = user.email;
         const userDoc = await getDoc(doc(db, "users", currentUserId));
         if (userDoc.exists()) {
           const userData = userDoc.data();
           currentUserName = userData.fullName;
+          currentUserPhone = userData.mobile;
           nameField.textContent = currentUserName;
-          emailField.textContent = user.email;
+          emailField.textContent = currentUserEmail;
           paymentField.textContent = userData.paymentStatus || "Pending";
 
           const link = `${window.location.origin}/register.html?ref=${currentUserId}`;
@@ -79,7 +86,7 @@
 
           referralDetails.innerHTML = "";
           referrals.forEach(ref => {
-            const income = ref.paymentStatus === "Paid" ? (ref.level === 1 ? 200 : ref.level === 2 ? 100 : ref.level === 3 ? 50 : ref.level === 4 ? 30 : 20) : 0;
+            const income = ref.paymentStatus === "Paid" ? (ref.level === 1 ? 280 : ref.level === 2 ? 180 : ref.level === 3 ? 140 : ref.level === 4 ? 100 : 100) : 0;
             if (income > 0) totalEarnings += income;
             const item = document.createElement("li");
             item.textContent = `Level ${ref.level} - ${ref.fullName} (${ref.email}): ${ref.paymentStatus}, Income: ₹${income}`;
@@ -88,6 +95,7 @@
 
           referralCountField.textContent = referralCount;
           earningsField.textContent = `₹${totalEarnings}`;
+          currentEarnings = totalEarnings;
         }
       } else {
         window.location.href = "login.html";
@@ -113,7 +121,7 @@
 
     document.getElementById("payBtn").addEventListener("click", () => {
       const options = {
-        key: "rzp_test_TJHgziXr9G0b8H",
+        key: "rzp_test_65YRKaINc6MqXg",
         amount: 100000,
         currency: "INR",
         name: "Accessible Learn and Win",
@@ -129,7 +137,8 @@
         },
         prefill: {
           name: currentUserName,
-          email: document.getElementById("user-email").textContent
+          email: currentUserEmail,
+          contact: currentUserPhone
         },
         theme: {
           color: "#007bff"
@@ -137,6 +146,29 @@
       };
       const rzp = new Razorpay(options);
       rzp.open();
+    });
+
+    withdrawBtn.addEventListener("click", async () => {
+      if (currentEarnings === 0) {
+        statusMessage.textContent = "You have no earnings to withdraw.";
+        return;
+      }
+      try {
+        await addDoc(collection(db, "withdrawals"), {
+          userId: currentUserId,
+          fullName: currentUserName,
+          email: currentUserEmail,
+          amount: currentEarnings,
+          requestedAt: serverTimestamp(),
+          status: "Pending"
+        });
+        statusMessage.textContent = "Withdrawal request submitted successfully. Amount: ₹" + currentEarnings;
+        earningsField.textContent = "₹0";
+        currentEarnings = 0;
+      } catch (error) {
+        console.error("Error submitting withdrawal request:", error);
+        statusMessage.textContent = "Something went wrong. Please try again later.";
+      }
     });
   </script>
   <style>
@@ -166,6 +198,10 @@
     ul {
       padding-left: 20px;
     }
+    #withdraw-status {
+      margin-top: 10px;
+      color: green;
+    }
   </style>
 </head>
 
@@ -192,7 +228,8 @@
     <p><strong>Total Referrals:</strong> <span id="referral-count">0</span></p>
     <p><strong>Total Earnings:</strong> <span id="total-earnings">₹0</span></p>
     <ul id="referral-details"></ul>
-    <button>Withdraw Earnings</button>
+    <button id="withdrawBtn">Withdraw Earnings</button>
+    <p id="withdraw-status"></p>
   </div>
 
   <button id="logout">Logout</button>
