@@ -1,11 +1,84 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>User Dashboard</title>
+  
+  <!-- Razorpay -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("s345rP5aJdoory4jI"); // Replace with your EmailJS public key
+    })();
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      padding: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    #withdraw-status {
+      margin-top: 10px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Welcome to Accessible Learn and Win Platform</h2>
+    <p>Thank you for joining our platform. This is your personalized dashboard where you can manage your referral activities and earnings.</p>
+    <p><strong>Name:</strong> <span id="user-name"></span></p>
+    <p><strong>Email:</strong> <span id="user-email"></span></p>
+    <p><strong>Payment Status:</strong> <span id="user-payment-status"></span></p>
+    <button id="payBtn">Pay ₹1000 Membership</button>
+  </div>
+
+  <div class="card">
+    <h3>Your Referral Link</h3>
+    <p id="referral-link"></p>
+    <button id="copyLink">Copy Referral Link</button>
+  </div>
+
+  <button id="toggleReferral">Show/Hide Referral Dashboard</button>
+
+  <div class="card" id="referralSection" style="display: none;">
+    <h3>Referral Dashboard</h3>
+    <p><strong>Total Referrals:</strong> <span id="referral-count">0</span></p>
+    <p><strong>Total Earnings:</strong> <span id="total-earnings">₹0</span></p>
+    <ul id="referral-details"></ul>
+    <button id="withdrawBtn">Withdraw Earnings</button>
+    <p id="withdraw-status"></p>
+  </div>
+
+  <button id="logout">Logout</button>
+
+  <!-- Firebase SDKs -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
@@ -86,8 +159,12 @@
 
           referralDetails.innerHTML = "";
           referrals.forEach(ref => {
-            const income = ref.paymentStatus === "Paid" ? (ref.level === 1 ? 280 : ref.level === 2 ? 180 : ref.level === 3 ? 140 : ref.level === 4 ? 100 : 100) : 0;
+            const income = ref.paymentStatus === "Paid"
+              ? (ref.level === 1 ? 280 : ref.level === 2 ? 180 : ref.level === 3 ? 140 : ref.level === 4 ? 100 : 100)
+              : 0;
+
             if (income > 0) totalEarnings += income;
+
             const item = document.createElement("li");
             item.textContent = `Level ${ref.level} - ${ref.fullName} (${ref.email}): ${ref.paymentStatus}, Income: ₹${income}`;
             referralDetails.appendChild(item);
@@ -108,7 +185,7 @@
     });
 
     document.getElementById("copyLink").addEventListener("click", () => {
-      const text = document.getElementById("referral-link").textContent;
+      const text = referralLinkField.textContent;
       navigator.clipboard.writeText(text);
       alert("Referral link copied to clipboard!");
     });
@@ -121,8 +198,8 @@
 
     document.getElementById("payBtn").addEventListener("click", () => {
       const options = {
-        key: "rzp_test_65YRKaINc6MqXg",
-        amount: 100000,
+        key: "rzp_test_65YRKaINc6MqXg", // Replace with your actual Razorpay test key
+        amount: 100000, // 1000 INR
         currency: "INR",
         name: "Accessible Learn and Win",
         description: "Membership Fee",
@@ -171,68 +248,5 @@
       }
     });
   </script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #f0f2f5;
-    }
-    .card {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-    button {
-      padding: 10px 20px;
-      border: none;
-      background-color: #007bff;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    #withdraw-status {
-      margin-top: 10px;
-      color: green;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="card">
-    <h2>Welcome to Accessible Learn and Win Platform</h2>
-    <p>Thank you for joining our platform. This is your personalized dashboard where you can manage your referral activities and earnings.</p>
-    <p><strong>Name:</strong> <span id="user-name"></span></p>
-    <p><strong>Email:</strong> <span id="user-email"></span></p>
-    <p><strong>Payment Status:</strong> <span id="user-payment-status"></span></p>
-    <button id="payBtn">Pay ₹1000 Membership</button>
-  </div>
-
-  <div class="card">
-    <h3>Your Referral Link</h3>
-    <p id="referral-link"></p>
-    <button id="copyLink">Copy Referral Link</button>
-  </div>
-
-  <button id="toggleReferral">Show/Hide Referral Dashboard</button>
-
-  <div class="card" id="referralSection" style="display: none;">
-    <h3>Referral Dashboard</h3>
-    <p><strong>Total Referrals:</strong> <span id="referral-count">0</span></p>
-    <p><strong>Total Earnings:</strong> <span id="total-earnings">₹0</span></p>
-    <ul id="referral-details"></ul>
-    <button id="withdrawBtn">Withdraw Earnings</button>
-    <p id="withdraw-status"></p>
-  </div>
-
-  <button id="logout">Logout</button>
 </body>
-
 </html>
