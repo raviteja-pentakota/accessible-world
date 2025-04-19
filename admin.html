@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f9f9f9; }
+    h2 { margin-bottom: 20px; }
+    .request { border: 1px solid #ccc; padding: 15px; margin-bottom: 10px; background: #fff; border-radius: 8px; }
+    button { margin-right: 10px; padding: 5px 10px; }
+  </style>
+</head>
+<body>
+  <h2>Admin Withdrawal Requests</h2>
+  <div id="requests"></div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+    import { getFirestore, collection, getDocs, updateDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBZUQXgfdDHrntbBVSVFf8Vvtp9V5qnERg",
+      authDomain: "accessible-learn-and-win-ad21f.firebaseapp.com",
+      projectId: "accessible-learn-and-win-ad21f",
+      storageBucket: "accessible-learn-and-win-ad21f.appspot.com",
+      messagingSenderId: "299849578412",
+      appId: "1:299849578412:web:1e66a3292e35578f102c09",
+      measurementId: "G-G832YW57EK"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const db = getFirestore(app);
+
+    const requestsDiv = document.getElementById("requests");
+
+    // Set your admin email here
+    const adminEmail = "raviteja26j@gmail.com";
+
+    onAuthStateChanged(auth, async user => {
+      if (!user || user.email !== adminEmail) {
+        alert("Access denied. Admins only.");
+        return location.href = "index.html";
+      }
+
+      const snapshot = await getDocs(collection(db, "withdrawals"));
+      snapshot.forEach(docSnap => {
+        const data = docSnap.data();
+        const div = document.createElement("div");
+        div.className = "request";
+        div.innerHTML = `
+          <p><strong>Name:</strong> ${data.fullName}</p>
+          <p><strong>Email:</strong> ${data.email}</p>
+          <p><strong>Amount:</strong> ₹${data.amount}</p>
+          <p><strong>Status:</strong> ${data.status}</p>
+          <p><strong>Requested:</strong> ${data.requestedAt?.toDate().toLocaleString() || "N/A"}</p>
+          <button onclick="handleAction('${docSnap.id}', 'Approved')">Approve</button>
+          <button onclick="handleAction('${docSnap.id}', 'Rejected')">Reject</button>
+        `;
+        requestsDiv.appendChild(div);
+      });
+    });
+
+    window.handleAction = async (id, status) => {
+      await updateDoc(doc(db, "withdrawals", id), {
+        status,
+        reviewedAt: serverTimestamp()
+      });
+      alert("Status updated to " + status);
+      location.reload();
+    };
+  </script>
+</body>
+</html>
