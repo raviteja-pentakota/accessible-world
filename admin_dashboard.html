@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Accessible Learn and Win</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f0f2f5; }
+        .container { max-width: 960px; margin: 0 auto; }
+        .card { background: #fff; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        header { text-align: center; margin-bottom: 20px; }
+        nav { margin-bottom: 20px; }
+        nav button { padding: 10px 15px; border: none; background: #007bff; color: #fff; border-radius: 4px; cursor: pointer; margin-right: 10px; }
+        nav button:hover { background: #0056b3; }
+        h3 { margin-top: 0; }
+        #withdrawal-list-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f9f9f9; }
+        .approve-btn, .reject-btn { padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; }
+        .approve-btn { background-color: #28a745; color: #fff; margin-right: 5px; }
+        .approve-btn:hover { background-color: #1e7e34; }
+        .reject-btn { background-color: #dc3545; color: #fff; }
+        .reject-btn:hover { background-color: #c82333; }
+        #withdrawal-list-container p { font-style: italic; color: #6c757d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Admin Dashboard</h1>
+        </header>
+        <nav>
+            <button id="logout" style="float:right;background:#dc3545">Logout</button>
+        </nav>
+        <main>
+            <section id="pending-withdrawals-section" class="card">
+                <h3>Pending Withdrawals</h3>
+                <div id="withdrawal-list-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Amount</th>
+                                <th>Requested At</th>
+                                <th>Payment Method</th>
+                                <th>Payment ID</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="withdrawal-list">
+                            <tr><td colspan="9">Loading withdrawals...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Accessible Learn and Win</p>
+        </footer>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+        import {
+            getFirestore, doc, getDoc, collection,
+            query, where, getDocs, updateDoc
+        } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
+            authDomain: "accessibleworld-7f599.firebaseapp.com",
+            projectId: "accessibleworld-7f599",
+            storageBucket: "accessibleworld-7f599.appspot.com",
+            messagingSenderId: "264437218598",
+            appId: "1:264437218598:web:cae58c1e578c7b08b815e7",
+            measurementId: "G-1QRWXYRZ76"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const db = getFirestore(app);
+
+        const logoutBtn = document.getElementById("logout");
+        const withdrawalList = document.getElementById("withdrawal-list");
+        const pendingWithdrawalsSection = document.getElementById("pending-withdrawals-section");
+
+        async function fetchPendingWithdrawals() {
+            withdrawalList.innerHTML = '<tr><td colspan="9">Loading withdrawals...</td></tr>';
+            const q = query(collection(db, "withdrawals"), where("status", "==", "Pending"));
+            const snap = await getDocs(q);
+
+            if (snap.empty) {
+                withdrawalList.innerHTML = '<tr><td colspan="9">No pending withdrawals.</td></tr>';
+                return;
+            }
+
+            let html = "";
+            snap.forEach(docSnap => {
+                const data = docSnap.data();
+                html += `
+                    <tr>
+                        <td>${data.fullName}</td>
+                        <td>${data.email}</td>
+                        <td>${data.phone}</td>
+                        <td>₹${data.amount}</td>
+                        <td>${data.requestedAt?.toDate().toLocaleString() || "N/A"}</td>
+                        <td>${data.paymentMethod}</td>
+                        <td>${data.paymentId}</td>
+                        <td>${data.status}</td>
+                        <td>
+                            <button class="approve-btn" data-id="${docSnap.id}">Approve</button>
+                            <button class="reject-btn" data-id="${docSnap.id}">Reject</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            withdrawalList.innerHTML = html;
+
+            // Add event listeners for the new buttons (inside the function after rendering)
+            document.querySelectorAll('.approve-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const withdrawalId = this.dataset.id;
+                    updateWithdrawalStatus(withdrawalId, "Approved");
+                });
+            });
+
+            document.querySelectorAll('.reject-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const withdrawalId = this.dataset.id;
+                    updateWithdrawalStatus(withdrawalId, "Rejected");
+                });
+            });
+        }
+
+        async function updateWithdrawalStatus(withdrawalId, newStatus) {
+            try {
+                await updateDoc(doc(db, "withdrawals", withdrawalId), {
+                    status: newStatus
+                });
+                alert(`Withdrawal ${withdrawalId} ${newStatus} successfully.`);
+                fetchPendingWithdrawals(); // Refresh the list
+            } catch (error) {
+                console.error("Error updating withdrawal status:", error);
+                alert("Failed to update withdrawal status.");
+            }
+        }
+
+        onAuthStateChanged(auth, async user => {
+            if (!user) {
+                location.href = "login.html";
+                return;
+            }
+
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            if (!userDoc.exists() || userDoc.data()?.role !== "admin") {
+                alert("You are not authorized to access this page.");
+                location.href = "admin_login.html"; // Redirect non-admins
+                return;
+            }
+
+            // If the user is an admin, proceed to load admin data
+            fetchPendingWithdrawals();
+            pendingWithdrawalsSection.style.display = "block"; // Show the section by default for admins
+        });
+
+        logoutBtn.onclick = () => signOut(auth).then(() => location.href = "login.html");
+    </script>
+</body>
+</html>
