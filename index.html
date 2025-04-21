@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login - Accessible world</title>
+  <title>Login - Accessible World</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -66,12 +66,13 @@
   <div class="container">
     <h2>Welcome Back!</h2>
     <p>
-      Ready to turn knowledge into income? With Accessible World, you get training, tools, and a 5-level referral system. 
-      Accessible Learning and Win is a platform that offers free accessibility testing and computer training. 
+      Ready to turn knowledge into income? With Accessible World, you get training, tools, and a 5-level referral system.
+      Accessible Learning and Win is a platform that offers free accessibility testing and computer training.
       Refer friends, grow together, and earn while learning in a fully inclusive environment!
     </p>
-<p>Importent Information:
-do not login or register. this sight is under maintainance.</p>
+    <p><strong>Important Information:</strong><br>
+      Do not login or register. This site is under maintenance.</p>
+
     <form id="loginForm">
       <label for="email">Email Address</label>
       <input type="email" id="email" name="email" required>
@@ -89,27 +90,24 @@ do not login or register. this sight is under maintainance.</p>
 
   <!-- Firebase SDK -->
   <script type="module">
-    // Import Firebase SDK
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
     // Firebase config
     const firebaseConfig = {
-      apiKey: "AIzaSyBZUQXgfdDHrntbBVSVFf8Vvtp9V5qnERg",
-      authDomain: "accessible-learn-and-win-ad21f.firebaseapp.com",
-      projectId: "accessible-learn-and-win-ad21f",
-      storageBucket: "accessible-learn-and-win-ad21f.appspot.com",
-      messagingSenderId: "299849578412",
-      appId: "1:299849578412:web:1e66a3292e35578f102c09",
-      measurementId: "G-G832YW57EK"
+      apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
+      authDomain: "accessibleworld-7f599.firebaseapp.com",
+      projectId: "accessibleworld-7f599",
+      storageBucket: "accessibleworld-7f599.appspot.com",
+      messagingSenderId: "264437218598",
+      appId: "1:264437218598:web:cae58c1e578c7b08b815e7",
+      measurementId: "G-1QRWXYRZ76"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    // Login Functionality
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
+    document.getElementById("loginForm").addEventListener("submit", (e) => {
       e.preventDefault();
 
       const email = document.getElementById("email").value;
@@ -118,7 +116,7 @@ do not login or register. this sight is under maintainance.</p>
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           alert("Login successful!");
-          window.location.href = "dashboard.html"; // Redirect after login
+          window.location.href = "dashboard.html";
         })
         .catch((error) => {
           alert("Login failed: " + error.message);
@@ -127,13 +125,13 @@ do not login or register. this sight is under maintainance.</p>
   </script>
 
   <script>
-    // Automatically focus the email field when the login page loads
+    // Auto-focus the email input
     window.onload = function() {
       const emailInput = document.getElementById("email");
       if (emailInput) {
         emailInput.focus();
       }
-    }
+    };
   </script>
 
 </body>

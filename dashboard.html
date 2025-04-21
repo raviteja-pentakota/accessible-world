@@ -1,202 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>User Dashboard</title>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script>
-    (function(){
-      // 1) Replace with your EmailJS Public Key
-      emailjs.init("s345rP5aJdoory4jI");
-    })();
-  </script>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f0f2f5; padding: 20px; }
-    .card { background: #fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1); margin-bottom:20px; padding:20px; }
-    button { background:#007bff; color:#fff; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; }
-    button:hover { background:#0056b3; }
-    ul { padding-left:20px; }
-    #withdraw-status { margin-top:10px; color:green; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard | Accessible Learn and Win</title>
+
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <div class="card">
-    <h2>Welcome to Accessible Learn and Win Platform</h2>
-    <p><strong>Name:</strong> <span id="user-name"></span></p>
-    <p><strong>Email:</strong> <span id="user-email"></span></p>
-    <p><strong>Payment Status:</strong> <span id="user-payment-status"></span></p>
-    <button id="payBtn">Pay ₹1000 Membership</button>
-  </div>
+  <header>
+    <h1>Welcome to Your Dashboard</h1>
+    <button id="logout">Logout</button>
+  </header>
 
-  <div class="card">
-    <h3>Your Referral Link</h3>
-    <p id="referral-link"></p>
-    <button id="copyLink">Copy Referral Link</button>
-  </div>
+  <section>
+    <h2>User Profile</h2>
+    <p><strong>Name:</strong> <span id="user-name"></span></p>
+    <p><strong>Email:</strong> <span id="user-email"></span></p>
+    <p><strong>Payment Status:</strong> <span id="user-payment-status"></span></p>
+  </section>
 
-  <button id="toggleReferral">Show/Hide Referral Dashboard</button>
+  <section>
+    <h2>Your Referral Link</h2>
+    <p><span id="referral-link"></span></p>
+    <button id="copyLink">Copy Link</button>
+  </section>
 
-  <div class="card" id="referralSection" style="display:none;">
-    <h3>Referral Dashboard</h3>
-    <p><strong>Total Referrals:</strong> <span id="referral-count">0</span></p>
-    <p><strong>Total Earnings:</strong> <span id="total-earnings">₹0</span></p>
-    <ul id="referral-details"></ul>
-    <button id="withdrawBtn">Withdraw Earnings</button>
-    <p id="withdraw-status"></p>
-  </div>
+  <section>
+    <button id="toggleReferral">Show/Hide Referral Details</button>
+    <div id="referralSection" style="display: none;">
+      <h2>Referral Overview</h2>
+      <p>Total Referrals: <span id="referral-count"></span></p>
+      <p>Total Earnings: <span id="total-earnings">₹0</span></p>
+      <ul id="referral-details"></ul>
+    </div>
+  </section>
 
-  <button id="logout">Logout</button>
+  <section>
+    <h2>Make Payment</h2>
+    <button id="payBtn">Pay ₹1000</button>
+  </section>
 
-    <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
-    import { getFirestore, doc, getDoc, collection, query, where, getDocs, updateDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+  <section>
+    <h2>Withdraw Earnings</h2>
+    <button id="withdrawBtn">Request Withdrawal</button>
+    <p id="withdraw-status"></p>
+  </section>
 
-    // Firebase config
-    const firebaseConfig = {
-      apiKey: "AIzaSyBZUQXgfdDHrntbBVSVFf8Vvtp9V5qnERg",
-      authDomain: "accessible-learn-and-win-ad21f.firebaseapp.com",
-      projectId: "accessible-learn-and-win-ad21f",
-      storageBucket: "accessible-learn-and-win-ad21f.appspot.com",
-      messagingSenderId: "299849578412",
-      appId: "1:299849578412:web:1e66a3292e35578f102c09",
-      measurementId: "G-G832YW57EK"
-    };
+  <!-- Razorpay -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-    // Initialize
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth();
-    const db = getFirestore(app);
+  <!-- Firebase & Dashboard Logic -->
+<script type="module" src="dashboard.js"></script>
 
-    // UI elements
-    const nameField         = document.getElementById("user-name");
-    const emailField        = document.getElementById("user-email");
-    const paymentField      = document.getElementById("user-payment-status");
-    const referralLinkField = document.getElementById("referral-link");
-    const referralCount     = document.getElementById("referral-count");
-    const earningsField     = document.getElementById("total-earnings");
-    const referralDetails   = document.getElementById("referral-details");
-    const withdrawBtn       = document.getElementById("withdrawBtn");
-    const statusMessage     = document.getElementById("withdraw-status");
-
-    let currentUserId, currentUserName, currentUserEmail, currentEarnings = 0;
-
-    // Multi-level referrals
-    async function fetchReferralLevels(uid, level=1, max=5) {
-      if (level>max) return [];
-      const q = query(collection(db,"users"), where("referredBy","==",uid));
-      const snap = await getDocs(q);
-      let out = [];
-      for (let d of snap.docs) {
-        const dat = d.data();
-        out.push({level, fullName:dat.fullName, email:dat.email, paymentStatus:dat.paymentStatus, uid:d.id});
-        out = out.concat(await fetchReferralLevels(d.id, level+1, max));
-      }
-      return out;
-    }
-
-    // Auth state
-    onAuthStateChanged(auth, async user => {
-      if (!user) return location.href="index.html";
-      currentUserId    = user.uid;
-      currentUserEmail = user.email;
-      const ud         = (await getDoc(doc(db,"users",user.uid))).data();
-      currentUserName  = ud.fullName;
-      nameField.textContent  = currentUserName;
-      emailField.textContent = currentUserEmail;
-      paymentField.textContent = ud.paymentStatus||"Pending";
-      referralLinkField.textContent = `${location.origin}/register.html?ref=${currentUserId}`;
-
-      const refs = await fetchReferralLevels(currentUserId);
-      referralCount.textContent = refs.length;
-      let tot=0; referralDetails.innerHTML="";
-      refs.forEach(r=>{
-        const inc = r.paymentStatus==="Paid"?
-          (r.level===1?280:r.level===2?180:r.level===3?140:100)
-          :0;
-        tot+=inc;
-        const li = document.createElement("li");
-        li.textContent = `Level ${r.level} – ${r.fullName} (${r.email}): ${r.paymentStatus}, ₹${inc}`;
-        referralDetails.append(li);
-      });
-      earningsField.textContent = `₹${tot}`;
-      currentEarnings = tot;
-    });
-
-    // UI handlers
-    document.getElementById("toggleReferral").onclick = ()=>
-      document.getElementById("referralSection")
-        .style.display = document.getElementById("referralSection").style.display==="none"?"block":"none";
-    document.getElementById("copyLink").onclick = () => {
-      navigator.clipboard.writeText(referralLinkField.textContent);
-      alert("Copied!");
-    };
-    document.getElementById("logout").onclick = ()=>
-      signOut(auth).then(()=>location.href="index.html");
-
-    // Razorpay
-    document.getElementById("payBtn").onclick = () => {
-      new Razorpay({
-        key: "rzp_test_65YRKaINc6MqXg",
-        amount:100000, currency:"INR",
-        name:"Accessible Learn and Win",
-        description:"Membership Fee",
-        prefill:{ name:currentUserName, email:currentUserEmail },
-        theme:{color:"#007bff"},
-        handler: async resp=>{
-          alert("Paid: "+resp.razorpay_payment_id);
-          await updateDoc(doc(db,"users",currentUserId),{ paymentStatus:"Paid" });
-          paymentField.textContent="Paid";
-        }
-      }).open();
-    };
-
-    // Withdraw
-    withdrawBtn.onclick = async () => {
-      if (!currentUserId)      return alert("Not logged in");
-      if (currentEarnings===0) return statusMessage.textContent="No earnings to withdraw";
-
-      try {
-        // 1) Save to Firestore
-        await addDoc(collection(db,"withdrawals"), {
-          userId:currentUserId,
-          fullName:currentUserName,
-          email:currentUserEmail,
-          amount:currentEarnings,
-          requestedAt:serverTimestamp(),
-          status:"Pending"
-        });
-
-        // 2) Log payload
-        console.log("EmailJS payload:",{
-          user_name:currentUserName,
-          user_email:currentUserEmail,
-          amount:currentEarnings
-        });
-
-        // 3) Send email via EmailJS
-        await emailjs.send(
-          "service_tf84qzj", // Your Service ID
-          "template_ap7z4ao", // Your Template ID
-          {
-            user_name:  currentUserName,
-            user_email: currentUserEmail,
-            amount:     currentEarnings
-          }
-          // Public key is not needed here
-        );
-
-        statusMessage.textContent =
-          `Withdrawal request submitted & email sent for ₹${currentEarnings}`;
-        earningsField.textContent="₹0";
-        currentEarnings=0;
-      } catch(err) {
-        console.error("Withdraw error:", err);
-        statusMessage.textContent="Something went wrong. Please try again.";
-      }
-    };
-  </script>
 </body>
 </html>

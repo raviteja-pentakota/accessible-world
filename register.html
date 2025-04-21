@@ -2,103 +2,6 @@
 <html>
 <head>
   <title>Register</title>
-  <script type="module">
-    // Firebase import
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-    import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
-
-    // Firebase config
-    const firebaseConfig = {
-      apiKey: "AIzaSyBZUQXgfdDHrntbBVSVFf8Vvtp9V5qnERg",
-      authDomain: "accessible-learn-and-win-ad21f.firebaseapp.com",
-      projectId: "accessible-learn-and-win-ad21f",
-      storageBucket: "accessible-learn-and-win-ad21f.appspot.com",
-      messagingSenderId: "299849578412",
-      appId: "1:299849578412:web:1e66a3292e35578f102c09",
-      measurementId: "G-G832YW57EK"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-
-    // Get referral code from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const referralCode = urlParams.get('ref');
-
-    // Registration function
-    async function registerUser(event) {
-      event.preventDefault();
-
-      const fullName = document.getElementById("fullName").value;
-      const mobile = document.getElementById("mobile").value;
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      try {
-        // Create user in Firebase Auth
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-        const uid = user.uid;
-
-        // Generate unique referral ID for this user
-        const generatedReferralCode = uid.substring(0, 8);
-
-        // Create user document
-        await setDoc(doc(db, "users", uid), {
-          fullName,
-          mobile,
-          email,
-          uid,
-          referralCode: generatedReferralCode,
-          referredBy: referralCode || null,
-          paymentStatus: "pending",
-          level1: [],
-          level2: [],
-          level3: [],
-          level4: [],
-          level5: []
-        });
-
-        // If registered with a referral, update the referrer’s document
-        if (referralCode) {
-          // Find referrer by matching referralCode
-          const allDocs = await getDoc(doc(db, "referralCodes", referralCode));
-          let referrerUID;
-
-          if (allDocs.exists()) {
-            referrerUID = allDocs.data().uid;
-          } else {
-            // fallback to searching in users collection
-            const usersSnapshot = await getDoc(doc(db, "users", referralCode));
-            if (usersSnapshot.exists()) {
-              referrerUID = usersSnapshot.id;
-            }
-          }
-
-          if (referrerUID) {
-            const referrerRef = doc(db, "users", referrerUID);
-            await updateDoc(referrerRef, {
-              level1: arrayUnion(uid)
-            });
-          }
-        }
-
-        // Redirect to login
-        alert("Registration successful! Please log in.");
-        window.location.href = "index.html";
-
-      } catch (error) {
-        console.error("Error during registration:", error);
-        alert(error.message);
-      }
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      document.getElementById("registerForm").addEventListener("submit", registerUser);
-    });
-  </script>
 </head>
 <body>
   <h2>Register</h2>
@@ -117,5 +20,98 @@
 
     <button type="submit">Register</button>
   </form>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+    // ✅ Your Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
+      authDomain: "accessibleworld-7f599.firebaseapp.com",
+      projectId: "accessibleworld-7f599",
+      storageBucket: "accessibleworld-7f599.appspot.com",
+      messagingSenderId: "264437218598",
+      appId: "1:264437218598:web:cae58c1e578c7b08b815e7",
+      measurementId: "G-1QRWXYRZ76"
+    };
+
+    // ✅ Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app); // FIXED: this must be from app
+    const db = getFirestore(app);
+
+    // ✅ Get referral code from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const referralCode = urlParams.get('ref');
+
+    async function registerUser(event) {
+      event.preventDefault();
+
+      const fullName = document.getElementById("fullName").value;
+      const mobile = document.getElementById("mobile").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        // ✅ Create Firebase Auth user
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        const uid = user.uid;
+
+        const generatedReferralCode = uid.substring(0, 8);
+
+        // ✅ Save user data to Firestore
+        await setDoc(doc(db, "users", uid), {
+          fullName,
+          mobile,
+          email,
+          uid,
+          referralCode: generatedReferralCode,
+          referredBy: referralCode || null,
+          paymentStatus: "pending",
+          level1: [],
+          level2: [],
+          level3: [],
+          level4: [],
+          level5: []
+        });
+
+        // ✅ Update referrer if referral code exists
+        if (referralCode) {
+          let referrerUID = null;
+
+          const referralDoc = await getDoc(doc(db, "referralCodes", referralCode));
+          if (referralDoc.exists()) {
+            referrerUID = referralDoc.data().uid;
+          } else {
+            const userDoc = await getDoc(doc(db, "users", referralCode));
+            if (userDoc.exists()) {
+              referrerUID = userDoc.id;
+            }
+          }
+
+          if (referrerUID) {
+            await updateDoc(doc(db, "users", referrerUID), {
+              level1: arrayUnion(uid)
+            });
+          }
+        }
+
+        alert("Registration successful! Please log in.");
+        window.location.href = "index.html";
+
+      } catch (error) {
+        console.error("Registration Error:", error.code, error.message);
+        alert(error.message);
+      }
+    }
+
+    // ✅ Attach event listener
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("registerForm").addEventListener("submit", registerUser);
+    });
+  </script>
 </body>
 </html>
