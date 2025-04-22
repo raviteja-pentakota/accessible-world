@@ -12,6 +12,7 @@
         ul { padding-left:20px; }
         #referralSection { display:none; }
         #withdraw-status { margin-top:10px; color:green; }
+        #payment-pending-message { margin-top: 10px; color: orange; font-weight: bold; }
         table { width:100%; border-collapse: collapse; margin-top: 15px; }
         th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
         th { background-color: #f9f9f9; }
@@ -67,7 +68,8 @@
         }
 
         .modal-input-group select,
-        .modal-input-group input[type="text"] {
+        .modal-input-group input[type="text"],
+        .modal-input-group input[type="number"] {
             width: calc(100% - 12px);
             padding: 8px;
             border: 1px solid #ccc;
@@ -113,6 +115,7 @@
             <h3>Referral Overview</h3>
             <p>Total Referrals: <span id="referral-count">0</span></p>
             <p>Total Earnings: <span id="total-earnings">₹0</span></p>
+            <p id="payment-pending-message" style="display: none;"></p>
             <table aria-label="Referral History Table">
                 <thead>
                     <tr>
@@ -222,6 +225,7 @@
         const paymentSection = document.getElementById("payment-section");
         const courseAccessSection = document.getElementById("course-access");
         const coursesBtn = document.getElementById("coursesBtn");
+        const paymentPendingMessage = document.getElementById("payment-pending-message");
 
         // Modal elements
         const withdrawModal = document.getElementById("withdrawModal");
@@ -283,7 +287,9 @@
             mobileField.textContent = currentUserMobile;
             emailField.textContent = currentUserEmail;
             paymentField.textContent = d.paymentStatus||"Pending";
-            referralLinkField.textContent = `<span class="math-inline">\{location\.origin\}/register\.html?ref\=</span>{user.uid}`;
+referralLinkField.textContent = `${location.origin}/register.html?ref=${user.uid}`;
+
+
 
             // hide/show payment or course access
             if(d.paymentStatus === "Paid") {
@@ -309,11 +315,14 @@ refs.forEach(r => {
     }
     total += inc;
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${r.level}</td><td>${r.fullName}</td><td>${r.mobile}</td><td>${r.email}</td><td>${r.paymentStatus}</td><td>₹${inc}</td>`;
+    tr.innerHTML = `<td><span class="math-inline">\{r\.level\}</td\><td\></span>{r.fullName}</td><td><span class="math-inline">\{r\.mobile\}</td\><td\></span>{r.email}</td><td><span class="math-inline">\{r\.paymentStatus\}</td\><td\>₹</span>{inc}</td>`;
     referralDetails.append(tr);
 });
 earningsField.textContent = `₹${total}`;
 currentEarnings = total;
+availableAmountInput.value = `₹${currentEarnings}`;
+totalAmountModal.value = `₹${currentEarnings}`;
+
 
             if (d.role === "admin") {
                 adminSection.style.display = "block";
@@ -357,7 +366,7 @@ currentEarnings = total;
             paymentMethodDropdown.value = "";
             paymentIdInput.value = "";
             withdrawAmountInput.value = "";
-            submitWithdrawalButton.disabled = true;
+            submitWithdrawqerdalButton.disabled = true;
         }
 
         cancelWithdrawalButton.onclick = function() {
@@ -392,50 +401,34 @@ currentEarnings = total;
             }
         }
 
-        submitWithdrawalButton.onclick = async ()=>{
-            const selectedMethod = paymentMethodDropdown.value;
-            const paymentId = paymentIdInput.value;
-            const requestedAmount = parseFloat(withdrawAmountInput.value);
+submitWithdrawalButton.onclick = async ()=>{
+    // ... (rest of your existing code)
 
-            if (!selectedMethod) {
-                alert("Please select a payment method.");
-                return;
-            }
+    try {
+        await addDoc(collection(db,"withdrawals"), {
+            // ... (withdrawal data)
+        });
+        statusMessage.textContent="Withdrawal request submitted!";
+        paymentPendingMessage.style.display = "block";
+        paymentPendingMessage.textContent = "Payment Pending";
+        withdrawModal.style.display = "none";
+        paymentDetailsDiv.style.display = "none";
+        paymentMethodDropdown.value = "";
+        paymentIdInput.value = "";
+        withdrawAmountInput.value = "";
+        submitWithdrawalButton.disabled = true;
 
-            if (!paymentId) {
-                alert("Please enter your UPI ID or number.");
-                return;
-            }
+        // Immediately update the displayed earnings
+        currentEarnings -= requestedAmount;
+        earningsField.textContent = `₹${currentEarnings}`;
+        availableAmountInput.value = `₹${currentEarnings}`;
+        totalAmountModal.value = `₹${currentEarnings}`;
 
-            if (isNaN(requestedAmount) || requestedAmount <= 0 || requestedAmount > currentEarnings) {
-                alert(`Please enter a valid withdrawal amount (up to ₹${currentEarnings}).`);
-                return;
-            }
-
-            try {
-                await addDoc(collection(db,"withdrawals"), {
-                    userId:currentUserId,
-                    fullName:currentUserName,
-                    email:currentUserEmail,
-                    phone:currentUserMobile,
-                    amount:requestedAmount,
-                    paymentMethod:selectedMethod,
-                    paymentId:paymentId,
-                    requestedAt:serverTimestamp(),
-                    status:"Pending"
-                });
-                statusMessage.textContent="Withdrawal request submitted!";
-                withdrawModal.style.display = "none";
-                paymentDetailsDiv.style.display = "none";
-                paymentMethodDropdown.value = "";
-                paymentIdInput.value = "";
-                withdrawAmountInput.value = "";
-                submitWithdrawalButton.disabled = true;
-            } catch(e){
-                console.error(e);
-                statusMessage.textContent="Could not submit withdrawal request.";
-            }
-        };
+    } catch(e){
+        console.error(e);
+        statusMessage.textContent="Could not submit withdrawal request.";
+    }
+};
 
         coursesBtn.onclick = ()=> window.location.href = 'courses.html';
     </script>
