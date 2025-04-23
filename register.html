@@ -12,7 +12,7 @@
         <label for="mobile">Mobile:</label><br>
         <input type="text" id="mobile" required><br>
 
-<label for="email">Email:</label><br>
+        <label for="email">Email:</label><br>
         <input type="email" id="email" required><br>
 
         <label for="password">Password:</label><br>
@@ -57,14 +57,13 @@
             const password = document.getElementById("password").value;
 
             try {
-                // ✅ Create Firebase Auth user
+                console.log("Creating Firebase user...");
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
                 const uid = user.uid;
-
                 const generatedReferralCode = uid.substring(0, 8);
 
-                // ✅ Save user data to Firestore
+                console.log("Saving user data to Firestore...");
                 await setDoc(doc(db, "users", uid), {
                     fullName,
                     mobile,
@@ -80,13 +79,13 @@
                     level5: []
                 });
 
-                // ✅ Create referral code mapping
+                console.log("Creating referralCode mapping...");
                 await setDoc(doc(db, "referralCodes", generatedReferralCode), {
                     uid: uid
                 });
 
-                // ✅ Update referrer if referral code exists
                 if (referralCode) {
+                    console.log("Checking referral code...");
                     let referrerUID = null;
 
                     const referralDoc = await getDoc(doc(db, "referralCodes", referralCode));
@@ -100,9 +99,17 @@
                     }
 
                     if (referrerUID) {
+                        console.log("Updating referrer's level1...");
                         await updateDoc(doc(db, "users", referrerUID), {
                             level1: arrayUnion(uid)
                         });
+
+                        // Update referrer's earnings (in this case, let's say each new user adds ₹100)
+                        await updateDoc(doc(db, "users", referrerUID), {
+                            earnings: firebase.firestore.FieldValue.increment(100)
+                        });
+
+                        console.log("Referrer's earnings updated.");
                     }
                 }
 
