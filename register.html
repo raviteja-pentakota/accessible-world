@@ -16,15 +16,20 @@
         <input type="email" id="email" required><br>
 
         <label for="password">Password:</label><br>
-        <input type="password" id="password" required><br><br>
+        <input type="password" id="password" required><br>
+
+        <label for="referralInput">Referral Code:</label><br>
+        <input type="text" id="referralInput" readonly><br><br>
 
         <button type="submit">Register</button>
     </form>
 
+    <p>Already a user? <a href="index.html">Click here to login</a></p>
+
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
@@ -43,7 +48,11 @@
         const urlParams = new URLSearchParams(window.location.search);
         const referralCode = urlParams.get('ref');
 
-        async function registerUser(event) {
+        if (referralCode) {
+            document.getElementById("referralInput").value = referralCode;
+        }
+
+async function registerUser(event) {
             event.preventDefault();
 
             const fullName = document.getElementById("fullName").value;
@@ -53,9 +62,9 @@
 
             try {
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-                const uid = user.uid;
+                await auth.currentUser.getIdToken();
 
+                const uid = auth.currentUser.uid;
                 const generatedReferralCode = uid.substring(0, 8);
 
                 await setDoc(doc(db, "users", uid), {
@@ -73,16 +82,33 @@
                     level5: []
                 });
 
-                // Update referrer's level1 array
                 if (referralCode) {
-                    const referrerSnapshot = await getDoc(doc(db, "users", referralCode));
-                    if (referrerSnapshot.exists()) {
-                        const referrerData = referrerSnapshot.data();
-                        if (referrerData.uid !== uid) { // Prevent self-referral
-                            await updateDoc(doc(db, "users", referralCode), {
-                                level1: arrayUnion(uid)
-                            });
+                    console.log("Referral Code from URL:", referralCode);
+                    let referrerUID = null;
+
+                    // Check if the referral code exists in the 'referralCodes' collection
+                    const referralDoc = await getDoc(doc(db, "referralCodes", referralCode));
+                    console.log("referralDoc.exists():", referralDoc.exists());
+                    if (referralDoc.exists()) {
+                        referrerUID = referralDoc.data().uid;
+                        console.log("Found in 'referralCodes', referrerUID:", referrerUID);
+                    } else {
+                        // If not found in 'referralCodes', check if it's a user's UID
+                        const userDoc = await getDoc(doc(db, "users", referralCode));
+                        console.log("userDoc.exists():", userDoc.exists());
+                        if (userDoc.exists()) {
+                            referrerUID = userDoc.id;
+                            console.log("Found as userId, referrerUID:", referrerUID);
                         }
+                    }
+
+                    console.log("Final referrerUID:", referrerUID);
+                    if (referrerUID) {
+                        await updateDoc(doc(db, "users", referrerUID), {
+                            level1: arrayUnion(uid)
+                        });
+                    } else {
+                        console.log("No valid referrerUID found.");
                     }
                 }
 
@@ -94,10 +120,7 @@
                 alert(error.message);
             }
         }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("registerForm").addEventListener("submit", registerUser);
-        });
+        document.getElementById("registerForm").addEventListener("submit", registerUser);
     </script>
 </body>
 </html>
