@@ -1,195 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Dashboard | Accessible Learn and Win</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding:20px; background:#f0f2f5; }
-        .card { background:#fff; border-radius:8px; padding:20px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
-        button { padding:10px 20px; border:none; background:#007bff; color:#fff; border-radius:4px; cursor:pointer; }
-        button:hover { background:#0056b3; }
-        ul { padding-left:20px; }
-        #referralSection { display:none; }
-        #withdraw-status { margin-top:10px; color:green; }
-        table { width:100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-        th { background-color: #f9f9f9; }
-        .admin-section { background: #fffbe6; padding: 20px; margin-top: 30px; border: 1px solid #ffe58f; border-radius: 8px; }
-        .withdrawal-card { border-bottom: 1px solid #ddd; padding: 10px 0; }
-        .withdrawal-card:last-child { border-bottom: none; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc, collection, query, where, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
 
-        /* Modal Styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-            border-radius: 8px;
-            position: relative;
-        }
-
-        .close-button {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close-button:hover,
-        .close-button:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .modal-input-group {
-            margin-bottom: 15px;
-        }
-
-        .modal-input-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .modal-input-group select,
-        .modal-input-group input[type="text"],
-        .modal-input-group input[type="number"] {
-            width: calc(100% - 12px);
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .modal-actions {
-            text-align: right;
-        }
-
-        .modal-actions button {
-            margin-left: 10px;
-        }
-    </style>
-</head>
-<body>
-    <div class="card">
-        <h2>Welcome to Accessible Learn and Win</h2>
-        <p><strong>Name:</strong> <span id="user-name"></span></p>
-        <p><strong>Mobile:</strong> <span id="user-mobile"></span></p>
-        <p><strong>Email:</strong> <span id="user-email"></span></p>
-        <p><strong>Payment Status:</strong> <span id="user-payment-status"></span></p>
-        <div id="payment-section">
-            <button id="payBtn">Pay ₹1000 Membership</button>
-        </div>
-        <div id="course-access" style="display:none; margin-top:10px;">
-            <p style="color:green;">You are already a paid member. To access the paid courses, click below:</p>
-            <button id="coursesBtn">Access Courses</button>
-        </div>
-        <button id="logout" style="float:right;background:#dc3545">Logout</button>
-    </div>
-
-    <div class="card">
-        <h3>Your Referral Link</h3>
-        <p><span id="referral-link"></span></p>
-        <button id="copyLink">Copy Link</button>
-    </div>
-
-    <div class="card">
-        <button id="toggleReferral">Show/Hide Referral Details</button>
-        <div id="referralSection">
-            <h3>Referral Overview</h3>
-            <p>Total Referrals: <span id="referral-count">0</span></p>
-            <p>Total Earnings: <span id="total-earnings">₹0</span></p>
-            <table aria-label="Referral History Table">
-                <thead>
-                    <tr>
-                        <th>Level</th>
-                        <th>Name</th>
-                        <th>Mobile</th>
-                        <th>Email</th>
-                        <th>Payment Status</th>
-                        <th>Earning</th>
-                    </tr>
-                </thead>
-                <tbody id="referral-details"></tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="card">
-        <h3>Withdraw Earnings</h3>
-        <button id="withdrawBtn">Request Withdrawal</button>
-        <p id="withdraw-status"></p>
-    </div>
-
-    <div id="admin-section" class="admin-section" style="display:none">
-        <h3>Admin: Pending Withdrawals</h3>
-        <div id="withdrawal-list"></div>
-    </div>
-
-    <div id="withdrawModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h3>Withdrawal Request</h3>
-            <div class="modal-input-group">
-                <label for="totalAmount">Total Amount:</label>
-                <input type="text" id="totalAmount" value="₹0" readonly>
-            </div>
-            <div class="modal-input-group">
-                <label for="paymentMethod">Payment Method:</label>
-                <select id="paymentMethod">
-                    <option value="">Select Method</option>
-                    <option value="phonepay">PhonePe</option>
-                    <option value="googlepay">Google Pay</option>
-                    <option value="upi">UPI</option>
-                </select>
-            </div>
-            <div id="paymentDetails" style="display:none;">
-                <div class="modal-input-group">
-                    <label for="paymentId">Enter UPI ID/Number:</label>
-                    <input type="text" id="paymentId" placeholder="Enter your ID">
-                </div>
-                <div class="modal-input-group">
-                    <label for="availableAmount">Available Amount:</label>
-                    <input type="text" id="availableAmount" value="₹0" readonly>
-                </div>
-                <div class="modal-input-group">
-                    <label for="withdrawAmount">Withdraw Amount:</label>
-                    <input type="number" id="withdrawAmount" placeholder="Enter amount to withdraw">
-                </div>
-            </div>
-            <div class="modal-actions">
-                <button id="submitWithdrawal" disabled>Submit Withdrawal</button>
-                <button id="cancelWithdrawal">Cancel</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
-        import {
-            getFirestore, doc, getDoc, collection,
-            query, where, getDocs, updateDoc,
-            addDoc, serverTimestamp
-        } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
-
-        const firebaseConfig = {
+    const firebaseConfig = {
             apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
             authDomain: "accessibleworld-7f599.firebaseapp.com",
             projectId: "accessibleworld-7f599",
@@ -203,257 +25,177 @@
         const auth = getAuth();
         const db = getFirestore(app);
 
-        const nameField = document.getElementById("user-name");
-        const mobileField = document.getElementById("user-mobile");
-        const emailField = document.getElementById("user-email");
-        const paymentField = document.getElementById("user-payment-status");
-        const payBtn = document.getElementById("payBtn");
-        const logoutBtn = document.getElementById("logout");
-        const referralLinkField = document.getElementById("referral-link");
-        const copyLinkBtn = document.getElementById("copyLink");
-        const toggleReferralBtn = document.getElementById("toggleReferral");
-        const referralSection = document.getElementById("referralSection");
-        const referralCountField = document.getElementById("referral-count");
-        const earningsField = document.getElementById("total-earnings");
-        const referralDetails = document.getElementById("referral-details");
-        const withdrawBtn = document.getElementById("withdrawBtn");
-        const statusMessage = document.getElementById("withdraw-status");
-        const adminSection = document.getElementById("admin-section");
-        const withdrawalList = document.getElementById("withdrawal-list");
-        const paymentSection = document.getElementById("payment-section");
-        const courseAccessSection = document.getElementById("course-access");
-        const coursesBtn = document.getElementById("coursesBtn");
+    const nameField = document.getElementById("user-name");
+    const emailField = document.getElementById("user-email");
+    const paymentField = document.getElementById("user-payment-status");
+    const referralLinkField = document.getElementById("referral-link");
+    const referralCountField = document.getElementById("referral-count");
+    const earningsField = document.getElementById("total-earnings");
+    const referralDetails = document.getElementById("referral-details");
 
-        // Modal elements
-        const withdrawModal = document.getElementById("withdrawModal");
-        const closeButton = withdrawModal.querySelector(".close-button");
-        const totalAmountModal = document.getElementById("totalAmount");
-        const paymentMethodDropdown = document.getElementById("paymentMethod");
-        const paymentDetailsDiv = document.getElementById("paymentDetails");
-        const paymentIdInput = document.getElementById("paymentId");
-        const availableAmountInput = document.getElementById("availableAmount");
-        const withdrawAmountInput = document.getElementById("withdrawAmount");
-        const submitWithdrawalButton = document.getElementById("submitWithdrawal");
-        const cancelWithdrawalButton = document.getElementById("cancelWithdrawal");
+    let currentUserId = null;
+    let currentUserName = "";
 
-        let currentUserId, currentUserName, currentUserMobile, currentUserEmail, currentEarnings=0;
+    async function fetchReferralLevels(userId, level = 1, maxLevel = 5, parent = null) {
+      if (level > maxLevel) return [];
+      const q = query(collection(db, "users"), where("referredBy", "==", userId));
+      const snapshot = await getDocs(q);
 
-        async function fetchReferralLevels(uid, level=1, max=5) {
-            if(level>max) return [];
-            const q = query(collection(db,"users"), where("referredBy","==",uid));
-            const snap = await getDocs(q);
-            let out=[];
-            for(const ds of snap.docs) {
-                const d=ds.data();
-                out.push({ level, fullName:d.fullName, mobile:d.mobile, email:d.email, paymentStatus:d.paymentStatus, uid:ds.id });
-                out = out.concat(await fetchReferralLevels(ds.id, level+1, max));
-            }
-            return out;
-        }
-
-        async function fetchWithdrawalsForAdmin() {
-            withdrawalList.innerHTML = "";
-            const q = query(collection(db, "withdrawals"), where("status", "==", "Pending"));
-            const snap = await getDocs(q);
-            snap.forEach(docSnap => {
-                const data = docSnap.data();
-                const card = document.createElement("div");
-                card.className = "withdrawal-card";
-                card.innerHTML = `
-                    <p><strong>Name:</strong> ${data.fullName}</p>
-                    <p><strong>Email:</strong> ${data.email}</p>
-                    <p><strong>Phone:</strong> <span class="math-inline">\{data\.phone\}</p\>
-<p\><strong\>Amount\:</strong\> ₹</span>{data.amount}</p>
-                    <p><strong>Date:</strong> ${data.requestedAt?.toDate().toLocaleString() || "N/A"}</p>
-                    <p><strong>Status:</strong> ${data.status}</p>
-                `;
-                withdrawalList.appendChild(card);
-            });
-        }
-
-onAuthStateChanged(auth, async user => {
-    if (!user) return location.href = "index.html";
-    currentUserId = user.uid;
-    currentUserEmail = user.email;
-    const u = await getDoc(doc(db, "users", user.uid));
-    if (!u.exists()) return alert("No user data!");
-    const d = u.data();
-    currentUserName = d.fullName || "";
-    currentUserMobile = d.mobile || "";
-    nameField.textContent = currentUserName;
-    mobileField.textContent = currentUserMobile;
-    emailField.textContent = currentUserEmail;
-    paymentField.textContent = d.paymentStatus || "Pending";
-    referralLinkField.textContent = `${location.origin}/register.html?ref=${user.uid}`;
-
-    // Initialize currentEarnings from the database
-    currentEarnings = d.totalEarnings || 0;
-    earningsField.textContent = `₹${currentEarnings}`;
-
-    // hide/show payment or course access
-    if (d.paymentStatus === "Paid") {
-        paymentSection.style.display = "none";
-        courseAccessSection.style.display = "block";
-    } else {
-        paymentSection.style.display = "block";
-        courseAccessSection.style.display = "none";
+      let referrals = [];
+      for (let docSnap of snapshot.docs) {
+        const data = docSnap.data();
+        referrals.push({
+          level,
+          fullName: data.fullName || "Unnamed User",
+          email: data.email || "",
+          paymentStatus: data.paymentStatus || "Pending",
+          uid: docSnap.id,
+          parent: parent || userId
+        });
+        const childReferrals = await fetchReferralLevels(docSnap.id, level + 1, maxLevel, docSnap.id);
+        referrals = referrals.concat(childReferrals);
+      }
+      return referrals;
     }
 
-    const refs = await fetchReferralLevels(user.uid);
-    referralCountField.textContent = refs.length;
-    let total = 0;
-    referralDetails.innerHTML = "";
-    refs.forEach(r => {
-        let inc = 0;
-        if (r.paymentStatus === "Paid") {
-            if (r.level === 1) inc = 250;
-            else if (r.level === 2) inc = 150;
-            else if (r.level === 3) inc = 100;
-            else if (r.level === 4) inc = 60;
-            else if (r.level === 5) inc = 40;
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        currentUserId = user.uid;
+        const userDoc = await getDoc(doc(db, "users", currentUserId));
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          currentUserName = userData.fullName;
+          nameField.textContent = currentUserName;
+          emailField.textContent = user.email;
+          paymentField.textContent = userData.paymentStatus || "Pending";
+
+          const link = `${window.location.origin}/register.html?ref=${currentUserId}`;
+          referralLinkField.textContent = link;
+
+          const referrals = await fetchReferralLevels(currentUserId);
+
+          let referralCount = referrals.length;
+          let totalEarnings = 0;
+
+          referralDetails.innerHTML = "";
+          referrals.forEach(ref => {
+            const income = ref.paymentStatus === "Paid" ? (ref.level === 1 ? 200 : ref.level === 2 ? 100 : ref.level === 3 ? 50 : ref.level === 4 ? 30 : 20) : 0;
+            if (income > 0) totalEarnings += income;
+            const item = document.createElement("li");
+            item.textContent = `Level ${ref.level} - ${ref.fullName} (${ref.email}): ${ref.paymentStatus}, Income: ₹${income}`;
+            referralDetails.appendChild(item);
+          });
+
+          referralCountField.textContent = referralCount;
+          earningsField.textContent = `₹${totalEarnings}`;
         }
-        total += inc;
-        const tr = document.createElement("tr");
-        tr.innerHTML = `<td>${r.level}</td><td>${r.fullName}</td><td>${r.mobile}</td><td>${r.email}</td><td>${r.paymentStatus}</td><td>₹${inc}</td>`;
-        referralDetails.append(tr);
+      } else {
+        window.location.href = "index.html";
+      }
     });
-    // Ensure the displayed earnings are always based on the database value
-    earningsField.textContent = `₹${d.totalEarnings || 0}`;
-    currentEarnings = d.totalEarnings || 0;
 
-    if (d.role === "admin") {
-        adminSection.style.display = "block";
-        await fetchWithdrawalsForAdmin();
-    }
-});
-        logoutBtn.onclick = ()=> signOut(auth).then(()=>location.href="index.html");
-        copyLinkBtn.onclick = ()=> { navigator.clipboard.writeText(referralLinkField.textContent); alert("Copied!"); }
-        toggleReferralBtn.onclick = ()=> referralSection.style.display = referralSection.style.display==="none"?"block":"none";
+    document.getElementById("toggleReferral").addEventListener("click", () => {
+      const section = document.getElementById("referralSection");
+      section.style.display = section.style.display === "none" ? "block" : "none";
+    });
 
-        payBtn.onclick = ()=>{
-            new Razorpay({
-                key:"rzp_test_65YRKaINc6MqXg",
-                amount:100000, currency:"INR",
-                name:"Accessible Learn and Win",
-                description:"Membership Fee",
-                prefill:{ name:currentUserName, email:currentUserEmail, contact:currentUserMobile },
-                theme:{ color:"#007bff" },
-                handler: async resp=>{
-                    alert("Paid: "+resp.razorpay_payment_id);
-                    await updateDoc(doc(db,"users",currentUserId),{ paymentStatus:"Paid" });
-                    paymentField.textContent="Paid";
-                    paymentSection.style.display = "none";
-                    courseAccessSection.style.display = "block";
-                }
-            }).open();
-        };
+    document.getElementById("copyLink").addEventListener("click", () => {
+      const text = document.getElementById("referral-link").textContent;
+      navigator.clipboard.writeText(text);
+      alert("Referral link copied to clipboard!");
+    });
 
-        withdrawBtn.onclick = ()=>{
-            if(currentEarnings<100) return statusMessage.textContent="Min ₹100 to withdraw";
-            // Open the modal
-            withdrawModal.style.display = "block";
-            totalAmountModal.value = `₹${currentEarnings}`;
-            availableAmountInput.value = `₹${currentEarnings}`;
-        };
+    document.getElementById("logout").addEventListener("click", () => {
+      signOut(auth).then(() => {
+        window.location.href = "index.html";
+      });
+    });
 
-        closeButton.onclick = function() {
-            withdrawModal.style.display = "none";
-            paymentDetailsDiv.style.display = "none";
-            paymentMethodDropdown.value = "";
-            paymentIdInput.value = "";
-            withdrawAmountInput.value = "";
-            submitWithdrawalButton.disabled = true;
+    document.getElementById("payBtn").addEventListener("click", () => {
+      const options = {
+        key: "rzp_test_65YRKaINc6MqXg",
+        amount: 100000,
+        currency: "INR",
+        name: "Accessible Learn and Win",
+        description: "Membership Fee",
+        handler: async function (response) {
+          alert("Payment successful. Payment ID: " + response.razorpay_payment_id);
+          if (currentUserId) {
+            await updateDoc(doc(db, "users", currentUserId), {
+              paymentStatus: "Paid"
+            });
+            paymentField.textContent = "Paid";
+          }
+        },
+        prefill: {
+          name: currentUserName,
+          email: document.getElementById("user-email").textContent
+        },
+        theme: {
+          color: "#007bff"
         }
-
-        cancelWithdrawalButton.onclick = function() {
-            withdrawModal.style.display = "none";
-            paymentDetailsDiv.style.display = "none";
-            paymentMethodDropdown.value = "";
-            paymentIdInput.value = "";
-            withdrawAmountInput.value = "";
-            submitWithdrawalButton.disabled = true;
-        }
-
-        paymentMethodDropdown.addEventListener('change', function() {
-            if (this.value) {
-                paymentDetailsDiv.style.display = "block";
-            } else {
-                paymentDetailsDiv.style.display = "none";
-                paymentIdInput.value = "";
-                withdrawAmountInput.value = "";
-                submitWithdrawalButton.disabled = true;
-            }
-            validateWithdrawalForm();
-        });
-
-        paymentIdInput.addEventListener('input', validateWithdrawalForm);
-        withdrawAmountInput.addEventListener('input', validateWithdrawalForm);
-
-        function validateWithdrawalForm() {
-            if (paymentMethodDropdown.value && paymentIdInput.value && withdrawAmountInput.value && parseFloat(withdrawAmountInput.value) > 0 && parseFloat(withdrawAmountInput.value) <= currentEarnings) {
-                submitWithdrawalButton.disabled = false;
-            } else {
-                submitWithdrawalButton.disabled = true;
-            }
-        }
-
-submitWithdrawalButton.onclick = async () => {
-    const selectedMethod = paymentMethodDropdown.value;
-    const paymentId = paymentIdInput.value;
-    const requestedAmount = parseFloat(withdrawAmountInput.value);
-
-    if (!selectedMethod) {
-        alert("Please select a payment method.");
-        return;
+      };
+      const rzp = new Razorpay(options);
+      rzp.open();
+    });
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f0f2f5;
     }
-
-    if (!paymentId) {
-        alert("Please enter your UPI ID or number.");
-        return;
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
     }
-
-    if (isNaN(requestedAmount) || requestedAmount <= 0 || requestedAmount > currentEarnings) {
-        alert(`Please enter a valid withdrawal amount (up to ₹${currentEarnings}).`);
-        return;
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
     }
-
-    try {
-        await addDoc(collection(db, "withdrawals"), {
-            userId: currentUserId,
-            fullName: currentUserName,
-            email: currentUserEmail,
-            phone: currentUserMobile,
-            amount: requestedAmount,
-            paymentMethod: selectedMethod,
-            paymentId: paymentId,
-            requestedAt: serverTimestamp(),
-            status: "Pending"
-        });
-        statusMessage.textContent = "Withdrawal request submitted!";
-
-        // Update the user's earnings in the database
-        const userRef = doc(db, "users", currentUserId);
-        await updateDoc(userRef, {
-            totalEarnings: currentEarnings - requestedAmount // Assuming you have a 'totalEarnings' field in your user document
-        });
-
-        // Update the displayed earnings and the currentEarnings variable
-        currentEarnings -= requestedAmount;
-        earningsField.textContent = `₹${currentEarnings}`;
-
-        statusMessage.textContent = "Payment in progress"; // Update the status message
-        withdrawModal.style.display = "none";
-        paymentDetailsDiv.style.display = "none";
-        paymentMethodDropdown.value = "";
-        paymentIdInput.value = "";
-        withdrawAmountInput.value = "";
-        submitWithdrawalButton.disabled = true;
-    } catch (e) {
-        console.error(e);
-        statusMessage.textContent = "Could not submit withdrawal request.";
+    button:hover {
+      background-color: #0056b3;
     }
-};
-        coursesBtn.onclick = ()=> window.location.href = 'courses.html';
-    </script>
+    ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h2>Welcome to Accessible Learn and Win Platform</h2>
+    <p>Thank you for joining our platform. This is your personalized dashboard where you can manage your referral activities and earnings.</p>
+    <p><strong>Name:</strong> <span id="user-name"></span></p>
+    <p><strong>Email:</strong> <span id="user-email"></span></p>
+    <p><strong>Payment Status:</strong> <span id="user-payment-status"></span></p>
+    <button id="payBtn">Pay ₹1000 Membership</button>
+  </div>
+
+  <div class="card">
+    <h3>Your Referral Link</h3>
+    <p id="referral-link"></p>
+    <button id="copyLink">Copy Referral Link</button>
+  </div>
+
+  <button id="toggleReferral">Show/Hide Referral Dashboard</button>
+
+  <div class="card" id="referralSection" style="display: none;">
+    <h3>Referral Dashboard</h3>
+    <p><strong>Total Referrals:</strong> <span id="referral-count">0</span></p>
+    <p><strong>Total Earnings:</strong> <span id="total-earnings">₹0</span></p>
+    <ul id="referral-details"></ul>
+    <button>Withdraw Earnings</button>
+  </div>
+
+  <button id="logout">Logout</button>
 </body>
+
 </html>
