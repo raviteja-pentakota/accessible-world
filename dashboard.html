@@ -87,27 +87,33 @@
 </head>
 <body>
     <div class="card">
-        <h2>Welcome to Accessible Learn and Win</h2>
+        <h1>Welcome to Accessible World Tutorials</h1>
         <p><strong>Name:</strong> <span id="user-name"></span></p>
         <p><strong>Mobile:</strong> <span id="user-mobile"></span></p>
         <p><strong>Email:</strong> <span id="user-email"></span></p>
         <p><strong>Payment Status:</strong> <span id="user-payment-status"></span></p>
+        <button id="logout" style="float:right;background:#dc3545">Logout</button>
+        <h2>Your Referral Link</h2>
+        <p><span id="referral-link"></span></p>
+        <button id="copyLink">Copy Link</button>
+<p>To understand how the referral system works, click <a href="how_referral.html" target="_blank">Click Here</a>.</p>    </div>
+
+
+<h2>About Us</h2>
+<p> At Accessible World Tutorials, we are committed to making the digital world inclusive and accessible for everyone. Our platform offers high-quality learning materials across a wide range of topics, including HTML, JavaScript, stock market education, and the latest tech updates for Android and Windows. Whether you're looking to master web development, improve your programming skills, or gain financial knowledge, our tutorials feature clear explanations, practical examples, video lessons, and hands-on files. Accessibility is at the core of everything we do — with expert guidance, comprehensive resources, and engaging content, we ensure a learning experience that is both empowering and effective.
+By joining us with just a one-time subscription, you'll unlock free access to our full course on accessibility testing, valuable general knowledge and current affairs content, and downloadable HTML practical files with video lessons. Join now to learn, grow, and succeed in an inclusive environment designed to support your journey every step of the way.
+</p>
         <div id="payment-section">
-            <button id="payBtn">Pay ₹1000 Membership</button>
+            <button id="payBtn">Join and Pay ₹1000 Membership</button>
         </div>
         <div id="course-access" style="display:none; margin-top:10px;">
-            <p style="color:green;">You are already a paid member. To access the paid courses, click below:</p>
+<h3>Paied Courses</h3>	
+            <p style="color:green;">Thank you for subscribing to a paid course! Click on 'Courses' below to access your content.</p>
             <button id="coursesBtn">Access Courses</button>
         </div>
-        <button id="logout" style="float:right;background:#dc3545">Logout</button>
     </div>
 
     <div class="card">
-        <h3>Your Referral Link</h3>
-        <p><span id="referral-link"></span></p>
-        <button id="copyLink">Copy Link</button>
-    </div>
-
     <div class="card">
         <button id="toggleReferral">Show/Hide Referral Details</button>
         <div id="referralSection">
@@ -115,8 +121,8 @@
             <p>Total Referrals: <span id="referral-count">0</span></p>
             <h4>Withdrawal Summary</h4>
             <p><strong>Total Withdrawn as of now:</strong> <span id="total-withdrawn-display">₹0</span></p>
-            <p><strong>Available Balance:</strong> <span id="available-balance-display">₹0</span></p>
-            <p>Total Earnings: <span id="total-earnings">₹0</span></p>
+            <p hidden><strong>Available Balance:</strong> <span id="available-balance-display">₹0</span></p>
+            <p>Current Available Balance: <span id="total-earnings">₹0</span></p>
             <table aria-label="Referral History Table">
                 <thead>
                     <tr>
@@ -148,17 +154,17 @@
         <div id="withdrawal-list"></div>
     </div>
 
-    <div id="withdrawModal" class="modal">
+    <div id="withdrawModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="wd">
         <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h3>Withdrawal Request</h3>
+            <span class="close-button" role="button" aria-label="Close Modal">&times;</span>
+            <h3 id="wd">Withdrawal Request</h3>
             <div class="modal-input-group">
                 <label for="totalAmount">Total Amount:</label>
                 <input type="text" id="totalAmount" value="₹0" readonly>
             </div>
             <div class="modal-input-group">
                 <label for="paymentMethod">Payment Method:</label>
-                <select id="paymentMethod">
+                <select id="paymentMethod" required>
                     <option value="">Select Method</option>
                     <option value="phonepay">PhonePe</option>
                     <option value="googlepay">Google Pay</option>
@@ -168,7 +174,7 @@
             <div id="paymentDetails" style="display:none;">
                 <div class="modal-input-group">
                     <label for="paymentId">Enter UPI ID/Number:</label>
-                    <input type="text" id="paymentId" placeholder="Enter your ID">
+                    <input type="text" id="paymentId" placeholder="Enter your ID" required>
                 </div>
                 <div class="modal-input-group">
                     <label for="availableAmount">Available Amount:</label>
@@ -176,7 +182,8 @@
                 </div>
                 <div class="modal-input-group">
                     <label for="withdrawAmount">Withdraw Amount:</label>
-                    <input type="number" id="withdrawAmount" placeholder="Enter amount to withdraw">
+                    <input type="number" id="withdrawAmount" placeholder="Enter amount to withdraw" required>
+<p tabindex="0">Note: Please ensure that you enter the correct UPI ID or mobile number. We will not be responsible for any loss if incorrect details are provided, and the amount cannot be refunded.</p>
                 </div>
             </div>
             <div class="modal-actions">
@@ -290,9 +297,9 @@
             refs.forEach(r => {
                 let earning = 0;
                 if (r.paymentStatus === "Paid") {
-                    if (r.level === 1) earning = 250;
+                    if (r.level === 1) earning = 240;
                     else if (r.level === 2) earning = 150;
-                    else if (r.level === 3) earning = 100;
+                    else if (r.level === 3) earning = 110;
                     else if (r.level === 4) earning = 60;
                     else if (r.level === 5) earning = 40;
                 }
