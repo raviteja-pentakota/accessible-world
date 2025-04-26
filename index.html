@@ -49,6 +49,7 @@
       border-radius: 6px;
       font-size: 16px;
       cursor: pointer;
+      margin-bottom: 10px; /* Added margin for spacing */
     }
 
     button:hover {
@@ -58,6 +59,22 @@
     .redirect {
       text-align: center;
       margin-top: 10px;
+      margin-bottom: 10px; /* Added margin for spacing */
+    }
+
+    .admin-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 0.9em;
+    }
+
+    .admin-link a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .admin-link a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -86,9 +103,12 @@
     <div class="redirect">
       <p>Don't have an account? <a href="register.html">Register here</a></p>
     </div>
+
+    <div class="admin-link">
+      <a href="admin_login.html">Login as Admin</a>
+    </div>
   </div>
 
-  <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
