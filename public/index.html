@@ -180,7 +180,7 @@ Don’t wait to unlock your full potential! <strong>Register now</strong> and <s
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     alert("Login successful!");
-window.location.href = "public/dashboard.html";                })
+window.location.href = "/public/dashboard.html";                })
                 .catch((error) => {
                     alert("Login failed: " + error.message);
                 });
