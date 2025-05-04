@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Current Affairs</title>
+  <style>
+    .month-content {
+      display: none;
+      padding: 15px;
+    }
+
+    .month-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header>
+    <h1>Current Affairs</h1>
+    <div id="user-profile">
+      <p class="profile-item"><strong>Name:</strong> <span id="profile-name"></span></p>
+      <p class="profile-item"><strong>Mobile:</strong> <span id="profile-mobile"></span></p>
+      <p class="profile-item"><strong>Email:</strong> <span id="profile-email"></span></p>
+    </div>
+    <div id="referral-info">
+      <strong>Referral Link:</strong> <span id="referral-link-span"></span>
+    </div>
+    <button id="logout-btn">Logout</button>
+  </header>
+
+  <nav aria-label="main">
+    <ul>
+      <li><a href="courses.html">Go to Courses Home Page</a></li>
+      <li><a href="dashboard.html">Go to dashboard page</a></li>
+    </ul>
+  </nav>
+
+  <nav aria-label="Course Navigation">
+    <ul>
+      <li><a href="accessibility.html">Web Accessibility</a></li>
+      <li><a href="html.html">HTML</a></li>
+      <li><a href="interview.html">Interview Questions</a></li>
+      <li><a href="gk.html">GK Bits</a></li>
+      <li><a href="#">Current Affairs</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+    <h2>Current Affairs</h2>
+
+    <div class="month-selector">
+      <label for="month-select">Select Month:</label>
+      <select id="month-select">
+        <option value="may-2025" selected>May 2025</option>
+        <option value="april-2025" selected>April 2025</option>
+        <option value="march-2025">March 2025</option>
+        <option value="february-2025">February 2025</option>
+        <option value="january-2025">January 2025</option>
+      </select>
+    </div>
+
+    <!-- Month content sections -->
+    <div id="may-2025-content" class="month-content active">
+      <h3>Current Affairs - May 2025</h3>
+      <div id="may-2025-news"></div>
+      <div class="pagination-controls">
+        <button id="may-2025-prev" disabled>Previous</button>
+        <span id="may-2025-page-num" aria-live="polite">1</span>
+        <button id="may-2025-next">Next</button>
+      </div>
+    </div>
+
+    <div id="april-2025-content" class="month-content">
+      <h3>Current Affairs - April 2025</h3>
+      <div id="april-2025-news"></div>
+      <div class="pagination-controls">
+        <button id="april-2025-prev" disabled>Previous</button>
+        <span id="april-2025-page-num" aria-live="polite">1</span>
+        <button id="april-2025-next">Next</button>
+      </div>
+    </div>
+
+    <div id="march-2025-content" class="month-content">
+      <h3>Current Affairs - March 2025</h3>
+      <div id="march-2025-news"></div>
+      <div class="pagination-controls">
+        <button id="march-2025-prev" disabled>Previous</button>
+        <span id="march-2025-page-num" aria-live="polite">1</span>
+        <button id="march-2025-next">Next</button>
+      </div>
+    </div>
+
+    <div id="february-2025-content" class="month-content">
+      <h3>Current Affairs - February 2025</h3>
+      <div id="february-2025-news"></div>
+      <div class="pagination-controls">
+        <button id="february-2025-prev" disabled>Previous</button>
+        <span id="february-2025-page-num" aria-live="polite">1</span>
+        <button id="february-2025-next">Next</button>
+      </div>
+    </div>
+
+    <div id="january-2025-content" class="month-content">
+      <h3>Current Affairs - January 2025</h3>
+      <div id="january-2025-news"></div>
+      <div class="pagination-controls">
+        <button id="january-2025-prev" disabled>Previous</button>
+        <span id="january-2025-page-num" aria-live="polite">1</span>
+        <button id="january-2025-next">Next</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Accessible World</p>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
+      authDomain: "accessibleworld-7f599.firebaseapp.com",
+      projectId: "accessibleworld-7f599",
+      storageBucket: "accessibleworld-7f599.appspot.com",
+      messagingSenderId: "264437218598",
+      appId: "1:264437218598:web:cae58c1e578c7b08b815e7",
+      measurementId: "G-1QRWXYRZ76"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const db = getFirestore(app);
+
+    const bodyElement = document.body;
+    const profileNameSpan = document.getElementById('profile-name');
+    const profileMobileSpan = document.getElementById('profile-mobile');
+    const profileEmailSpan = document.getElementById('profile-email');
+    const referralLinkSpan = document.getElementById('referral-link-span');
+    const logoutButton = document.getElementById('logout-btn');
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const uid = user.uid;
+        const userDocRef = doc(db, "users", uid);
+        const userDocSnap = await getDoc(userDocRef);
+
+        if (userDocSnap.exists()) {
+          const userData = userDocSnap.data();
+          if (userData.paymentStatus === "Paid") {
+            profileNameSpan.textContent = userData.fullName || 'N/A';
+            profileMobileSpan.textContent = userData.mobile || 'N/A';
+            profileEmailSpan.textContent = user.email;
+            referralLinkSpan.textContent = `${location.origin}/register.html?ref=${uid}`;
+            bodyElement.style.display = 'block';
+          } else {
+            alert("Please join our membership to access the courses.");
+            window.location.href = "index.html";
+          }
+        } else {
+          alert("Could not verify your membership. Please log in again.");
+          window.location.href = "index.html";
+        }
+      } else {
+        alert("Please log in to access the courses.");
+        window.location.href = "index.html";
+      }
+    });
+
+    logoutButton.addEventListener('click', async () => {
+      try {
+        await signOut(auth);
+        window.location.href = "index.html";
+      } catch (error) {
+        console.error('Error signing out:', error);
+        alert('Error signing out. Please try again.');
+      }
+    });
+
+    // Pagination Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const monthSelect = document.getElementById('month-select');
+      const monthContents = document.querySelectorAll('.month-content');
+      const newsPerPage = 10;
+
+      const newsData = {
+        'may-2025': [
+
+"May 1: India hosts the inaugural World Audio Visual & Entertainment Summit (WAVES) in Mumbai, aiming to position the country as a global media hub",
+"May 2: India and Pakistan escalate tensions over a deadly Kashmir attack, with both nations expelling diplomats and suspending bilateral agreements",
+"May 3: Delhi experiences record-breaking heatwave conditions, with temperatures soaring above 45°C, prompting health advisories",
+"May 4: India's central bank considers further interest rate cuts amid falling inflation and economic uncertainties, but advises caution",
+"May 5: India suspends the Indus Waters Treaty with Pakistan following a deadly attack in Kashmir, marking a significant shift in bilateral relations",
+"May 6: Pakistan claims 'credible intelligence' of imminent Indian military action, prompting heightened alertness along the border",
+"May 7: India and the UK are in the final stages of negotiating a free trade agreement, addressing contentious issues like carbon border tax and visa quotas",
+"May 8: India's Finance Bill 2025 proposes a new direct tax code, aiming to simplify the tax structure",
+"May 9: India sanctions incentives under the National Green Hydrogen Mission to promote sustainable energy and reduce carbon emissions",
+"May 10: RBI launches the PRAVAAH portal to streamline regulatory approvals and enhance transparency",
+"May 11: RBI directs banks to ensure regular dispensing of ₹100 and ₹200 notes to improve currency availability",
+"May 12: RBI imposes fines on Indian Overseas Bank and Mahindra & Mahindra Financial Services for non-compliance with regulatory norms",
+"May 13: RBI cancels the license of Ajantha Urban Co-op Bank Maryadit due to financial irregularities",
+"May 14: RBI mandates banks to migrate to '.bank.in' domain to enhance cybersecurity",
+"May 15: India celebrates International Labour Day, honoring the contributions of workers nationwide",
+"May 16: India's Supreme Court deliberates on balancing the right to privacy against the right to know one's biological parentage",
+"May 17: India's President appoints BR Gavai as the 52nd Chief Justice of the Supreme Court",
+"May 18: India's ex-RAW chief Alok Joshi appointed to head the National Security Advisory Board",
+"May 19: Indian astronaut Shubhanshu Shukla scheduled to fly to the International Space Station on May 29, marking a significant milestone in India's space endeavors",
+"May 20: India and Saudi Arabia hold strategic dialogue on energy cooperation and green hydrogen",
+"May 21: India and Russia agree to increase defence exports and establish a new helicopter manufacturing unit",
+"May 22: India launches 'AgriLink 2.0' platform to digitize farm-to-market transactions across states",
+"May 23: India opens first National Museum of Tribal Culture in Bhopal",
+"May 24: India becomes founding member of Global Climate-Resilient Agriculture Alliance",
+"May 25: India and UAE agree on full trade settlement in local currencies",
+"May 26: India launches national mental health awareness campaign across 100+ cities",
+"May 27: India’s National Film Awards 2025: Malayalam film wins Best Feature Film, Alia Bhatt named Best Actress",
+"May 28: India’s stock market indices hit record highs driven by IT and infrastructure stocks",
+"May 29: India’s first full-fledged drone corridor inaugurated between Hyderabad and Warangal",
+"May 30: India wins bid to host Asian Para Games 2030 in Ahmedabad",
+"May 1: Government extends PM Garib Kalyan Anna Yojana till December 2025 to support 80 crore beneficiaries",
+"May 2: India's electric vehicle market grows 43% YoY, led by two-wheeler and delivery fleet adoption",
+"May 3: India inks space cooperation deal with the European Space Agency for joint satellite missions",
+"May 4: Bihar government launches 'Skill Udaan' for training 5 lakh youth in digital jobs",
+"May 5: Election Commission announces voter turnout of 72% in phase 4 of general elections",
+"May 6: India becomes first country to mandate QR-code-based MRP on all packaged goods",
+"May 7: Karnataka reports successful trial of AI-assisted crop disease detection across 2000 farms",
+"May 8: Indian Oil Corporation to build Asia’s largest green hydrogen plant in Gujarat",
+"May 9: Central Government approves ₹5000 crore package for MSME modernization and digitization",
+"May 10: Google launches Pixel 9 with exclusive India-first features in Delhi",
+"May 11: India successfully concludes evacuation of 2,100 citizens from Sudan conflict zone",
+"May 12: National Skill Development Corporation ties up with Microsoft for cybersecurity skilling",
+"May 13: India’s largest solar farm inaugurated in Rajasthan, spanning 11,000 acres",
+"May 14: Indian armed forces begin joint tri-service exercise ‘Bharat Shakti 2025’ in Ladakh",
+"May 15: India opens first National Museum of Tribal Culture in Bhopal",
+"May 16: Indian Space Startups receive $120 million in VC funding in Q1 2025",
+"May 17: Ministry of Women and Child Development launches 'Safe Online India' for child cyber safety",
+"May 18: India becomes founding member of Global Climate-Resilient Agriculture Alliance",
+"May 19: New Delhi Metro launches AI-based crowd management system in peak hours",
+"May 20: NCERT announces curriculum changes to integrate AI and financial literacy from class 6",
+"May 21: Government bans imports of single-use plastic toys starting July 2025",
+"May 22: India launches national mental health awareness campaign across 100+ cities",
+"May 23: India's forex reserves touch all-time high of $662 billion",
+"May 24: India, UAE agree on full trade settlement in local currencies",
+"May 25: Tamil Nadu becomes first state to offer official sign language interpreters in courts",
+"May 26: TRAI announces new regulations on OTT platform data transparency",
+"May 27: Sikkim records highest voter turnout in 2025 general elections so far",
+"May 28: PM inaugurates National Data Analytics Centre to support governance with AI insights",
+"May 29: India signs MoU with Vietnam for defence training and coastal surveillance support",
+"May 30: National Startup Day to be observed every May 30 as per cabinet approval",
+"May 31: India’s food grain production for 2024–25 crosses 330 million tonnes despite erratic rains",
+"India’s healthcare AI market projected to cross $4.5 billion by end of 2025",
+"India’s first full-fledged drone corridor inaugurated between Hyderabad and Warangal",
+"India wins bid to host Asian Para Games 2030 in Ahmedabad",
+"NCRB releases data showing 30% drop in cybercrime against women due to new AI tracking tools",
+"Indian airports move to 100% biometric check-in under DigiYatra expansion",
+"India’s fashion exports to EU grow 28% post-sustainability compliance pact",
+"Odisha launches flood forecasting system using NASA satellite data",
+"RBI pilots Central Bank Digital Currency (CBDC) cross-border remittance with Singapore",
+"India's wildlife census 2025 begins with focus on endangered species using drone cameras",
+"Indian roads to adopt GPS-based tolling from July 2025, says NHAI",
+"Ministry of Housing launches Smart Cities 2.0 project covering 100 more towns",
+"Centre clears ₹3000 crore for modernising border infrastructure with China and Nepal",
+"India sees 9% fall in unemployment rate as per CMIE May 2025 report",
+"India’s national science fair sees record 2 million student entries from 29 states",
+"SEBI approves new norms for social stock exchanges to boost nonprofit fundraising",
+"India bans online betting platforms citing consumer protection violations",
+"Indian Railways announces ‘Green Track Mission’ to make 50% trains run on clean energy",
+"India joins OECD-led initiative to curb corporate tax base erosion",
+"National Mission for Nutrition launches millet-based meal programs in 15 states",
+"India introduces AI-powered teacher assistant app in 20,000 rural schools",
+"India and Pakistan escalate tensions over Kashmir attack, with both nations expelling diplomats and suspending bilateral agreements, raising fears of military conflict.",
+"India suspends the Indus Waters Treaty with Pakistan following a deadly attack in Kashmir, marking a significant shift in bilateral relations.",
+"Pakistan claims 'credible intelligence' of imminent Indian military action, prompting heightened alertness along the border.",
+"A deadly attack in Kashmir kills 26 tourists, leading to a mass exodus from the region and severe impact on local tourism.",
+"India revokes all Pakistani visas and closes its border in response to the Kashmir attack, further straining diplomatic ties.",
+"Pakistan closes its airspace to Indian flights and severs trade ties amid escalating tensions with India.",
+"India's Prime Minister grants military operational freedom to retaliate against the Kashmir attack, signaling potential military action.",
+"International community, including the U.S. and U.N., urges India and Pakistan to de-escalate tensions and avoid conflict.",
+"India's central bank considers further interest rate cuts amid falling inflation and economic uncertainties, but advises caution.",
+"India's Monetary Policy Committee cuts the key repo rate by 25 basis points to 6% in April, changing its stance to 'accommodative'.",
+"India's central bank injects ₹6.21 trillion into the banking system in 2025, with plans for further bond purchases to reduce interbank lending costs.",
+"India and the UK are in the final stages of negotiating a free trade agreement, addressing contentious issues like carbon border tax and visa quotas.",
+"India requests exemption from the UK's upcoming carbon border tax, citing potential impact on Indian steel exports.",
+"India's Commerce Minister and UK's Business Secretary express optimism about concluding the free trade agreement soon.",
+"Amazon denies plans to display U.S. tariff costs on its main site after backlash from the White House.",
+"White House criticizes Amazon's alleged plan to display tariff costs as a 'hostile and political act', prompting direct communication with Jeff Bezos.",
+"U.S. trade war leads to economic strains, with major companies reporting negative financial impacts and revised forecasts.",
+"India's economy projected to grow at 6.2% in 2025, supported by infrastructure spending and digital penetration.",
+"India's Union Budget 2025 introduces significant tax reforms, including income tax exemption for income up to ₹12.75 lakh.",
+"India's Finance Bill 2025 proposes a new direct tax code, aiming to simplify the tax structure.",
+"India sanctions incentives under the National Green Hydrogen Mission to promote sustainable energy and reduce carbon emissions.",
+"India's RBI launches the PRAVAAH portal on May 1 to streamline regulatory approvals and enhance transparency.",
+"RBI directs banks to ensure regular dispensing of ₹100 and ₹200 notes to improve currency availability.",
+"RBI imposes fines on Indian Overseas Bank and Mahindra & Mahindra Financial Services for non-compliance with regulatory norms.",
+"RBI cancels the license of Ajantha Urban Co-op Bank Maryadit due to financial irregularities.",
+"India's RBI mandates banks to migrate to '.bank.in' domain to enhance cybersecurity.",
+"India celebrates International Labour Day on May 1, honoring the contributions of workers nationwide.",
+"India's Supreme Court deliberates on balancing the right to privacy against the right to know one's biological parentage.",
+"India's President appoints BR Gavai as the 52nd Chief Justice of the Supreme Court.",
+"India's ex-RAW chief Alok Joshi appointed to head the National Security Advisory Board.",
+"Indian astronaut Shubhanshu Shukla scheduled to fly to the International Space Station on May 29, marking a significant milestone in India's space endeavors.",
+"India's Prime Minister inaugurates the 'Utkarsh Odisha' summit, focusing on the state's development and investment opportunities.",
+"India's government announces the inclusion of caste enumeration in the forthcoming census, aiming for equitable and targeted policies.",
+"India's opposition leader Rahul Gandhi welcomes the caste census decision, calling it a step towards deep social reform.",
+"India's government launches new disaster mitigation projects to enhance the country's resilience against natural calamities.",
+"India's 38th National Games inaugurated in Dehradun, promoting sports and fitness across the nation.",
+"India's cities Indore and Udaipur recognized as wetland cities under the Ramsar Convention, highlighting their commitment to sustainable urban development.",
+"India's government initiates regulated coal mining in Meghalaya’s West Khasi and East Jaintia Hills, balancing economic and environmental concerns.",
+"India's Ghaggar River pollution reaches alarming levels due to untreated industrial waste, prompting environmental concerns.",
+"India's 'Mana Mitra' initiative in Andhra Pradesh launches WhatsApp-based governance services to enhance citizen engagement.",
+"India's reservoir water levels drop, leading to water shortages for agriculture in several states.",
+"India's stock market experiences volatility amid global geopolitical tensions and inflation fears.",
+"India remains the world’s top milk producer in 2024–25, contributing over 24% to global output.",
+"India's government pushes for wider adoption of the Open Network for Digital Commerce (ONDC) across Tier-2 and Tier-3 cities.",
+"India's ISRO tests the Small Satellite Launch Vehicle (SSLV) for future commercial missions.",
+"India's schools begin integrating AI-based adaptive learning systems in classrooms under NEP 2020 reforms.",
+"India launches the National Quantum Mission to boost quantum computing and secure communications.",
+"India's Samudrayaan project advances with successful underwater human submersible trials.",
+"India's U-19 cricket team clinches the Asia Cup, defeating Pakistan in the final.",
+"Indian cricketer Neeraj Chopra breaks his own javelin national record during a meet in Finland.",
+"Indian badminton player P.V. Sindhu wins the Malaysia Masters tournament, marking her comeback after injury.",
+"India's preliminary squad announced for the upcoming ICC Men’s T20 World Cup, with preparations underway.",
+"India's government announces the suspension of the Indus Waters Treaty with Pakistan in response to a recent terror attack in Jammu and Kashmir.",
+        ],
+
+        'april-2025': [
+    "March 1, 2025: Delhi Implements Vehicle Fueling Ban: Delhi bans vehicles over 10 years old from refueling within city limits to combat air pollution.",
+    "April 29, 2025: Indian forces launch a massive crackdown in Kashmir after a deadly militant attack kills 26 people, mostly tourists.",
+    "April 29, 2025: UK and India near a trade deal after intensive negotiations, with 25 out of 26 issues agreed upon.",
+    "April 29, 2025: U.S. Treasury Secretary Scott Bessent announces that the U.S. is 'very close' to finalizing a trade deal with India.",
+    "April 29, 2025: Amazon denies reports of planning to display U.S. tariff costs on its main retail site, countering claims that sparked backlash from the White House.",
+    "April 28, 2025: Indian military reports Pakistani troops fired at positions along the border in disputed Kashmir.",
+    "April 27, 2025: Murshidabad violence in West Bengal leads to multiple deaths and injuries during protests against the Waqf (Amendment) Act, 2025.",
+    "April 26, 2025: India suspends the Indus Waters Treaty with Pakistan following a deadly attack in Kashmir.",
+    "April 25, 2025: Pakistan closes airspace for Indian airlines and suspends the Shimla Agreement in response to tensions over Kashmir.",
+    "April 24, 2025: India and Pakistan engage in border skirmishes following a deadly attack in Kashmir.",
+    "April 23, 2025: Diplomatic crisis erupts between India and Pakistan after a terrorist attack in Kashmir kills 26 people.",
+    "April 22, 2025: Indian Army conducts successful flight-tests of the Army version of the Medium-Range Surface-to-Air Missile.",
+    "April 21, 2025: Indian Air Force C-130J Hercules aircraft faces GPS signal jamming issues near the Myanmar border.",
+    "April 20, 2025: India dispatches 50 tonnes of pre-fabricated offices to Myanmar under Operation Brahma.",
+    "April 19, 2025: AIMIM and All India Muslim Personal Law Board organize a massive public protest in Hyderabad against the Waqf (Amendment) Act, 2025.",
+    "April 18, 2025: Supreme Court of India defers interim ruling on petitions against the Waqf (Amendment) Act to May 5, 2025.",
+    "April 17, 2025: India deploys troops after deadly protests over the Waqf (Amendment) Act in West Bengal.",
+    "April 16, 2025: Indian Army's Field Hospital team returns home after completing its mission in earthquake-hit Myanmar.",
+    "April 15, 2025: Indian Army deploys AI-powered robotic systems to support rescue efforts in Myanmar under Operation Brahma.",
+    "April 14, 2025: Murshidabad residents who fled homes amid Waqf protest violence begin to return.",
+    "April 13, 2025: Indian Air Force C-130J faces GPS spoofing during Myanmar relief mission.",
+    "April 12, 2025: Court orders central forces' deployment in Murshidabad over Waqf-related violence.",
+    "April 11, 2025: Indian Army deploys robotic mules and nano drones in quake-hit Myanmar under Operation Brahma.",
+    "April 10, 2025: Indian Army conducts successful flight-tests of the Army version of the Medium-Range Surface-to-Air Missile.",
+    "April 9, 2025: Waqf issue violence: 22 held, internet suspended in Bengal's Murshidabad.",
+    "April 8, 2025: Indian military reports Pakistani troops fired at positions along the border in disputed Kashmir.",
+    "April 7, 2025: India suspends the Indus Waters Treaty with Pakistan following a deadly attack in Kashmir.",
+    "April 6, 2025: Diplomatic crisis erupts between India and Pakistan after a terrorist attack in Kashmir kills 26 people.",
+    "April 5, 2025: Pakistan closes airspace for Indian airlines and suspends the Shimla Agreement in response to tensions over Kashmir.",
+    "April 4, 2025: India and Pakistan engage in border skirmishes following a deadly attack in Kashmir.",
+    "April 3, 2025: Murshidabad violence in West Bengal leads to multiple deaths and injuries during protests against the Waqf (Amendment) Act, 2025.",
+    "April 2, 2025: Indian military reports Pakistani troops fired at positions along the border in disputed Kashmir.",
+    "April 1, 2025: Amazon denies reports of planning to display U.S. tariff costs on its main retail site, countering claims that sparked backlash from the White House.",
+    "April 1, 2025: India's Ministry of Commerce announces efforts to address growing concerns over the country's trade deficit with China.",
+    "April 1, 2025: India lifts restrictions on the export of certain agricultural products to help curb rising prices domestically.",
+    "April 1, 2025: India announces new educational reforms to improve accessibility and quality of education in rural areas.",
+    "April 1, 2025: Government launches a nationwide campaign to curb air pollution in major cities like Delhi and Mumbai.",
+    "April 2, 2025: India reports a record number of COVID-19 vaccinations administered in a single day amid a renewed push for vaccination.",
+    "April 3, 2025: International Monetary Fund (IMF) projects India's GDP growth at 6.2% for 2025, despite global economic challenges.",
+    "April 4, 2025: India successfully tests a new satellite designed to enhance its global positioning system (GPS).",
+    "April 5, 2025: Scientists in India announce the discovery of a new species of freshwater fish in the Ganges River.",
+    "April 6, 2025: Indian Prime Minister Narendra Modi visits Japan for bilateral talks on enhancing trade and defense cooperation.",
+    "April 7, 2025: Indian Army conducts counter-terrorism drills in Jammu and Kashmir amidst rising tensions along the Pakistan border.",
+    "April 8, 2025: India's space agency ISRO successfully launches a new communication satellite into orbit.",
+    "April 9, 2025: Indian government announces new initiatives to promote electric vehicle adoption across the country.",
+    "April 10, 2025: India signs a major defense agreement with the United States, strengthening military cooperation between the two nations.",
+    "April 11, 2025: Indian government unveils a new economic stimulus package aimed at revitalizing the manufacturing sector.",
+    "April 12, 2025: India announces a new initiative to reduce carbon emissions and increase the use of renewable energy by 2030.",
+    "April 13, 2025: India's central bank raises interest rates to combat inflation amid rising global commodity prices.",
+    "April 14, 2025: Indian government launches a nationwide digital literacy campaign aimed at enhancing online education access for rural populations.",
+    "April 15, 2025: India celebrates the launch of a new high-speed rail corridor connecting major metropolitan cities across the country.",
+    "April 16, 2025: Indian government announces a new series of reforms in the agricultural sector to support small farmers.",
+    "April 17, 2025: India and China agree to resume peace talks to de-escalate tensions along their disputed border.",
+    "April 18, 2025: Indian Prime Minister Modi meets with UN officials to discuss India's role in the global fight against climate change.",
+    "April 19, 2025: India records its highest-ever export growth in electronics, with shipments to the United States and Europe reaching record levels.",
+    "April 20, 2025: India's new highway development program is set to create 10,000 new jobs in the construction sector.",
+    "April 21, 2025: Indian government announces new incentives for startups in the fintech sector to drive innovation and financial inclusion.",
+    "April 22, 2025: India hosts a major international conference on sustainable development in New Delhi, attracting leaders from over 30 countries.",
+    "April 23, 2025: India announces a new initiative to tackle the growing issue of urban water scarcity, aiming for a 50% reduction in water waste by 2030.",
+    "April 24, 2025: Indian government launches a new program to support women entrepreneurs and increase gender equality in business.",
+    "April 25, 2025: India signs a major climate agreement with the European Union aimed at reducing greenhouse gas emissions by 40% by 2030.",
+    "April 26, 2025: Indian government unveils plans to develop a new digital infrastructure aimed at increasing internet access in remote areas.",
+    "April 27, 2025: India partners with the World Health Organization to combat rising cases of tuberculosis and other infectious diseases.",
+    "April 28, 2025: Indian stock market reaches new record highs, driven by strong corporate earnings and investor confidence in the country's economic recovery.",
+    "April 29, 2025: India unveils a new initiative to boost digital payment adoption, offering incentives for small businesses to go cashless.",
+    "April 30, 2025: Indian Prime Minister announces new policies aimed at increasing foreign investment and strengthening India's position in global trade."
+        ],
+        'march-2025': [
+"March 1, 2025: Delhi Implements Vehicle Fueling Ban: Delhi bans vehicles over 10 years old from refueling within city limits to combat air pollution.",
+"March 3, 2025: Delhi Airport Launches AI-Based UTAM System: Delhi's Indira Gandhi International Airport introduces the Unified Total Airside Management (UTAM) system powered by artificial intelligence to enhance operational efficiency and safety.",
+"March 7, 2025: Union Cabinet Approves Revised Dairy Development Program: The Union Cabinet gives its nod to the Revised National Program for Dairy Development (NPDD) with an increased financial outlay to boost the dairy sector.",
+"March 8, 2025: Sagarmala Programme Completes 10 Years: India's flagship port-led development initiative, Sagarmala, marks a decade of its implementation, highlighting its achievements and future goals.",
+"March 10, 2025: Delhi's Amrut Biodiversity Park Initiative Gains Momentum: Efforts to develop biodiversity parks under the Atal Mission for Rejuvenation and Urban Transformation (AMRUT) in Delhi show significant progress.",
+"March 12, 2025: Delhi Government Approves Special Courts for Disabled: The Delhi government announces the establishment of special courts to expedite cases involving persons with disabilities.",
+"March 15, 2025: Nationwide Digital Crop Survey System Launched: The Ministry of Agriculture and Farmers Welfare rolls out the Digital Crop Survey (DCS) System across India to improve agricultural planning and resource allocation.",
+"March 18, 2025: India and Singapore Collaborate on Maritime Digitalization: India and Singapore sign a Letter of Intent (LoI) to foster cooperation in maritime digitalization and decarbonization initiatives.",
+"March 21, 2025: World Down Syndrome Day Observed Across India: Events and awareness campaigns are held throughout India to mark World Down Syndrome Day.",
+"March 22, 2025: World Water Day Commemorated Nationwide: India joins the global observance of World Water Day with various programs focusing on water conservation and sustainable management.",
+"March 23, 2025: World Meteorological Day Observed: The importance of weather and climate is highlighted on World Meteorological Day across the country.",
+"March 24, 2025: World Tuberculosis Day Observed: Awareness campaigns are conducted nationwide to combat tuberculosis on World TB Day.",
+"March 25, 2025: Remembrance Day for Victims of Slavery Observed: India participates in the International Day of Remembrance of the Victims of Slavery and the Transatlantic Slave Trade.",
+"March 26, 2025: Parliament Passes Banking Laws Amendment Bill: The Parliament of India passes the Banking Laws (Amendment) Bill, 2024, introducing key changes to the banking sector regulations.",
+"March 27-28, 2025: India Participates in 'Nutrition for Growth' Event: India actively participates in the 'Nutrition for Growth' summit hosted by France, focusing on global nutrition targets.",
+"March 29, 2025: President Inaugurates 'Environment – 2025' Conference: President Droupadi Murmu inaugurates a national conference on 'Environment – 2025' in New Delhi, addressing pressing environmental issues.",
+"March 29, 2025: IFS Officer Appointed Private Secretary to PM: Indian Foreign Service (IFS) officer Nidhi Tiwari is appointed as the new Private Secretary to Prime Minister Narendra Modi.",
+"March 30, 2025: PM Unveils Summer Vacation Calendar for Children: Prime Minister Narendra Modi launches a special summer vacation calendar under the MY-Bharat Initiative, promoting engaging activities for children.",
+"March 31, 2025: Kathak Mahotsav Concludes in Delhi: The 37th edition of the Kathak Mahotsav 2025 concludes in New Delhi, showcasing classical dance performances.",
+"March 31, 2025: UNIGME Releases Child Mortality Report: The United Nations Inter-agency Group for Child Mortality Estimation (UNIGME) releases its annual 'Levels and Trends in Child Mortality' report.",
+"March 31, 2025: Startup Mahakumbh Scheduled in Delhi: The Ministry of Tribal Affairs announces the Startup Mahakumbh 2025, to be held in New Delhi from April 3-5, focusing on tribal entrepreneurship.",
+"March 31, 2025: Discussions on Judges' Asset Disclosure Intensify: Following a recent cash recovery incident in Delhi, discussions around the mandatory disclosure of assets by judges gain momentum.",
+"March 31, 2025: Delhi Assembly Adopts NeVA for Paperless Functioning: The Delhi Legislative Assembly signs a Memorandum of Understanding (MoU) to implement the National e-Vidhan Application (NeVA) for paperless proceedings.",
+"Early March 2025: Revised Rashtriya Gokul Mission Approved: The Union Cabinet approves the revised Rashtriya Gokul Mission (RGM) with enhanced focus on improving the productivity of indigenous cattle breeds.",
+"Early March 2025: New Ammonia-Urea Complex Approved in Assam: The Union Cabinet gives the green light for setting up a new Brownfield Ammonia-Urea Complex in Assam to boost fertilizer production.",
+"Mid-March 2025: India Imposes Anti-Dumping Duties on Chinese Products: India imposes anti-dumping duties on five different products originating from China to protect domestic manufacturers.",
+"Mid-March 2025: North and South Blocks to House Yuge Yugeen Bharat Museum: The iconic North and South Blocks in New Delhi are designated as the future home of the Yuge Yugeen Bharat National Museum, showcasing India's history and culture. (Announcement likely made in March).",
+"Late March 2025: Proposal to Abolish Equalisation Levy on Online Advertising: The government proposes to abolish the 6% Equalisation Levy on online advertising services provided by non-resident entities in the upcoming Finance Bill 2025. (Likely part of Finance Bill discussions in late March).",
+"Mid-March 2025: Supreme Court Directs States on ART Drug Stockouts: The Supreme Court issues directives to all states to ensure the continuous availability and quality of Anti-Retroviral Therapy (ART) drugs for HIV patients.",
+"Early March 2025: Ahmedabad Includes Climate Chapter in Budget: The Ahmedabad Municipal Corporation becomes the first local body in India to incorporate a dedicated climate chapter in its annual budget.",
+"Mid-March 2025: Lok Sabha Passes Carriage of Goods by Sea Bill: The Lok Sabha passes the Carriage of Goods by Sea Bill, 2024, to update the legal framework for maritime transportation.",
+"Mid-March 2025: Aditya L1 Captures First Solar Flare Image: India's maiden solar mission, Aditya L1, successfully captures the first-ever direct image of a solar flare, named 'Kernel'.",
+"Early March 2025: India Remains Largest Milk Producer Globally: Reports confirm that India continues to be the world's largest milk producer, with an annual production of 239 million tons. (Likely based on recent data released in early March).",
+"Late March 2025: C-DOT Launches Telecom Innovation Initiative: The Centre for Development of Telematics (C-DOT) launches a new initiative to foster innovation and entrepreneurship in the telecom and IT sectors.",
+"Mid-March 2025: Exercise Indra 2025 Conducted: The annual joint military exercise between India and Russia, Exercise Indra 2025, is held, focusing on counter-terrorism operations.",
+"Late March 2025: Indian Navy Participates in Exercise Sea Dragon: The Indian Navy participates in Exercise Sea Dragon, a multinational anti-submarine warfare exercise.",
+"Late March 2025: Indian Navy Frigate 'Tavasya' Launched: A new indigenously built frigate of the Indian Navy, named 'Tavasya', is launched.",
+"Early March 2025: Prasar Bharati Honored with Hockey India Award: Prasar Bharati receives the Hockey India Jaman Lal Sharma Award for its significant contribution to promoting hockey in India.",
+"Mid-March 2025: Hurun Global Rich List 2025 Released: The Hurun Global Rich List 2025 is published, featuring the rankings of the wealthiest individuals globally, with notable Indian representation.",
+"Early March 2025: Aadhaar Good Governance Portal Launched: A new portal, the Aadhaar Good Governance Portal, is launched to enhance transparency and efficiency in the use of Aadhaar for service delivery.",
+"Early March 2025: Brand Finance Insurance 100 (2025) Report Released: The Brand Finance Insurance 100 (2025) report, ranking the world's most valuable insurance brands, is released.",
+"Late March 2025: Upgraded BAANKNET Portal for PSU Bank E-Auctions: The Ministry of Finance oversees the launch of an upgraded BAANKNET portal to streamline the e-auction process for Non-Performing Assets (NPAs) of Public Sector Undertaking (PSU) banks.",
+"Throughout March 2025: India Advances Nuclear Energy Projects: India continues to push forward with its nuclear energy program, with significant progress reported on projects like the Jaitapur Nuclear Power Plant and the Gorakhpur Nuclear Power Project.",
+"Late March 2025: Axis Bank Launches Near-Real-Time USD Clearing: Axis Bank becomes the first Indian-headquartered financial institution to launch near-real-time programmable USD clearing for its clients.",
+"Mid-March 2025: 'Sahkar' App-Based Taxi Service Announced: The government announces the launch of 'Sahkar,' an app-based taxi service modeled on Ola and Uber but operating under a cooperative framework.",
+"Early March 2025: Additional Funding for Revised Dairy Development Program: The Revised National Program for Dairy Development (NPDD) receives an additional financial boost of ₹1000 crore.",
+"Throughout March 2025: Government Focuses on Reorienting Education System: The Indian government intensifies its efforts to reorient the Indian education system in line with the National Education Policy (NEP) 2020.",
+"Throughout March 2025: Efforts Underway to Reform Logistics Sector: The government continues its focus on comprehensive reforms in India's logistics sector to enhance efficiency and reduce costs.",
+"Throughout March 2025: Discussions on Shaping India's Startup Growth: Various forums and discussions are held across the country to strategize and support the continued growth of India's startup ecosystem.",
+"Throughout March 2025: Role of Women in India's Growth Story Highlighted: The significant and increasing role of women in India's economic and social development is a key focus of discussions and policy initiatives.",
+"Early March 2025: Earthquake Hits Myanmar and Thailand: A significant earthquake with its epicenter near the Myanmar-Thailand border causes tremors and some damage in both countries.",
+"Mid-March 2025: NASA Crew 9 Mission Returns to Earth: NASA astronauts Butch Wilmore and Sunita Williams safely return to Earth after their Crew 9 mission aboard the International Space Station.",
+"March 21, 2025: World Poetry Day Celebrated Globally: Poets and literature enthusiasts around the world celebrate World Poetry Day, highlighting the beauty and importance of poetry.",
+"March 27, 2025: World Theatre Day Observed Worldwide: Theatre communities globally observe World Theatre Day, celebrating the art form and its impact.",
+"Late March 2025: Earthquake Near Myanmar Affects Region: Another earthquake, with its epicenter in the vicinity of Myanmar, is felt across neighboring regions.",
+"Late March 2025: India Launches 'Operation Brahma' for Myanmar Aid: Following the recent earthquakes, India launches 'Operation Brahma' to provide humanitarian assistance and disaster relief to Myanmar.",
+"Late March 2025: SpaceX Fram2 Mission Set for Launch: SpaceX announces the upcoming launch of its Fram2 mission, which will conduct scientific experiments while passing over Earth's polar regions.",
+"Late March - Early April 2025: IAF Participates in Exercise INIOCHOS-25 in Greece: The Indian Air Force (IAF) participates in the multinational air exercise INIOCHOS-25 hosted by the Hellenic Air Force in Greece.",
+"Mid-March 2025: Pakistan and IMF Reach Staff-Level Agreement: Pakistan and the International Monetary Fund (IMF) reach a staff-level agreement on a new loan program.",
+"Mid-March 2025: India-China Border Talks Held in Beijing: The 33rd meeting of the Working Mechanism for Consultation & Coordination (WMCC) on India-China Border Affairs takes place in Beijing.",
+"Early March 2025: Boxing Legend George Foreman Passes Away: Legendary boxer George Foreman passes away at the age of 76, leaving behind a remarkable legacy.",
+"Early March 2025: Conservationist Involved in Project Cheetah Found Dead: Vincent van der Merwe, a conservationist who was involved in India's Project Cheetah, is found dead in Saudi Arabia.",
+"Mid-March 2025: Roshni Nadar Enters Top 10 Richest Women Globally: Roshni Nadar becomes the first Indian woman to be ranked among the world's top 10 richest women in the Hurun Global Rich List 2025.",
+"Early March 2025: Theme for Raisina Dialogue 2025 Announced: The theme for the upcoming Raisina Dialogue 2025 is announced as 'Kalachakra – People, Peace and Planet.'",
+"Throughout March 2025: Hola Mohalla Festival Celebrated: The Sikh community celebrates the vibrant festival of Hola Mohalla, showcasing martial arts and traditional processions (typically around Holi, which falls in March).",
+"March 21, 2025: World Down Syndrome Day Observed Globally: The international community comes together to observe World Down Syndrome Day, raising awareness and advocating for inclusion.",
+"March 22, 2025: World Water Day Observed Internationally: Nations worldwide observe World Water Day, focusing on the importance of freshwater and sustainable water management.",
+"March 23, 2025: World Meteorological Day Marked Globally: Meteorological organizations around the world commemorate World Meteorological Day, highlighting the role of weather and climate in our lives.",
+"March 24, 2025: World Tuberculosis Day Observed Worldwide: Global health organizations and communities observe World Tuberculosis Day to raise awareness about the disease and efforts to end the epidemic.",
+"March 24, 2025: International Day for the Right to Truth Observed: The International Day for the Right to the Truth Concerning Gross Human Rights Violations and for the Dignity of Victims is observed.",
+"March 25, 2025: International Day of Remembrance Observed: The world observes the International Day of Remembrance of the Victims of Slavery and the Transatlantic Slave Trade.",
+"March 26, 2025: Purple Day of Epilepsy Observed Globally: International Purple Day of Epilepsy is observed to raise awareness about epilepsy and dispel myths.",
+"March 27, 2025: World Theatre Day Celebrates 60th Anniversary: The global theatre community celebrates the 60th anniversary of World Theatre Day.",
+"Early March 2025: UNESCO Report Highlights School Meal Nutrition Concerns: A UNESCO report raises concerns about the nutritional quality of school meals in various countries globally.",
+"Mid-March 2025: ADB Funds SMILE Program for India's Logistics: The Asian Development Bank (ADB) announces funding for the SMILE (Strengthening Multi-Modal Integrated Logistics Ecosystem) program in India.",
+"Mid-March 2025: Hurun Global Rich List Highlights Wealth Shifts: The Hurun Global Rich List 2025 reveals interesting shifts in the rankings of the world's wealthiest individuals and their geographical distribution.",
+"Throughout March 2025 (likely announcement in early March): Pakistan to Host ICC Champions Trophy 2025: The International Cricket Council (ICC) confirms that Pakistan will host the 9th edition of the Champions Trophy in 2025, with some matches potentially in the UAE.",
+"Mid-March 2025: Japan Qualifies for FIFA 2026 World Cup: Japan becomes the first team to officially qualify for the FIFA World Cup 2026, joining the host nations.",
+"Throughout March 2025 (likely discussions and build-up): Anticipation for Kabaddi World Cup 2025: Preparations and discussions are underway for the upcoming Kabaddi World Cup 2025.",
+"Late March 2025: 97th Academy Awards (Oscars) Held: The 97th Academy Awards ceremony takes place, honoring the best films of the year.",
+"Mid-March 2025: World Happiness Rankings Released: The annual World Happiness Report is released, ranking countries based on their happiness levels.",
+"Early March 2025: Passing of Ron Draper Noted: The passing of a notable figure, Ron Draper, is reported.",
+"Late March 2025: US Air Force Considers Harpoon Missile on F-16s: Reports suggest the US Air Force is exploring the possibility of deploying the Harpoon anti-ship missile on its F-16 fighter jets.",
+"Throughout March 2025: Discussions on Future of Diplomacy and Trade: Global discussions focus on the evolving landscape of international diplomacy and trade relations.",
+"Throughout March 2025: Focus on Strategic Alliances in the 21st Century: Geopolitical analyses highlight the increasing importance of strategic alliances in the current global scenario.",
+"Late March 2025: Deliberations on Future of India's Digital Payments: Following recent outages, discussions intensify on ensuring the resilience and security of India's digital payment infrastructure, particularly UPI.",
+"Throughout March 2025: Focus on Reimagining Public Policy Education in India: Educational institutions and policymakers discuss the need to reform and modernize public policy education in India.",
+"Throughout March 2025: Examination of Issues Surrounding Bail Denial: Legal experts and human rights advocates examine the trends and concerns related to the denial of bail by trial courts in India.",
+"Throughout March 2025: Analysis of Supreme Court Initiatives on Student Suicides: The Supreme Court takes cognizance of rising student suicides and initiates measures to address the issue.",
+"Throughout March 2025: Review of Corporate Culture in India and Potential Reforms: Discussions and analyses are conducted on the prevailing corporate culture in India and potential reforms to promote ethical practices.",
+"Late March 2025: Analysis of Supreme Court Ruling on Online Child Sexual Abuse: The Supreme Court delivers a significant ruling related to online child sexual abuse, emphasizing stricter enforcement and prevention measures.",
+"Throughout March 2025: Examination of India-Qatar Relations and Developments: Bilateral relations between India and Qatar and recent diplomatic and economic developments are analyzed.",
+"Throughout March 2025: Focus on Wetland Conservation Efforts Across India: Conservation efforts and policy initiatives aimed at protecting and restoring wetlands across India are highlighted.",
+"Throughout March 2025: Discussions on Regulating Third-Party Litigation Funding in India: The legal and financial implications of regulating third-party litigation funding in the Indian legal system are debated.",
+"Throughout March 2025: Analysis of Marine Litter Issues and Solutions in India: The growing problem of marine litter along India's coastline and potential solutions are analyzed.",
+"Throughout March 2025: Review of the Beti Bachao, Beti Padhao Scheme and its Impact: An assessment of the effectiveness and impact of the Beti Bachao, Beti Padhao scheme is conducted.",
+"Throughout March 2025: Examination of the National Education Policy (NEP) 2020 Reforms in Higher Education: The ongoing reforms in higher education under the National Education Policy (NEP) 2020 are examined.",
+"Throughout March 2025: Analysis of India's Demographic Potential and Employment Challenges: Experts analyze India's demographic dividend and the challenges of creating adequate employment opportunities.",
+"Throughout March 2025: Discussions on Monitoring Pesticide Residues in Food Safety: Concerns and measures related to monitoring pesticide residues in food to ensure safety are discussed.",
+"Throughout March 2025: Review of the PM E-DRIVE Scheme for Electric Vehicle Transition: The progress and challenges of the PM E-DRIVE scheme aimed at promoting the adoption of electric vehicles are reviewed.",
+"Throughout March 2025: Examination of Challenges of Regional Economic Imbalances in India: The persistent issue of regional economic disparities across India and potential strategies to address them are examined.",
+"Throughout March 2025: Analysis of India's Performance in QS World University Rankings: India's performance and the ranking of its universities in the QS World University Rankings are analyzed.",
+"Throughout March 2025: Discussions on the Immigration and Foreigners Bill: Deliberations continue on the proposed Immigration and Foreigners Bill and its implications.",
+"Throughout March 2025: Focus on Bridging the Gender Gap in the Judiciary: Efforts and discussions are focused on increasing the representation of women in the Indian judiciary.",
+"Throughout March 2025: Assessment of UN's Effectiveness in Conflict Resolution and Peacekeeping: The United Nations' role and effectiveness in resolving international conflicts and maintaining peace are assessed.",
+"Throughout March 2025: Analysis of Impact of Climate Action and Diversity Policies Globally: The global impact of policies related to climate action and promoting diversity and inclusion is analyzed.",
+"Throughout March 2025: Discussions on Global Supply Chain Resilience: Geopolitical events prompt discussions on the need for more resilient and diversified global supply chains.",
+"Throughout March 2025: Review of Global Efforts to Combat Terrorism: International efforts and strategies aimed at combating terrorism are reviewed.",
+"Throughout March 2025: Analysis of Major Elections and Political Developments Worldwide: Significant elections and political developments in various countries are analyzed for their global impact.",
+"Throughout March 2025: Focus on Technological Advancements in Healthcare: The latest technological advancements and their application in the healthcare sector globally are highlighted.",
+"Throughout March 2025: Discussions on Sustainable Development Goals (SDGs) Progress: The progress made by different countries towards achieving the Sustainable Development Goals (SDGs) is discussed.",
+"Throughout March 2025: Review of International Trade Agreements and Disputes: Current international trade agreements and ongoing trade disputes between nations are reviewed.",
+"Throughout March 2025: Analysis of Space Exploration Missions and Discoveries: Recent space exploration missions and significant scientific discoveries are analyzed.",
+"Throughout March 2025: Focus on the Role of Artificial Intelligence in Various Sectors: The increasing role and impact of artificial intelligence across different industries globally are examined.",
+"Throughout March 2025: Discussions on Cybersecurity Threats and Solutions: The evolving landscape of cybersecurity threats and potential solutions are discussed at international forums.",
+"Throughout March 2025: Review of Global Refugee and Migration Trends: Current trends in global refugee and migration patterns and related humanitarian efforts are reviewed.",
+"Throughout March 2025: Analysis of Trends in Renewable Energy Adoption: The global trends and progress in the adoption of renewable energy sources are analyzed.",
+"Throughout March 2025: Focus on Food Security Challenges and Innovations: Global challenges related to food security and innovative solutions being explored are highlighted.",
+"Throughout March 2025: Discussions on the Future of Work and Automation: The impact of automation and artificial intelligence on the future of work is a key topic of discussion.",
+"Throughout March 2025: Review of Global Public Health Crises and Responses: Ongoing public health crises around the world and the responses being implemented are reviewed.",
+"Throughout March 2025: Analysis of Cultural and Social Trends Shaping the World: Significant cultural and social trends influencing societies globally are analyzed.",
+"Throughout March 2025: Focus on the Importance of Biodiversity Conservation: Global efforts and initiatives aimed at conserving biodiversity are highlighted.",
+"Throughout March 2025: Discussions on Ethical Considerations in Technological Development: Ethical considerations arising from rapid technological advancements are debated.",
+"Throughout March 2025: Review of Global Economic Growth Forecasts and Challenges: Global economic growth forecasts and the major challenges facing the world economy are reviewed.",
+"Throughout March 2025: Analysis of the Impact of Social Media on Society and Politics: The continuing impact of social media on social interactions and political discourse is analyzed.",
+"Throughout March 2025: Focus on the Role of Education in Global Development: The crucial role of education in achieving global development goals is emphasized.",
+"Throughout March 2025: Discussions on Sustainable Urban Development: Strategies and challenges related to sustainable urban development in different parts of the world are discussed.",
+"Throughout March 2025: Review of Global Efforts to Combat Climate Change: The latest developments and commitments in the global fight against climate change are reviewed.",
+"Throughout March 2025: Analysis of the Intersection of Technology and Human Rights: The implications of technological advancements for human rights are analyzed.",
+"Throughout March 2025: Focus on Promoting Gender Equality and Women's Empowerment Globally: Ongoing efforts and initiatives aimed at achieving gender equality and empowering women worldwide are highlighted.",
+"Throughout March 2025: Discussions on the Future of International Organizations: The evolving role and future of international organizations in addressing global challenges are discussed.",
+"Throughout March 2025: Review of Global Efforts to Address Poverty and Inequality: Strategies and progress in tackling poverty and inequality on a global scale are reviewed.",
+"Throughout March 2025: Analysis of the Impact of Geopolitical Tensions on Global Economy: The effects of ongoing geopolitical tensions on the global economic landscape are analyzed.",
+"Throughout March 2025: Focus on the Importance of Cultural Heritage Preservation: Global efforts to preserve and protect cultural heritage sites and traditions are highlighted.",
+"Throughout March 2025: Discussions on the Future of Energy and Energy Security: The future of energy sources and ensuring global energy security are key topics of discussion.",
+"Throughout March 2025: Review of Global Initiatives for Promoting Peace and Security: International initiatives aimed at promoting peace and security in conflict-affected regions are reviewed.",
+"Throughout March 2025: Analysis of the Role of Youth in Shaping the Future: The increasing role and engagement of youth in addressing global issues are analyzed.",
+"Throughout March 2025: Focus on the Importance of Mental Health and Well-being: Global awareness and efforts related to mental health and well-being are highlighted.",
+"Throughout March 2025: Discussions on the Future of Transportation and Mobility: Emerging trends and technologies shaping the future of transportation and mobility are discussed.",
+"Throughout March 2025: Review of Global Efforts to Combat Pandemics and Epidemics: Lessons learned and ongoing efforts to prepare for and combat future pandemics and epidemics are reviewed.",
+"Throughout March 2025: Analysis of the Interplay Between Environment and Development: The complex relationship between environmental sustainability and economic development is analyzed.",
+"Throughout March 2025: Focus on the Importance of Media Literacy in the Digital Age: The growing importance of media literacy in navigating the digital information landscape is highlighted.",
+"Throughout March 2025: Discussions on the Future of Democracy and Governance: The challenges and future of democratic systems and governance around the world are discussed.",
+"Throughout March 2025: Review of Global Efforts to Promote Human Rights: International efforts and mechanisms for promoting and protecting human rights are reviewed.",
+"Throughout March 2025: Analysis of the Impact of Climate Change on Vulnerable Populations: The disproportionate impact of climate change on vulnerable populations is analyzed.",
+"Throughout March 2025: Focus on the Importance of Inclusive Growth and Development: The need for inclusive growth and development strategies that benefit all segments of society is emphasized.",
+"Throughout March 2025: Discussions on the Future of Education and Learning Technologies: Emerging trends and technologies shaping the future of education and learning are discussed.",
+"Throughout March 2025: Review of Global Efforts to Combat Corruption: International and national initiatives aimed at combating corruption are reviewed.",
+"Throughout March 2025: Analysis of the Role of Arts and Culture in Society: The significant role of arts and culture in shaping societies and fostering understanding is analyzed.",
+"Throughout March 2025: Focus on the Importance of Ocean Conservation and Sustainable Use: Global efforts to conserve and sustainably use ocean resources are highlighted.",
+"Throughout March 2025: Discussions on the Future of Food Systems and Sustainable Agriculture: Challenges and innovations in creating sustainable and resilient food systems are discussed.",
+"Throughout March 2025: Review of Global Efforts to Promote Tolerance and Understanding: International initiatives aimed at promoting tolerance, respect, and understanding among different cultures and communities are reviewed.",
+"Throughout March 2025: Analysis of the Impact of Technological Disruption on Labor Markets: The transformative impact of technological disruption on labor markets and the future of employment is analyzed.",
+"Throughout March 2025: Focus on the Importance of Global Health Security: International efforts to enhance global health security and prevent future health crises are highlighted.",
+"Throughout March 2025: Discussions on the Future of Cities and Urbanization: Challenges and opportunities related to the increasing urbanization of the world's population are discussed.",
+"Throughout March 2025: Review of Global Efforts to Promote Sustainable Consumption and Production: Initiatives aimed at promoting sustainable patterns of consumption and production are reviewed.",
+"Throughout March 2025: Analysis of the Role of Philanthropy in Addressing Global Challenges: The contributions of philanthropic organizations in tackling various global challenges are analyzed.",
+"Throughout March 2025: Focus on the Importance of Access to Information and Freedom of the Press: The fundamental role of access to information and a free press in democratic societies is highlighted.",
+"Throughout March 2025: Discussions on the Future of Governance in a Digital World: The challenges and opportunities for governance in an increasingly digital world are discussed.",
+"Throughout March 2025: Review of Global Efforts to Promote Rule of Law and Justice: International and national efforts to strengthen the rule of law and ensure access to justice are reviewed.",
+"Throughout March 2025: Analysis of the Impact of Climate Change on Global Security: The implications of climate change for global peace and security are analyzed.",
+"Throughout March 2025: Focus on the Importance of Intergenerational Equity: The concept of intergenerational equity and the responsibility of current generations towards future ones are emphasized.",
+"Throughout March 2025: Discussions on the Future of International Cooperation: The evolving landscape and future prospects for international cooperation in addressing global issues are discussed.",
+"Throughout March 2025: Review of Global Efforts to Promote Cultural Exchange and Understanding: Initiatives aimed at fostering cultural exchange and mutual understanding among different nations are reviewed.",
+"Throughout March 2025: Analysis of the Impact of Demographic Shifts on Global Economies: The effects of changing population demographics on global economic trends are analyzed.",
+"Throughout March 2025: Focus on the Importance of Science and Innovation for Global Progress: The crucial role of scientific research and technological innovation in driving global progress is highlighted.",
+"Throughout March 2025: Discussions on the Future of Global Health Governance: The structures and challenges of global health governance in the 21st century are discussed.",
+"Throughout March 2025: Review of Global Efforts to Promote Sustainable Tourism: Initiatives aimed at promoting environmentally and socially sustainable tourism practices are reviewed.",
+"Throughout March 2025: Analysis of the Impact of Pandemics on Global Economies and Societies: The long-term economic and social consequences of recent pandemics are analyzed.",
+"Throughout March 2025: Focus on the Importance of Inclusivity and Diversity in All Spheres: The need for inclusivity and diversity in economic, social, and political spheres is emphasized.",
+"Throughout March 2025: Discussions on the Future of Global Communication and Media: The evolving landscape of global communication and the role of media are discussed.",
+"Throughout March 2025: Review of Global Efforts to Promote Sustainable Resource Management: Initiatives aimed at ensuring the sustainable management of natural resources are reviewed.",
+"Throughout March 2025: Analysis of the Role of Civil Society Organizations in Global Issues: The contributions and impact of civil society organizations in addressing global challenges are analyzed.",
+"Throughout March 2025: Focus on the Importance of Lifelong Learning and Skills Development: The increasing importance of lifelong learning and continuous skills development in a changing world is highlighted.",
+"Throughout March 2025: Discussions on the Future of Global Financial Systems: The evolving trends and future challenges of the global financial system are discussed.",
+"Throughout March 2025: Review of Global Efforts to Promote Peacebuilding and Reconciliation: International initiatives aimed at promoting peacebuilding and reconciliation in post-conflict societies are reviewed.",
+"Throughout March 2025: Analysis of the Impact of Technological Advancements on Human Rights: The opportunities and challenges posed by technological advancements for human rights are analyzed.",
+"Throughout March 2025: Focus on the Importance of Environmental Education and Awareness: The crucial role of environmental education in fostering awareness and action on environmental issues is highlighted.",
+"Throughout March 2025: Discussions on the Future of Global Food Security and Nutrition: Challenges and strategies for ensuring global food security and adequate nutrition for all are discussed.",
+"Throughout March 2025: Review of Global Efforts to Promote Social Justice and Equity: International and national efforts aimed at achieving social justice and equity are reviewed.",
+"Throughout March 2025: Analysis of the Role of Culture and the Arts in Global Understanding: The power of culture and the arts in fostering cross-cultural understanding and dialogue is analyzed.",
+"Throughout March 2025: Focus on the Importance of Sustainable Infrastructure Development: The need for sustainable and resilient infrastructure development for economic and social progress is emphasized.",
+"Throughout March 2025: Discussions on the Future of Global Governance and Multilateralism: The challenges and potential evolution of global governance structures and multilateral cooperation are discussed.",
+"Throughout March 2025: Review of Global Efforts to Promote Responsible Innovation: Initiatives aimed at guiding technological innovation in a responsible and ethical manner are reviewed.",
+"Throughout March 2025: Analysis of the Impact of Global Health Issues on Economic Development: The significant impact of global health challenges on economic growth and development is analyzed.",
+"Throughout March 2025: Focus on the Importance of Digital Inclusion and Literacy: The growing importance of digital inclusion and digital literacy in an increasingly digital world is highlighted.",
+"Throughout March 2025: Discussions on the Future of Global Energy Transition: The pathways and challenges of transitioning to sustainable and clean energy sources globally are discussed.",
+"Throughout March 2025: Review of Global Efforts to Promote Human Dignity and Equality: International and national efforts aimed at upholding human dignity and promoting equality are reviewed.",
+"Throughout March 2025: Analysis of the Role of Traditional Knowledge in Sustainable Development: The valuable contributions of traditional knowledge in achieving sustainable development goals are analyzed.",
+"Throughout March 2025: Focus on the Importance of Data Privacy and Security in the Digital Age: The growing concerns and efforts related to data privacy and security in the digital realm are highlighted.",
+"Throughout March 2025: Discussions on the Future of Global Supply Chains and Trade: The evolving dynamics and future trends in global supply chains and international trade are discussed.",
+"Throughout March 2025: Review of Global Efforts to Promote Sustainable Fisheries and Aquaculture: Initiatives aimed at ensuring the sustainability of fisheries and aquaculture are reviewed.",
+"Throughout March 2025: Analysis of the Impact of Urbanization on Social and Environmental Issues: The social and environmental consequences of increasing urbanization are analyzed.",
+"Throughout March 2025: Focus on the Importance of Citizen Engagement in Governance: The crucial role of citizen participation in effective and democratic governance is highlighted.",
+"Throughout March 2025: Discussions on the Future of Global Food Production and Distribution: Challenges and innovations in ensuring efficient and equitable global food production and distribution are discussed.",
+"Throughout March 2025: Review of Global Efforts to Promote Sustainable Forest Management: Initiatives aimed at the sustainable management and conservation of forests worldwide are reviewed.",
+"Throughout March 2025: Analysis of the Role of Indigenous Communities in Environmental Conservation: The significant role of indigenous communities in protecting and preserving the environment is analyzed.",
+"Throughout March 2025: Focus on the Importance of Access to Clean Water and Sanitation: Global efforts to ensure universal access to clean water and sanitation are highlighted.",
+"Throughout March 2025: Discussions on the Future of Global Climate Action and Negotiations: The ongoing and future directions of international climate action and negotiations are discussed.",
+"Throughout March 2025: Review of Global Efforts to Promote Sustainable Mining and Resource Extraction: Initiatives aimed at ensuring the sustainability of mining and the extraction of natural resources are reviewed.",
+"Throughout March 2025: Analysis of the Impact of Digital Technologies on Democratic Processes: The influence of digital technologies on democratic processes and governance is analyzed.",
+"Throughout March 2025: Focus on the Importance of Biodiversity in Human Health and Well-being: The crucial link between biodiversity and human health and well-being is highlighted.",
+        ],
+        'february-2025': [
+"Feb 1: U.S. President Joe Biden signs an executive order imposing sanctions on four Israeli settlers implicated in violence against Palestinians.",
+"Feb 1: India's merchandise trade deficit narrows to $14.05 billion, the lowest in over three years.",
+"Feb 1: Education Ministry grants deemed university status to Indian Institute of Mass Communication ", 
+"Feb 2: The U.S. launches airstrikes on 85 targets in Iraq and Syria in response to a deadly drone attack on a U.S. military base.",
+"Feb 2: Champai Soren takes oath as the new Chief Minister of Jharkhand following Hemant Soren's resignation. ",
+"Feb 2: Senior JMM leader Champai Soren is sworn in as the new Chief Minister of Jharkhand. ",
+"Feb 2: 'One Bharat Sari Walkathon' organized in Kota, Rajasthan, promoting handloom sarees and local artisans. ",
+"Feb 3: BJP leader L.K. Advani is announced to be honored with the Bharat Ratna, India's highest civilian award. ",
+"Feb 3: Yashasvi Jaiswal becomes the third youngest Indian to score a double century in Test cricket.",
+"Feb 3: INS Sandhayak, the first Survey Vessel Large (SVL) ship, is commissioned into the Indian Navy at Visakhapatnam. ",
+"Feb 3: Odisha's Gupteswar Forest declared as the state's fourth Biodiversity Heritage Site. ", 
+"Feb 4: President of Namibia, Hage Geingob, dies at the age of 82; succeeded by Vice-President Nangolo Mbumba.",
+ "Feb 4: Most of Israel experiences 14 continuous days of rainfall, raising the Sea of Galilee's water level by 26 centimeters. ",
+"Feb 4: Uttar Pradesh implements semiconductor policy to boost electronics manufacturing in the state. ",
+"Feb 5: Varun Ghosh becomes the first Indian-origin member of the Australian Senate. ",
+"Feb 5: Indian musicians Shankar Mahadevan and Zakir Hussain's fusion band Shakti wins the Grammy for Best Global Music Album.",
+"Feb 5: Suttur Jatra Mahotsav 2024 commences in Mysuru, Karnataka, celebrating cultural and religious traditions. ",
+"Feb 6: Former President of Chile, Sebastián Piñera, dies in a helicopter crash at the age of 74.",
+"Feb 6: The Lok Sabha passes the Public Examinations (Prevention of Unfair Means) Bill, 2024, aiming to curb malpractices in government recruitment exams.",
+"Feb 6: An explosion at a firecracker factory in Harda, Madhya Pradesh, leaves 11 dead and over 100 injured. ",
+"Feb 6: India's snow leopard population estimated at 718, according to the Snow Leopard Population Assessment in India (SPAI) report. ",
+"Feb 7: Uttarakhand becomes the first Indian state to pass the Uniform Civil Code (UCC) bill. ",
+"Feb 7: Azerbaijani President Ilham Aliyev is reelected to a fifth term amid an opposition boycott. ",
+"Feb 8: In Pakistan's general election, independent politicians, many affiliated with the banned Pakistan Tehreek-e-Insaf, win a plurality in the National Assembly. ",
+"Feb 7: Punjab Chief Minister launches 'Sadak Suraksha Force' to enhance road safety measures in the state. ",
+
+"Feb 8: Clashes in Haldwani, Uttarakhand, after demolition of an illegal madrasa result in four deaths and over 100 injuries. ",
+"Feb 8: Amazon Pay receives final approval from RBI as a payment aggregator, expanding digital payment services. ",
+
+"Feb 9: India confers Bharat Ratna posthumously on Chaudhary Charan Singh, PV Narasimha Rao, and MS Swaminathan. ",
+
+"Feb 9: Bengali translation 'Staliner Divan' wins the prestigious Romain Rolland Book Prize 2024. ",
+"Feb 10: The IDF announces the discovery of a Hamas data center beneath UNRWA's Gaza Strip headquarters. ",
+"Feb 10: PM Modi launches world's largest grain storage scheme in the cooperative sector to enhance food security. ",
+"Feb 11: In Finland's presidential election, Alexander Stubb is elected in the closest race in the country's history. ",
+"Feb 11: National Conference on APAAR: One Nation One Student ID Card inaugurated by Education Minister Dharmendra Pradhan. ",
+
+"Feb 12: Israeli special forces rescue two Israeli-Argentinians kidnapped by Hamas, during a raid in Rafah, southern Gaza. ",
+"Feb 12: Seven of eight Indian Navy veterans sentenced to death in Qatar return to India after release. ",
+"Feb 13: NITI Aayog launches the 'Greening and Restoration of Wasteland with Agroforestry' (GROW) report and portal. ",
+"Feb 12: India's women's badminton team wins the Badminton Asia Team Championship 2024, defeating Thailand in the finals. ",
+"Feb 13: India's longest cable-stayed bridge, Sudarshan Setu, connecting Beyt Dwarka and Okha, inaugurated by PM Modi. ",
+
+"Feb 14: In Indonesia's general election, Prabowo Subianto wins the presidency; the Democratic Party of Struggle secures the most legislative votes. ",
+"Feb 14: Prime Minister Narendra Modi inaugurates the first-ever Hindu temple in the UAE, built by BAPS Swaminarayan Sanstha. ",
+"Feb 14: Trilateral exercise 'Dosti-16' held in Maldives with participation from India, Sri Lanka, and Maldives coast guards. ",
+
+"Feb 15: Supreme Court of India strikes down the Electoral Bond Scheme, declaring it unconstitutional. ",
+"Feb 15: Former Lok Sabha Speaker and Maharashtra CM Manohar Joshi passes away at the age of 86. ",
+"Feb 16: Russian opposition leader Alexei Navalny dies under mysterious circumstances at the age of 47. ",
+"Feb 16: Dr. Shashi Tharoor awarded France's highest civilian honor, Chevalier de la Legion d’Honneur. ",
+
+"Feb 17: Sumit Nagal wins the 2024 Chennai Open Challenger tennis tournament, defeating Luca Nardi in the finals.",
+"Feb 17: ISRO launches the INSAT-3DS meteorological satellite successfully into orbit. ",
+"Feb 18: India's Unified Payment Interface (UPI) services launched in Sri Lanka and Mauritius. ",
+"Feb 19: Reliance Industries Limited surpasses ₹20-lakh crore market capitalization, becoming the first Indian company to do so. ",
+"Feb 20: Ameen Sayani, renowned radio announcer of 'Binaca Geetmala', passes away at the age of 91. ",
+"Feb 21: Exercise Vayu Shakti-24 conducted by Indian Air Force at Pokhran, Rajasthan, showcasing aerial firepower. ",
+"Feb 22: American company Intuitive Machines' Nova-C lander becomes the first commercial vehicle to land on the Moon. ",
+"Feb 23: Farmer dies during ongoing protests in India, raising the death toll to five. ",
+"Feb 24: Tractor carrying Hindu pilgrims overturns in Kasganj District, Uttar Pradesh, killing 23 people. ",
+"Feb 25: Former MLA and INLD state president Nafe Singh Rathee shot dead in Bahadurgarh, Haryana. ",
+"Feb 26: Renowned Indian ghazal singer Pankaj Udhas passes away at the age of 72. ",
+"Feb 27: Rajya Sabha elections held; BJP gains two seats, totaling 32, while Congress loses seats due to cross-voting. ",
+
+"Feb 28: Haiti declares a state of emergency after gangs storm two prisons, demanding the resignation of Prime Minister Ariel Henry. ",
+"Feb 29: Israeli troops open fire on a crowd in Gaza City, killing over 100 people; Palestinian casualties in the war exceed 30,000. ",
+
+          "Feb News 2", "Source Y"
+        ],
+        'january-2025': [
+"Prayag Maha Kumbh Mela Tragedy: On January 29, a crowd crush at the Kumbh Mela in Prayagraj resulted in at least 30 deaths and over 90 injuries.",
+"Z-Morh Tunnel Inauguration: Prime Minister Narendra Modi inaugurated the strategic Z-Morh Tunnel in Jammu and Kashmir on January 13, improving year-round connectivity to Sonamarg.",
+"Tirupati Temple Stampede: A tragic stampede at the Tirumala Venkateswara Temple on January 9 left six devotees dead and several others injured.",
+"HMPV Virus Detected: India detected its first Human Metapneumovirus (HMPV) case in Bengaluru, prompting health surveillance.",
+"Naxalite Attack in Chhattisgarh: A landmine blast in Bijapur district on January 6 killed nine people, including eight police officers, during anti-Naxal operations.",
+"Coal Mine Flooding in Assam: Nine miners lost their lives due to illegal coal mining operations in Dima Hasao, Assam.",
+"Train Collision in Maharashtra: On January 22, 13 people died and 15 were injured in a train accident near Pachora Junction in Maharashtra.",
+"Ordnance Factory Explosion: An explosion in an ammunition factory in Bhandara on January 24 claimed eight lives.",
+"Saif Ali Khan Attacked: Bollywood actor Saif Ali Khan was stabbed during a robbery at his Mumbai home on January 16. He survived and is recovering.",
+"Sanjay Roy Sentenced: Sanjay Roy was sentenced to life imprisonment on January 20 for the 2024 Kolkata rape and murder case.",
+"Fire at Kumbh Mela: A gas cylinder exploded on January 19 at Kumbh Mela, destroying 18 tents; no injuries were reported.",
+"L&T Chairman’s Comment: Larsen & Toubro chairman S.N. Subrahmanyan sparked debate with his remark advocating for a 90-hour work week.",
+"India-Indonesia Cooperation: India and Indonesia signed agreements in defense, maritime security, and trade during President Prabowo Subianto’s visit.",
+"India-China Talks: India and China agreed to resume direct flights and allow journalist exchanges, easing diplomatic tensions.",
+"India's Economic Warning: The Ministry of Finance warned of risks to India's growth due to global trade disruptions and geopolitical uncertainty.",
+"Card Tokenisation in India: India reached 91 crore card tokens, facilitating over 320 crore secure digital transactions.",
+"Scientific Coal Mining in Meghalaya: The central government initiated regulated coal mining in Meghalaya’s West Khasi and East Jaintia Hills.",
+"Ghaggar River Pollution: A report warned of alarming pollution in the Ghaggar River due to untreated industrial waste.",
+"'Mana Mitra' in Andhra Pradesh: Andhra Pradesh launched WhatsApp-based governance services under its “Mana Mitra” initiative.",
+"Reservoir Water Levels Drop: India faced water shortages for agriculture as several states reported below-average reservoir levels.",
+"Gaza Conflict Escalates: Israeli airstrikes in Gaza killed at least 26 Palestinians, including women and children.",
+"New Orleans Truck Attack: A violent vehicle attack in New Orleans killed 14 and injured 35 during a street festival.",
+"Russian Icebreaker Incident: The Russian nuclear icebreaker '50 Let Pobedy' collided with a cargo ship in the Kara Sea.",
+"Bangladesh Joins Artemis Accord: Bangladesh became the 54th country to sign NASA’s Artemis Accord, promoting peaceful space exploration.",
+"Saturn’s Moon Count Rises: Astronomers discovered 128 new moons around Saturn, bringing the total to 274.",
+"China’s Chang’e-6 Launch: China launched its Chang’e-6 mission to retrieve samples from the Moon’s far side.",
+"Europe Discovers Huge Black Hole: European scientists discovered the largest stellar-mass black hole in the Milky Way.",
+"Romania & Bulgaria Join Schengen: Romania and Bulgaria were accepted into the EU’s Schengen Zone, easing cross-border travel.",
+"China HMPV Outbreak: China reported rising cases of Human Metapneumovirus, prompting regional health alerts.",
+"India Protests China’s Dam Projects: India objected to China's new hydropower project on the Brahmaputra River, citing strategic and environmental concerns.",
+"Budget 2025 Expectations Rise: Anticipation grew ahead of India’s Union Budget, with focus on infrastructure and middle-class tax relief.",
+"Stock Market Volatility: Indian stock markets saw sharp swings amid global geopolitical tensions and inflation fears.",
+"India Tops Milk Production: India remained the world’s top milk producer in 2024–25, contributing over 24% to global output.",
+"Government Launches ONDC Expansion: The government pushed for wider adoption of the Open Network for Digital Commerce (ONDC) across Tier-2 and Tier-3 cities.",
+"Global Oil Prices Drop: Crude oil prices fell below $70/barrel in January, providing relief to energy-importing nations like India.",
+"ISRO Tests SSLV for Commercial Use: ISRO tested the Small Satellite Launch Vehicle (SSLV) for future commercial missions.",
+"NASA Detects Alien-Sounding Signal: NASA’s James Webb Space Telescope detected unusual radio signals from exoplanet K2-18b, intriguing scientists.",
+"AI in Education Expands: Indian schools began integrating AI-based adaptive learning systems in classrooms under NEP 2020 reforms.",
+"India Launches Quantum Tech Mission: The National Quantum Mission was officially launched to boost quantum computing and secure communications.",
+"Deep Ocean Mission Proceeds: India’s Samudrayaan project advanced with the successful underwater human submersible trials in January.",
+"India Wins Under-19 Asia Cup: The Indian U-19 cricket team clinched the Asia Cup, defeating Pakistan in the final.",
+"Neeraj Chopra Sets New Record: Olympic gold medallist Neeraj Chopra broke his own javelin national record during a meet in Finland.",
+"P.V. Sindhu Returns to Form: P.V. Sindhu won the Malaysia Masters badminton tournament, marking her comeback after injury.",
+"AFC Asian Cup 2025 Begins: The 2025 AFC Asian Cup football tournament kicked off in Qatar with high attendance.",
+"T20 World Cup Preparations Underway: The Indian team announced its preliminary squad for the upcoming ICC Men’s T20 World Cup.", 
+"India Meteorological Department Celebrates 150 Years: The India Meteorological Department (IMD) marked its 150th anniversary on January 15, 2025, commemorating its establishment in 1875 to provide systematic weather observations and forecasts in India.",
+"India Releases Draft Digital Personal Data Protection Rules 2025: Emphasizing parental consent for children's data and mandatory data breach reporting, the draft rules aim to strengthen data privacy in the digital age.",
+"India and Pakistan Exchange Nuclear Installation Lists: Continuing a 34-year-old tradition, both countries exchanged lists of nuclear installations on January 1, 2025, under a bilateral agreement to prevent attacks on each other's nuclear facilities.",
+"Justin Trudeau Resigns as Canadian Prime Minister: Amidst a political crisis, Justin Trudeau announced his resignation on January 6, 2025, stepping down as both Prime Minister and leader of the Liberal Party.",
+"India's Manufacturing Sector Slows Down: Factory activity in India dropped to a 12-month low in December 2024, indicating a slowdown in the manufacturing sector despite an uptick in hiring.",
+"Maldives Foreign Minister Visits India: To strengthen bilateral ties, the Maldives Foreign Minister visited India in January 2025, focusing on maritime security, trade, and community development projects.",
+"NTPC Partners with Clean Core Thorium Energy: India's NTPC collaborated with US-based Clean Core Thorium Energy to explore advanced nuclear energy solutions using thorium-based fuel for pressurized reactors.",
+"Chhattisgarh Links Forest Ecosystem Services to Green GDP: Becoming the first Indian state to factor environmental benefits into economic performance, Chhattisgarh integrated forest ecosystem services into its Green GDP calculations.",
+"ISRO Plans All-Girls Lunar Mission 'ShakthiSAT': ISRO announced plans for 'ShakthiSAT,' an all-girls lunar mission involving 12,000 talented girls from 108 countries to design, build, and launch a satellite to lunar orbit in 2026.",
+"India and Oman Fast-Track CEPA Negotiations: India and Oman accelerated negotiations for a Comprehensive Economic Partnership Agreement (CEPA) to enhance trade and economic cooperation.",
+"Sunita Williams Breaks Spacewalking Record: Indian-American astronaut Sunita Williams set a new record for the most spacewalks by a woman, achieving this milestone in January 2025.",
+"India to Launch Affordable Indigenous AI Model: The Indian government announced plans to develop and launch an affordable, indigenous AI model to promote technological self-reliance.",
+"Budget Session Begins with President's Address: The Budget Session of the Indian Parliament commenced with President Droupadi Murmu's address, outlining the government's agenda for the year.",
+"CCEA Approves Revision of Ethanol Procurement Prices: The Cabinet Committee on Economic Affairs approved revised ethanol procurement prices to encourage ethanol blending in fuels and support farmers.",
+"National Critical Mineral Mission Launched: India initiated the National Critical Mineral Mission to ensure the availability of essential minerals for the country's economic development and national security.",
+"Nation Honors Mahatma Gandhi on 77th Death Anniversary: India paid tribute to Mahatma Gandhi on his 77th death anniversary on January 30, 2025, remembering his contributions to the nation's independence.",
+"ISRO’s 100th Rocket Launch Mission Achieved: The Indian Space Research Organisation successfully completed its 100th rocket launch mission, marking a significant milestone in the country's space endeavors.",
+"Right to Privacy vs. Right to Know Biological Father: The Supreme Court of India deliberated on a case balancing an individual's right to privacy against the right to know one's biological parentage.",
+"PM Inaugurates ‘Utkarsh Odisha’ Summit: Prime Minister Narendra Modi inaugurated the 'Utkarsh Odisha' summit, focusing on the state's development and investment opportunities.",
+"Pravasi Bharatiya Samman Awards Conferred: The Pravasi Bharatiya Samman Awards were presented to distinguished members of the Indian diaspora for their contributions to various fields.",
+"India and Nepal Review Post-Earthquake Projects: At the Joint Project Monitoring Committee meeting, India and Nepal reviewed the progress of post-earthquake reconstruction projects.",
+"Uttarakhand Implements Uniform Civil Code: Uttarakhand became the first Indian state to implement a Uniform Civil Code, aiming to provide a common set of laws governing personal matters for all citizens.",
+"Australian Open 2025 Concludes: The Australian Open 2025 concluded with thrilling matches, witnessing remarkable performances from tennis players worldwide.",
+"Padma Awards 2025 Announced: The Government of India announced the Padma Awards 2025, honoring individuals for their exceptional contributions in various fields.",
+"India Gate Illuminated for World NTDs Day: On January 30, 2025, India Gate was illuminated to raise awareness for World Neglected Tropical Diseases Day.",
+"Shubhanshu Shukla to Pilot Axiom Mission 4 to ISS: Indian astronaut Shubhanshu Shukla was selected to pilot Axiom Mission 4 to the International Space Station.",
+"Disaster Mitigation Projects Initiated: The Indian government launched new disaster mitigation projects to enhance the country's resilience against natural calamities.",
+"38th National Games Inaugurated in Dehradun: Prime Minister Narendra Modi inaugurated the 38th National Games in Dehradun, Uttarakhand, promoting sports and fitness.",
+"Indore and Udaipur Recognized as Wetland Cities: Indore and Udaipur became the first Indian cities approved for inclusion in the global list of accredited wetland cities under the Ramsar Convention.",
+"World Health Organization Faces US Withdrawal: The United States announced its withdrawal from the World Health Organization, citing mishandling of the COVID-19 pandemic.",
+"Dr. V Narayanan Appointed ISRO Chairman: Dr. V Narayanan took over as the new Chairman of the Indian Space Research Organisation on January 13, 2025.",
+"INCOIS Receives Subhash Chandra Bose Aapda Prabandhan Puraskar: The Indian National Centre for Ocean Information Services was honored for its excellence in disaster management.",
+"Karnataka Wins Vijay Hazare Trophy: Karnataka clinched their fifth Vijay Hazare Trophy by defeating Vidarbha in the finals held in Vadodara.",
+"Exercise Devil Strike Conducted: The Indian Army and Air Force conducted 'Exercise Devil Strike,' a joint operation involving elite airborne troops and strategic training exercises.",
+"Smriti Mandhana Sets Fastest Century Record: Indian cricketer Smriti Mandhana set a new record for the fastest century by an Indian woman, scoring 100 runs in 70 balls against Ireland.",
+"Thiruvalluvar Culture Centre Inaugurated in Jaffna: Sri Lanka inaugurated the Thiruvalluvar Culture Centre in Jaffna, honoring the Tamil poet-philosopher Thiruvalluvar.",
+"INS Surat, INS Nilgiri, and INS Vaghsheer Commissioned: Three frontline naval stealth guided missile frigates were commissioned into the Indian Navy, enhancing maritime capabilities.",
+"Devajit Saikia Appointed BCCI Secretary: Former first-class cricketer Devajit Saikia was appointed as the new Secretary of the Board of Control for Cricket in India.",
+"All India Radio Launches 'Kumbhvani' and 'Kumbh Mangal Dhwani': Special channels dedicated to Mahakumbh 2025 were inaugurated by Uttar Pradesh Chief Minister Yogi Adityanath.",
+"18th Pravasi Bharatiya Divas Held in Bhubaneswar: The 18th Pravasi Bharatiya Divas convention was inaugurated in Bhubaneswar, Odisha, celebrating the contributions of the Indian diaspora.",
+"CM MK Stalin Announces Prize for Deciphering Indus Script: Tamil Nadu Chief Minister MK Stalin announced a $1 million prize for deciphering the script of the Indus Valley Civilization.",
+"Lionel Messi Awarded US Presidential Medal of Freedom: Argentine footballer Lionel Messi was chosen to receive the US Presidential Medal of Freedom by President Joe Biden.",
+"West Bengal Wins Santosh Trophy: West Bengal secured victory in the 2024-25 Santosh Trophy football tournament, defeating Kerala in the finals.",
+"Grameen Bharat Mahotsav 2025 Held in New Delhi: The event, themed 'Building a Resilient Rural India for a Viksit Bharat 2024,' showcased rural development initiatives.",
+"India's First Glass Overbridge Inaugurated in Kanyakumari: Tamil Nadu's Chief Minister MK Stalin inaugurated India's first glass overbridge in Kanyakumari.",
+"Arif Mohammad Khan Appointed Governor of Bihar: Kerala Governor Arif Mohammad Khan was appointed as the new Governor of Bihar, succeeding Rajendra Vishwanath Arlekar.",
+"Rajagopala Chidambaram Passes Away: Renowned nuclear scientist and former Chairman of the Atomic Energy Commission of India, Rajagopala Chidambaram, passed away on January 4, 2025.",
+"Raj Manchanda Passes Away: Former Indian squash player and six-time National Champion Raj Manchanda passed away on December 1, 2024.",
+"KS Manilal Passes Away: Eminent botany scholar and taxonomist KS Manilal, known for his work on 'Hortus Mal",
+
+        ]
+      };
+
+      const pages = {};
+
+      function displayNews(month, page) {
+        const newsItems = newsData[month] || [];
+        const container = document.getElementById(`${month}-news`);
+        const start = (page - 1) * newsPerPage * 2;
+        const end = start + newsPerPage * 2;
+        const pageNews = newsItems.slice(start, end);
+        container.innerHTML = "";
+
+        for (let i = 0; i < pageNews.length; i += 2) {
+          const para = document.createElement("p");
+          para.innerHTML = `<strong>${pageNews[i]}</strong><br><em>${pageNews[i + 1]}</em>`;
+          container.appendChild(para);
+        }
+
+document.getElementById(`${month}-page-num`).textContent = `Page ${page}`;        document.getElementById(`${month}-prev`).disabled = page <= 1;
+        document.getElementById(`${month}-next`).disabled = end >= newsItems.length;
+        pages[month] = page;
+      }
+
+      // Initialize pages and buttons
+      Object.keys(newsData).forEach(month => {
+        pages[month] = 1;
+        document.getElementById(`${month}-prev`).addEventListener("click", () => {
+          if (pages[month] > 1) {
+            pages[month]--;
+            displayNews(month, pages[month]);
+          }
+        });
+        document.getElementById(`${month}-next`).addEventListener("click", () => {
+          pages[month]++;
+          displayNews(month, pages[month]);
+        });
+        displayNews(month, 1);
+      });
+
+      // Month selector
+      monthSelect.addEventListener('change', () => {
+        const selected = monthSelect.value;
+        monthContents.forEach(div => {
+          div.classList.remove('active');
+        });
+        document.getElementById(`${selected}-content`).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

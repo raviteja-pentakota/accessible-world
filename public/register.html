@@ -12,17 +12,15 @@
     input[type="text"], input[type="email"], input[type="password"] { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 3px; box-sizing: border-box; }
     button { width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
     button:hover { background-color: #0056b3; }
-        .login-link { text-align: center; margin-top: 15px; }
-        .login-link a { color: #007bff; text-decoration: none; }
-        .login-link a:hover { text-decoration: underline; }
+    .login-link { text-align: center; margin-top: 15px; }
+    .login-link a { color: #007bff; text-decoration: none; }
+    .login-link a:hover { text-decoration: underline; }
   </style>
   <script type="module">
-    // Firebase imports
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-    import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+    import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion, query, collection, where, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
-    // Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
       authDomain: "accessibleworld-7f599.firebaseapp.com",
@@ -37,11 +35,9 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // Get referral code from the URL (if any)
     const urlParams = new URLSearchParams(window.location.search);
     const referralCode = urlParams.get('ref');
 
-    // Registration function
     async function registerUser(event) {
       event.preventDefault();
 
@@ -51,22 +47,18 @@
       const password = document.getElementById("password").value;
 
       try {
-        // Create user in Firebase Auth
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         const uid = user.uid;
+        const generatedReferralCode = uid.substring(0, 8);
 
-        // Generate unique referral code for the user
-        const generatedReferralCode = uid.substring(0, 8); // Taking first 8 chars of the UID as referral code
-
-        // Create user document in Firestore
         await setDoc(doc(db, "users", uid), {
           fullName,
           mobile,
           email,
           uid,
-          referralCode: generatedReferralCode, // Store the referral code
-          referredBy: referralCode || null,    // Store the person who referred them
+          referralCode: generatedReferralCode,
+          referredBy: referralCode || null,
           paymentStatus: "pending",
           level1: [],
           level2: [],
@@ -75,41 +67,29 @@
           level5: []
         });
 
-        // If a referral code was used, update the referrer's data
-// If a referral code was used, update the referrer's data
         if (referralCode) {
           try {
-            // Get the referrer's document from Firestore
-            const referrerSnapshot = await getDoc(doc(db, "users", referralCode));
+            const q = query(collection(db, "users"), where("referralCode", "==", referralCode));
+            const querySnapshot = await getDocs(q);
 
-            if (referrerSnapshot.exists()) {
-              const referrerUID = referrerSnapshot.id;
-              const referrerRef = doc(db, "users", referrerUID);
+            if (!querySnapshot.empty) {
+              const referrerDoc = querySnapshot.docs[0];
+              const referrerRef = doc(db, "users", referrerDoc.id);
 
-              // Re-check if the referrer document still exists
-              const latestReferrerSnapshot = await getDoc(referrerRef);
-              if (latestReferrerSnapshot.exists()) {
-                // Update referrer's level1 array with the new user's UID
-                await updateDoc(referrerRef, {
-                  level1: arrayUnion(uid)
-                });
-              } else {
-                console.warn("Referrer document no longer exists. Cannot record referral.");
-                // Optionally, you could avoid showing an alert to the user here.
-              }
+              await updateDoc(referrerRef, {
+                level1: arrayUnion(uid)
+              });
+            } else {
+              console.warn("Referrer not found with referral code:", referralCode);
             }
           } catch (error) {
             console.error("Error updating referrer:", error);
-            console.error("Error Code:", error.code);
-            console.error("Error Message:", error.message);
             alert("Registration successful.");
           }
         }
 
-        // Redirect to the login page after successful registration
         alert("Registration successful! Please log in.");
-        window.location.href = "index.html"; // Redirect to login page
-
+        window.location.href = "index.html";
       } catch (error) {
         console.error("Error during registration:", error);
         alert(error.message);
@@ -124,9 +104,8 @@
 <body>
   <div class="container">
     <h2>Register</h2>
-<p> Welcome to Accessible World — your gateway to learning, growth, and earning opportunities. By registering, you gain access to free training in accessibility testing, essential computer skills, and a rich collection of general knowledge, current affairs, and interview preparation materials. Plus, you’ll be part of our unique 5-level referral program, allowing you to invite others, build your network, and earn rewards.
-Take the first step toward a brighter future — <strong>complete your registration now</strong> and become part of an inclusive community that empowers and uplifts!
-</p>
+    <p> Welcome to Accessible World — your gateway to learning, growth, and earning opportunities. By registering, you gain access to free training in accessibility testing, essential computer skills, and a rich collection of general knowledge, current affairs, and interview preparation materials. Plus, you’ll be part of our unique 5-level referral program, allowing you to invite others, build your network, and earn rewards.
+    Take the first step toward a brighter future — <strong>complete your registration now</strong> and become part of an inclusive community that empowers and uplifts!</p>
     <form id="registerForm">
       <label for="fullName">Full Name:</label><br>
       <input type="text" id="fullName" required><br><br>
@@ -142,10 +121,9 @@ Take the first step toward a brighter future — <strong>complete your registrat
 
       <button type="submit">Register</button>
     </form>
-        <div class="login-link">
-            Already a user? <a href="index.html">Click here to login</a>
-        </div>
+    <div class="login-link">
+      Already a user? <a href="index.html">Click here to login</a>
+    </div>
   </div>
-
 </body>
 </html>

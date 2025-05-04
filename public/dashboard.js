@@ -1,200 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Dashboard | Accessible Learn and Win</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding:20px; background:#f0f2f5; }
-        .card { background:#fff; border-radius:8px; padding:20px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
-        button { padding:10px 20px; border:none; background:#007bff; color:#fff; border-radius:4px; cursor:pointer; }
-        button:hover { background:#0056b3; }
-        ul { padding-left:20px; }
-        #referralSection { display:none; }
-        #withdraw-status { margin-top:10px; color:green; }
-        table { width:100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-        th { background-color: #f9f9f9; }
-        .admin-section { background: #fffbe6; padding: 20px; margin-top: 30px; border: 1px solid #ffe58f; border-radius: 8px; }
-        .withdrawal-card { border-bottom: 1px solid #ddd; padding: 10px 0; }
-        .withdrawal-card:last-child { border-bottom: none; }
-
-        /* Modal Styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-            border-radius: 8px;
-            position: relative;
-        }
-
-        .close-button {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close-button:hover,
-        .close-button:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .modal-input-group {
-            margin-bottom: 15px;
-        }
-
-        .modal-input-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .modal-input-group select,
-        .modal-input-group input[type="text"],
-        .modal-input-group input[type="number"] {
-            width: calc(100% - 12px);
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .modal-actions {
-            text-align: right;
-        }
-
-        .modal-actions button {
-            margin-left: 10px;
-        }
-    </style>
-</head>
-<body>
-    <div class="card">
-        <h1>Welcome to Accessible World Tutorials</h1>
-        <p><strong>Name:</strong> <span id="user-name"></span></p>
-        <p><strong>Mobile:</strong> <span id="user-mobile"></span></p>
-        <p><strong>Email:</strong> <span id="user-email"></span></p>
-        <p><strong>Payment Status:</strong> <span id="user-payment-status"></span></p>
-        <button id="logout" style="float:right;background:#dc3545">Logout</button>
-        <h2>Your Referral Link</h2>
-        <p><span id="referral-link"></span></p>
-        <button id="copyLink">Copy Link</button>
-<p>To understand how the referral system works, click <a href="how_referral.html" target="_blank">Click Here</a>.</p>    </div>
-
-
-<h2>About Us</h2>
-<p> At Accessible World Tutorials, we are committed to making the digital world inclusive and accessible for everyone. Our platform offers high-quality learning materials across a wide range of topics, including HTML, JavaScript, stock market education, and the latest tech updates for Android and Windows. Whether you're looking to master web development, improve your programming skills, or gain financial knowledge, our tutorials feature clear explanations, practical examples, video lessons, and hands-on files. Accessibility is at the core of everything we do — with expert guidance, comprehensive resources, and engaging content, we ensure a learning experience that is both empowering and effective.
-By joining us with just a one-time subscription, you'll unlock free access to our full course on accessibility testing, valuable general knowledge and current affairs content, and downloadable HTML practical files with video lessons. Join now to learn, grow, and succeed in an inclusive environment designed to support your journey every step of the way.
-</p>
-        <div id="payment-section">
-            <button id="payBtn">Join and Pay ₹1000 Membership</button>
-        </div>
-        <div id="course-access" style="display:none; margin-top:10px;">
-<h3>Paied Courses</h3>	
-            <p style="color:green;">Thank you for subscribing to a paid course! Click on 'Courses' below to access your content.</p>
-            <button id="coursesBtn">Access Courses</button>
-        </div>
-    </div>
-
-    <div class="card">
-    <div class="card">
-        <button id="toggleReferral">Show/Hide Referral Details</button>
-        <div id="referralSection">
-            <h3>Referral Overview</h3>
-            <p>Total Referrals: <span id="referral-count">0</span></p>
-            <h4>Withdrawal Summary</h4>
-            <p><strong>Total Withdrawn as of now:</strong> <span id="total-withdrawn-display">₹0</span></p>
-            <p hidden><strong>Available Balance:</strong> <span id="available-balance-display">₹0</span></p>
-            <p>Current Available Balance: <span id="total-earnings">₹0</span></p>
-            <table aria-label="Referral History Table">
-                <thead>
-                    <tr>
-                        <th>Level</th>
-                        <th>Name</th>
-                        <th>Mobile</th>
-                        <th>Email</th>
-                        <th>Payment Status</th>
-                        <th>Earning</th>
-                    </tr>
-                </thead>
-                <tbody id="referral-details"></tbody>
-            </table>
-    <div class="card">
-        <h3>Withdraw Earnings</h3>
-        <p id="withdraw-status"></p>
-        <div style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;">
-        <button id="withdrawBtn">Request Withdrawal</button>
-
-        </div>
-    </div>
-
-        </div>
-    </div>
-
-
-    <div id="admin-section" class="admin-section" style="display:none">
-        <h3>Admin: Pending Withdrawals</h3>
-        <div id="withdrawal-list"></div>
-    </div>
-
-    <div id="withdrawModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="wd">
-        <div class="modal-content">
-            <span class="close-button" role="button" aria-label="Close Modal">&times;</span>
-            <h3 id="wd">Withdrawal Request</h3>
-            <div class="modal-input-group">
-                <label for="totalAmount">Total Amount:</label>
-                <input type="text" id="totalAmount" value="₹0" readonly>
-            </div>
-            <div class="modal-input-group">
-                <label for="paymentMethod">Payment Method:</label>
-                <select id="paymentMethod" required>
-                    <option value="">Select Method</option>
-                    <option value="phonepay">PhonePe</option>
-                    <option value="googlepay">Google Pay</option>
-                    <option value="upi">UPI</option>
-                </select>
-            </div>
-            <div id="paymentDetails" style="display:none;">
-                <div class="modal-input-group">
-                    <label for="paymentId">Enter UPI ID/Number:</label>
-                    <input type="text" id="paymentId" placeholder="Enter your ID" required>
-                </div>
-                <div class="modal-input-group">
-                    <label for="availableAmount">Available Amount:</label>
-                    <input type="text" id="availableAmount" value="₹0" readonly>
-                </div>
-                <div class="modal-input-group">
-                    <label for="withdrawAmount">Withdraw Amount:</label>
-                    <input type="number" id="withdrawAmount" placeholder="Enter amount to withdraw" required>
-<p tabindex="0">Note: Please ensure that you enter the correct UPI ID or mobile number. We will not be responsible for any loss if incorrect details are provided, and the amount cannot be refunded.</p>
-                </div>
-            </div>
-            <div class="modal-actions">
-                <button id="submitWithdrawal" disabled>Submit Withdrawal</button>
-                <button id="cancelWithdrawal">Cancel</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
         import {
@@ -237,7 +40,7 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
         const paymentSection = document.getElementById("payment-section");
         const courseAccessSection = document.getElementById("course-access");
         const coursesBtn = document.getElementById("coursesBtn");
-
+const recentWithdrawalStatus = document.getElementById("recent-withdrawal-status");
         // New elements for withdrawal summary
         const totalWithdrawnDisplay = document.getElementById("total-withdrawn-display");
         const availableBalanceDisplay = document.getElementById("available-balance-display");
@@ -290,6 +93,21 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
         }
 
         const loadReferralData = async (userId) => {
+async function fetchRecentWithdrawal(userId) {
+    const withdrawalsQuery = query(
+        collection(db, "withdrawals"),
+        where("userId", "==", userId),
+        orderBy("requestedAt", "desc"),
+        limit(1)
+    );
+    const withdrawalSnapshot = await getDocs(withdrawalsQuery);
+    if (!withdrawalSnapshot.empty) {
+        const recentWithdrawal = withdrawalSnapshot.docs[0].data();
+        recentWithdrawalStatus.textContent = `Your recent withdrawal of ₹${recentWithdrawal.amount} is ${recentWithdrawal.status.toLowerCase()}.`;
+    } else {
+        recentWithdrawalStatus.textContent = "No recent withdrawal.";
+    }
+}
             const refs = await fetchReferralLevels(userId);
             referralCountField.textContent = refs.length;
             referralDetails.innerHTML = "";
@@ -309,10 +127,6 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
 tr.innerHTML = `<td>${r.level}</td><td>${r.fullName}</td><td>${r.mobile}</td><td>${r.email}</td><td>${r.paymentStatus}</td><td>₹${earning}</td>`;
                 referralDetails.append(tr);
             });
-
-
-
-
             const userRef = doc(db, "users", currentUserId);
             await updateDoc(userRef, { totalReferralEarnings: calculatedReferralEarnings });
             const userDocSnap = await getDoc(userRef);
@@ -323,8 +137,24 @@ tr.innerHTML = `<td>${r.level}</td><td>${r.fullName}</td><td>${r.mobile}</td><td
             totalWithdrawnDisplay.textContent = `₹${totalWithdrawn}`;
             availableBalanceDisplay.textContent = `₹${availableEarnings}`;
             currentEarnings = availableEarnings; // Assign available earnings to currentEarnings
+    // Fetch and display recent withdrawal status
+    await fetchRecentWithdrawal(userId);
         };
-
+async function fetchRecentWithdrawal(userId) {
+    const withdrawalsQuery = query(
+        collection(db, "withdrawals"),
+        where("userId", "==", userId),
+        orderBy("requestedAt", "desc"),
+        limit(1)
+    );
+    const withdrawalSnapshot = await getDocs(withdrawalsQuery);
+    if (!withdrawalSnapshot.empty) {
+        const recentWithdrawal = withdrawalSnapshot.docs[0].data();
+        recentWithdrawalStatus.textContent = `Your recent withdrawal of ₹${recentWithdrawal.amount} is ${recentWithdrawal.status.toLowerCase()}.`;
+    } else {
+        recentWithdrawalStatus.textContent = "No recent withdrawal.";
+    }
+}
         onAuthStateChanged(auth, async user => {
             if (!user) return location.href = "index.html";
             currentUserId = user.uid;
@@ -501,6 +331,3 @@ toggleReferralBtn.addEventListener('click', () => {
             }
         };
         coursesBtn.onclick = ()=> window.location.href = 'courses.html';
-    </script>
-</body>
-</html>

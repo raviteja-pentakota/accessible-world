@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessible World Topics and Courses</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background-color: #007bff;
+            color: white;
+            padding: 8px;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #ddd;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 1em;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav h2 {
+            margin-top: 1em;
+            color: #555;
+            font-size: 1.2em;
+        }
+
+        main {
+            padding: 20px;
+            background-color: #fff;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header>
+        <h1>Welcome to Accessible World Topics</h1>
+        <div id="user-profile">
+            <p class="profile-item"><strong aria-label="User Name">Name:</strong> <span id="profile-name"></span></p>
+            <p class="profile-item"><strong aria-label="Mobile Number">Mobile:</strong> <span id="profile-mobile"></span></p>
+            <p class="profile-item"><strong aria-label="Email Address">Email:</strong> <span id="profile-email"></span></p>
+        </div>
+        <div id="referral-info"><strong aria-label="Referral Link">Referral Link:</strong> <span id="referral-link-span"></span></div>
+        <button id="logout-btn">Logout</button>
+    </header>
+<nav aria-label="main">
+        <ul type="none">
+            <li><a href="courses.html">Go to Courses Home Page</a></li>
+            <li><a href="dashboard.html">Go to dashboard page</a></li>
+
+        </ul>
+</nav>
+    <nav aria-label="Course Navigation">
+<ul type="none">
+            <li><a href="accessibility.html">Web Accessibility</a></li>
+            <li><a href="html.html">HTML</a></li>
+            <li><a href="interview.html">Interview Questions</a></li>
+            <li><a href="gk.html">GK Bits</a></li>
+            <li><a href="#">Current Affairs</a></li>
+        </ul>
+    </nav>
+    <main id="main-content">
+        <h2>About Accessible World</h2>
+        <p>Accessible World is dedicated to providing accessible learning resources for everyone. We believe that knowledge should be available to all, regardless of their abilities. Our platform offers a variety of topics and courses designed with accessibility in mind, ensuring a seamless learning experience for users with diverse needs.</p>
+        <p>Explore our technical courses to gain practical skills in areas like web accessibility and front-end development. Prepare for competitive exams with our curated GK bits and current affairs sections.</p>
+        <p>We are continuously expanding our offerings, so be sure to check back regularly for new and exciting learning opportunities!</p>
+        </main>
+    <footer>
+        <p>&copy; 2025 Accessible World</p>
+    </footer>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k", // Replace with your actual API key
+            authDomain: "accessibleworld-7f599.firebaseapp.com", // Replace with your auth domain
+            projectId: "accessibleworld-7f599",             // Replace with your project ID
+            storageBucket: "accessibleworld-7f599.appspot.com", // Replace with your storage bucket
+            messagingSenderId: "264437218598",           // Replace with your messaging sender ID
+            appId: "1:264437218598:web:cae58c1e578c7b08b815e7", // Replace with your app ID
+            measurementId: "G-1QRWXYRZ76"                  // Replace with your measurement ID
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const db = getFirestore(app);
+
+        const bodyElement = document.body;
+        const accessDeniedMessage = document.getElementById('access-denied-message');
+        const courseContent = document.getElementById('course-content');
+        const paidCoursesList = document.getElementById('paid-courses-list');
+        const userProfileDiv = document.getElementById('user-profile');
+        const profileNameSpan = document.getElementById('profile-name');
+        const profileMobileSpan = document.getElementById('profile-mobile');
+        const profileEmailSpan = document.getElementById('profile-email');
+        const referralInfoDiv = document.getElementById('referral-info');
+        const referralLinkSpan = document.getElementById('referral-link-span');
+        const logoutButton = document.getElementById('logout-btn');
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const uid = user.uid;
+                // User is logged in, now check payment status and fetch user data
+                const userDocRef = doc(db, "users", uid);
+                const userDocSnap = await getDoc(userDocRef);
+
+                if (userDocSnap.exists()) {
+                    const userData = userDocSnap.data();
+                    if (userData.paymentStatus === "Paid") {
+                        // User has paid, allow access to courses and display profile info
+                        console.log("User is logged in and has paid. Allowing access.");
+                        // If you had these elements, you would hide them:
+                        // accessDeniedMessage.style.display = "none";
+                        // courseContent.style.display = "block";
+                        // paidCoursesList.innerHTML = `
+                        //     <li><a href="advanced_accessibility.html">Advanced Web Accessibility Testing</a></li>
+                        //     <li><a href="semantic_html.html">HTML5 Semantic Elements and Accessibility</a></li>
+                        //     <li><a href="js_frameworks_a11y.html">JavaScript Frameworks and Accessibility</a></li>
+                        //     <li><a href="in_depth_gk.html">In-depth GK and Current Affairs Analysis</a></li>
+                        // `;
+                        profileNameSpan.textContent = userData.fullName || 'N/A';
+                        profileMobileSpan.textContent = userData.mobile || 'N/A';
+                        profileEmailSpan.textContent = user.email;
+                        referralLinkSpan.textContent = `${location.origin}/register.html?ref=${uid}`;
+                        bodyElement.style.display = 'block'; // Show the content
+                    } else {
+                        // User has not paid, redirect immediately
+                        console.log("User is logged in but has not paid. Redirecting to index.");
+                        alert("Please join our membership to access the courses.");
+                        window.location.href = "index.html"; // Or your pricing page
+                    }
+                } else {
+                    // User data not found, something is wrong, redirect to login
+                    console.error("User data not found for UID:", uid);
+                    alert("Error: Could not verify your membership. Please log in again.");
+                    window.location.href = "index.html"; // Or your login page
+                }
+            } else {
+                // User is not logged in, redirect to login immediately
+                console.log("User is not logged in. Redirecting to index.");
+                alert("Please log in to access the courses.");
+                window.location.href = "index.html"; // Or your login page
+            }
+        });
+
+        logoutButton.addEventListener('click', async () => {
+            try {
+                await signOut(auth);
+                console.log('User signed out');
+                window.location.href = "index.html"; // Redirect to your homepage or login page
+            } catch (error) {
+                console.error('Error signing out:', error);
+                alert('Error signing out. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
