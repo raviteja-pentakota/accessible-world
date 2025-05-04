@@ -19,13 +19,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
-const functionsBaseURL = "https://your-project-id.cloudfunctions.net"; // Replace with your Firebase project ID
 
 const nameField = document.getElementById("user-name");
 const mobileField = document.getElementById("user-mobile");
 const emailField = document.getElementById("user-email");
 const paymentField = document.getElementById("user-payment-status");
-const payBtn = document.getElementById("payBtn");
+// const payBtn = document.getElementById("payBtn"); // Removed payBtn
 const logoutBtn = document.getElementById("logout");
 const referralLinkField = document.getElementById("referral-link");
 const copyLinkBtn = document.getElementById("copyLink");
@@ -42,9 +41,11 @@ const paymentSection = document.getElementById("payment-section");
 const courseAccessSection = document.getElementById("course-access");
 const coursesBtn = document.getElementById("coursesBtn");
 const recentWithdrawalStatus = document.getElementById("recent-withdrawal-status");
-// New elements for withdrawal summary
 const totalWithdrawnDisplay = document.getElementById("total-withdrawn-display");
 const availableBalanceDisplay = document.getElementById("available-balance-display");
+
+// New element to display manual payment instructions
+const manualPaymentInstructions = document.getElementById("manual-payment-instructions");
 
 // Modal elements
 const withdrawModal = document.getElementById("withdrawModal");
@@ -137,8 +138,7 @@ const loadReferralData = async (userId) => {
     earningsField.textContent = `₹${availableEarnings}`;
     totalWithdrawnDisplay.textContent = `₹${totalWithdrawn}`;
     availableBalanceDisplay.textContent = `₹${availableEarnings}`;
-    currentEarnings = availableEarnings; // Assign available earnings to currentEarnings
-    // Fetch and display recent withdrawal status
+    currentEarnings = availableEarnings;
     await fetchRecentWithdrawal(userId);
 };
 
@@ -165,6 +165,19 @@ onAuthStateChanged(auth, async user => {
     } else {
         paymentSection.style.display = "block";
         courseAccessSection.style.display = "none";
+        // Display manual payment instructions here
+        manualPaymentInstructions.innerHTML = `
+            <p>To gain access, please make a payment of ₹1000 to the following:</p>
+            <p><strong>UPI ID:</strong> 7702675618@ybl</p>
+            <p><strong>Or Bank Account:</strong></p>
+            <ul>
+                <li>Account Name: Ravva Gowri</li>
+                <li>Account Number: 000000000000</li>
+                <li>IFSC Code: BOB0THUMMIK</li>
+            </ul>
+            <p>After making the payment, please send a screenshot or payment confirmation to <strong>raviteja26j@gmail.com</strong> or contact <strong>7702675618</strong> to get your account activated.</p>
+            <p>Once your payment is verified, your payment status will be updated to 'Paid', and you will get access to the courses.</p>
+        `;
     }
 
     if (userData.role === "admin") {
@@ -180,56 +193,14 @@ toggleReferralBtn.addEventListener('click', () => {
     toggleReferralBtn.setAttribute("aria-expanded", String(!isVisible));
 });
 
-// Initial state: Hidden
 referralSection.style.display = "none";
 toggleReferralBtn.setAttribute("aria-expanded", "false");
 
 logoutBtn.onclick = () => signOut(auth).then(() => location.href = "index.html");
 copyLinkBtn.onclick = () => { navigator.clipboard.writeText(referralLinkField.textContent); alert("Copied!"); }
-payBtn.onclick = async () => {
-    try {
-        const response = await fetch(`${functionsBaseURL}/createRazorpayOrder`);
-        const orderData = await response.json();
-
-        if (orderData && orderData.id) {
-            const options = {
-                key: "rzp_test_65YRKaINc6MqXg", // Replace with your actual test key during testing
-                amount: orderData.amount,
-                currency: orderData.currency,
-                order_id: orderData.id,
-                name: "Accessible Learn and Win",
-                description: "Membership Fee",
-                prefill: {
-                    name: currentUserName,
-                    email: currentUserEmail,
-                    contact: currentUserMobile
-                },
-                theme: {
-                    color: "#007bff"
-                },
-                handler: async (response) => {
-                    alert("Paid: " + response.razorpay_payment_id);
-                    await updateDoc(doc(db, "users", currentUserId), { paymentStatus: "Paid" });
-                    paymentField.textContent = "Paid";
-                    paymentSection.style.display = "none";
-                    courseAccessSection.style.display = "block";
-                }
-            };
-            const rzp = new Razorpay(options);
-            rzp.open();
-        } else {
-            alert("Failed to create Razorpay order.");
-            console.error("Error creating Razorpay order:", orderData);
-        }
-    } catch (error) {
-        console.error("Error calling createRazorpayOrder function:", error);
-        alert("An error occurred while processing payment.");
-    }
-};
 
 withdrawBtn.onclick = () => {
     if (currentEarnings < 100) return statusMessage.textContent = "Min ₹100 to withdraw";
-    // Open the modal
     withdrawModal.style.display = "block";
     totalAmountModal.value = `₹${currentEarnings}`;
     availableAmountInput.value = `₹${currentEarnings}`;
@@ -310,7 +281,6 @@ submitWithdrawalButton.onclick = async () => {
         });
         statusMessage.textContent = "Withdrawal request submitted!";
 
-        // Update the total withdrawn amount in the database
         const userRef = doc(db, "users", currentUserId);
         const userData = (await getDoc(userRef)).data();
         const currentWithdrawn = userData?.totalWithdrawnAmount || 0;
@@ -319,11 +289,10 @@ submitWithdrawalButton.onclick = async () => {
             totalWithdrawnAmount: newTotalWithdrawn
         });
 
-        // Update the local currentEarnings variable and the displayed value
-        currentEarnings -= requestedAmount; // Update local available earnings
-        earningsField.textContent = `₹${currentEarnings}`; // Display available earnings
-        totalAmountModal.value = `₹${currentEarnings}`; // Update modal total
-        availableAmountInput.value = `₹${currentEarnings}`; // Update modal available
+        currentEarnings -= requestedAmount;
+        earningsField.textContent = `₹${currentEarnings}`;
+        totalAmountModal.value = `₹${currentEarnings}`;
+        availableAmountInput.value = `₹${currentEarnings}`;
 
         statusMessage.textContent = "Payment successfull: You will receive the amount in 24 hours on the provided payment method.";
         alert("Payment successfull: You will receive the amount in 24 hours on the provided payment method.");
