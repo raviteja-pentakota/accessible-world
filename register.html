@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Register</title>
   <style>
     body { font-family: Arial, sans-serif; }
-    .container { width: 300px; margin: 50px auto; border: 1px solid #ccc; padding: 20px; border-radius: 5px; }
+    .container { width: 320px; margin: 50px auto; border: 1px solid #ccc; padding: 20px; border-radius: 5px; }
     h2 { text-align: center; }
     label { display: block; margin-bottom: 5px; }
-    input[type="text"], input[type="email"], input[type="password"] { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 3px; box-sizing: border-box; }
-    button { width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+    input[type="text"], input[type="email"], input[type="password"] {
+      width: 100%; padding: 8px; margin-bottom: 10px;
+      border: 1px solid #ddd; border-radius: 3px; box-sizing: border-box;
+    }
+    button {
+      width: 100%; padding: 10px; background-color: #007bff;
+      color: white; border: none; border-radius: 3px; cursor: pointer;
+    }
     button:hover { background-color: #0056b3; }
     .login-link { text-align: center; margin-top: 15px; }
     .login-link a { color: #007bff; text-decoration: none; }
     .login-link a:hover { text-decoration: underline; }
   </style>
+
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-    import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion, query, collection, where, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+    import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, query, collection, where, getDocs, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
@@ -38,13 +45,24 @@
     const urlParams = new URLSearchParams(window.location.search);
     const referralCode = urlParams.get('ref');
 
+    function isPasswordStrong(password) {
+      // Min 6 chars, at least 1 lowercase, 1 uppercase, 1 digit, 1 special character
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
+      return regex.test(password);
+    }
+
     async function registerUser(event) {
       event.preventDefault();
 
-      const fullName = document.getElementById("fullName").value;
-      const mobile = document.getElementById("mobile").value;
-      const email = document.getElementById("email").value;
+      const fullName = document.getElementById("fullName").value.trim();
+      const mobile = document.getElementById("mobile").value.trim();
+      const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
+
+      if (!isPasswordStrong(password)) {
+        alert("Password must be at least 6 characters long and include uppercase, lowercase, number, and special character.");
+        return;
+      }
 
       try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -67,36 +85,34 @@
           level5: []
         });
 
+        // Update referral tree
         if (referralCode) {
-          try {
-            const q = query(collection(db, "users"), where("referralCode", "==", referralCode));
-            const querySnapshot = await getDocs(q);
+          const q = query(collection(db, "users"), where("referralCode", "==", referralCode));
+          const querySnapshot = await getDocs(q);
 
-            if (!querySnapshot.empty) {
-              const referrerDoc = querySnapshot.docs[0];
-              const referrerRef = doc(db, "users", referrerDoc.id);
-
-              await updateDoc(referrerRef, {
-                level1: arrayUnion(uid)
-              });
-            } else {
-              console.warn("Referrer not found with referral code:", referralCode);
-            }
-          } catch (error) {
-            console.error("Error updating referrer:", error);
-            alert("Registration successful.");
+          if (!querySnapshot.empty) {
+            const referrerDoc = querySnapshot.docs[0];
+            const referrerRef = doc(db, "users", referrerDoc.id);
+            await updateDoc(referrerRef, {
+              level1: arrayUnion(uid)
+            });
+          } else {
+            console.warn("Referrer not found with referral code:", referralCode);
           }
         }
 
-        alert("Registration successful! Please log in.");
+        // Send verification email
+        await sendEmailVerification(user);
+        alert("Registration successful! A verification email has been sent. Please verify your email before logging in.");
         window.location.href = "index.html";
+
       } catch (error) {
         console.error("Error during registration:", error);
         alert(error.message);
       }
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener("DOMContentLoaded", () => {
       document.getElementById("registerForm").addEventListener("submit", registerUser);
     });
   </script>
@@ -104,23 +120,24 @@
 <body>
   <div class="container">
     <h2>Register</h2>
-    <p> Welcome to Accessible World — your gateway to learning, growth, and earning opportunities. By registering, you gain access to free training in accessibility testing, essential computer skills, and a rich collection of general knowledge, current affairs, and interview preparation materials. Plus, you’ll be part of our unique 5-level referral program, allowing you to invite others, build your network, and earn rewards.
-    Take the first step toward a brighter future — <strong>complete your registration now</strong> and become part of an inclusive community that empowers and uplifts!</p>
+    <p>Welcome to Accessible World — your gateway to learning, growth, and earning opportunities. By registering, you gain access to free training in accessibility testing, essential computer skills, and more. Join our 5-level referral program and earn rewards!</p>
+
     <form id="registerForm">
-      <label for="fullName">Full Name:</label><br>
-      <input type="text" id="fullName" required><br><br>
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" required />
 
-      <label for="mobile">Mobile:</label><br>
-      <input type="text" id="mobile" required><br><br>
+      <label for="mobile">Mobile:</label>
+      <input type="text" id="mobile" required />
 
-      <label for="email">Email:</label><br>
-      <input type="email" id="email" required><br><br>
+      <label for="email">Email:</label>
+      <input type="email" id="email" required />
 
-      <label for="password">Password:</label><br>
-      <input type="password" id="password" required><br><br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" required placeholder="At least 6 chars, mix case, number & symbol" />
 
       <button type="submit">Register</button>
     </form>
+
     <div class="login-link">
       Already a user? <a href="index.html">Click here to login</a>
     </div>

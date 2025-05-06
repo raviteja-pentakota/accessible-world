@@ -41,11 +41,11 @@
         }
 
         .password-container {
-            position: relative; /* To position the button inside */
+            position: relative;
         }
 
         .password-container input {
-            padding-right: 40px; /* Make space for the show password button */
+            padding-right: 40px;
         }
 
         .show-password-btn {
@@ -58,7 +58,7 @@
             cursor: pointer;
             padding: 5px;
             font-size: 0.9em;
-            outline: none; /* Remove default focus outline */
+            outline: none;
         }
 
         button {
@@ -71,7 +71,7 @@
             border-radius: 6px;
             font-size: 16px;
             cursor: pointer;
-            margin-bottom: 5px; /* Reduced margin for spacing */
+            margin-bottom: 5px;
         }
 
         button:hover {
@@ -81,7 +81,7 @@
         .forgot-password {
             text-align: right;
             margin-top: 5px;
-            margin-bottom: 10px; /* Added margin for spacing */
+            margin-bottom: 10px;
         }
 
         .forgot-password a {
@@ -97,7 +97,7 @@
         .redirect {
             text-align: center;
             margin-top: 10px;
-            margin-bottom: 10px; /* Added margin for spacing */
+            margin-bottom: 10px;
         }
 
         .admin-link {
@@ -120,11 +120,12 @@
 
     <div class="container">
         <h2>Welcome to Accessible World!</h2>
-<p> In today’s fast-moving world, success demands more than just hard work — it requires the right knowledge and preparation. At Accessible World, we equip you with everything you need: free training in accessibility testing, essential computer skills, and valuable materials like general knowledge, current affairs, and interview preparation resources.
-Plus, with our 5-level referral program, you have the opportunity to grow your network, learn new skills, and earn income at the same time — all within a fully inclusive and supportive environment.
-Don’t wait to unlock your full potential! <strong>Register now</strong> and <strong>log in</strong> to start your journey with Accessible World. Learn, explore, and achieve more with us!
-</p>
-<p><strong>Important Information:</strong><br>
+        <p>
+            In today’s fast-moving world, success demands more than just hard work — it requires the right knowledge and preparation. At Accessible World, we equip you with everything you need: free training in accessibility testing, essential computer skills, and valuable materials like general knowledge, current affairs, and interview preparation resources.
+            Plus, with our 5-level referral program, you have the opportunity to grow your network, learn new skills, and earn income at the same time — all within a fully inclusive and supportive environment.
+            Don’t wait to unlock your full potential! <strong>Register now</strong> and <strong>log in</strong> to start your journey with Accessible World. Learn, explore, and achieve more with us!
+        </p>
+        <p><strong>Important Information:</strong><br>
         Do not login or register. This site is under maintenance.</p>
 
         <form id="loginForm">
@@ -155,9 +156,8 @@ Don’t wait to unlock your full potential! <strong>Register now</strong> and <s
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
-        // Firebase config
         const firebaseConfig = {
             apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
             authDomain: "accessibleworld-7f599.firebaseapp.com",
@@ -179,8 +179,14 @@ Don’t wait to unlock your full potential! <strong>Register now</strong> and <s
 
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    alert("Login successful!");
-window.location.href = "./dashboard.html";
+                    const user = userCredential.user;
+                    if (user.emailVerified) {
+                        alert("Login successful!");
+                        window.location.href = "./dashboard.html";
+                    } else {
+                        alert("Email not verified. Please check your inbox for the verification email.");
+                        signOut(auth);
+                    }
                 })
                 .catch((error) => {
                     alert("Login failed: " + error.message);
@@ -189,8 +195,7 @@ window.location.href = "./dashboard.html";
     </script>
 
     <script>
-        // Auto-focus the email input
-        window.onload = function() {
+        window.onload = function () {
             const emailInput = document.getElementById("email");
             if (emailInput) {
                 emailInput.focus();
