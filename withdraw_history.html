@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Withdrawal History</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f8f9fa;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table th, table td {
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+    .status {
+      font-weight: bold;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #logout-btn {
+      background-color: #dc3545;
+      color: white;
+    }
+    #dashboard-btn {
+      background-color: #007bff;
+      color: white;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Your Withdrawal History</h1>
+    <div class="profile-info">
+      <p class="profile-item"><strong aria-label="User Name">Name:</strong> <span id="profile-name">Loading...</span></p>
+      <p class="profile-item"><strong aria-label="Mobile Number">Mobile:</strong> <span id="profile-mobile">Loading...</span></p>
+      <p class="profile-item"><strong aria-label="Email Address">Email:</strong> <span id="profile-email">Loading...</span></p>
+      <div class="referral-info"><strong aria-label="Referral Link">Referral Link:</strong> <span id="referral-link-span">Loading...</span></div>
+      <!-- Logout button placed here -->
+      <button id="logout-btn" class="btn">Logout</button>
+    </div>
+
+    <div class="summary-info">
+      <p hidden>Total Referrals: <span id="referral-count">0</span></p>
+      <h2>Withdrawal Summary</h2>
+      <p><strong>Total Withdrawn as of now:</strong> <span id="total-withdrawn-display">₹0</span></p>
+      <p>Total Earnings: <span id="total-earnings">₹0</span></p>
+      <p><strong>Available Balance:</strong> <span id="available-balance-display">₹0</span></p>
+    </div>
+
+    <h2>Your Withdrawal Summary</h2>
+    <p>This section provides a detailed overview of all your withdrawal transactions, including the date, amount, and status. Please review the table below to track your financial activity.</p>
+    
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Amount (₹)</th>
+          <th scope="col">Payment Method</th>
+          <th scope="col">Payment ID</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Status</th>
+          <th scope="col">Requested At</th>
+        </tr>
+      </thead>
+      <tbody id="withdrawal-history-body">
+        <tr><td colspan="6">Loading withdrawal history...</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Go to Dashboard button at bottom -->
+    <button id="dashboard-btn" class="btn" onclick="window.location.href='dashboard.html'">Go to Dashboard</button>
+  </div>
+
+  <!-- Firebase and Logic Script (same as before) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc, collection, query, where, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
+      authDomain: "accessibleworld-7f599.firebaseapp.com",
+      projectId: "accessibleworld-7f599",
+      storageBucket: "accessibleworld-7f599.appspot.com",
+      messagingSenderId: "264437218598",
+      appId: "1:264437218598:web:cae58c1e578c7b08b815e7",
+      measurementId: "G-1QRWXYRZ76"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const db = getFirestore(app);
+
+    const profileNameSpan = document.getElementById('profile-name');
+    const profileMobileSpan = document.getElementById('profile-mobile');
+    const profileEmailSpan = document.getElementById('profile-email');
+    const referralLinkSpan = document.getElementById('referral-link-span');
+    const logoutButton = document.getElementById('logout-btn');
+    const withdrawalHistoryBody = document.getElementById('withdrawal-history-body');
+    const referralCountSpan = document.getElementById('referral-count');
+    const totalWithdrawnSpan = document.getElementById('total-withdrawn-display');
+    const availableBalanceSpan = document.getElementById('available-balance-display');
+    const totalEarningsSpan = document.getElementById('total-earnings');
+
+    async function fetchReferralLevels(uid, level = 1, max = 5) {
+      if (level > max) return [];
+      const q = query(collection(db, "users"), where("referredBy", "==", uid));
+      const snap = await getDocs(q);
+      let out = [];
+      for (const ds of snap.docs) {
+        const d = ds.data();
+        out.push({ level, fullName: d.fullName, mobile: d.mobile, email: d.email, paymentStatus: d.paymentStatus, uid: ds.id });
+        out = out.concat(await fetchReferralLevels(ds.id, level + 1, max));
+      }
+      return out;
+    }
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const uid = user.uid;
+        const userDocRef = doc(db, "users", uid);
+        const userDocSnap = await getDoc(userDocRef);
+        if (userDocSnap.exists()) {
+          const userData = userDocSnap.data();
+          profileNameSpan.textContent = userData.fullName || 'N/A';
+          profileMobileSpan.textContent = userData.mobile || 'N/A';
+          profileEmailSpan.textContent = user.email;
+          referralLinkSpan.textContent = `${location.origin}/register.html?ref=${uid}`;
+          referralCountSpan.textContent = userData.referralCount || 0;
+          totalWithdrawnSpan.textContent = `₹${userData.totalWithdrawnAmount || 0}`;
+
+          const refs = await fetchReferralLevels(uid);
+          let calculatedReferralEarnings = 0;
+          refs.forEach(r => {
+            if (r.paymentStatus === "Paid") {
+              if (r.level === 1) calculatedReferralEarnings += 240;
+              else if (r.level === 2) calculatedReferralEarnings += 150;
+              else if (r.level === 3) calculatedReferralEarnings += 110;
+              else if (r.level === 4) calculatedReferralEarnings += 60;
+              else if (r.level === 5) calculatedReferralEarnings += 40;
+            }
+          });
+
+          const totalWithdrawn = userData.totalWithdrawnAmount || 0;
+          const availableEarnings = calculatedReferralEarnings - totalWithdrawn;
+
+          totalEarningsSpan.textContent = `₹${calculatedReferralEarnings}`;
+          availableBalanceSpan.textContent = `₹${availableEarnings}`;
+        }
+
+        const withdrawalsQuery = query(collection(db, "withdrawals"), where("userId", "==", uid));
+        onSnapshot(withdrawalsQuery, (snapshot) => {
+          if (snapshot.empty) {
+            withdrawalHistoryBody.innerHTML = '<tr><td colspan="6">No withdrawal history found.</td></tr>';
+            return;
+          }
+
+          let html = '';
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            const requestedAt = data.requestedAt
+              ? new Date(data.requestedAt.seconds * 1000).toLocaleString('en-IN')
+              : 'N/A';
+
+            let statusMessage = '';
+            switch (data.status) {
+              case 'Pending':
+                statusMessage = '<br><small>You will receive the amount within 48 hours.</small>';
+                break;
+              case 'Approved':
+                statusMessage = '<br><small>The amount has been successfully credited to your specified payment method.</small>';
+                break;
+              case 'Rejected':
+                statusMessage = '<br><small>Your withdrawal request has been rejected. Our team will contact you shortly on your registered mobile number.</small>';
+                break;
+              default:
+                statusMessage = '';
+                break;
+            }
+
+            html += `
+              <tr>
+                <td>${data.amount || 'N/A'}</td>
+                <td>${data.paymentMethod || 'N/A'}</td>
+                <td>${data.paymentId || 'N/A'}</td>
+                <td>${data.phone || 'N/A'}</td>
+                <td class="status">${data.status || 'Pending'}${statusMessage}</td>
+                <td>${requestedAt}</td>
+              </tr>
+            `;
+          });
+          withdrawalHistoryBody.innerHTML = html;
+        }, (error) => {
+          console.error("Error fetching withdrawal history:", error);
+          withdrawalHistoryBody.innerHTML = '<tr><td colspan="6">Failed to load withdrawal history.</td></tr>';
+        });
+      } else {
+        alert("Please log in to view your withdrawal history.");
+        window.location.href = "index.html";
+      }
+    });
+
+    logoutButton.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        await signOut(auth);
+        window.location.href = "index.html";
+      } catch (error) {
+        alert('Error signing out. Please try again.');
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>

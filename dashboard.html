@@ -119,6 +119,9 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
             <p><strong>Total Withdrawn as of now:</strong> <span id="total-withdrawn-display">₹0</span></p>
             <p><strong>Available Balance:</strong> <span id="available-balance-display">₹0</span></p>
             <p>Total Earnings: <span id="total-earnings">₹0</span></p>
+<h3>Withdrawal History</h3>
+<p>You can view all your past withdrawal transactions using the link below.<br>
+<a href="withdraw_history.html">View Withdrawal History</a></p>
             <table aria-label="Referral History Table">
                 <thead>
                     <tr>
@@ -480,7 +483,7 @@ submitWithdrawalButton.onclick = async () => {
                 totalAmountModal.value = `₹${currentEarnings}`; // Update modal total
                 availableAmountInput.value = `₹${currentEarnings}`; // Update modal available
 
-                statusMessage.textContent = "Payment successfull: You will receive the amount in 24 hours on the provided payment method.";
+                statusMessage.textContent = "Payment successfull: You will receive the amount in 48 hours on the provided payment method.";
                 alert("Payment successfull: You will receive the amount in 24 hours on the provided payment method.");
                 withdrawModal.style.display = "none";
                 paymentDetailsDiv.style.display = "none";

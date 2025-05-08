@@ -106,14 +106,14 @@
                 const data = docSnap.data();
                 html += `
                     <tr>
-                        <td>${data.fullName}</td>
-                        <td>${data.email}</td>
-                        <td>${data.phone}</td>
-                        <td>₹${data.amount}</td>
+                        <td>${data.fullName || 'N/A'}</td>
+                        <td>${data.email || 'N/A'}</td>
+                        <td>${data.phone || 'N/A'}</td>
+                        <td>₹${data.amount || 'N/A'}</td>
                         <td>${data.requestedAt?.toDate().toLocaleString() || "N/A"}</td>
-                        <td>${data.paymentMethod}</td>
-                        <td>${data.paymentId}</td>
-                        <td>${data.status}</td>
+                        <td>${data.paymentMethod || 'N/A'}</td>
+                        <td>${data.paymentId || 'N/A'}</td>
+                        <td>${data.status || 'N/A'}</td>
                         <td>
                             ${data.status === 'Pending' ? `
                                 <button class="approve-btn" data-id="${docSnap.id}">Approve</button>
@@ -150,11 +150,44 @@
 
         async function updateWithdrawalStatus(withdrawalId, newStatus) {
             try {
-                await updateDoc(doc(db, "withdrawals", withdrawalId), {
+                const withdrawalDocRef = doc(db, "withdrawals", withdrawalId);
+                const withdrawalDocSnap = await getDoc(withdrawalDocRef);
+
+                if (!withdrawalDocSnap.exists()) {
+                    alert(`Withdrawal with ID ${withdrawalId} not found.`);
+                    return;
+                }
+
+                const withdrawalData = withdrawalDocSnap.data();
+                const userId = withdrawalData.userId;
+                const amount = withdrawalData.amount;
+
+                await updateDoc(withdrawalDocRef, {
                     status: newStatus
                 });
+
                 alert(`Withdrawal ${withdrawalId} ${newStatus} successfully.`);
                 fetchPendingWithdrawals();
+
+                // If the withdrawal is rejected, update the user's available balance
+                if (newStatus === "Rejected" && userId && amount) {
+                    const userDocRef = doc(db, "users", userId);
+                    const userDocSnap = await getDoc(userDocRef);
+
+                    if (userDocSnap.exists()) {
+                        const userData = userDocSnap.data();
+                        const currentAvailableBalance = userData.availableBalance || 0;
+                        const newAvailableBalance = currentAvailableBalance + amount;
+
+                        await updateDoc(userDocRef, {
+                            availableBalance: newAvailableBalance
+                        });
+                        console.log(`User ${userId}'s availableBalance updated by ${amount} due to rejection.`);
+                    } else {
+                        console.error(`User document not found for ID: ${userId}`);
+                    }
+                }
+
             } catch (error) {
                 console.error("Error updating withdrawal status:", error);
                 alert("Failed to update withdrawal status.");
