@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Programming Languages - Accessible World</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background-color: #007bff;
+            color: white;
+            padding: 8px;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 1em 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .tab-button {
+            background-color: #f9f9f9;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .tab-button.active {
+            background-color: white;
+            border-bottom: 2px solid #007bff;
+            color: #007bff;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 15px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .next-button, .prev-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+	    <header>
+        <h1>Welcome to Accessible World Topics</h1>
+        <div id="user-profile">
+            <p class="profile-item"><strong aria-label="User Name">Name:</strong> <span id="profile-name"></span></p>
+            <p class="profile-item"><strong aria-label="Mobile Number">Mobile:</strong> <span id="profile-mobile"></span></p>
+            <p class="profile-item"><strong aria-label="Email Address">Email:</strong> <span id="profile-email"></span></p>
+        </div>
+        <div id="referral-info"><strong aria-label="Referral Link">Referral Link:</strong> <span id="referral-link-span"></span></div>
+        <button id="logout-btn">Logout</button>
+    </header>
+<nav aria-label="main">
+        <ul type="none">
+            <li><a href="courses.html">Go to Courses Home Page</a></li>
+            <li><a href="dashboard.html">Go to dashboard page</a></li>
+
+        </ul>
+</nav>
+    <nav aria-label="Course Navigation">
+<ul type="none">
+            <li><a href="programming_language.html">Programming Languages</a></li>
+            <li><a href="accessibility.html">Web Accessibility</a></li>
+            <li><a href="interview.html">Interview Questions</a></li>
+            <li><a href="gk.html">GK Bits</a></li>
+            <li><a href="current">Current Affairs</a></li>
+        </ul>
+    </nav>
+    </header>
+
+    <main id="main-content">
+<h1>Programming Languages</h1>
+<p>Accessible World Tutorials offers programming language tutorials to help you understand the importance of programming languages. Currently, we cover HTML and JavaScript, and in the future, we will upload more programming languages.</p>
+
+        <div class="tabs" role="tablist">
+            <button class="tab-button active" role="tab" aria-selected="true" aria-controls="tab1" id="tab-button-1" onclick="openTab('tab1', this)">Introduction</button>
+            <button class="tab-button" role="tab" aria-selected="false" aria-controls="tab2" id="tab-button-2" onclick="openTab('tab2', this)">HTML Topics</button>
+            <button class="tab-button" role="tab" aria-selected="false" aria-controls="tab3" id="tab-button-3" onclick="openTab('tab3', this)">JavaScript Topics</button>
+        </div>
+
+        <div id="tab1" class="tab-content active" role="tabpanel" aria-labelledby="tab-button-1">
+            <div class="page active" id="tab1-page1">
+                <h2>Introduction - Page 1</h2>
+                <p>Welcome to the Programming Language Introduction.</p>
+            </div>
+        </div>
+
+        <div id="tab2" class="tab-content" role="tabpanel" aria-labelledby="tab-button-2">
+            <div class="page active" id="tab2-page1">
+  <h1>Welcome to HTML Topics</h1>
+
+  <p><strong>HTML (HyperText Markup Language)</strong> is the standard language used to create and design the structure of web pages. It tells the browser how to display text, images, links, and other content.</p>
+
+  <p>HTML is simple, powerful, and essential for building websites. In this section, we will learn the basic components of HTML that help in creating accessible and structured web content.</p>
+
+  <h2>Key Topics We Cover:</h2>
+  <ul>
+    <li>HTML Basic Structure</li>
+    <li>Headings</li>
+    <li>Paragraphs</li>
+    <li>Graphics (Images)</li>
+    <li>Lists (Ordered and Unordered)</li>
+    <li>Tables</li>
+    <li>Form Fields (Input, Select, Textarea)</li>
+    <li>Audio and Video</li>
+    <li>Meta Tags (for SEO and accessibility)</li>
+    <li>Creating a Complete Web Page</li>
+  </ul>
+<p>Click on the next button to start the first topic: HTML Headings.</p>
+
+                <button class="next-button" onclick="nextPage('tab2', 1, 10)">Next</button>
+            </div>
+
+            <div class="page" id="tab2-page2">
+        <h1>Introduction to HTML: Creating Headings and Paragraphs</h1>
+        <p>Welcome to the first episode of our HTML tutorial series designed to be accessible with screen readers!</p>
+        <p>In this foundational lesson, we'll be diving into the building blocks of web content: headings and paragraphs. You'll learn how to use HTML tags to structure your web pages effectively, ensuring clear and understandable information for all users, including those who rely on screen readers.</p>
+        <p>By the end of this video, you'll be able to:</p>
+        <ul>
+            <li>Identify the importance of headings and paragraphs in web page structure.</li>
+            <li>Utilize HTML tags to create different heading levels (H1, H2, etc.) and paragraphs.</li>
+            <li>Understand how screen readers interpret these elements for improved accessibility.</li>
+        </ul>
+        <p>Whether you're a complete beginner or looking to refresh your HTML knowledge, this tutorial is the perfect starting point!</p>
+        <p>For your practice and reference, a downloadable link to the practice file used in the video will be provided below the video itself.</p>
+        <p>Let's get started building your web pages!</p>
+        <h2>Video Tutorial</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/ZoJ0kpVOApI?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h2>Topic 1 example code:</h2>
+<button id="viewCode" aria-expanded="false">View example code</button>
+<div id="codeExample" hidden>
+    <p>All the below content is the HTML code for the first topic:</p>
+    <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Home Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Main heading&lt;/h1&gt;
+    &lt;p&gt;This is the main paragraph....&lt;/p&gt;
+    &lt;h2&gt;Sub heading&lt;/h2&gt;
+    &lt;p&gt;This is the sub paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+</div>
+<script src="viewCode.js"></script>
+
+                <button class="prev-button" onclick="prevPage('tab2', 2)">Previous</button>
+                <button class="next-button" onclick="nextPage('tab2', 2, 10)">Next</button>
+            </div>
+
+            <div class="page" id="tab2-page3">
+<h1>Building Blocks: Paragraphs and Line Breaks in HTML</h2>
+
+<p>Welcome to the second episode of our HTML tutorial series!</p>
+
+<p>In this lesson, we'll focus on the essential building block of any written content: the paragraph. We'll explore how to structure paragraphs effectively using HTML and delve into the concept of line breaks.</p>
+
+<p>By the end of this video, you'll be able to:</p>
+
+<ul>
+  <li>Craft well-structured paragraphs using the `<p>` tag.</li>
+  <li>Understand how browsers render paragraphs and their spacing.</li>
+  <li>Utilize the `<br>` tag strategically to control line breaks within a paragraph.</li>
+</ul>
+
+<p>Let's build a strong foundation for your web content!</p>
+<p>Whether you're a complete beginner or looking to refresh your HTML knowledge, this tutorial is the perfect starting point!</p>
+
+<p>For your practice and reference, a downloadable link to the practice file used in the video will be provided below the video itself.</p>
+
+<p>Let's get started building your web pages!</p>
+
+<h2>Video Tutorial</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/msfFc9uRqns?si=CmYuzSnekeOxoyu_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h2>Topic 2 example code:</h2>
+<button id="viewCode" aria-expanded="false">View example code</button>
+<div id="codeExample" hidden>
+    <p>All the below content is the HTML code for the second topic:</p>
+    <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Paragraphs&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Paragraph formatting&lt;/h1&gt;
+    &lt;p&gt;Welcome to Accessible world!&lt;br&gt;
+    My name is Raviteja&lt;br&gt;
+    my location is Visakhapatnam&lt;br&gt;
+    I am teaching HTML&lt;br&gt;
+    For the cost of 1000&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+</div>
+<script src="viewCode.js"></script>
+                <button class="prev-button" onclick="prevPage('tab2', 3)">Previous</button>
+                <button class="next-button" onclick="nextPage('tab2', 3, 10)">Next</button>
+            </div>
+
+            <div class="page" id="tab2-page4">
+<h1>Bringing Your Web Pages to Life with Images</h1>
+
+<p>Welcome back to our HTML tutorial series! In this episode, we'll be focusing on the power of images in web design. You'll learn how to leverage the `<img>` tag to seamlessly integrate captivating visuals into your web pages, enhancing user engagement and overall impact.</p>
+
+<p>By the end of this video, you'll be a master of image embedding! You'll be able to:</p>
+
+<ul>
+  <li>**Effortlessly add images:** Utilize the `<img>` tag to incorporate images from various sources.</li>
+  <li>**Fine-tune image appearance:** Understand and utilize attributes like `src`, `alt`, `width`, and `height` to manage image source, provide alternative text for accessibility, and control image size for optimal layout.</li>
+  <li>**Optimize for all devices:** Learn best practices for ensuring your images display beautifully across different screen sizes and devices.</li>
+</ul>
+
+<p>This is just the beginning of your journey into visual storytelling on the web! Stay tuned for upcoming episodes where we'll explore embedding other multimedia elements like videos and audio to further elevate your web creations.</p>
+<p>Let's build a strong foundation for your web content!</p>
+<p>Whether you're a complete beginner or looking to refresh your HTML knowledge, this tutorial is the perfect starting point!</p>
+
+<p>For your practice and reference, a downloadable link to the practice file used in the video will be provided below the video itself.</p>
+
+<p>Let's get started building your web pages!</p>
+
+<h2>Video Tutorial</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HSaJCROLzRQ?si=JyC8iTHh9iEFBKXa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h2>Topic 3 example code:</h2>
+<button id="viewCode" aria-expanded="false">View example code</button>
+<div id="codeExample" hidden>
+    <p>All the below content is the HTML code for the third topic:</p>
+    <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Graphics&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;HTML Graphics&lt;/h1&gt;
+    &lt;img src=&quot;sample.jpg&quot; alt=&quot;BSE India price&quot; style=&quot;width:250px; height: 512px&quot;&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+</div>
+<script src="viewCode.js"></script>
+
+	                <button class="prev-button" onclick="prevPage('tab2', 4)">Previous</button>
+                <button class="next-button" onclick="nextPage('tab2', 4, 10)">Next</button>
+            </div>
+
+            <div class="page" id="tab2-page5">
+<h1>Connecting Your Web Pages with HTML Hyperlinks</h1>
+<p>Welcome back to our HTML tutorial series! In this episode, we're diving into the fundamental skill of creating hyperlinks. You'll learn how to use the `<a>` tag to link to other web pages, documents, and resources, making your web content more interconnected and navigable.</p>
+<p>By the end of this video, you'll be proficient in creating and styling hyperlinks! You'll be able to:</p>
+<ul>
+  <li><strong>Create basic hyperlinks:</strong> Utilize the `<a>` tag to link to other web pages, internal sections, or external resources.</li>
+  <li><strong>Enhance accessibility:</strong> Understand the importance of providing meaningful link text and using attributes like `title` to offer additional context.</li>
+  <li><strong>Open links in new tabs:</strong> Use the `target="_blank"` attribute to open links in a new tab, enhancing user navigation options.</li>
+  <li><strong>Link to email addresses:</strong> Implement the `mailto:` protocol to create links that open the user's default email client.</li>
+  <li><strong>Use anchor links:</strong> Create internal page links using the `id` attribute and anchor links to guide users to specific sections within the same page.</li>
+  <li><strong>Style your links:</strong> Apply CSS to customize the appearance of your hyperlinks, including color, hover effects, and underlining, to match your website's design.</li>
+</ul>
+<p>This is just the start of your journey into creating dynamic and interconnected web content! Stay tuned for upcoming episodes where we'll explore more advanced HTML features and techniques to further enhance your web development skills.</p>
+ <p>Let's build a strong foundation for your web content!</p>
+<p>Whether you're a complete beginner or looking to refresh your HTML knowledge, this tutorial is the perfect starting point!</p>
+
+<p>For your practice and reference, a downloadable link to the practice file used in the video will be provided below the video itself.</p>
+
+<p>Let's get started building your web pages!</p>
+
+<h2>Video Tutorial</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AG9ovHuIax4?si=pf4vRkqmWYhPvX_K" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h2>Topic 4 example code:</h2>
+<button id="viewCode" aria-expanded="false">View example code</button>
+<div id="codeExample" hidden>
+    <p>All the below content is the HTML code for the fourth topic:</p>
+    <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;HTML Links&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;HTML Links&lt;/h1&gt;
+    &lt;a href=&quot;HTML_Headings.html&quot;&gt;Example for HTML headings&lt;/a&gt;&lt;br&gt;
+    &lt;a href=&quot;test/HTML_Graphics.html&quot;&gt;Example for HTML Graphics&lt;/a&gt;&lt;br&gt;
+    &lt;a href=&quot;https://www.youtube.com&quot; target=&quot;_blank&quot;&gt;YouTube&lt;/a&gt;&lt;br&gt;
+    &lt;a href=&quot;https://www.google.com&quot; title=&quot;google home page&quot;&gt;Google&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+</div>
+<script src="viewCode.js"></script>
+
+                <button class="prev-button" onclick="prevPage('tab2', 5)">Previous</button>
+                <button class="next-button" onclick="nextPage('tab2', 5, 10)">Next</button>
+            </div>
+
+            <div class="page" id="tab2-page6">
+<h1>Crafting Accessible Tables in HTML</h1>
+<p>Welcome back to our HTML tutorial series! In this episode, we're diving into the world of accessible tables. You'll learn how to structure your data using the `<table>` tag, ensuring that your tables are both informative and accessible to all users.</p>
+<p>By the end of this video, you'll be proficient in creating accessible tables! You'll be able to:</p>
+<ul>
+  <li><strong>Effortlessly create tables:</strong> Utilize the `<table>` tag to organize data into rows and columns.</li>
+  <li><strong>Ensure clarity and structure:</strong> Understand and implement table elements like `<thead>`, `<tbody>`, `<tfoot>`, `<tr>`, `<th>`, and `<td>` to provide a clear and logical structure.</li>
+  <li><strong>Enhance accessibility:</strong> Use attributes such as `scope`, `headers`, and `summary` to make your tables navigable and understandable for screen reader users.</li>
+  <li><strong>Style for readability:</strong> Apply CSS to enhance the visual presentation of your tables, ensuring they are easy to read and interpret.</li>
+</ul>
+<p>This is just the start of your journey into creating accessible and user-friendly web content! Stay tuned for upcoming episodes where we'll explore more advanced HTML features and techniques to make your web creations stand out.</p>
+<p>Let's build a strong foundation for your web content!</p>
+<p>Whether you're a complete beginner or looking to refresh your HTML knowledge, this tutorial is the perfect starting point!</p>
+
+<p>For your practice and reference, a downloadable link to the practice file used in the video will be provided below the video itself.</p>
+
+<p>Let's get started building your web pages!</p>
+
+<h2>Video Tutorial</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZWzpf05zL6g?si=8jVGfNgMhaHlJh5T" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h2>Topic 5 example code:</h2>
+<button id="viewCode" aria-expanded="false">View example code</button>
+<div id="codeExample" hidden>
+    <p>All the below content is the HTML code for the fifth topic:</p>
+    <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;HTML Tables&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;HTML Tables&lt;/h1&gt;
+    &lt;table&gt;
+        &lt;caption&gt;Student Details&lt;/caption&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th&gt;Name&lt;/th&gt;
+                &lt;th&gt;Email&lt;/th&gt;
+                &lt;th&gt;Phone Number&lt;/th&gt;
+                &lt;th&gt;Age&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;td&gt;Raviteja&lt;/td&gt;
+                &lt;td&gt;pravitje@gmail.com&lt;/td&gt;
+                &lt;td&gt;8178888888&lt;/td&gt;
+                &lt;td&gt;32&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;Srinu&lt;/td&gt;
+                &lt;td&gt;srinu@gmail.com&lt;/td&gt;
+                &lt;td&gt;8888888888&lt;/td&gt;
+                &lt;td&gt;31&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+</div>
+<script src="viewCode.js"></script>
+
+
+                <button class="prev-button" onclick="prevPage('tab2', 6)">Previous</button>
+                <button class="next-button" onclick="nextPage('tab2', 6, 10)">Next</button>
+            </div>
+
+            <div class="page" id="tab2-page7">
+<h1>Organizing Your Content with HTML Lists</h1>
+<p>Welcome back to our HTML tutorial series! In this episode, we'll explore the versatile world of HTML lists. You'll learn how to effectively use the `<ul>`, `<ol>`, and `<li>` tags to create ordered and unordered lists, making your content more structured and easier to read.</p>
+<p>By the end of this video, you'll be adept at using HTML lists! You'll be able to:</p>
+<ul>
+  <li><strong>Create unordered lists:</strong> Utilize the `<ul>` tag to create bullet-point lists for grouping related items without a specific order.</li>
+  <li><strong>Create ordered lists:</strong> Use the `<ol>` tag to create numbered lists for steps or items that need to be in a specific sequence.</li>
+  <li><strong>Define list items:</strong> Understand and implement the `<li>` tag to define each item within your lists.</li>
+  <li><strong>Nest lists:</strong> Learn how to create nested lists to represent hierarchical data or sub-items within a list.</li>
+  <li><strong>Style your lists:</strong> Apply CSS to customize the appearance of your lists, including changing bullet styles, numbering formats, and indentation.</li>
+</ul>
+<p>This is just the beginning of your journey into organizing web content efficiently! Stay tuned for upcoming episodes where we'll delve into more advanced HTML features and techniques to further enhance your web design skills.</p><p>Let's build a strong foundation for your web content!</p>
+<p>Whether you're a complete beginner or looking to refresh your HTML knowledge, this tutorial is the perfect starting point!</p>
+
+<p>For your practice and reference, a downloadable link to the practice file used in the video will be provided below the video itself.</p>
+
+<p>Let's get started building your web pages!</p>
+
+<h2>Video Tutorial</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wpPfJt8hmNo?si=xASq37SeqVX7mHK2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h2>Topic 6 example code:</h2>
+<button id="viewCode" aria-expanded="false">View example code</button>
+<div id="codeExample" hidden>
+    
+    <p>All the below content is the HTML code for the sixth topic:</p>
+    <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;HTML List&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;HTML List&lt;/h1&gt;
+    &lt;ol type=&quot;a&quot;&gt;
+        &lt;li&gt;Jaws&lt;/li&gt;
+        &lt;li&gt;NVDA&lt;/li&gt;
+        &lt;li&gt;VoiceOver&lt;/li&gt;
+        &lt;li&gt;Talkback&lt;/li&gt;
+    &lt;/ol&gt;
+    &lt;h2&gt;Unordered List&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Jaws&lt;/li&gt;
+        &lt;li&gt;NVDA&lt;/li&gt;
+        &lt;li&gt;VoiceOver&lt;/li&gt;
+        &lt;li&gt;Talkback&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;h2&gt;Definition List&lt;/h2&gt;
+    &lt;dl&gt;
+        &lt;dt&gt;Term 1&lt;/dt&gt;
+        &lt;dd&gt;Definition 1&lt;/dd&gt;
+        &lt;dt&gt;Term 2&lt;/dt&gt;
+        &lt;dd&gt;Definition 2&lt;/dd&gt;
+    &lt;/dl&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+</div>
+<script src="viewCode.js"></script>
+                <button class="prev-button" onclick="prevPage('tab2', 7)">Previous</button>
+                <button class="next-button" onclick="nextPage('tab2', 7, 10)">Next</button>
+            </div>
+
+            <div class="page" id="tab2-page8">
+<h1>Building Interactive Forms with HTML</h1>
+<p>Welcome back to our HTML tutorial series! In this episode, we're diving into the essential skill of creating forms. You'll learn how to create and structure forms to collect user input, making your web pages interactive and dynamic.</p> <p>By the end of this video, you'll be proficient in creating functional and accessible forms! You'll be able to:</p> <ul> <li><strong>Construct forms:</strong> Learn how to create a container that holds all the elements needed for user input.</li> <li><strong>Add input fields:</strong> Discover how to implement various input types such as text fields, password fields, and email fields to gather different kinds of data.</li> <li><strong>Use labels effectively:</strong> Understand the importance of labels for accessibility and learn how to associate them with form controls.</li> <li><strong>Organize form data:</strong> Explore how to handle larger text inputs and create dropdown menus to enhance the organization of your form.</li> <li><strong>Enhance form usability:</strong> Learn to use attributes that guide user input and validate data, ensuring that your forms are user-friendly.</li> <li><strong>Style your forms:</strong> Apply CSS to improve the visual presentation and usability of your forms, making sure they offer a seamless experience for users.</li> </ul> <p>This is just the start of your journey into creating interactive and user-friendly web forms! Stay tuned for upcoming episodes where we'll explore advanced form features and techniques to elevate your web development skills.</p> <p>Let's build a strong foundation for your web content!</p> <p>Whether you're a complete beginner or looking to refresh your HTML knowledge, this tutorial is the perfect starting point.</p> <p>For your practice and reference, a downloadable link to the practice file used in the video will be provided below the video itself.</p> <p>Let's get started building your web pages!</p> 
+
+<h2>Video Tutorial</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/bTBDF5Nti4k?si=83eBpVLr2hURVcgy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h2>Topic 7 example code:</h2>
+<button id="viewCode" aria-expanded="false">View example code</button>
+<div id="codeExample" hidden>
+        <p>All the below content is the HTML code for the seventh topic:</p>
+    <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;HTML Forms&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;HTML Forms&lt;/h1&gt;
+    &lt;form&gt;
+        &lt;label for=&quot;fn&quot;&gt;Full Name&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;fn&quot; name=&quot;full_name&quot; required autofocus&gt;
+        &lt;br&gt;
+        &lt;label&gt;Select Gender&lt;/label&gt;
+        &lt;br&gt;
+        &lt;input type=&quot;radio&quot; id=&quot;ml&quot; name=&quot;gender&quot; value=&quot;male&quot; required&gt;
+        &lt;label for=&quot;ml&quot;&gt;Male&lt;/label&gt;
+        &lt;input type=&quot;radio&quot; id=&quot;fm&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt;
+        &lt;label for=&quot;fm&quot;&gt;Female&lt;/label&gt;
+        &lt;br&gt;
+        &lt;label&gt;What languages you know&lt;/label&gt;
+        &lt;br&gt;
+        &lt;input type=&quot;checkbox&quot; id=&quot;english&quot; value=&quot;english&quot;&gt;
+        &lt;label for=&quot;english&quot;&gt;I know English&lt;/label&gt;
+        &lt;input type=&quot;checkbox&quot; id=&quot;hindi&quot; value=&quot;hindi&quot;&gt;
+        &lt;label for=&quot;hindi&quot;&gt;I know Hindi&lt;/label&gt;
+        &lt;br&gt;
+        &lt;label for=&quot;fruit&quot;&gt;Select fruit&lt;/label&gt;
+        &lt;br&gt;
+        &lt;select id=&quot;fruit&quot; name=&quot;fruit&quot;&gt;
+            &lt;option value=&quot;mango&quot;&gt;Mango&lt;/option&gt;
+            &lt;option value=&quot;banana&quot;&gt;Banana&lt;/option&gt;
+            &lt;option value=&quot;apple&quot;&gt;Apple&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;br&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;submit&quot;&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+</div>
+<script src="viewCode.js"></script>
+
+                <button class="prev-button" onclick="prevPage('tab2', 8)">Previous</button>
+                <button class="next-button" onclick="nextPage('tab2', 8, 10)">Next</button>
+            </div>
+
+            <div class="page" id="tab2-page9">
+<h1>Enhancing Your Web Pages with Accessible Audio and Video</h1>
+<p>Welcome back to our HTML tutorial series! In this episode, we'll be exploring how to integrate accessible multimedia elements into your web pages. You'll learn how to use the `<audio>` and `<video>` tags to embed audio and video content, ensuring it is accessible to all users.</p>
+<p>By the end of this video, you'll be skilled in embedding and enhancing multimedia content! You'll be able to:</p>
+<ul>
+  <li><strong>Embed audio files:</strong> Utilize the `<audio>` tag to add audio content to your web pages, including controls for play, pause, and volume.</li>
+  <li><strong>Embed video files:</strong> Use the `<video>` tag to incorporate video content, complete with controls for play, pause, volume, and full-screen viewing.</li>
+  <li><strong>Provide accessible media controls:</strong> Ensure your audio and video players are navigable via keyboard and screen readers by using appropriate attributes and controls.</li>
+  <li><strong>Add captions and transcripts:</strong> Implement `<track>` elements for subtitles, captions, and descriptions, making your content accessible to users with hearing impairments.</li>
+  <li><strong>Optimize for all devices:</strong> Learn best practices for ensuring your media players work seamlessly across different screen sizes and devices.</li>
+  <li><strong>Style your media players:</strong> Apply CSS to customize the appearance of your audio and video players, matching your website's design and improving user experience.</li>
+</ul>
+<p>This is just the beginning of your journey into creating rich, multimedia web experiences! Stay tuned for upcoming episodes where we'll delve into more advanced HTML features and techniques to elevate your web development skills.</p>
+
+<p>Let's build a strong foundation for your web content!</p>
+<p>Whether you're a complete beginner or looking to refresh your HTML knowledge, this tutorial is the perfect starting point!</p>
+
+<p>For your practice and reference, a downloadable link to the practice file used in the video will be provided below the video itself.</p>
+
+<p>Let's get started building your web pages!</p>
+
+<h2>Video Tutorial</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HgBL1zjVGFY?si=3JrZ7ffFqXRLNBNJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h2>Topic 8 example code:</h2>
+<button id="viewCode" aria-expanded="false">View example code</button>
+<div id="codeExample" hidden>
+
+    <p>All the below content is the HTML code for the eighth topic:</p>
+    <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Audio and Video&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Audio Player&lt;/h1&gt;
+    &lt;audio controls&gt;
+        &lt;source src=&quot;audio_testing.mp3&quot; type=&quot;audio/mp3&quot;&gt;
+    &lt;/audio&gt;
+    &lt;h1&gt;Video&lt;/h1&gt;
+    &lt;video style=&quot;width: 100%; height: 50%;&quot; controls&gt;
+        &lt;source src=&quot;video_testing.mp4&quot; type=&quot;video/mp4&quot;&gt;
+    &lt;/video&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+</div>
+<script src="viewCode.js"></script>
+
+                <button class="prev-button" onclick="prevPage('tab2', 9)">Previous</button>
+                <button class="next-button" onclick="nextPage('tab2', 9, 10)">Next</button>
+            </div>
+
+            <div class="page" id="tab2-page10">
+<h1>Creating a Complete HTML Page with a Screen Reader </h1>
+<p>Welcome to Accessible World Tutorials! In this video, I’ll guide you through the process of building an entire HTML page using a screen reader. This step-by-step tutorial is designed to help visually impaired users create accessible and fully functional web pages. Whether you’re new to HTML or looking to refine your skills, this video covers everything from setting up the basic structure to adding content and ensuring your page is screen reader-friendly.</p> <p>By the end of this tutorial, you’ll have a comprehensive understanding of how to create a complete HTML page that’s accessible to all users. Join me as we explore the essential techniques and best practices for building web content that’s both functional and inclusive.</p> <p>🔗 What You'll Learn:</p> <ul> <li>Setting up a basic HTML structure</li> <li>Adding and organizing content</li> <li>Using semantic HTML elements for better accessibility</li> <li>Tips for screen reader-friendly web development</li> </ul> 
+
+<p>Let's build a strong foundation for your web content!</p>
+<p>Whether you're a complete beginner or looking to refresh your HTML knowledge, this tutorial is the perfect starting point!</p>
+
+<p>For your practice and reference, a downloadable link to the practice file used in the video will be provided below the video itself.</p>
+
+<p>Let's get started building your web pages!</p>
+
+<h2>Video Tutorial</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xZ55B5pYENI?si=9kkYm5ECvqpI254v" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h2>Topic 9 example code:</h2>
+<button id="viewCode" aria-expanded="false">View example code</button>
+<div id="codeExample" hidden>
+    <p>All the below content is the HTML code for the ninth topic:</p>
+    <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;eng&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;Accessible World&lt;/title&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;a href=&quot;#main&quot;&gt;Skip to main content&lt;/a&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Welcome to Accessible World&lt;/h1&gt;
+        &lt;img src=&quot;#&quot; alt=&quot;Accessible World Logo&quot;&gt;
+        &lt;nav&gt;
+            &lt;ul type=&quot;none&quot;&gt;
+                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;About Us&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Contact Us&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Our Tutorials&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    &lt;main id=&quot;main&quot;&gt;
+        &lt;h2&gt;About Us&lt;/h2&gt;
+        &lt;p&gt;At Accessible World Tutorials, we are dedicated to making the digital world accessible to everyone. Our mission is to provide high-quality, accessible learning materials specifically designed for the visually impaired community. Whether you&apos;re looking to learn the latest web standards, delve into JavaScript programming, or understand the stock market, we have you covered.&lt;/p&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;
+        &lt;p&gt;Copyright by Accessible World&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+</div>
+<script src="viewCode.js"></script>
+                <button class="prev-button" onclick="prevPage('tab2', 10)">Previous</button>
+            </div>
+        </div>
+
+        <div id="tab3" class="tab-content" role="tabpanel" aria-labelledby="tab-button-3">
+            <div class="page active" id="tab3-page1">
+                <h2>JavaScript Topics - Page 1</h2>
+                <p>We will upload very soon</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function openTab(tabId, clickedButton) {
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-selected', 'false');
+            });
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            clickedButton.classList.add('active');
+            clickedButton.setAttribute('aria-selected', 'true');
+
+            document.querySelectorAll(`#${tabId} .page`).forEach((page, index) => {
+                page.classList.toggle('active', index === 0);
+            });
+        }
+
+        function nextPage(tabId, currentPage, totalPages) {
+            if (currentPage < totalPages) {
+                document.getElementById(`${tabId}-page${currentPage}`).classList.remove('active');
+                document.getElementById(`${tabId}-page${currentPage + 1}`).classList.add('active');
+            }
+        }
+
+        function prevPage(tabId, currentPage) {
+            if (currentPage > 1) {
+                document.getElementById(`${tabId}-page${currentPage}`).classList.remove('active');
+                document.getElementById(`${tabId}-page${currentPage - 1}`).classList.add('active');
+            }
+        }
+    </script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k", // Replace with your actual API key
+            authDomain: "accessibleworld-7f599.firebaseapp.com", // Replace with your auth domain
+            projectId: "accessibleworld-7f599",             // Replace with your project ID
+            storageBucket: "accessibleworld-7f599.appspot.com", // Replace with your storage bucket
+            messagingSenderId: "264437218598",             // Replace with your messaging sender ID
+            appId: "1:264437218598:web:cae58c1e578c7b08b815e7", // Replace with your app ID
+            measurementId: "G-1QRWXYRZ76"                     // Replace with your measurement ID
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const db = getFirestore(app);
+
+        const bodyElement = document.body;
+        const accessDeniedMessage = document.getElementById('access-denied-message');
+        const courseContent = document.getElementById('course-content');
+        const paidCoursesList = document.getElementById('paid-courses-list');
+        const userProfileDiv = document.getElementById('user-profile');
+        const profileNameSpan = document.getElementById('profile-name');
+        const profileMobileSpan = document.getElementById('profile-mobile');
+        const profileEmailSpan = document.getElementById('profile-email');
+        const referralInfoDiv = document.getElementById('referral-info');
+        const referralLinkSpan = document.getElementById('referral-link-span');
+        const logoutButton = document.getElementById('logout-btn');
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const uid = user.uid;
+                const userDocRef = doc(db, "users", uid);
+                const userDocSnap = await getDoc(userDocRef);
+
+                if (userDocSnap.exists()) {
+                    const userData = userDocSnap.data();
+                    if (userData.paymentStatus === "Paid") {
+                        profileNameSpan.textContent = userData.fullName || 'N/A';
+                        profileMobileSpan.textContent = userData.mobile || 'N/A';
+                        profileEmailSpan.textContent = user.email;
+                        referralLinkSpan.textContent = `${location.origin}/register.html?ref=${uid}`;
+                        bodyElement.style.display = 'block';
+                    } else {
+                        alert("Please join our membership to access the courses.");
+                        window.location.href = "index.html";
+                    }
+                } else {
+                    alert("Error: Could not verify your membership. Please log in again.");
+                    window.location.href = "index.html";
+                }
+            } else {
+                alert("Please log in to access the courses.");
+                window.location.href = "index.html";
+            }
+        });
+
+        logoutButton.addEventListener('click', async () => {
+            try {
+                await signOut(auth);
+                window.location.href = "index.html";
+            } catch (error) {
+                console.error('Error signing out:', error);
+                alert('Error signing out. Please try again.');
+            }
+        });
+</script>
+</body>
+</html>
