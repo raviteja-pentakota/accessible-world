@@ -1,146 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Register</title>
-  <style>
-    body { font-family: Arial, sans-serif; }
-    .container { width: 320px; margin: 50px auto; border: 1px solid #ccc; padding: 20px; border-radius: 5px; }
-    h2 { text-align: center; }
-    label { display: block; margin-bottom: 5px; }
-    input[type="text"], input[type="email"], input[type="password"] {
-      width: 100%; padding: 8px; margin-bottom: 10px;
-      border: 1px solid #ddd; border-radius: 3px; box-sizing: border-box;
-    }
-    button {
-      width: 100%; padding: 10px; background-color: #007bff;
-      color: white; border: none; border-radius: 3px; cursor: pointer;
-    }
-    button:hover { background-color: #0056b3; }
-    .login-link { text-align: center; margin-top: 15px; }
-    .login-link a { color: #007bff; text-decoration: none; }
-    .login-link a:hover { text-decoration: underline; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .container { width: 320px; margin: 50px auto; border: 1px solid #ccc; padding: 20px; border-radius: 5px; }
+    h2 { text-align: center; }
+    label { display: block; margin-bottom: 5px; }
+    input[type="text"], input[type="email"], input[type="password"] {
+      width: 100%; padding: 8px; margin-bottom: 10px;
+      border: 1px solid #ddd; border-radius: 3px; box-sizing: border-box;
+    }
+    button {
+      width: 100%; padding: 10px; background-color: #007bff;
+      color: white; border: none; border-radius: 3px; cursor: pointer;
+    }
+    button:hover { background-color: #0056b3; }
+    .login-link { text-align: center; margin-top: 15px; }
+    .login-link a { color: #007bff; text-decoration: none; }
+    .login-link a:hover { text-decoration: underline; }
+  </style>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-    import { getFirestore, doc, setDoc, query, collection, where, getDocs, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, query, collection, where, getDocs, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
-      authDomain: "accessibleworld-7f599.firebaseapp.com",
-      projectId: "accessibleworld-7f599",
-      storageBucket: "accessibleworld-7f599.appspot.com",
-      messagingSenderId: "264437218598",
-      appId: "1:264437218598:web:cae58c1e578c7b08b815e7",
-      measurementId: "G-1QRWXYRZ76"
-    };
+    const firebaseConfig = {
+      apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
+      authDomain: "accessibleworld-7f599.firebaseapp.com",
+      projectId: "accessibleworld-7f599",
+      storageBucket: "accessibleworld-7f599.appspot.com",
+      messagingSenderId: "264437218598",
+      appId: "1:264437218598:web:cae58c1e578c7b08b815e7",
+      measurementId: "G-1QRWXYRZ76"
+    };
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const referralCode = urlParams.get('ref');
+    const urlParams = new URLSearchParams(window.location.search);
+    const referralCode = urlParams.get('ref');
 
-    function isPasswordStrong(password) {
-      // Min 6 chars, at least 1 lowercase, 1 uppercase, 1 digit, 1 special character
-      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
-      return regex.test(password);
-    }
+    let referrerName = ""; // Variable to store referrer's name
+    
+    function isPasswordStrong(password) {
+      // Min 6 chars, at least 1 lowercase, 1 uppercase, 1 digit, 1 special character
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
+      return regex.test(password);
+    }
 
-    async function registerUser(event) {
-      event.preventDefault();
+    async function registerUser(event) {
+      event.preventDefault();
 
-      const fullName = document.getElementById("fullName").value.trim();
-      const mobile = document.getElementById("mobile").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
+      const fullName = document.getElementById("fullName").value.trim();
+      const mobile = document.getElementById("mobile").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
 
-      if (!isPasswordStrong(password)) {
-        alert("Password must be at least 6 characters long and include uppercase, lowercase, number, and special character.");
-        return;
-      }
+      if (!isPasswordStrong(password)) {
+        alert("Password must be at least 6 characters long and include uppercase, lowercase, number, and special character.");
+        return;
+      }
 
-      try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-        const uid = user.uid;
-        const generatedReferralCode = uid.substring(0, 8);
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        const uid = user.uid;
+        const generatedReferralCode = uid.substring(0, 8);
 
-        await setDoc(doc(db, "users", uid), {
-          fullName,
-          mobile,
-          email,
-          uid,
-          referralCode: generatedReferralCode,
-          referredBy: referralCode || null,
-          paymentStatus: "pending",
-          level1: [],
-          level2: [],
-          level3: [],
-          level4: [],
-          level5: []
-        });
+        await setDoc(doc(db, "users", uid), {
+          fullName,
+          mobile,
+          email,
+          uid,
+          referralCode: generatedReferralCode,
+          referredBy: referralCode || null,
+             referredByName: referrerName || null, // Store the referrer's name
+          paymentStatus: "pending",
+          level1: [],
+          level2: [],
+          level3: [],
+          level4: [],
+          level5: []
+        });
 
-        // Update referral tree
-        if (referralCode) {
-          const q = query(collection(db, "users"), where("referralCode", "==", referralCode));
-          const querySnapshot = await getDocs(q);
+        // Update referral tree
+        if (referralCode && referrerName) { // Only if there's a code and a name.
+          const q = query(collection(db, "users"), where("referralCode", "==", referralCode));
+          const querySnapshot = await getDocs(q);
 
-          if (!querySnapshot.empty) {
-            const referrerDoc = querySnapshot.docs[0];
-            const referrerRef = doc(db, "users", referrerDoc.id);
-            await updateDoc(referrerRef, {
-              level1: arrayUnion(uid)
-            });
-          } else {
-            console.warn("Referrer not found with referral code:", referralCode);
-          }
-        }
+          if (!querySnapshot.empty) {
+            const referrerDoc = querySnapshot.docs[0];
+            const referrerRef = doc(db, "users", referrerDoc.id);
+            await updateDoc(referrerRef, {
+              level1: arrayUnion(uid)
+            });
+                // Also update the new user's record with the referrer's name.
+                await updateDoc(doc(db, "users", uid), {
+                    referredByName: referrerName
+                });
+          } else {
+            console.warn("Referrer not found with referral code:", referralCode);
+          }
+        }
 
-        // Send verification email
-        await sendEmailVerification(user);
-        alert("Registration successful! A verification email has been sent. Please verify your email before logging in.");
-        window.location.href = "index.html";
+        // Send verification email
+        await sendEmailVerification(user);
+        alert("Registration successful! A verification email has been sent. Please verify your email before logging in.");
+        window.location.href = "index.html";
 
-      } catch (error) {
-        console.error("Error during registration:", error);
-        alert(error.message);
-      }
-    }
+      } catch (error) {
+        console.error("Error during registration:", error);
+        alert(error.message);
+      }
+    }
 
-    window.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("registerForm").addEventListener("submit", registerUser);
-    });
-  </script>
+    window.addEventListener("DOMContentLoaded", async () => {
+      document.getElementById("registerForm").addEventListener("submit", registerUser);
+
+        // Fetch and store referrer name if referral code is present
+        if (referralCode) {
+            const q = query(collection(db, "users"), where("referralCode", "==", referralCode));
+            const querySnapshot = await getDocs(q);
+            if (!querySnapshot.empty) {
+                const referrerDoc = querySnapshot.docs[0];
+                referrerName = referrerDoc.data().fullName;
+            } else {
+                referrerName = "Referrer Not Found"; // IMPORTANT
+            }
+        } else {
+             referrerName = "No Referral"; // IMPORTANT
+        }
+    });
+  </script>
 </head>
 <body>
-  <div class="container">
-    <h2>Register</h2>
-    <p>Welcome to Accessible World — your gateway to learning, growth, and earning opportunities. By registering, you gain access to free training in accessibility testing, essential computer skills, and more. Join our 5-level referral program and earn rewards!</p>
+  <div class="container">
+    <h2>Register</h2>
+    <p>Welcome to Accessible World — your gateway to learning, growth, and earning opportunities. By registering, you gain access to free training in accessibility testing, essential computer skills, and more. Join our 5-level referral program and earn rewards!</p>
 
-    <form id="registerForm">
-      <label for="fullName">Full Name:</label>
-      <input type="text" id="fullName" required />
+    <form id="registerForm">
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" required />
 
-      <label for="mobile">Mobile:</label>
-      <input type="text" id="mobile" required />
+      <label for="mobile">Mobile:</label>
+      <input type="text" id="mobile" required />
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" required />
+      <label for="email">Email:</label>
+      <input type="email" id="email" required />
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" required placeholder="At least 6 characters, mix case, number & symbol" />
+      <label for="password">Password:</label>
+      <input type="password" id="password" required placeholder="At least 6 characters, mix case, number & symbol" />
 
-      <button type="submit">Register</button>
-    </form>
+      <button type="submit">Register</button>
+    </form>
 
-    <div class="login-link">
-      Already a user? <a href="index.html">Click here to login</a>
-    </div>
-  </div>
+    <div class="login-link">
+      Already a user? <a href="index.html">Click here to login</a>
+    </div>
+  </div>
 </body>
 </html>
