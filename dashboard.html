@@ -217,7 +217,7 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
                 </div>
                 <div class="modal-input-group">
                     <label for="withdrawAmount">Withdraw Amount:</label>
-                    <input type="number" id="withdrawAmount" placeholder="Enter amount to withdraw">
+                    <input type="number" id="withdrawAmount" placeholder="Enter amount to withdraw [Minimum 100]">
                 </div>
             </div>
             <div class="modal-actions">
@@ -412,10 +412,10 @@ tr.innerHTML = `<td>${r.level}</td><td>${r.fullName}</td><td>${r.mobile}</td><td
 
             payBtn.onclick = ()=>{
                 new Razorpay({
-                    key:"rzp_test_65YRKaINc6MqXg",
-                    amount:100, currency:"INR",
-                    name:"Accessible Learn and Win",
-                    description:"Membership Fee",
+                    key:"rzp_live_jarrSjgdfymA2D",
+                    amount:100000, currency:"INR",
+                    name:"Accessible World Tutorials",
+                    description:"🌟 Membership Fee – One-Time Access to All Courses",
                     prefill:{ name:currentUserName, email:currentUserEmail, contact:currentUserMobile },
                     theme:{ color:"#007bff" },
                     handler: async resp=>{
@@ -502,11 +502,14 @@ submitWithdrawalButton.onclick = async () => {
                     return;
                 }
 
-                if (isNaN(requestedAmount) || requestedAmount <= 0 || requestedAmount > currentEarnings) {
-                    alert(`Please enter a valid withdrawal amount (up to ₹${currentEarnings}).`);
+    if (isNaN(requestedAmount) || requestedAmount < 100) {
+        alert("Minimum withdrawal amount is ₹100.");
                     return;
                 }
-
+    if (isNaN(requestedAmount) || requestedAmount <= 0 || requestedAmount > currentEarnings) {
+        alert(`Please enter a valid withdrawal amount (up to ₹${currentEarnings}).`);
+        return;
+    }
                 try {
                     await addDoc(collection(db, "withdrawals"), {
                         userId: currentUserId,

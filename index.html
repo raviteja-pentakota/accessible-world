@@ -4,22 +4,28 @@
     <meta charset="UTF-8">
     <title>Login - Accessible World</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<base href="./">
-
+    <base href="./">
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             background: #f7f7f7;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
         }
 
         .container {
             max-width: 400px;
-            margin: auto;
             padding: 25px;
             background: #ffffff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
         }
 
         h2, p {
@@ -38,6 +44,7 @@
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 6px;
+            box-sizing: border-box;
         }
 
         .password-container {
@@ -114,6 +121,43 @@
         .admin-link a:hover {
             text-decoration: underline;
         }
+
+        #verificationContainer {
+            text-align: center;
+            margin-top: 15px;
+            display: none;
+            border: 1px solid #f0ad4e;
+            background-color: #fef5e7;
+            color: #8a6d3b;
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        #verificationMessage {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        #resendVerificationEmail {
+            width: auto;
+            padding: 10px 15px;
+            font-size: 14px;
+            margin-top: 10px;
+            background-color: #f0ad4e;
+        }
+
+        #resendVerificationEmail:hover {
+            background-color: #d89b36;
+        }
+
+        .visually-hidden {
+            position: absolute !important;
+            height: 1px !important;
+            width: 1px !important;
+            overflow: hidden !important;
+            clip: rect(1px, 1px, 1px, 1px) !important;
+            white-space: nowrap !important;
+        }
     </style>
 </head>
 <body>
@@ -125,24 +169,29 @@
             Plus, with our 5-level referral program, you have the opportunity to grow your network, learn new skills, and earn income at the same time — all within a fully inclusive and supportive environment.
             Don’t wait to unlock your full potential! <strong>Register now</strong> and <strong>log in</strong> to start your journey with Accessible World. Learn, explore, and achieve more with us!
         </p>
-        <p><strong>Important Information:</strong><br>
-        Do not login or register. This site is under maintenance.</p>
 
         <form id="loginForm">
             <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" required aria-describedby="email-format-hint">
+            <div id="email-format-hint" class="visually-hidden">Please enter a valid email address.</div>
 
             <label for="password">Password</label>
             <div class="password-container">
-                <input type="password" id="password" name="password" required>
-                <button type="button" class="show-password-btn" onclick="togglePasswordVisibility()">Show Password</button>
+                <input type="password" id="password" name="password" required aria-describedby="password-toggle-hint">
+                <button type="button" class="show-password-btn" onclick="togglePasswordVisibility()" aria-label="Show password" aria-pressed="false">Show Password</button>
             </div>
+            <div id="password-toggle-hint" class="visually-hidden">Press the button to toggle password visibility.</div>
 
             <div class="forgot-password">
                 <a href="forgot_password.html">Forgot Password?</a>
             </div>
 
             <button type="submit">Login</button>
+
+            <div id="verificationContainer" style="display: none;" role="alert">
+                <p id="verificationMessage" tabindex="-1">Email not verified. Please check your inbox for the verification email.</p>
+                <button type="button" id="resendVerificationEmail">Resend Verification Email</button>
+            </div>
         </form>
 
         <div class="redirect">
@@ -156,7 +205,12 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+        import {
+            getAuth,
+            signInWithEmailAndPassword,
+            sendEmailVerification,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
@@ -171,9 +225,10 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
+        let currentUnverifiedUser = null;
+
         document.getElementById("loginForm").addEventListener("submit", (e) => {
             e.preventDefault();
-
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
 
@@ -182,37 +237,42 @@
                     const user = userCredential.user;
                     if (user.emailVerified) {
                         alert("Login successful!");
-                        window.location.href = "./dashboard.html";
+                        window.location.href = "dashboard.html";
                     } else {
-                        alert("Email not verified. Please check your inbox for the verification email.");
-                        signOut(auth);
+                        document.getElementById("verificationContainer").style.display = "block";
+                        document.getElementById("verificationMessage").focus();
+                        currentUnverifiedUser = user;
                     }
                 })
                 .catch((error) => {
                     alert("Login failed: " + error.message);
+                    currentUnverifiedUser = null;
+                    document.getElementById("verificationContainer").style.display = "none";
                 });
         });
-    </script>
 
-    <script>
-        window.onload = function () {
-            const emailInput = document.getElementById("email");
-            if (emailInput) {
-                emailInput.focus();
+        document.getElementById("resendVerificationEmail").addEventListener("click", () => {
+            if (currentUnverifiedUser) {
+                sendEmailVerification(currentUnverifiedUser)
+                    .then(() => {
+                        alert(`Verification email sent to ${currentUnverifiedUser.email}.`);
+                    })
+                    .catch((error) => {
+                        alert("Error sending email: " + error.message);
+                    });
+            } else {
+                alert("Please log in again to resend verification email.");
             }
-        };
+        });
 
-        function togglePasswordVisibility() {
+        window.togglePasswordVisibility = function () {
             const passwordInput = document.getElementById("password");
             const showPasswordButton = document.querySelector(".show-password-btn");
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                showPasswordButton.textContent = "Hide Password";
-            } else {
-                passwordInput.type = "password";
-                showPasswordButton.textContent = "Show Password";
-            }
-        }
+            const isPasswordVisible = passwordInput.type === "text";
+            passwordInput.type = isPasswordVisible ? "password" : "text";
+            showPasswordButton.textContent = isPasswordVisible ? "Show Password" : "Hide Password";
+            showPasswordButton.setAttribute("aria-pressed", !isPasswordVisible);
+        };
     </script>
 
 </body>
