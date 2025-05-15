@@ -416,7 +416,7 @@ tr.innerHTML = `<td>${r.level}</td><td>${r.fullName}</td><td>${r.mobile}</td><td
                     amount:100000, currency:"INR",
                     name:"Accessible World Tutorials",
                     description:"🌟 Membership Fee – One-Time Access to All Courses",
-                    prefill:{ name:currentUserName, email:currentUserEmail, contact:currentUserMobile },
+                    prefill:{ name:currentUserName, email:currentUserEmail, contact:currentUserMobile},
                     theme:{ color:"#007bff" },
                     handler: async resp=>{
                         alert("Paid: "+resp.razorpay_payment_id);
@@ -539,8 +539,8 @@ submitWithdrawalButton.onclick = async () => {
                     totalAmountModal.value = `₹${currentEarnings}`; // Update modal total
                     availableAmountInput.value = `₹${currentEarnings}`; // Update modal available
 
-                    statusMessage.textContent = "Payment successfull: You will receive the amount in 48 hours on the provided payment method.";
-                    alert("Payment successfull: You will receive the amount in 24 hours on the provided payment method.");
+                    statusMessage.textContent = "Your payment has been successfully processed. Funds will be credited to your specified payment method within two working days (T+2).";
+                    alert("Your payment has been successfully processed. Funds will be credited to your specified payment method within two working days (T+2).");
                     withdrawModal.style.display = "none";
                     withdrawModal.setAttribute("aria-hidden", "true");
                     document.body.classList.remove("modal-open"); // Optional: Remove the class from body
