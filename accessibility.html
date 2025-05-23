@@ -5,52 +5,304 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accessibility Testing Course - Accessible World</title>
     <style>
-        /* ... (Your existing CSS) ... */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: none; /* Hidden until Firebase authentication confirms access */
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #007bff;
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        #user-profile, #referral-info {
+            background-color: #004494;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            text-align: left;
+            display: inline-block; /* Aligns next to logout button */
+            margin-right: 10px;
+        }
+
+        .profile-item {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        #logout-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            float: right; /* Aligns to the right */
+            margin-top: 15px;
+        }
+
+        #logout-btn:hover {
+            background-color: #c82333;
+        }
+
+        nav ul {
+            list-style-type: none; /* Corrected: Use CSS for list style */
+            padding: 0;
+            margin: 0;
+            background-color: #e2e6ea;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #0056b3;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a:focus {
+            background-color: #d6dbe0;
+            color: #003e80;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        main h2 {
+            color: #0056b3;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tab-container {
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .tab-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0;
+            margin: 0;
+            list-style-type: none; /* Corrected: Use CSS for list style */
+        }
+
+        .tab-buttons button {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .tab-buttons button.active {
+            background-color: white;
+            border-color: #007bff;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .tab-buttons button:hover:not(.active) {
+            background-color: #e0e0e0;
+        }
 
         .tab-content {
             display: none;
             padding: 15px;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            min-height: 300px; /* Ensure content area has a minimum height */
         }
 
         .tab-content.active {
             display: block;
         }
 
-        .disability-page {
+        .intro-page,
+        .disability-page,
+        .principle-page,
+        .wcag-page,
+        .aria-page {
             display: none;
+            padding: 10px 0;
         }
 
-        .disability-page.active {
-            display: block;
-        }
-
-        .principle-page {
-            display: none;
-        }
-
-        .principle-page.active {
+        .intro-page.active,
+        .disability-page.active,
+        .principle-page.active,
+        .wcag-page.active,
+        .aria-page.active {
             display: block;
         }
 
         .pagination-controls {
-            margin-top: 15px;
+            margin-top: 20px;
             display: flex;
+            justify-content: center;
             gap: 10px;
             align-items: center;
         }
 
         .pagination-controls button {
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
+            padding: 8px 15px;
+            border: 1px solid #007bff;
+            background-color: #007bff;
+            color: white;
             cursor: pointer;
             border-radius: 5px;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .pagination-controls button:hover:not(:disabled) {
+            background-color: #0056b3;
         }
 
         .pagination-controls button:disabled {
-            background-color: #eee;
-            color: #999;
+            background-color: #cccccc;
+            border-color: #cccccc;
+            color: #666;
             cursor: not-allowed;
+        }
+
+        .pagination-controls span {
+            font-weight: bold;
+            color: #555;
+            min-width: 70px; /* Adjust as needed */
+            text-align: center;
+        }
+
+        /* Styling for WCAG examples */
+        .wcag-page hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+            margin: 30px 0;
+        }
+
+        .wcag-page h2 {
+            color: #0056b3;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .wcag-page h3 {
+            color: #004085;
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+
+        .wcag-page p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .wcag-page ul {
+            list-style-type: disc;
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .wcag-page li {
+            margin-bottom: 5px;
+        }
+
+        .wcag-page iframe {
+            width: 100%;
+            max-width: 700px;
+            height: 394px; /* Maintain aspect ratio for 16:9 */
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Styling for ARIA examples */
+        .aria-page h2 {
+            color: #0056b3;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .aria-page p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .aria-page pre {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .aria-page code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #c7254e;
+        }
+
+        .aria-page strong {
+            color: #004085;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            background-color: #0056b3;
+            color: white;
+            font-size: 0.9em;
         }
     </style>
 </head>
@@ -67,13 +319,13 @@
         <button id="logout-btn">Logout</button>
     </header>
     <nav aria-label="main">
-        <ul type="none">
+        <ul>
             <li><a href="courses.html">Go to Courses Home Page</a></li>
             <li><a href="dashboard.html">Go to dashboard page</a></li>
         </ul>
     </nav>
     <nav aria-label="Course Navigation">
-        <ul type="none">
+        <ul>
             <li><a href="accessibility.html">Web Accessibility</a></li>
             <li><a href="html.html">HTML</a></li>
             <li><a href="interview.html">Interview Questions</a></li>
@@ -84,27 +336,153 @@
     <main id="main-content">
         <h2>Accessibility Testing Course</h2>
         <div class="tab-container">
-            <ul class="tab-buttons" role="tablist" type="none">
+            <ul class="tab-buttons" role="tablist">
                 <li role="presentation"><button role="tab" id="intro-tab" aria-controls="intro-content" aria-selected="true" class="active">Introduction of Accessibility</button></li>
                 <li role="presentation"><button role="tab" id="disabilities-tab" aria-controls="disabilities-content" aria-selected="false">Types of Disabilities and Their Assistive Technologies</button></li>
                 <li role="presentation"><button role="tab" id="wcag-overview-tab" aria-controls="wcag-overview-content" aria-selected="false">Overview of WCAG</button></li>
                 <li role="presentation"><button role="tab" id="wcag-principles-tab" aria-controls="wcag-principles-content" aria-selected="false">4 Principals of WCAG</button></li>
-                <li role="presentation"><button role="tab" id="wcag-success-criteria-tab" aria-controls="wcag-success-criteria-content" aria-selected="false">WCAG Success Criteria</button></li>
+                <li role="presentation"><button role="tab" id="wcag-tab" aria-controls="wcag-content" aria-selected="false">WCAG Success Criteria</button></li>
+                <li role="presentation"><button role="tab" id="aria-tab" aria-controls="aria-content" aria-selected="false">Aria</button></li>
             </ul>
         </div>
-
         <div id="intro-content" class="tab-content active" role="tabpanel" aria-labelledby="intro-tab">
             <h3>Introduction of Accessibility</h3>
-            <p>Welcome to the Accessibility Testing Course! This section will introduce you to the fundamental concepts of web accessibility. We will discuss why accessibility is important, the benefits it brings to users and businesses, and the legal and ethical considerations.</p>
-            <ul>
-                <li>What is Web Accessibility?</li>
-                <li>Why is Accessibility Important?</li>
-                <li>Benefits of Accessible Websites</li>
-                <li>Legal and Ethical Aspects of Accessibility</li>
-                <li>Introduction to Accessibility Standards and Guidelines</li>
-            </ul>
-        </div>
+            <div id="intro-pages">
+                <div id="intro-page1" class="intro-page active">
+                    <p>Welcome to the Accessibility Testing Course! This section will introduce you to the fundamental concepts of web accessibility. We will discuss why accessibility is important, the benefits it brings to users and businesses, and the legal and ethical considerations.</p>
+                    <ul>
+                        <li>What is Web Accessibility?</li>
+                        <li>Why is Accessibility Important?</li>
+                        <li>Benefits of Accessible Websites</li>
+                        <li>Legal and Ethical Aspects of Accessibility</li>
+                        <li>Introduction to Accessibility Standards and Guidelines</li>
+                    </ul>
+                </div>
+                <div id="intro-page2" class="intro-page">
+                    <h2>What is Web Accessibility</h2>
+                    <p>Web Accessibility means designing websites that everyone can use, including people with disabilities.</p>
+                    <p>Some people may not see, hear, or move in the same way as others, so websites should be easy for them too.</p>
+                    <p>For example, blind users use screen readers to hear the content of a page.</p>
+                    <p>Web Accessibility includes adding text for images, using proper color contrast, and allowing keyboard navigation.</p>
+                    <p>Making your website accessible helps more people use it and shows you care about equal access for all.</p>
+                </div>
+                <div id="intro-page3" class="intro-page">
+<h2>Why is Accessibility Important?</h2>
+  <p>Accessibility is important because everyone should be able to use websites, apps, and online services.</p>
+  <p>People with disabilities may face problems if websites are not made in an accessible way.</p>
+  <p>When websites are accessible, it helps blind users, people with low vision, deaf users, and many others.</p>
+  <p>Accessible design makes the internet fair and usable for everyone, not just for people without disabilities.</p>
+  <p>It also improves the overall user experience and follows legal and ethical standards.</p>
+</div>
+                <div id="intro-page4" class="intro-page">
+<h2>Benefits of Accessible Websites</h2>
+  <p>Accessible websites offer many benefits for users and businesses.</p>
+  <p>When a website is accessible, more people can use it easily — including people who are blind, deaf, or have difficulty using a mouse or reading text.</p>
+  <p>Over 1 billion people in the world live with some kind of disability. By making your website accessible, you open your content to a much larger audience.</p>
+  <p>Businesses with accessible websites can attract more customers, improve customer satisfaction, and increase profits.</p>
+  <p>Search engines like Google also favor accessible websites, which helps your website appear higher in search results.</p>
+  <p>There are also legal reasons to make websites accessible. Many countries, like the United States, follow laws such as the Americans with Disabilities Act (ADA).</p>
+  <p>If a website is not accessible, the business can face legal action, heavy fines, and damage to its reputation.</p>
+  <p>For example, if an online shopping site is not accessible, blind users may not be able to browse products or complete a purchase.</p>
+  <p>This means the business loses customers and money. On the other hand, an accessible shopping site can be used by everyone, including people using screen readers or keyboard navigation.</p>
+  <p>Accessible sites also load better, work on all devices, and give a better experience to all users — not just people with disabilities.</p>
+  <p>In short, making your website accessible is good for people, good for business, and good for the law.</p>
+</div>
+                <div id="intro-page4" class="intro-page">
+<h2>Legal and Ethical Aspects of Accessibility</h2>
+  <p>Making websites accessible is both a legal requirement and a moral responsibility in many parts of the world.</p>
+  <p>Many countries have specific laws that require websites to be accessible to people with disabilities.</p>
+  <p>These laws are in place to make sure everyone has equal access to digital content, services, and online tools.</p>
+  <p>If businesses or organizations do not follow these laws, they may face legal action or financial penalties.</p>
+  <p>Ethically, web accessibility is about fairness and giving everyone the same opportunity to use the internet.</p>
+  <p>Following accessibility guidelines, like the WCAG (Web Content Accessibility Guidelines), helps create a better and more inclusive web for all.</p>
 
+  <h3>Accessibility Laws in Different Countries</h3>
+  <table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Country</th>
+        <th>Accessibility Law</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>United States</td>
+        <td>ADA (Americans with Disabilities Act), Section 508</td>
+        <td>Requires digital content to be accessible to people with disabilities.</td>
+      </tr>
+      <tr>
+        <td>United Kingdom</td>
+        <td>Equality Act 2010</td>
+        <td>Ensures equal access to services, including websites, for people with disabilities.</td>
+      </tr>
+      <tr>
+        <td>India</td>
+        <td>Rights of Persons with Disabilities Act, 2016</td>
+        <td>Mandates accessibility for websites and digital platforms in both public and private sectors.</td>
+      </tr>
+      <tr>
+        <td>Canada</td>
+        <td>Accessible Canada Act</td>
+        <td>Aims to create a barrier-free Canada through accessible digital services and content.</td>
+      </tr>
+      <tr>
+        <td>European Union</td>
+        <td>European Accessibility Act</td>
+        <td>Requires websites and mobile apps of public sector bodies to be accessible.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+                <div id="intro-page5" class="intro-page">
+<h2>Introduction to Accessibility Standards and Guidelines</h2>
+  <p>Accessibility standards and guidelines help developers and designers make websites usable for everyone, including people with disabilities.</p>
+  <p>The most important and widely used guideline is called WCAG – Web Content Accessibility Guidelines.</p>
+  <p>These guidelines are created by the W3C (World Wide Web Consortium) to make web content easier to see, hear, and use.</p>
+  <p>Other important standards like ARIA and Section 508 also support accessibility by guiding how websites and apps should behave.</p>
+  <p>Following these standards ensures that websites are clear, simple to navigate, and work with assistive technologies like screen readers.</p>
+
+  <h3>Major Accessibility Standards and Guidelines</h3>
+  <table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Standard/Guideline</th>
+        <th>Full Form</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>WCAG</td>
+        <td>Web Content Accessibility Guidelines</td>
+        <td>Provides rules for making web content accessible to all, including text, images, and videos.</td>
+      </tr>
+      <tr>
+        <td>WAI-ARIA</td>
+        <td>Web Accessibility Initiative – Accessible Rich Internet Applications</td>
+        <td>Adds roles and labels to improve screen reader support for dynamic content and UI elements.</td>
+      </tr>
+      <tr>
+        <td>Section 508</td>
+        <td>Section 508 of the Rehabilitation Act (USA)</td>
+        <td>Requires federal websites and apps to be accessible to people with disabilities.</td>
+      </tr>
+      <tr>
+        <td>EN 301 549</td>
+        <td>European Standard</td>
+        <td>Accessibility requirements for public sector ICT products and services in the EU.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+            <div class="pagination-controls">
+                <button id="prev-intro" disabled>Previous</button>
+                <span id="current-intro-num" aria-live="polite"></span>
+                <button id="next-intro">Next</button>
+            </div>
+        </div>
         <div id="disabilities-content" class="tab-content" role="tabpanel" aria-labelledby="disabilities-tab">
             <h3>Types of Disabilities and Their Assistive Technologies</h3>
             <div id="disability-pages">
@@ -144,7 +522,6 @@
                         <li><strong>Visual Alerts:</strong> Instead of or in addition to auditory cues, visual notifications can be used to alert users to events.</li>
                     </ul>
                 </div>
-
                 <div id="motor-impairments-page" class="disability-page">
                     <h4>Motor Impairments</h4>
                     <p>Motor impairments involve limitations in physical movement, coordination, or dexterity. These can be caused by conditions such as cerebral palsy, multiple sclerosis, spinal cord injuries, arthritis, or repetitive strain injuries. Accessible web design ensures that users with motor impairments can navigate and interact with content effectively.</p>
@@ -195,7 +572,6 @@
                 <button id="next-disability">Next</button>
             </div>
         </div>
-
         <div id="wcag-overview-content" class="tab-content" role="tabpanel" aria-labelledby="wcag-overview-tab">
             <h3>Overview of WCAG</h3>
             <p>This section provides an overview of the Web Content Accessibility Guidelines (WCAG). We will discuss what WCAG is, its structure, and the different levels of conformance.</p>
@@ -236,7 +612,6 @@
                         <li><strong>Guideline 2.4: Navigable:</strong> Provide ways to help users navigate, find content, and determine where they are.</li>
                     </ul>
                 </div>
-
                 <div id="understandable-page" class="principle-page">
                     <h4>Understandable</h4>
                     <p><strong>Principle 3: Understandable</strong> - Information and the operation of user interface must be understandable.</p>
@@ -265,36 +640,1846 @@
                 <button id="next-principle">Next</button>
             </div>
         </div>
-
-        <div id="wcag-success-criteria-content" class="tab-content" role="tabpanel" aria-labelledby="wcag-success-criteria-tab">
+        <div id="wcag-content" class="tab-content" role="tabpanel" aria-labelledby="wcag-tab">
             <h3>WCAG 2.1 and 2.2 Success Criteria</h3>
-<a href="#pagination">Move to pagination</a>
-            <div id="success-criteria-display">
+            <div id="wcag-pages">
+                <div id="wcag-page1" class="wcag-page active">
+                    <h2>1.1.1: Non-text Content</h2>
+                    <p>level: A</p>
+                    <h3>description:</h3>
+                    <p>All non-text content that serves a purpose—such as images, icons, charts, graphical buttons, and media control symbols—must include a text alternative that conveys the same meaning or function. This ensures accessibility for users who rely on assistive technologies like screen readers. Images that convey information, perform actions, or represent meaningful content must have appropriate alt text. Decorative images that do not convey information should have empty alt attributes (alt="") so they can be ignored by screen readers. Complex images like graphs or charts may need a longer text explanation or reference to nearby text. Avoid using images of text unless necessary, and provide the same content in text format whenever possible. Examples of required alt text: logos, action icons (like play or close), informative photos, and charts. Examples where alt="" is acceptable: borders, spacers, purely decorative icons, or background graphics.</p>
+
+                    <h3>passExamples:</h3>
+                    <p>
+                        <img src="logo.png" alt="Accessible World Tutorials logo"> <br>
+                        <input type="image" src="submit.png" alt="Submit form"> <br>
+                        <img src="chart.png" alt="Bar chart showing monthly sales data. See table below for details."> <br>
+                        <img src="decoration.png" alt=""> <br>
+                        <svg role="img" aria-label="Close icon">...</svg>
+                    </p>
+
+                    <h3>failExamples:</h3>
+                    <p>
+                        <img src="profile.jpg"> <br>
+                        <input type="image" src="button.png"> <br>
+                        <img src="decorative-flower.png"> <br>
+                        <svg>...</svg>
+                    </p>
+
+                    <h3>Telugu video explanation with practical:</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qcJE5T__Ouc?si=F_CZd1F3Pd8pkpeM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
-<div class="pagination-controls" id="pagination">
-                <button id="prev-sc" disabled>Previous</button>
-                <span id="current-sc-num"  aria-live="polite"></span>
-                <button id="next-sc">Next</button>
+
+                <hr>
+
+                <div id="wcag-page2" class="wcag-page">
+                    <h2>1.2.1: Audio-only and Video-only (Prerecorded)</h2>
+                    <p>level: A</p>
+                    <h3>description:</h3>
+                    <p>For prerecorded audio-only content (like podcasts) and video-only content (like silent videos), provide an alternative format that presents the same information. This helps users who are deaf, hard of hearing, or blind to access equivalent content either via text or audio alternatives.</p>
+
+                    <h3>passExamples:</h3>
+                    <p>
+                        A podcast with a full text transcript available on the same page. <br>
+                        A silent video clip with a written description of the actions displayed.
+                    </p>
+
+                    <h3>failExamples:</h3>
+                    <p>
+                        An audio lecture without a transcript. <br>
+                        A video with no sound and no accompanying text or audio description.
+                    </p>
+                </div>
+
+                <hr>
+
+                <div id="wcag-page3" class="wcag-page">
+                    <h2>1.2.2: Captions (Prerecorded)</h2>
+                    <p>level: A</p>
+                    <h3>description:</h3>
+                    <p>Captions must be provided for all prerecorded videos that contain audio. These captions should include spoken dialogue and other relevant sounds (such as laughter or music) so that users who are deaf or hard of hearing can understand the audio content.</p>
+
+                    <h3>passExamples:</h3>
+                    <p>
+                        A video lecture with embedded open captions. <br>
+                        A video with accurate closed captions enabled through the media player.
+                    </p>
+
+                    <h3>failExamples:</h3>
+                    <p>
+                        A promotional video with spoken audio but no captions. <br>
+                        A tutorial video that relies on speech but has no captioning option.
+                    </p>
+                </div>
+
+<hr>
+
+<div id="wcag-page4" class="wcag-page">
+    <h2>1.2.3: Audio Description or Media Alternative (Prerecorded)</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>For prerecorded videos that contain essential visual information (e.g., gestures, charts, on-screen actions), an audio description must be provided as a separate track or alternative. This ensures that users who are blind or visually impaired can understand the visual aspects of the video content.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        A video that includes an optional audio description track. <br>
+        A descriptive transcript that outlines visual actions, speaker changes, and key visuals.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        A cooking demonstration video where all actions are visual, with no descriptive narration or transcript. <br>
+        A product demo video with on-screen instructions only and no explanation for blind users.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page5" class="wcag-page">
+    <h2>1.2.4: Captions (Live)</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>Captions must be provided for all live audio content in synchronized media, such as live webinars, news broadcasts, or virtual meetings. This helps users who are deaf or hard of hearing understand the real-time audio information.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        A live webinar that uses a real-time captioning service. <br>
+        A live broadcast with accurate automatic captions displayed on screen.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        A live stream with audio but no captions at all. <br>
+        Captions are used but are severely delayed or inaccurate.
+    </p>
+</div>
+<hr>
+
+<div id="wcag-page6" class="wcag-page">
+    <h2>1.2.5: Audio Description (Prerecorded)</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>All prerecorded video content must include audio descriptions of important visual information that cannot be understood from the audio alone. This makes the content accessible to users who are blind or visually impaired and ensures they don’t miss out on visual-only cues.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        A video that pauses periodically to add audio narration of visual scenes. <br>
+        An additional audio track with descriptions of characters’ actions and expressions.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        A video that shows a process or demonstration without describing it for blind users. <br>
+        A movie with key visual elements not described in the audio track.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page7" class="wcag-page">
+    <h2>1.3.1: Info and Relationships</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>Information, structure, and relationships that are visually conveyed (like headings, lists, form labels, or table data) must also be available in the code. This allows assistive technologies to understand and present the content meaningfully to users who cannot see the visual layout.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '<table><thead><tr><th>Product</th><th>Price</th></tr></thead><tbody><tr><td>Book</td><td>$10</td></tr></tbody></table>' <br>
+        '&lt;label for="email"&gt;Email:&lt;/label&gt;&lt;input id="email" type="email"&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;div style="font-weight: bold;"&gt;Name:&lt;/div&gt;&lt;input type="text"&gt;' <br>
+        '&lt;table&gt;&lt;tr&gt;&lt;td&gt;Product&lt;/td&gt;&lt;td&gt;Price&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Book&lt;/td&gt;&lt;td&gt;$10&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; (no semantic headers)'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page8" class="wcag-page">
+    <h2>1.3.2: Meaningful Sequence</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>When the order in which content is presented affects its meaning, that order must be preserved programmatically. This ensures that assistive technologies, such as screen readers, present content in a way that preserves the intended meaning and flow.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;div&gt;&lt;h1&gt;Course Overview&lt;/h1&gt;&lt;p&gt;This course includes three modules...&lt;/p&gt;&lt;/div&gt;' <br>
+        '&lt;section&gt;&lt;header&gt;Header&lt;/header&gt;&lt;main&gt;Main content&lt;/main&gt;&lt;footer&gt;Footer&lt;/footer&gt;&lt;/section&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;div&gt;&lt;p&gt;Step 3&lt;/p&gt;&lt;p&gt;Step 1&lt;/p&gt;&lt;p&gt;Step 2&lt;/p&gt;&lt;/div&gt; (incorrect order in code) <br>
+        'CSS is used to visually move elements, but screen readers still read in the wrong sequence.'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page9" class="wcag-page">
+    <h2>1.3.3: Sensory Characteristics</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>Do not rely only on things like color, shape, size, sound, or location to give instructions or convey information. People who are blind, have low vision, or color blindness may not understand such clues. Always include text or labels to explain what to do.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;p&gt;Select the "Submit" button to continue.&lt;/p&gt;' <br>
+        '&lt;p&gt;Click the round button labeled "Start".&lt;/p&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;p&gt;Click the red button to proceed.&lt;/p&gt;' <br>
+        '&lt;p&gt;Choose the box on the left to continue.&lt;/p&gt;'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page10" class="wcag-page">
+    <h2>1.3.4: Orientation</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>The content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific orientation is essential. This means users can view and interact with the content whether their device is held vertically (portrait) or horizontally (landscape), unless it’s absolutely necessary to force one layout (for example, in a piano app or game). This helps users who may have their devices mounted or fixed in one position.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        A webpage that works both in portrait and landscape mode on a mobile phone. <br>
+        A form that adjusts and is readable regardless of screen orientation. <br>
+        A video player that resizes and repositions its controls based on orientation.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        A photo gallery that works only in landscape mode and displays a message asking users to rotate their device. <br>
+        A mobile app that shows a blank screen in portrait mode and requires the device to be turned. <br>
+        A website layout that breaks or becomes unusable in one orientation.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page11" class="wcag-page">
+    <h2>1.3.5: Identify Input Purpose</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>The purpose of input fields collecting information about the user (like name, email, address, etc.) can be programmatically determined. This means the fields use proper HTML attributes such as "autocomplete", allowing browsers and assistive technologies to understand their purpose. It improves accessibility for users who rely on assistive technologies or autofill features, and helps them complete forms more quickly and accurately.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;input type="text" autocomplete="name" aria-label="Full Name"&gt;' <br>
+        '&lt;input type="email" autocomplete="email"&gt;' <br>
+        '&lt;input type="tel" autocomplete="tel-national" aria-label="Phone Number"&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;input type="text" aria-label="Full Name"&gt; &lt;!-- missing autocomplete attribute --&gt;' <br>
+        '&lt;input type="text" name="username"&gt; &lt;!-- no indication of purpose --&gt;' <br>
+        '&lt;input type="text" autocomplete="random-value"&gt; &lt;!-- incorrect or meaningless autocomplete value --&gt;'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page12" class="wcag-page">
+    <h2>1.4.1: Use of Color</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>Don’t use color as the only way to show information or meaning. Users who are color blind may not be able to tell the difference. Add text, shapes, or other indicators along with color.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;p&gt;Required fields are marked with a red asterisk (*).&lt;/p&gt;' <br>
+        '&lt;p&gt;&lt;span style="color: red;"&gt;●&lt;/span&gt; Error - Please enter your name.&lt;/p&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;p&gt;Items in red are required.&lt;/p&gt;' <br>
+        '&lt;p&gt;Click the green button to accept and red to cancel.&lt;/p&gt;'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page13" class="wcag-page">
+    <h2>1.4.2: Audio Control</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>If any sound plays automatically for more than 3 seconds when a page loads, the user must be able to pause or stop it, or control its volume separately from the main system volume. This is important for users who use screen readers or need to focus.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        An autoplay video with a visible "Mute" and "Pause" button. <br>
+        A background music clip that has a stop button near the top of the page.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        A page that starts playing music with no way to stop it. <br>
+        A video that autoplays and has no volume or pause controls.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page14" class="wcag-page">
+    <h2>1.4.3: Contrast (Minimum)</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>Text must have enough contrast with its background so it’s easy to read, especially for users with low vision. The contrast ratio should be at least 4.5:1 for normal text and 3:1 for large text.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;p style="color: #000000; background: #FFFFFF;"&gt;Black text on white background&lt;/p&gt;' <br>
+        '&lt;h1 style="color: #003366; background: #EEEEEE;"&gt;Dark blue heading on light gray&lt;/h1&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;p style="color: #AAAAAA; background: #FFFFFF;"&gt;Light gray text on white background&lt;/p&gt;' <br>
+        '&lt;span style="color: yellow; background: white;"&gt;Yellow text on white background&lt;/span&gt;'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page15" class="wcag-page">
+    <h2>1.4.4: Resize Text</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>Users must be able to resize text up to 200% without losing content or functionality. This helps users with low vision read more comfortably using browser zoom or screen magnifiers.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        Text content scales properly when browser zoom is increased to 200%. <br>
+        Layout remains readable and functional when zoomed in.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Text overlaps or cuts off when zoomed to 150%. <br>
+        Buttons become hidden or impossible to click when zoom is increased.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page16" class="wcag-page">
+    <h2>1.4.5: Images of Text</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>If the same visual presentation can be made using text alone, then text is used instead of images of text. This ensures that users can customize the appearance of the text (such as resizing or changing colors) for better readability. Exceptions are allowed for decorative purposes or if the image of text is essential (like a company logo or a stylized brand name). This helps people with low vision or those using screen magnifiers.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;h1&gt;Welcome to Our Website&lt;/h1&gt; &lt;!-- Real text, not image --&gt;' <br>
+        '&lt;p style="font-family: cursive;"&gt;Happy Birthday!&lt;/p&gt; &lt;!-- Stylized text, still selectable and resizable --&gt;' <br>
+        '&lt;img src="logo.png" alt="Company Name"&gt; &lt;!-- Logo is allowed as image of text --&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;img src="welcome_text.png" alt="Welcome to Our Website"&gt; &lt;!-- Should use real text instead --&gt;' <br>
+        '&lt;img src="menu.png" alt="Main Menu"&gt; &lt;!-- Functional text displayed as image --&gt;' <br>
+        '&lt;div style="background-image: url(text-banner.jpg);"&gt;...&lt;/div&gt; &lt;!-- Important text hidden in an image --&gt;'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page17" class="wcag-page">
+    <h2>1.4.5: Images of Text</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>Avoid using images just to show text, because screen readers can’t read it, and it can look blurry when resized. Use real text that can be resized and read by assistive tools. Only use images of text if it’s essential (like a company logo).</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;h1&gt;Our Services&lt;/h1&gt; (real text)' <br>
+        '&lt;img src="logo.png" alt="Company Logo"&gt; (essential image of text)'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;img src="heading-text.png" alt="Welcome"&gt; (heading shown as image)' <br>
+        '&lt;img src="quote.png"&gt; (motivational quote shown as image without text alternative)'
+    </p>
+</div>
+<hr>
+
+<div id="wcag-page6" class="wcag-page">
+    <h2>1.2.5: Audio Description (Prerecorded)</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>All prerecorded video content must include audio descriptions of important visual information that cannot be understood from the audio alone. This makes the content accessible to users who are blind or visually impaired and ensures they don’t miss out on visual-only cues.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        A video that pauses periodically to add audio narration of visual scenes. <br>
+        An additional audio track with descriptions of characters’ actions and expressions.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        A video that shows a process or demonstration without describing it for blind users. <br>
+        A movie with key visual elements not described in the audio track.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page7" class="wcag-page">
+    <h2>1.3.1: Info and Relationships</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>Information, structure, and relationships that are visually conveyed (like headings, lists, form labels, or table data) must also be available in the code. This allows assistive technologies to understand and present the content meaningfully to users who cannot see the visual layout.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '<table><thead><tr><th>Product</th><th>Price</th></tr></thead><tbody><tr><td>Book</td><td>$10</td></tr></tbody></table>' <br>
+        '&lt;label for="email"&gt;Email:&lt;/label&gt;&lt;input id="email" type="email"&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;div style="font-weight: bold;"&gt;Name:&lt;/div&gt;&lt;input type="text"&gt;' <br>
+        '&lt;table&gt;&lt;tr&gt;&lt;td&gt;Product&lt;/td&gt;&lt;td&gt;Price&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Book&lt;/td&gt;&lt;td&gt;$10&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; (no semantic headers)'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page8" class="wcag-page">
+    <h2>1.3.2: Meaningful Sequence</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>When the order in which content is presented affects its meaning, that order must be preserved programmatically. This ensures that assistive technologies, such as screen readers, present content in a way that preserves the intended meaning and flow.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;div&gt;&lt;h1&gt;Course Overview&lt;/h1&gt;&lt;p&gt;This course includes three modules...&lt;/p&gt;&lt;/div&gt;' <br>
+        '&lt;section&gt;&lt;header&gt;Header&lt;/header&gt;&lt;main&gt;Main content&lt;/main&gt;&lt;footer&gt;Footer&lt;/footer&gt;&lt;/section&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;div&gt;&lt;p&gt;Step 3&lt;/p&gt;&lt;p&gt;Step 1&lt;/p&gt;&lt;p&gt;Step 2&lt;/p&gt;&lt;/div&gt; (incorrect order in code) <br>
+        'CSS is used to visually move elements, but screen readers still read in the wrong sequence.'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page9" class="wcag-page">
+    <h2>1.3.3: Sensory Characteristics</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>Do not rely only on things like color, shape, size, sound, or location to give instructions or convey information. People who are blind, have low vision, or color blindness may not understand such clues. Always include text or labels to explain what to do.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;p&gt;Select the "Submit" button to continue.&lt;/p&gt;' <br>
+        '&lt;p&gt;Click the round button labeled "Start".&lt;/p&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;p&gt;Click the red button to proceed.&lt;/p&gt;' <br>
+        '&lt;p&gt;Choose the box on the left to continue.&lt;/p&gt;'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page10" class="wcag-page">
+    <h2>1.3.4: Orientation</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>The content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific orientation is essential. This means users can view and interact with the content whether their device is held vertically (portrait) or horizontally (landscape), unless it’s absolutely necessary to force one layout (for example, in a piano app or game). This helps users who may have their devices mounted or fixed in one position.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        A webpage that works both in portrait and landscape mode on a mobile phone. <br>
+        A form that adjusts and is readable regardless of screen orientation. <br>
+        A video player that resizes and repositions its controls based on orientation.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        A photo gallery that works only in landscape mode and displays a message asking users to rotate their device. <br>
+        A mobile app that shows a blank screen in portrait mode and requires the device to be turned. <br>
+        A website layout that breaks or becomes unusable in one orientation.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page11" class="wcag-page">
+    <h2>1.3.5: Identify Input Purpose</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>The purpose of input fields collecting information about the user (like name, email, address, etc.) can be programmatically determined. This means the fields use proper HTML attributes such as "autocomplete", allowing browsers and assistive technologies to understand their purpose. It improves accessibility for users who rely on assistive technologies or autofill features, and helps them complete forms more quickly and accurately.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;input type="text" autocomplete="name" aria-label="Full Name"&gt;' <br>
+        '&lt;input type="email" autocomplete="email"&gt;' <br>
+        '&lt;input type="tel" autocomplete="tel-national" aria-label="Phone Number"&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;input type="text" aria-label="Full Name"&gt; &lt;!-- missing autocomplete attribute --&gt;' <br>
+        '&lt;input type="text" name="username"&gt; &lt;!-- no indication of purpose --&gt;' <br>
+        '&lt;input type="text" autocomplete="random-value"&gt; &lt;!-- incorrect or meaningless autocomplete value --&gt;'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page12" class="wcag-page">
+    <h2>1.4.1: Use of Color</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>Don’t use color as the only way to show information or meaning. Users who are color blind may not be able to tell the difference. Add text, shapes, or other indicators along with color.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;p&gt;Required fields are marked with a red asterisk (*).&lt;/p&gt;' <br>
+        '&lt;p&gt;&lt;span style="color: red;"&gt;●&lt;/span&gt; Error - Please enter your name.&lt;/p&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;p&gt;Items in red are required.&lt;/p&gt;' <br>
+        '&lt;p&gt;Click the green button to accept and red to cancel.&lt;/p&gt;'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page13" class="wcag-page">
+    <h2>1.4.2: Audio Control</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>If any sound plays automatically for more than 3 seconds when a page loads, the user must be able to pause or stop it, or control its volume separately from the main system volume. This is important for users who use screen readers or need to focus.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        An autoplay video with a visible "Mute" and "Pause" button. <br>
+        A background music clip that has a stop button near the top of the page.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        A page that starts playing music with no way to stop it. <br>
+        A video that autoplays and has no volume or pause controls.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page14" class="wcag-page">
+    <h2>1.4.3: Contrast (Minimum)</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>Text must have enough contrast with its background so it’s easy to read, especially for users with low vision. The contrast ratio should be at least 4.5:1 for normal text and 3:1 for large text.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;p style="color: #000000; background: #FFFFFF;"&gt;Black text on white background&lt;/p&gt;' <br>
+        '&lt;h1 style="color: #003366; background: #EEEEEE;"&gt;Dark blue heading on light gray&lt;/h1&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;p style="color: #AAAAAA; background: #FFFFFF;"&gt;Light gray text on white background&lt;/p&gt;' <br>
+        '&lt;span style="color: yellow; background: white;"&gt;Yellow text on white background&lt;/span&gt;'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page15" class="wcag-page">
+    <h2>1.4.4: Resize Text</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>Users must be able to resize text up to 200% without losing content or functionality. This helps users with low vision read more comfortably using browser zoom or screen magnifiers.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        Text content scales properly when browser zoom is increased to 200%. <br>
+        Layout remains readable and functional when zoomed in.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Text overlaps or cuts off when zoomed to 150%. <br>
+        Buttons become hidden or impossible to click when zoom is increased.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page16" class="wcag-page">
+    <h2>1.4.5: Images of Text</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>If the same visual presentation can be made using text alone, then text is used instead of images of text. This ensures that users can customize the appearance of the text (such as resizing or changing colors) for better readability. Exceptions are allowed for decorative purposes or if the image of text is essential (like a company logo or a stylized brand name). This helps people with low vision or those using screen magnifiers.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;h1&gt;Welcome to Our Website&lt;/h1&gt; &lt;!-- Real text, not image --&gt;' <br>
+        '&lt;p style="font-family: cursive;"&gt;Happy Birthday!&lt;/p&gt; &lt;!-- Stylized text, still selectable and resizable --&gt;' <br>
+        '&lt;img src="logo.png" alt="Company Name"&gt; &lt;!-- Logo is allowed as image of text --&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;img src="welcome_text.png" alt="Welcome to Our Website"&gt; &lt;!-- Should use real text instead --&gt;' <br>
+        '&lt;img src="menu.png" alt="Main Menu"&gt; &lt;!-- Functional text displayed as image --&gt;' <br>
+        '&lt;div style="background-image: url(text-banner.jpg);"&gt;...&lt;/div&gt; &lt;!-- Important text hidden in an image --&gt;'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page17" class="wcag-page">
+    <h2>1.4.5: Images of Text</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>Avoid using images just to show text, because screen readers can’t read it, and it can look blurry when resized. Use real text that can be resized and read by assistive tools. Only use images of text if it’s essential (like a company logo).</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;h1&gt;Our Services&lt;/h1&gt; (real text)' <br>
+        '&lt;img src="logo.png" alt="Company Logo"&gt; (essential image of text)'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;img src="heading-text.png" alt="Welcome"&gt; (heading shown as image)' <br>
+        '&lt;img src="quote.png"&gt; (motivational quote shown as image without text alternative)'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page18" class="wcag-page">
+    <h2>1.4.10: Reflow</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>Content must be presented without loss of information or functionality, and without requiring scrolling in two dimensions (horizontal and vertical), except for parts where two-dimensional layout is essential (like images, maps, or charts). This ensures users on small screens or those who zoom in (up to 400%) can still read and use all content without having to scroll left and right. It improves accessibility for users with low vision or those on mobile devices.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        A website layout that rearranges into a single column when zoomed to 400% on a 1280px wide screen. <br>
+        Navigation menus that collapse into a hamburger icon for small screens. <br>
+        Text content that wraps naturally without requiring horizontal scrolling.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        A fixed-width layout that causes horizontal scrolling when zoomed. <br>
+        Text that gets cut off or overlaps at higher zoom levels. <br>
+        A form that becomes unusable because buttons move out of view and require both horizontal and vertical scrolling.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page19" class="wcag-page">
+    <h2>1.4.11: Non-Text Contrast</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>Visual elements that are important for understanding content or functionality, like buttons, icons, focus indicators, or graph bars, must have a contrast ratio of at least 3:1 against adjacent colors. This helps users with low vision distinguish important components from the background or surrounding elements. It applies to user interface components (like form controls and links) and graphical objects that convey meaning.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        A submit button with dark text on a light background, providing a contrast ratio of 4.5:1. <br>
+        An icon with a 3:1 contrast against the surrounding background. <br>
+        A visible keyboard focus ring with sufficient contrast on a text input field.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        A low-contrast icon (e.g., light gray on white) that is difficult to see. <br>
+        A button with border and background colors that are too similar (less than 3:1 contrast). <br>
+        Focus indicators (like outlines) that are nearly invisible due to low contrast.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page20" class="wcag-page">
+    <h2>1.4.12: Text Spacing</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>Users must be able to override text spacing to improve readability without losing content or functionality. When the following text style properties are applied—line height (1.5x font size), spacing after paragraphs (2x font size), letter spacing (0.12x font size), and word spacing (0.16x font size)—the content must still be readable and usable. This helps users with dyslexia, low vision, and cognitive disabilities.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        A paragraph remains fully visible and functional when a browser extension increases line height and spacing. <br>
+        Form labels and inputs still align correctly after increasing letter and word spacing. <br>
+        No overlapping or cutoff text when users apply custom style sheets with increased spacing.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Text gets cut off or overlaps when line height is increased. <br>
+        Paragraphs or controls become unreadable when letter or word spacing is adjusted. <br>
+        Elements break or disappear when custom text spacing styles are applied.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page21" class="wcag-page">
+    <h2>1.4.13: Content on Hover or Focus</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>When extra content appears on hover or focus (like tooltips, dropdowns, or popups), it must be dismissible, hoverable, and persistent. This means users should be able to dismiss it without moving the pointer, keep it visible while interacting with it, and it should not disappear unexpectedly. This helps people with low vision, mobility impairments, or cognitive challenges who need more time to read or interact with extra content.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        A tooltip appears when an info icon is focused, and stays visible until focus moves away or the user presses ESC. <br>
+        Dropdown content stays visible while the user moves the mouse over it. <br>
+        Popup help text that appears on focus and includes a close button accessible via keyboard.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        A tooltip that disappears too quickly when the user tries to move the mouse to it. <br>
+        Extra content that vanishes as soon as focus is lost, even if the user is trying to read it. <br>
+        Help text that cannot be dismissed without moving the pointer away.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page22" class="wcag-page">
+    <h2>2.1.1: Keyboard</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>All functionality on a website must be usable with a keyboard alone. This helps users who can’t use a mouse, such as screen reader users or those with motor disabilities.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        Users can navigate through links and buttons using Tab and Enter. <br>
+        Menus open and close with arrow keys and Enter key.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Interactive slider that only works with mouse drag. <br>
+        Buttons that do nothing when focused and Enter is pressed.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page23" class="wcag-page">
+    <h2>2.1.2: No Keyboard Trap</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>When using only a keyboard, users should never get stuck on a part of the page. They must be able to move in and out of any interactive element (like a form or dialog) using standard keyboard keys.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        A modal dialog that opens and can be closed with the Esc key or Tab key navigation. <br>
+        An iframe that allows users to enter and exit using Tab or Shift+Tab.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Focus gets stuck inside a video player and doesn’t return to the page. <br>
+        A popup opens but cannot be closed using only the keyboard.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page24" class="wcag-page">
+    <h2>2.2.1: Timing Adjustable</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>If users have a time limit to complete something (like filling a form), they must have options to turn off, adjust, or extend the time unless it’s essential. This is important for users with cognitive disabilities or who need more time.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        A session timeout warning appears with a "Stay Signed In" option. <br>
+        Users can select "Do not timeout" when starting a quiz.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Form times out after 1 minute with no warning. <br>
+        Online exam that ends automatically with no way to extend time.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page25" class="wcag-page">
+    <h2>2.2.2: Pause, Stop, Hide</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>Any moving, blinking, scrolling, or auto-updating content that starts automatically and lasts more than 5 seconds must have a way to pause, stop, or hide it. This avoids distractions and helps users focus, especially those with cognitive or visual disabilities.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        An auto-scrolling news ticker with a pause button. <br>
+        A carousel slider that includes play/pause controls.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        A banner that scrolls endlessly with no way to stop it. <br>
+        Animations that loop and distract users, with no controls.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page26" class="wcag-page">
+    <h2>2.1.4: Character Key Shortcuts</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>If a single key shortcut (like just pressing “S”) is used in the content, users must be able to turn it off, change it, or make it work only when a specific area is in focus. This helps people using speech input or screen readers avoid accidental actions.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        User can disable or remap the “S” shortcut key in settings. <br>
+        Shortcut keys only work when the input field or editor is focused.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Pressing “D” deletes a message immediately without warning. <br>
+        No option to disable keyboard shortcuts for voice control users.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page27" class="wcag-page">
+    <h2>2.3.1: Three Flashes or Below Threshold</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>Web content must not flash more than 3 times in one second. Flashing lights can cause seizures, especially in people with photosensitive epilepsy. If flashing is needed, it should stay within a safe limit.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        A video with no flashing lights or strobe effects. <br>
+        Animations that flash only twice per second.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        A banner that flashes rapidly 6 times per second. <br>
+        Game scenes with repeated fast flashing effects.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page28" class="wcag-page">
+    <h2>2.4.1: Bypass Blocks</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>Users should be able to skip over repeated blocks of content like navigation menus. This helps keyboard and screen reader users reach the main content quickly.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;a href="#main-content" class="skip-link"&gt;Skip to main content&lt;/a&gt;' <br>
+        '&lt;main id="main-content"&gt;Main article starts here&lt;/main&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        User must press Tab many times to reach the main content. <br>
+        No way to skip header and menu links.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page29" class="wcag-page">
+    <h2>2.4.2: Page Titled</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>Each web page should have a clear and meaningful title shown in the browser tab. This helps users know what the page is about.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;title&gt;About Us - Accessible World&lt;/title&gt;' <br>
+        '&lt;title&gt;Login - My Account&lt;/title&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;title&gt;Untitled Page&lt;/title&gt;' <br>
+        '&lt;title&gt;Home&lt;/title&gt; (used for multiple different pages)'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page30" class="wcag-page">
+    <h2>2.4.3: Focus Order</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>When navigating using Tab, focus should move in a logical and expected order. This helps users follow the structure and content of the page easily.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        Focus moves from menu → search → main content → footer. <br>
+        Modal opens and focus stays within it until closed.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Focus jumps around the page in a confusing order. <br>
+        Important buttons are skipped when using the keyboard.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page31" class="wcag-page">
+    <h2>2.4.4: Link Purpose (In Context)</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>The purpose of each link should be clear from the link text or the surrounding content. This helps users decide if they want to follow the link.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;a href="annual-report.pdf"&gt;Download Annual Report (PDF)&lt;/a&gt;' <br>
+        'Text: "Visit our FAQ section for more details" with &lt;a href="faq.html"&gt;FAQ&lt;/a&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;a href="info.html"&gt;Click here&lt;/a&gt;' <br>
+        'Multiple links labeled "More" with no context'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page32" class="wcag-page">
+    <h2>2.4.5: Multiple Ways</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>Users should be able to find a web page using more than one method, like navigation menus, search, or site maps. This helps users with different needs find information easily.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        Main navigation menu + search box + sitemap <br>
+        List of pages in both menu and footer
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Only one navigation path is available to reach the page <br>
+        No search or site map provided
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page33" class="wcag-page">
+    <h2>2.4.6: Headings and Labels</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>Headings and labels must clearly describe the topic or purpose of the content or control. This helps users, especially screen reader users, understand and use the content.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;label for="email"&gt;Email Address&lt;/label&gt;' <br>
+        '&lt;h2&gt;Contact Information&lt;/h2&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        '&lt;label&gt;Submit&lt;/label&gt; (without saying what is being submitted)' <br>
+        '&lt;h3&gt;Section 1&lt;/h3&gt; (no meaningful title)'
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page34" class="wcag-page">
+    <h2>2.4.7: Focus Visible</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>When users navigate using a keyboard (like pressing Tab), the focused element must be visually clear. This helps users know where they are on the page.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        Buttons and links show a visible border or color change when focused. <br>
+        Focus outline appears on input fields.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        No visual indicator when an element is focused. <br>
+        Focus styles removed using CSS (e.g., outline: none)
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page35" class="wcag-page">
+    <h2>2.4.11: Focus Not Obscured (Minimum)</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>The element that receives keyboard focus should not be fully hidden behind other content like popups or sticky headers. It should always be at least partially visible.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        Focused input field is always visible while scrolling. <br>
+        Sticky menus don’t cover focused elements.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Sticky header covers the focused link. <br>
+        Focus moves to an off-screen item with no scroll or visibility.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page36" class="wcag-page">
+    <h2>3.2.1: On Focus</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>When a user focuses on an element (like a form field or button), it should not automatically trigger a major change like submitting a form or opening a new page. Changes should only happen when the user chooses to do something, like clicking a button.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;input type="text" placeholder="Enter name"&gt;' <br>
+        'Focus on a menu does not open a new page until the user clicks.'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Focusing on a dropdown automatically redirects to another page.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page37" class="wcag-page">
+    <h2>3.2.2: On Input</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>When users fill in or change something in a form, it should not cause unexpected changes, like submitting the form or refreshing the page, without warning.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        Typing in a search box doesn’t submit the search until clicking the button.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Changing a dropdown value automatically submits the form.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page38" class="wcag-page">
+    <h2>3.2.3: Consistent Navigation</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>If a website has the same navigation links on multiple pages, they should appear in the same order and location. This helps users learn and rely on the navigation.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        Main menu appears at the top of every page in the same order.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Navigation links are rearranged on different pages.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page39" class="wcag-page">
+    <h2>3.2.4: Consistent Identification</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>Components with the same function should be labeled the same way across pages. This avoids confusion for users.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        All search boxes are labeled “Search”.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        One search button says “Go” and another says “Find” for the same function.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page40" class="wcag-page">
+    <h2>3.2.6: Consistent Help</h2>
+    <p>level: AAA</p>
+    <h3>description:</h3>
+    <p>If help is available on a page (like live chat, FAQs, or contact info), it should be located in the same place on all pages.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        Help button is always on the top-right corner of every page.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Help link appears on the home page only and nowhere else.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page41" class="wcag-page">
+    <h2>3.3.1: Error Identification</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>If users make a mistake in a form (like leaving a required field blank), the error must be clearly shown and described so the user knows how to fix it.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        “Please enter your email address” appears below a blank email field.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        The form reloads with no message, leaving the user confused.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page42" class="wcag-page">
+    <h2>3.3.2: Labels or Instructions</h2>
+    <p>level: A</p>
+    <h3>description:</h3>
+    <p>Form inputs should have clear labels or instructions to help users know what to do.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        '&lt;label for="email"&gt;Email Address&lt;/label&gt;'
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Text input with no label or placeholder.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page43" class="wcag-page">
+    <h2>3.3.3: Error Suggestion</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>If an error is found, the system should suggest how to fix it.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        “Your password must be at least 8 characters.”
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Just shows “Invalid input” with no explanation.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page44" class="wcag-page">
+    <h2>3.3.4: Error Prevention (Legal, Financial, Data)</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>When users submit important information (like for money, data changes, or legal agreements), they should have a chance to review, confirm, or correct it.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        A “Review your order” page before final payment.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Clicking “Submit” directly places an order without confirmation.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page45" class="wcag-page">
+    <h2>3.3.7: Redundant Entry</h2>
+    <p>level: AAA</p>
+    <h3>description:</h3>
+    <p>Users should not have to enter the same information more than once in a single process.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        Shipping and billing address copied with a checkbox.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        Users must enter the same address in two different places with no copy option.
+    </p>
+</div>
+
+<hr>
+
+<div id="wcag-page46" class="wcag-page">
+    <h2>3.3.8: Accessible Authentication</h2>
+    <p>level: AA</p>
+    <h3>description:</h3>
+    <p>Login and authentication processes should be usable without needing to remember or type text like passwords unless there is another easy method like a login link or biometric login.</p>
+
+    <h3>passExamples:</h3>
+    <p>
+        Allowing sign-in using fingerprint or one-time link.
+    </p>
+</div>
+<div id="wcag-page47" class="wcag-page"> 
+    <h2>4.1.2: Name, Role, Value</h2>
+    <p>level: A</p>
+
+    <h3>description:</h3>
+    <p>
+        This guideline ensures that all user interface elements (such as buttons, checkboxes, sliders, or custom widgets) clearly communicate their name, role, and current value or state to screen readers and other assistive technologies.
+    </p>
+    <p>
+        For example, if a control is a button, the screen reader should announce it as a button. If it is a checkbox, it should say whether it is checked or not. This helps blind users and keyboard users understand and interact with the controls easily.
+    </p>
+    <p>
+        If you are creating custom controls using JavaScript or other code, you must use ARIA attributes like <code>role</code>, <code>aria-label</code>, and <code>aria-checked</code> so that assistive technologies can understand them.
+    </p>
+
+    <h3>passExamples:</h3>
+    <p>
+        A custom checkbox built using a <code>&lt;div&gt;</code> element has <code>role="checkbox"</code>, <code>tabindex="0"</code>, and updates <code>aria-checked="true"</code> or <code>false</code> when clicked.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        A clickable <code>&lt;div&gt;</code> that looks like a button but does not have <code>role="button"</code> or a name, so screen reader users don’t know it’s a button or what it does.
+    </p>
+    <p>
+        A slider created with JavaScript that moves visually but does not update its value using ARIA, so blind users can’t tell what value they have selected.
+    </p>
+</div>
+
+<div id="wcag-page48" class="wcag-page"> 
+    <h2>4.1.3: Status Messages</h2>
+    <p>level: AA</p>
+
+    <h3>description:</h3>
+    <p>
+        This guideline helps users with screen readers by ensuring they are informed when something changes on the screen—like an error message, confirmation message, or status update—without needing to move their focus.
+    </p>
+    <p>
+        For example, if someone submits a form and a message appears saying "Form submitted successfully" or "Email is required", that message should be announced automatically. This is done using ARIA live regions like <code>aria-live="polite"</code> or <code>aria-live="assertive"</code>.
+    </p>
+    <p>
+        This is important for people who cannot see the screen and rely on audio to understand what happened after they performed an action.
+    </p>
+
+    <h3>passExamples:</h3>
+    <p>
+        A form error message appears in a <code>&lt;div aria-live="polite"&gt;</code> so that screen readers announce the error automatically when it appears.
+    </p>
+    <p>
+        A confirmation message like "Item added to cart" is placed in a live region, and the screen reader announces it without any user action.
+    </p>
+
+    <h3>failExamples:</h3>
+    <p>
+        An error message appears visually below the form field but is not inside a live region, so the screen reader user never hears it unless they manually move focus to find it.
+    </p>
+    <p>
+        A dynamic status message updates on screen (e.g., "Saving...") but is not announced because no ARIA live region is used.
+    </p>
+</div>
+</div>
+            <div class="pagination-controls">
+                <button id="prev-wcag" disabled>Previous</button>
+                <span id="current-wcag-num" aria-live="polite"></span>
+                <button id="next-wcag">Next</button>
             </div>
-<a href="#success-criteria-display">Move to the top of the success criteria</a>
+        </div>
+        <div id="aria-content" class="tab-content" role="tabpanel" aria-labelledby="aria-tab">
+            <h2>ARIA Attributes</h2>
+            <div id="aria-pages">
+                <div id="aria-page1" class="aria-page active" aria-live="polite">
+                    <h2>aria-label</h2>
+                    <p>The <code>aria-label</code> attribute is used to give an invisible name to an element. It’s helpful when there is no visible text but you want screen readers to speak something meaningful. This is often used for icon buttons, input fields, and elements that need a label but don’t have one. The text in <code>aria-label</code> will only be read by assistive technologies like screen readers.</p>
+
+                    <h3><strong>Example:</strong> A search button with a magnifying glass icon.</h3>
+                    <pre><code>&lt;button aria-label="Search"&gt;🔍&lt;/button&gt;</code></pre>
+                </div>
+
+                <div id="aria-page2" class="aria-page" aria-live="polite">
+                    <h2>aria-labelledby</h2>
+                    <p>The <code>aria-labelledby</code> attribute tells the screen reader to use another element’s text as the label. You must give the label element an <code>id</code>, and use that ID in the <code>aria-labelledby</code> attribute. This is useful when an input or section is described by a heading or label already on the page. It's great for reusing visible text as the accessible label.</p>
+
+                    <h3><strong>Example:</strong> Input field labeled by a heading.</h3>
+                    <pre><code>&lt;h2 id="name-label"&gt;Full Name&lt;/h2&gt;
+&lt;input type="text" aria-labelledby="name-label"&gt;</code></pre>
+                </div>
+<div id="aria-page3" class="aria-page">
+  <h2>aria-describedby</h2>
+  <p>The <code>aria-describedby</code> attribute is used when you want to give extra information about an element. Screen readers will first read the label, then read the description from the element referenced by this ID. It’s very useful for form inputs, buttons, or anything that needs additional help text or instructions for users.</p>
+
+  <h3><strong>Example:</strong> Input field with helpful description.</h3>
+  <pre><code>&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input type="email" id="email" aria-describedby="email-help"&gt;
+&lt;small id="email-help"&gt;We'll never share your email with anyone.&lt;/small&gt;</code></pre>
+</div>
+<hr>
+<div id="aria-page4" class="aria-page">
+  <h2>aria-hidden</h2>
+  <p>The <code>aria-hidden</code> attribute hides elements from screen readers. If you set <code>aria-hidden="true"</code>, that part of the page will not be read aloud. This is helpful for decorative elements like icons or repeated visual content that doesn’t add meaning. It improves the screen reader experience by reducing unnecessary information.</p>
+
+  <h3><strong>Example:</strong> Star icon hidden from screen reader.</h3>
+  <pre><code>&lt;span aria-hidden="true"&gt;★&lt;/span&gt;</code></pre>
+</div>
+<div id="aria-page5" class="aria-page">
+  <h2>role</h2>
+  <p>The <code>role</code> attribute defines what kind of element it is, especially when the element is not a native HTML tag like a button or checkbox. It helps screen readers understand the purpose of the element. Use <code>role</code> to make a <code>&lt;div&gt;</code> act like a button, a <code>&lt;span&gt;</code> act like a checkbox, and so on. It's a powerful tool when creating custom UI components.</p>
+
+  <h3><strong>Example:</strong> A div that behaves like a button.</h3>
+  <pre><code>&lt;div role="button" tabindex="0"&gt;Click Me&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page6" class="aria-page">
+  <h2>aria-expanded</h2>
+  <p>The <code>aria-expanded</code> attribute tells whether an element (like a dropdown, accordion, or menu) is currently expanded or collapsed. Screen readers will announce this to help users know if extra content is visible. This is very useful for buttons that show or hide content when clicked.</p>
+
+  <h3><strong>Example:</strong> A button that toggles additional content.</h3>
+  <pre><code>&lt;button aria-expanded="false" aria-controls="details"&gt;
+  Show Details
+&lt;/button&gt;
+&lt;div id="details" hidden&gt;
+  Here are the details!
+&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page7" class="aria-page">
+  <h2>aria-checked</h2>
+  <p>The <code>aria-checked</code> attribute is used with custom checkbox elements. It tells screen readers whether the item is selected (true), not selected (false), or mixed. This is useful when building custom toggles or checkbox-like elements that are not standard HTML checkboxes.</p>
+
+  <h3><strong>Example:</strong> A custom checkbox div with selection status.</h3>
+  <pre><code>&lt;div role="checkbox" aria-checked="true" tabindex="0"&gt;
+  Subscribe to Newsletter
+&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page8" class="aria-page">
+  <h2>aria-pressed</h2>
+  <p>The <code>aria-pressed</code> attribute is used on toggle buttons. It lets screen reader users know whether the button is currently in a pressed (active) or unpressed (inactive) state. This is helpful for bold/italic buttons in text editors or like/dislike buttons.</p>
+
+  <h3><strong>Example:</strong> A toggle button for bold text.</h3>
+  <pre><code>&lt;button aria-pressed="false"&gt;Bold&lt;/button&gt;</code></pre>
+</div>
+<div id="aria-page9" class="aria-page">
+  <h2>aria-live</h2>
+  <p>The <code>aria-live</code> attribute is used for dynamic content updates. It tells screen readers to automatically read changes in a region, even if the user’s focus is somewhere else. This is helpful for alerts, timers, or chat messages. You can use values like "polite", "assertive", or "off".</p>
+
+  <h3><strong>Example:</strong> A polite live region that updates without interrupting.</h3>
+  <pre><code>&lt;div aria-live="polite"&gt;
+  New message received!
+&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page10" class="aria-page">
+  <h2>aria-disabled</h2>
+  <p>The <code>aria-disabled</code> attribute tells assistive technology that an element is disabled, even if it is not visually shown as such. Unlike the HTML <code>disabled</code> attribute, <code>aria-disabled</code> works on more elements and gives developers more control over how things appear vs. behave.</p>
+
+  <h3><strong>Example:</strong> A button that appears clickable but is announced as disabled.</h3>
+  <pre><code>&lt;button aria-disabled="true"&gt;Submit&lt;/button&gt;</code></pre>
+</div>
+<div id="aria-page11" class="aria-page">
+  <h2>aria-required</h2>
+  <p>The <code>aria-required</code> attribute tells assistive technologies that a form field must be filled out before submitting. It is useful for custom form fields that don’t use the native <code>required</code> HTML attribute. Screen readers will announce that the field is required, helping users understand form rules clearly.</p>
+
+  <h3><strong>Example:</strong> A custom input field marked as required.</h3>
+  <pre><code>&lt;input type="text" aria-required="true" aria-label="First Name"&gt;</code></pre>
+</div>
+<div id="aria-page12" class="aria-page">
+  <h2>aria-current</h2>
+  <p>The <code>aria-current</code> attribute indicates the current item in a list, navigation, or set of tabs. It helps screen reader users know which item is currently active or selected. Common values are "page", "step", or "true". It is mostly used in navigation menus to highlight the current page.</p>
+
+  <h3><strong>Example:</strong> Highlighting the current page in a navigation list.</h3>
+  <pre><code>&lt;a href="home.html" aria-current="page"&gt;Home&lt;/a&gt;</code></pre>
+</div>
+<div id="aria-page13" class="aria-page">
+  <h2>aria-haspopup</h2>
+  <p>The <code>aria-haspopup</code> attribute shows that an element will open a popup like a menu, dialog, or listbox. This helps screen reader users prepare for a new type of interaction. You can also set values like "menu", "listbox", "dialog", or "grid" to describe the popup type.</p>
+
+  <h3><strong>Example:</strong> A button that opens a menu.</h3>
+  <pre><code>&lt;button aria-haspopup="true" aria-controls="menu1"&gt;
+  Options
+&lt;/button&gt;</code></pre>
+</div>
+<div id="aria-page14" class="aria-page">
+  <h2>aria-busy</h2>
+  <p>The <code>aria-busy</code> attribute tells assistive technologies that content is loading or being updated. When <code>aria-busy="true"</code>, screen readers will wait before reading changes in that region. It is very helpful for dynamic areas like search results or dashboards that load data in real-time.</p>
+
+  <h3><strong>Example:</strong> A content area that is busy loading.</h3>
+  <pre><code>&lt;div aria-busy="true"&gt;
+  Loading your dashboard...
+&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page15" class="aria-page">
+  <h2>aria-level</h2>
+  <p>The <code>aria-level</code> attribute defines the heading level for an element, especially when it's not using a native <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> tag. It tells screen readers the importance or rank of the heading. This is useful when using styled text or <code>&lt;div&gt;</code> elements for headings.</p>
+
+  <h3><strong>Example:</strong> A div used as a level 2 heading.</h3>
+  <pre><code>&lt;div role="heading" aria-level="2"&gt;
+  Section Title
+&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page16" class="aria-page">
+  <h2>aria-selected</h2>
+  <p>The <code>aria-selected</code> attribute indicates if an item in a group (like a tab or a listbox) is currently selected. It helps screen reader users know which item is active among others. This is useful in tab interfaces, selectable lists, or grids where visual selection is shown but needs to be announced accessibly.</p>
+
+  <h3><strong>Example:</strong> One tab is selected among multiple.</h3>
+  <pre><code>&lt;div role="tablist"&gt;
+  &lt;button role="tab" aria-selected="true"&gt;Overview&lt;/button&gt;
+  &lt;button role="tab" aria-selected="false"&gt;Details&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page17" class="aria-page">
+  <h2>aria-controls</h2>
+  <p>The <code>aria-controls</code> attribute identifies the ID of the element that is being controlled by another element, like a button controlling a panel. It helps users understand which area will change when they interact with the button or control.</p>
+
+  <h3><strong>Example:</strong> A button that shows or hides a section.</h3>
+  <pre><code>&lt;button aria-controls="info-panel"&gt;
+  Toggle Information
+&lt;/button&gt;
+
+&lt;div id="info-panel"&gt;
+  Additional information is shown here.
+&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page18" class="aria-page">
+  <h2>role="alert"</h2>
+  <p>The <code>role="alert"</code> makes content automatically announced by screen readers as soon as it appears. This is useful for error messages or important notices that users should know about immediately without moving their focus.</p>
+
+  <h3><strong>Example:</strong> Displaying an error message.</h3>
+  <pre><code>&lt;div role="alert"&gt;
+  Error: You must fill out all required fields.
+&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page19" class="aria-page">
+  <h2>role="dialog"</h2>
+  <p>The <code>role="dialog"</code> is used for modal or popup dialog boxes. It lets screen reader users know they’re inside a dialog and should not interact with the rest of the page until it’s closed. It's often paired with <code>aria-modal="true"</code> and focus trapping.</p>
+
+  <p><strong>Example:</strong> A modal popup with content.</p>
+  <pre><code>&lt;div role="dialog" aria-modal="true"&gt;
+  Are you sure you want to delete this item?
+&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page20" class="aria-page">
+  <h2>aria-modal</h2>
+  <p>The <code>aria-modal</code> attribute is used with <code>role="dialog"</code> to tell screen readers that the dialog is modal. This means users should interact only with the dialog content until it's closed. It prevents screen readers from reading other content in the background.</p>
+
+  <p><strong>Example:</strong> A modal dialog that blocks interaction with the page.</p>
+  <pre><code>&lt;div role="dialog" aria-modal="true"&gt;
+  Please confirm your action before continuing.
+&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page21" class="aria-page">
+  <h2>aria-hidden</h2>
+  <p>The <code>aria-hidden</code> attribute is used to hide elements from screen readers. When set to <code>true</code>, assistive technologies will ignore the element. This is useful when content is decorative or not meant for accessibility tools, even if it's visible on the screen.</p>
+
+  <p><strong>Example:</strong> Hiding decorative text from screen readers.</p>
+  <pre><code>&lt;span aria-hidden="true"&gt;★&lt;/span&gt;</code></pre>
+</div>
+<div id="aria-page22" class="aria-page">
+  <h2>aria-describedby</h2>
+  <p>The <code>aria-describedby</code> attribute points to the ID of another element that describes the current element. It provides extra information to screen reader users, like helpful instructions or hints.</p>
+
+  <p><strong>Example:</strong> Adding a hint to an input field.</p>
+  <pre><code>&lt;input type="text" aria-describedby="hint"&gt;
+&lt;div id="hint"&gt;Enter your full name as shown on ID.&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page23" class="aria-page">
+  <h2>aria-labelledby</h2>
+  <p>The <code>aria-labelledby</code> attribute links an element to another that acts as its label. It tells screen readers to read the content of the referenced label instead of a normal label or <code>aria-label</code>.</p>
+
+  <p><strong>Example:</strong> Labeling a section with a heading.</p>
+  <pre><code>&lt;h2 id="profile-heading"&gt;User Profile&lt;/h2&gt;
+&lt;section aria-labelledby="profile-heading"&gt;...&lt;/section&gt;</code></pre>
+</div>
+<div id="aria-page24" class="aria-page">
+  <h2>aria-label</h2>
+  <p>The <code>aria-label</code> attribute gives a custom text label to an element when there’s no visible label. It helps screen reader users know the purpose of the element, like a button or icon.</p>
+
+  <p><strong>Example:</strong> Labeling a button with an icon.</p>
+  <pre><code>&lt;button aria-label="Close"&gt;
+  &lt;span aria-hidden="true"&gt;×&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+</div>
+<div id="aria-page25" class="aria-page">
+  <h2>aria-readonly</h2>
+  <p>The <code>aria-readonly</code> attribute tells assistive technologies that a form control is read-only. The user can read the content but cannot change it. This helps screen reader users understand they cannot edit the field.</p>
+
+  <p><strong>Example:</strong> A read-only input field.</p>
+  <pre><code>&lt;input type="text" value="Not Editable" aria-readonly="true"&gt;</code></pre>
+</div>
+<div id="aria-page26" class="aria-page">
+  <h2>aria-live</h2>
+  <p>The <code>aria-live</code> attribute is used for regions that update dynamically, like notifications or chat messages. Screen readers will announce any change in that region without needing to focus on it. Values include <code>polite</code> and <code>assertive</code>.</p>
+
+  <p><strong>Example:</strong> Live announcement area.</p>
+  <pre><code>&lt;div aria-live="polite"&gt;
+  You have 1 new message.
+&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page27" class="aria-page">
+  <h2>aria-pressed</h2>
+  <p>The <code>aria-pressed</code> attribute is used with toggle buttons to tell whether the button is in a pressed (active) or unpressed (inactive) state. This helps screen readers convey the button's current status.</p>
+
+  <p><strong>Example:</strong> Toggle button for favorites.</p>
+  <pre><code>&lt;button aria-pressed="false"&gt;
+  Add to Favorites
+&lt;/button&gt;</code></pre>
+</div>
+<div id="aria-page28" class="aria-page">
+  <h2>aria-expanded</h2>
+  <p>The <code>aria-expanded</code> attribute tells screen readers whether a collapsible section or menu is currently expanded or collapsed. When a user toggles content visibility, this value should be updated dynamically.</p>
+
+  <p><strong>Example:</strong> Toggle FAQ answer section.</p>
+  <pre><code>&lt;button aria-expanded="false" aria-controls="faq1"&gt;
+  What is ARIA?
+&lt;/button&gt;
+&lt;div id="faq1"&gt;ARIA stands for Accessible Rich Internet Applications...&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page29" class="aria-page">
+  <h2>aria-activedescendant</h2>
+  <p>The <code>aria-activedescendant</code> attribute is used in composite widgets like autocomplete or listbox to show which item is currently active. It helps assistive technologies track the focus without moving the actual input focus.</p>
+
+  <p><strong>Example:</strong> Keyboard navigation through suggestions.</p>
+  <pre><code>&lt;input type="text" aria-activedescendant="option2" aria-owns="listbox1"&gt;
+&lt;ul id="listbox1"&gt;
+  &lt;li id="option1"&gt;Apple&lt;/li&gt;
+  &lt;li id="option2"&gt;Banana&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+</div>
+<div id="aria-page30" class="aria-page">
+  <h2>aria-valuemin, aria-valuemax, aria-valuenow</h2>
+  <p>These attributes are used in widgets like sliders or progress bars. <code>aria-valuemin</code> and <code>aria-valuemax</code> set the range, while <code>aria-valuenow</code> tells the current value. This allows screen reader users to understand how far along a process is.</p>
+
+  <p><strong>Example:</strong> A progress bar at 70%.</p>
+  <pre><code>&lt;div role="progressbar"
+     aria-valuemin="0"
+     aria-valuemax="100"
+     aria-valuenow="70"&gt;
+  70% Complete
+&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page31" class="aria-page">
+  <h2>aria-orientation</h2>
+  <p>The <code>aria-orientation</code> attribute defines whether a widget like a tab list or slider is arranged vertically or horizontally. This helps screen readers announce how the items are displayed so users can navigate accordingly.</p>
+
+  <p><strong>Example:</strong> Horizontal tab list.</p>
+  <pre><code>&lt;div role="tablist" aria-orientation="horizontal"&gt;
+  &lt;div role="tab"&gt;Tab 1&lt;/div&gt;
+  &lt;div role="tab"&gt;Tab 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page32" class="aria-page">
+  <h2>aria-multiselectable</h2>
+  <p>Used on a listbox or grid, <code>aria-multiselectable</code> tells screen readers if the user can select more than one item. This is useful in scenarios where users need to select multiple options like in filters or checklists.</p>
+
+  <p><strong>Example:</strong> Listbox that supports multiple selection.</p>
+  <pre><code>&lt;ul role="listbox" aria-multiselectable="true"&gt;
+  &lt;li role="option"&gt;Option A&lt;/li&gt;
+  &lt;li role="option"&gt;Option B&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+</div>
+<div id="aria-page33" class="aria-page">
+  <h2>aria-sort</h2>
+  <p>The <code>aria-sort</code> attribute is used on table headers to indicate the sorting direction: ascending, descending, none, or other. This is very helpful for screen reader users to know how data is sorted.</p>
+
+  <p><strong>Example:</strong> Column sorted in descending order.</p>
+  <pre><code>&lt;th aria-sort="descending"&gt;Price&lt;/th&gt;</code></pre>
+</div>
+<div id="aria-page34" class="aria-page">
+  <h2>aria-dropeffect</h2>
+  <p><code>aria-dropeffect</code> was used to show what kind of drop action would be allowed in a drag-and-drop interface (e.g., copy, move, link). This attribute is now deprecated, and better alternatives should be used with HTML5 drag and drop.</p>
+
+  <p><strong>Example:</strong> (Deprecated usage)</p>
+  <pre><code>&lt;div aria-dropeffect="move"&gt;Drop files here&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page35" class="aria-page">
+  <h2>aria-keyshortcuts</h2>
+  <p>The <code>aria-keyshortcuts</code> attribute tells assistive technologies what keyboard shortcut activates the element. It allows users to know that a specific key combo like "Ctrl+S" will perform an action.</p>
+
+  <p><strong>Example:</strong> Button triggered with Ctrl+S.</p>
+  <pre><code>&lt;button aria-keyshortcuts="Ctrl+S"&gt;Save&lt;/button&gt;</code></pre>
+</div>
+<div id="aria-page35" class="aria-page">
+  <h2>aria-keyshortcuts</h2>
+  <p>The <code>aria-keyshortcuts</code> attribute tells assistive technologies what keyboard shortcut activates the element. It allows users to know that a specific key combo like "Ctrl+S" will perform an action.</p>
+
+  <p><strong>Example:</strong> Button triggered with Ctrl+S.</p>
+  <pre><code>&lt;button aria-keyshortcuts="Ctrl+S"&gt;Save&lt;/button&gt;</code></pre>
+</div>
+<div id="aria-page36" class="aria-page">
+  <h2>aria-relevant</h2>
+  <p><code>aria-relevant</code> defines what types of changes (like additions, text updates, or removals) in a live region should be announced by assistive technologies. It is used with <code>aria-live</code> for better control.</p>
+
+  <p><strong>Example:</strong> Announce additions in a live chat.</p>
+  <pre><code>&lt;div aria-live="polite" aria-relevant="additions"&gt;&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page37" class="aria-page">
+  <h2>aria-flowto</h2>
+  <p>The <code>aria-flowto</code> attribute specifies the next element in the reading flow. It’s used when the visual order differs from the logical DOM order, helping screen readers follow the correct reading sequence.</p>
+
+  <p><strong>Example:</strong> Directing screen readers to jump to another section.</p>
+  <pre><code>&lt;div id="box1" aria-flowto="box2"&gt;Step 1&lt;/div&gt;
+&lt;div id="box2"&gt;Step 2&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page38" class="aria-page">
+  <h2>aria-current</h2>
+  <p>The <code>aria-current</code> attribute tells screen readers which item is currently active, such as in a menu, breadcrumb, or pagination. It improves orientation for visually impaired users.</p>
+
+  <p><strong>Example:</strong> Highlighting the current page in a menu.</p>
+  <pre><code>&lt;li aria-current="page"&gt;Home&lt;/li&gt;</code></pre>
+</div>
+<div id="aria-page38" class="aria-page">
+  <h2>aria-current</h2>
+  <p>The <code>aria-current</code> attribute tells screen readers which item is currently active, such as in a menu, breadcrumb, or pagination. It improves orientation for visually impaired users.</p>
+
+  <p><strong>Example:</strong> Highlighting the current page in a menu.</p>
+  <pre><code>&lt;li aria-current="page"&gt;Home&lt;/li&gt;</code></pre>
+</div>
+<div id="aria-page39" class="aria-page">
+  <h2>aria-autocomplete</h2>
+  <p>Used in input fields, <code>aria-autocomplete</code> tells screen readers if autocomplete suggestions are available. It can have values like <code>inline</code>, <code>list</code>, or <code>both</code>, helping users understand how they can choose suggestions.</p>
+
+  <p><strong>Example:</strong> Autocomplete for a search bar.</p>
+  <pre><code>&lt;input aria-autocomplete="list" aria-owns="suggestions"&gt;
+&lt;ul id="suggestions"&gt;
+  &lt;li&gt;Apple&lt;/li&gt;
+  &lt;li&gt;Banana&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+</div>
+<div id="aria-page40" class="aria-page">
+  <h2>aria-colspan</h2>
+  <p><code>aria-colspan</code> defines how many columns a cell should span in a grid. It helps screen readers understand the structure of complex grids, just like the HTML <code>colspan</code> attribute in tables.</p>
+
+  <p><strong>Example:</strong> A cell spanning two columns.</p>
+  <pre><code>&lt;div role="gridcell" aria-colspan="2"&gt;Merged Column&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page41" class="aria-page">
+  <h2>aria-rowspan</h2>
+  <p>The <code>aria-rowspan</code> attribute defines how many rows a cell spans in a grid or table structure. It works similarly to the HTML <code>rowspan</code> and helps screen readers interpret table layout correctly.</p>
+
+  <p><strong>Example:</strong> A cell spanning two rows.</p>
+  <pre><code>&lt;div role="gridcell" aria-rowspan="2"&gt;Merged Row&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page42" class="aria-page">
+  <h2>aria-colindex</h2>
+  <p><code>aria-colindex</code> tells assistive technologies the column number for a grid or table cell. This is helpful when table headers are complex and don’t appear in the usual DOM order.</p>
+
+  <p><strong>Example:</strong> A cell at column 3.</p>
+  <pre><code>&lt;div role="gridcell" aria-colindex="3"&gt;Data&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page43" class="aria-page">
+  <h2>aria-rowindex</h2>
+  <p>The <code>aria-rowindex</code> attribute tells screen readers the row number of a cell in a table or grid. It is useful for creating accessible data grids with proper navigation for screen reader users.</p>
+
+  <p><strong>Example:</strong> A cell in row 2.</p>
+  <pre><code>&lt;div role="gridcell" aria-rowindex="2"&gt;Item&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page44" class="aria-page">
+  <h2>aria-placeholder</h2>
+  <p><code>aria-placeholder</code> provides placeholder text for assistive technologies when the native HTML <code>placeholder</code> isn't enough or is visually hidden. It describes the expected input.</p>
+
+  <p><strong>Example:</strong> Input for entering a city name.</p>
+  <pre><code>&lt;input type="text" aria-placeholder="Enter your city"&gt;</code></pre>
+</div>
+<div id="aria-page45" class="aria-page">
+  <h2>aria-hidden</h2>
+  <p>The <code>aria-hidden</code> attribute hides content from screen readers. It's useful when certain visual elements (like decorative icons) should not be announced.</p>
+
+  <p><strong>Example:</strong> Icon hidden from screen reader.</p>
+  <pre><code>&lt;span class="icon" aria-hidden="true"&gt;★&lt;/span&gt;</code></pre>
+</div>
+<div id="aria-page46" class="aria-page">
+  <h2>aria-labelledby</h2>
+  <p>Use <code>aria-labelledby</code> when an element's label is provided by another element on the page. The attribute references the ID of the labeling element to make the relationship clear to screen readers.</p>
+
+  <p><strong>Example:</strong> Labeling a form section.</p>
+  <pre><code>&lt;h2 id="formTitle"&gt;User Details&lt;/h2&gt;
+&lt;form aria-labelledby="formTitle"&gt;...&lt;/form&gt;</code></pre>
+</div>
+<div id="aria-page47" class="aria-page">
+  <h2>aria-controls</h2>
+  <p><code>aria-controls</code> identifies the element that is controlled by the current element. For example, a button might control the visibility of a panel or tab content.</p>
+
+  <p><strong>Example:</strong> Button controlling a panel.</p>
+  <pre><code>&lt;button aria-controls="infoPanel"&gt;Toggle Info&lt;/button&gt;
+&lt;div id="infoPanel"&gt;Additional Information&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page48" class="aria-page">
+  <h2>aria-posinset</h2>
+  <p>The <code>aria-posinset</code> attribute defines an element’s position in a set. It helps users understand their current position among siblings (like "3 of 5").</p>
+
+  <p><strong>Example:</strong> Item 2 of 4 in a list.</p>
+  <pre><code>&lt;li role="option" aria-posinset="2" aria-setsize="4"&gt;Option 2&lt;/li&gt;</code></pre>
+</div>
+<div id="aria-page49" class="aria-page">
+  <h2>aria-setsize</h2>
+  <p><code>aria-setsize</code> tells assistive technologies the total number of items in a set or list. When used with <code>aria-posinset</code>, it helps screen readers provide context like “item 2 of 5”.</p>
+
+  <p><strong>Example:</strong> Set of 4 options.</p>
+  <pre><code>&lt;li role="option" aria-posinset="1" aria-setsize="4"&gt;Option 1&lt;/li&gt;</code></pre>
+</div>
+<div id="aria-page50" class="aria-page">
+  <h2>aria-valuemin, aria-valuemax, aria-valuenow</h2>
+  <p>These attributes are used for elements with roles like <code>slider</code> or <code>progressbar</code>. They define the minimum, maximum, and current values, which screen readers use to announce progress or position.</p>
+
+  <p><strong>Example:</strong> A slider at value 70.</p>
+  <pre><code>&lt;div role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70"&gt;&lt;/div&gt;</code></pre>
+</div>
+<div id="aria-page51" class="aria-page">
+  <h2>aria-flowto</h2>
+  <p><code>aria-flowto</code> tells screen readers what element should be read next, especially when the order is not the same as the visual layout. This helps users follow content more easily.</p>
+  <p><strong>Example:</strong> After reading paragraph1, go to paragraph2.</p>
+  <pre><code>
+&lt;p id="paragraph1" aria-flowto="paragraph2"&gt;
+  Step 1: Turn on the switch.
+&lt;/p&gt;
+&lt;p id="paragraph2"&gt;
+  Step 2: Wait for the light.
+&lt;/p&gt;
+</code></pre>
+</div>
+<div id="aria-page52" class="aria-page">
+  <h2>aria-haspopup</h2>
+  <p>This attribute tells screen readers that clicking or focusing on an element will open a popup, like a menu or dialog. It improves awareness of interactive elements.</p>
+  <p><strong>Example:</strong> A button opens a menu.</p>
+  <pre><code>
+&lt;button aria-haspopup="true" aria-controls="menu1"&gt;
+  Open Menu
+&lt;/button&gt;
+&lt;div id="menu1" role="menu"&gt;...&lt;/div&gt;
+</code></pre>
+</div>
+<div id="aria-page53" class="aria-page">
+  <h2>aria-multiselectable</h2>
+  <p>Use <code>aria-multiselectable</code> on listboxes or grids to let screen readers know multiple items can be selected. It's helpful for checklists or selection tools.</p>
+  <p><strong>Example:</strong> A list where multiple items can be selected.</p>
+  <pre><code>
+&lt;ul role="listbox" aria-multiselectable="true"&gt;
+  &lt;li role="option"&gt;Item 1&lt;/li&gt;
+  &lt;li role="option"&gt;Item 2&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+</div>
+<div id="aria-page54" class="aria-page">
+  <h2>aria-braillelabel</h2>
+  <p>This attribute gives a label specifically for braille displays. It may differ from the spoken label and helps provide better accessibility for braille readers.</p>
+  <p><strong>Example:</strong> Label for a braille display.</p>
+  <pre><code>
+&lt;button aria-label="Submit form" aria-braillelabel="Braille: Submit"&gt;
+  Send
+&lt;/button&gt;
+</code></pre>
+</div>
+<div id="aria-page55" class="aria-page">
+  <h2>aria-brailleroledescription</h2>
+  <p>This attribute customizes the role name spoken or shown on a braille display. It is useful when the default role name is too long or not meaningful for braille users.</p>
+  <p><strong>Example:</strong> Shortened braille role for a switch.</p>
+  <pre><code>
+&lt;div role="switch" aria-brailleroledescription="Sw"&gt;On/Off&lt;/div&gt;
+</code></pre>
+</div>
+<div id="aria-page56" class="aria-page">
+  <h2>aria-keyshortcuts</h2>
+  <p>Use <code>aria-keyshortcuts</code> to inform users of available keyboard shortcuts. This makes your app more user-friendly for keyboard-only users.</p>
+  <p><strong>Example:</strong> A button with a shortcut key.</p>
+  <pre><code>
+&lt;button aria-keyshortcuts="Ctrl+S"&gt;Save&lt;/button&gt;
+</code></pre>
+</div>
+<div id="aria-page57" class="aria-page">
+  <h2>aria-errormessage</h2>
+  <p><code>aria-errormessage</code> provides a reference to an error message element that explains what's wrong with the input. This improves form validation messages for screen readers.</p>
+  <p><strong>Example:</strong> Input with an error message.</p>
+  <pre><code>
+&lt;input id="email" aria-invalid="true" aria-errormessage="error1"&gt;
+&lt;div id="error1"&gt;Please enter a valid email address.&lt;/div&gt;
+</code></pre>
+</div>
+<div id="aria-page58" class="aria-page">
+  <h2>aria-roledescription</h2>
+  <p>This gives a custom role description that screen readers announce. It replaces the default role name with something more meaningful or familiar to users.</p>
+  <p><strong>Example:</strong> Role description for a custom slider.</p>
+  <pre><code>
+&lt;div role="slider" aria-roledescription="volume control"&gt;&lt;/div&gt;
+</code></pre>
+</div>
+<div id="aria-page59" class="aria-page">
+  <h2>aria-details</h2>
+  <p>The <code>aria-details</code> attribute links to another element that provides more detailed information. It’s useful for charts, summaries, and tooltips.</p>
+  <p><strong>Example:</strong> Element with additional explanation.</p>
+  <pre><code>
+&lt;div aria-details="info1"&gt;COVID Data&lt;/div&gt;
+&lt;div id="info1"&gt;This data shows infection rates from Jan to March.&lt;/div&gt;
+</code></pre>
+</div>
+<div id="aria-page60" class="aria-page">
+  <h2>aria-required</h2>
+  <p><code>aria-required</code> indicates that a field is required to complete a form. Screen readers will notify users so they don’t miss important inputs.</p>
+  <p><strong>Example:</strong> Required input field.</p>
+  <pre><code>
+&lt;input type="text" aria-required="true"&gt;
+</code></pre>
+</div>
+            </div>
+            <div class="pagination-controls">
+                <button id="prev-aria" disabled>Previous</button>
+                <span id="current-aria-num" aria-live="polite"></span>
+                <button id="next-aria">Next</button>
+            </div>
         </div>
     </main>
     <footer>
-        <p>&copy; 2025 Accessible World</p>
+        <p>© 2025 Accessible World</p>
     </footer>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
 
+        // IMPORTANT: Replace with your actual Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k", // Replace with your actual API key
             authDomain: "accessibleworld-7f599.firebaseapp.com", // Replace with your auth domain
-            projectId: "accessibleworld-7f599",                     // Replace with your project ID
+            projectId: "accessibleworld-7f599", // Replace with your project ID
             storageBucket: "accessibleworld-7f599.appspot.com", // Replace with your storage bucket
-            messagingSenderId: "264437218598",                     // Replace with your messaging sender ID
+            messagingSenderId: "264437218598", // Replace with your messaging sender ID
             appId: "1:264437218598:web:cae58c1e578c7b08b815e7", // Replace with your app ID
-            measurementId: "G-1QRWXYRZ76"                           // Replace with your measurement ID
+            measurementId: "G-1QRWXYRZ76" // Replace with your measurement ID
         };
 
         const app = initializeApp(firebaseConfig);
@@ -302,9 +2487,9 @@
         const db = getFirestore(app);
 
         const bodyElement = document.body;
-        const accessDeniedMessage = document.getElementById('access-denied-message');
-        const courseContent = document.getElementById('course-content');
-        const paidCoursesList = document.getElementById('paid-courses-list');
+        // const accessDeniedMessage = document.getElementById('access-denied-message'); // Not used in this version
+        // const courseContent = document.getElementById('course-content'); // Not used in this version
+        // const paidCoursesList = document.getElementById('paid-courses-list'); // Not used in this version
         const userProfileDiv = document.getElementById('user-profile');
         const profileNameSpan = document.getElementById('profile-name');
         const profileMobileSpan = document.getElementById('profile-mobile');
@@ -317,27 +2502,33 @@
             if (user) {
                 const uid = user.uid;
                 const userDocRef = doc(db, "users", uid);
-                const userDocSnap = await getDoc(userDocRef);
+                try {
+                    const userDocSnap = await getDoc(userDocRef);
 
-                if (userDocSnap.exists()) {
-                    const userData = userDocSnap.data();
-                    if (userData.paymentStatus === "Paid") {
-                        profileNameSpan.textContent = userData.fullName || 'N/A';
-                        profileMobileSpan.textContent = userData.mobile || 'N/A';
-                        profileEmailSpan.textContent = user.email;
-                        referralLinkSpan.textContent = `${location.origin}/register.html?ref=${uid}`;
-                        bodyElement.style.display = 'block';
+                    if (userDocSnap.exists()) {
+                        const userData = userDocSnap.data();
+                        if (userData.paymentStatus === "Paid") {
+                            profileNameSpan.textContent = userData.fullName || 'N/A';
+                            profileMobileSpan.textContent = userData.mobile || 'N/A';
+                            profileEmailSpan.textContent = user.email;
+                            referralLinkSpan.textContent = `${location.origin}/register.html?ref=${uid}`;
+                            bodyElement.style.display = 'block'; // Show content after successful authentication
+                        } else {
+                            alert("Please join our membership to access the courses.");
+                            window.location.href = "index.html"; // Redirect if not paid
+                        }
                     } else {
-                        alert("Please join our membership to access the courses.");
-                        window.location.href = "index.html";
+                        alert("Error: Could not verify your membership. Please log in again.");
+                        window.location.href = "index.html"; // Redirect if user doc doesn't exist
                     }
-                } else {
-                    alert("Error: Could not verify your membership. Please log in again.");
-                    window.location.href = "index.html";
+                } catch (error) {
+                    console.error("Error fetching user data:", error);
+                    alert("An error occurred while verifying your membership. Please try again.");
+                    window.location.href = "index.html"; // Redirect on error
                 }
             } else {
                 alert("Please log in to access the courses.");
-                window.location.href = "index.html";
+                window.location.href = "index.html"; // Redirect if not logged in
             }
         });
 
@@ -355,6 +2546,20 @@
             const tabs = document.querySelectorAll('.tab-buttons button');
             const tabContents = document.querySelectorAll('.tab-content');
 
+            // Aria Section Elements
+            const ariaPages = document.querySelectorAll('#aria-pages .aria-page');
+            const prevAriaButton = document.getElementById('prev-aria');
+            const nextAriaButton = document.getElementById('next-aria');
+            const currentAriaNum = document.getElementById('current-aria-num');
+            let currentAriaIndex = 0;
+
+            // Intro Section Elements
+            const introPages = document.querySelectorAll('#intro-pages .intro-page');
+            const prevIntroButton = document.getElementById('prev-intro');
+            const nextIntroButton = document.getElementById('next-intro');
+            const currentIntroNum = document.getElementById('current-intro-num');
+            let currentIntroIndex = 0;
+
             // Disability Section Elements
             const disabilityPages = document.querySelectorAll('#disability-pages .disability-page');
             const prevDisabilityButton = document.getElementById('prev-disability');
@@ -369,812 +2574,156 @@
             const currentPrincipleNum = document.getElementById('current-principle-num');
             let currentPrincipleIndex = 0;
 
-            // Success Criteria Section Elements
-            const scDisplay = document.getElementById('success-criteria-display');
-            const prevScButton = document.getElementById('prev-sc');
-            const nextScButton = document.getElementById('next-sc');
-            const currentScNum	 = document.getElementById('current-sc-num');
-            const successCriteria = [
-{
-    id: '1.1.1',
-    name: 'Non-text Content',
-    level: 'A',
-    description: 'All non-text content (such as images, icons, audio, video, CAPTCHAs, and other media) must have a text alternative that provides an equivalent meaning or function. This ensures users who cannot perceive the content visually or auditorily can still understand and interact with it using assistive technologies such as screen readers.',
-    passExamples: [
-        '<img src="logo.png" alt="Company Logo">',
-        '<input type="image" src="submit.png" alt="Submit Form">',
-        '<div aria-label="Play video"></div>'
-    ],
-    failExamples: [
-        '<img src="chart.png">',
-        '<input type="image" src="button.png">',
-        '<div><svg aria-hidden="true">...</svg></div>'
-    ]
-},
-{
-    id: '1.2.1',
-    name: 'Audio-only and Video-only (Prerecorded)',
-    level: 'A',
-    description: 'For prerecorded audio-only content (like podcasts) and video-only content (like silent videos), provide an alternative format that presents the same information. This helps users who are deaf, hard of hearing, or blind to access equivalent content either via text or audio alternatives.',
-    passExamples: [
-        'A podcast with a full text transcript available on the same page.',
-        'A silent video clip with a written description of the actions displayed.'
-    ],
-    failExamples: [
-        'An audio lecture without a transcript.',
-        'A video with no sound and no accompanying text or audio description.'
-    ]
-},
-{
-    id: '1.2.2',
-    name: 'Captions (Prerecorded)',
-    level: 'A',
-    description: 'Captions must be provided for all prerecorded videos that contain audio. These captions should include spoken dialogue and other relevant sounds (such as laughter or music) so that users who are deaf or hard of hearing can understand the audio content.',
-    passExamples: [
-        'A video lecture with embedded open captions.',
-        'A video with accurate closed captions enabled through the media player.'
-    ],
-    failExamples: [
-        'A promotional video with spoken audio but no captions.',
-        'A tutorial video that relies on speech but has no captioning option.'
-    ]
-},
-{
-    id: '1.2.3',
-    name: 'Audio Description or Media Alternative (Prerecorded)',
-    level: 'A',
-    description: 'For prerecorded videos that contain essential visual information (e.g., gestures, charts, on-screen actions), an audio description must be provided as a separate track or alternative. This ensures that users who are blind or visually impaired can understand the visual aspects of the video content.',
-    passExamples: [
-        'A video that includes an optional audio description track.',
-        'A descriptive transcript that outlines visual actions, speaker changes, and key visuals.'
-    ],
-    failExamples: [
-        'A cooking demonstration video where all actions are visual, with no descriptive narration or transcript.',
-        'A product demo video with on-screen instructions only and no explanation for blind users.'
-    ]
-},
-{
-    id: '1.2.4',
-    name: 'Captions (Live)',
-    level: 'AA',
-    description: 'Captions must be provided for all live audio content in synchronized media, such as live webinars, news broadcasts, or virtual meetings. This helps users who are deaf or hard of hearing understand the real-time audio information.',
-    passExamples: [
-        'A live webinar that uses a real-time captioning service.',
-        'A live broadcast with accurate automatic captions displayed on screen.'
-    ],
-    failExamples: [
-        'A live stream with audio but no captions at all.',
-        'Captions are used but are severely delayed or inaccurate.'
-    ]
-},
-{
-    id: '1.2.5',
-    name: 'Audio Description (Prerecorded)',
-    level: 'AA',
-    description: 'All prerecorded video content must include audio descriptions of important visual information that cannot be understood from the audio alone. This makes the content accessible to users who are blind or visually impaired and ensures they don’t miss out on visual-only cues.',
-    passExamples: [
-        'A video that pauses periodically to add audio narration of visual scenes.',
-        'An additional audio track with descriptions of characters’ actions and expressions.'
-    ],
-    failExamples: [
-        'A video that shows a process or demonstration without describing it for blind users.',
-        'A movie with key visual elements not described in the audio track.'
-    ]
-},
-{
-    id: '1.3.1',
-    name: 'Info and Relationships',
-    level: 'A',
-    description: 'Information, structure, and relationships that are visually conveyed (like headings, lists, form labels, or table data) must also be available in the code. This allows assistive technologies to understand and present the content meaningfully to users who cannot see the visual layout.',
-    passExamples: [
-        '<table><thead><tr><th>Product</th><th>Price</th></tr></thead><tbody><tr><td>Book</td><td>$10</td></tr></tbody></table>',
-        '<label for="email">Email:</label><input id="email" type="email">'
-    ],
-    failExamples: [
-        '<div style="font-weight: bold;">Name:</div><input type="text">',
-        '<table><tr><td>Product</td><td>Price</td></tr><tr><td>Book</td><td>$10</td></tr></table> (no semantic headers)'
-    ]
-},
-{
-    id: '1.3.2',
-    name: 'Meaningful Sequence',
-    level: 'A',
-    description: 'When the order in which content is presented affects its meaning, that order must be preserved programmatically. This ensures that assistive technologies, such as screen readers, present content in a way that preserves the intended meaning and flow.',
-    passExamples: [
-        '<div><h1>Course Overview</h1><p>This course includes three modules...</p></div>',
-        '<section><header>Header</header><main>Main content</main><footer>Footer</footer></section>'
-    ],
-    failExamples: [
-        '<div><p>Step 3</p><p>Step 1</p><p>Step 2</p></div> (incorrect order in code)',
-        'CSS is used to visually move elements, but screen readers still read in the wrong sequence.'
-    ]
-},
-{
-    id: '1.3.3',
-    name: 'Sensory Characteristics',
-    level: 'A',
-    description: 'Do not rely only on things like color, shape, size, sound, or location to give instructions or convey information. People who are blind, have low vision, or color blindness may not understand such clues. Always include text or labels to explain what to do.',
-    passExamples: [
-        '<p>Select the "Submit" button to continue.</p>',
-        '<p>Click the round button labeled "Start".</p>'
-    ],
-    failExamples: [
-        '<p>Click the red button to proceed.</p>',
-        '<p>Choose the box on the left to continue.</p>'
-    ]
-},
-{
-    id: '1.3.4',
-    name: 'Orientation',
-    level: 'AA',
-    description: 'The content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific orientation is essential. This means users can view and interact with the content whether their device is held vertically (portrait) or horizontally (landscape), unless it’s absolutely necessary to force one layout (for example, in a piano app or game). This helps users who may have their devices mounted or fixed in one position.',
-    passExamples: [
-        'A webpage that works both in portrait and landscape mode on a mobile phone.',
-        'A form that adjusts and is readable regardless of screen orientation.',
-        'A video player that resizes and repositions its controls based on orientation.'
-    ],
-    failExamples: [
-        'A photo gallery that works only in landscape mode and displays a message asking users to rotate their device.',
-        'A mobile app that shows a blank screen in portrait mode and requires the device to be turned.',
-        'A website layout that breaks or becomes unusable in one orientation.'
-    ]
-},
-{
-    id: '1.3.5',
-    name: 'Identify Input Purpose',
-    level: 'AA',
-    description: 'The purpose of input fields collecting information about the user (like name, email, address, etc.) can be programmatically determined. This means the fields use proper HTML attributes such as "autocomplete", allowing browsers and assistive technologies to understand their purpose. It improves accessibility for users who rely on assistive technologies or autofill features, and helps them complete forms more quickly and accurately.',
-    passExamples: [
-        '<input type="text" autocomplete="name" aria-label="Full Name">',
-        '<input type="email" autocomplete="email">',
-        '<input type="tel" autocomplete="tel-national" aria-label="Phone Number">'
-    ],
-    failExamples: [
-        '<input type="text" aria-label="Full Name"> <!-- missing autocomplete attribute -->',
-        '<input type="text" name="username"> <!-- no indication of purpose -->',
-        '<input type="text" autocomplete="random-value"> <!-- incorrect or meaningless autocomplete value -->'
-    ]
-},
-
-{
-    id: '1.4.1',
-    name: 'Use of Color',
-    level: 'A',
-    description: 'Don’t use color as the only way to show information or meaning. Users who are color blind may not be able to tell the difference. Add text, shapes, or other indicators along with color.',
-    passExamples: [
-        '<p>Required fields are marked with a red asterisk (*).</p>',
-        '<p><span style="color: red;">●</span> Error - Please enter your name.</p>'
-    ],
-    failExamples: [
-        '<p>Items in red are required.</p>',
-        '<p>Click the green button to accept and red to cancel.</p>'
-    ]
-},
-{
-    id: '1.4.2',
-    name: 'Audio Control',
-    level: 'A',
-    description: 'If any sound plays automatically for more than 3 seconds when a page loads, the user must be able to pause or stop it, or control its volume separately from the main system volume. This is important for users who use screen readers or need to focus.',
-    passExamples: [
-        'An autoplay video with a visible "Mute" and "Pause" button.',
-        'A background music clip that has a stop button near the top of the page.'
-    ],
-    failExamples: [
-        'A page that starts playing music with no way to stop it.',
-        'A video that autoplays and has no volume or pause controls.'
-    ]
-},
-{
-    id: '1.4.3',
-    name: 'Contrast (Minimum)',
-    level: 'AA',
-    description: 'Text must have enough contrast with its background so it’s easy to read, especially for users with low vision. The contrast ratio should be at least 4.5:1 for normal text and 3:1 for large text.',
-    passExamples: [
-        '<p style="color: #000000; background: #FFFFFF;">Black text on white background</p>',
-        '<h1 style="color: #003366; background: #EEEEEE;">Dark blue heading on light gray</h1>'
-    ],
-    failExamples: [
-        '<p style="color: #AAAAAA; background: #FFFFFF;">Light gray text on white background</p>',
-        '<span style="color: yellow; background: white;">Yellow text on white background</span>'
-    ]
-},
-{
-    id: '1.4.4',
-    name: 'Resize Text',
-    level: 'AA',
-    description: 'Users must be able to resize text up to 200% without losing content or functionality. This helps users with low vision read more comfortably using browser zoom or screen magnifiers.',
-    passExamples: [
-        'Text content scales properly when browser zoom is increased to 200%.',
-        'Layout remains readable and functional when zoomed in.'
-    ],
-    failExamples: [
-        'Text overlaps or cuts off when zoomed to 150%.',
-        'Buttons become hidden or impossible to click when zoom is increased.'
-    ]
-},
-{
-    id: '1.4.5',
-    name: 'Images of Text',
-    level: 'AA',
-    description: 'If the same visual presentation can be made using text alone, then text is used instead of images of text. This ensures that users can customize the appearance of the text (such as resizing or changing colors) for better readability. Exceptions are allowed for decorative purposes or if the image of text is essential (like a company logo or a stylized brand name). This helps people with low vision or those using screen magnifiers.',
-    passExamples: [
-        '<h1>Welcome to Our Website</h1> <!-- Real text, not image -->',
-        '<p style="font-family: cursive;">Happy Birthday!</p> <!-- Stylized text, still selectable and resizable -->',
-        '<img src="logo.png" alt="Company Name"> <!-- Logo is allowed as image of text -->'
-    ],
-    failExamples: [
-        '<img src="welcome_text.png" alt="Welcome to Our Website"> <!-- Should use real text instead -->',
-        '<img src="menu.png" alt="Main Menu"> <!-- Functional text displayed as image -->',
-        '<div style="background-image: url(text-banner.jpg);">...</div> <!-- Important text hidden in an image -->'
-    ]
-},
-
-{
-    id: '1.4.5',
-    name: 'Images of Text',
-    level: 'AA',
-    description: 'Avoid using images just to show text, because screen readers can’t read it, and it can look blurry when resized. Use real text that can be resized and read by assistive tools. Only use images of text if it’s essential (like a company logo).',
-    passExamples: [
-        '<h1>Our Services</h1> (real text)',
-        '<img src="logo.png" alt="Company Logo"> (essential image of text)'
-    ],
-    failExamples: [
-        '<img src="heading-text.png" alt="Welcome"> (heading shown as image)',
-        '<img src="quote.png"> (motivational quote shown as image without text alternative)'
-    ]
-},
-{
-    id: '1.4.10',
-    name: 'Reflow',
-    level: 'AA',
-    description: 'Content must be presented without loss of information or functionality, and without requiring scrolling in two dimensions (horizontal and vertical), except for parts where two-dimensional layout is essential (like images, maps, or charts). This ensures users on small screens or those who zoom in (up to 400%) can still read and use all content without having to scroll left and right. It improves accessibility for users with low vision or those on mobile devices.',
-    passExamples: [
-        'A website layout that rearranges into a single column when zoomed to 400% on a 1280px wide screen.',
-        'Navigation menus that collapse into a hamburger icon for small screens.',
-        'Text content that wraps naturally without requiring horizontal scrolling.'
-    ],
-    failExamples: [
-        'A fixed-width layout that causes horizontal scrolling when zoomed.',
-        'Text that gets cut off or overlaps at higher zoom levels.',
-        'A form that becomes unusable because buttons move out of view and require both horizontal and vertical scrolling.'
-    ]
-},
-{
-    id: '1.4.11',
-    name: 'Non-Text Contrast',
-    level: 'AA',
-    description: 'Visual elements that are important for understanding content or functionality, like buttons, icons, focus indicators, or graph bars, must have a contrast ratio of at least 3:1 against adjacent colors. This helps users with low vision distinguish important components from the background or surrounding elements. It applies to user interface components (like form controls and links) and graphical objects that convey meaning.',
-    passExamples: [
-        'A submit button with dark text on a light background, providing a contrast ratio of 4.5:1.',
-        'An icon with a 3:1 contrast against the surrounding background.',
-        'A visible keyboard focus ring with sufficient contrast on a text input field.'
-    ],
-    failExamples: [
-        'A low-contrast icon (e.g., light gray on white) that is difficult to see.',
-        'A button with border and background colors that are too similar (less than 3:1 contrast).',
-        'Focus indicators (like outlines) that are nearly invisible due to low contrast.'
-    ]
-},
-{
-    id: '1.4.12',
-    name: 'Text Spacing',
-    level: 'AA',
-    description: 'Users must be able to override text spacing to improve readability without losing content or functionality. When the following text style properties are applied—line height (1.5x font size), spacing after paragraphs (2x font size), letter spacing (0.12x font size), and word spacing (0.16x font size)—the content must still be readable and usable. This helps users with dyslexia, low vision, and cognitive disabilities.',
-    passExamples: [
-        'A paragraph remains fully visible and functional when a browser extension increases line height and spacing.',
-        'Form labels and inputs still align correctly after increasing letter and word spacing.',
-        'No overlapping or cutoff text when users apply custom style sheets with increased spacing.'
-    ],
-    failExamples: [
-        'Text gets cut off or overlaps when line height is increased.',
-        'Paragraphs or controls become unreadable when letter or word spacing is adjusted.',
-        'Elements break or disappear when custom text spacing styles are applied.'
-    ]
-},
-{
-    id: '1.4.13',
-    name: 'Content on Hover or Focus',
-    level: 'AA',
-    description: 'When extra content appears on hover or focus (like tooltips, dropdowns, or popups), it must be dismissible, hoverable, and persistent. This means users should be able to dismiss it without moving the pointer, keep it visible while interacting with it, and it should not disappear unexpectedly. This helps people with low vision, mobility impairments, or cognitive challenges who need more time to read or interact with extra content.',
-    passExamples: [
-        'A tooltip appears when an info icon is focused, and stays visible until focus moves away or the user presses ESC.',
-        'Dropdown content stays visible while the user moves the mouse over it.',
-        'Popup help text that appears on focus and includes a close button accessible via keyboard.'
-    ],
-    failExamples: [
-        'A tooltip that disappears too quickly when the user tries to move the mouse to it.',
-        'Extra content that vanishes as soon as focus is lost, even if the user is trying to read it.',
-        'Help text that cannot be dismissed without moving the pointer away.'
-    ]
-},
-{
-    id: '2.1.1',
-    name: 'Keyboard',
-    level: 'A',
-    description: 'All functionality on a website must be usable with a keyboard alone. This helps users who can’t use a mouse, such as screen reader users or those with motor disabilities.',
-    passExamples: [
-        'Users can navigate through links and buttons using Tab and Enter.',
-        'Menus open and close with arrow keys and Enter key.'
-    ],
-    failExamples: [
-        'Interactive slider that only works with mouse drag.',
-        'Buttons that do nothing when focused and Enter is pressed.'
-    ]
-},
-{
-    id: '2.1.2',
-    name: 'No Keyboard Trap',
-    level: 'A',
-    description: 'When using only a keyboard, users should never get stuck on a part of the page. They must be able to move in and out of any interactive element (like a form or dialog) using standard keyboard keys.',
-    passExamples: [
-        'A modal dialog that opens and can be closed with the Esc key or Tab key navigation.',
-        'An iframe that allows users to enter and exit using Tab or Shift+Tab.'
-    ],
-    failExamples: [
-        'Focus gets stuck inside a video player and doesn’t return to the page.',
-        'A popup opens but cannot be closed using only the keyboard.'
-    ]
-},
-{
-    id: '2.2.1',
-    name: 'Timing Adjustable',
-    level: 'A',
-    description: 'If users have a time limit to complete something (like filling a form), they must have options to turn off, adjust, or extend the time unless it’s essential. This is important for users with cognitive disabilities or who need more time.',
-    passExamples: [
-        'A session timeout warning appears with a "Stay Signed In" option.',
-        'Users can select "Do not timeout" when starting a quiz.'
-    ],
-    failExamples: [
-        'Form times out after 1 minute with no warning.',
-        'Online exam that ends automatically with no way to extend time.'
-    ]
-},
-{
-    id: '2.2.2',
-    name: 'Pause, Stop, Hide',
-    level: 'A',
-    description: 'Any moving, blinking, scrolling, or auto-updating content that starts automatically and lasts more than 5 seconds must have a way to pause, stop, or hide it. This avoids distractions and helps users focus, especially those with cognitive or visual disabilities.',
-    passExamples: [
-        'An auto-scrolling news ticker with a pause button.',
-        'A carousel slider that includes play/pause controls.'
-    ],
-    failExamples: [
-        'A banner that scrolls endlessly with no way to stop it.',
-        'Animations that loop and distract users, with no controls.'
-    ]
-},
-  {
-    id: '2.1.4',
-    name: 'Character Key Shortcuts',
-    level: 'A',
-    description: 'If a single key shortcut (like just pressing “S”) is used in the content, users must be able to turn it off, change it, or make it work only when a specific area is in focus. This helps people using speech input or screen readers avoid accidental actions.',
-    passExamples: [
-      'User can disable or remap the “S” shortcut key in settings.',
-      'Shortcut keys only work when the input field or editor is focused.'
-    ],
-    failExamples: [
-      'Pressing “D” deletes a message immediately without warning.',
-      'No option to disable keyboard shortcuts for voice control users.'
-    ]
-  },
-  {
-    id: '2.3.1',
-    name: 'Three Flashes or Below Threshold',
-    level: 'A',
-    description: 'Web content must not flash more than 3 times in one second. Flashing lights can cause seizures, especially in people with photosensitive epilepsy. If flashing is needed, it should stay within a safe limit.',
-    passExamples: [
-      'A video with no flashing lights or strobe effects.',
-      'Animations that flash only twice per second.'
-    ],
-    failExamples: [
-      'A banner that flashes rapidly 6 times per second.',
-      'Game scenes with repeated fast flashing effects.'
-    ]
-  },
-  {
-    id: '2.4.1',
-    name: 'Bypass Blocks',
-    level: 'A',
-    description: 'Users should be able to skip over repeated blocks of content like navigation menus. This helps keyboard and screen reader users reach the main content quickly.',
-    passExamples: [
-      '<a href="#main-content" class="skip-link">Skip to main content</a>',
-      '<main id="main-content">Main article starts here</main>'
-    ],
-    failExamples: [
-      'User must press Tab many times to reach the main content.',
-      'No way to skip header and menu links.'
-    ]
-  },
-  {
-    id: '2.4.2',
-    name: 'Page Titled',
-    level: 'A',
-    description: 'Each web page should have a clear and meaningful title shown in the browser tab. This helps users know what the page is about.',
-    passExamples: [
-      '<title>About Us - Accessible World</title>',
-      '<title>Login - My Account</title>'
-    ],
-    failExamples: [
-      '<title>Untitled Page</title>',
-      '<title>Home</title> (used for multiple different pages)'
-    ]
-  },
-  {
-    id: '2.4.3',
-    name: 'Focus Order',
-    level: 'A',
-    description: 'When navigating using Tab, focus should move in a logical and expected order. This helps users follow the structure and content of the page easily.',
-    passExamples: [
-      'Focus moves from menu → search → main content → footer.',
-      'Modal opens and focus stays within it until closed.'
-    ],
-    failExamples: [
-      'Focus jumps around the page in a confusing order.',
-      'Important buttons are skipped when using the keyboard.'
-    ]
-  },
-  {
-    id: '2.4.4',
-    name: 'Link Purpose (In Context)',
-    level: 'A',
-    description: 'The purpose of each link should be clear from the link text or the surrounding content. This helps users decide if they want to follow the link.',
-    passExamples: [
-      '<a href="annual-report.pdf">Download Annual Report (PDF)</a>',
-      'Text: "Visit our FAQ section for more details" with <a href="faq.html">FAQ</a>'
-    ],
-    failExamples: [
-      '<a href="info.html">Click here</a>',
-      'Multiple links labeled "More" with no context'
-    ]
-  },
-  {
-    id: '2.4.5',
-    name: 'Multiple Ways',
-    level: 'AA',
-    description: 'Users should be able to find a web page using more than one method, like navigation menus, search, or site maps. This helps users with different needs find information easily.',
-    passExamples: [
-      'Main navigation menu + search box + sitemap',
-      'List of pages in both menu and footer'
-    ],
-    failExamples: [
-      'Only one navigation path is available to reach the page',
-      'No search or site map provided'
-    ]
-  },
-  {
-    id: '2.4.6',
-    name: 'Headings and Labels',
-    level: 'AA',
-    description: 'Headings and labels must clearly describe the topic or purpose of the content or control. This helps users, especially screen reader users, understand and use the content.',
-    passExamples: [
-      '<label for="email">Email Address</label>',
-      '<h2>Contact Information</h2>'
-    ],
-    failExamples: [
-      '<label>Submit</label> (without saying what is being submitted)',
-      '<h3>Section 1</h3> (no meaningful title)'
-    ]
-  },
-  {
-    id: '2.4.7',
-    name: 'Focus Visible',
-    level: 'AA',
-    description: 'When users navigate using a keyboard (like pressing Tab), the focused element must be visually clear. This helps users know where they are on the page.',
-    passExamples: [
-      'Buttons and links show a visible border or color change when focused.',
-      'Focus outline appears on input fields.'
-    ],
-    failExamples: [
-      'No visual indicator when an element is focused.',
-      'Focus styles removed using CSS (e.g., outline: none)'
-    ]
-  },
-  {
-    id: '2.4.11',
-    name: 'Focus Not Obscured (Minimum)',
-    level: 'AA',
-    description: 'The element that receives keyboard focus should not be fully hidden behind other content like popups or sticky headers. It should always be at least partially visible.',
-    passExamples: [
-      'Focused input field is always visible while scrolling.',
-      'Sticky menus don’t cover focused elements.'
-    ],
-    failExamples: [
-      'Sticky header covers the focused link.',
-      'Focus moves to an off-screen item with no scroll or visibility.'
-    ]
-  },
-  {
-    id: '3.2.1',
-    name: 'On Focus',
-    level: 'A',
-    description: 'When a user focuses on an element (like a form field or button), it should not automatically trigger a major change like submitting a form or opening a new page. Changes should only happen when the user chooses to do something, like clicking a button.',
-    passExamples: [
-      '<input type="text" placeholder="Enter name">',
-      'Focus on a menu does not open a new page until the user clicks.'
-    ],
-    failExamples: [
-      'Focusing on a dropdown automatically redirects to another page.'
-    ]
-  },
-  {
-    id: '3.2.2',
-    name: 'On Input',
-    level: 'A',
-    description: 'When users fill in or change something in a form, it should not cause unexpected changes, like submitting the form or refreshing the page, without warning.',
-    passExamples: [
-      'Typing in a search box doesn’t submit the search until clicking the button.'
-    ],
-    failExamples: [
-      'Changing a dropdown value automatically submits the form.'
-    ]
-  },
-  {
-    id: '3.2.3',
-    name: 'Consistent Navigation',
-    level: 'AA',
-    description: 'If a website has the same navigation links on multiple pages, they should appear in the same order and location. This helps users learn and rely on the navigation.',
-    passExamples: [
-      'Main menu appears at the top of every page in the same order.'
-    ],
-    failExamples: [
-      'Navigation links are rearranged on different pages.'
-    ]
-  },
-  {
-    id: '3.2.4',
-    name: 'Consistent Identification',
-    level: 'AA',
-    description: 'Components with the same function should be labeled the same way across pages. This avoids confusion for users.',
-    passExamples: [
-      'All search boxes are labeled “Search”.'
-    ],
-    failExamples: [
-      'One search button says “Go” and another says “Find” for the same function.'
-    ]
-  },
-  {
-    id: '3.2.6',
-    name: 'Consistent Help',
-    level: 'AAA',
-    description: 'If help is available on a page (like live chat, FAQs, or contact info), it should be located in the same place on all pages.',
-    passExamples: [
-      'Help button is always on the top-right corner of every page.'
-    ],
-    failExamples: [
-      'Help link appears on the home page only and nowhere else.'
-    ]
-  },
-  {
-    id: '3.3.1',
-    name: 'Error Identification',
-    level: 'A',
-    description: 'If users make a mistake in a form (like leaving a required field blank), the error must be clearly shown and described so the user knows how to fix it.',
-    passExamples: [
-      '“Please enter your email address” appears below a blank email field.'
-    ],
-    failExamples: [
-      'The form reloads with no message, leaving the user confused.'
-    ]
-  },
-  {
-    id: '3.3.2',
-    name: 'Labels or Instructions',
-    level: 'A',
-    description: 'Form inputs should have clear labels or instructions to help users know what to do.',
-    passExamples: [
-      '<label for="email">Email Address</label>'
-    ],
-    failExamples: [
-      'Text input with no label or placeholder.'
-    ]
-  },
-  {
-    id: '3.3.3',
-    name: 'Error Suggestion',
-    level: 'AA',
-    description: 'If an error is found, the system should suggest how to fix it.',
-    passExamples: [
-      '“Your password must be at least 8 characters.”'
-    ],
-    failExamples: [
-      'Just shows “Invalid input” with no explanation.'
-    ]
-  },
-  {
-    id: '3.3.4',
-    name: 'Error Prevention (Legal, Financial, Data)',
-    level: 'AA',
-    description: 'When users submit important information (like for money, data changes, or legal agreements), they should have a chance to review, confirm, or correct it.',
-    passExamples: [
-      'A “Review your order” page before final payment.'
-    ],
-    failExamples: [
-      'Clicking “Submit” directly places an order without confirmation.'
-    ]
-  },
-  {
-    id: '3.3.7',
-    name: 'Redundant Entry',
-    level: 'AAA',
-    description: 'Users should not have to enter the same information more than once in a single process.',
-    passExamples: [
-      'Shipping and billing address copied with a checkbox.'
-    ],
-    failExamples: [
-      'Users must enter the same address in two different places with no copy option.'
-    ]
-  },
-  {
-    id: '3.3.8',
-    name: 'Accessible Authentication',
-    level: 'AA',
-    description: 'Login and authentication processes should be usable without needing to remember or type text like passwords unless there is another easy method like a login link or biometric login.',
-    passExamples: [
-      'Allowing sign-in using fingerprint or one-time link.'
-    ],
-    failExamples: [
-      'Only allows password entry with no accessible alternative.'
-    ]
-  },
-  {
-    id: '4.1.2',
-    name: 'Name, Role, Value',
-    level: 'A',
-    description: 'For screen readers and assistive technologies to understand web components, each element must have a proper name, role, and value defined (usually with ARIA or HTML).',
-    passExamples: [
-      '<button aria-label="Submit Form">Submit</button>'
-    ],
-    failExamples: [
-      '<div onclick="submitForm()">Submit</div>'
-    ]
-  },
-  {
-    id: '4.1.3',
-    name: 'Status Messages',
-    level: 'AA',
-    description: 'When something changes on the screen (like “Item added to cart”), the message should be announced by screen readers automatically without needing focus.',
-    passExamples: [
-      '<div role="status">Item added to cart</div>'
-    ],
-    failExamples: [
-      'Only visual message shown without screen reader notification.'
-    ]
-  },
+            // WCAG Section Elements
+            const wcagPages = document.querySelectorAll('#wcag-pages .wcag-page');
+            const prevWcagButton = document.getElementById('prev-wcag');
+            const nextWCAGButton = document.getElementById('next-wcag');
+            const currentWcagNum = document.getElementById('current-wcag-num');
+            let currentWcagIndex = 0;
 
 
-             // Add more success criteria here
-            ];
-            let currentScIndex = 0;
-
-            function showDisabilityPage(index) {
-                disabilityPages.forEach(page => page.classList.remove('active'));
-                disabilityPages[index].classList.add('active');
-                currentDisabilityNum.textContent = `${index + 1} of ${disabilityPages.length}`;
-                prevDisabilityButton.disabled = index === 0;
-                nextDisabilityButton.disabled = index === disabilityPages.length - 1;
-            }
-
-            function showPrinciplePage(index) {
-                principlePages.forEach(page => page.classList.remove('active'));
-                principlePages[index].classList.add('active');
-                currentPrincipleNum.textContent = `${index + 1} of ${principlePages.length}`;
-                prevPrincipleButton.disabled = index === 0;
-                nextPrincipleButton.disabled = index === principlePages.length - 1;
-            }
-
-            function displaySuccessCriterion(index) {
-                if (index >= 0 && index < successCriteria.length) {
-                    const sc = successCriteria[index];
-                    scDisplay.innerHTML = `
-                        <h4 aria-live="polite">${sc.id} ${sc.name} (Level ${sc.level})</h4>
-                        <p>${sc.description}</p>
-                        <h5>Pass Examples:</h5>
-                        <ul>
-                            ${sc.passExamples.map(example => `<li class="example pass"><pre>${example}</pre></li>`).join('')}
-                        </ul>
-                        <h5>Failure Examples:</h5>
-                        <ul>
-                            ${sc.failExamples.map(example => `<li class="example fail"><pre>${example}</pre></li>`).join('')}
-                        </ul>
-                    `;
-                    currentScNum.textContent = `${index + 1} of ${successCriteria.length}`;
-                    prevScButton.disabled = index === 0;
-                    nextScButton.disabled = index === successCriteria.length - 1;
+            // Helper functions for showing pages within each section
+            function showPage(pages, index, prevButton, nextButton, currentNumSpan) {
+                pages.forEach(page => page.classList.remove('active'));
+                if (pages[index]) { // Check if the page exists
+                    pages[index].classList.add('active');
+                    currentNumSpan.textContent = `${index + 1} of ${pages.length}`;
+                    prevButton.disabled = index === 0;
+                    nextButton.disabled = index === pages.length - 1;
+                } else {
+                    console.warn("Attempted to show a page that does not exist at index:", index);
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                    currentNumSpan.textContent = `0 of ${pages.length}`;
                 }
             }
 
+            // Tab switching logic
             tabs.forEach(tab => {
                 tab.addEventListener('click', function() {
                     const targetId = this.getAttribute('aria-controls');
 
-                    tabs.forEach(t => t.classList.remove('active'));
+                    // Deactivate all tabs and tab contents
+                    tabs.forEach(t => {
+                        t.classList.remove('active');
+                        t.setAttribute('aria-selected', 'false');
+                    });
                     tabContents.forEach(content => content.classList.remove('active'));
 
+                    // Activate the clicked tab and its content
                     this.classList.add('active');
-                    document.getElementById(targetId).classList.add('active');
-
-                    tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
                     this.setAttribute('aria-selected', 'true');
+                    const activeContent = document.getElementById(targetId);
+                    if (activeContent) {
+                        activeContent.classList.add('active');
+                    }
 
-                    if (targetId === 'disabilities-content') {
-                        currentDisabilityIndex = 0;
-                        showDisabilityPage(currentDisabilityIndex);
-                    } else if (targetId === 'wcag-principles-content') {
-                        currentPrincipleIndex = 0;
-                        showPrinciplePage(currentPrincipleIndex);
-                    } else if (targetId === 'wcag-success-criteria-content') {
-                        currentScIndex = 0;
-                        if (successCriteria.length > 0) {
-                            displaySuccessCriterion(currentScIndex);
-                        } else {
-                            scDisplay.innerHTML = '<p>No success criteria available.</p>';
-                            prevScButton.disabled = true;
-                            nextScButton.disabled = true;
-                            currentScNum.textContent = '';
-                        }
+                    // Reset and show the first page for the active tab's content
+                    switch (targetId) {
+                        case 'intro-content':
+                            currentIntroIndex = 0;
+                            showPage(introPages, currentIntroIndex, prevIntroButton, nextIntroButton, currentIntroNum);
+                            break;
+                        case 'disabilities-content':
+                            currentDisabilityIndex = 0;
+                            showPage(disabilityPages, currentDisabilityIndex, prevDisabilityButton, nextDisabilityButton, currentDisabilityNum);
+                            break;
+                        case 'wcag-overview-content':
+                            // This section has no pagination, no need to call showPage
+                            break;
+                        case 'wcag-principles-content':
+                            currentPrincipleIndex = 0;
+                            showPage(principlePages, currentPrincipleIndex, prevPrincipleButton, nextPrincipleButton, currentPrincipleNum);
+                            break;
+                        case 'wcag-content':
+                            currentWcagIndex = 0;
+                            showPage(wcagPages, currentWcagIndex, prevWcagButton, nextWCAGButton, currentWcagNum);
+                            break;
+                        case 'aria-content':
+                            currentAriaIndex = 0;
+                            showPage(ariaPages, currentAriaIndex, prevAriaButton, nextAriaButton, currentAriaNum);
+                            break;
+                        default:
+                            console.warn("Unhandled tab targetId:", targetId);
+                            break;
                     }
                 });
             });
 
-            // Initialize the first tab as active
-            tabs[0].classList.add('active');
-            tabContents[0].classList.add('active');
-            tabs[0].setAttribute('aria-selected', 'true');
-
-            // Initialize Disability Section
-            if (document.getElementById('disabilities-content').classList.contains('active')) {
-                showDisabilityPage(currentDisabilityIndex);
+            // Initialize the first tab as active on page load
+            // Simulate a click on the first tab to set up its content and pagination
+            if (tabs.length > 0) {
+                tabs[0].click();
             }
+
+            // Pagination event listeners
+            prevAriaButton.addEventListener('click', () => {
+                if (currentAriaIndex > 0) {
+                    currentAriaIndex--;
+                    showPage(ariaPages, currentAriaIndex, prevAriaButton, nextAriaButton, currentAriaNum);
+                }
+            });
+
+            nextAriaButton.addEventListener('click', () => {
+                if (currentAriaIndex < ariaPages.length - 1) {
+                    currentAriaIndex++;
+                    showPage(ariaPages, currentAriaIndex, prevAriaButton, nextAriaButton, currentAriaNum);
+                }
+            });
+
+            prevIntroButton.addEventListener('click', () => {
+                if (currentIntroIndex > 0) {
+                    currentIntroIndex--;
+                    showPage(introPages, currentIntroIndex, prevIntroButton, nextIntroButton, currentIntroNum);
+                }
+            });
+
+            nextIntroButton.addEventListener('click', () => {
+                if (currentIntroIndex < introPages.length - 1) {
+                    currentIntroIndex++;
+                    showPage(introPages, currentIntroIndex, prevIntroButton, nextIntroButton, currentIntroNum);
+                }
+            });
 
             prevDisabilityButton.addEventListener('click', () => {
                 if (currentDisabilityIndex > 0) {
                     currentDisabilityIndex--;
-                    showDisabilityPage(currentDisabilityIndex);
+                    showPage(disabilityPages, currentDisabilityIndex, prevDisabilityButton, nextDisabilityButton, currentDisabilityNum);
                 }
             });
 
             nextDisabilityButton.addEventListener('click', () => {
                 if (currentDisabilityIndex < disabilityPages.length - 1) {
                     currentDisabilityIndex++;
-                    showDisabilityPage(currentDisabilityIndex);
+                    showPage(disabilityPages, currentDisabilityIndex, prevDisabilityButton, nextDisabilityButton, currentDisabilityNum);
                 }
             });
-
-            // Initialize WCAG Principles Section
-            if (document.getElementById('wcag-principles-content').classList.contains('active')) {
-                showPrinciplePage(currentPrincipleIndex);
-            }
 
             prevPrincipleButton.addEventListener('click', () => {
                 if (currentPrincipleIndex > 0) {
                     currentPrincipleIndex--;
-                    showPrinciplePage(currentPrincipleIndex);
+                    showPage(principlePages, currentPrincipleIndex, prevPrincipleButton, nextPrincipleButton, currentPrincipleNum);
                 }
             });
 
             nextPrincipleButton.addEventListener('click', () => {
                 if (currentPrincipleIndex < principlePages.length - 1) {
                     currentPrincipleIndex++;
-                    showPrinciplePage(currentPrincipleIndex);
+                    showPage(principlePages, currentPrincipleIndex, prevPrincipleButton, nextPrincipleButton, currentPrincipleNum);
                 }
             });
 
-            // Initialize Success Criteria Section
-            if (document.getElementById('wcag-success-criteria-content').classList.contains('active') && successCriteria.length > 0) {
-                displaySuccessCriterion(currentScIndex);
-            }
-
-            prevScButton.addEventListener('click', () => {
-                if (currentScIndex > 0) {
-                    currentScIndex--;
-                    displaySuccessCriterion(currentScIndex);
+            prevWcagButton.addEventListener('click', () => {
+                if (currentWcagIndex > 0) {
+                    currentWcagIndex--;
+                    showPage(wcagPages, currentWcagIndex, prevWcagButton, nextWCAGButton, currentWcagNum);
                 }
             });
 
-            nextScButton.addEventListener('click', () => {
-                if (currentScIndex < successCriteria.length - 1) {
-                    currentScIndex++;
-                    displaySuccessCriterion(currentScIndex);
+            nextWCAGButton.addEventListener('click', () => {
+                if (currentWcagIndex < wcagPages.length - 1) {
+                    currentWcagIndex++;
+                    showPage(wcagPages, currentWcagIndex, prevWcagButton, nextWCAGButton, currentWcagNum);
                 }
             });
         });
