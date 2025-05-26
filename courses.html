@@ -30,8 +30,13 @@
         header {
             background-color: #333;
             color: white;
-            padding: 1em 0;
+            padding: 1em 20px; /* Added padding to the sides */
             text-align: center;
+            position: relative; /* Needed for absolute positioning of profile dropdown */
+        }
+
+        header h1 {
+            margin-bottom: 10px; /* Adjust spacing below the title */
         }
 
         nav {
@@ -69,6 +74,7 @@
             margin: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 80px; /* Ensure space for fixed footer */
         }
 
         footer {
@@ -80,29 +86,83 @@
             bottom: 0;
             width: 100%;
         }
+
+        /* Styles for profile button and dropdown */
+        .profile-container {
+            position: absolute; /* Position relative to the header */
+            top: 10px;
+            right: 20px; /* Adjust as needed */
+            display: inline-block;
+        }
+
+        .profile-container button {
+            padding: 8px 15px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .profile-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .profile-dropdown {
+            display: none; /* Hidden by default */
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px; /* Adjust width as needed */
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0; /* Align dropdown to the right of the button */
+            border-radius: 4px;
+            padding: 10px;
+            top: 45px; /* Position below the button */
+            color: #333; /* Ensure text is visible */
+            text-align: left;
+        }
+
+        .profile-dropdown p {
+            margin: 5px 0;
+            font-size: 14px;
+            padding: 0 5px; /* Add some padding inside the dropdown */
+        }
+
+        .profile-dropdown button {
+            width: calc(100% - 10px); /* Adjust width to fit padding */
+            margin: 10px 5px 0; /* Adjust margin for logout button */
+            background-color: #dc3545; /* Red for logout */
+        }
+
+        .profile-dropdown button:hover {
+            background-color: #c82333;
+        }
     </style>
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header>
         <h1>Welcome to Accessible World Topics</h1>
-        <div id="user-profile">
-            <p class="profile-item"><strong aria-label="User Name">Name:</strong> <span id="profile-name"></span></p>
-            <p class="profile-item"><strong aria-label="Mobile Number">Mobile:</strong> <span id="profile-mobile"></span></p>
-            <p class="profile-item"><strong aria-label="Email Address">Email:</strong> <span id="profile-email"></span></p>
+        <div class="profile-container">
+            <button id="profileBtn" aria-expanded="false" aria-controls="profileDetails">Profile</button>
+            <div id="profileDetails" class="profile-dropdown">
+                <p class="profile-item"><strong aria-label="User Name">Name:</strong> <span id="profile-name"></span></p>
+                <p class="profile-item"><strong aria-label="Mobile Number">Mobile:</strong> <span id="profile-mobile"></span></p>
+                <p class="profile-item"><strong aria-label="Email Address">Email:</strong> <span id="profile-email"></span></p>
+                <p><strong aria-label="Referral Link">Referral Link:</strong> <span id="referral-link-span"></span></p>
+                <button id="logout-btn">Logout</button>
+            </div>
         </div>
-        <div id="referral-info"><strong aria-label="Referral Link">Referral Link:</strong> <span id="referral-link-span"></span></div>
-        <button id="logout-btn">Logout</button>
     </header>
-<nav aria-label="main">
+    <nav aria-label="main">
         <ul type="none">
             <li><a href="courses.html">Go to Courses Home Page</a></li>
             <li><a href="dashboard.html">Go to dashboard page</a></li>
-
         </ul>
-</nav>
+    </nav>
     <nav aria-label="Course Navigation">
-<ul type="none">
+        <ul type="none">
             <li><a href="programming_language.html">Programming Languages</a></li>
             <li><a href="accessibility.html">Web Accessibility</a></li>
             <li><a href="interview.html">Interview Questions</a></li>
@@ -115,7 +175,7 @@
         <p>Accessible World is dedicated to providing accessible learning resources for everyone. We believe that knowledge should be available to all, regardless of their abilities. Our platform offers a variety of topics and courses designed with accessibility in mind, ensuring a seamless learning experience for users with diverse needs.</p>
         <p>Explore our technical courses to gain practical skills in areas like web accessibility and front-end development. Prepare for competitive exams with our curated GK bits and current affairs sections.</p>
         <p>We are continuously expanding our offerings, so be sure to check back regularly for new and exciting learning opportunities!</p>
-        </main>
+    </main>
     <footer>
         <p>&copy; 2025 Accessible World</p>
     </footer>
@@ -127,11 +187,11 @@
         const firebaseConfig = {
             apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k", // Replace with your actual API key
             authDomain: "accessibleworld-7f599.firebaseapp.com", // Replace with your auth domain
-            projectId: "accessibleworld-7f599",             // Replace with your project ID
+            projectId: "accessibleworld-7f599",              // Replace with your project ID
             storageBucket: "accessibleworld-7f599.appspot.com", // Replace with your storage bucket
-            messagingSenderId: "264437218598",           // Replace with your messaging sender ID
+            messagingSenderId: "264437218598",               // Replace with your messaging sender ID
             appId: "1:264437218598:web:cae58c1e578c7b08b815e7", // Replace with your app ID
-            measurementId: "G-1QRWXYRZ76"                  // Replace with your measurement ID
+            measurementId: "G-1QRWXYRZ76"                   // Replace with your measurement ID
         };
 
         const app = initializeApp(firebaseConfig);
@@ -139,61 +199,59 @@
         const db = getFirestore(app);
 
         const bodyElement = document.body;
-        const accessDeniedMessage = document.getElementById('access-denied-message');
-        const courseContent = document.getElementById('course-content');
-        const paidCoursesList = document.getElementById('paid-courses-list');
-        const userProfileDiv = document.getElementById('user-profile');
+        // Removed elements that are not present in this HTML for clarity:
+        // const accessDeniedMessage = document.getElementById('access-denied-message');
+        // const courseContent = document.getElementById('course-content');
+        // const paidCoursesList = document.getElementById('paid-courses-list');
+
+        // Get the new profile elements
+        const profileBtn = document.getElementById('profileBtn');
+        const profileDetails = document.getElementById('profileDetails');
+
         const profileNameSpan = document.getElementById('profile-name');
         const profileMobileSpan = document.getElementById('profile-mobile');
         const profileEmailSpan = document.getElementById('profile-email');
-        const referralInfoDiv = document.getElementById('referral-info');
         const referralLinkSpan = document.getElementById('referral-link-span');
         const logoutButton = document.getElementById('logout-btn');
 
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const uid = user.uid;
-                // User is logged in, now check payment status and fetch user data
                 const userDocRef = doc(db, "users", uid);
                 const userDocSnap = await getDoc(userDocRef);
 
                 if (userDocSnap.exists()) {
                     const userData = userDocSnap.data();
                     if (userData.paymentStatus === "Paid") {
-                        // User has paid, allow access to courses and display profile info
                         console.log("User is logged in and has paid. Allowing access.");
-                        // If you had these elements, you would hide them:
-                        // accessDeniedMessage.style.display = "none";
-                        // courseContent.style.display = "block";
-                        // paidCoursesList.innerHTML = `
-                        //     <li><a href="advanced_accessibility.html">Advanced Web Accessibility Testing</a></li>
-                        //     <li><a href="semantic_html.html">HTML5 Semantic Elements and Accessibility</a></li>
-                        //     <li><a href="js_frameworks_a11y.html">JavaScript Frameworks and Accessibility</a></li>
-                        //     <li><a href="in_depth_gk.html">In-depth GK and Current Affairs Analysis</a></li>
-                        // `;
+
                         profileNameSpan.textContent = userData.fullName || 'N/A';
                         profileMobileSpan.textContent = userData.mobile || 'N/A';
                         profileEmailSpan.textContent = user.email;
                         referralLinkSpan.textContent = `${location.origin}/register.html?ref=${uid}`;
                         bodyElement.style.display = 'block'; // Show the content
                     } else {
-                        // User has not paid, redirect immediately
                         console.log("User is logged in but has not paid. Redirecting to index.");
                         alert("Please join our membership to access the courses.");
                         window.location.href = "index.html"; // Or your pricing page
                     }
                 } else {
-                    // User data not found, something is wrong, redirect to login
                     console.error("User data not found for UID:", uid);
                     alert("Error: Could not verify your membership. Please log in again.");
                     window.location.href = "index.html"; // Or your login page
                 }
             } else {
-                // User is not logged in, redirect to login immediately
                 console.log("User is not logged in. Redirecting to index.");
                 alert("Please log in to access the courses.");
                 window.location.href = "index.html"; // Or your login page
             }
+        });
+
+        // Event listener for the profile button
+        profileBtn.addEventListener('click', () => {
+            const isExpanded = profileBtn.getAttribute("aria-expanded") === "true";
+            profileBtn.setAttribute("aria-expanded", !isExpanded);
+            profileDetails.style.display = isExpanded ? "none" : "block"; // Toggle visibility
         });
 
         logoutButton.addEventListener('click', async () => {
