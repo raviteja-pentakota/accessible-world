@@ -119,32 +119,71 @@
             pointer-events: none;
             user-select: none;
         }
+
+        /* Styles for profile dropdown */
+        .profile-container {
+            position: relative;
+            display: inline-block;
+            float: right; /* To align it to the right */
+        }
+
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0; /* Align dropdown to the right of the button */
+            border-radius: 4px;
+            padding: 10px;
+            top: 40px; /* Position below the button */
+        }
+
+        .profile-dropdown p {
+            margin: 5px 0;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        .profile-dropdown button {
+            width: 100%;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="card">
         <h1>Welcome to Accessible World Tutorials</h1>
-        <p><strong>Name:</strong> <span id="user-name"></span></p>
-        <p><strong>Mobile:</strong> <span id="user-mobile"></span></p>
-        <p><strong>Email:</strong> <span id="user-email"></span></p>
+        <div class="profile-container">
+            <button id="profileBtn" aria-expanded="false" aria-controls="profileDetails">Profile</button>
+            <div id="profileDetails" class="profile-dropdown">
+                <p><strong>Name:</strong> <span id="user-name"></span></p>
+                <p><strong>Mobile:</strong> <span id="user-mobile"></span></p>
+                <p><strong>Email:</strong> <span id="user-email"></span></p>
+                <button id="logout" style="background:#dc3545">Logout</button>
+            </div>
+        </div>
         <p><strong>Payment Status:</strong> <span id="user-payment-status"></span></p>
-        <button id="logout" style="float:right;background:#dc3545">Logout</button>
+
         <h2>Your Referral Link</h2>
         <p><span id="referral-link"></span></p>
         <button id="copyLink">Copy Link</button>
-<p>To understand how the referral system works, click <a href="how_referral.html" target="_blank">Click Here</a>.</p>    </div>
+        <p>To understand how the referral system works, click <a href="how_referral.html" target="_blank">Click Here</a>.</p>
+    </div>
 
-<h2>About Us</h2>
-<p> At Accessible World Tutorials, we are committed to making the digital world inclusive and accessible for everyone. Our platform offers high-quality learning materials across a wide range of topics, including HTML, JavaScript, stock market education, and the latest tech updates for Android and Windows. Whether you're looking to master web development, improve your programming skills, or gain financial knowledge, our tutorials feature clear explanations, practical examples, video lessons, and hands-on files. Accessibility is at the core of everything we do — with expert guidance, comprehensive resources, and engaging content, we ensure a learning experience that is both empowering and effective.
-By joining us with just a one-time subscription, you'll unlock free access to our full course on accessibility testing, valuable general knowledge and current affairs content, and downloadable HTML practical files with video lessons. Join now to learn, grow, and succeed in an inclusive environment designed to support your journey every step of the way.
-</p>        
-        <div id="payment-section">
-            <button id="payBtn">Join and Pay ₹1000 Membership</button>
-        </div>
-        <div id="course-access" style="display:none; margin-top:10px;">
-            <p style="color:green;">You are already a paid member. To access the paid courses, click below:</p>
-            <button id="coursesBtn">Access Courses</button>
-        </div>
+    <h2>About Us</h2>
+    <p> At Accessible World Tutorials, we are committed to making the digital world inclusive and accessible for everyone. Our platform offers high-quality learning materials across a wide range of topics, including HTML, JavaScript, stock market education, and the latest tech updates for Android and Windows. Whether you're looking to master web development, improve your programming skills, or gain financial knowledge, our tutorials feature clear explanations, practical examples, video lessons, and hands-on files. Accessibility is at the core of everything we do — with expert guidance, comprehensive resources, and engaging content, we ensure a learning experience that is both empowering and effective.
+    By joining us with just a one-time subscription, you'll unlock free access to our full course on accessibility testing, valuable general knowledge and current affairs content, and downloadable HTML practical files with video lessons. Join now to learn, grow, and succeed in an inclusive environment designed to support your journey every step of the way.
+    </p>
+
+    <div id="payment-section">
+        <button id="payBtn">Join and Pay ₹1000 Membership</button>
+    </div>
+    <div id="course-access" style="display:none; margin-top:10px;">
+        <p style="color:green;">You are already a paid member. To access the paid courses, click below:</p>
+        <button id="coursesBtn">Access Courses</button>
+    </div>
 
     <div class="card">
         <button id="toggleReferral" aria-expanded="false">Show/Hide Referral Details</button>
@@ -155,9 +194,9 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
             <p><strong>Total Withdrawn as of now:</strong> <span id="total-withdrawn-display">₹0</span></p>
             <p><strong>Available Balance:</strong> <span id="available-balance-display">₹0</span></p>
             <p>Total Earnings: <span id="total-earnings">₹0</span></p>
-<h3>Withdrawal History</h3>
-<p>You can view all your past withdrawal transactions using the link below.<br>
-<a href="withdraw_history.html">View Withdrawal History</a></p>
+            <h3>Withdrawal History</h3>
+            <p>You can view all your past withdrawal transactions using the link below.<br>
+            <a href="withdraw_history.html">View Withdrawal History</a></p>
             <table aria-label="Referral History Table">
                 <thead>
                     <tr>
@@ -171,18 +210,15 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
                 </thead>
                 <tbody id="referral-details"></tbody>
             </table>
-    <div class="card">
-        <h3>Withdraw Earnings</h3>
-        <p id="withdraw-status"></p>
-        <div style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;">
-        <button id="withdrawBtn">Request Withdrawal</button>
-
+            <div class="card">
+                <h3>Withdraw Earnings</h3>
+                <p id="withdraw-status"></p>
+                <div style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;">
+                    <button id="withdrawBtn">Request Withdrawal</button>
+                </div>
+            </div>
         </div>
     </div>
-
-        </div>
-    </div>
-
 
     <div id="admin-section" class="admin-section" style="display:none">
         <h3>Admin: Pending Withdrawals</h3>
@@ -258,6 +294,10 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
         const auth = getAuth();
         const db = getFirestore(app);
 
+        // New profile elements
+        const profileBtn = document.getElementById("profileBtn");
+        const profileDetails = document.getElementById("profileDetails");
+
         const nameField = document.getElementById("user-name");
         const mobileField = document.getElementById("user-mobile");
         const emailField = document.getElementById("user-email");
@@ -267,12 +307,6 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
         const referralLinkField = document.getElementById("referral-link");
         const copyLinkBtn = document.getElementById("copyLink");
         const toggleReferralBtn = document.getElementById("toggleReferral");
-toggleReferralBtn.addEventListener('click', () => {
-    const isExpanded = toggleReferralBtn.getAttribute("aria-expanded") === "true";
-    toggleReferralBtn.setAttribute("aria-expanded", !isExpanded);
-    referralSection.style.display = isExpanded ? "block" : "none"; // Corrected line
-    toggleReferralBtn.textContent = isExpanded ? "Hide Referral Details" : "Show Referral Details";
-});
         const referralSection = document.getElementById("referralSection");
         const referralCountField = document.getElementById("referral-count");
         const earningsField = document.getElementById("total-earnings");
@@ -298,7 +332,7 @@ toggleReferralBtn.addEventListener('click', () => {
         const paymentIdInput = document.getElementById("paymentId");
         const availableAmountInput = document.getElementById("availableAmount");
         const withdrawAmountInput = document.getElementById("withdrawAmount");
-const submitWithdrawalButton = document.getElementById("submitWithdrawal");
+        const submitWithdrawalButton = document.getElementById("submitWithdrawal");
         const cancelWithdrawalButton = document.getElementById("cancelWithdrawal");
 
         let currentUserId, currentUserName, currentUserMobile, currentUserEmail, currentEarnings=0;
@@ -349,7 +383,7 @@ const submitWithdrawalButton = document.getElementById("submitWithdrawal");
             mobileField.textContent = currentUserMobile;
             emailField.textContent = currentUserEmail;
             paymentField.textContent = userData.paymentStatus || "Pending";
-        referralLinkField.textContent = `${location.origin}/register.html?ref=${user.uid}`;
+            referralLinkField.textContent = `${location.origin}/register.html?ref=${user.uid}`;
             const refs = await fetchReferralLevels(user.uid);
             referralCountField.textContent = refs.length;
             referralDetails.innerHTML = "";
@@ -366,7 +400,7 @@ const submitWithdrawalButton = document.getElementById("submitWithdrawal");
                 calculatedReferralEarnings += earning;
                 const tr = document.createElement("tr");
 
-tr.innerHTML = `<td>${r.level}</td><td>${r.fullName}</td><td>${r.mobile}</td><td>${r.email}</td><td>${r.paymentStatus}</td><td>₹${earning}</td>`;
+                tr.innerHTML = `<td>${r.level}</td><td>${r.fullName}</td><td>${r.mobile}</td><td>${r.email}</td><td>${r.paymentStatus}</td><td>₹${earning}</td>`;
                 referralDetails.append(tr);
             });
 
@@ -406,41 +440,155 @@ tr.innerHTML = `<td>${r.level}</td><td>${r.fullName}</td><td>${r.mobile}</td><td
                 await fetchWithdrawalsForAdmin();
             }
         });
+
+        // Toggle profile details
+        profileBtn.addEventListener('click', () => {
+            const isExpanded = profileBtn.getAttribute("aria-expanded") === "true";
+            profileBtn.setAttribute("aria-expanded", !isExpanded);
+            profileDetails.style.display = isExpanded ? "none" : "block";
+        });
+
         logoutBtn.onclick = ()=> signOut(auth).then(()=>location.href="index.html");
         copyLinkBtn.onclick = ()=> { navigator.clipboard.writeText(referralLinkField.textContent); alert("Copied!"); }
-            toggleReferralBtn.onclick = ()=> referralSection.style.display = referralSection.style.display==="none"?"block":"none";
+        toggleReferralBtn.addEventListener('click', () => {
+            const isExpanded = toggleReferralBtn.getAttribute("aria-expanded") === "true";
+            toggleReferralBtn.setAttribute("aria-expanded", !isExpanded);
+            referralSection.style.display = isExpanded ? "none" : "block"; // Corrected line
+            toggleReferralBtn.textContent = isExpanded ? "Show/Hide Referral Details" : "Show/Hide Referral Details";
+        });
 
-            payBtn.onclick = ()=>{
-                new Razorpay({
-                    key:"rzp_live_jarrSjgdfymA2D",
-                    amount:100000, currency:"INR",
-                    name:"Accessible World Tutorials",
-                    description:"🌟 Membership Fee – One-Time Access to All Courses",
-                    prefill:{ name:currentUserName, email:currentUserEmail, contact:currentUserMobile},
-                    theme:{ color:"#007bff" },
-                    handler: async resp=>{
-                        alert("Paid: "+resp.razorpay_payment_id);
-                        await updateDoc(doc(db,"users",currentUserId),{ paymentStatus:"Paid" });
-                        paymentField.textContent="Paid";
-                        paymentSection.style.display = "none";
-                        courseAccessSection.style.display = "block";
-                    }
-                }).open();
-            };
+        payBtn.onclick = ()=>{
+            new Razorpay({
+                key:"rzp_test_65YRKaINc6MqXg",
+                amount: 100000, // Amount in paise (1000 * 100 = 100000)
+                currency: "INR",
+                name:"Accessible World Tutorials",
+                description:"Membership Fee",
+                prefill:{ name:currentUserName, email:currentUserEmail, contact:currentUserMobile},
+                theme:{ color:"#007bff" },
+                handler: async resp=>{
+                    alert("Paid: "+resp.razorpay_payment_id);
+                    await updateDoc(doc(db,"users",currentUserId),{ paymentStatus:"Paid" });
+                    paymentField.textContent="Paid";
+                    paymentSection.style.display = "none";
+                    courseAccessSection.style.display = "block";
+                }
+            }).open();
+        };
 
-            withdrawBtn.onclick = ()=>{
-                if(currentEarnings<100) return statusMessage.textContent="Min ₹100 to withdraw";
-                // Open the modal
-                withdrawModal.style.display = "block";
-                withdrawModal.setAttribute("aria-hidden", "false");
-                document.body.classList.add("modal-open"); // Optional: Add a class to body if needed for styling
-                withdrawModal.querySelector('.close-button').focus(); // Set focus to the close button
+        withdrawBtn.onclick = ()=>{
+            if(currentEarnings<100) return statusMessage.textContent="Min ₹100 to withdraw";
+            // Open the modal
+            withdrawModal.style.display = "block";
+            withdrawModal.setAttribute("aria-hidden", "false");
+            document.body.classList.add("modal-open"); // Optional: Add a class to body if needed for styling
+            withdrawModal.querySelector('.close-button').focus(); // Set focus to the close button
 
-                totalAmountModal.value = `₹${currentEarnings}`;
-                availableAmountInput.value = `₹${currentEarnings}`;
-            };
+            totalAmountModal.value = `₹${currentEarnings}`;
+            availableAmountInput.value = `₹${currentEarnings}`;
+        };
 
-            closeButton.onclick = function() {
+        closeButton.onclick = function() {
+            withdrawModal.style.display = "none";
+            withdrawModal.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("modal-open"); // Optional: Remove the class from body
+            paymentDetailsDiv.style.display = "none";
+            paymentMethodDropdown.value = "";
+            paymentIdInput.value = "";
+            withdrawAmountInput.value = "";
+            submitWithdrawalButton.disabled = true;
+            withdrawBtn.focus(); // Return focus to the withdraw button
+        }
+
+        cancelWithdrawalButton.onclick = function() {
+            withdrawModal.style.display = "none";
+            withdrawModal.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("modal-open"); // Optional: Remove the class from body
+            paymentDetailsDiv.style.display = "none";
+            paymentMethodDropdown.value = "";
+            paymentIdInput.value = "";
+            withdrawAmountInput.value = "";
+            submitWithdrawalButton.disabled = true;
+            withdrawBtn.focus(); // Return focus to the withdraw button
+        }
+
+        paymentMethodDropdown.addEventListener('change', function() {
+            if (this.value) {
+                paymentDetailsDiv.style.display = "block";
+            } else {
+                paymentDetailsDiv.style.display = "none";
+                paymentIdInput.value = "";
+                withdrawAmountInput.value = "";
+                submitWithdrawalButton.disabled = true;
+            }
+            validateWithdrawalForm();
+        });
+
+        paymentIdInput.addEventListener('input', validateWithdrawalForm);
+        withdrawAmountInput.addEventListener('input', validateWithdrawalForm);
+
+        function validateWithdrawalForm() {
+            if (paymentMethodDropdown.value && paymentIdInput.value && withdrawAmountInput.value && parseFloat(withdrawAmountInput.value) > 0 && parseFloat(withdrawAmountInput.value) <= currentEarnings) {
+                submitWithdrawalButton.disabled = false;
+            } else {
+                submitWithdrawalButton.disabled = true;
+            }
+        }
+
+        submitWithdrawalButton.onclick = async () => {
+            const selectedMethod = paymentMethodDropdown.value;
+            const paymentId = paymentIdInput.value;
+            const requestedAmount = parseFloat(withdrawAmountInput.value);
+
+            if (!selectedMethod) {
+                alert("Please select a payment method.");
+                return;
+            }
+
+            if (!paymentId) {
+                alert("Please enter your UPI ID or number.");
+                return;
+            }
+
+            if (isNaN(requestedAmount) || requestedAmount < 100) {
+                alert("Minimum withdrawal amount is ₹100.");
+                return;
+            }
+            if (isNaN(requestedAmount) || requestedAmount <= 0 || requestedAmount > currentEarnings) {
+                alert(`Please enter a valid withdrawal amount (up to ₹${currentEarnings}).`);
+                return;
+            }
+            try {
+                await addDoc(collection(db, "withdrawals"), {
+                    userId: currentUserId,
+                    fullName: currentUserName,
+                    email: currentUserEmail,
+                    phone: currentUserMobile,
+                    amount: requestedAmount,
+                    paymentMethod: selectedMethod,
+                    paymentId: paymentId,
+                    requestedAt: serverTimestamp(),
+                    status: "Pending"
+                });
+                statusMessage.textContent = "Withdrawal request submitted!";
+
+                // Update the total withdrawn amount in the database
+                const userRef = doc(db, "users", currentUserId);
+                const userData = (await getDoc(userRef)).data();
+                const currentWithdrawn = userData?.totalWithdrawnAmount || 0;
+                const newTotalWithdrawn = currentWithdrawn + requestedAmount;
+                await updateDoc(userRef, {
+                    totalWithdrawnAmount: newTotalWithdrawn
+                });
+
+                // Update the local currentEarnings variable and the displayed value
+                currentEarnings -= requestedAmount; // Update local available earnings
+                earningsField.textContent = `₹${currentEarnings}`; // Display available earnings
+                totalAmountModal.value = `₹${currentEarnings}`; // Update modal total
+                availableAmountInput.value = `₹${currentEarnings}`; // Update modal available
+
+                statusMessage.textContent = "Payment successfull: You will receive the amount in 48 hours on the provided payment method.";
+                alert("Payment successfull: You will receive the amount in 24 hours on the provided payment method.");
                 withdrawModal.style.display = "none";
                 withdrawModal.setAttribute("aria-hidden", "true");
                 document.body.classList.remove("modal-open"); // Optional: Remove the class from body
@@ -450,112 +598,12 @@ tr.innerHTML = `<td>${r.level}</td><td>${r.fullName}</td><td>${r.mobile}</td><td
                 withdrawAmountInput.value = "";
                 submitWithdrawalButton.disabled = true;
                 withdrawBtn.focus(); // Return focus to the withdraw button
+            } catch (e) {
+                console.error(e);
+                statusMessage.textContent = "Could not submit withdrawal request.";
             }
-
-            cancelWithdrawalButton.onclick = function() {
-                withdrawModal.style.display = "none";
-                withdrawModal.setAttribute("aria-hidden", "true");
-                document.body.classList.remove("modal-open"); // Optional: Remove the class from body
-                paymentDetailsDiv.style.display = "none";
-                paymentMethodDropdown.value = "";
-                paymentIdInput.value = "";
-                withdrawAmountInput.value = "";
-                submitWithdrawalButton.disabled = true;
-                withdrawBtn.focus(); // Return focus to the withdraw button
-            }
-
-            paymentMethodDropdown.addEventListener('change', function() {
-                if (this.value) {
-                    paymentDetailsDiv.style.display = "block";
-                } else {
-                    paymentDetailsDiv.style.display = "none";
-                    paymentIdInput.value = "";
-                    withdrawAmountInput.value = "";
-                    submitWithdrawalButton.disabled = true;
-                }
-                validateWithdrawalForm();
-            });
-
-            paymentIdInput.addEventListener('input', validateWithdrawalForm);
-            withdrawAmountInput.addEventListener('input', validateWithdrawalForm);
-
-            function validateWithdrawalForm() {
-                if (paymentMethodDropdown.value && paymentIdInput.value && withdrawAmountInput.value && parseFloat(withdrawAmountInput.value) > 0 && parseFloat(withdrawAmountInput.value) <= currentEarnings) {
-                    submitWithdrawalButton.disabled = false;
-                } else {
-                    submitWithdrawalButton.disabled = true;
-                }
-            }
-
-submitWithdrawalButton.onclick = async () => {
-                const selectedMethod = paymentMethodDropdown.value;
-                const paymentId = paymentIdInput.value;
-                const requestedAmount = parseFloat(withdrawAmountInput.value);
-
-                if (!selectedMethod) {
-                    alert("Please select a payment method.");
-                    return;
-                }
-
-                if (!paymentId) {
-                    alert("Please enter your UPI ID or number.");
-                    return;
-                }
-
-    if (isNaN(requestedAmount) || requestedAmount < 100) {
-        alert("Minimum withdrawal amount is ₹100.");
-                    return;
-                }
-    if (isNaN(requestedAmount) || requestedAmount <= 0 || requestedAmount > currentEarnings) {
-        alert(`Please enter a valid withdrawal amount (up to ₹${currentEarnings}).`);
-        return;
-    }
-                try {
-                    await addDoc(collection(db, "withdrawals"), {
-                        userId: currentUserId,
-                        fullName: currentUserName,
-                        email: currentUserEmail,
-                        phone: currentUserMobile,
-                        amount: requestedAmount,
-                        paymentMethod: selectedMethod,
-                        paymentId: paymentId,
-                        requestedAt: serverTimestamp(),
-                        status: "Pending"
-                    });
-                    statusMessage.textContent = "Withdrawal request submitted!";
-
-                    // Update the total withdrawn amount in the database
-                    const userRef = doc(db, "users", currentUserId);
-                    const userData = (await getDoc(userRef)).data();
-                    const currentWithdrawn = userData?.totalWithdrawnAmount || 0;
-                    const newTotalWithdrawn = currentWithdrawn + requestedAmount;
-                    await updateDoc(userRef, {
-                        totalWithdrawnAmount: newTotalWithdrawn
-                    });
-
-                    // Update the local currentEarnings variable and the displayed value
-                    currentEarnings -= requestedAmount; // Update local available earnings
-                    earningsField.textContent = `₹${currentEarnings}`; // Display available earnings
-                    totalAmountModal.value = `₹${currentEarnings}`; // Update modal total
-                    availableAmountInput.value = `₹${currentEarnings}`; // Update modal available
-
-                    statusMessage.textContent = "Your payment has been successfully processed. Funds will be credited to your specified payment method within two working days (T+2).";
-                    alert("Your payment has been successfully processed. Funds will be credited to your specified payment method within two working days (T+2).");
-                    withdrawModal.style.display = "none";
-                    withdrawModal.setAttribute("aria-hidden", "true");
-                    document.body.classList.remove("modal-open"); // Optional: Remove the class from body
-                    paymentDetailsDiv.style.display = "none";
-                    paymentMethodDropdown.value = "";
-                    paymentIdInput.value = "";
-                    withdrawAmountInput.value = "";
-                    submitWithdrawalButton.disabled = true;
-                    withdrawBtn.focus(); // Return focus to the withdraw button
-                } catch (e) {
-                    console.error(e);
-                    statusMessage.textContent = "Could not submit withdrawal request.";
-                }
-            };
-            coursesBtn.onclick = ()=> window.location.href = 'courses.html';
-        </script>
-    </body>
-    </html>
+        };
+        coursesBtn.onclick = ()=> window.location.href = 'courses.html';
+    </script>
+</body>
+</html>

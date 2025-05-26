@@ -304,19 +304,76 @@
             color: white;
             font-size: 0.9em;
         }
+        /* Styles for profile button and dropdown */
+        .profile-container {
+            position: absolute; /* Position relative to the header */
+            top: 10px;
+            right: 20px; /* Adjust as needed */
+            display: inline-block;
+        }
+
+        .profile-container button {
+            padding: 8px 15px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .profile-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .profile-dropdown {
+            display: none; /* Hidden by default */
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px; /* Adjust width as needed */
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0; /* Align dropdown to the right of the button */
+            border-radius: 4px;
+            padding: 10px;
+            top: 45px; /* Position below the button */
+            color: #333; /* Ensure text is visible */
+            text-align: left;
+        }
+
+        .profile-dropdown p {
+            margin: 5px 0;
+            font-size: 14px;
+            padding: 0 5px; /* Add some padding inside the dropdown */
+        }
+
+        .profile-dropdown button {
+            width: calc(100% - 10px); /* Adjust width to fit padding */
+            margin: 10px 5px 0; /* Adjust margin for logout button */
+            background-color: #dc3545; /* Red for logout */
+        }
+
+        .profile-dropdown button:hover {
+            background-color: #c82333;
+        }
+
+
+
     </style>
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header>
         <h1>Welcome to Accessible World Topics</h1>
-        <div id="user-profile">
-            <p class="profile-item"><strong aria-label="User Name">Name:</strong> <span id="profile-name"></span></p>
-            <p class="profile-item"><strong aria-label="Mobile Number">Mobile:</strong> <span id="profile-mobile"></span></p>
-            <p class="profile-item"><strong aria-label="Email Address">Email:</strong> <span id="profile-email"></span></p>
+        <div class="profile-container">
+            <button id="profileBtn" aria-expanded="false" aria-controls="profileDetails">Profile</button>
+            <div id="profileDetails" class="profile-dropdown">
+                <p class="profile-item"><strong aria-label="User Name">Name:</strong> <span id="profile-name"></span></p>
+                <p class="profile-item"><strong aria-label="Mobile Number">Mobile:</strong> <span id="profile-mobile"></span></p>
+                <p class="profile-item"><strong aria-label="Email Address">Email:</strong> <span id="profile-email"></span></p>
+                <p><strong aria-label="Referral Link">Referral Link:</strong> <span id="referral-link-span"></span></p>
+                <button id="logout-btn">Logout</button>
+            </div>
         </div>
-        <div id="referral-info"><strong aria-label="Referral Link">Referral Link:</strong> <span id="referral-link-span"></span></div>
-        <button id="logout-btn">Logout</button>
     </header>
     <nav aria-label="main">
         <ul>
@@ -325,7 +382,6 @@
         </ul>
     </nav>
     <nav aria-label="Course Navigation">
-        <ul>
 <ul type="none">
             <li><a href="programming_language.html">Programming Languages</a></li>
             <li><a href="accessibility.html">Web Accessibility</a></li>
@@ -671,7 +727,6 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/qcJE5T__Ouc?si=F_CZd1F3Pd8pkpeM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
 
-                <hr>
 
                 <div id="wcag-page2" class="wcag-page">
                     <h2>1.2.1: Audio-only and Video-only (Prerecorded)</h2>
@@ -690,9 +745,12 @@
                         An audio lecture without a transcript. <br>
                         A video with no sound and no accompanying text or audio description.
                     </p>
-                </div>
+                    <h3>Telugu video explanation with practical:</h3>
 
-                <hr>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZNFQYSfdlh8?si=b7xhE-TR3q1Obpn3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+                 
 
                 <div id="wcag-page3" class="wcag-page">
                     <h2>1.2.2: Captions (Prerecorded)</h2>
@@ -711,9 +769,12 @@
                         A promotional video with spoken audio but no captions. <br>
                         A tutorial video that relies on speech but has no captioning option.
                     </p>
+                    <h3>Telugu video explanation with practical:</h3>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OH1CiiAGPAg?si=qy2gTRLyYm4G5rC0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
 
-<hr>
+ 
 
 <div id="wcag-page4" class="wcag-page">
     <h2>1.2.3: Audio Description or Media Alternative (Prerecorded)</h2>
@@ -732,9 +793,10 @@
         A cooking demonstration video where all actions are visual, with no descriptive narration or transcript. <br>
         A product demo video with on-screen instructions only and no explanation for blind users.
     </p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QBzxWOPmgyU?si=BXSew5RI2AwYItmn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page5" class="wcag-page">
     <h2>1.2.4: Captions (Live)</h2>
@@ -753,8 +815,11 @@
         A live stream with audio but no captions at all. <br>
         Captions are used but are severely delayed or inaccurate.
     </p>
+                    <h3>Telugu video explanation with practical:</h3>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_SpvnRn04Rs?si=Z3RdMgByt_MERKmb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
-<hr>
+ 
 
 <div id="wcag-page6" class="wcag-page">
     <h2>1.2.5: Audio Description (Prerecorded)</h2>
@@ -773,9 +838,12 @@
         A video that shows a process or demonstration without describing it for blind users. <br>
         A movie with key visual elements not described in the audio track.
     </p>
+                    <h3>Telugu video explanation with practical:</h3>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/emaEec970Xs?si=Y_3yh9AfzwA67y4l" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page7" class="wcag-page">
     <h2>1.3.1: Info and Relationships</h2>
@@ -794,30 +862,94 @@
         '&lt;div style="font-weight: bold;"&gt;Name:&lt;/div&gt;&lt;input type="text"&gt;' <br>
         '&lt;table&gt;&lt;tr&gt;&lt;td&gt;Product&lt;/td&gt;&lt;td&gt;Price&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Book&lt;/td&gt;&lt;td&gt;$10&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; (no semantic headers)'
     </p>
+                    <h3>Telugu video explanation with practical:</h3>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PZ13RZR-1TM?si=3tOUPhxelD8AZ6v5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page8" class="wcag-page">
-    <h2>1.3.2: Meaningful Sequence</h2>
-    <p>level: A</p>
-    <h3>description:</h3>
-    <p>When the order in which content is presented affects its meaning, that order must be preserved programmatically. This ensures that assistive technologies, such as screen readers, present content in a way that preserves the intended meaning and flow.</p>
+<h2>1.3.2: Meaningful Sequence</h2>
+<p>level: A</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;div&gt;&lt;h1&gt;Course Overview&lt;/h1&gt;&lt;p&gt;This course includes three modules...&lt;/p&gt;&lt;/div&gt;' <br>
-        '&lt;section&gt;&lt;header&gt;Header&lt;/header&gt;&lt;main&gt;Main content&lt;/main&gt;&lt;footer&gt;Footer&lt;/footer&gt;&lt;/section&gt;'
-    </p>
+<h3>description:</h3>
+<p>
+When the order of content is important for understanding, it should also be correct in the code. This helps screen readers and other assistive tools read the content in the right order.
+</p>
+<p>
+For example, if there are steps in a process or items in a timeline, they must be written in the right sequence in the HTML. We should not only arrange them visually using CSS but also make sure the code matches that order.
+</p>
+<p>
+Using correct HTML tags and putting content in a logical order helps all users, especially people who rely on screen readers, understand the content properly.
+</p>
+<h3>Pass Examples:</h3>
+<ul>
+  <li>
+    <div>
+      <h1>Course Overview</h1>
+      <p>This course includes three modules...</p>
+    </div>
+  </li>
+  <li>
+    <section>
+      <header>Header</header>
+      <main>Main content</main>
+      <footer>Footer</footer>
+    </section>
+  </li>
+  <li>
+    <ol>
+      <li>Step 1: Choose Product</li>
+      <li>Step 2: Add to Cart</li>
+      <li>Step 3: Checkout</li>
+    </ol>
+  </li>
+  <li>
+    <article>
+      <h2>Introduction</h2>
+      <p>Welcome to our guide...</p>
+      <h2>Details</h2>
+      <p>Here are the details...</p>
+    </article>
+  </li>
+  <li>
+    <table border="1">
+      <tr><th>Name</th><th>Age</th></tr>
+      <tr><td>Ravi</td><td>30</td></tr>
+    </table>
+    <p>(Table content is logically structured)</p>
+  </li>
+</ul>
 
-    <h3>failExamples:</h3>
-    <p>
-        '&lt;div&gt;&lt;p&gt;Step 3&lt;/p&gt;&lt;p&gt;Step 1&lt;/p&gt;&lt;p&gt;Step 2&lt;/p&gt;&lt;/div&gt; (incorrect order in code) <br>
-        'CSS is used to visually move elements, but screen readers still read in the wrong sequence.'
-    </p>
-</div>
+<h3>Fail Examples:</h3>
+<ul>
+  <li>
+    <div>
+      <p>Step 3: Submit the form</p>
+      <p>Step 1: Fill in your details</p>
+      <p>Step 2: Review your information</p>
+    </div>
+    <p>(Incorrect order in code, even if visually rearranged with CSS)</p>
+  </li>
+  <li>
+    <ul>
+      <li>Conclusion</li>
+      <li>Introduction</li>
+      <li>Main Content</li>
+    </ul>
+    <p>(Wrong logical order — should start with Introduction)</p>
+  </li>
+  <li>
+    <p>Using Flexbox to visually arrange content as Title → Description → Price, but in the HTML code, it's: Price, Description, Title — causing confusion for screen reader users.</p>
+  </li>
+  <li>
+    <p>Using CSS to float a "Submit" button above input fields while in code the button comes last — screen reader users reach the button before the form, which breaks the logic.</p>
+  </li>
+</ul>
+	</div>
 
-<hr>
+ 
 
 <div id="wcag-page9" class="wcag-page">
     <h2>1.3.3: Sensory Characteristics</h2>
@@ -825,20 +957,40 @@
     <h3>description:</h3>
     <p>Do not rely only on things like color, shape, size, sound, or location to give instructions or convey information. People who are blind, have low vision, or color blindness may not understand such clues. Always include text or labels to explain what to do.</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;p&gt;Select the "Submit" button to continue.&lt;/p&gt;' <br>
-        '&lt;p&gt;Click the round button labeled "Start".&lt;/p&gt;'
-    </p>
+<h3>Pass Examples:</h3>
+<ul>
+  <li>
+    <p>Select the <strong>"Submit"</strong> button to continue.</p>
+  </li>
+  <li>
+    <p>Click the round button labeled <strong>"Start"</strong>.</p>
+  </li>
+  <li>
+    <p>Choose the option labeled <strong>"Download Report"</strong> from the menu.</p>
+  </li>
+  <li>
+    <p>Press the <strong>"Next"</strong> link at the bottom of the page.</p>
+  </li>
+</ul>
 
-    <h3>failExamples:</h3>
-    <p>
-        '&lt;p&gt;Click the red button to proceed.&lt;/p&gt;' <br>
-        '&lt;p&gt;Choose the box on the left to continue.&lt;/p&gt;'
-    </p>
+<h3>Fail Examples:</h3>
+<ul>
+  <li>
+    <p>Click the <span style="color: red;">red</span> button to proceed.</p>
+  </li>
+  <li>
+    <p>Choose the box on the left to continue.</p>
+  </li>
+  <li>
+    <p>Press the green circle to move ahead.</p>
+  </li>
+  <li>
+    <p>Select the large square icon at the top right.</p>
+  </li>
+</ul>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page10" class="wcag-page">
     <h2>1.3.4: Orientation</h2>
@@ -861,30 +1013,67 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page11" class="wcag-page">
     <h2>1.3.5: Identify Input Purpose</h2>
     <p>level: AA</p>
     <h3>description:</h3>
-    <p>The purpose of input fields collecting information about the user (like name, email, address, etc.) can be programmatically determined. This means the fields use proper HTML attributes such as "autocomplete", allowing browsers and assistive technologies to understand their purpose. It improves accessibility for users who rely on assistive technologies or autofill features, and helps them complete forms more quickly and accurately.</p>
+<p>
+"Identify Input Purpose" means that when a website has forms asking for information like name, email, phone number, or address, each input field should clearly indicate its purpose using HTML attributes — especially the <code>autocomplete</code> attribute.
 
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;input type="text" autocomplete="name" aria-label="Full Name"&gt;' <br>
-        '&lt;input type="email" autocomplete="email"&gt;' <br>
-        '&lt;input type="tel" autocomplete="tel-national" aria-label="Phone Number"&gt;'
-    </p>
+For example, using <code>autocomplete="email"</code> tells the browser and assistive technologies that the field is for the user’s email address.
 
-    <h3>failExamples:</h3>
-    <p>
-        '&lt;input type="text" aria-label="Full Name"&gt; &lt;!-- missing autocomplete attribute --&gt;' <br>
-        '&lt;input type="text" name="username"&gt; &lt;!-- no indication of purpose --&gt;' <br>
-        '&lt;input type="text" autocomplete="random-value"&gt; &lt;!-- incorrect or meaningless autocomplete value --&gt;'
-    </p>
+This helps in two main ways:
+<ul>
+  <li><strong>Browsers</strong> can offer helpful autofill options, saving time for all users.</li>
+  <li><strong>Assistive technologies</strong>, like screen readers, can better explain the purpose of each field to users with disabilities.</li>
+</ul>
+
+If the input field is missing the correct autocomplete value, or if the value is wrong, screen reader users may not know what to enter, and the browser may not autofill it correctly. This can lead to confusion and make form completion harder for users with disabilities.
+</p>    
+<h3>Pass Examples:</h3>
+<ul>
+  <li>
+    <input type="text" autocomplete="name" aria-label="Full Name">
+    <p>Input with correct autocomplete for name</p>
+  </li>
+  <li>
+    <input type="email" autocomplete="email">
+    <p>Input with correct autocomplete for email</p>
+  </li>
+  <li>
+    <input type="tel" autocomplete="tel-national" aria-label="Phone Number">
+    <p>Input with correct autocomplete for phone number</p>
+  </li>
+  <li>
+    <input type="text" autocomplete="given-name" aria-label="First Name">
+    <p>Input with autocomplete for given name (first name)</p>
+  </li>
+</ul>
+
+<h3>Fail Examples:</h3>
+<ul>
+  <li>
+    <input type="text" aria-label="Full Name">
+    <p>Missing <code>autocomplete</code> attribute</p>
+  </li>
+  <li>
+    <input type="text" name="username">
+    <p>No clear indication of input purpose</p>
+  </li>
+  <li>
+    <input type="text" autocomplete="random-value">
+    <p>Invalid <code>autocomplete</code> value</p>
+  </li>
+  <li>
+    <input type="email">
+    <p>Missing label or description of the field</p>
+  </li>
+</ul>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page12" class="wcag-page">
     <h2>1.4.1: Use of Color</h2>
@@ -905,7 +1094,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page13" class="wcag-page">
     <h2>1.4.2: Audio Control</h2>
@@ -926,15 +1115,25 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page14" class="wcag-page">
     <h2>1.4.3: Contrast (Minimum)</h2>
     <p>level: AA</p>
     <h3>description:</h3>
-    <p>Text must have enough contrast with its background so it’s easy to read, especially for users with low vision. The contrast ratio should be at least 4.5:1 for normal text and 3:1 for large text.</p>
+<p>
+This rule makes sure that text is easy to read for everyone, especially for people with low vision. To be readable, the color of the text and the background behind it must be different enough — this is called contrast.
 
-    <h3>passExamples:</h3>
+The **minimum contrast ratio** depends on the size of the text:
+</p>
+<ul>
+  <li><strong>Normal text:</strong> This means regular body text, usually 14pt (about 18.66px) or smaller. It must have at least a <strong>4.5:1 contrast ratio</strong> against the background.</li>
+  <li><strong>Large text:</strong> This includes bold text that is 14pt (18.66px) or bigger, or regular text that is 18pt (24px) or larger. It only needs a minimum <strong>3:1 contrast ratio</strong>.</li>
+</ul>
+<p>
+If text doesn’t meet these contrast levels, many users — especially those with vision impairments — may not be able to read it clearly. This includes text in buttons, headings, paragraphs, and links.
+</p>
+     <h3>passExamples:</h3>
     <p>
         '&lt;p style="color: #000000; background: #FFFFFF;"&gt;Black text on white background&lt;/p&gt;' <br>
         '&lt;h1 style="color: #003366; background: #EEEEEE;"&gt;Dark blue heading on light gray&lt;/h1&gt;'
@@ -947,7 +1146,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page15" class="wcag-page">
     <h2>1.4.4: Resize Text</h2>
@@ -968,331 +1167,71 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page16" class="wcag-page">
-    <h2>1.4.5: Images of Text</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>If the same visual presentation can be made using text alone, then text is used instead of images of text. This ensures that users can customize the appearance of the text (such as resizing or changing colors) for better readability. Exceptions are allowed for decorative purposes or if the image of text is essential (like a company logo or a stylized brand name). This helps people with low vision or those using screen magnifiers.</p>
+<h2>1.4.5: Images of Text</h2>
+<p><strong>Level:</strong> AA</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;h1&gt;Welcome to Our Website&lt;/h1&gt; &lt;!-- Real text, not image --&gt;' <br>
-        '&lt;p style="font-family: cursive;"&gt;Happy Birthday!&lt;/p&gt; &lt;!-- Stylized text, still selectable and resizable --&gt;' <br>
-        '&lt;img src="logo.png" alt="Company Name"&gt; &lt;!-- Logo is allowed as image of text --&gt;'
-    </p>
+<h3>Description:</h3>
+<p>
+This success criterion requires that text should be displayed using real text (HTML or styled with CSS) rather than images, so that users can zoom in, change font size or color, and use screen readers easily. Images of text should only be used when the text is part of a logo or when it’s essential (for example, a scanned handwritten signature).
+</p>
+<p>
+Using real text improves accessibility, responsiveness, and overall readability. If you use an image that contains text, users who rely on assistive technologies may not be able to read it unless there's an appropriate text alternative.
+</p>
+<p>
+Text in images cannot be resized, reflowed, or styled by users—making it harder for people with low vision or reading disabilities.
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        '&lt;img src="welcome_text.png" alt="Welcome to Our Website"&gt; &lt;!-- Should use real text instead --&gt;' <br>
-        '&lt;img src="menu.png" alt="Main Menu"&gt; &lt;!-- Functional text displayed as image --&gt;' <br>
-        '&lt;div style="background-image: url(text-banner.jpg);"&gt;...&lt;/div&gt; &lt;!-- Important text hidden in an image --&gt;'
-    </p>
+<h3>Pass Examples:</h3>
+<ul>
+  <li>Headings, buttons, or labels styled with CSS and real text</li>
+  <li>Text written using HTML tags like <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, or <code>&lt;button&gt;</code></li>
+  <li>Company logo image that contains text (allowed as an exception)</li>
+</ul>
+
+<h3>Fail Examples:</h3>
+<ul>
+  <li>Banner image that includes text like “Welcome to Our Site” but does not provide a text alternative</li>
+  <li>Button designed as an image with text inside, rather than using an actual <code>&lt;button&gt;</code> element with real text</li>
+  <li>Menu items shown as images with text instead of regular text with styling</li>
+</ul>
+
 </div>
-
-<hr>
-
-<div id="wcag-page17" class="wcag-page">
-    <h2>1.4.5: Images of Text</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>Avoid using images just to show text, because screen readers can’t read it, and it can look blurry when resized. Use real text that can be resized and read by assistive tools. Only use images of text if it’s essential (like a company logo).</p>
-
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;h1&gt;Our Services&lt;/h1&gt; (real text)' <br>
-        '&lt;img src="logo.png" alt="Company Logo"&gt; (essential image of text)'
-    </p>
-
-    <h3>failExamples:</h3>
-    <p>
-        '&lt;img src="heading-text.png" alt="Welcome"&gt; (heading shown as image)' <br>
-        '&lt;img src="quote.png"&gt; (motivational quote shown as image without text alternative)'
-    </p>
-</div>
-<hr>
-
-<div id="wcag-page6" class="wcag-page">
-    <h2>1.2.5: Audio Description (Prerecorded)</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>All prerecorded video content must include audio descriptions of important visual information that cannot be understood from the audio alone. This makes the content accessible to users who are blind or visually impaired and ensures they don’t miss out on visual-only cues.</p>
-
-    <h3>passExamples:</h3>
-    <p>
-        A video that pauses periodically to add audio narration of visual scenes. <br>
-        An additional audio track with descriptions of characters’ actions and expressions.
-    </p>
-
-    <h3>failExamples:</h3>
-    <p>
-        A video that shows a process or demonstration without describing it for blind users. <br>
-        A movie with key visual elements not described in the audio track.
-    </p>
-</div>
-
-<hr>
-
-<div id="wcag-page7" class="wcag-page">
-    <h2>1.3.1: Info and Relationships</h2>
-    <p>level: A</p>
-    <h3>description:</h3>
-    <p>Information, structure, and relationships that are visually conveyed (like headings, lists, form labels, or table data) must also be available in the code. This allows assistive technologies to understand and present the content meaningfully to users who cannot see the visual layout.</p>
-
-    <h3>passExamples:</h3>
-    <p>
-        '<table><thead><tr><th>Product</th><th>Price</th></tr></thead><tbody><tr><td>Book</td><td>$10</td></tr></tbody></table>' <br>
-        '&lt;label for="email"&gt;Email:&lt;/label&gt;&lt;input id="email" type="email"&gt;'
-    </p>
-
-    <h3>failExamples:</h3>
-    <p>
-        '&lt;div style="font-weight: bold;"&gt;Name:&lt;/div&gt;&lt;input type="text"&gt;' <br>
-        '&lt;table&gt;&lt;tr&gt;&lt;td&gt;Product&lt;/td&gt;&lt;td&gt;Price&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Book&lt;/td&gt;&lt;td&gt;$10&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; (no semantic headers)'
-    </p>
-</div>
-
-<hr>
-
-<div id="wcag-page8" class="wcag-page">
-    <h2>1.3.2: Meaningful Sequence</h2>
-    <p>level: A</p>
-    <h3>description:</h3>
-    <p>When the order in which content is presented affects its meaning, that order must be preserved programmatically. This ensures that assistive technologies, such as screen readers, present content in a way that preserves the intended meaning and flow.</p>
-
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;div&gt;&lt;h1&gt;Course Overview&lt;/h1&gt;&lt;p&gt;This course includes three modules...&lt;/p&gt;&lt;/div&gt;' <br>
-        '&lt;section&gt;&lt;header&gt;Header&lt;/header&gt;&lt;main&gt;Main content&lt;/main&gt;&lt;footer&gt;Footer&lt;/footer&gt;&lt;/section&gt;'
-    </p>
-
-    <h3>failExamples:</h3>
-    <p>
-        '&lt;div&gt;&lt;p&gt;Step 3&lt;/p&gt;&lt;p&gt;Step 1&lt;/p&gt;&lt;p&gt;Step 2&lt;/p&gt;&lt;/div&gt; (incorrect order in code) <br>
-        'CSS is used to visually move elements, but screen readers still read in the wrong sequence.'
-    </p>
-</div>
-
-<hr>
-
-<div id="wcag-page9" class="wcag-page">
-    <h2>1.3.3: Sensory Characteristics</h2>
-    <p>level: A</p>
-    <h3>description:</h3>
-    <p>Do not rely only on things like color, shape, size, sound, or location to give instructions or convey information. People who are blind, have low vision, or color blindness may not understand such clues. Always include text or labels to explain what to do.</p>
-
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;p&gt;Select the "Submit" button to continue.&lt;/p&gt;' <br>
-        '&lt;p&gt;Click the round button labeled "Start".&lt;/p&gt;'
-    </p>
-
-    <h3>failExamples:</h3>
-    <p>
-        '&lt;p&gt;Click the red button to proceed.&lt;/p&gt;' <br>
-        '&lt;p&gt;Choose the box on the left to continue.&lt;/p&gt;'
-    </p>
-</div>
-
-<hr>
-
-<div id="wcag-page10" class="wcag-page">
-    <h2>1.3.4: Orientation</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>The content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific orientation is essential. This means users can view and interact with the content whether their device is held vertically (portrait) or horizontally (landscape), unless it’s absolutely necessary to force one layout (for example, in a piano app or game). This helps users who may have their devices mounted or fixed in one position.</p>
-
-    <h3>passExamples:</h3>
-    <p>
-        A webpage that works both in portrait and landscape mode on a mobile phone. <br>
-        A form that adjusts and is readable regardless of screen orientation. <br>
-        A video player that resizes and repositions its controls based on orientation.
-    </p>
-
-    <h3>failExamples:</h3>
-    <p>
-        A photo gallery that works only in landscape mode and displays a message asking users to rotate their device. <br>
-        A mobile app that shows a blank screen in portrait mode and requires the device to be turned. <br>
-        A website layout that breaks or becomes unusable in one orientation.
-    </p>
-</div>
-
-<hr>
-
-<div id="wcag-page11" class="wcag-page">
-    <h2>1.3.5: Identify Input Purpose</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>The purpose of input fields collecting information about the user (like name, email, address, etc.) can be programmatically determined. This means the fields use proper HTML attributes such as "autocomplete", allowing browsers and assistive technologies to understand their purpose. It improves accessibility for users who rely on assistive technologies or autofill features, and helps them complete forms more quickly and accurately.</p>
-
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;input type="text" autocomplete="name" aria-label="Full Name"&gt;' <br>
-        '&lt;input type="email" autocomplete="email"&gt;' <br>
-        '&lt;input type="tel" autocomplete="tel-national" aria-label="Phone Number"&gt;'
-    </p>
-
-    <h3>failExamples:</h3>
-    <p>
-        '&lt;input type="text" aria-label="Full Name"&gt; &lt;!-- missing autocomplete attribute --&gt;' <br>
-        '&lt;input type="text" name="username"&gt; &lt;!-- no indication of purpose --&gt;' <br>
-        '&lt;input type="text" autocomplete="random-value"&gt; &lt;!-- incorrect or meaningless autocomplete value --&gt;'
-    </p>
-</div>
-
-<hr>
-
-<div id="wcag-page12" class="wcag-page">
-    <h2>1.4.1: Use of Color</h2>
-    <p>level: A</p>
-    <h3>description:</h3>
-    <p>Don’t use color as the only way to show information or meaning. Users who are color blind may not be able to tell the difference. Add text, shapes, or other indicators along with color.</p>
-
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;p&gt;Required fields are marked with a red asterisk (*).&lt;/p&gt;' <br>
-        '&lt;p&gt;&lt;span style="color: red;"&gt;●&lt;/span&gt; Error - Please enter your name.&lt;/p&gt;'
-    </p>
-
-    <h3>failExamples:</h3>
-    <p>
-        '&lt;p&gt;Items in red are required.&lt;/p&gt;' <br>
-        '&lt;p&gt;Click the green button to accept and red to cancel.&lt;/p&gt;'
-    </p>
-</div>
-
-<hr>
-
-<div id="wcag-page13" class="wcag-page">
-    <h2>1.4.2: Audio Control</h2>
-    <p>level: A</p>
-    <h3>description:</h3>
-    <p>If any sound plays automatically for more than 3 seconds when a page loads, the user must be able to pause or stop it, or control its volume separately from the main system volume. This is important for users who use screen readers or need to focus.</p>
-
-    <h3>passExamples:</h3>
-    <p>
-        An autoplay video with a visible "Mute" and "Pause" button. <br>
-        A background music clip that has a stop button near the top of the page.
-    </p>
-
-    <h3>failExamples:</h3>
-    <p>
-        A page that starts playing music with no way to stop it. <br>
-        A video that autoplays and has no volume or pause controls.
-    </p>
-</div>
-
-<hr>
-
-<div id="wcag-page14" class="wcag-page">
-    <h2>1.4.3: Contrast (Minimum)</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>Text must have enough contrast with its background so it’s easy to read, especially for users with low vision. The contrast ratio should be at least 4.5:1 for normal text and 3:1 for large text.</p>
-
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;p style="color: #000000; background: #FFFFFF;"&gt;Black text on white background&lt;/p&gt;' <br>
-        '&lt;h1 style="color: #003366; background: #EEEEEE;"&gt;Dark blue heading on light gray&lt;/h1&gt;'
-    </p>
-
-    <h3>failExamples:</h3>
-    <p>
-        '&lt;p style="color: #AAAAAA; background: #FFFFFF;"&gt;Light gray text on white background&lt;/p&gt;' <br>
-        '&lt;span style="color: yellow; background: white;"&gt;Yellow text on white background&lt;/span&gt;'
-    </p>
-</div>
-
-<hr>
-
-<div id="wcag-page15" class="wcag-page">
-    <h2>1.4.4: Resize Text</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>Users must be able to resize text up to 200% without losing content or functionality. This helps users with low vision read more comfortably using browser zoom or screen magnifiers.</p>
-
-    <h3>passExamples:</h3>
-    <p>
-        Text content scales properly when browser zoom is increased to 200%. <br>
-        Layout remains readable and functional when zoomed in.
-    </p>
-
-    <h3>failExamples:</h3>
-    <p>
-        Text overlaps or cuts off when zoomed to 150%. <br>
-        Buttons become hidden or impossible to click when zoom is increased.
-    </p>
-</div>
-
-<hr>
-
-<div id="wcag-page16" class="wcag-page">
-    <h2>1.4.5: Images of Text</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>If the same visual presentation can be made using text alone, then text is used instead of images of text. This ensures that users can customize the appearance of the text (such as resizing or changing colors) for better readability. Exceptions are allowed for decorative purposes or if the image of text is essential (like a company logo or a stylized brand name). This helps people with low vision or those using screen magnifiers.</p>
-
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;h1&gt;Welcome to Our Website&lt;/h1&gt; &lt;!-- Real text, not image --&gt;' <br>
-        '&lt;p style="font-family: cursive;"&gt;Happy Birthday!&lt;/p&gt; &lt;!-- Stylized text, still selectable and resizable --&gt;' <br>
-        '&lt;img src="logo.png" alt="Company Name"&gt; &lt;!-- Logo is allowed as image of text --&gt;'
-    </p>
-
-    <h3>failExamples:</h3>
-    <p>
-        '&lt;img src="welcome_text.png" alt="Welcome to Our Website"&gt; &lt;!-- Should use real text instead --&gt;' <br>
-        '&lt;img src="menu.png" alt="Main Menu"&gt; &lt;!-- Functional text displayed as image --&gt;' <br>
-        '&lt;div style="background-image: url(text-banner.jpg);"&gt;...&lt;/div&gt; &lt;!-- Important text hidden in an image --&gt;'
-    </p>
-</div>
-
-<hr>
-
-<div id="wcag-page17" class="wcag-page">
-    <h2>1.4.5: Images of Text</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>Avoid using images just to show text, because screen readers can’t read it, and it can look blurry when resized. Use real text that can be resized and read by assistive tools. Only use images of text if it’s essential (like a company logo).</p>
-
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;h1&gt;Our Services&lt;/h1&gt; (real text)' <br>
-        '&lt;img src="logo.png" alt="Company Logo"&gt; (essential image of text)'
-    </p>
-
-    <h3>failExamples:</h3>
-    <p>
-        '&lt;img src="heading-text.png" alt="Welcome"&gt; (heading shown as image)' <br>
-        '&lt;img src="quote.png"&gt; (motivational quote shown as image without text alternative)'
-    </p>
-</div>
-
-<hr>
 
 <div id="wcag-page18" class="wcag-page">
-    <h2>1.4.10: Reflow</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>Content must be presented without loss of information or functionality, and without requiring scrolling in two dimensions (horizontal and vertical), except for parts where two-dimensional layout is essential (like images, maps, or charts). This ensures users on small screens or those who zoom in (up to 400%) can still read and use all content without having to scroll left and right. It improves accessibility for users with low vision or those on mobile devices.</p>
+<h2>1.4.10: Reflow</h2>
+<p><strong>Level:</strong> AA</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        A website layout that rearranges into a single column when zoomed to 400% on a 1280px wide screen. <br>
-        Navigation menus that collapse into a hamburger icon for small screens. <br>
-        Text content that wraps naturally without requiring horizontal scrolling.
-    </p>
+<h3>Description:</h3>
+<p>
+Reflow means that content should adjust properly when users zoom in or use smaller screens—without needing to scroll left and right. Users should only need to scroll up and down to read or use the page.
+</p>
+<p>
+This helps people with low vision who zoom up to 400%, and mobile users with narrow screens. The content should still be readable and usable, without losing anything or breaking the layout.
+</p>
+<p>
+There are a few exceptions, like maps, charts, or images where two-way scrolling might be necessary. But for text, buttons, forms, and menus—everything should reflow vertically without requiring horizontal scrolling.
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        A fixed-width layout that causes horizontal scrolling when zoomed. <br>
-        Text that gets cut off or overlaps at higher zoom levels. <br>
-        A form that becomes unusable because buttons move out of view and require both horizontal and vertical scrolling.
-    </p>
+<h3>Pass Examples:</h3>
+<ul>
+  <li>A website that becomes a single-column layout when zoomed in to 400% on a 1280px screen</li>
+  <li>Menus that turn into a hamburger icon on small screens</li>
+  <li>Text blocks that wrap correctly with no content going off-screen</li>
+</ul>
+
+<h3>Fail Examples:</h3>
+<ul>
+  <li>Webpages that require side-to-side (horizontal) scrolling to read the text after zooming</li>
+  <li>Text or buttons that get cut off, overlap, or disappear when zoomed in</li>
+  <li>Forms where fields or buttons are moved out of view and require both horizontal and vertical scrolling to use</li>
+</ul>
+
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page19" class="wcag-page">
     <h2>1.4.11: Non-Text Contrast</h2>
@@ -1315,7 +1254,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page20" class="wcag-page">
     <h2>1.4.12: Text Spacing</h2>
@@ -1338,7 +1277,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page21" class="wcag-page">
     <h2>1.4.13: Content on Hover or Focus</h2>
@@ -1361,7 +1300,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page22" class="wcag-page">
     <h2>2.1.1: Keyboard</h2>
@@ -1382,7 +1321,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page23" class="wcag-page">
     <h2>2.1.2: No Keyboard Trap</h2>
@@ -1403,7 +1342,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page24" class="wcag-page">
     <h2>2.2.1: Timing Adjustable</h2>
@@ -1424,7 +1363,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page25" class="wcag-page">
     <h2>2.2.2: Pause, Stop, Hide</h2>
@@ -1445,7 +1384,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page26" class="wcag-page">
     <h2>2.1.4: Character Key Shortcuts</h2>
@@ -1466,7 +1405,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page27" class="wcag-page">
     <h2>2.3.1: Three Flashes or Below Threshold</h2>
@@ -1487,7 +1426,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page28" class="wcag-page">
     <h2>2.4.1: Bypass Blocks</h2>
@@ -1508,7 +1447,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page29" class="wcag-page">
     <h2>2.4.2: Page Titled</h2>
@@ -1529,7 +1468,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page30" class="wcag-page">
     <h2>2.4.3: Focus Order</h2>
@@ -1550,7 +1489,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page31" class="wcag-page">
     <h2>2.4.4: Link Purpose (In Context)</h2>
@@ -1571,7 +1510,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page32" class="wcag-page">
     <h2>2.4.5: Multiple Ways</h2>
@@ -1592,7 +1531,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page33" class="wcag-page">
     <h2>2.4.6: Headings and Labels</h2>
@@ -1613,7 +1552,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page34" class="wcag-page">
     <h2>2.4.7: Focus Visible</h2>
@@ -1634,7 +1573,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page35" class="wcag-page">
     <h2>2.4.11: Focus Not Obscured (Minimum)</h2>
@@ -1655,7 +1594,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page36" class="wcag-page">
     <h2>3.2.1: On Focus</h2>
@@ -1675,7 +1614,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page37" class="wcag-page">
     <h2>3.2.2: On Input</h2>
@@ -1694,7 +1633,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page38" class="wcag-page">
     <h2>3.2.3: Consistent Navigation</h2>
@@ -1713,7 +1652,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page39" class="wcag-page">
     <h2>3.2.4: Consistent Identification</h2>
@@ -1732,7 +1671,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page40" class="wcag-page">
     <h2>3.2.6: Consistent Help</h2>
@@ -1751,7 +1690,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page41" class="wcag-page">
     <h2>3.3.1: Error Identification</h2>
@@ -1770,7 +1709,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page42" class="wcag-page">
     <h2>3.3.2: Labels or Instructions</h2>
@@ -1789,7 +1728,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page43" class="wcag-page">
     <h2>3.3.3: Error Suggestion</h2>
@@ -1808,7 +1747,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page44" class="wcag-page">
     <h2>3.3.4: Error Prevention (Legal, Financial, Data)</h2>
@@ -1827,7 +1766,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page45" class="wcag-page">
     <h2>3.3.7: Redundant Entry</h2>
@@ -1846,7 +1785,7 @@
     </p>
 </div>
 
-<hr>
+ 
 
 <div id="wcag-page46" class="wcag-page">
     <h2>3.3.8: Accessible Authentication</h2>
@@ -1954,7 +1893,7 @@
 &lt;input type="email" id="email" aria-describedby="email-help"&gt;
 &lt;small id="email-help"&gt;We'll never share your email with anyone.&lt;/small&gt;</code></pre>
 </div>
-<hr>
+ 
 <div id="aria-page4" class="aria-page">
   <h2>aria-hidden</h2>
   <p>The <code>aria-hidden</code> attribute hides elements from screen readers. If you set <code>aria-hidden="true"</code>, that part of the page will not be read aloud. This is helpful for decorative elements like icons or repeated visual content that doesn’t add meaning. It improves the screen reader experience by reducing unnecessary information.</p>
@@ -2491,14 +2430,15 @@
         // const accessDeniedMessage = document.getElementById('access-denied-message'); // Not used in this version
         // const courseContent = document.getElementById('course-content'); // Not used in this version
         // const paidCoursesList = document.getElementById('paid-courses-list'); // Not used in this version
-        const userProfileDiv = document.getElementById('user-profile');
+        // Get the new profile elements
+        const profileBtn = document.getElementById('profileBtn');
+        const profileDetails = document.getElementById('profileDetails');
+
         const profileNameSpan = document.getElementById('profile-name');
         const profileMobileSpan = document.getElementById('profile-mobile');
         const profileEmailSpan = document.getElementById('profile-email');
-        const referralInfoDiv = document.getElementById('referral-info');
         const referralLinkSpan = document.getElementById('referral-link-span');
         const logoutButton = document.getElementById('logout-btn');
-
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const uid = user.uid;
@@ -2531,6 +2471,12 @@
                 alert("Please log in to access the courses.");
                 window.location.href = "index.html"; // Redirect if not logged in
             }
+        });
+        // Event listener for the profile button
+        profileBtn.addEventListener('click', () => {
+            const isExpanded = profileBtn.getAttribute("aria-expanded") === "true";
+            profileBtn.setAttribute("aria-expanded", !isExpanded);
+            profileDetails.style.display = isExpanded ? "none" : "block"; // Toggle visibility
         });
 
         logoutButton.addEventListener('click', async () => {

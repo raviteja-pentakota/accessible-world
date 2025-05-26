@@ -47,19 +47,74 @@
       color: white;
       margin-top: 30px;
     }
+        /* Styles for profile button and dropdown */
+        .profile-container {
+            position: absolute; /* Position relative to the header */
+            top: 10px;
+            right: 20px; /* Adjust as needed */
+            display: inline-block;
+        }
+
+        .profile-container button {
+            padding: 8px 15px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .profile-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .profile-dropdown {
+            display: none; /* Hidden by default */
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px; /* Adjust width as needed */
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0; /* Align dropdown to the right of the button */
+            border-radius: 4px;
+            padding: 10px;
+            top: 45px; /* Position below the button */
+            color: #333; /* Ensure text is visible */
+            text-align: left;
+        }
+
+        .profile-dropdown p {
+            margin: 5px 0;
+            font-size: 14px;
+            padding: 0 5px; /* Add some padding inside the dropdown */
+        }
+
+        .profile-dropdown button {
+            width: calc(100% - 10px); /* Adjust width to fit padding */
+            margin: 10px 5px 0; /* Adjust margin for logout button */
+            background-color: #dc3545; /* Red for logout */
+        }
+
+        .profile-dropdown button:hover {
+            background-color: #c82333;
+        }
+
+
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Your Withdrawal History</h1>
-    <div class="profile-info">
-      <p class="profile-item"><strong aria-label="User Name">Name:</strong> <span id="profile-name">Loading...</span></p>
-      <p class="profile-item"><strong aria-label="Mobile Number">Mobile:</strong> <span id="profile-mobile">Loading...</span></p>
-      <p class="profile-item"><strong aria-label="Email Address">Email:</strong> <span id="profile-email">Loading...</span></p>
-      <div class="referral-info"><strong aria-label="Referral Link">Referral Link:</strong> <span id="referral-link-span">Loading...</span></div>
-      <!-- Logout button placed here -->
-      <button id="logout-btn" class="btn">Logout</button>
-    </div>
+        <div class="profile-container">
+            <button id="profileBtn" aria-expanded="false" aria-controls="profileDetails">Profile</button>
+            <div id="profileDetails" class="profile-dropdown">
+                <p class="profile-item"><strong aria-label="User Name">Name:</strong> <span id="profile-name"></span></p>
+                <p class="profile-item"><strong aria-label="Mobile Number">Mobile:</strong> <span id="profile-mobile"></span></p>
+                <p class="profile-item"><strong aria-label="Email Address">Email:</strong> <span id="profile-email"></span></p>
+                <p><strong aria-label="Referral Link">Referral Link:</strong> <span id="referral-link-span"></span></p>
+                <button id="logout-btn">Logout</button>
+            </div>
+        </div>
 
     <div class="summary-info">
       <p hidden>Total Referrals: <span id="referral-count">0</span></p>
@@ -112,11 +167,16 @@
     const auth = getAuth();
     const db = getFirestore(app);
 
-    const profileNameSpan = document.getElementById('profile-name');
-    const profileMobileSpan = document.getElementById('profile-mobile');
-    const profileEmailSpan = document.getElementById('profile-email');
-    const referralLinkSpan = document.getElementById('referral-link-span');
-    const logoutButton = document.getElementById('logout-btn');
+        // Get the new profile elements
+        const profileBtn = document.getElementById('profileBtn');
+        const profileDetails = document.getElementById('profileDetails');
+
+        const profileNameSpan = document.getElementById('profile-name');
+        const profileMobileSpan = document.getElementById('profile-mobile');
+        const profileEmailSpan = document.getElementById('profile-email');
+        const referralLinkSpan = document.getElementById('referral-link-span');
+        const logoutButton = document.getElementById('logout-btn');
+
     const withdrawalHistoryBody = document.getElementById('withdrawal-history-body');
     const referralCountSpan = document.getElementById('referral-count');
     const totalWithdrawnSpan = document.getElementById('total-withdrawn-display');
@@ -219,6 +279,12 @@
         window.location.href = "index.html";
       }
     });
+        // Event listener for the profile button
+        profileBtn.addEventListener('click', () => {
+            const isExpanded = profileBtn.getAttribute("aria-expanded") === "true";
+            profileBtn.setAttribute("aria-expanded", !isExpanded);
+            profileDetails.style.display = isExpanded ? "none" : "block"; // Toggle visibility
+        });
 
     logoutButton.addEventListener('click', async (e) => {
       e.preventDefault();
