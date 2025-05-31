@@ -4,7 +4,7 @@
 <script src="loading.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accessibility Testing Course - Accessible World</title>
+    <title>Comprehensive Web Accessibility Testing- Accessible World</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -364,7 +364,7 @@
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header>
-        <h1>Welcome to Accessible World Tutorials</h1>
+        <h1>Welcome to Accessible World Tutorials – Comprehensive Web Accessibility Testing</h1>
         <div class="profile-container">
             <button id="profileBtn" aria-expanded="false" aria-controls="profileDetails">Profile</button>
             <div id="profileDetails" class="profile-dropdown">
@@ -1281,22 +1281,22 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
  
 
 <div id="wcag-page20" class="wcag-page">
-    <h2>1.4.12: Text Spacing</h2>
-    <p>level: AA</p>
-<h3>description:</h3>
+<h2>1.4.12: Text Spacing</h2>
+<p><strong>Level:</strong> AA</p>
+
+<h3>Description:</h3>
 <p>
-    Imagine you need to read a lot of text online, but it's hard for you because the letters, words, or lines are too close together. This rule says that websites should let you adjust that spacing to make it easier to read. Even if you make the text much more spread out (for example, making the <b>space between lines 1.5 times bigger</b>, or adding more space between <b>words and letters</b>), the website's content should still be clear and everything should still work as it should. This helps people who have trouble reading crowded text, like those with <b>dyslexia, low vision, or certain learning differences</b>.
-</p>
-<p>
-    <b>To achieve this, developers should:</b>
-    <ul>
-        <li><b>Use Relative Units:</b> Whenever possible, use flexible units like `em`, `rem`, or percentages for font sizes, line heights, and spacing (padding/margins). Avoid fixed units like `px` for text and its containers, as this allows the layout to expand and adapt when text spacing increases.</li>
-        <li><b>Avoid Fixed Layouts:</b> Design your website to be flexible and responsive. Don't set fixed heights on areas that contain text, as this can cause content to be cut off if users increase spacing.</li>
-        <li><b>Prevent Overlapping or Clipping:</b> Ensure that even with significantly increased text spacing (up to the specified thresholds), text does not overlap with other elements, get cut off, or disappear. All content must remain readable, and interactive elements (like buttons or links) must still be fully usable.</li>
-        <li><b>Test Your Design:</b> It's important to test your website by simulating these increased spacing settings (e.g., using browser extensions or custom styles) to find and fix any issues where the design might break.</li>
-    </ul>
+    Imagine you need to read a lot of text online, but it's hard for you because the letters, words, or lines are too close together. This rule ensures that websites allow you to increase that spacing to make reading easier. Even if you make the text significantly more spread out—for example, increasing the <strong>line height to at least 1.5 times the font size</strong>, or adding more space between <strong>words (0.16 times), letters (0.12 times), and paragraphs (2	 times)</strong>—the website's content should still remain clear, readable, and fully functional. 
+    This is especially helpful for people with <strong>dyslexia, low vision, or cognitive and learning disabilities</strong>.
 </p>
 
+<p><strong>To achieve this, developers should:</strong></p>
+<ul>
+    <li><strong>Use Relative Units:</strong> Whenever possible, use flexible units like <code>em</code>, <code>rem</code>, or percentages for font sizes, line heights, and spacing (padding/margins). Avoid fixed units like <code>px</code> for text and its containers, as this allows the layout to adjust when text spacing increases.</li>
+    <li><strong>Avoid Fixed Layouts:</strong> Design your website to be flexible and responsive. Don’t set fixed heights or widths on containers holding text, as increased spacing could cause content to be cut off.</li>
+    <li><strong>Prevent Overlapping or Clipping:</strong> Ensure that when text spacing is increased up to the required thresholds, no text overlaps other elements, gets cut off, or becomes hidden. All content must remain readable, and interactive elements (like buttons or links) must still be usable.</li>
+    <li><strong>Test Your Design:</strong> Use browser extensions or custom style sheets to simulate increased text spacing and confirm that your design remains accessible and functional under these conditions.</li>
+</ul>
 <h3>passExamples:</h3>
 <p>
     A paragraph remains fully visible and functional when a browser extension increases line height and spacing. <br>
@@ -1314,45 +1314,233 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
  
 
 <div id="wcag-page21" class="wcag-page">
-    <h2>1.4.13: Content on Hover or Focus</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>When extra content appears on hover or focus (like tooltips, dropdowns, or popups), it must be dismissible, hoverable, and persistent. This means users should be able to dismiss it without moving the pointer, keep it visible while interacting with it, and it should not disappear unexpectedly. This helps people with low vision, mobility impairments, or cognitive challenges who need more time to read or interact with extra content.</p>
+<h2>1.4.13: Content on Hover or Focus</h2>
+<p><strong>Level:</strong> AA</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        A tooltip appears when an info icon is focused, and stays visible until focus moves away or the user presses ESC. <br>
-        Dropdown content stays visible while the user moves the mouse over it. <br>
-        Popup help text that appears on focus and includes a close button accessible via keyboard.
-    </p>
+<h3>Description:</h3>
+<p>
+    When extra content appears on <strong>hover</strong> or <strong>focus</strong>—such as tooltips, dropdowns, or popups—it must meet the following 3 rules:
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        A tooltip that disappears too quickly when the user tries to move the mouse to it. <br>
-        Extra content that vanishes as soon as focus is lost, even if the user is trying to read it. <br>
-        Help text that cannot be dismissed without moving the pointer away.
-    </p>
+<ol>
+    <li><strong>Dismissable:</strong> The content can be dismissed without moving the pointer (e.g., using the <kbd>Esc</kbd> key).</li>
+    <li><strong>Hoverable:</strong> If triggered by hover, users must be able to move the pointer onto the content itself without it disappearing.</li>
+    <li><strong>Persistent:</strong> The content remains visible until the user dismisses it or moves focus/hover away intentionally. It shouldn't disappear automatically or too quickly.</li>
+</ol>
+
+<p>This benefits users with <strong>low vision</strong>, <strong>mobility impairments</strong>, or <strong>cognitive challenges</strong> who need more time to read and interact with extra content.</p>
+
+<h3>Pass Examples:</h3>
+
+<!-- Example 1: Tooltip appears on focus and dismisses on ESC -->
+<button id="infoBtn" aria-describedby="tooltip1" onfocus="showTooltip1()" onblur="hideTooltip1()">Info</button>
+<div id="tooltip1" role="tooltip" hidden>
+  This tooltip appears on focus and can be dismissed with ESC.
+</div>
+
+<script>
+  const tooltip1 = document.getElementById("tooltip1");
+  const infoBtn = document.getElementById("infoBtn");
+
+  function showTooltip1() {
+    tooltip1.hidden = false;
+  }
+
+  function hideTooltip1() {
+    setTimeout(() => {
+      if (document.activeElement !== infoBtn) {
+        tooltip1.hidden = true;
+      }
+    }, 100);
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      tooltip1.hidden = true;
+      infoBtn.focus();
+    }
+  });
+</script>
+
+<br><br>
+
+<!-- Example 2: Dropdown appears on focus or hover, disappears on blur or mouse leave -->
+<button id="menuBtn" aria-haspopup="true" aria-expanded="false" onfocus="toggleMenu(true)" onblur="closeMenu()" onmouseover="toggleMenu(true)">
+  Menu
+</button>
+<ul id="dropdownMenu" hidden>
+  <li><a href="#">Profile</a></li>
+  <li><a href="#">Settings</a></li>
+</ul>
+
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const dropdown = document.getElementById("dropdownMenu");
+
+  function toggleMenu(show) {
+    dropdown.hidden = !show;
+    menuBtn.setAttribute("aria-expanded", show);
+  }
+
+  function closeMenu() {
+    setTimeout(() => {
+      if (!dropdown.contains(document.activeElement)) {
+        toggleMenu(false);
+      }
+    }, 100);
+  }
+
+  dropdown.addEventListener("mouseover", () => toggleMenu(true));
+  dropdown.addEventListener("mouseleave", () => toggleMenu(false));
+  dropdown.addEventListener("blur", closeMenu, true);
+</script>
+
+<br><br>
+
+<!-- Example 3: Help popup appears on focus and can be closed with keyboard -->
+<button id="helpBtn" onfocus="document.getElementById('popup').hidden = false;">
+  Show Help
+</button>
+<div id="popup" hidden>
+  <p>This is a help message.</p>
+  <button onclick="document.getElementById('popup').hidden = true;">Close</button>
+</div>
+<h3>Fail Examples:</h3>
+
+<!-- Example 1: Tooltip disappears immediately on focus loss -->
+<button onfocus="document.getElementById('badTooltip').hidden = false;" 
+        onblur="document.getElementById('badTooltip').hidden = true;">
+  Hover Me
+</button>
+<div id="badTooltip" hidden>This tooltip vanishes instantly when focus moves.</div>
+
+<br><br>
+
+<!-- Example 2: No way to dismiss popup with keyboard -->
+<button onfocus="document.getElementById('popup2').hidden = false;">Help</button>
+<div id="popup2" hidden>
+  This popup has no close button and cannot be dismissed via keyboard.
+</div>
+
+<br><br>
+
+<!-- Example 3: Tooltip on hover disappears before pointer reaches it -->
+<style>
+  #badHover {
+    position: relative;
+  }
+  #hoverTooltip {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background: #eee;
+    border: 1px solid #ccc;
+    padding: 5px;
+  }
+</style>
+
+<div id="badHover" onmouseover="showBadHoverTip()" onmouseout="hideBadHoverTip()">
+  Hover over me
+  <div id="hoverTooltip" hidden>This tooltip disappears too quickly on hover.</div>
+</div>
+
+<script>
+  function showBadHoverTip() {
+    document.getElementById("hoverTooltip").hidden = false;
+  }
+  function hideBadHoverTip() {
+    setTimeout(() => {
+      document.getElementById("hoverTooltip").hidden = true;
+    }, 50); // Too fast for user to reach
+  }
+</script>
+
 </div>
 
  
 
 <div id="wcag-page22" class="wcag-page">
-    <h2>2.1.1: Keyboard</h2>
-    <p>level: A</p>
-    <h3>description:</h3>
-    <p>All functionality on a website must be usable with a keyboard alone. This helps users who can’t use a mouse, such as screen reader users or those with motor disabilities.</p>
+<h2>2.1.1: Keyboard</h2>
+<p><strong>Level:</strong> A</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        Users can navigate through links and buttons using Tab and Enter. <br>
-        Menus open and close with arrow keys and Enter key.
-    </p>
+<h3>Description:</h3>
+<p>
+All parts of a website must be usable with only a keyboard — without requiring a mouse. This means you should be able to:
+</p>
+<ul>
+  <li>Reach all links, buttons, and inputs using the <b>Tab</b> key.</li>
+  <li>Activate or use them with <b>Enter</b> or <b>Space</b>.</li>
+  <li>Use arrow keys or other standard keys where needed.</li>
+</ul>
+<p>
+This is important for:
+</p>
+<ul>
+  <li>Blind users who navigate with screen readers.</li>
+  <li>People with mobility impairments who use keyboard-only or switch devices.</li>
+</ul>
 
-    <h3>failExamples:</h3>
-    <p>
-        Interactive slider that only works with mouse drag. <br>
-        Buttons that do nothing when focused and Enter is pressed.
-    </p>
+---
+
+<h3>✅ Pass Examples (keyboard accessible):</h3>
+
+<!-- PASS 1: Standard link and button -->
+<a href="https://example.com">Go to Example</a><br>
+<button onclick="alert('Button clicked')">Submit</button>
+
+<!-- PASS 2: Custom button made keyboard-friendly -->
+<div 
+  tabindex="0" 
+  role="button" 
+  onclick="alert('Custom button clicked')" 
+  onkeydown="if(event.key === 'Enter'){ this.click(); }"
+  style="margin-top:10px; background:#ccc; padding:10px; width:150px;"
+>
+  Custom Keyboard Button
+</div>
+
+<!-- PASS 3: Accessible form -->
+<form onsubmit="alert('Form submitted'); return false;" style="margin-top:10px;">
+  <label for="email">Email:</label>
+  <input id="email" type="email" required><br><br>
+  <button type="submit">Submit Form</button>
+</form>
+
+---
+
+<h3>❌ Fail Examples (not keyboard accessible):</h3>
+
+<!-- FAIL 1: Div styled as button but no keyboard support -->
+<div 
+  style="margin-top:10px; background:lightcoral; padding:10px; width:200px;"
+>
+  ❌ Click Me (Only mouse works)
+</div>
+
+<!-- FAIL 2: Fake link with no href and no key event -->
+<span 
+  style="text-decoration: underline; color:blue; cursor: pointer;"
+  onclick="alert('Go to News')"
+>
+  ❌ Fake Link (No keyboard support)
+</span>
+
+<!-- FAIL 3: Custom styled input field without focusable attribute -->
+<div style="margin-top:10px;">
+  <label>❌ Hidden Input:</label>
+  <div contenteditable="true" style="border: 1px solid gray; padding: 5px;" aria-label="Editable input">
+    <!-- No tabindex, cannot be reached with Tab -->
+  </div>
+</div>
+
+<!-- FAIL 4: Button not reacting to Enter key -->
+<div 
+  tabindex="0" 
+  style="margin-top:10px; background:lightblue; padding:10px; width:200px;"
+>
+  ❌ Looks like button, but no Enter support
+</div>
+
 </div>
 
  
@@ -1363,21 +1551,177 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
     <h3>description:</h3>
     <p>When using only a keyboard, users should never get stuck on a part of the page. They must be able to move in and out of any interactive element (like a form or dialog) using standard keyboard keys.</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        A modal dialog that opens and can be closed with the Esc key or Tab key navigation. <br>
-        An iframe that allows users to enter and exit using Tab or Shift+Tab.
-    </p>
+<h3>passExamples:</h3>
+<p>
+✅ A modal dialog that opens and can be closed with the Esc key or Tab key navigation. <br>
+✅ An iframe that allows users to enter and exit using Tab or Shift+Tab. <br>
+✅ A custom widget (like a dropdown or slider) that allows users to tab in and out smoothly.
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        Focus gets stuck inside a video player and doesn’t return to the page. <br>
-        A popup opens but cannot be closed using only the keyboard.
-    </p>
+<!-- Pass Example: Accessible Modal -->
+<button id="openModal">Open Modal</button>
+<div id="modal" style="display:none; position:fixed; top:30%; left:30%; background:#eee; padding:20px;" tabindex="-1">
+  <p>This is a modal. Press Esc to close.</p>
+  <button id="closeModal">Close</button>
 </div>
+<script>
+  const openBtn = document.getElementById("openModal");
+  const modal = document.getElementById("modal");
+  const closeBtn = document.getElementById("closeModal");
 
- 
+  openBtn.addEventListener("click", () => {
+    modal.style.display = "block";
+    modal.focus();
+  });
 
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+    openBtn.focus();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.style.display === "block") {
+      modal.style.display = "none";
+      openBtn.focus();
+    }
+  });
+</script>
+
+<!-- Pass Example: Enter and Exit iframe -->
+<iframe srcdoc="<p>Iframe content. Press Tab to exit.</p><a href='#'>Link in iframe</a>" width="300" height="100" title="Example iframe"></iframe>
+
+<h3>failExamples:</h3>
+<p>
+❌ Focus gets stuck inside a video player and doesn’t return to the page. <br>
+❌ A popup opens but cannot be closed using only the keyboard. <br>
+❌ A custom component that traps the focus inside and doesn’t let users escape with Tab or Esc.
+</p>
+
+<!-- Fail Example: Keyboard Trap in Custom Div -->
+<button>Before Trap</button>
+<div id="trapArea" tabindex="0" style="border:2px solid red; padding:10px;">
+  <p>Focus is trapped here. Try to press Tab.</p>
+  <input type="text" placeholder="You are trapped!">
+</div>
+<button>After Trap</button>
+<script>
+  const trapArea = document.getElementById("trapArea");
+  trapArea.addEventListener("keydown", function (e) {
+    if (e.key === "Tab") {
+      e.preventDefault(); // Trap focus inside
+      trapArea.querySelector("input").focus();
+    }
+  });
+</script>
+
+<!-- Fail Example: Modal with no close key -->
+<button id="badModalBtn">Open Bad Modal</button>
+<div id="badModal" style="display:none; position:fixed; top:40%; left:30%; background:#ccc; padding:20px;" tabindex="-1">
+  <p>No keyboard support to close this!</p>
+  <!-- No close button or Escape handling -->
+</div>
+<script>
+  document.getElementById("badModalBtn").addEventListener("click", () => {
+    document.getElementById("badModal").style.display = "block";
+    document.getElementById("badModal").focus();
+  });
+</script></div>
+<div id="wcag-page24" class="wcag-page">
+
+ <h2>2.1.4: Character Key Shortcuts</h2>
+<p>level: A</p>
+
+<h3>description:</h3>
+<p>
+Sometimes websites or web apps allow users to do actions quickly by pressing a single letter on the keyboard, like pressing "D" to delete or "S" to search. But this can create problems for people who use speech recognition (like Dragon), screen readers, or who have motor disabilities. 
+<br><br>
+For example, a speech user might say "delete" and the system accidentally presses the "D" key, which deletes something they didn’t mean to. 
+<br><br>
+To avoid this, if your website uses single-character shortcuts, it must do one of the following:
+</p>
+<ul>
+  <li><b>Turn off:</b> Give users an option to disable the shortcut.</li>
+  <li><b>Remap:</b> Let users change the shortcut key to another one.</li>
+  <li><b>Activate only on focus:</b> Make the shortcut work only when a specific element is focused, like a text box or button.</li>
+</ul>
+
+<h3>passExamples:</h3>
+<p>
+  ✅ A shortcut key (like "D" for delete) works only when the user is typing inside a note area. <br>
+  ✅ Users can choose their own shortcut key from a dropdown (S, X, or None). <br>
+  ✅ There's a checkbox that allows users to turn off the keyboard shortcuts completely.
+</p>
+
+<!-- Live Pass Example 1 -->
+<textarea id="noteArea" placeholder="Type your notes here..."></textarea>
+<script>
+  document.getElementById("noteArea").addEventListener("keydown", function (e) {
+    if (e.key === "d" && document.activeElement === this) {
+      alert("Note deleted (only works when focused)");
+    }
+  });
+</script>
+
+<!-- Live Pass Example 2 -->
+<label>
+  <input type="checkbox" id="toggleShortcut" checked>
+  Enable shortcuts
+</label>
+<script>
+  document.addEventListener("keydown", function (e) {
+    if (document.getElementById("toggleShortcut").checked && e.key === "s") {
+      alert("Search shortcut activated!");
+    }
+  });
+</script>
+
+<!-- Live Pass Example 3 -->
+<label for="keySelect">Select shortcut key:</label>
+<select id="keySelect">
+  <option value="s">S</option>
+  <option value="x">X</option>
+  <option value="none">Disable</option>
+</select>
+<script>
+  let selectedKey = "s";
+  document.getElementById("keySelect").addEventListener("change", function () {
+    selectedKey = this.value;
+  });
+  document.addEventListener("keydown", function (e) {
+    if (selectedKey !== "none" && e.key === selectedKey) {
+      alert("Shortcut triggered!");
+    }
+  });
+</script>
+
+<h3>failExamples:</h3>
+<p>
+  ❌ Pressing "D" anywhere on the page deletes something, with no option to turn it off. <br>
+  ❌ While typing inside an input box, pressing "S" opens the search popup unexpectedly. <br>
+  ❌ The shortcut key triggers even when assistive tech like speech input is being used.
+</p>
+
+<!-- Live Fail Example 1 -->
+<script>
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "d") {
+      alert("Deleted! (Triggered globally, no way to disable)");
+    }
+  });
+</script>
+
+<!-- Live Fail Example 2 -->
+<input type="text" placeholder="Try typing here...">
+<script>
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "s") {
+      alert("S shortcut triggered – even while typing!");
+    }
+  });
+</script>
+
+
+</div>
 <div id="wcag-page24" class="wcag-page">
     <h2>2.2.1: Timing Adjustable</h2>
     <p>level: A</p>
@@ -1418,31 +1762,8 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
     </p>
 </div>
 
- 
-
-<div id="wcag-page26" class="wcag-page">
-    <h2>2.1.4: Character Key Shortcuts</h2>
-    <p>level: A</p>
-    <h3>description:</h3>
-    <p>If a single key shortcut (like just pressing “S”) is used in the content, users must be able to turn it off, change it, or make it work only when a specific area is in focus. This helps people using speech input or screen readers avoid accidental actions.</p>
-
-    <h3>passExamples:</h3>
-    <p>
-        User can disable or remap the “S” shortcut key in settings. <br>
-        Shortcut keys only work when the input field or editor is focused.
-    </p>
-
-    <h3>failExamples:</h3>
-    <p>
-        Pressing “D” deletes a message immediately without warning. <br>
-        No option to disable keyboard shortcuts for voice control users.
-    </p>
-</div>
-
- 
-
 <div id="wcag-page27" class="wcag-page">
-    <h2>2.3.1: Three Flashes or Below Threshold</h2>
+    <h2>2.3.1: Flashes or Below Thresholdb  d</h2>
     <p>level: A</p>
     <h3>description:</h3>
     <p>Web content must not flash more than 3 times in one second. Flashing lights can cause seizures, especially in people with photosensitive epilepsy. If flashing is needed, it should stay within a safe limit.</p>
@@ -1463,174 +1784,898 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
  
 
 <div id="wcag-page28" class="wcag-page">
-    <h2>2.4.1: Bypass Blocks</h2>
-    <p>level: A</p>
-    <h3>description:</h3>
-    <p>Users should be able to skip over repeated blocks of content like navigation menus. This helps keyboard and screen reader users reach the main content quickly.</p>
+<h2>2.4.1: Bypass Blocks</h2>
+<p>level: A</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;a href="#main-content" class="skip-link"&gt;Skip to main content&lt;/a&gt;' <br>
-        '&lt;main id="main-content"&gt;Main article starts here&lt;/main&gt;'
-    </p>
+<h3>description:</h3>
+<p>
+This rule helps keyboard and screen reader users skip repeated content like navigation menus and headers. It means that websites should give users a way to quickly jump to the main part of the page. For example, a “Skip to main content” link lets someone press Tab once and skip all the menu links to go straight to the important content.
+</p>
+<p>
+Other ways to meet this rule include using ARIA landmarks (like <code>main</code>, <code>nav</code>, <code>header</code>) or using headings to help screen reader users navigate easily.
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        User must press Tab many times to reach the main content. <br>
-        No way to skip header and menu links.
-    </p>
+<h3>passExamples:</h3>
+<p>
+✅ A “Skip to main content” link is the first focusable element and moves focus directly to the main content. <br>
+✅ Landmarks like <code>&lt;main&gt;</code> and <code>&lt;nav&gt;</code> are used, allowing screen reader users to jump between regions.
+</p>
+
+<!-- PASS Example 1: Skip to Main Content -->
+<a href="#maincontent" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;">
+  Skip to main content
+</a>
+
+<style>
+  .skip-link:focus {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: auto;
+    height: auto;
+    padding: 8px;
+    background: #000;
+    color: #fff;
+    z-index: 1000;
+  }
+</style>
+
+<nav>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+  </ul>
+</nav>
+
+<main id="maincontent" tabindex="-1">
+  <h1>Welcome to Our Website</h1>
+  <p>This is the main content of the page.</p>
+</main>
+
+<!-- PASS Example 2: ARIA Landmarks -->
+<header role="banner">Header Area</header>
+<nav role="navigation">Navigation Menu</nav>
+<main role="main">
+  <h2>Main Article</h2>
+  <p>This is the main article content.</p>
+</main>
+<footer role="contentinfo">Footer Info</footer>
+
+<h3>failExamples:</h3>
+<p>
+❌ No skip link is provided, so users must press Tab through all the menu links before reaching content. <br>
+❌ There are no landmarks or headings to help screen reader users navigate the page structure.
+</p>
+
+<!-- FAIL Example 1: No Skip Link -->
+<nav>
+  <a href="#">Link 1</a> |
+  <a href="#">Link 2</a> |
+  <a href="#">Link 3</a>
+</nav>
+
+<div>
+  <h2>Main Section</h2>
+  <p>This content comes after a long menu, and there is no way to skip to it quickly.</p>
+</div>
+
+<!-- FAIL Example 2: No landmarks or headings -->
+<div>
+  <div>Header</div>
+  <div>Menu</div>
+  <div>Lots of links here...</div>
+  <div>This is the main content but there’s no semantic structure for screen reader users.</div>
+</div>
 </div>
 
  
 
 <div id="wcag-page29" class="wcag-page">
-    <h2>2.4.2: Page Titled</h2>
-    <p>level: A</p>
-    <h3>description:</h3>
-    <p>Each web page should have a clear and meaningful title shown in the browser tab. This helps users know what the page is about.</p>
+<h2>2.4.2: Page Titled</h2>
+<p>Level: A</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;title&gt;About Us - Accessible World&lt;/title&gt;' <br>
-        '&lt;title&gt;Login - My Account&lt;/title&gt;'
-    </p>
+<h3>Description:</h3>
+<p>
+Every web page must have a clear and descriptive title using the <code>&lt;title&gt;</code> tag in the HTML <code>&lt;head&gt;</code>. The title appears in the browser tab, bookmarks, and screen readers. It helps all users — including those with visual impairments — quickly understand the purpose of the page.
+</p>
+<p>
+The title should be short, specific, and related to the page’s main content. Ideally, the title should also match or closely relate to the main heading on the page (the <code>&lt;h1&gt;</code>).
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        '&lt;title&gt;Untitled Page&lt;/title&gt;' <br>
-        '&lt;title&gt;Home&lt;/title&gt; (used for multiple different pages)'
-    </p>
+<h3>Pass Examples:</h3>
+
+<!-- Example 1 -->
+<p>
+✅ A page titled “About Us” with a matching heading:
+</p>
+<pre><code>
+&lt;title&gt;About Us - Accessible World&lt;/title&gt;
+</code></pre>
+<main>
+  <h1>About Us</h1>
+  <p>Welcome to Accessible World. Learn more about our mission and team.</p>
+</main>
+
+<!-- Example 2 -->
+<p>
+✅ A login page with a clear title:
+</p>
+<pre><code>
+&lt;title&gt;Login - My Account&lt;/title&gt;
+</code></pre>
+<main>
+  <h1>Login to Your Account</h1>
+  <form>
+    <label>Email:</label><br>
+    <input type="email"><br>
+    <label>Password:</label><br>
+    <input type="password"><br>
+    <button>Login</button>
+  </form>
+</main>
+
+<h3>Fail Examples:</h3>
+
+<!-- Example 1 -->
+<p>
+❌ A page with a generic or missing title:
+</p>
+<pre><code>
+&lt;title&gt;Untitled Page&lt;/title&gt;
+</code></pre>
+<main>
+  <h1>Contact Accessible World</h1>
+  <p>Use the form below to get in touch with us.</p>
+</main>
+
+<!-- Example 2 -->
+<p>
+❌ Same title used for different pages, causing confusion:
+</p>
+<pre><code>
+&lt;title&gt;Home&lt;/title&gt;
+</code></pre>
+<main>
+  <h1>About Accessible World</h1>
+  <p>This is our about page, but the title says "Home".</p>
+</main>
+
+---
+
+Let me know if you'd like these examples converted into real HTML files or a demo preview.
 </div>
 
  
 
 <div id="wcag-page30" class="wcag-page">
-    <h2>2.4.3: Focus Order</h2>
-    <p>level: A</p>
-    <h3>description:</h3>
-    <p>When navigating using Tab, focus should move in a logical and expected order. This helps users follow the structure and content of the page easily.</p>
+<h2>2.4.3: Focus Order</h2>
+<p>Level: A</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        Focus moves from menu → search → main content → footer. <br>
-        Modal opens and focus stays within it until closed.
-    </p>
+<h3>Description:</h3>
+<p>
+When using the keyboard (usually with the <kbd>Tab</kbd> key), the **focus** should move in a logical, meaningful order that matches the visual layout and reading order of the content. This helps keyboard and screen reader users understand and interact with the page easily.
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        Focus jumps around the page in a confusing order. <br>
-        Important buttons are skipped when using the keyboard.
-    </p>
+<p>
+Good focus order means:
+<ul>
+  <li>Elements receive focus in a way that follows the structure of the page (e.g., header → navigation → main content → footer).</li>
+  <li>**Focus reveal**: Hidden content (like modals or dropdowns) should become visible when it receives focus.</li>
+  <li>**Focus return**: When temporary content (like modals or popups) is closed, focus should return to the element that triggered it (e.g., the button that opened the modal).</li>
+</ul>
+</p>
+
+<h3>Pass Examples:</h3>
+
+<!-- Example 1 -->
+<p>✅ Focus moves logically from top to bottom:</p>
+<pre><code>
+&lt;header&gt;
+  &lt;a href="#home"&gt;Home&lt;/a&gt;
+  &lt;a href="#about"&gt;About&lt;/a&gt;
+&lt;/header&gt;
+&lt;main&gt;
+  &lt;button&gt;Start&lt;/button&gt;
+&lt;/main&gt;
+&lt;footer&gt;
+  &lt;a href="#contact"&gt;Contact Us&lt;/a&gt;
+&lt;/footer&gt;
+</code></pre>
+<p>Focus goes: Home → About → Start → Contact Us</p>
+
+<!-- Example 2 -->
+<p>✅ Modal opens, traps focus, and returns focus when closed:</p>
+<pre><code>
+&lt;button id="openModal"&gt;Open Help&lt;/button&gt;
+
+&lt;div id="modal" role="dialog" aria-modal="true" hidden&gt;
+  &lt;button id="closeModal"&gt;Close&lt;/button&gt;
+  &lt;p&gt;This is a help dialog.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<p>
+When the "Open Help" button is activated:<br>
+– Focus moves to the modal’s close button (focus reveal).<br>
+– User can tab inside the modal.<br>
+– On closing, focus returns to "Open Help" (focus return).
+</p>
+
+<h3>Fail Examples:</h3>
+
+<!-- Example 1 -->
+<p>❌ Focus jumps unpredictably:</p>
+<pre><code>
+&lt;main&gt;
+  &lt;button&gt;Submit&lt;/button&gt;
+  &lt;a href="#footer"&gt;Footer Link&lt;/a&gt;
+  &lt;input type="text" placeholder="Name"&gt;
+&lt;/main&gt;
+</code></pre>
+<p>Focus jumps: Submit → Footer Link → Name (not in reading order)</p>
+
+<!-- Example 2 -->
+<p>❌ Modal opens but focus stays behind it, or doesn’t return:</p>
+<pre><code>
+&lt;button&gt;Open Info&lt;/button&gt;
+&lt;div role="dialog"&gt;
+  &lt;p&gt;Some info here&lt;/p&gt;
+  &lt;button&gt;Close&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<p>
+– The modal opens but focus stays on background elements (no focus reveal).<br>
+– When modal closes, focus jumps somewhere else, not back to "Open Info" (no focus return).
+</p>
 </div>
 
  
 
 <div id="wcag-page31" class="wcag-page">
-    <h2>2.4.4: Link Purpose (In Context)</h2>
-    <p>level: A</p>
-    <h3>description:</h3>
-    <p>The purpose of each link should be clear from the link text or the surrounding content. This helps users decide if they want to follow the link.</p>
+<h2>2.4.4: Link Purpose (In Context)</h2>
+<p>Level: A</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;a href="annual-report.pdf"&gt;Download Annual Report (PDF)&lt;/a&gt;' <br>
-        'Text: "Visit our FAQ section for more details" with &lt;a href="faq.html"&gt;FAQ&lt;/a&gt;'
-    </p>
+<h3>Description:</h3>
+<p>
+The purpose of every link on a web page must be clear either from the link text alone or from the text around it. This helps all users — especially screen reader users — understand where the link will take them or what action it will perform.
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        '&lt;a href="info.html"&gt;Click here&lt;/a&gt;' <br>
-        'Multiple links labeled "More" with no context'
-    </p>
+<p>
+If someone reads just the link (for example, using a screen reader’s “list of links” feature), they should still understand what the link does without guessing.
+</p>
+
+<h3>Pass Examples:</h3>
+
+<!-- Example 1 -->
+<p>✅ Descriptive link text:</p>
+<pre><code>
+&lt;a href="annual-report.pdf"&gt;Download Annual Report (PDF)&lt;/a&gt;
+</code></pre>
+<p>Clear purpose from link text alone.</p>
+
+<!-- Example 2 -->
+<p>✅ Link purpose is clear from surrounding sentence:</p>
+<pre><code>
+&lt;p&gt;For more details, visit our &lt;a href="faq.html"&gt;FAQ section&lt;/a&gt;.&lt;/p&gt;
+</code></pre>
+<p>“FAQ section” gives enough context even if the link is part of a sentence.</p>
+
+<!-- Example 3 -->
+<p>✅ Button-like link with purpose:</p>
+<pre><code>
+&lt;a href="register.html" class="button"&gt;Register for the Workshop&lt;/a&gt;
+</code></pre>
+<p>The action and destination are both clear.</p>
+
+<h3>Fail Examples:</h3>
+
+<!-- Example 1 -->
+<p>❌ Generic link with no context:</p>
+<pre><code>
+&lt;a href="info.html"&gt;Click here&lt;/a&gt;
+</code></pre>
+<p>“Click here” doesn't say what the link is for.</p>
+
+<!-- Example 2 -->
+<p>❌ Multiple similar links with same label:</p>
+<pre><code>
+&lt;ul&gt;
+  &lt;li&gt;Topic A &lt;a href="a.html"&gt;More&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Topic B &lt;a href="b.html"&gt;More&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<p>“More” is not meaningful on its own. Users won’t know what each “More” link leads to when viewed separately.</p>
+
+<!-- Example 3 -->
+<p>❌ Link with vague purpose, even in context:</p>
+<pre><code>
+&lt;p&gt;We offer various services. &lt;a href="services.html"&gt;Read more&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+<p>“Read more” doesn’t clearly explain what the user will learn or read about.</p>
 </div>
 
  
 
 <div id="wcag-page32" class="wcag-page">
-    <h2>2.4.5: Multiple Ways</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>Users should be able to find a web page using more than one method, like navigation menus, search, or site maps. This helps users with different needs find information easily.</p>
+<h2>2.4.5: Multiple Ways</h2>
+<p>Level: AA</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        Main navigation menu + search box + sitemap <br>
-        List of pages in both menu and footer
-    </p>
+<h3>Description:</h3>
+<p>
+Users should be able to find a web page using more than one method. This is important for users with different abilities and preferences. For example, on a shopping website, a user can find a product by:
+</p>
+<ul>
+  <li>Using the main navigation menu</li>
+  <li>Typing in a search box</li>
+  <li>Using filters to narrow down results</li>
+  <li>Using footer or sitemap links</li>
+</ul>
+<p>
+This SC helps ensure that content is discoverable through more than just one way, improving usability and accessibility.
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        Only one navigation path is available to reach the page <br>
-        No search or site map provided
-    </p>
+<h3>Pass Examples:</h3>
+
+<p><strong>Example 1: Shopping website with multiple navigation options</strong></p>
+<nav>
+  <ul>
+    <li><a href="electronics.html">Electronics</a></li>
+    <li><a href="clothing.html">Clothing</a></li>
+    <li><a href="books.html">Books</a></li>
+  </ul>
+</nav>
+<form role="search" action="/search">
+  <label for="site-search">Search Products:</label>
+  <input type="search" id="site-search" name="q" placeholder="Search for products...">
+  <button type="submit">Search</button>
+</form>
+<footer>
+  <a href="sitemap.html">Site Map</a> |
+  <a href="electronics.html">Electronics</a> |
+  <a href="books.html">Books</a>
+</footer>
+
+<p>This page offers a menu, a search form, and footer links — allowing multiple ways to find products.</p>
+
+<hr>
+
+<h3>Fail Examples:</h3>
+
+<p><strong>Example 1: Only one way to find content</strong></p>
+<nav>
+  <ul>
+    <li><a href="electronics.html">Electronics</a></li>
+    <li><a href="clothing.html">Clothing</a></li>
+    <li><a href="books.html">Books</a></li>
+  </ul>
+</nav>
+
+<p>No search, filters, or footer links are provided. Users must rely only on the top menu navigation.</p>
+
+<p><strong>Example 2: Content hidden behind complex menus</strong></p>
+<p>
+The website uses only dropdown menus to access pages and provides no search box or sitemap. Users using screen readers or keyboard navigation find it hard to locate pages.
+</p>
 </div>
 
  
 
 <div id="wcag-page33" class="wcag-page">
-    <h2>2.4.6: Headings and Labels</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>Headings and labels must clearly describe the topic or purpose of the content or control. This helps users, especially screen reader users, understand and use the content.</p>
+<h2>2.4.6: Headings and Labels</h2>
+<p>Level: AA</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;label for="email"&gt;Email Address&lt;/label&gt;' <br>
-        '&lt;h2&gt;Contact Information&lt;/h2&gt;'
-    </p>
+<h3>Description:</h3>
+<p>
+Headings and labels must clearly describe the topic or purpose of the content they refer to. This is especially important for screen reader users who navigate using heading shortcuts. Headings like "Introduction", "Features", or "Contact Us" help all users understand the structure of the content. Vague or generic headings (like "Section 1" or "Untitled") are confusing and unhelpful.
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        '&lt;label&gt;Submit&lt;/label&gt; (without saying what is being submitted)' <br>
-        '&lt;h3&gt;Section 1&lt;/h3&gt; (no meaningful title)'
-    </p>
+<h3>Pass Examples:</h3>
+
+<p><strong>Example 1: Clear label for a form field</strong></p>
+<form>
+  <label for="email">Email Address:</label>
+  <input type="email" id="email" name="email">
+</form>
+
+<p><strong>Example 2: Descriptive heading for a section</strong></p>
+<h2>Contact Information</h2>
+<p>Use the following details to get in touch with us.</p>
+
+<hr>
+
+<h3>Fail Examples:</h3>
+
+<p><strong>Example 1: Label with no context</strong></p>
+<form>
+  <label>Submit</label>
+  <input type="text" name="input1">
+</form>
+<p>This label does not tell the user what information is being requested.</p>
+
+<p><strong>Example 2: Generic, unclear heading</strong></p>
+<h3>Section 1</h3>
+<p>This heading does not describe what the section is about.</p>
 </div>
 
  
 
 <div id="wcag-page34" class="wcag-page">
-    <h2>2.4.7: Focus Visible</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>When users navigate using a keyboard (like pressing Tab), the focused element must be visually clear. This helps users know where they are on the page.</p>
+<h2>2.4.7: Focus Visible</h2>
+<p>level: AA</p>
+<h3>description:</h3>
+<p>
+  When users navigate using a keyboard (like pressing Tab), the element that is currently focused must be clearly visible on the page. This means the focused item should have a visible outline, border, or color change so users know where they are. Without this visible focus indicator, keyboard users, especially those who cannot see a mouse pointer, may get lost on the page or not know which control is active.
+</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        Buttons and links show a visible border or color change when focused. <br>
-        Focus outline appears on input fields.
-    </p>
+<h3>passExamples:</h3>
+<p>
+  <!-- Example of a button with visible focus outline -->
+  <button style="padding:8px 12px; font-size:16px;" 
+          onfocus="this.style.outline='3px solid blue'" 
+          onblur="this.style.outline='none'">
+    Submit
+  </button>
+  <br><br>
+  <!-- Example of a link with visible focus style -->
+  <a href="#" style="font-size:16px; color:blue;" 
+     onfocus="this.style.outline='3px solid orange'" 
+     onblur="this.style.outline='none'">
+    Visit Homepage
+  </a>
+  <br><br>
+  <!-- Input field showing default focus outline -->
+  <input type="text" placeholder="Enter name" style="font-size:16px; padding:6px;">
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        No visual indicator when an element is focused. <br>
-        Focus styles removed using CSS (e.g., outline: none)
-    </p>
+<h3>failExamples:</h3>
+<p>
+  <!-- Button with outline removed, no visible focus -->
+  <button style="padding:8px 12px; font-size:16px; outline:none;">
+    Submit (No Focus Visible)
+  </button>
+  <br><br>
+  <!-- Link with no focus outline and no color change -->
+  <a href="#" style="font-size:16px; color:black; outline:none;">
+    Click Here (No Focus Visible)
+  </a>
+  <br><br>
+  <!-- Div element focusable but no visible focus indication -->
+  <div tabindex="0" style="width:150px; height:30px; background:#eee; outline:none; padding:6px;">
+    Focusable Div (No Focus Visible)
+  </div>
+</p>
 </div>
 
  
 
 <div id="wcag-page35" class="wcag-page">
-    <h2>2.4.11: Focus Not Obscured (Minimum)</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>The element that receives keyboard focus should not be fully hidden behind other content like popups or sticky headers. It should always be at least partially visible.</p>
+<h2>2.4.11: Focus Not Obscured (Minimum)</h2>
+<p>level: AA</p>
+<h3>description:</h3>
+<p>
+  When users navigate with the keyboard, the element that receives focus should never be completely hidden behind other page content, such as sticky headers, popups, or overlays. The focused element must always be at least partially visible on the screen, so users can see where the focus is and interact with it. If the focused item is hidden, keyboard users can get confused or lose track of where they are on the page.
+</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        Focused input field is always visible while scrolling. <br>
-        Sticky menus don’t cover focused elements.
-    </p>
+<h3>passExamples:</h3>
+<p>
+  <!-- Sticky header that does NOT cover focused input -->
+  <style>
+    body { margin:0; font-family: Arial, sans-serif; }
+    header {
+      position: sticky;
+      top: 0;
+      background: #333;
+      color: white;
+      padding: 10px;
+      z-index: 1000;
+    }
+    main {
+      padding: 20px;
+      margin-top: 60px;
+    }
+    input:focus {
+      outline: 3px solid #0066ff;
+      background-color: #e0f0ff;
+    }
+  </style>
+  <header>Sticky Header (does NOT cover focused elements)</header>
+  <main>
+    <p>Scroll down and use Tab to focus the input fields below:</p>
+    <input type="text" placeholder="First Name"><br><br>
+    <input type="text" placeholder="Last Name"><br><br>
+    <input type="email" placeholder="Email">
+  </main>
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        Sticky header covers the focused link. <br>
-        Focus moves to an off-screen item with no scroll or visibility.
-    </p>
+<h3>failExamples:</h3>
+<p>
+  <!-- Sticky header that covers focused input -->
+  <style>
+    .fail-header {
+      position: sticky;
+      top: 0;
+      background: #900;
+      color: white;
+      padding: 10px;
+      z-index: 1000;
+    }
+    .fail-main {
+      padding: 20px;
+      margin-top: 60px;
+    }
+    .fail-input {
+      margin-top: 200px; /* pushed far down */
+      outline: none;
+    }
+    .fail-input:focus {
+      outline: none; /* no visible focus */
+    }
+  </style>
+  <div class="fail-header">Sticky Header (covers focused elements)</div>
+  <div class="fail-main" tabindex="0">
+    <p>Scroll down and tab to focus input (but it will be hidden behind header):</p>
+    <input type="text" class="fail-input" placeholder="Hidden behind header" style="position: relative; top: -50px;">
+  </div>
+</p>
+</div>
+<div id="wcag-page36" class="wcag-page">
+<h2>2.5.1: Pointer Gestures</h2>
+<p>level: A</p>
+<h3>description:</h3>
+<p>
+  All functionality that requires complex pointer gestures, such as multi-finger swipes or pinches, must also be operable using simple pointer gestures (like single taps or clicks). This ensures users who can’t perform complex gestures, including people with motor disabilities, can still use the content.
+</p>
+<p>
+  For example, if a photo gallery uses a two-finger swipe to go to the next image, it must also provide a way to navigate images with a single tap or click.
+</p>
+
+<h3>passExamples:</h3>
+<p>
+  <!-- Example: Swipe gallery with buttons -->
+  <style>
+    #gallery { width: 300px; margin: 20px; border: 1px solid #ccc; padding: 10px; }
+    #gallery img { width: 100%; }
+    button { margin-top: 10px; }
+  </style>
+  <div id="gallery" tabindex="0" aria-label="Image gallery">
+    <img src="https://via.placeholder.com/300x150?text=Image+1" alt="Image 1" id="galleryImage">
+    <br>
+    <button onclick="showPrev()">Previous</button>
+    <button onclick="showNext()">Next</button>
+  </div>
+
+  <script>
+    const images = [
+      'https://via.placeholder.com/300x150?text=Image+1',
+      'https://via.placeholder.com/300x150?text=Image+2',
+      'https://via.placeholder.com/300x150?text=Image+3'
+    ];
+    let current = 0;
+    const img = document.getElementById('galleryImage');
+
+    function showPrev() {
+      current = (current - 1 + images.length) % images.length;
+      img.src = images[current];
+      img.alt = `Image ${current + 1}`;
+    }
+    function showNext() {
+      current = (current + 1) % images.length;
+      img.src = images[current];
+      img.alt = `Image ${current + 1}`;
+    }
+  </script>
+</p>
+
+<h3>failExamples:</h3>
+<p>
+  <!-- Example: Gallery that only responds to two-finger swipe -->
+  <style>
+    .fail-gallery {
+      width: 300px;
+      margin: 20px;
+      border: 1px solid #900;
+      padding: 10px;
+      user-select: none;
+    }
+    .fail-gallery img {
+      width: 100%;
+    }
+    .message {
+      color: #900;
+      font-weight: bold;
+    }
+  </style>
+  <div class="fail-gallery" tabindex="0" aria-label="Image gallery requiring two-finger swipe">
+    <img src="https://via.placeholder.com/300x150?text=Image+1" alt="Image 1">
+    <p class="message">This gallery can only be navigated using a two-finger swipe gesture.</p>
+  </div>
+</p>
+
+</div>
+<div id="wcag-page37" class="wcag-page">
+<h2>2.5.2: Pointer Cancellation</h2>
+<p>level: A</p>
+<h3>description:</h3>
+<p>
+  Users must be able to cancel or undo pointer actions that might have harmful or unexpected effects, such as deleting or submitting a form. This means if a user accidentally taps or clicks something, they can cancel the action before it completes.
+</p>
+<p>
+  For example, a “Delete” button should not immediately delete without confirmation, or a drag-and-drop action should allow users to cancel before dropping.
+</p>
+
+<h3>passExamples:</h3>
+<p>
+  <!-- Example: Delete button with confirmation -->
+  <button onclick="confirmDelete()">Delete Item</button>
+
+  <script>
+    function confirmDelete() {
+      if (confirm('Are you sure you want to delete this item?')) {
+        alert('Item deleted.');
+      } else {
+        alert('Delete cancelled.');
+      }
+    }
+  </script>
+</p>
+
+<h3>failExamples:</h3>
+<p>
+  <!-- Example: Delete button without confirmation -->
+  <button onclick="alert('Item deleted immediately!')">Delete Item</button>
+</p>
+
+</div>
+<div id="wcag-page38" class="wcag-page">
+<h2>2.5.3: Label in Name</h2>
+<p>level: A</p>
+<h3>description:</h3>
+<p>
+  The visible label of a user interface element—such as a button, link, form control, or any interactive component—must be included in its accessible name. The accessible name is what screen readers and other assistive technologies announce to users.
+</p>
+<p>
+  This means if a button shows text like “Submit” or “Search” visually, the screen reader should announce exactly that or a matching label. If the visible label is an icon or image, then the accessible name must use an appropriate text label (like an <code>aria-label</code>) that matches the icon’s meaning.
+</p>
+<p>
+  Why is this important? Because users who rely on screen readers cannot see the visual label. If the accessible name does not match or include the visible label, they may not understand what the control does, which causes confusion and poor user experience.
+</p>
+<p>
+  Examples of visible labels include:
+  <ul>
+    <li>Text on a button like "Submit", "Download", or "Close"</li>
+    <li>An icon representing search, delete, or edit</li>
+    <li>Text inside a link, such as "Read more" or "Contact us"</li>
+  </ul>
+</p>
+<p>
+  The accessible name can come from:
+  <ul>
+    <li>The element’s inner text (like the text inside a button)</li>
+    <li>An <code>aria-label</code> attribute providing a textual label</li>
+    <li>An associated <code>label</code> element for form controls</li>
+  </ul>
+</p>
+<p>
+  When the accessible name matches or includes the visible label, screen reader users get the same meaningful information as sighted users.
+</p>
+
+<h3>passExamples:</h3>
+<p>
+  <!-- Button with visible text used as accessible name -->
+  <button>Submit Form</button><br><br>
+
+  <!-- Icon button with aria-label matching visible text -->
+  <button aria-label="Search">
+    <span aria-hidden="true">🔍</span>
+  </button><br><br>
+
+  <!-- Link with visible text that is announced -->
+  <a href="contact.html">Contact Us</a><br><br>
+
+  <!-- Form input with label correctly linked -->
+  <label for="email">Email Address</label>
+  <input id="email" type="email" />
+</p>
+
+<h3>failExamples:</h3>
+<p>
+  <!-- Button with visible label but missing accessible name -->
+  <button aria-label="">Submit Form</button><br><br>
+
+  <!-- Icon button with no aria-label or text, so no accessible name -->
+  <button>
+    <span aria-hidden="true">🔍</span>
+  </button><br><br>
+
+  <!-- Link with vague text "Click here" -->
+  <a href="report.pdf">Click here</a><br><br>
+
+  <!-- Form input without associated label or aria-label -->
+  <input type="email" />
+</p>
+
+</div>
+ <div id="wcag-page39" class="wcag-page">
+<h2>2.5.4: Motion Actuation</h2>
+<p>level: A</p>
+<h3>description:</h3>
+<p>
+  Functionality that can be operated by device motion or user motion (like shaking, tilting, or rotating a phone) must also be operable by user interface components (such as buttons) or other standard input methods (like keyboard or touch). 
+</p>
+<p>
+  This is important because some users cannot perform motion gestures due to physical disabilities, or they might be using devices that do not support motion sensors.
+</p>
+<p>
+  For example, if shaking the device refreshes a page or tilting it scrolls the content, there must be an alternative way to trigger the same action using a button, keyboard key, or on-screen control.
+</p>
+<p>
+  Providing multiple input options ensures accessibility and usability for everyone, including people who rely on assistive technologies or have limited mobility.
+</p>
+
+<h3>passExamples:</h3>
+<p>
+  <!-- A button that refreshes the page as an alternative to shaking -->
+  <button onclick="location.reload()">Refresh Page</button><br><br>
+
+  <!-- Tilt gesture to scroll content is also possible with arrow keys -->
+  <p>Use arrow keys to scroll the content as an alternative to tilting your device.</p>
+</p>
+
+<h3>failExamples:</h3>
+<p>
+  <!-- Function that only refreshes the page by shaking the device -->
+  <script>
+    window.addEventListener('devicemotion', function(event) {
+      // Only shaking triggers refresh - no alternative controls
+      if (event.acceleration.x > 15) {
+        location.reload();
+      }
+    });
+  </script><br><br>
+
+  <!-- Game that moves character only by tilting phone, no keyboard or buttons -->
+  <p>Game controls only react to device tilt and cannot be controlled by any buttons or keyboard keys.</p>
+</p>
+</div>
+<div id="wcag-page40" class="wcag-page">
+<h2>2.5.7: Dragging Movements</h2>
+<p>level: A</p>
+<h3>description:</h3>
+<p>
+  Functionality that requires dragging movements (like dragging sliders, map pins, or resizing elements) must also be operable by alternative methods that do not require dragging. 
+</p>
+<p>
+  This helps users who cannot perform dragging gestures due to motor disabilities, or who use assistive technologies that do not support dragging.
+</p>
+<p>
+  Alternative methods include using keyboard controls (arrow keys, plus/minus keys), buttons for incrementing or decrementing values, or other accessible controls that achieve the same result.
+</p>
+<p>
+  For example, if a slider can only be adjusted by dragging, there should also be buttons or keyboard controls to change the slider’s value step by step.
+</p>
+
+<h3>passExamples:</h3>
+<p>
+  <!-- Slider with accessible buttons to increase/decrease value -->
+  &lt;label for="volume"&gt;Volume:&lt;/label&gt;
+  &lt;input type="range" id="volume" name="volume" min="0" max="10" value="5" aria-valuemin="0" aria-valuemax="10" aria-valuenow="5"&gt;
+  &lt;button onclick="document.getElementById('volume').stepDown(); document.getElementById('volume').focus();" aria-label="Decrease volume"&gt;-&lt;/button&gt;
+  &lt;button onclick="document.getElementById('volume').stepUp(); document.getElementById('volume').focus();" aria-label="Increase volume"&gt;+&lt;/button&gt;
+  <br><br>
+
+  <!-- Map pin can be moved with arrow keys as well as drag -->
+  <p>Map pin is draggable with mouse or touch, but also movable using keyboard arrow keys.</p>
+</p>
+
+<h3>failExamples:</h3>
+<p>
+  <!-- Slider that can only be adjusted by dragging, no keyboard support -->
+  &lt;input type="range" id="brightness" name="brightness" min="0" max="10" value="5" onkeydown="return false;"&gt;
+  <br><br>
+
+  <!-- Draggable element that cannot be moved except by mouse or touch drag -->
+  <p>Element that requires dragging with mouse or touch, no keyboard or buttons to adjust position.</p>
+</p>
+
+</div>
+<div id="wcag-page41" class="wcag-page">
+<h2>2.5.8: Target Size</h2>
+<p>level: AA</p>
+<h3>description:</h3>
+<p>
+  Interactive elements like buttons, links, and form controls must have a target size large enough to be easily activated by users.
+</p>
+<p>
+  The minimum target size required by WCAG is at least <strong>24 by 24 CSS pixels</strong>. This helps users with limited dexterity, tremors, or those using touch devices to activate controls without difficulty or accidental activation of nearby elements.
+</p>
+<p>
+  Small clickable areas can be hard to tap or click, especially on mobile devices or for users who use assistive devices.
+</p>
+<p>
+  For example, a button that is just 10x10 pixels is very hard to click, while a button of 30x30 pixels or larger is easier.
+</p>
+
+<h3>passExamples:</h3>
+<p>
+  <!-- Large button with enough padding -->
+  &lt;button style="width: 30px; height: 30px;"&gt;Click Me&lt;/button&gt;
+  <br><br>
+
+  <!-- Link styled as a large button with sufficient size -->
+  &lt;a href="#" style="display: inline-block; width: 30px; height: 24px; line-height: 24px; text-align: center; background: #007bff; color: white; border-radius: 5px;"&gt;More&lt;/a&gt;
+</p>
+
+<h3>failExamples:</h3>
+<p>
+  <!-- Small button with insufficient size -->
+  &lt;button style="width: 15px; height: 15px;"&gt;X&lt;/button&gt;
+  <br><br>
+
+  <!-- Link with very small clickable area -->
+  &lt;a href="#" style="font-size: 8px; padding: 2px;"&gt;Go&lt;/a&gt;
+</p>
+</div>
+<div id="wcag-page42" class="wcag-page">
+<h2>3.1.1: Language of Page</h2>
+<p>level: A</p>
+<h3>description:</h3>
+<p>
+  Every web page must declare the default human language using the <code>lang</code> attribute in the <code>&lt;html&gt;</code> tag.
+</p>
+<p>
+  This helps screen readers and other assistive technologies pronounce the text correctly and provide an accurate reading experience.
+</p>
+<p>
+  If parts of the page are in a different language, those sections should use the <code>lang</code> attribute with the appropriate language code.
+</p>
+<p>
+  For example, a page primarily in English but with a French quote should mark that quote with <code>lang="fr"</code>.
+</p>
+
+<h3>passExamples:</h3>
+<p>
+  <code>&lt;html lang="en"&gt;</code> <br>
+  Text content is in English and screen readers read it accordingly.
+  <br><br>
+  <code>&lt;p lang="fr"&gt;Bonjour tout le monde&lt;/p&gt;</code> inside an English page, so screen readers switch language for that paragraph.
+</p>
+
+<h3>failExamples:</h3>
+<p>
+  <code>&lt;html&gt;</code> (missing <code>lang</code> attribute) — screen readers may mispronounce text or guess the language incorrectly. <br>
+  Mixing languages in text without specifying <code>lang</code> on parts of the content, causing incorrect pronunciation.
+</p>
+</div>
+<div id="wcag-page43" class="wcag-page">
+<h2>3.1.2: Language of Parts</h2>
+<p>level: AA</p>
+<h3>description:</h3>
+<p>
+  When a web page contains sections of text in a different language than the main page language, those parts must have their language declared using the <code>lang</code> attribute.
+</p>
+<p>
+  This helps screen readers switch pronunciation rules correctly for different languages within the same page, providing a better and clearer reading experience.
+</p>
+<p>
+  For example, if the main page language is English (<code>lang="en"</code>) but there is a paragraph or phrase in Spanish, that part should use <code>lang="es"</code>.
+</p>
+
+<h3>passExamples:</h3>
+<p>
+  Main page: <code>&lt;html lang="en"&gt;</code> <br>
+  Spanish phrase: <code>&lt;p lang="es"&gt;Buenos días a todos&lt;/p&gt;</code> <br>
+  French quote: <code>&lt;blockquote lang="fr"&gt;Je pense, donc je suis.&lt;/blockquote&gt;</code>
+</p>
+
+<h3>failExamples:</h3>
+<p>
+  Main page: <code>&lt;html lang="en"&gt;</code> <br>
+  Spanish and French text included without <code>lang</code> attributes, causing screen readers to use English pronunciation and mispronounce the text. <br>
+  For example: <code>&lt;p&gt;Buenos días a todos&lt;/p&gt;</code> without <code>lang="es"</code>.
+</p>
 </div>
 
- 
-
-<div id="wcag-page36" class="wcag-page">
+<div id="wcag-page44	" class="wcag-page">
     <h2>3.2.1: On Focus</h2>
     <p>level: A</p>
     <h3>description:</h3>
