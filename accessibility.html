@@ -2568,8 +2568,9 @@ Headings and labels must clearly describe the topic or purpose of the content th
 </div>
 <div id="wcag-page40" class="wcag-page">
 <h2>2.5.7: Dragging Movements</h2>
-<p>level: A</p>
-<h3>description:</h3>
+<p>Level: A</p>
+
+<h3>Description:</h3>
 <p>
   Functionality that requires dragging movements (like dragging sliders, map pins, or resizing elements) must also be operable by alternative methods that do not require dragging. 
 </p>
@@ -2583,30 +2584,46 @@ Headings and labels must clearly describe the topic or purpose of the content th
   For example, if a slider can only be adjusted by dragging, there should also be buttons or keyboard controls to change the slider’s value step by step.
 </p>
 
-<h3>passExamples:</h3>
-<p>
-  <!-- Slider with accessible buttons to increase/decrease value -->
-  &lt;label for="volume"&gt;Volume:&lt;/label&gt;
-  &lt;input type="range" id="volume" name="volume" min="0" max="10" value="5" aria-valuemin="0" aria-valuemax="10" aria-valuenow="5"&gt;
-  &lt;button onclick="document.getElementById('volume').stepDown(); document.getElementById('volume').focus();" aria-label="Decrease volume"&gt;-&lt;/button&gt;
-  &lt;button onclick="document.getElementById('volume').stepUp(); document.getElementById('volume').focus();" aria-label="Increase volume"&gt;+&lt;/button&gt;
-  <br><br>
+<h3>Pass Examples:</h3>
 
-  <!-- Map pin can be moved with arrow keys as well as drag -->
-  <p>Map pin is draggable with mouse or touch, but also movable using keyboard arrow keys.</p>
-</p>
+<!-- Example 1: Accessible slider with buttons -->
+<p>✅ Slider with accessible buttons to increase/decrease value:</p>
+<label for="volume">Volume:</label>
+<input type="range" id="volume" name="volume" min="0" max="10" value="5" aria-valuemin="0" aria-valuemax="10" aria-valuenow="5">
+<button onclick="document.getElementById('volume').stepDown(); document.getElementById('volume').focus();" aria-label="Decrease volume">-</button>
+<button onclick="document.getElementById('volume').stepUp(); document.getElementById('volume').focus();" aria-label="Increase volume">+</button>
 
-<h3>failExamples:</h3>
-<p>
-  <!-- Slider that can only be adjusted by dragging, no keyboard support -->
-  &lt;input type="range" id="brightness" name="brightness" min="0" max="10" value="5" onkeydown="return false;"&gt;
-  <br><br>
+<br><br>
 
-  <!-- Draggable element that cannot be moved except by mouse or touch drag -->
-  <p>Element that requires dragging with mouse or touch, no keyboard or buttons to adjust position.</p>
-</p>
+<!-- Example 2: Keyboard operable map pin -->
+<p>✅ Map pin is draggable with mouse or touch, but also movable using keyboard arrow keys.</p>
 
+<!-- Example 3: Accessible file upload -->
+<p>✅ File upload with browse button:</p>
+<label for="fileUpload">Upload your file:</label>
+<input type="file" id="fileUpload" name="fileUpload">
+<p>Users can upload files using keyboard or screen reader, no dragging required.</p>
+
+<h3>Fail Examples:</h3>
+
+<!-- Example 1: Slider with only dragging -->
+<p>❌ Slider that can only be adjusted by dragging, no keyboard support:</p>
+<input type="range" id="brightness" name="brightness" min="0" max="10" value="5" onkeydown="return false;">
+<p>Slider cannot be used without a mouse or touch drag.</p>
+
+<br>
+
+<!-- Example 2: Draggable-only element -->
+<p>❌ Element that requires dragging with mouse or touch, no keyboard or buttons to adjust position.</p>
+<p>Map pin is draggable only by mouse or touch. No keyboard support provided.</p>
+
+<!-- Example 3: Drag-and-drop file upload only -->
+<p>❌ Drag-and-drop file upload with no alternative:</p>
+<div style="border: 2px dashed #aaa; padding: 20px; width: 300px;">
+  Drag and drop your file here
 </div>
+<p>No keyboard or button option to upload file.</p></div>
+
 <div id="wcag-page41" class="wcag-page">
 <h2>2.5.8: Target Size</h2>
 <p>level: AA</p>
@@ -2705,40 +2722,88 @@ Headings and labels must clearly describe the topic or purpose of the content th
 </div>
 
 <div id="wcag-page44	" class="wcag-page">
-    <h2>3.2.1: On Focus</h2>
-    <p>level: A</p>
-    <h3>description:</h3>
-    <p>When a user focuses on an element (like a form field or button), it should not automatically trigger a major change like submitting a form or opening a new page. Changes should only happen when the user chooses to do something, like clicking a button.</p>
+<h2>3.2.1: On Focus</h2>
+<p>Level: A</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;input type="text" placeholder="Enter name"&gt;' <br>
-        'Focus on a menu does not open a new page until the user clicks.'
-    </p>
+<h3>Description:</h3>
+<p>
+  When a user focuses on an element (like a form field or button), it should not automatically trigger a major change like submitting a form or opening a new page. Changes should only happen when the user chooses to do something, like clicking a button.
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        Focusing on a dropdown automatically redirects to another page.
-    </p>
+<h3>Pass Examples:</h3>
+
+<!-- Example 1: Text input that does nothing on focus -->
+<p>✅ Text input (no action triggered on focus):</p>
+<input type="text" placeholder="Enter your name">
+
+<br><br>
+
+<!-- Example 2: Navigation menu that only acts on click -->
+<p>✅ Dropdown menu that does not navigate on focus alone:</p>
+<select onchange="if(this.value) window.location.href=this.value;">
+  <option value="">Select a page</option>
+  <option value="https://example.com/about">About Us</option>
+  <option value="https://example.com/contact">Contact</option>
+</select>
+<p>The page changes only when the user selects an option and presses Enter or uses a pointer device.</p>
+
+<h3>Fail Examples:</h3>
+
+<!-- Example 1: Redirects on focus -->
+<p>❌ Dropdown that redirects immediately on focus:</p>
+<select onfocus="window.location.href='https://example.com';">
+  <option>Go to example.com</option>
+</select>
+<p>This triggers navigation just by focusing, without user action.</p>
 </div>
 
  
 
 <div id="wcag-page37" class="wcag-page">
-    <h2>3.2.2: On Input</h2>
-    <p>level: A</p>
-    <h3>description:</h3>
-    <p>When users fill in or change something in a form, it should not cause unexpected changes, like submitting the form or refreshing the page, without warning.</p>
+<h2>3.2.2: On Input</h2>
+<p>Level: A</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        Typing in a search box doesn’t submit the search until clicking the button.
-    </p>
+<h3>Description:</h3>
+<p>
+  When users fill in or change something in a form, it should not cause unexpected changes, like submitting the form or refreshing the page, without warning.
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        Changing a dropdown value automatically submits the form.
-    </p>
+<h3>Pass Examples:</h3>
+
+<!-- Example 1: Search input that requires button click -->
+<p>✅ Search box does not submit automatically:</p>
+<form action="/search" method="GET">
+  <input type="text" name="query" placeholder="Search...">
+  <button type="submit">Search</button>
+</form>
+<p>Typing in the input doesn't trigger any action until the button is clicked.</p>
+
+<br>
+
+<!-- Example 2: Dropdown that does not submit automatically -->
+<p>✅ Dropdown selection requires user to confirm:</p>
+<form>
+  <label for="choice">Choose an option:</label>
+  <select id="choice" name="choice">
+    <option value="a">Option A</option>
+    <option value="b">Option B</option>
+  </select>
+  <button type="submit">Submit</button>
+</form>
+<p>Changing the selection doesn’t submit the form until the user presses the submit button.</p>
+
+<h3>Fail Examples:</h3>
+
+<!-- Example 1: Dropdown auto-submits -->
+<p>❌ Dropdown submits form automatically on change:</p>
+<form action="/submit" method="POST">
+  <label for="auto">Choose and auto-submit:</label>
+  <select id="auto" name="auto" onchange="this.form.submit();">
+    <option value="1">Page 1</option>
+    <option value="2">Page 2</option>
+  </select>
+</form>
+<p>This dropdown submits the form as soon as the value is changed, without the user explicitly submitting.</p>
 </div>
 
  
@@ -2801,170 +2866,623 @@ Headings and labels must clearly describe the topic or purpose of the content th
  
 
 <div id="wcag-page41" class="wcag-page">
-    <h2>3.3.1: Error Identification</h2>
-    <p>level: A</p>
-    <h3>description:</h3>
-    <p>If users make a mistake in a form (like leaving a required field blank), the error must be clearly shown and described so the user knows how to fix it.</p>
+<h2>3.3.1: Error Identification</h2>
+<p>Level: A</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        “Please enter your email address” appears below a blank email field.
-    </p>
+<h3>Description:</h3>
+<p>
+When users make a mistake in a form — such as leaving a required field empty, entering an invalid email address, or typing a password that doesn’t meet the rules — the error must be clearly shown to them. This helps everyone, especially people using screen readers or with cognitive disabilities, understand what went wrong and how to fix it.
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        The form reloads with no message, leaving the user confused.
-    </p>
+<p>
+Good error messages should:
+</p>
+<ul>
+  <li>Be placed next to the relevant field</li>
+  <li>Use clear and simple language</li>
+  <li>Be announced by screen readers</li>
+  <li>Include ARIA attributes like <code>aria-invalid</code> and <code>aria-describedby</code> where needed</li>
+</ul>
+
+<p>
+For example, if a user submits a form without entering their email, they should immediately see a message like “Please enter your email address” under the email input field.
+</p>
+
+<h3>Pass Examples:</h3>
+
+<!-- Example 1: Error message shown below email field -->
+<p>✅ Clear error message when field is left blank:</p>
+<form id="emailForm" onsubmit="return validateEmail();">
+  <label for="email">Email: <span aria-hidden="true" style="color:red">*</span></label>
+  <input type="email" id="email" name="email" aria-describedby="emailError">
+  <div id="emailError" style="color:red;" role="alert"></div>
+  <br>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+  function validateEmail() {
+    const emailInput = document.getElementById('email');
+    const errorDiv = document.getElementById('emailError');
+    if (emailInput.value.trim() === '') {
+      errorDiv.textContent = 'Please enter your email address';
+      emailInput.setAttribute('aria-invalid', 'true');
+      return false;
+    }
+    errorDiv.textContent = '';
+    emailInput.removeAttribute('aria-invalid');
+    return true;
+  }
+</script>
+
+<p>The error is shown right after the input, clearly describing what the user needs to do.</p>
+
+<h3>Fail Examples:</h3>
+
+<!-- Example 1: Form reloads with no feedback -->
+<p>❌ No feedback shown when required field is blank:</p>
+<form action="/submit" method="POST">
+  <label for="username">Username (required):</label>
+  <input type="text" id="username" name="username" required>
+  <br><br>
+  <button type="submit">Submit</button>
+</form>
+
+<p>
+If the user leaves the field blank and submits the form, the page reloads and no message is shown. This is confusing and makes it hard for the user to understand what they did wrong.
+</p>
 </div>
 
  
 
 <div id="wcag-page42" class="wcag-page">
-    <h2>3.3.2: Labels or Instructions</h2>
-    <p>level: A</p>
-    <h3>description:</h3>
-    <p>Form inputs should have clear labels or instructions to help users know what to do.</p>
+<h2>3.3.2: Labels or Instructions</h2>
+<p>Level: A</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        '&lt;label for="email"&gt;Email Address&lt;/label&gt;'
-    </p>
+<h3>Description:</h3>
+<p>
+Every form control — such as text inputs, checkboxes, dropdowns, and buttons — must have a clear and descriptive label or instruction. This ensures users, including those using screen readers or with cognitive disabilities, can understand what information is expected in each field.
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        Text input with no label or placeholder.
-    </p>
+<p>
+A label can be visible text (using a <code>&lt;label&gt;</code> element) or programmatically associated using <code>aria-label</code> or <code>aria-labelledby</code>. Instructions should be provided when special formatting or examples are required (e.g., "Enter your phone number in this format: XXX-XXX-XXXX").
+</p>
+
+<p>
+Incorrect or missing labels can confuse users or prevent screen readers from reading the input purpose. Placeholder text is not a replacement for a proper label, as it disappears when users type and may not be read reliably by assistive technology.
+</p>
+
+---
+
+<h3>Pass Examples:</h3>
+
+<!-- Example 1: Proper label associated with input -->
+<p>✅ Example with a visible label:</p>
+<label for="email">Email Address:</label>
+<input type="email" id="email" name="email">
+
+<!-- Example 2: Instruction included for specific input format -->
+<p>✅ Example with instruction:</p>
+<label for="phone">Phone Number (Format: 123-456-7890):</label>
+<input type="text" id="phone" name="phone" pattern="\d{3}-\d{3}-\d{4}" aria-describedby="phoneHint">
+<div id="phoneHint">Enter in the format: 123-456-7890</div>
+
+<!-- Example 3: Visually hidden label, useful when design is minimal -->
+<p>✅ Example with visually hidden label for accessibility:</p>
+<label for="search" class="sr-only">Search</label>
+<input type="text" id="search" name="search" placeholder="Search..." aria-label="Search">
+<style>
+  .sr-only {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+</style>
+
+---
+
+<h3>Fail Examples:</h3>
+
+<!-- Example 1: Input with no label -->
+<p>❌ Input without a label or instructions:</p>
+<input type="text" name="username">
+
+<p>This input has no <code>&lt;label&gt;</code> element, <code>aria-label</code>, or <code>placeholder</code>. Screen reader users won't know what information is expected.</p>
+
+<!-- Example 2: Placeholder used as label -->
+<p>❌ Placeholder used as the only label:</p>
+<input type="text" placeholder="Enter email">
+
+<p>This input lacks a proper <code>&lt;label&gt;</code>. Placeholders are not accessible substitutes because they disappear as the user types and are not always read reliably by screen readers.</p>
 </div>
 
  
 
 <div id="wcag-page43" class="wcag-page">
-    <h2>3.3.3: Error Suggestion</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>If an error is found, the system should suggest how to fix it.</p>
+<h2>3.3.3: Error Suggestion</h2>
+<p>Level: AA</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        “Your password must be at least 8 characters.”
-    </p>
+<h3>Description:</h3>
+<p>
+When a user makes a mistake while filling out a form, the error message should clearly explain how to fix the problem. This helps users complete their tasks without confusion or frustration, especially those with cognitive disabilities or those using assistive technologies.
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        Just shows “Invalid input” with no explanation.
-    </p>
+<p>
+For example, instead of simply showing “Invalid input,” a helpful error message would say, “Your password must be at least 8 characters long.” This kind of feedback ensures that users know what went wrong and how to correct it.
+</p>
+
+---
+
+<h3>Pass Examples:</h3>
+
+<p>✅ Example with clear error suggestion for password input:</p>
+
+<form onsubmit="return validatePassword()">
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password">
+  <span id="passwordError" style="color:red;"></span><br><br>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+  function validatePassword() {
+    var pwd = document.getElementById("password").value;
+    if (pwd.length < 8) {
+      document.getElementById("passwordError").textContent = "Password must be at least 8 characters long.";
+      return false;
+    }
+    return true;
+  }
+</script>
+
+---
+
+<p>✅ Example with suggestion for correct email format:</p>
+
+<form onsubmit="return validateEmail()">
+  <label for="email">Email:</label>
+  <input type="text" id="email" name="email">
+  <span id="emailError" style="color:red;"></span><br><br>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+  function validateEmail() {
+    var email = document.getElementById("email").value;
+    var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!regex.test(email)) {
+      document.getElementById("emailError").textContent = "Please enter a valid email address (e.g., user@example.com).";
+      return false;
+    }
+    return true;
+  }
+</script>
+
+---
+
+<h3>Fail Examples:</h3>
+
+<p>❌ Vague error message with no guidance:</p>
+
+<form onsubmit="return showInvalid()">
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username">
+  <span id="userError" style="color:red;"></span><br><br>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+  function showInvalid() {
+    var username = document.getElementById("username").value;
+    if (username === "") {
+      document.getElementById("userError").textContent = "Invalid input.";
+      return false;
+    }
+    return true;
+  }
+</script>
+
+<p>In this example, the message “Invalid input” does not tell the user what exactly is wrong or how to fix it.</p>
 </div>
 
  
 
 <div id="wcag-page44" class="wcag-page">
-    <h2>3.3.4: Error Prevention (Legal, Financial, Data)</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>When users submit important information (like for money, data changes, or legal agreements), they should have a chance to review, confirm, or correct it.</p>
+<h2>3.3.4: Error Prevention (Legal, Financial, Data)</h2>
+<p>Level: AA</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        A “Review your order” page before final payment.
-    </p>
+<h3>Description:</h3>
+<p>
+When users are about to submit critical information—such as financial details, legal agreements, or important personal data—the system should help prevent accidental errors. This can be done by offering one or more of the following:
+</p>
+<ul>
+  <li>✅ A chance to review and confirm the entered data before final submission.</li>
+  <li>✅ An option to correct the information after submission.</li>
+  <li>✅ An opportunity to cancel the transaction before it’s finalized.</li>
+</ul>
+<p>
+This is especially important for tasks like placing orders, making payments, submitting legal documents, or changing account details.
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        Clicking “Submit” directly places an order without confirmation.
-    </p>
+---
+
+<h3>Pass Examples:</h3>
+
+<p>✅ <strong>Example: Review and confirm order before final payment</strong></p>
+
+<form id="checkoutForm" onsubmit="return showReview()">
+  <label for="product">Product:</label>
+  <input type="text" id="product" value="Laptop" disabled><br><br>
+
+  <label for="quantity">Quantity:</label>
+  <input type="number" id="quantity" value="1"><br><br>
+
+  <button type="submit">Continue</button>
+</form>
+
+<div id="reviewSection" style="display:none; margin-top: 20px;">
+  <h3>Review Your Order</h3>
+  <p id="reviewText"></p>
+  <button onclick="submitFinal()">Confirm and Pay</button>
+</div>
+
+<script>
+  function showReview() {
+    const qty = document.getElementById('quantity').value;
+    document.getElementById('reviewText').textContent = `You are ordering ${qty} Laptop(s).`;
+    document.getElementById('checkoutForm').style.display = 'none';
+    document.getElementById('reviewSection').style.display = 'block';
+    return false;
+  }
+
+  function submitFinal() {
+    alert("Order submitted successfully!");
+  }
+</script>
+
+---
+
+<p>✅ <strong>Example: Option to cancel transaction before final submission</strong></p>
+
+<form onsubmit="return confirmSubmit()">
+  <label for="bank">Bank Account Number:</label>
+  <input type="text" id="bank" name="bank"><br><br>
+  <button type="submit">Submit Payment</button>
+</form>
+
+<script>
+  function confirmSubmit() {
+    return confirm("Are you sure you want to submit the payment?");
+  }
+</script>
+
+---
+
+<h3>Fail Examples:</h3>
+
+<p>❌ <strong>Example: Submits order immediately without review or confirmation</strong></p>
+
+<form onsubmit="placeOrder()">
+  <label for="item">Item:</label>
+  <input type="text" id="item" value="Mobile Phone" disabled><br><br>
+
+  <label for="qty">Quantity:</label>
+  <input type="number" id="qty" value="2"><br><br>
+
+  <button type="submit">Buy Now</button>
+</form>
+
+<script>
+  function placeOrder() {
+    alert("Order placed without confirmation.");
+    return false;
+  }
+</script>
+
+<p>This example places an order directly after clicking “Buy Now” with no opportunity to confirm or correct the quantity.</p>
 </div>
 
  
 
 <div id="wcag-page45" class="wcag-page">
-    <h2>3.3.7: Redundant Entry</h2>
-    <p>level: AAA</p>
-    <h3>description:</h3>
-    <p>Users should not have to enter the same information more than once in a single process.</p>
+<h2>3.3.7: Redundant Entry</h2>
+<p>Level: A</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        Shipping and billing address copied with a checkbox.
-    </p>
+<h3>Description:</h3>
+<p>
+When users are filling out forms or completing processes, they should not be forced to enter the same information multiple times. For example, if billing and shipping addresses are required, the user should be able to copy one address into the other with a single action instead of typing it again. This reduces effort, errors, and frustration, especially for users with disabilities.
+</p>
+<p>
+A common solution is to provide a checkbox like “Shipping address is the same as billing address” that copies information automatically.
+</p>
 
-    <h3>failExamples:</h3>
-    <p>
-        Users must enter the same address in two different places with no copy option.
-    </p>
+---
+
+<h3>Pass Examples:</h3>
+
+<form id="addressForm">
+  <fieldset>
+    <legend>Billing Address</legend>
+    <label for="billingAddress">Address:</label>
+    <input type="text" id="billingAddress" name="billingAddress" required><br><br>
+  </fieldset>
+
+  <fieldset>
+    <legend>Shipping Address</legend>
+    <label for="shippingAddress">Address:</label>
+    <input type="text" id="shippingAddress" name="shippingAddress" required><br><br>
+
+    <input type="checkbox" id="copyAddress" aria-controls="shippingAddress" aria-checked="false">
+    <label for="copyAddress">Shipping address is the same as billing address</label>
+  </fieldset>
+
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+  document.getElementById('copyAddress').addEventListener('change', function() {
+    const billing = document.getElementById('billingAddress').value;
+    const shippingInput = document.getElementById('shippingAddress');
+    if (this.checked) {
+      shippingInput.value = billing;
+      shippingInput.setAttribute('readonly', 'true');
+      this.setAttribute('aria-checked', 'true');
+    } else {
+      shippingInput.value = '';
+      shippingInput.removeAttribute('readonly');
+      this.setAttribute('aria-checked', 'false');
+    }
+  });
+</script>
+
+---
+
+<h3>Fail Examples:</h3>
+
+<form>
+  <fieldset>
+    <legend>Billing Address</legend>
+    <label for="billAddr">Address:</label>
+    <input type="text" id="billAddr" name="billAddr" required><br><br>
+  </fieldset>
+
+  <fieldset>
+    <legend>Shipping Address</legend>
+    <label for="shipAddr">Address:</label>
+    <input type="text" id="shipAddr" name="shipAddr" required><br><br>
+  </fieldset>
+
+  <button type="submit">Submit</button>
+</form>
+
+<p>
+Users must manually enter the same address twice with no option to copy or autofill the shipping address from the billing address.
+</p>
 </div>
 
  
 
 <div id="wcag-page46" class="wcag-page">
-    <h2>3.3.8: Accessible Authentication</h2>
-    <p>level: AA</p>
-    <h3>description:</h3>
-    <p>Login and authentication processes should be usable without needing to remember or type text like passwords unless there is another easy method like a login link or biometric login.</p>
+<h2>3.3.8: Accessible Authentication</h2>
+<p>Level: AA</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        Allowing sign-in using fingerprint or one-time link.
-    </p>
+<h3>Description:</h3>
+<p>
+Authentication processes should be accessible to all users, including those who have difficulty remembering or typing passwords. This means providing alternative login methods such as biometric authentication (fingerprint, face recognition), one-time login links sent by email, or magic links. These methods reduce the barrier for users with cognitive, motor, or vision impairments.
+</p>
+<p>
+Additionally, if passwords are used, users should be able to easily see or hear what they are typing, and alternative authentication options should always be provided.
+</p>
+
+---
+
+<h3>Pass Examples:</h3>
+
+<!-- Example 1: Login with one-time magic link -->
+<form>
+  <label for="email">Email address:</label><br>
+  <input type="email" id="email" name="email" required aria-describedby="magicLinkHelp"><br><br>
+  <button type="submit">Send Magic Link</button>
+  <p id="magicLinkHelp">You will receive a one-time login link in your email. No password needed.</p>
+</form>
+
+<hr>
+
+<!-- Example 2: Biometric login button (conceptual) -->
+<button type="button" aria-label="Sign in with fingerprint" onclick="alert('Biometric login activated')">
+  🔒 Sign in with Fingerprint
+</button>
+
+---
+
+<h3>Fail Examples:</h3>
+
+<!-- Example: Login form requiring password with no alternative methods -->
+<form>
+  <label for="username">Username:</label><br>
+  <input type="text" id="username" name="username" required><br><br>
+
+  <label for="password">Password:</label><br>
+  <input type="password" id="password" name="password" required><br><br>
+
+  <button type="submit">Log In</button>
+</form>
+
+<p>
+Users must remember and type a password with no alternative login methods like biometric or magic links.
+</p>
 </div>
 <div id="wcag-page47" class="wcag-page"> 
-    <h2>4.1.2: Name, Role, Value</h2>
-    <p>level: A</p>
+<h2>4.1.2: Name, Role, Value</h2>
+<p>Level: A</p>
 
-    <h3>description:</h3>
-    <p>
-        This guideline ensures that all user interface elements (such as buttons, checkboxes, sliders, or custom widgets) clearly communicate their name, role, and current value or state to screen readers and other assistive technologies.
-    </p>
-    <p>
-        For example, if a control is a button, the screen reader should announce it as a button. If it is a checkbox, it should say whether it is checked or not. This helps blind users and keyboard users understand and interact with the controls easily.
-    </p>
-    <p>
-        If you are creating custom controls using JavaScript or other code, you must use ARIA attributes like <code>role</code>, <code>aria-label</code>, and <code>aria-checked</code> so that assistive technologies can understand them.
-    </p>
+<h3>Description:</h3>
+<p>
+  This guideline ensures that every user interface control (buttons, checkboxes, sliders, custom widgets, etc.) must clearly provide three important pieces of information to assistive technologies like screen readers:
+</p>
+<ul>
+  <li><strong>Name:</strong> The accessible name or label that describes the control’s purpose.</li>
+  <li><strong>Role:</strong> The type of control it is (e.g., button, checkbox, slider) so users know how to interact with it.</li>
+  <li><strong>Value:</strong> The current state or value of the control (e.g., checked/unchecked, slider position).</li>
+</ul>
+<p>
+  Without these, users who rely on screen readers or keyboard navigation won’t understand what the control does or its current status, making the interface unusable.
+</p>
+<p>
+  When creating custom controls (for example, with <code>div</code> or <code>span</code> elements styled with JavaScript), you must add appropriate ARIA attributes such as <code>role</code>, <code>aria-label</code>, and <code>aria-checked</code> or <code>aria-valuenow</code> to communicate these details.
+</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        A custom checkbox built using a <code>&lt;div&gt;</code> element has <code>role="checkbox"</code>, <code>tabindex="0"</code>, and updates <code>aria-checked="true"</code> or <code>false</code> when clicked.
-    </p>
+---
 
-    <h3>failExamples:</h3>
-    <p>
-        A clickable <code>&lt;div&gt;</code> that looks like a button but does not have <code>role="button"</code> or a name, so screen reader users don’t know it’s a button or what it does.
-    </p>
-    <p>
-        A slider created with JavaScript that moves visually but does not update its value using ARIA, so blind users can’t tell what value they have selected.
-    </p>
+<h3>Pass Examples:</h3>
+
+<!-- Custom checkbox with proper ARIA -->
+<div 
+  role="checkbox" 
+  tabindex="0" 
+  aria-checked="false" 
+  aria-label="Subscribe to newsletter" 
+  onclick="toggleCheckbox(this)" 
+  onkeydown="if(event.key===' '||event.key==='Enter'){toggleCheckbox(this);} " 
+  style="width: 20px; height: 20px; border: 2px solid black; display: inline-block; cursor: pointer;"
+></div>
+<script>
+  function toggleCheckbox(element) {
+    const checked = element.getAttribute('aria-checked') === 'true';
+    element.setAttribute('aria-checked', String(!checked));
+  }
+</script>
+
+<br><br>
+
+<!-- Slider with ARIA roles and values -->
+<label for="volume-slider">Volume:</label>
+<input 
+  type="range" 
+  id="volume-slider" 
+  min="0" 
+  max="10" 
+  value="5" 
+  aria-valuemin="0" 
+  aria-valuemax="10" 
+  aria-valuenow="5" 
+  aria-label="Volume control" 
+  oninput="this.setAttribute('aria-valuenow', this.value);" 
+/>
+
+---
+
+<h3>Fail Examples:</h3>
+
+<!-- Div looks like a button but no role or name -->
+<div 
+  onclick="alert('Clicked!')" 
+  style="padding: 10px; background-color: lightblue; cursor: pointer;">
+  Click me
+</div>
+
+<p>This <code>div</code> looks like a button but has no <code>role="button"</code> or accessible name, so screen readers cannot identify it.</p>
+
+<br>
+
+<!-- Slider that updates visually but no ARIA attributes -->
+<label for="brightness-slider">Brightness:</label>
+<input 
+  type="range" 
+  id="brightness-slider" 
+  min="0" 
+  max="10" 
+  value="7" 
+  oninput="console.log(this.value);" 
+/>
+<p>The slider moves visually, but it does not update <code>aria-valuenow</code> or provide an accessible name, so screen readers cannot convey the current value to users.</p>
 </div>
 
 <div id="wcag-page48" class="wcag-page"> 
-    <h2>4.1.3: Status Messages</h2>
-    <p>level: AA</p>
+<h2>4.1.3: Status Messages</h2>
+<p>Level: AA</p>
 
-    <h3>description:</h3>
-    <p>
-        This guideline helps users with screen readers by ensuring they are informed when something changes on the screen—like an error message, confirmation message, or status update—without needing to move their focus.
-    </p>
-    <p>
-        For example, if someone submits a form and a message appears saying "Form submitted successfully" or "Email is required", that message should be announced automatically. This is done using ARIA live regions like <code>aria-live="polite"</code> or <code>aria-live="assertive"</code>.
-    </p>
-    <p>
-        This is important for people who cannot see the screen and rely on audio to understand what happened after they performed an action.
-    </p>
+<h3>Description:</h3>
+<p>
+  This guideline ensures that users of assistive technologies like screen readers are automatically informed when important information or status updates appear on the page, without needing to move their keyboard focus.
+</p>
+<p>
+  For example, when a user submits a form, if an error message ("Email is required") or a confirmation message ("Form submitted successfully") appears, it should be announced immediately by the screen reader. This helps users who cannot see the screen understand what just happened.
+</p>
+<p>
+  This automatic announcement is implemented using ARIA live regions such as <code>aria-live="polite"</code> or <code>aria-live="assertive"</code>. These attributes tell screen readers to monitor the region for changes and speak the new content as it appears.
+</p>
 
-    <h3>passExamples:</h3>
-    <p>
-        A form error message appears in a <code>&lt;div aria-live="polite"&gt;</code> so that screen readers announce the error automatically when it appears.
-    </p>
-    <p>
-        A confirmation message like "Item added to cart" is placed in a live region, and the screen reader announces it without any user action.
-    </p>
+---
 
-    <h3>failExamples:</h3>
-    <p>
-        An error message appears visually below the form field but is not inside a live region, so the screen reader user never hears it unless they manually move focus to find it.
-    </p>
-    <p>
-        A dynamic status message updates on screen (e.g., "Saving...") but is not announced because no ARIA live region is used.
-    </p>
+<h3>Pass Examples:</h3>
+
+<!-- Error message inside polite live region -->
+<form onsubmit="event.preventDefault(); showError();" aria-describedby="error-msg">
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required />
+  <button type="submit">Submit</button>
+  <div id="error-msg" aria-live="polite" style="color: red; margin-top: 5px;"></div>
+</form>
+
+<script>
+  function showError() {
+    const errorDiv = document.getElementById('error-msg');
+    errorDiv.textContent = 'Email is required.';
+  }
+</script>
+
+<br>
+
+<!-- Confirmation message with assertive live region -->
+<div aria-live="assertive" id="confirmation" style="margin-top: 10px;"></div>
+<button onclick="confirmAdd()">Add to cart</button>
+
+<script>
+  function confirmAdd() {
+    document.getElementById('confirmation').textContent = 'Item added to cart.';
+  }
+</script>
+
+---
+
+<h3>Fail Examples:</h3>
+
+<!-- Error message visually shown but no live region -->
+<form onsubmit="event.preventDefault(); showErrorFail();" aria-describedby="error-fail-msg">
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" required />
+  <button type="submit">Submit</button>
+  <div id="error-fail-msg" style="color: red; margin-top: 5px;"></div>
+</form>
+
+<script>
+  function showErrorFail() {
+    const errorDiv = document.getElementById('error-fail-msg');
+    errorDiv.textContent = 'Username is required.';
+  }
+</script>
+
+<p>This error message is not inside a live region, so screen readers will not announce it automatically.</p>
+
+<br>
+
+<!-- Dynamic status updates but no ARIA live region -->
+<div id="status" style="margin-top: 10px;"></div>
+<button onclick="showSaving()">Save</button>
+
+<script>
+  function showSaving() {
+    document.getElementById('status').textContent = 'Saving...';
+    setTimeout(() => {
+      document.getElementById('status').textContent = 'Save complete.';
+    }, 2000);
+  }
+</script>
+
+<p>The status updates are not announced because no <code>aria-live</code> attribute is used.</p>
 </div>
 </div>
             <div class="pagination-controls">
