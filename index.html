@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login - Accessible World</title>
+    <title>Welcome - Accessible World</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="./">
-    <link rel="stylesheet" href="style.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,154 +13,90 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             min-height: 100vh;
             margin: 0;
         }
 
         .container {
-            max-width: 400px;
+            max-width: 500px;
             padding: 25px;
             background: #ffffff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        h2, p {
             text-align: center;
-        }
-
-        label {
-            display: block;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-sizing: border-box;
-        }
-
-        .password-container {
-            position: relative;
-        }
-
-        .password-container input {
-            padding-right: 40px;
-        }
-
-        .show-password-btn {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 5px;
-            font-size: 0.9em;
-            outline: none;
         }
 
         button {
             width: 100%;
             padding: 12px;
-            margin-top: 20px;
+            margin: 10px 0;
             background: #3399cc;
             color: white;
             border: none;
             border-radius: 6px;
             font-size: 16px;
             cursor: pointer;
-            margin-bottom: 5px;
         }
 
         button:hover {
             background: #287ba3;
         }
 
-        .forgot-password {
-            text-align: right;
-            margin-top: 5px;
-            margin-bottom: 10px;
+        label.sr-only { /* Style for screen-reader only labels */
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border-width: 0;
         }
 
-        .forgot-password a {
-            color: #007bff;
-            text-decoration: none;
-            font-size: 0.9em;
-        }
-
-        .forgot-password a:hover {
-            text-decoration: underline;
-        }
-
-        .redirect {
-            text-align: center;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        .admin-link {
-            text-align: center;
+        select, .answer-box {
+            width: 100%;
+            padding: 10px;
             margin-top: 15px;
-            font-size: 0.9em;
-        }
-
-        .admin-link a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .admin-link a:hover {
-            text-decoration: underline;
-        }
-
-        #verificationContainer {
-            text-align: center;
-            margin-top: 15px;
-            display: none;
-            border: 1px solid #f0ad4e;
-            background-color: #fef5e7;
-            color: #8a6d3b;
-            padding: 15px;
+            font-size: 1rem;
             border-radius: 6px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
         }
 
-        #verificationMessage {
-            margin-bottom: 10px;
-            font-weight: bold;
+        .answer-box {
+            min-height: 50px;
+            text-align: left;
+            background-color: #e9e9e9;
+        }
+        .answer-box:focus { /* Optional: visual cue when answer box is focused */
+            outline: 2px solid #3399cc;
+            outline-offset: 2px;
         }
 
-        #resendVerificationEmail {
-            width: auto;
-            padding: 10px 15px;
-            font-size: 14px;
-            margin-top: 10px;
-            background-color: #f0ad4e;
+        /* Footer Styles */
+        .footer { /* Corrected selector from footer to .footer if using class */
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            margin-top: auto;
+            border-radius: 0 0 8px 8px;
+            width: 100%; /* Ensure footer takes full width */
         }
 
-        #resendVerificationEmail:hover {
-            background-color: #d89b36;
+        .footer a { /* Corrected selector */
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
         }
 
-        .visually-hidden {
-            position: absolute !important;
-            height: 1px !important;
-            width: 1px !important;
-            overflow: hidden !important;
-            clip: rect(1px, 1px, 1px, 1px) !important;
-            white-space: nowrap !important;
+        .footer a:hover { /* Corrected selector */
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-
     <div class="container">
         <h2>Welcome to Accessible World!</h2>
         <p>
@@ -170,110 +105,118 @@
             Don’t wait to unlock your full potential! <strong>Register now</strong> and <strong>log in</strong> to start your journey with Accessible World. Learn, explore, and achieve more with us!
         </p>
 
-        <form id="loginForm">
-            <label for="email">Email Address:</label>
-            <input type="email" id="email" name="email" required aria-describedby="email-format-hint">
-            <div id="email-format-hint" class="visually-hidden">Please enter a valid email address.</div>
-
-            <label for="password">Password:</label>
-            <div class="password-container">
-                <input type="password" id="password" name="password" required aria-describedby="password-toggle-hint">
-                <button type="button" class="show-password-btn" onclick="togglePasswordVisibility()" aria-label="Show password" aria-pressed="false">Show Password</button>
-            </div>
-            <div id="password-toggle-hint" class="visually-hidden">Press the button to toggle password visibility.</div>
-
-            <div class="forgot-password">
-                <a href="forgot_password.html">Forgot Password?</a>
-            </div>
-
-            <button type="submit">Login</button>
-
-            <div id="verificationContainer" style="display: none;" role="alert">
-                <p id="verificationMessage" tabindex="-1">Email not verified. Please check your inbox for the verification email.</p>
-                <button type="button" id="resendVerificationEmail">Resend Verification Email</button>
-            </div>
-        </form>
-
-        <div class="redirect">
-            <p>Don't have an account? <a href="register.html">Register here</a></p>
-        </div>
-
-        <div class="admin-link">
-            <a href="admin_login.html">Login as Admin</a>
-        </div>
+        <button onclick="window.location.href='login.html'">Login</button>
+        <button onclick="window.location.href='register.html'">Register</button>
+        <h2>Question and answers</h2>
+        <label for="questionSelect" class="sr-only">Select a question about Accessible World</label>
+        <select id="questionSelect">
+            <option value="">-- Select a question about Accessible World --</option>
+            <option value="about">What is Accessible World?</option>
+            <option value="freeCourses">Do you offer free accessibility training?</option>
+            <option value="referral">How does the referral program work?</option>
+            <option value="earning">Can I earn money through this platform?</option>
+            <option value="courseList">What courses are available on the platform?</option>
+            <option value="accessibilitySupport">Is the platform accessible for screen reader users?</option>
+            <option value="oneTimeFee">Is ₹1000 a recurring fee or one-time payment?</option>
+            <option value="whoCanJoin">Who can join Accessible World?</option>
+            <option value="paymentMethod">How can I make the ₹1000 payment?</option>
+            <option value="withdrawalProcess">How can I withdraw my referral earnings?</option>
+        </select>
+        <div id="answerBox" class="answer-box" tabindex="-1" aria-live="polite"></div>
     </div>
+    <footer class="footer"> <p>&copy; 2025 Accessible World Tutorials</p>
+        <a href="privacy.html" target="_blank">Privacy Policy</a>
+        <a href="terms.html" target="_blank">Terms of Service</a>
+        <a href="/contact.html" target="_blank">Contact Us</a>
+    </footer>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-        import {
-            getAuth,
-            signInWithEmailAndPassword,
-            sendEmailVerification,
-            signOut
-        } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    <script>
+        const questionSelect = document.getElementById('questionSelect');
+        const answerBox = document.getElementById('answerBox');
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
-            authDomain: "accessibleworld-7f599.firebaseapp.com",
-            projectId: "accessibleworld-7f599",
-            storageBucket: "accessibleworld-7f599.appspot.com",
-            messagingSenderId: "264437218598",
-            appId: "1:264437218598:web:cae58c1e578c7b08b815e7",
-            measurementId: "G-1QRWXYRZ76"
+        const answers = {
+            about: "Accessible World Tutorials is an inclusive learning platform dedicated to empowering individuals, especially the visually impaired. It offers practical training in accessibility testing, HTML, basic computer skills, interview materials, general knowledge, and current affairs. With a focus on accessibility and simplicity, the platform ensures that every learner has equal access to quality education and career-building resources.",
+            freeCourses: "No, we do not offer free courses on this platform. To access our valuable training in Web Accessibility, HTML, Basic Computers, Interview Preparation, GK, and Current Affairs, you need to join by paying a one-time fee of ₹1000. This is a lifetime access fee, and there are no additional charges after that.",
+            referral: "Our platform offers a 5-level referral program that allows you to earn rewards when you refer others. You will earn income not just from your direct referrals, but also from the people they refer, up to 5 levels deep. Here's how it works:\n\
+• Level 1 (Direct Referral): You earn ₹240 for each person who joins through your referral link.\n\
+• Level 2: You earn ₹150 when someone joins through your Level 1 referral's link.\n\
+• Level 3: You earn ₹110 when someone joins through a Level 2 referral.\n\
+• Level 4: You earn ₹60 when someone joins through a Level 3 referral.\n\
+• Level 5: You earn ₹40 when someone joins through a Level 4 referral.\n\
+This way, you can build a growing network and earn passive income while helping others access valuable training.",
+            earning: "Yes, you can earn income by referring others to join the platform. As you share your referral link and help others enroll, you’ll receive referral earnings. At the same time, you’ll be learning valuable skills like web accessibility, HTML, and basic computer knowledge, helping you grow both financially and professionally while expanding your network.",
+            courseList: "We offer training in Web Accessibility, HTML, Basic Computers, Interview Preparation, General Knowledge, and Current Affairs. All courses are designed with accessibility and simplicity in mind.",
+            accessibilitySupport: "Yes, Accessible World is fully accessible for screen reader users. We ensure that all our content is usable and inclusive for the visually impaired.",
+            oneTimeFee: "The ₹1000 is a one-time lifetime payment. Once you join, you get lifetime access to all available and upcoming courses—no hidden or recurring charges.",
+            whoCanJoin: "Anyone who is interested in learning accessibility skills, basic computer knowledge, interview preparation, or general awareness can join. This platform is designed for all learners, including but not limited to visually impaired individuals. Our goal is to provide inclusive and accessible education for everyone.",
+            paymentMethod: "You can pay the ₹1000 through UPI, credit/debit cards, or other secure online payment methods integrated into our platform.",
+            withdrawalProcess: "You can request a withdrawal once you earn referral income. Simply go to the dashboard, click on 'Show/Hide Referral Details', then select 'Request Withdrawal'. Enter your preferred withdrawal method and the amount, and submit the request. Your request will be sent for admin approval."
         };
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+        // Function to update the answer content and manage focus
+        function updateAnswerAndFocus() {
+            const selectedValue = questionSelect.value;
+            const answerText = answers[selectedValue] || "";
+            answerBox.textContent = answerText;
 
-        let currentUnverifiedUser = null;
+            if (answerText) {
+                // Ensure answerBox is focusable (it should have tabindex="-1" from HTML)
+                // If not set in HTML, this line would add it:
+                // if (!answerBox.hasAttribute('tabindex')) {
+                //     answerBox.setAttribute('tabindex', '-1');
+                // }
+                answerBox.focus();
+            }
+        }
 
-        document.getElementById("loginForm").addEventListener("submit", (e) => {
-            e.preventDefault();
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
+        let wasArrowKeyUsed = false; // Flag to track if an arrow key was the last relevant keydown
 
-            signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    if (user.emailVerified) {
-                        alert("Login successful!");
-                        window.location.href = "dashboard.html";
-                    } else {
-                        document.getElementById("verificationContainer").style.display = "block";
-                        document.getElementById("verificationMessage").focus();
-                        currentUnverifiedUser = user;
-                    }
-                })
-                .catch((error) => {
-                    alert("Login failed: " + error.message);
-                    currentUnverifiedUser = null;
-                    document.getElementById("verificationContainer").style.display = "none";
-                });
-        });
-
-        document.getElementById("resendVerificationEmail").addEventListener("click", () => {
-            if (currentUnverifiedUser) {
-                sendEmailVerification(currentUnverifiedUser)
-                    .then(() => {
-                        alert(`Verification email sent to ${currentUnverifiedUser.email}.`);
-                    })
-                    .catch((error) => {
-                        alert("Error sending email: " + error.message);
-                    });
+        questionSelect.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+                wasArrowKeyUsed = true; // Mark that arrow keys are being used for navigation
+            } else if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent default form submission or other select actions
+                wasArrowKeyUsed = false; // Enter is a commit action, not just arrow navigation
+                updateAnswerAndFocus(); // Update answer immediately on Enter
+                                        // Note: 'change' event will also fire after this.
             } else {
-                alert("Please log in again to resend verification email.");
+                // For any other key (e.g., character keys for jumping, Tab, Escape),
+                // assume it's not part of a sequence where 'change' should be ignored.
+                wasArrowKeyUsed = false;
             }
         });
 
-        window.togglePasswordVisibility = function () {
-            const passwordInput = document.getElementById("password");
-            const showPasswordButton = document.querySelector(".show-password-btn");
-            const isPasswordVisible = passwordInput.type === "text";
-            passwordInput.type = isPasswordVisible ? "password" : "text";
-            showPasswordButton.textContent = isPasswordVisible ? "Show Password" : "Hide Password";
-            showPasswordButton.setAttribute("aria-pressed", !isPasswordVisible);
-        };
-    </script>
+        questionSelect.addEventListener('change', function() {
+            // 'change' fires after value is modified by arrow keys, click, Enter, or tabbing away.
+            if (wasArrowKeyUsed) {
+                // If 'true', this 'change' was triggered by an arrow key press.
+                // We don't want to update the answer display yet.
+                // Reset the flag; the next 'change' (e.g., from a click or Enter) should not be blocked.
+                wasArrowKeyUsed = false;
+                return; // Skip updating the answer for this arrow-key-induced change
+            }
 
+            // If 'wasArrowKeyUsed' is false, the change was due to:
+            // 1. A mouse click.
+            // 2. An Enter key press (which already called updateAnswerAndFocus, so this might be redundant but is generally okay).
+            // 3. Tabbing away (blur will also handle this; this might be redundant).
+            // 4. Character key navigation that changes the value.
+            updateAnswerAndFocus();
+        });
+
+        // If the user mousedowns on the select (prelude to a click), it's a direct selection, not arrow navigation.
+        questionSelect.addEventListener('mousedown', function() {
+            wasArrowKeyUsed = false;
+        });
+
+        questionSelect.addEventListener('blur', function() {
+            // When the select element loses focus, any pending selection should be committed.
+            // This is crucial if arrow keys were used and then the user tabbed away or clicked outside.
+            // We update here regardless of 'wasArrowKeyUsed' because blur signifies a commit.
+            updateAnswerAndFocus();
+            wasArrowKeyUsed = false; // Reset flag as interaction with select is ending or committed.
+        });
+
+    </script>
 </body>
 </html>

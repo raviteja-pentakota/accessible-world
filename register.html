@@ -111,7 +111,7 @@
         // Send verification email
         await sendEmailVerification(user);
         alert("Registration successful! A verification email has been sent. Please verify your email before logging in.");
-        window.location.href = "index.html";
+        window.location.href = "login.html";
 
       } catch (error) {
         console.error("Error during registration:", error);
@@ -148,19 +148,21 @@
       <input type="text" id="fullName" required /><br>
 
       <label for="mobile">Mobile:</label>
-      <input type="tel" id="mobile" placeholder="Enter your mobile number" maxlength="10" required /><br>
+      <input type="tel" id="mobile" placeholder="Enter your 10 digit mobile number" maxlength="10" required /><br>
 
       <label for="email">Email:</label>
       <input type="email" id="email" required /><br>
 
       <label for="password">Password:</label>
       <input type="password" id="password" required placeholder="At least 6 characters, mix case, number & symbol" /><br><br>
+<input type="checkbox" id="agree" name="agree" value="I agree" required>
+<label for="agree">I agree to the terms and conditions</label>
 
       <button type="submit">Register</button>
     </form>
 
     <div class="login-link">
-      Already a user? <a href="index.html">Click here to login</a>
+      Already a user? <a href="login.html">Click here to login</a>
     </div>
   </div>
 </body>

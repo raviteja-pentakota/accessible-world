@@ -246,15 +246,15 @@
                         bodyElement.style.display = 'block';
                     } else {
                         alert("Please join our membership to access the courses.");
-                        window.location.href = "index.html";
+                        window.location.href = "login.html";
                     }
                 } else {
                     alert("Error: Could not verify your membership. Please log in again.");
-                    window.location.href = "index.html";
+                    window.location.href = "login.html";
                 }
             } else {
                 alert("Please log in to access the courses.");
-                window.location.href = "index.html";
+                window.location.href = "login.html";
             }
         });
         // Event listener for the profile button
@@ -267,7 +267,7 @@
         logoutButton.addEventListener('click', async () => {
             try {
                 await signOut(auth);
-                window.location.href = "index.html";
+                window.location.href = "login.html";
             } catch (error) {
                 console.error('Error signing out:', error);
                 alert('Error signing out. Please try again.');

@@ -233,17 +233,17 @@
                     } else {
                         console.log("User is logged in but has not paid. Redirecting to index.");
                         alert("Please join our membership to access the courses.");
-                        window.location.href = "index.html"; // Or your pricing page
+                        window.location.href = "login.html"; // Or your pricing page
                     }
                 } else {
                     console.error("User data not found for UID:", uid);
                     alert("Error: Could not verify your membership. Please log in again.");
-                    window.location.href = "index.html"; // Or your login page
+                    window.location.href = "login.html"; // Or your login page
                 }
             } else {
                 console.log("User is not logged in. Redirecting to index.");
                 alert("Please log in to access the courses.");
-                window.location.href = "index.html"; // Or your login page
+                window.location.href = "login.html"; // Or your login page
             }
         });
 
@@ -258,7 +258,7 @@
             try {
                 await signOut(auth);
                 console.log('User signed out');
-                window.location.href = "index.html"; // Redirect to your homepage or login page
+                window.location.href = "login.html"; // Redirect to your homepage or login page
             } catch (error) {
                 console.error('Error signing out:', error);
                 alert('Error signing out. Please try again.');

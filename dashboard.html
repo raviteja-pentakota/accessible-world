@@ -179,6 +179,7 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
 
     <div id="payment-section">
         <button id="payBtn">Join and Pay ₹1000 Membership</button>
+<p>Call me on my mobile at 7731879173 if you're facing any difficulty with the payment.</p>
     </div>
     <div id="course-access" style="display:none; margin-top:10px;">
         <p style="color:green;">You are already a paid member. To access the paid courses, click below:</p>
@@ -371,7 +372,7 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
         }
 
         onAuthStateChanged(auth, async user => {
-            if (!user) return location.href = "index.html";
+            if (!user) return location.href = "login.html";
             currentUserId = user.uid;
             currentUserEmail = user.email;
             const userDoc = await getDoc(doc(db, "users", user.uid));
@@ -448,7 +449,7 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
             profileDetails.style.display = isExpanded ? "none" : "block";
         });
 
-        logoutBtn.onclick = ()=> signOut(auth).then(()=>location.href="index.html");
+        logoutBtn.onclick = ()=> signOut(auth).then(()=>location.href="login.html");
         copyLinkBtn.onclick = ()=> { navigator.clipboard.writeText(referralLinkField.textContent); alert("Copied!"); }
         toggleReferralBtn.addEventListener('click', () => {
             const isExpanded = toggleReferralBtn.getAttribute("aria-expanded") === "true";

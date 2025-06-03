@@ -824,15 +824,15 @@
                         bodyElement.style.display = 'block'; // Show content if authenticated and paid
                     } else {
                         alert("Please join our membership to access the courses.");
-                        window.location.href = "index.html"; // Redirect if not paid
+                        window.location.href = "login.html"; // Redirect if not paid
                     }
                 } else {
                     alert("Error: Could not verify your membership. Please log in again.");
-                    window.location.href = "index.html"; // Redirect if user data not found
+                    window.location.href = "login.html"; // Redirect if user data not found
                 }
             } else {
                 alert("Please log in to access the courses.");
-                window.location.href = "index.html"; // Redirect if not logged in
+                window.location.href = "login.html"; // Redirect if not logged in
             }
         });
 
@@ -952,7 +952,7 @@
                 try {
                     await signOut(auth);
                     alert("You have been logged out.");
-                    window.location.href = "index.html"; // Redirect to login page
+                    window.location.href = "login.html"; // Redirect to login page
                 } catch (error) {
                     console.error("Error signing out:", error);
                     alert("Error logging out. Please try again.");
