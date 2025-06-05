@@ -34,10 +34,11 @@
 
         .modal-content {
             background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
+            margin: 10% auto; /* Adjusted margin for slightly higher position */
             padding: 20px;
             border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
+            width: 90%; /* Increased width for better mobile view */
+            max-width: 600px; /* Max width for larger screens */
             border-radius: 8px;
             position: relative;
         }
@@ -68,12 +69,22 @@
 
         .modal-input-group select,
         .modal-input-group input[type="text"],
-        .modal-input-group input[type="number"] {
+        .modal-input-group input[type="number"],
+        .modal-input-group input[type="file"] {
             width: calc(100% - 12px);
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
+        }
+
+        .modal-input-group textarea {
+            width: calc(100% - 12px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
         }
 
         .modal-actions {
@@ -114,8 +125,9 @@
             white-space: nowrap;
         }
 
-        .modal[aria-hidden="true"] + * {
-            filter: blur(5px);
+        /* Styles for blurring main content when modal is open */
+        body.modal-open > *:not(.modal) {
+            filter: blur(3px); /* Slightly less blur for better performance */
             pointer-events: none;
             user-select: none;
         }
@@ -150,18 +162,55 @@
             width: 100%;
             margin-top: 10px;
         }
+
+        /* Payment details section in modal */
+        #paymentMethodDetails {
+            margin-top: 15px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        #paymentMethodDetails div {
+            margin-bottom: 10px;
+        }
+        #paymentMethodDetails img {
+            max-width: 350px;
+            height: auto;
+            display: block;
+            margin: 10px auto; /* Centered QR code */
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+        .instruction-box {
+            background-color: #e9f7ef;
+            border: 1px solid #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .payment-display-section {
+            display: none; /* Hidden by default, shown by JS */
+            padding: 10px;
+            border: 1px dashed #ccc;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .payment-display-section p {
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
     <div class="card">
-<h1>Welcome to Accessible World Tutorials – Your Learning Dashboard</h1>        
-<div class="profile-container">
+        <h1>Welcome to Accessible World Tutorials</h1>
+        <div class="profile-container">
             <button id="profileBtn" aria-expanded="false" aria-controls="profileDetails">Profile</button>
             <div id="profileDetails" class="profile-dropdown">
                 <p><strong>Name:</strong> <span id="user-name"></span></p>
                 <p><strong>Mobile:</strong> <span id="user-mobile"></span></p>
                 <p><strong>Email:</strong> <span id="user-email"></span></p>
-        <p><strong>Payment Status:</strong> <span id="user-payment-status"></span></p>
+                <p><strong>Payment Status:</strong> <span id="user-payment-status"></span></p>
                 <button id="logout" style="background:#dc3545">Logout</button>
             </div>
         </div>
@@ -173,29 +222,24 @@
     </div>
 
     <h2>About Us</h2>
-<p>At Accessible World Tutorials, we are committed to making the digital world inclusive and accessible for everyone. Our platform currently offers high-quality learning materials on HTML, web accessibility testing, interview preparation, general knowledge, and current affairs. These topics feature clear explanations, video lessons, and practical examples with in-browser code viewing for HTML tutorials. Content on JavaScript, stock market education, and the latest tech updates for Android and Windows is coming soon. Accessibility is at the core of everything we do — with expert guidance, comprehensive resources, and engaging content, we ensure a learning experience that is both empowering and effective.  
-By joining us with just a one-time subscription, you'll unlock free access to our full course on accessibility testing, valuable general knowledge and current affairs content, and viewable HTML practical files with video lessons. Join now to learn, grow, and succeed in an inclusive environment designed to support your journey every step of the way.</p>
-
+    <p> At Accessible World Tutorials, we are committed to making the digital world inclusive and accessible for everyone. Our platform offers high-quality learning materials across a wide range of topics, including HTML, JavaScript, stock market education, and the latest tech updates for Android and Windows. Whether you're looking to master web development, improve your programming skills, or gain financial knowledge, our tutorials feature clear explanations, practical examples, video lessons, and hands-on files. Accessibility is at the core of everything we do — with expert guidance, comprehensive resources, and engaging content, we ensure a learning experience that is both empowering and effective.
+    By joining us with just a one-time subscription, you'll unlock free access to our full course on accessibility testing, valuable general knowledge and current affairs content, and downloadable HTML practical files with video lessons. Join now to learn, grow, and succeed in an inclusive environment designed to support your journey every step of the way.
+    </p>
 
     <div id="payment-section">
-<h2>New Payment System Coming Soon – Enroll Manually for Now</h2>
-<p>
-We are currently upgrading our payment platform to provide a faster and more accessible experience for all users.
-</p>
-
-<p>
-Until the new system is launched, if you wish to enroll and access the courses, please contact us directly at <strong>7731879173</strong>. We will guide you through the payment process and activate your course access once the payment of ₹1000 is received.
-</p>
-
-<p>
-<strong>Please note:</strong> The above number is for communication purposes only and <strong>not a PhonePe number</strong>. Payment details will be shared upon contact.
-</p>
-
-<p>
-We appreciate your understanding and patience as we work to enhance your experience.
-</p>
-        <button id="payBtn" hidden>Join and Pay ₹1000 Membership</button>
-
+    <div id="payment-rejected" style="display:none; margin-top:10px; background-color: #ffe6e6; border: 1px solid #ffcccc; padding: 15px; border-radius: 5px; color: #cc0000;">
+<h3>Payment Not Received</h3>
+        <p style="font-weight: bold;">We have not received the payment.</p>
+        <p>Please share the payment successful screenshot to the mobile: <strong style="font-size: 1.1em;">7731879173</strong>.</p>
+    <p>If the money was not deducted from your account or has already been refunded, click the button below to make the payment again.</p>    </div>
+        <button id="initiatePaymentBtn">Join and Pay ₹1000 Membership</button>
+    </div>
+    <div id="payment-review" style="display:none; margin-top:10px;">
+        <p style="color:orange;">Your payment is under review. We will verify it within 24-48 hours. Thank you for your patience!</p>
+    </div>
+    <div id="payment-rejected" style="display:none; margin-top:10px; background-color: #ffe6e6; border: 1px solid #ffcccc; padding: 15px; border-radius: 5px; color: #cc0000;">
+        <p style="font-weight: bold;">We have not received the payment.</p>
+        <p>Please share the payment successful screenshot to the mobile: <strong style="font-size: 1.1em;">7731879173</strong>.</p>
     </div>
     <div id="course-access" style="display:none; margin-top:10px;">
         <p style="color:green;">You are already a paid member. To access the paid courses, click below:</p>
@@ -240,12 +284,16 @@ We appreciate your understanding and patience as we work to enhance your experie
     <div id="admin-section" class="admin-section" style="display:none">
         <h3>Admin: Pending Withdrawals</h3>
         <div id="withdrawal-list"></div>
+        <hr>
+        <h3>Admin: Pending Manual Payments</h3>
+        <div id="manual-payment-list"></div>
     </div>
 
-    <div id="withdrawModal" class="modal" aria-modal="true" aria-hidden="true">
+    <div id="withdrawModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="withdrawModalTitle" aria-describedby="withdrawModalDescription" tabindex="-1">
         <div class="modal-content">
             <button class="close-button" aria-label="Close Withdrawal Modal">&times;</button>
-            <h3>Withdrawal Request</h3>
+            <h3 id="withdrawModalTitle">Withdrawal Request</h3>
+            <p id="withdrawModalDescription" class="visually-hidden">Fill out the form below to request a withdrawal of your earnings.</p>
             <div class="modal-input-group">
                 <label for="totalAmount">Total Amount:</label>
                 <input type="text" id="totalAmount" value="₹0" readonly>
@@ -280,6 +328,69 @@ We appreciate your understanding and patience as we work to enhance your experie
         </div>
     </div>
 
+    <div id="paymentFormModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="paymentFormModalTitle" aria-describedby="paymentFormModalDescription" tabindex="-1">
+        <div class="modal-content">
+            <button class="close-button" aria-label="Close Payment Form Modal">&times;</button>
+            <h3 id="paymentFormModalTitle">Complete Your Membership Payment</h3>
+            <p id="paymentFormModalDescription" class="visually-hidden">Follow the instructions to make your membership payment and submit the details.</p>
+
+            <div style="background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 5px; padding: 15px; margin-bottom: 20px; color: #856404;">
+                <p style="font-weight: bold; margin-bottom: 10px;">Important Payment Instructions:</p>
+                <p>
+                    You need to click on the **Submit Payment Details** button after your manual payment, otherwise the admin will not receive your payment request.
+                </p>
+                <p style="margin-top: 10px;">
+                    For faster course activation after a successful payment, please call the admin on:
+                    <strong style="color: #007bff; font-size: 1.1em;">7731879173</strong>.
+                </p>
+            </div>
+            <div class="instruction-box">
+                To become a paid member, please transfer **₹1000** using one of the methods below. After payment, fill out the form and submit it for verification. Your access will be granted within 24-48 hours.
+            </div>
+
+            <h4>Your Payment Information:</h4>
+            <div class="modal-input-group">
+                <label for="paymentFullName">Full Name:</label>
+                <input type="text" id="paymentFullName" placeholder="Enter your full name" readonly>
+            </div>
+            <div class="modal-input-group">
+                <label for="paymentPhoneNumber">Phone Number:</label>
+                <input type="text" id="paymentPhoneNumber" placeholder="Enter your phone number" readonly>
+            </div>
+            <div class="modal-input-group">
+                <label for="paymentEmail">Email:</label>
+                <input type="text" id="paymentEmail" placeholder="Enter your email" readonly>
+            </div>
+
+            <div class="modal-input-group">
+                <label for="chosenPaymentMethod">Payment Method You Will Use:</label>
+                <select id="chosenPaymentMethod">
+                    <option value="">-- Select Payment Method --</option>
+                    <option value="upi_id">UPI ID</option>
+                    <option value="phonepe_number">PhonePe Number</option>
+                    <option value="googlepay_number">Google Pay Number</option>
+                    <option value="qr_code">QR Code</option>
+                    <option value="bank_transfer">Bank Account Transfer</option>
+                </select>
+            </div>
+
+            <div id="paymentDetailsDisplay" class="payment-display-section">
+            </div>
+            <div class="modal-input-group">
+                <label for="transactionId">Transaction ID / Reference Number (Optional but Recommended):</label>
+                <input type="text" id="transactionId" placeholder="e.g., UPI Ref ID, Bank Txn ID">
+            </div>
+            <div class="modal-input-group">
+                <label for="screenshotUpload">Upload Screenshot (Optional):</label>
+                <input type="file" id="screenshotUpload" accept="image/*">
+            </div>
+            <div class="modal-actions">
+                <button id="submitManualPayment">Submit Payment Details</button>
+                <button id="cancelManualPayment">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2025 Accessible World Tutorials</p>
         <a href="privacy.html" target="_blank">Privacy Policy</a>
@@ -287,15 +398,16 @@ We appreciate your understanding and patience as we work to enhance your experie
         <a href="/contact.html" target="_blank">Contact Us</a>
     </footer>
 
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
         import {
             getFirestore, doc, getDoc, collection,
             query, where, getDocs, updateDoc,
-            addDoc, serverTimestamp
+            addDoc, serverTimestamp, setDoc
         } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js";
+
 
         const firebaseConfig = {
             apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
@@ -310,6 +422,7 @@ We appreciate your understanding and patience as we work to enhance your experie
         const app = initializeApp(firebaseConfig);
         const auth = getAuth();
         const db = getFirestore(app);
+        const storage = getStorage(app);
 
         // New profile elements
         const profileBtn = document.getElementById("profileBtn");
@@ -319,7 +432,7 @@ We appreciate your understanding and patience as we work to enhance your experie
         const mobileField = document.getElementById("user-mobile");
         const emailField = document.getElementById("user-email");
         const paymentField = document.getElementById("user-payment-status");
-        const payBtn = document.getElementById("payBtn");
+        const initiatePaymentBtn = document.getElementById("initiatePaymentBtn");
         const logoutBtn = document.getElementById("logout");
         const referralLinkField = document.getElementById("referral-link");
         const copyLinkBtn = document.getElementById("copyLink");
@@ -333,16 +446,20 @@ We appreciate your understanding and patience as we work to enhance your experie
         const adminSection = document.getElementById("admin-section");
         const withdrawalList = document.getElementById("withdrawal-list");
         const paymentSection = document.getElementById("payment-section");
+        const paymentReviewSection = document.getElementById("payment-review");
+        const paymentRejectedSection = document.getElementById("payment-rejected");
         const courseAccessSection = document.getElementById("course-access");
         const coursesBtn = document.getElementById("coursesBtn");
+        const manualPaymentList = document.getElementById("manual-payment-list");
 
         // New elements for withdrawal summary
         const totalWithdrawnDisplay = document.getElementById("total-withdrawn-display");
         const availableBalanceDisplay = document.getElementById("available-balance-display");
 
-        // Modal elements
+        // Withdrawal Modal elements
         const withdrawModal = document.getElementById("withdrawModal");
-        const closeButton = withdrawModal.querySelector(".close-button");
+        const withdrawModalCloseButton = withdrawModal.querySelector(".close-button");
+        const withdrawModalTitle = document.getElementById("withdrawModalTitle");
         const totalAmountModal = document.getElementById("totalAmount");
         const paymentMethodDropdown = document.getElementById("paymentMethod");
         const paymentDetailsDiv = document.getElementById("paymentDetails");
@@ -352,25 +469,138 @@ We appreciate your understanding and patience as we work to enhance your experie
         const submitWithdrawalButton = document.getElementById("submitWithdrawal");
         const cancelWithdrawalButton = document.getElementById("cancelWithdrawal");
 
-        let currentUserId, currentUserName, currentUserMobile, currentUserEmail, currentEarnings=0;
+        // New Payment Form Modal elements
+        const paymentFormModal = document.getElementById("paymentFormModal");
+        const paymentFormModalCloseButton = paymentFormModal.querySelector(".close-button");
+        const paymentFormModalTitle = document.getElementById("paymentFormModalTitle");
+        const paymentFullNameInput = document.getElementById("paymentFullName");
+        const paymentPhoneNumberInput = document.getElementById("paymentPhoneNumber");
+        const paymentEmailInput = document.getElementById("paymentEmail");
+        const chosenPaymentMethodSelect = document.getElementById("chosenPaymentMethod");
+        const paymentDetailsDisplay = document.getElementById("paymentDetailsDisplay");
+        const transactionIdInput = document.getElementById("transactionId");
+        const screenshotUploadInput = document.getElementById("screenshotUpload");
+        const submitManualPaymentBtn = document.getElementById("submitManualPayment");
+        const cancelManualPaymentBtn = document.getElementById("cancelManualPayment");
+
+        let currentUserId, currentUserName, currentUserMobile, currentUserEmail, currentEarnings = 0;
+        let lastFocusedElement = null; // To store the element that opened the modal
+
+        // --- Our Payment Details (Centralized for easy editing) ---
+        const OUR_PAYMENT_DETAILS = {
+            upi_id: {
+                label: "Our UPI ID",
+                value: "7702675618@ybl", // <<< REPLACE THIS
+                instructions: "Use any UPI app (Google Pay, PhonePe, Paytm, etc.) to send ₹1000 to this UPI ID."
+            },
+            phonepe_number: {
+                label: "Our PhonePe Number",
+                value: "7702675618", // <<< REPLACE THIS
+                instructions: "Open PhonePe, go to 'To Mobile Number' and send ₹1000 to this number. The name will display as Ravva Gowri."
+            },
+            googlepay_number: {
+                label: "Our Google Pay Number",
+                value: "7702675618", // <<< REPLACE THIS (Can be same as PhonePe or different)
+                instructions: "Open Google Pay, go to 'Pay phone number' and send ₹1000 to this number."
+            },
+            qr_code: {
+                label: "Scan Our QR Code",
+                imageUrl: "qr_scanner.png", // <<< REPLACE THIS with your actual QR code image path
+                instructions: "If scanner is not working, kindly use other payment methods. We will resolve this problem shortly. "
+            },
+            bank_transfer: {
+                label: "Our Bank Account Details",
+                accountName: "Pentakota Raviteja",    // <<< REPLACE THIS
+                accountNumber: "35838062455", // <<< REPLACE THIS
+                ifscCode: "SBIN0021121",           // <<< REPLACE THIS
+                instructions: "Transfer ₹1000 directly to our bank account using NEFT/IMPS/RTGS. Please use your registered email/phone in the transaction remarks if possible."
+            }
+        };
+
+        // --- Utility Functions ---
+
+        // Function to open any modal
+        function openModal(modalElement) {
+            lastFocusedElement = document.activeElement; // Store the currently focused element
+            modalElement.style.display = 'block';
+            modalElement.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+            modalElement.focus(); // Focus the modal itself for screen readers
+            trapFocus(modalElement); // Start trapping focus
+        }
+
+        // Function to close any modal
+        function closeModal(modalElement) {
+            modalElement.style.display = 'none';
+            modalElement.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+            if (lastFocusedElement) {
+                lastFocusedElement.focus(); // Return focus to the element that opened the modal
+                lastFocusedElement = null; // Clear the stored element
+            }
+        }
+
+        // Function to trap focus inside a modal
+        function trapFocus(modalElement) {
+            const focusableElements = modalElement.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            const firstFocusableElement = focusableElements[0];
+            const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+            modalElement.addEventListener('keydown', function(e) {
+                const isTabPressed = (e.key === 'Tab');
+
+                if (!isTabPressed) {
+                    return;
+                }
+
+                if (e.shiftKey) { // if shift key and tab key are pressed
+                    if (document.activeElement === firstFocusableElement) {
+                        lastFocusableElement.focus(); // add focus to the last focusable element
+                        e.preventDefault();
+                    }
+                } else { // if tab key is pressed
+                    if (document.activeElement === lastFocusableElement) {
+                        firstFocusableElement.focus(); // add focus to the first focusable element
+                        e.preventDefault();
+                    }
+                }
+            });
+        }
+
 
         async function fetchReferralLevels(uid, level=1, max=5) {
-            if(level>max) return [];
+            if(level > max) return [];
             const q = query(collection(db,"users"), where("referredBy","==",uid));
             const snap = await getDocs(q);
             let out=[];
             for(const ds of snap.docs) {
                 const d=ds.data();
-                out.push({ level, fullName:d.fullName, mobile:d.mobile, email:d.email, paymentStatus:d.paymentStatus, uid:ds.id });
-                out = out.concat(await fetchReferralLevels(ds.id, level+1, max));
+                // Only consider paid referrals for earnings calculation
+                const earning = calculateReferralEarning(level, d.paymentStatus);
+                out.push({ level, fullName:d.fullName, mobile:d.phoneNumber, email:d.email, paymentStatus:d.paymentStatus, uid:ds.id, earning }); // Used phoneNumber
+                out = out.concat(await fetchReferralLevels(ds.id, level + 1, max));
             }
             return out;
+        }
+
+        function calculateReferralEarning(level, paymentStatus) {
+            if (paymentStatus !== "Paid") return 0;
+            if (level === 1) return 240;
+            if (level === 2) return 150;
+            if (level === 3) return 110;
+            if (level === 4) return 60;
+            if (level === 5) return 40;
+            return 0;
         }
 
         async function fetchWithdrawalsForAdmin() {
             withdrawalList.innerHTML = "";
             const q = query(collection(db, "withdrawals"), where("status", "==", "Pending"));
             const snap = await getDocs(q);
+            if (snap.empty) {
+                withdrawalList.innerHTML = "<p>No pending withdrawals.</p>";
+                return;
+            }
             snap.forEach(docSnap => {
                 const data = docSnap.data();
                 const card = document.createElement("div");
@@ -380,247 +610,533 @@ We appreciate your understanding and patience as we work to enhance your experie
                     <p><strong>Email:</strong> ${data.email}</p>
                     <p><strong>Phone:</strong> ${data.phone}</p>
                     <p><strong>Amount:</strong> ₹${data.amount}</p>
+                    <p><strong>Method:</strong> ${data.paymentMethod}</p>
+                    <p><strong>ID/Number:</strong> ${data.paymentId}</p>
                     <p><strong>Date:</strong> ${data.requestedAt?.toDate().toLocaleString() || "N/A"}</p>
                     <p><strong>Status:</strong> ${data.status}</p>
+                    <button data-id="${docSnap.id}" class="approve-withdrawal-btn" style="background:#28a745; margin-right:5px;">Approve</button>
+                    <button data-id="${docSnap.id}" class="reject-withdrawal-btn" style="background:#dc3545;">Reject</button>
                 `;
                 withdrawalList.appendChild(card);
             });
+
+            withdrawalList.querySelectorAll('.approve-withdrawal-btn').forEach(button => {
+                button.onclick = async (event) => {
+                    const withdrawalId = event.target.dataset.id;
+                    try {
+                        const withdrawalDocRef = doc(db, "withdrawals", withdrawalId);
+                        const withdrawalDoc = await getDoc(withdrawalDocRef);
+                        if (!withdrawalDoc.exists()) {
+                            alert(`Withdrawal ${withdrawalId} not found.`);
+                            return;
+                        }
+                        const data = withdrawalDoc.data();
+                        await updateDoc(withdrawalDocRef, { status: "Approved" });
+                        alert(`Withdrawal ${withdrawalId} approved!`);
+                        fetchWithdrawalsForAdmin(); // Refresh the list
+                    } catch (error) {
+                        console.error("Error approving withdrawal:", error);
+                        alert("Error approving withdrawal. Check console for details.");
+                    }
+                };
+            });
+
+            withdrawalList.querySelectorAll('.reject-withdrawal-btn').forEach(button => {
+                button.onclick = async (event) => {
+                    const withdrawalId = event.target.dataset.id;
+                    try {
+                        const withdrawalDocRef = doc(db, "withdrawals", withdrawalId);
+                        const withdrawalDocSnap = await getDoc(withdrawalDocRef);
+
+                        if (!withdrawalDocSnap.exists()) {
+                            alert(`Withdrawal with ID ${withdrawalId} not found.`);
+                            return;
+                        }
+
+                        const withdrawalData = withdrawalDocSnap.data();
+                        const userId = withdrawalData.userId;
+                        const amount = withdrawalData.amount;
+
+                        // Update withdrawal status to Rejected
+                        await updateDoc(withdrawalDocRef, { status: "Rejected" });
+                        alert(`Withdrawal ${withdrawalId} rejected!`);
+                        fetchWithdrawalsForAdmin(); // Refresh the list
+
+                        // If rejected, refund the amount to the user's available balance
+                        if (userId && amount) {
+                            const userDocRef = doc(db, "users", userId);
+                            const userDocSnap = await getDoc(userDocRef);
+
+                            if (userDocSnap.exists()) {
+                                const userData = userDocSnap.data();
+                                const currentAvailableBalance = userData.availableBalance || 0;
+                                const newAvailableBalance = currentAvailableBalance + amount;
+
+                                await updateDoc(userDocRef, {
+                                    availableBalance: newAvailableBalance
+                                });
+                                console.log(`User ${userId}'s availableBalance updated by ${amount} due to rejection.`);
+                            } else {
+                                console.error(`User document not found for ID: ${userId}`);
+                            }
+                        }
+                    } catch (error) {
+                        console.error("Error rejecting withdrawal:", error);
+                        alert("Error rejecting withdrawal. Check console for details. (Possible Firebase Security Rule issue)");
+                    }
+                };
+            });
         }
 
-        onAuthStateChanged(auth, async user => {
-            if (!user) return location.href = "login.html";
-            currentUserId = user.uid;
-            currentUserEmail = user.email;
-            const userDoc = await getDoc(doc(db, "users", user.uid));
-            if (!userDoc.exists()) return alert("No user data!");
+        async function fetchManualPaymentsForAdmin() {
+            manualPaymentList.innerHTML = "";
+            const q = query(collection(db, "manualPayments"), where("status", "==", "Pending"));
+            const snap = await getDocs(q);
+            if (snap.empty) {
+                manualPaymentList.innerHTML = "<p>No pending manual payments.</p>";
+                return;
+            }
+            snap.forEach(docSnap => {
+                const data = docSnap.data();
+                const card = document.createElement("div");
+                card.className = "withdrawal-card"; // Reusing style for consistency
+                card.innerHTML = `
+                    <p><strong>User:</strong> ${data.fullName} (${data.email})</p>
+                    <p><strong>Phone:</strong> ${data.phone}</p>
+<p><strong>Amount:</strong> ₹1000</p>
+                    <p><strong>Method Used:</strong> ${data.chosenPaymentMethod}</p>
+                    <p><strong>Transaction ID:</strong> ${data.transactionId || 'N/A'}</p>
+                    ${data.screenshotUrl ? `<p><strong>Screenshot:</strong> <a href="${data.screenshotUrl}" target="_blank">View Screenshot</a></p>` : ''}
+                    <p><strong>Submitted At:</strong> ${data.submittedAt?.toDate().toLocaleString() || "N/A"}</p>
+                    <button data-userid="${data.userId}" data-paymentid="${docSnap.id}" class="approve-payment-btn" style="background:#28a745; margin-right:5px;">Approve Payment</button>
+                    <button data-userid="${data.userId}" data-paymentid="${docSnap.id}" class="reject-payment-btn" style="background:#dc3545;">Reject Payment</button>
+                `;
+                manualPaymentList.appendChild(card);
+            });
+
+            manualPaymentList.querySelectorAll('.approve-payment-btn').forEach(button => {
+                button.onclick = async (event) => {
+                    const userId = event.target.dataset.userid;
+                    const paymentId = event.target.dataset.paymentid;
+
+                    try {
+                        // 1. Update user's payment status to "Paid"
+                        await updateDoc(doc(db, "users", userId), { paymentStatus: "Paid" });
+                        // 2. Update the manual payment record to "Approved"
+                        await updateDoc(doc(db, "manualPayments", paymentId), { status: "Approved" });
+
+                        alert(`Payment for user ${userId} approved!`);
+                        fetchManualPaymentsForAdmin(); // Refresh the list
+                        // Also, re-fetch user data for the specific user if they are currently logged in to update their dashboard instantly
+                        if (userId === currentUserId) {
+                            await fetchUserDataAndDisplay(userId);
+                        }
+                    } catch (error) {
+                        console.error("Error approving payment:", error);
+                        alert("Error approving payment. Check console for details. (Possible Firebase Security Rule issue)");
+                    }
+                };
+            });
+
+            manualPaymentList.querySelectorAll('.reject-payment-btn').forEach(button => {
+                button.onclick = async (event) => {
+                    const userId = event.target.dataset.userid;
+                    const paymentId = event.target.dataset.paymentid;
+
+                    try {
+                        // 1. Update manual payment record status to "Rejected"
+                        await updateDoc(doc(db, "manualPayments", paymentId), { status: "Rejected" });
+                        // 2. Update user's payment status to "Rejected"
+                        await updateDoc(doc(db, "users", userId), { paymentStatus: "Rejected" });
+
+                        alert(`Payment for user ${userId} rejected! User status updated to 'Rejected'.`);
+                        fetchManualPaymentsForAdmin(); // Refresh the list
+                        if (userId === currentUserId) {
+                            await fetchUserDataAndDisplay(userId); // Refresh user's dashboard
+                        }
+                    } catch (error) {
+                        console.error("Error rejecting payment:", error);
+                        alert("Error rejecting payment. Check console for details. (Possible Firebase Security Rule issue)");
+                    }
+                };
+            });
+        }
+
+
+        // --- Authentication and Data Fetching ---
+
+        async function fetchUserDataAndDisplay(uid) {
+            const userDoc = await getDoc(doc(db, "users", uid));
+            if (!userDoc.exists()) {
+                console.error("No user data found for UID:", uid);
+                return;
+            }
             const userData = userDoc.data();
             currentUserName = userData.fullName || "";
-            currentUserMobile = userData.mobile || "";
+            currentUserMobile = userData.mobile || ""; // Correctly assigned from 'phoneNumber'
+            currentUserEmail = userData.email || "";
+
             nameField.textContent = currentUserName;
-            mobileField.textContent = currentUserMobile;
+            mobileField.textContent = currentUserMobile; // Displaying in profile
             emailField.textContent = currentUserEmail;
             paymentField.textContent = userData.paymentStatus || "Pending";
-            referralLinkField.textContent = `${location.origin}/register.html?ref=${user.uid}`;
-            const refs = await fetchReferralLevels(user.uid);
+
+            referralLinkField.textContent = `${location.origin}/register.html?ref=${uid}`;
+
+            // Reset visibility of payment-related sections
+            paymentSection.style.display = "block"; // Show initiate payment button by default
+            paymentReviewSection.style.display = "none";
+            paymentRejectedSection.style.display = "none";
+            courseAccessSection.style.display = "none";
+
+            // Logic to show/hide sections based on paymentStatus
+            if (userData.paymentStatus === "Paid") {
+                paymentSection.style.display = "none"; // Hide initiate payment button
+                courseAccessSection.style.display = "block"; // Show course access
+            } else if (userData.paymentStatus === "Pending") {
+                paymentSection.style.display = "none"; // Hide initiate payment button
+                paymentReviewSection.style.display = "block"; // Show payment under review message
+            } else if (userData.paymentStatus === "Rejected") {
+                paymentSection.style.display = "block"; // Allow user to initiate payment again
+                paymentRejectedSection.style.display = "block"; // Show rejected message
+            }
+            // If paymentStatus is null/undefined or any other status, default behavior (show initiatePaymentBtn) will remain.
+
+
+            const refs = await fetchReferralLevels(uid);
             referralCountField.textContent = refs.length;
             referralDetails.innerHTML = "";
             let calculatedReferralEarnings = 0;
             refs.forEach(r => {
-                let earning = 0;
-                if (r.paymentStatus === "Paid") {
-                    if (r.level === 1) earning = 240;
-                    else if (r.level === 2) earning = 150;
-                    else if (r.level === 3) earning = 110;
-                    else if (r.level === 4) earning = 60;
-                    else if (r.level === 5) earning = 40;
-                }
-                calculatedReferralEarnings += earning;
+                calculatedReferralEarnings += r.earning; // Use pre-calculated earning from fetchReferralLevels
                 const tr = document.createElement("tr");
-
-                tr.innerHTML = `<td>${r.level}</td><td>${r.fullName}</td><td>${r.mobile}</td><td>${r.email}</td><td>${r.paymentStatus}</td><td>₹${earning}</td>`;
-                referralDetails.append(tr);
+                tr.innerHTML = `
+                    <td>${r.level}</td>
+                    <td>${r.fullName}</td>
+                    <td>${r.mobile}</td>
+                    <td>${r.email}</td>
+                    <td>${r.paymentStatus}</td>
+                    <td>₹${r.earning}</td>
+                `;
+                referralDetails.appendChild(tr);
             });
+            earningsField.textContent = `₹${calculatedReferralEarnings}`;
+            currentEarnings = calculatedReferralEarnings; // Update global variable
 
-            // Update the total referral earnings in the database
-            const userRef = doc(db, "users", currentUserId);
-            await updateDoc(userRef, {
-                totalReferralEarnings: calculatedReferralEarnings
-            });
+            // Fetch withdrawal summary
+            const withdrawalSummaryRef = doc(db, "userSummaries", uid);
+            const withdrawalSummarySnap = await getDoc(withdrawalSummaryRef);
+            let totalWithdrawn = 0;
+            let availableBalance = 0;
 
-            // Get the total withdrawn amount from the database
-            const totalWithdrawn = userData.totalWithdrawnAmount || 0;
-
-            // Calculate available earnings
-            const availableEarnings = calculatedReferralEarnings - totalWithdrawn;
-
-            // Update the displayed earnings and the local currentEarnings variable
-            earningsField.textContent = `₹${availableEarnings}`;
-            currentEarnings = availableEarnings;
-            totalAmountModal.value = `₹${availableEarnings}`; // Update modal total
-            availableAmountInput.value = `₹${availableEarnings}`; // Update modal available
-
-            // Display total withdrawn and available balance in the new section
-            totalWithdrawnDisplay.textContent = `₹${totalWithdrawn}`;
-            availableBalanceDisplay.textContent = `₹${availableEarnings}`;
-
-            // hide/show payment or course access
-            if (userData.paymentStatus === "Paid") {
-                paymentSection.style.display = "none";
-                courseAccessSection.style.display = "block";
+            if (withdrawalSummarySnap.exists()) {
+                const summaryData = withdrawalSummarySnap.data();
+                totalWithdrawn = summaryData.totalWithdrawn || 0;
+                availableBalance = summaryData.availableBalance || 0;
             } else {
-                paymentSection.style.display = "block";
-                courseAccessSection.style.display = "none";
+                // If summary doesn't exist, calculate available balance based on current earnings and approved withdrawals
+                const approvedWithdrawalsQuery = query(collection(db, "withdrawals"),
+                                                    where("userId", "==", uid),
+                                                    where("status", "==", "Approved"));
+                const approvedWithdrawalsSnap = await getDocs(approvedWithdrawalsQuery);
+                let sumApprovedWithdrawals = 0;
+                approvedWithdrawalsSnap.forEach(doc => {
+                    sumApprovedWithdrawals += doc.data().amount || 0;
+                });
+                totalWithdrawn = sumApprovedWithdrawals;
+                availableBalance = calculatedReferralEarnings - totalWithdrawn;
             }
 
-            if (userData.role === "admin") {
-                adminSection.style.display = "block";
-                await fetchWithdrawalsForAdmin();
-            }
-        });
+            totalWithdrawnDisplay.textContent = `₹${totalWithdrawn}`;
+            availableBalanceDisplay.textContent = `₹${availableBalance}`;
+            availableAmountInput.value = `₹${availableBalance}`; // Update modal field too
+            withdrawAmountInput.max = availableBalance; // Set max withdrawal amount
 
-        // Toggle profile details
+            // Enable/disable withdraw button based on available balance
+            if (availableBalance >= 100) {
+                withdrawBtn.disabled = false;
+                statusMessage.textContent = "";
+            } else {
+                withdrawBtn.disabled = true;
+                statusMessage.textContent = "Minimum withdrawal amount is ₹100.";
+                statusMessage.style.color = "red";
+            }
+        }
+
+
+        // --- Event Listeners ---
+
         profileBtn.addEventListener('click', () => {
-            const isExpanded = profileBtn.getAttribute("aria-expanded") === "true";
-            profileBtn.setAttribute("aria-expanded", !isExpanded);
-            profileDetails.style.display = isExpanded ? "none" : "block";
+            const isExpanded = profileBtn.getAttribute('aria-expanded') === 'true';
+            profileBtn.setAttribute('aria-expanded', !isExpanded);
+            profileDetails.style.display = isExpanded ? 'none' : 'block';
         });
 
-        logoutBtn.onclick = ()=> signOut(auth).then(()=>location.href="login.html");
-        copyLinkBtn.onclick = ()=> { navigator.clipboard.writeText(referralLinkField.textContent); alert("Copied!"); }
+        logoutBtn.onclick = () => signOut(auth).then(() => location.href = "login.html");
+
+        copyLinkBtn.onclick = () => {
+            const link = referralLinkField.textContent;
+            navigator.clipboard.writeText(link).then(() => {
+                alert("Referral link copied to clipboard!");
+            }).catch(err => {
+                console.error("Failed to copy: ", err);
+            });
+        };
+
         toggleReferralBtn.addEventListener('click', () => {
-            const isExpanded = toggleReferralBtn.getAttribute("aria-expanded") === "true";
-            toggleReferralBtn.setAttribute("aria-expanded", !isExpanded);
-            referralSection.style.display = isExpanded ? "none" : "block"; // Corrected line
-            toggleReferralBtn.textContent = isExpanded ? "Show/Hide Referral Details" : "Show/Hide Referral Details";
+            const isHidden = referralSection.style.display === 'none';
+            referralSection.style.display = isHidden ? 'block' : 'none';
+            toggleReferralBtn.setAttribute('aria-expanded', isHidden);
         });
 
-        payBtn.onclick = ()=>{
-            new Razorpay({
-                key:"rzp_live_jarrSjgdfymA2D",
-                amount: 100000, // Amount in paise (1000 * 100 = 100000)
-                currency: "INR",
-                name:"Accessible World Tutorials",
-                description:"Membership Fee",
-                prefill:{ name:currentUserName, email:currentUserEmail, contact:currentUserMobile},
-                theme:{ color:"#007bff" },
-                handler: async resp=>{
-                    alert("Paid: "+resp.razorpay_payment_id);
-                    await updateDoc(doc(db,"users",currentUserId),{ paymentStatus:"Paid" });
-                    paymentField.textContent="Paid";
-                    paymentSection.style.display = "none";
-                    courseAccessSection.style.display = "block";
+        withdrawBtn.onclick = () => {
+            openModal(withdrawModal);
+        };
+
+        withdrawModalCloseButton.onclick = () => closeModal(withdrawModal);
+        cancelWithdrawalButton.onclick = () => closeModal(withdrawModal);
+
+        // Close modals on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (withdrawModal.style.display === 'block') {
+                    closeModal(withdrawModal);
                 }
-            }).open();
-        };
+                if (paymentFormModal.style.display === 'block') {
+                    closeModal(paymentFormModal);
+                }
+            }
+        });
 
-        withdrawBtn.onclick = ()=>{
-            if(currentEarnings<100) return statusMessage.textContent="Min ₹100 to withdraw";
-            // Open the modal
-            withdrawModal.style.display = "block";
-            withdrawModal.setAttribute("aria-hidden", "false");
-            document.body.classList.add("modal-open"); // Optional: Add a class to body if needed for styling
-            withdrawModal.querySelector('.close-button').focus(); // Set focus to the close button
-
-            totalAmountModal.value = `₹${currentEarnings}`;
-            availableAmountInput.value = `₹${currentEarnings}`;
-        };
-
-        closeButton.onclick = function() {
-            withdrawModal.style.display = "none";
-            withdrawModal.setAttribute("aria-hidden", "true");
-            document.body.classList.remove("modal-open"); // Optional: Remove the class from body
-            paymentDetailsDiv.style.display = "none";
-            paymentMethodDropdown.value = "";
-            paymentIdInput.value = "";
-            withdrawAmountInput.value = "";
-            submitWithdrawalButton.disabled = true;
-            withdrawBtn.focus(); // Return focus to the withdraw button
-        }
-
-        cancelWithdrawalButton.onclick = function() {
-            withdrawModal.style.display = "none";
-            withdrawModal.setAttribute("aria-hidden", "true");
-            document.body.classList.remove("modal-open"); // Optional: Remove the class from body
-            paymentDetailsDiv.style.display = "none";
-            paymentMethodDropdown.value = "";
-            paymentIdInput.value = "";
-            withdrawAmountInput.value = "";
-            submitWithdrawalButton.disabled = true;
-            withdrawBtn.focus(); // Return focus to the withdraw button
-        }
 
         paymentMethodDropdown.addEventListener('change', function() {
             if (this.value) {
-                paymentDetailsDiv.style.display = "block";
+                paymentDetailsDiv.style.display = 'block';
             } else {
-                paymentDetailsDiv.style.display = "none";
-                paymentIdInput.value = "";
-                withdrawAmountInput.value = "";
-                submitWithdrawalButton.disabled = true;
+                paymentDetailsDiv.style.display = 'none';
             }
-            validateWithdrawalForm();
         });
 
-        paymentIdInput.addEventListener('input', validateWithdrawalForm);
-        withdrawAmountInput.addEventListener('input', validateWithdrawalForm);
-
-        function validateWithdrawalForm() {
-            if (paymentMethodDropdown.value && paymentIdInput.value && withdrawAmountInput.value && parseFloat(withdrawAmountInput.value) > 0 && parseFloat(withdrawAmountInput.value) <= currentEarnings) {
+        withdrawAmountInput.addEventListener('input', function() {
+            const requestedAmount = parseFloat(this.value);
+            const available = parseFloat(availableBalanceDisplay.textContent.replace('₹', ''));
+            if (requestedAmount >= 100 && requestedAmount <= available) {
                 submitWithdrawalButton.disabled = false;
             } else {
                 submitWithdrawalButton.disabled = true;
             }
-        }
+        });
 
         submitWithdrawalButton.onclick = async () => {
-            const selectedMethod = paymentMethodDropdown.value;
-            const paymentId = paymentIdInput.value;
-            const requestedAmount = parseFloat(withdrawAmountInput.value);
+            const amount = parseFloat(withdrawAmountInput.value);
+            const method = paymentMethodDropdown.value;
+            const paymentId = paymentIdInput.value.trim();
+            const availableBalance = parseFloat(availableBalanceDisplay.textContent.replace('₹', ''));
 
-            if (!selectedMethod) {
+            if (!amount || amount < 100 || amount > availableBalance) {
+                alert("Please enter a valid amount between ₹100 and your available balance.");
+                return;
+            }
+            if (!method) {
                 alert("Please select a payment method.");
                 return;
             }
-
             if (!paymentId) {
-                alert("Please enter your UPI ID or number.");
+                alert("Please enter your UPI ID/Number.");
                 return;
             }
 
-            if (isNaN(requestedAmount) || requestedAmount < 100) {
-                alert("Minimum withdrawal amount is ₹100.");
-                return;
-            }
-            if (isNaN(requestedAmount) || requestedAmount <= 0 || requestedAmount > currentEarnings) {
-                alert(`Please enter a valid withdrawal amount (up to ₹${currentEarnings}).`);
-                return;
-            }
             try {
+                // Deduct from user's available balance in users collection
+                const userDocRef = doc(db, "users", currentUserId);
+                await updateDoc(userDocRef, {
+                    availableBalance: availableBalance - amount
+                });
+
+                // Record the withdrawal request
                 await addDoc(collection(db, "withdrawals"), {
                     userId: currentUserId,
                     fullName: currentUserName,
                     email: currentUserEmail,
-                    phone: currentUserMobile,
-                    amount: requestedAmount,
-                    paymentMethod: selectedMethod,
+                    phone: currentUserMobile, // Assuming 'phone' for withdrawal data
+                    amount: amount,
+                    paymentMethod: method,
                     paymentId: paymentId,
-                    requestedAt: serverTimestamp(),
-                    status: "Pending"
-                });
-                statusMessage.textContent = "Withdrawal request submitted!";
-
-                // Update the total withdrawn amount in the database
-                const userRef = doc(db, "users", currentUserId);
-                const userData = (await getDoc(userRef)).data();
-                const currentWithdrawn = userData?.totalWithdrawnAmount || 0;
-                const newTotalWithdrawn = currentWithdrawn + requestedAmount;
-                await updateDoc(userRef, {
-                    totalWithdrawnAmount: newTotalWithdrawn
+                    status: "Pending",
+                    requestedAt: serverTimestamp()
                 });
 
-                // Update the local currentEarnings variable and the displayed value
-                currentEarnings -= requestedAmount; // Update local available earnings
-                earningsField.textContent = `₹${currentEarnings}`; // Display available earnings
-                totalAmountModal.value = `₹${currentEarnings}`; // Update modal total
-                availableAmountInput.value = `₹${currentEarnings}`; // Update modal available
+                // Update total withdrawn in userSummaries (or create if not exists)
+                const userSummaryRef = doc(db, "userSummaries", currentUserId);
+                const userSummarySnap = await getDoc(userSummaryRef);
+                if (userSummarySnap.exists()) {
+                    await updateDoc(userSummaryRef, {
+                        totalWithdrawn: (userSummarySnap.data().totalWithdrawn || 0) + amount,
+                        availableBalance: (userSummarySnap.data().availableBalance || 0) - amount
+                    });
+                } else {
+                    await setDoc(userSummaryRef, { // Use setDoc to create if it doesn't exist
+                        totalWithdrawn: amount,
+                        availableBalance: availableBalance - amount,
+                        userId: currentUserId
+                    });
+                }
 
-                statusMessage.textContent = "Payment successfull: You will receive the amount in 48 hours on the provided payment method.";
-                alert("Payment successfull: You will receive the amount in 24 hours on the provided payment method.");
-                withdrawModal.style.display = "none";
-                withdrawModal.setAttribute("aria-hidden", "true");
-                document.body.classList.remove("modal-open"); // Optional: Remove the class from body
-                paymentDetailsDiv.style.display = "none";
-                paymentMethodDropdown.value = "";
-                paymentIdInput.value = "";
-                withdrawAmountInput.value = "";
-                submitWithdrawalButton.disabled = true;
-                withdrawBtn.focus(); // Return focus to the withdraw button
-            } catch (e) {
-                console.error(e);
-                statusMessage.textContent = "Could not submit withdrawal request.";
+                alert("Withdrawal request submitted successfully!");
+                closeModal(withdrawModal);
+                await fetchUserDataAndDisplay(currentUserId); // Refresh dashboard
+                // If admin, also refresh admin withdrawal list if admin (This block will be called by onAuthStateChanged if the user is admin)
+                // if (currentUserId && userDoc.data().role === "admin") {
+                //     fetchWithdrawalsForAdmin();
+                // }
+
+            } catch (error) {
+                console.error("Error submitting withdrawal:", error);
+                alert("Failed to submit withdrawal request.");
             }
         };
-        coursesBtn.onclick = ()=> window.location.href = 'courses.html';
+
+        // Payment form modal handling
+        initiatePaymentBtn.addEventListener('click', async () => {
+            // Ensure user data is available
+            if (!currentUserId) {
+                alert("User not logged in or data not loaded.");
+                return;
+            }
+
+            paymentFullNameInput.value = currentUserName;
+            paymentPhoneNumberInput.value = currentUserMobile; // Correctly populated
+            paymentEmailInput.value = currentUserEmail;
+
+            // Optionally, check user payment status here again to prevent opening if already paid/pending
+            const userDocCurrent = await getDoc(doc(db, "users", currentUserId));
+            if (userDocCurrent.exists()) {
+                const status = userDocCurrent.data().paymentStatus;
+                if (status === "Paid") {
+                     alert("You are already a paid member.");
+                     return;
+                }
+                if (status === "Pending") {
+                    alert("Your previous payment is still under review. Please wait for verification.");
+                    return;
+                }
+            }
+
+            openModal(paymentFormModal);
+        });
+
+        paymentFormModalCloseButton.onclick = () => closeModal(paymentFormModal);
+        cancelManualPaymentBtn.onclick = () => closeModal(paymentFormModal);
+
+        chosenPaymentMethodSelect.addEventListener('change', () => {
+            const method = chosenPaymentMethodSelect.value;
+            const detailsDiv = paymentDetailsDisplay;
+            detailsDiv.innerHTML = '';
+            detailsDiv.style.display = 'none';
+
+            if (method && OUR_PAYMENT_DETAILS[method]) {
+                const methodDetails = OUR_PAYMENT_DETAILS[method];
+                let html = `<p style="font-weight: bold;">${methodDetails.label}:</p>`;
+                if (methodDetails.value) {
+                    html += `<p><strong>${methodDetails.value}</strong></p>`;
+                }
+                if (methodDetails.accountName) {
+                    html += `<p><strong>Account Name:</strong> ${methodDetails.accountName}</p>`;
+                }
+                if (methodDetails.accountNumber) {
+                    html += `<p><strong>Account Number:</strong> ${methodDetails.accountNumber}</p>`;
+                }
+                if (methodDetails.ifscCode) {
+                    html += `<p><strong>IFSC Code:</strong> ${methodDetails.ifscCode}</p>`;
+                }
+                if (methodDetails.imageUrl) {
+                    html += `<img src="${methodDetails.imageUrl}" alt="${methodDetails.label} QR Code">`;
+                }
+                html += `<p style="font-style: italic; margin-top: 10px;">${methodDetails.instructions}</p>`;
+                detailsDiv.innerHTML = html;
+                detailsDiv.style.display = 'block';
+            }
+        });
+
+        submitManualPaymentBtn.addEventListener('click', async () => {
+            const selectedMethod = chosenPaymentMethodSelect.value;
+            const transactionId = transactionIdInput.value.trim();
+            const screenshotFile = screenshotUploadInput.files[0];
+            const amount = 1000; // Fixed membership amount
+
+            if (!selectedMethod) {
+                alert("Please select a payment method you used.");
+                return;
+            }
+
+            let screenshotUrl = '';
+            if (screenshotFile) {
+                const storageRef = ref(storage, `screenshots/${currentUserId}_${Date.now()}_${screenshotFile.name}`);
+                try {
+                    const uploadTask = await uploadBytes(storageRef, screenshotFile);
+                    screenshotUrl = await getDownloadURL(uploadTask.ref);
+                    console.log("Screenshot uploaded:", screenshotUrl);
+                } catch (uploadError) {
+                    console.error("Error uploading screenshot:", uploadError);
+                    alert("Failed to upload screenshot. Please try again or proceed without it.");
+                    // Decide if you want to stop here or allow submission without screenshot
+                    screenshotUrl = ''; // Clear URL if upload fails
+                }
+            }
+
+            try {
+                // Update user's paymentStatus to "Pending"
+                const userDocRef = doc(db, "users", currentUserId);
+                await updateDoc(userDocRef, {
+                    paymentStatus: "Pending"
+                });
+                console.log("User payment status updated to Pending in Firestore.");
+
+                // Add manual payment request to 'manualPayments' collection
+                await addDoc(collection(db, "manualPayments"), {
+                    userId: currentUserId,
+                    fullName: currentUserName,
+                    email: currentUserEmail,
+                    registeredPhone: currentUserMobile, // Saving user's registered phone
+                    amount: amount,
+                    chosenPaymentMethod: selectedMethod,
+                    transactionId: transactionId,
+                    screenshotUrl: screenshotUrl,
+                    status: "Pending", // Status for admin review
+                    submittedAt: serverTimestamp()
+                });
+                console.log("Manual payment request added to Firestore.");
+
+                alert("Payment details submitted successfully! Your membership will be activated after verification.");
+                closeModal(paymentFormModal);
+                await fetchUserDataAndDisplay(currentUserId); // Refresh dashboard to show pending status
+                // If admin, also refresh admin's manual payment list (This block will be called by onAuthStateChanged if the user is admin)
+                // if (currentUserId && (await getDoc(doc(db, "users", currentUserId))).data().role === "admin") {
+                //     fetchManualPaymentsForAdmin();
+                // }
+
+            } catch (error) {
+                console.error("Error submitting manual payment:", error);
+                alert("Failed to submit payment details. Please try again. (Possible Firebase Security Rule issue)");
+            }
+        });
+
+        // --- Initial Load ---
+        onAuthStateChanged(auth, async user => {
+            if (user) {
+                currentUserId = user.uid;
+                await fetchUserDataAndDisplay(user.uid);
+
+                const userDoc = await getDoc(doc(db, "users", user.uid));
+                if (userDoc.exists() && userDoc.data()?.role === "admin") {
+                    adminSection.style.display = "block";
+                    fetchWithdrawalsForAdmin();
+                    fetchManualPaymentsForAdmin();
+                }
+            } else {
+                location.href = "login.html";
+            }
+        });
     </script>
 </body>
 </html>
