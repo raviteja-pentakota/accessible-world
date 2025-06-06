@@ -5,19 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Dashboard | Accessible World Tutorials</title>
     <style>
-        body { font-family: Arial, sans-serif; padding:20px; background:#f0f2f5; display: flex; flex-direction: column; min-height: 100vh; }
-        .card { background:#fff; border-radius:8px; padding:20px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
-        button { padding:10px 20px; border:none; background:#007bff; color:#fff; border-radius:4px; cursor:pointer; }
-        button:hover { background:#0056b3; }
-        ul { padding-left:20px; }
-        #referralSection { display:none; }
-        #withdraw-status { margin-top:10px; color:green; }
-        table { width:100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-        th { background-color: #f9f9f9; }
-        .admin-section { background: #fffbe6; padding: 20px; margin-top: 30px; border: 1px solid #ffe58f; border-radius: 8px; }
-        .withdrawal-card { border-bottom: 1px solid #ddd; padding: 10px 0; }
-        .withdrawal-card:last-child { border-bottom: none; }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        #referralSection {
+            display: none;
+        }
+        #withdraw-status {
+            margin-top: 10px;
+            color: green;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f9f9f9;
+        }
+        .admin-section {
+            background: #fffbe6;
+            padding: 20px;
+            margin-top: 30px;
+            border: 1px solid #ffe58f;
+            border-radius: 8px;
+        }
+        .withdrawal-card {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .withdrawal-card:last-child {
+            border-bottom: none;
+        }
 
         /* Modal Styles */
         .modal {
@@ -29,7 +80,7 @@
             width: 100%; /* Full width */
             height: 100%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
         }
 
         .modal-content {
@@ -144,7 +195,7 @@
             position: absolute;
             background-color: #f9f9f9;
             min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;
             right: 0; /* Align dropdown to the right of the button */
             border-radius: 4px;
@@ -163,7 +214,7 @@
             margin-top: 10px;
         }
 
-        /* Payment details section in modal */
+        /* Payment details section in modal (original, less specific) */
         #paymentMethodDetails {
             margin-top: 15px;
             border-top: 1px solid #eee;
@@ -172,22 +223,25 @@
         #paymentMethodDetails div {
             margin-bottom: 10px;
         }
-#paymentDetailsDisplay img {
-    max-width: 200px; /* Set a maximum width for the image */
-    width: 100%; /* Make it responsive within its container */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Make it a block-level element */
-    margin: 20px auto; /* Center horizontally with more vertical spacing */
-    border: 1px solid #ddd; /* Slightly softer border */
-    padding: 8px; /* Slightly more padding */
-    box-sizing: border-box;
-    border-radius: 4px; /* Slightly rounded corners */
 
-    /* Image rendering for sharp display (keep these if desired) */
-    image-rendering: auto;
-    image-rendering: crisp-edges;
-    image-rendering: -webkit-optimize-contrast;
-}
+        /* Corrected CSS for image within paymentDetailsDisplay (for QR code) */
+        #paymentDetailsDisplay img {
+            max-width: 200px; /* Set a maximum width for the image */
+            width: 100%; /* Make it responsive within its container */
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Make it a block-level element */
+            margin: 20px auto; /* Center horizontally with more vertical spacing */
+            border: 1px solid #ddd; /* Slightly softer border */
+            padding: 8px; /* Slightly more padding */
+            box-sizing: border-box;
+            border-radius: 4px; /* Slightly rounded corners */
+
+            /* Image rendering for sharp display */
+            image-rendering: auto;
+            image-rendering: crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
         .instruction-box {
             background-color: #e9f7ef;
             border: 1px solid #d4edda;
@@ -230,27 +284,26 @@
     </div>
 
     <h2>About Us</h2>
-    <p> At Accessible World Tutorials, we are committed to making the digital world inclusive and accessible for everyone. Our platform offers high-quality learning materials across a wide range of topics, including HTML, JavaScript, stock market education, and the latest tech updates for Android and Windows. Whether you're looking to master web development, improve your programming skills, or gain financial knowledge, our tutorials feature clear explanations, practical examples, video lessons, and hands-on files. Accessibility is at the core of everything we do — with expert guidance, comprehensive resources, and engaging content, we ensure a learning experience that is both empowering and effective.
-    By joining us with just a one-time subscription, you'll unlock free access to our full course on accessibility testing, valuable general knowledge and current affairs content, and downloadable HTML practical files with video lessons. Join now to learn, grow, and succeed in an inclusive environment designed to support your journey every step of the way.
-    </p>
+<p>At Accessible World Tutorials, we are committed to making the digital world inclusive and accessible for everyone. Our platform currently offers high-quality learning materials on HTML, web accessibility testing, interview preparation, general knowledge, and current affairs. These topics feature clear explanations, video lessons, and practical examples with in-browser code viewing for HTML tutorials. Content on JavaScript, stock market education, and the latest tech updates for Android and Windows is coming soon. Accessibility is at the core of everything we do — with expert guidance, comprehensive resources, and engaging content, we ensure a learning experience that is both empowering and effective.  
+By joining us with just a one-time subscription, you'll unlock free access to our full course on accessibility testing, valuable general knowledge and current affairs content, and viewable HTML practical files with video lessons. Join now to learn, grow, and succeed in an inclusive environment designed to support your journey every step of the way.</p>
+
 
     <div id="payment-section">
     <div id="payment-rejected" style="display:none; margin-top:10px; background-color: #ffe6e6; border: 1px solid #ffcccc; padding: 15px; border-radius: 5px; color: #cc0000;">
 <h3>Payment Not Received</h3>
         <p style="font-weight: bold;">We have not received the payment.</p>
         <p>Please share the payment successful screenshot to the mobile: <strong style="font-size: 1.1em;">7731879173</strong>.</p>
-    <p>If the money was not deducted from your account or has already been refunded, click the button below to make the payment again.</p>    </div>
+    <p>If the money was not deducted from your account or has already been refunded, click the button below to make the payment again.</p>    
+</div>
         <button id="initiatePaymentBtn">Join and Pay ₹1000 Membership</button>
     </div>
     <div id="payment-review" style="display:none; margin-top:10px;">
-        <p style="color:orange;">Your payment is under review. We will verify it within 6 hours. Thank you for your patience!</p>
+        <p style="color:orange;">Your payment is under review. We will verify it within 6 hours. Would you like to access the courses quickly in 30 minuts, call on this number +917731879173. Thank you for your patience!</p>
     </div>
-    <div id="payment-rejected" style="display:none; margin-top:10px; background-color: #ffe6e6; border: 1px solid #ffcccc; padding: 15px; border-radius: 5px; color: #cc0000;">
-        <p style="font-weight: bold;">We have not received the payment.</p>
-        <p>Please share the payment successful screenshot to the mobile: <strong style="font-size: 1.1em;">7731879173</strong>.</p>
-    </div>
+
     <div id="course-access" style="display:none; margin-top:10px;">
-        <p style="color:green;">You are already a paid member. To access the paid courses, click below:</p>
+<h3>Access Your Paid Courses</h3>
+        <p style="color:green;">You are already a registered paid member. To access your exclusive course content, please click the button below.</p>
         <button id="coursesBtn">Access Courses</button>
     </div>
 
@@ -392,13 +445,12 @@
                 <label for="screenshotUpload">Upload Screenshot (Optional):</label>
                 <input type="file" id="screenshotUpload" accept="image/*">
 
-<input type="checkbox" id="yes" required>
-<label for="yes">Select this checkbox if you already made the payment</label>
-<p>Without making the payment, you cannot submit this form.</p>
+                <input type="checkbox" id="yes" required>
+                <label for="yes">Select this checkbox if you already made the payment</label>
+                <p>Without making the payment, you cannot submit this form.</p>
 
             </div>
             <div class="modal-actions">
-
                 <button id="submitManualPayment">Submit Payment Details</button>
                 <button id="cancelManualPayment">Cancel</button>
             </div>
@@ -496,10 +548,14 @@
         const screenshotUploadInput = document.getElementById("screenshotUpload");
         const submitManualPaymentBtn = document.getElementById("submitManualPayment");
         const cancelManualPaymentBtn = document.getElementById("cancelManualPayment");
-
-        let currentUserId, currentUserName, currentUserMobile, currentUserEmail, currentEarnings = 0;
-        let lastFocusedElement = null; // To store the element that opened the modal
-
+    const checkbox = document.getElementById('yes');
+    if (!checkbox.checked) {
+      alert("Please confirm that you have made the payment by selecting the checkbox.");
+      event.preventDefault(); // Prevent form or modal submission
+      return false;
+    }
+    let currentUserId, currentUserName, currentUserMobile, currentUserEmail, currentEarnings = 0;
+    let lastFocusedElement = null; // To store the element that opened the modal
         // --- Our Payment Details (Centralized for easy editing) ---
         const OUR_PAYMENT_DETAILS = {
             upi_id: {
@@ -520,8 +576,7 @@
             qr_code: {
                 label: "Scan Our QR Code",
                 imageUrl: "qr_scanner.png", // <<< REPLACE THIS with your actual QR code image path
-                instructions: "Scan the QR code to pay ₹1000.
-Place your screen reader focus on the QR code image. Then, use PhonePe, Google Pay, or any other UPI app on your phone to scan the QR code and complete the payment."
+                instructions: "Scan the QR code to pay ₹1000. Place your screen reader focus on the QR code image. Then, use PhonePe, Google Pay, or any other UPI app on your phone to scan the QR code and complete the payment."
             },
             bank_transfer: {
                 label: "Our Bank Account Details",
@@ -887,7 +942,7 @@ Place your screen reader focus on the QR code image. Then, use PhonePe, Google P
             profileDetails.style.display = isExpanded ? 'none' : 'block';
         });
 
-        logoutBtn.onclick = () => signOut(auth).then(() => location.href = "login.html");
+        logoutBtn.onclick = () => signOut(auth).then(() => location.href = "index.html");
 
         copyLinkBtn.onclick = () => {
             const link = referralLinkField.textContent;
@@ -1078,12 +1133,7 @@ Place your screen reader focus on the QR code image. Then, use PhonePe, Google P
             const transactionId = transactionIdInput.value.trim();
             const screenshotFile = screenshotUploadInput.files[0];
             const amount = 1000; // Fixed membership amount
-    const checkbox = document.getElementById('yes');
-    if (!checkbox.checked) {
-      alert("Please confirm that you have made the payment by selecting the checkbox.");
-      event.preventDefault(); // Prevent form or modal submission
-      return false;
-    }
+
             if (!selectedMethod) {
                 alert("Please select a payment method you used.");
                 return;
