@@ -345,7 +345,7 @@
                 </p>
             </div>
             <div class="instruction-box">
-                To become a paid member, please transfer **₹1000** using one of the methods below. After payment, fill out the form and submit it for verification. Your access will be granted within 24-48 hours.
+                To become a paid member, please transfer **₹1000** using one of the methods below. After payment, fill out the form and submit it for verification. Your access will be granted within 6 hours, If it is not granded, call on my number.
             </div>
 
             <h4>Your Payment Information:</h4>
@@ -383,8 +383,14 @@
             <div class="modal-input-group">
                 <label for="screenshotUpload">Upload Screenshot (Optional):</label>
                 <input type="file" id="screenshotUpload" accept="image/*">
+
+<input type="checkbox" id="yes" required>
+<label for="yes">Select this checkbox if you already made the payment</label>
+<p>Without making the payment, you cannot submit this form.</p>
+
             </div>
             <div class="modal-actions">
+
                 <button id="submitManualPayment">Submit Payment Details</button>
                 <button id="cancelManualPayment">Cancel</button>
             </div>
@@ -1063,7 +1069,12 @@
             const transactionId = transactionIdInput.value.trim();
             const screenshotFile = screenshotUploadInput.files[0];
             const amount = 1000; // Fixed membership amount
-
+    const checkbox = document.getElementById('yes');
+    if (!checkbox.checked) {
+      alert("Please confirm that you have made the payment by selecting the checkbox.");
+      event.preventDefault(); // Prevent form or modal submission
+      return false;
+    }
             if (!selectedMethod) {
                 alert("Please select a payment method you used.");
                 return;
