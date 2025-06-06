@@ -172,14 +172,21 @@
         #paymentMethodDetails div {
             margin-bottom: 10px;
         }
-        #paymentMethodDetails img {
-            max-width: 350px;
-            height: auto;
-            display: block;
-            margin: 10px auto; /* Centered QR code */
-            border: 1px solid #ccc;
-            padding: 5px;
-        }
+#paymentMethodDetails img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    padding: 5px;
+    box-sizing: border-box;
+
+    /* Image rendering for sharp display */
+    image-rendering: auto;         /* Default fallback */
+    image-rendering: crisp-edges;  /* For sharp edges on supported browsers */
+    image-rendering: -webkit-optimize-contrast; /* Safari/Chrome (optional) */
+}
         .instruction-box {
             background-color: #e9f7ef;
             border: 1px solid #d4edda;
