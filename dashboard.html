@@ -62,9 +62,10 @@
             border: 1px solid #ffe58f;
             border-radius: 8px;
         }
-        .withdrawal-card {
+        .withdrawal-card { /* Reusing this style for manual payment requests for consistency */
             border-bottom: 1px solid #ddd;
             padding: 10px 0;
+            margin-bottom: 10px;
         }
         .withdrawal-card:last-child {
             border-bottom: none;
@@ -284,17 +285,17 @@
     </div>
 
     <h2>About Us</h2>
-<p>At Accessible World Tutorials, we are committed to making the digital world inclusive and accessible for everyone. Our platform currently offers high-quality learning materials on HTML, web accessibility testing, interview preparation, general knowledge, and current affairs. These topics feature clear explanations, video lessons, and practical examples with in-browser code viewing for HTML tutorials. Content on JavaScript, stock market education, and the latest tech updates for Android and Windows is coming soon. Accessibility is at the core of everything we do — with expert guidance, comprehensive resources, and engaging content, we ensure a learning experience that is both empowering and effective. 
-By joining us with just a one-time subscription, you'll unlock free access to our full course on accessibility testing, valuable general knowledge and current affairs content, and viewable HTML practical files with video lessons. Join now to learn, grow, and succeed in an inclusive environment designed to support your journey every step of the way.</p>
+    <p>At Accessible World Tutorials, we are committed to making the digital world inclusive and accessible for everyone. Our platform currently offers high-quality learning materials on HTML, web accessibility testing, interview preparation, general knowledge, and current affairs. These topics feature clear explanations, video lessons, and practical examples with in-browser code viewing for HTML tutorials. Content on JavaScript, stock market education, and the latest tech updates for Android and Windows is coming soon. Accessibility is at the core of everything we do — with expert guidance, comprehensive resources, and engaging content, we ensure a learning experience that is both empowering and effective.
+    By joining us with just a one-time subscription, you'll unlock free access to our full course on accessibility testing, valuable general knowledge and current affairs content, and viewable HTML practical files with video lessons. Join now to learn, grow, and succeed in an inclusive environment designed to support your journey every step of the way.</p>
 
 
     <div id="payment-section">
-    <div id="payment-rejected" style="display:none; margin-top:10px; background-color: #ffe6e6; border: 1px solid #ffcccc; padding: 15px; border-radius: 5px; color: #cc0000;">
-<h3>Payment Not Received</h3>
-        <p style="font-weight: bold;">We have not received the payment.</p>
-        <p>Please share the payment successful screenshot to the mobile: <strong style="font-size: 1.1em;">7731879173</strong>.</p>
-    <p>If the money was not deducted from your account or has already been refunded, click the button below to make the payment again.</p>    
-</div>
+        <div id="payment-rejected" style="display:none; margin-top:10px; background-color: #ffe6e6; border: 1px solid #ffcccc; padding: 15px; border-radius: 5px; color: #cc0000;">
+            <h3>Payment Not Received</h3>
+            <p style="font-weight: bold;">We have not received the payment.</p>
+            <p>Please share the payment successful screenshot to the mobile: <strong style="font-size: 1.1em;">7731879173</strong>.</p>
+            <p>If the money was not deducted from your account or has already been refunded, click the button below to make the payment again.</p>
+        </div>
         <button id="initiatePaymentBtn">Join and Pay ₹1000 Membership</button>
     </div>
     <div id="payment-review" style="display:none; margin-top:10px;">
@@ -302,7 +303,7 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
     </div>
 
     <div id="course-access" style="display:none; margin-top:10px;">
-<h3>Access Your Paid Courses</h3>
+        <h3>Access Your Paid Courses</h3>
         <p style="color:green;">You are already a registered paid member. To access your exclusive course content, please click the button below.</p>
         <button id="coursesBtn">Access Courses</button>
     </div>
@@ -391,7 +392,7 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
 
     <div id="paymentFormModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="paymentFormModalTitle" aria-describedby="paymentFormModalDescription" tabindex="-1">
         <div class="modal-content">
-            <button class="close-button" aria-label="Close Payment Form Modal">&times;</button>
+            <button class="close-button" id="closePaymentFormModal" aria-label="Close Payment Form Modal">&times;</button>
             <h3 id="paymentFormModalTitle">Complete Your Membership Payment</h3>
             <p id="paymentFormModalDescription" class="visually-hidden">Follow the instructions to make your membership payment and submit the details.</p>
 
@@ -436,7 +437,7 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
             </div>
 
             <div id="paymentDetailsDisplay" class="payment-display-section">
-            </div>
+                </div>
             <div class="modal-input-group">
                 <label for="transactionId">Transaction ID / Reference Number (Optional but Recommended):</label>
                 <input type="text" id="transactionId" placeholder="e.g., UPI Ref ID, Bank Txn ID">
@@ -448,10 +449,9 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
                 <input type="checkbox" id="paymentConfirmationCheckbox">
                 <label for="paymentConfirmationCheckbox">Select this checkbox if you have already made the payment.</label>
                 <p>Without making the payment, you cannot submit this form.</p>
-
             </div>
             <div class="modal-actions">
-                <button id="submitManualPayment">Submit Payment Details</button>
+                <button id="submitManualPayment" disabled>Submit Payment Details</button>
                 <button id="cancelManualPayment">Cancel</button>
             </div>
         </div>
@@ -470,7 +470,7 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
         import {
             getFirestore, doc, getDoc, collection,
             query, where, getDocs, updateDoc,
-            addDoc, serverTimestamp, setDoc
+            addDoc, serverTimestamp
         } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js";
 
@@ -490,16 +490,16 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
         const db = getFirestore(app);
         const storage = getStorage(app);
 
-        // New profile elements
+        // Profile elements
         const profileBtn = document.getElementById("profileBtn");
         const profileDetails = document.getElementById("profileDetails");
-
         const nameField = document.getElementById("user-name");
         const mobileField = document.getElementById("user-mobile");
         const emailField = document.getElementById("user-email");
         const paymentField = document.getElementById("user-payment-status");
-        const initiatePaymentBtn = document.getElementById("initiatePaymentBtn");
         const logoutBtn = document.getElementById("logout");
+
+        // Referral elements
         const referralLinkField = document.getElementById("referral-link");
         const copyLinkBtn = document.getElementById("copyLink");
         const toggleReferralBtn = document.getElementById("toggleReferral");
@@ -507,25 +507,22 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
         const referralCountField = document.getElementById("referral-count");
         const earningsField = document.getElementById("total-earnings");
         const referralDetails = document.getElementById("referral-details");
-        const withdrawBtn = document.getElementById("withdrawBtn");
-        const statusMessage = document.getElementById("withdraw-status");
-        const adminSection = document.getElementById("admin-section");
-        const withdrawalList = document.getElementById("withdrawal-list");
-        const paymentSection = document.getElementById("payment-section");
-        const paymentReviewSection = document.getElementById("payment-review");
-        const paymentRejectedSection = document.getElementById("payment-rejected");
-        const courseAccessSection = document.getElementById("course-access");
-        const coursesBtn = document.getElementById("coursesBtn");
-        const manualPaymentList = document.getElementById("manual-payment-list");
-
-        // New elements for withdrawal summary
         const totalWithdrawnDisplay = document.getElementById("total-withdrawn-display");
         const availableBalanceDisplay = document.getElementById("available-balance-display");
 
+        // Payment and Course Access elements
+        const initiatePaymentBtn = document.getElementById("initiatePaymentBtn");
+        const paymentRejectedSection = document.getElementById("payment-rejected");
+        const paymentReviewSection = document.getElementById("payment-review");
+        const paymentSection = document.getElementById("payment-section");
+        const courseAccessSection = document.getElementById("course-access");
+        const coursesBtn = document.getElementById("coursesBtn");
+
         // Withdrawal Modal elements
+        const withdrawBtn = document.getElementById("withdrawBtn");
+        const statusMessage = document.getElementById("withdraw-status");
         const withdrawModal = document.getElementById("withdrawModal");
         const withdrawModalCloseButton = withdrawModal.querySelector(".close-button");
-        const withdrawModalTitle = document.getElementById("withdrawModalTitle");
         const totalAmountModal = document.getElementById("totalAmount");
         const paymentMethodDropdown = document.getElementById("paymentMethod");
         const paymentDetailsDiv = document.getElementById("paymentDetails");
@@ -535,140 +532,86 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
         const submitWithdrawalButton = document.getElementById("submitWithdrawal");
         const cancelWithdrawalButton = document.getElementById("cancelWithdrawal");
 
-        // New Payment Form Modal elements
+        // Admin Section elements
+        const adminSection = document.getElementById("admin-section");
+        const withdrawalList = document.getElementById("withdrawal-list");
+        const manualPaymentList = document.getElementById("manual-payment-list");
+
+
+        // Manual Payment Form Modal elements
         const paymentFormModal = document.getElementById("paymentFormModal");
-        const paymentFormModalCloseButton = paymentFormModal.querySelector(".close-button");
-        const paymentFormModalTitle = document.getElementById("paymentFormModalTitle");
-        const paymentFullNameInput = document.getElementById("paymentFullName");
-        const paymentPhoneNumberInput = document.getElementById("paymentPhoneNumber");
-        const paymentEmailInput = document.getElementById("paymentEmail");
-        const chosenPaymentMethodSelect = document.getElementById("chosenPaymentMethod");
+        const closePaymentFormModalBtn = document.getElementById("closePaymentFormModal");
+        const paymentFullName = document.getElementById("paymentFullName");
+        const paymentPhoneNumber = document.getElementById("paymentPhoneNumber");
+        const paymentEmail = document.getElementById("paymentEmail");
+        const chosenPaymentMethod = document.getElementById("chosenPaymentMethod");
         const paymentDetailsDisplay = document.getElementById("paymentDetailsDisplay");
         const transactionIdInput = document.getElementById("transactionId");
         const screenshotUploadInput = document.getElementById("screenshotUpload");
+        const paymentConfirmationCheckbox = document.getElementById("paymentConfirmationCheckbox");
         const submitManualPaymentBtn = document.getElementById("submitManualPayment");
         const cancelManualPaymentBtn = document.getElementById("cancelManualPayment");
-        // Corrected ID for the checkbox:
-        const paymentConfirmationCheckbox = document.getElementById('paymentConfirmationCheckbox');
 
 
         let currentUserId, currentUserName, currentUserMobile, currentUserEmail, currentEarnings = 0;
-        let lastFocusedElement = null; // To store the element that opened the modal
-            // --- Our Payment Details (Centralized for easy editing) ---
-            const OUR_PAYMENT_DETAILS = {
-                upi_id: {
-                    label: "Our UPI ID",
-                    value: "7702675618@ybl", // <<< REPLACE THIS
-                    instructions: "Use any UPI app (Google Pay, PhonePe, Paytm, etc.) to send ₹1000 to this UPI ID."
-                },
-                phonepe_number: {
-                    label: "Our PhonePe Number",
-                    value: "7702675618", // <<< REPLACE THIS
-                    instructions: "Open PhonePe, go to 'To Mobile Number' and send ₹1000 to this number. The name will display as Ravva Gowri."
-                },
-                googlepay_number: {
-                    label: "Our Google Pay Number",
-                    value: "7702675618", // <<< REPLACE THIS (Can be same as PhonePe or different)
-                    instructions: "Open Google Pay, go to 'Pay phone number' and send ₹1000 to this number."
-                },
-                qr_code: {
-                    label: "Scan Our QR Code",
-                    imageUrl: "qr_scanner.png", // <<< REPLACE THIS with your actual QR code image path
-                    instructions: "Scan the QR code to pay ₹1000. Place your screen reader focus on the QR code image. Then, use PhonePe, Google Pay, or any other UPI app on your phone to scan the QR code and complete the payment."
-                },
-                bank_transfer: {
-                    label: "Our Bank Account Details",
-                    accountName: "Pentakota Raviteja",    // <<< REPLACE THIS
-                    accountNumber: "35838062455", // <<< REPLACE THIS
-                    ifscCode: "SBIN0021121",              // <<< REPLACE THIS
-                    instructions: "Transfer ₹1000 directly to our bank account using NEFT/IMPS/RTGS. Please use your registered email/phone in the transaction remarks if possible."
-                }
-            };
 
-            // --- Utility Functions ---
-
-            // Function to open any modal
-            function openModal(modalElement) {
-                lastFocusedElement = document.activeElement; // Store the currently focused element
-                modalElement.style.display = 'block';
-                modalElement.setAttribute('aria-hidden', 'false');
-                document.body.classList.add('modal-open');
-                modalElement.focus(); // Focus the modal itself for screen readers
-                trapFocus(modalElement); // Start trapping focus
+        // --- Utility Functions ---
+        function openModal(modalElement) {
+            modalElement.style.display = "block";
+            modalElement.setAttribute("aria-hidden", "false");
+            document.body.classList.add("modal-open");
+            // Find the first focusable element inside the modal and focus it
+            const focusableElements = modalElement.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            const firstFocusableElement = focusableElements[0];
+            if (firstFocusableElement) {
+                firstFocusableElement.focus();
+            } else {
+                modalElement.querySelector('.close-button')?.focus();
             }
+        }
 
-            // Function to close any modal
-            function closeModal(modalElement) {
-                modalElement.style.display = 'none';
-                modalElement.setAttribute('aria-hidden', 'true');
-                document.body.classList.remove('modal-open');
-                if (lastFocusedElement) {
-                    lastFocusedElement.focus(); // Return focus to the element that opened the modal
-                    lastFocusedElement = null; // Clear the stored element
-                }
+        function closeModal(modalElement) {
+            modalElement.style.display = "none";
+            modalElement.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("modal-open");
+            // Clear specific fields if needed
+            if (modalElement === paymentFormModal) {
+                chosenPaymentMethod.value = "";
+                paymentDetailsDisplay.innerHTML = "";
+                paymentDetailsDisplay.style.display = "none";
+                transactionIdInput.value = "";
+                screenshotUploadInput.value = ""; // Clear file input
+                paymentConfirmationCheckbox.checked = false;
+                submitManualPaymentBtn.disabled = true;
+            } else if (modalElement === withdrawModal) {
+                paymentMethodDropdown.value = "";
+                paymentDetailsDiv.style.display = "none";
+                paymentIdInput.value = "";
+                withdrawAmountInput.value = "";
+                submitWithdrawalButton.disabled = true;
             }
+        }
 
-            // Function to trap focus inside a modal
-            function trapFocus(modalElement) {
-                const focusableElements = modalElement.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-                const firstFocusableElement = focusableElements[0];
-                const lastFocusableElement = focusableElements[focusableElements.length - 1];
-
-                modalElement.addEventListener('keydown', function(e) {
-                    const isTabPressed = (e.key === 'Tab');
-
-                    if (!isTabPressed) {
-                        return;
-                    }
-
-                    if (e.shiftKey) { // if shift key and tab key are pressed
-                        if (document.activeElement === firstFocusableElement) {
-                            lastFocusableElement.focus(); // add focus to the last focusable element
-                            e.preventDefault();
-                        }
-                    } else { // if tab key is pressed
-                        if (document.activeElement === lastFocusableElement) {
-                            firstFocusableElement.focus(); // add focus to the first focusable element
-                            e.preventDefault();
-                        }
-                    }
-                });
+        async function fetchReferralLevels(uid, level = 1, max = 5) {
+            if (level > max) return [];
+            const q = query(collection(db, "users"), where("referredBy", "==", uid));
+            const snap = await getDocs(q);
+            let out = [];
+            for (const ds of snap.docs) {
+                const d = ds.data();
+                out.push({ level, fullName: d.fullName, mobile: d.mobile, email: d.email, paymentStatus: d.paymentStatus, uid: ds.id });
+                out = out.concat(await fetchReferralLevels(ds.id, level + 1, max));
             }
+            return out;
+        }
 
-
-            async function fetchReferralLevels(uid, level=1, max=5) {
-                if(level > max) return [];
-                const q = query(collection(db,"users"), where("referredBy","==",uid));
-                const snap = await getDocs(q);
-                let out=[];
-                for(const ds of snap.docs) {
-                    const d=ds.data();
-                    // Only consider paid referrals for earnings calculation
-                    const earning = calculateReferralEarning(level, d.paymentStatus);
-                    out.push({ level, fullName:d.fullName, mobile:d.phoneNumber, email:d.email, paymentStatus:d.paymentStatus, uid:ds.id, earning }); // Used phoneNumber
-                    out = out.concat(await fetchReferralLevels(ds.id, level + 1, max));
-                }
-                return out;
-            }
-
-            function calculateReferralEarning(level, paymentStatus) {
-                if (paymentStatus !== "Paid") return 0;
-                if (level === 1) return 240;
-                if (level === 2) return 150;
-                if (level === 3) return 110;
-                if (level === 4) return 60;
-                if (level === 5) return 40;
-                return 0;
-            }
-
-            async function fetchWithdrawalsForAdmin() {
-                withdrawalList.innerHTML = "";
-                const q = query(collection(db, "withdrawals"), where("status", "==", "Pending"));
-                const snap = await getDocs(q);
-                if (snap.empty) {
-                    withdrawalList.innerHTML = "<p>No pending withdrawals.</p>";
-                    return;
-                }
+        async function fetchWithdrawalsForAdmin() {
+            withdrawalList.innerHTML = "";
+            const q = query(collection(db, "withdrawals"), where("status", "==", "Pending"));
+            const snap = await getDocs(q);
+            if (snap.empty) {
+                withdrawalList.innerHTML = "<p>No pending withdrawal requests.</p>";
+            } else {
                 snap.forEach(docSnap => {
                     const data = docSnap.data();
                     const card = document.createElement("div");
@@ -678,555 +621,447 @@ By joining us with just a one-time subscription, you'll unlock free access to ou
                         <p><strong>Email:</strong> ${data.email}</p>
                         <p><strong>Phone:</strong> ${data.phone}</p>
                         <p><strong>Amount:</strong> ₹${data.amount}</p>
-                        <p><strong>Method:</strong> ${data.paymentMethod}</p>
-                        <p><strong>ID/Number:</strong> ${data.paymentId}</p>
                         <p><strong>Date:</strong> ${data.requestedAt?.toDate().toLocaleString() || "N/A"}</p>
                         <p><strong>Status:</strong> ${data.status}</p>
-                        <button data-id="${docSnap.id}" class="approve-withdrawal-btn" style="background:#28a745; margin-right: 10px;">Approve</button>
-                        <button data-id="${docSnap.id}" class="reject-withdrawal-btn" style="background:#dc3545;">Reject</button>
                     `;
                     withdrawalList.appendChild(card);
                 });
-
-                document.querySelectorAll(".approve-withdrawal-btn").forEach(button => {
-                    button.addEventListener("click", async (e) => {
-                        const withdrawalId = e.target.dataset.id;
-                        await updateWithdrawalStatus(withdrawalId, "Approved");
-                    });
-                });
-
-                document.querySelectorAll(".reject-withdrawal-btn").forEach(button => {
-                    button.addEventListener("click", async (e) => {
-                        const withdrawalId = e.target.dataset.id;
-                        await updateWithdrawalStatus(withdrawalId, "Rejected");
-                    });
-                });
             }
+        }
 
-            async function updateWithdrawalStatus(withdrawalId, status) {
-                try {
-                    await updateDoc(doc(db, "withdrawals", withdrawalId), {
-                        status: status,
-                        processedAt: serverTimestamp()
-                    });
-                    alert(`Withdrawal ${status} successfully!`);
-                    fetchWithdrawalsForAdmin(); // Refresh the list
-                } catch (error) {
-                    console.error(`Error updating withdrawal status to ${status}:`, error);
-                    alert(`Failed to ${status} withdrawal.`);
-                }
-            }
+        async function fetchManualPaymentsForAdmin() {
+            manualPaymentList.innerHTML = "";
+            // Query for manual payments with status "Pending"
+            const q = query(collection(db, "manualPayments"), where("status", "==", "Pending"));
+            const snap = await getDocs(q);
 
-            async function fetchManualPaymentsForAdmin() {
-                manualPaymentList.innerHTML = "";
-                const q = query(collection(db, "manualPayments"), where("status", "==", "Pending"));
-                const snap = await getDocs(q);
-                if (snap.empty) {
-                    manualPaymentList.innerHTML = "<p>No pending manual payments.</p>";
-                    return;
-                }
+            if (snap.empty) {
+                manualPaymentList.innerHTML = "<p>No pending manual payment requests.</p>";
+            } else {
                 snap.forEach(docSnap => {
                     const data = docSnap.data();
                     const card = document.createElement("div");
-                    card.className = "withdrawal-card"; // Reusing style
+                    card.className = "withdrawal-card"; // Reusing style for consistency
                     card.innerHTML = `
-                        <p><strong>User ID:</strong> ${data.userId}</p>
-                        <p><strong>Name:</strong> ${data.fullName}</p>
-                        <p><strong>Email:</strong> ${data.email}</p>
-                        <p><strong>Phone:</strong> ${data.phoneNumber}</p>
-                        <p><strong>Method:</strong> ${data.chosenPaymentMethod}</p>
-                        <p><strong>Transaction ID:</strong> ${data.transactionId || "N/A"}</p>
-                        ${data.screenshotURL ? `<p><strong>Screenshot:</strong> <a href="${data.screenshotURL}" target="_blank">View Screenshot</a></p>` : ""}
-                        <p><strong>Submitted At:</strong> ${data.submittedAt?.toDate().toLocaleString() || "N/A"}</p>
-                        <p><strong>Status:</strong> ${data.status}</p>
-                        <button data-id="${docSnap.id}" data-user-id="${data.userId}" class="approve-payment-btn" style="background:#28a745; margin-right: 10px;">Approve Payment</button>
-                        <button data-id="${docSnap.id}" data-user-id="${data.userId}" class="reject-payment-btn" style="background:#dc3545;">Reject Payment</button>
+                        <p><strong>User:</strong> ${data.fullName} (${data.email})</p>
+                        <p><strong>Mobile:</strong> ${data.phoneNumber}</p>
+                        <p><strong>Payment Method:</strong> ${data.paymentMethod}</p>
+                        ${data.transactionId ? `<p><strong>Transaction ID:</strong> ${data.transactionId}</p>` : ''}
+                        ${data.screenshotUrl ? `<p><a href="${data.screenshotUrl}" target="_blank">View Screenshot</a></p>` : ''}
+                        <p><strong>Amount:</strong> ₹${data.amount || 'N/A'}</p>
+                        <p><strong>Requested At:</strong> ${data.timestamp?.toDate().toLocaleString() || "N/A"}</p>
+                        <button class="approve-manual-payment" data-uid="${data.userId}" data-docid="${docSnap.id}">Approve</button>
+                        <button class="reject-manual-payment" data-uid="${data.userId}" data-docid="${docSnap.id}">Reject</button>
                     `;
                     manualPaymentList.appendChild(card);
                 });
 
-                document.querySelectorAll(".approve-payment-btn").forEach(button => {
-                    button.addEventListener("click", async (e) => {
-                        const paymentId = e.target.dataset.id;
-                        const userId = e.target.dataset.userId;
-                        await updateManualPaymentStatus(paymentId, userId, "Approved");
-                    });
-                });
-
-                document.querySelectorAll(".reject-payment-btn").forEach(button => {
-                    button.addEventListener("click", async (e) => {
-                        const paymentId = e.target.dataset.id;
-                        const userId = e.target.dataset.userId;
-                        await updateManualPaymentStatus(paymentId, userId, "Rejected");
-                    });
-                });
-            }
-
-            async function updateManualPaymentStatus(paymentId, userId, status) {
-                try {
-                    await updateDoc(doc(db, "manualPayments", paymentId), {
-                        status: status,
-                        processedAt: serverTimestamp()
-                    });
-
-                    // Update the user's payment status based on admin action
-                    if (status === "Approved") {
-                        await updateDoc(doc(db, "users", userId), {
-                            paymentStatus: "Paid"
-                        });
-                        alert("Payment approved and user payment status updated to 'Paid'.");
-                    } else if (status === "Rejected") {
-                        await updateDoc(doc(db, "users", userId), {
-                            paymentStatus: "Rejected"
-                        });
-                        alert("Payment rejected and user payment status updated to 'Rejected'.");
-                    }
-                    fetchManualPaymentsForAdmin(); // Refresh the list
-                    // Re-fetch user data to update the dashboard display
-                    if (userId === currentUserId) {
-                        await fetchUserData(currentUserId);
-                    }
-                } catch (error) {
-                    console.error(`Error updating manual payment status to ${status}:`, error);
-                    alert(`Failed to ${status} manual payment.`);
-                }
-            }
-
-
-            async function fetchUserData(uid) {
-                if (!uid) {
-                    console.log("No user ID available to fetch data.");
-                    nameField.textContent = "N/A";
-                    mobileField.textContent = "N/A";
-                    emailField.textContent = "N/A";
-                    paymentField.textContent = "N/A";
-                    referralLinkField.textContent = "Please log in to see your referral link.";
-                    paymentSection.style.display = "block";
-                    paymentReviewSection.style.display = "none";
-                    paymentRejectedSection.style.display = "none";
-                    courseAccessSection.style.display = "none";
-                    return;
-                }
-
-                try {
-                    const userDocRef = doc(db, "users", uid);
-                    const userDocSnap = await getDoc(userDocRef);
-
-                    if (userDocSnap.exists()) {
-                        const userData = userDocSnap.data();
-                        currentUserName = userData.fullName || "N/A";
-                        currentUserMobile = userData.phoneNumber || "N/A";
-                        currentUserEmail = userData.email || "N/A";
-                        const paymentStatus = userData.paymentStatus || "Unpaid";
-                        const isAdmin = userData.isAdmin || false; // Check for admin status
-
-                        nameField.textContent = currentUserName;
-                        mobileField.textContent = currentUserMobile;
-                        emailField.textContent = currentUserEmail;
-                        paymentField.textContent = paymentStatus;
-
-                        // Set values for payment form modal
-                        paymentFullNameInput.value = currentUserName;
-                        paymentPhoneNumberInput.value = currentUserMobile;
-                        paymentEmailInput.value = currentUserEmail;
-
-                        const referralLink = `${window.location.origin}/signup.html?ref=${uid}`;
-                        referralLinkField.textContent = referralLink;
-
-                        // Handle UI based on payment status
-                        if (paymentStatus === "Paid") {
-                            paymentSection.style.display = "none";
-                            paymentReviewSection.style.display = "none";
-                            paymentRejectedSection.style.display = "none";
-                            courseAccessSection.style.display = "block";
-                        } else if (paymentStatus === "Under Review") {
-                            paymentSection.style.display = "none";
-                            paymentReviewSection.style.display = "block";
-                            paymentRejectedSection.style.display = "none";
-                            courseAccessSection.style.display = "none";
-                        } else if (paymentStatus === "Rejected") {
-                            paymentSection.style.display = "none"; // Hide standard payment button
-                            paymentReviewSection.style.display = "none";
-                            paymentRejectedSection.style.display = "block"; // Show rejected message
-                            courseAccessSection.style.display = "none";
-                        } else { // Unpaid or any other status
-                            paymentSection.style.display = "block";
-                            paymentReviewSection.style.display = "none";
-                            paymentRejectedSection.style.display = "none";
-                            courseAccessSection.style.display = "none";
-                        }
-
-                        // Admin section visibility
-                        if (isAdmin) {
-                            adminSection.style.display = "block";
-                            fetchWithdrawalsForAdmin();
+                // Add event listeners for approve/reject buttons
+                manualPaymentList.querySelectorAll('.approve-manual-payment').forEach(button => {
+                    button.addEventListener('click', async (e) => {
+                        const userId = e.target.dataset.uid;
+                        const docId = e.target.dataset.docid;
+                        try {
+                            // Update the manual payment request status
+                            await updateDoc(doc(db, "manualPayments", docId), { status: "Approved" });
+                            // Update the user's payment status
+                            await updateDoc(doc(db, "users", userId), { paymentStatus: "Paid" });
+                            alert("Payment approved and user status updated!");
+                            // Refresh both lists for admin
                             fetchManualPaymentsForAdmin();
-                        } else {
-                            adminSection.style.display = "none";
+                            fetchWithdrawalsForAdmin(); // In case this action affected withdrawals
+                            location.reload(); // Reload to update dashboard for admin
+                        } catch (error) {
+                            console.error("Error approving manual payment:", error);
+                            alert("Failed to approve payment.");
                         }
+                    });
+                });
 
-                        // Fetch referral data
-                        const referrals = await fetchReferralLevels(uid);
-                        referralCountField.textContent = referrals.filter(r => r.paymentStatus === "Paid").length;
-                        currentEarnings = referrals.reduce((sum, r) => sum + r.earning, 0);
-                        earningsField.textContent = `₹${currentEarnings}`;
-
-                        // Fetch previous withdrawals for the user
-                        const withdrawalQuery = query(collection(db, "withdrawals"), where("userId", "==", uid), where("status", "==", "Approved"));
-                        const withdrawalSnap = await getDocs(withdrawalQuery);
-                        let totalWithdrawn = 0;
-                        withdrawalSnap.forEach(doc => {
-                            totalWithdrawn += doc.data().amount;
-                        });
-
-                        totalWithdrawnDisplay.textContent = `₹${totalWithdrawn}`;
-                        availableBalanceDisplay.textContent = `₹${currentEarnings - totalWithdrawn}`;
-                        totalAmountModal.value = `₹${currentEarnings - totalWithdrawn}`;
-                        availableAmountInput.value = `₹${currentEarnings - totalWithdrawn}`;
-
-                        referralDetails.innerHTML = "";
-                        if (referrals.length === 0) {
-                            referralDetails.innerHTML = '<tr><td colspan="6">No referrals found yet. Share your link to earn!</td></tr>';
-                        } else {
-                            referrals.forEach(r => {
-                                const row = document.createElement("tr");
-                                row.innerHTML = `
-                                    <td>${r.level}</td>
-                                    <td>${r.fullName}</td>
-                                    <td>${r.mobile}</td>
-                                    <td>${r.email}</td>
-                                    <td>${r.paymentStatus}</td>
-                                    <td>₹${r.earning}</td>
-                                `;
-                                referralDetails.appendChild(row);
-                            });
+                manualPaymentList.querySelectorAll('.reject-manual-payment').forEach(button => {
+                    button.addEventListener('click', async (e) => {
+                        const userId = e.target.dataset.uid;
+                        const docId = e.target.dataset.docid;
+                        try {
+                            // Update the manual payment request status
+                            await updateDoc(doc(db, "manualPayments", docId), { status: "Rejected" });
+                            // Update the user's payment status
+                            await updateDoc(doc(db, "users", userId), { paymentStatus: "Rejected" }); // Set to Rejected
+                            alert("Payment rejected and user status updated!");
+                            // Refresh both lists for admin
+                            fetchManualPaymentsForAdmin();
+                            fetchWithdrawalsForAdmin();
+                            location.reload(); // Reload to update dashboard for admin
+                        } catch (error) {
+                            console.error("Error rejecting manual payment:", error);
+                            alert("Failed to reject payment.");
                         }
+                    });
+                });
+            }
+        }
 
-                    } else {
-                        console.log("No user data found for this UID.");
-                        // Handle case where user document doesn't exist (e.g., new user or data issue)
-                        nameField.textContent = "N/A";
-                        mobileField.textContent = "N/A";
-                        emailField.textContent = "N/A";
-                        paymentField.textContent = "N/A";
-                        referralLinkField.textContent = "User data not found.";
-                        paymentSection.style.display = "block"; // Show payment option by default
-                        paymentReviewSection.style.display = "none";
-                        paymentRejectedSection.style.display = "none";
-                        courseAccessSection.style.display = "none";
-                    }
+
+        // --- Event Listeners ---
+        onAuthStateChanged(auth, async user => {
+            if (!user) {
+                location.href = "index.html";
+                return;
+            }
+            currentUserId = user.uid;
+            currentUserEmail = user.email;
+
+            const userDocRef = doc(db, "users", user.uid);
+            const userDoc = await getDoc(userDocRef);
+
+            if (!userDoc.exists()) {
+                alert("No user data found! Please contact support.");
+                return;
+            }
+            const userData = userDoc.data();
+            currentUserName = userData.fullName || "";
+            currentUserMobile = userData.mobile || "";
+
+            // Populate profile details
+            nameField.textContent = currentUserName;
+            mobileField.textContent = currentUserMobile;
+            emailField.textContent = currentUserEmail;
+            paymentField.textContent = userData.paymentStatus || "Pending";
+
+            // Populate payment form modal details (readonly)
+            paymentFullName.value = currentUserName;
+            paymentPhoneNumber.value = currentUserMobile;
+            paymentEmail.value = currentUserEmail;
+
+            // Set referral link
+            referralLinkField.textContent = `${location.origin}/register.html?ref=${user.uid}`;
+
+            // Handle payment status display
+            // Ensure only one of these sections is displayed at a time for the user
+            paymentSection.style.display = "none";
+            paymentReviewSection.style.display = "none";
+            paymentRejectedSection.style.display = "none";
+            courseAccessSection.style.display = "none";
+
+            if (userData.paymentStatus === "Paid") {
+                courseAccessSection.style.display = "block";
+            } else if (userData.paymentStatus === "Pending Review") {
+                paymentReviewSection.style.display = "block";
+            } else if (userData.paymentStatus === "Rejected") {
+                paymentSection.style.display = "block"; // Show payment button again
+                paymentRejectedSection.style.display = "block"; // Show rejected message
+            }
+            else { // "Pending" or initial state
+                paymentSection.style.display = "block";
+            }
+
+
+            // Fetch and display referral details
+            const refs = await fetchReferralLevels(user.uid);
+            referralCountField.textContent = refs.length;
+            referralDetails.innerHTML = "";
+            let calculatedReferralEarnings = 0;
+            refs.forEach(r => {
+                let earning = 0;
+                if (r.paymentStatus === "Paid") {
+                    if (r.level === 1) earning = 240;
+                    else if (r.level === 2) earning = 150;
+                    else if (r.level === 3) earning = 110;
+                    else if (r.level === 4) earning = 60;
+                    else if (r.level === 5) earning = 40;
+                }
+                calculatedReferralEarnings += earning;
+                const tr = document.createElement("tr");
+                tr.innerHTML = `<td>${r.level}</td><td>${r.fullName}</td><td>${r.mobile}</td><td>${r.email}</td><td>${r.paymentStatus}</td><td>₹${earning}</td>`;
+                referralDetails.append(tr);
+            });
+
+            // Update total referral earnings in database and local state
+            await updateDoc(userDocRef, {
+                totalReferralEarnings: calculatedReferralEarnings
+            });
+
+            const totalWithdrawn = userData.totalWithdrawnAmount || 0;
+            const availableEarnings = calculatedReferralEarnings - totalWithdrawn;
+            earningsField.textContent = `₹${availableEarnings}`;
+            currentEarnings = availableEarnings;
+            totalAmountModal.value = `₹${availableEarnings}`;
+            availableAmountInput.value = `₹${availableEarnings}`;
+            totalWithdrawnDisplay.textContent = `₹${totalWithdrawn}`;
+            availableBalanceDisplay.textContent = `₹${availableEarnings}`;
+
+            // Admin specific logic
+            if (userData.role === "admin") {
+                adminSection.style.display = "block";
+                await fetchWithdrawalsForAdmin();
+                await fetchManualPaymentsForAdmin(); // Fetch manual payments for admin
+            }
+        });
+
+        // Profile Button
+        profileBtn.addEventListener('click', () => {
+            const isExpanded = profileBtn.getAttribute("aria-expanded") === "true";
+            profileBtn.setAttribute("aria-expanded", !isExpanded);
+            profileDetails.style.display = isExpanded ? "none" : "block";
+        });
+
+        // Logout Button
+        logoutBtn.onclick = () => signOut(auth).then(() => location.href = "index.html");
+
+        // Copy Referral Link Button
+        copyLinkBtn.onclick = () => {
+            navigator.clipboard.writeText(referralLinkField.textContent);
+            alert("Referral link copied to clipboard!");
+        }
+
+        // Toggle Referral Section Button
+        toggleReferralBtn.addEventListener('click', () => {
+            const isExpanded = toggleReferralBtn.getAttribute("aria-expanded") === "true";
+            toggleReferralBtn.setAttribute("aria-expanded", !isExpanded);
+            referralSection.style.display = isExpanded ? "none" : "block";
+            toggleReferralBtn.textContent = isExpanded ? "Show/Hide Referral Details" : "Show/Hide Referral Details";
+        });
+
+        // Initiate Payment Button (Opens Payment Form Modal)
+        initiatePaymentBtn.onclick = () => {
+            openModal(paymentFormModal);
+        };
+
+        // Close Payment Form Modal Button
+        closePaymentFormModalBtn.onclick = () => {
+            closeModal(paymentFormModal);
+        };
+        cancelManualPaymentBtn.onclick = () => {
+            closeModal(paymentFormModal);
+        };
+
+        // Dynamic content for chosenPaymentMethod dropdown
+        chosenPaymentMethod.addEventListener('change', function() {
+            const method = this.value;
+            paymentDetailsDisplay.innerHTML = "";
+            if (method) { // Only show if a method is selected
+                paymentDetailsDisplay.style.display = "block";
+            } else {
+                paymentDetailsDisplay.style.display = "none";
+            }
+
+            switch (method) {
+                case "upi_id":
+                    paymentDetailsDisplay.innerHTML = `
+                        <p><strong>Our UPI ID:</strong> <span style="font-weight: bold; color: #007bff;">accessibleworld@upi</span></p>
+                        <p>Open your UPI app (PhonePe, Google Pay, Paytm, etc.) and send ₹1000 to this UPI ID.</p>
+                    `;
+                    break;
+                case "phonepe_number":
+                    paymentDetailsDisplay.innerHTML = `
+                        <p><strong>Our PhonePe Number:</strong> <span style="font-weight: bold; color: #007bff;">7731879173</span></p>
+                        <p>Open PhonePe and send ₹1000 to this number.</p>
+                    `;
+                    break;
+                case "googlepay_number":
+                    paymentDetailsDisplay.innerHTML = `
+                        <p><strong>Our Google Pay Number:</strong> <span style="font-weight: bold; color: #007bff;">7731879173</span></p>
+                        <p>Open Google Pay and send ₹1000 to this number.</p>
+                    `;
+                    break;
+                case "qr_code":
+                    paymentDetailsDisplay.innerHTML = `
+                        <p><strong>Scan this QR Code to Pay:</strong></p>
+                        <img src="/assets/qr_code.png" alt="Payment QR Code">
+                        <p>Scan this QR code using any UPI app (PhonePe, Google Pay, Paytm, etc.) to complete your payment of ₹1000.</p>
+                    `;
+                    break;
+                case "bank_transfer":
+                    paymentDetailsDisplay.innerHTML = `
+                        <p><strong>Bank Account Name:</strong> ACCESSIBLE WORLD TUTORIALS</p>
+                        <p><strong>Account Number:</strong> 50200057252199</p>
+                        <p><strong>IFSC Code:</strong> HDFC0000720</p>
+                        <p><strong>Bank Name:</strong> HDFC BANK</p>
+                        <p>Transfer ₹1000 to the above bank account.</p>
+                    `;
+                    break;
+                default:
+                    paymentDetailsDisplay.innerHTML = "";
+                    paymentDetailsDisplay.style.display = "none";
+                    break;
+            }
+            validateManualPaymentForm();
+        });
+
+        // Validate manual payment form submission
+        function validateManualPaymentForm() {
+            const hasChosenMethod = chosenPaymentMethod.value !== "";
+            const isConfirmed = paymentConfirmationCheckbox.checked;
+            submitManualPaymentBtn.disabled = !(hasChosenMethod && isConfirmed);
+        }
+
+        paymentConfirmationCheckbox.addEventListener('change', validateManualPaymentForm);
+        // transactionIdInput.addEventListener('input', validateManualPaymentForm); // No need to validate on transaction ID for button enablement
+
+        // Submit Manual Payment Button
+        submitManualPaymentBtn.onclick = async () => {
+            const selectedMethod = chosenPaymentMethod.value;
+            const transactionId = transactionIdInput.value.trim(); // Trim whitespace
+            const screenshotFile = screenshotUploadInput.files[0];
+
+            if (!selectedMethod) {
+                alert("Please select a payment method.");
+                return;
+            }
+            if (!paymentConfirmationCheckbox.checked) {
+                alert("Please confirm that you have made the payment by checking the box.");
+                return;
+            }
+
+            // Optional: Basic validation for transactionId if a screenshot is not uploaded
+            if (!screenshotFile && !transactionId) {
+                alert("Please provide either a Transaction ID or upload a screenshot for verification.");
+                return;
+            }
+
+            let screenshotUrl = null;
+            if (screenshotFile) {
+                const storageRef = ref(storage, `payment_screenshots/${currentUserId}_${Date.now()}_${screenshotFile.name}`);
+                try {
+                    const snapshot = await uploadBytes(storageRef, screenshotFile);
+                    screenshotUrl = await getDownloadURL(snapshot.ref);
                 } catch (error) {
-                    console.error("Error fetching user data:", error);
-                    alert("Error loading user data. Please try refreshing the page.");
-                    nameField.textContent = "Error";
-                    mobileField.textContent = "Error";
-                    emailField.textContent = "Error";
-                    paymentField.textContent = "Error";
-                    referralLinkField.textContent = "Error loading link.";
-                    paymentSection.style.display = "block"; // Allow user to try initiating payment again
-                    paymentReviewSection.style.display = "none";
-                    paymentRejectedSection.style.display = "none";
-                    courseAccessSection.style.display = "none";
+                    console.error("Error uploading screenshot:", error);
+                    alert("Failed to upload screenshot. Please try again or contact support.");
+                    return;
                 }
             }
 
-            // --- Event Listeners ---
+            try {
+                await addDoc(collection(db, "manualPayments"), {
+                    userId: currentUserId,
+                    fullName: currentUserName,
+                    phoneNumber: currentUserMobile,
+                    email: currentUserEmail,
+                    paymentMethod: selectedMethod,
+                    transactionId: transactionId,
+                    screenshotUrl: screenshotUrl,
+                    amount: 1000, // Fixed amount for membership
+                    timestamp: serverTimestamp(),
+                    status: "Pending" // Initial status for manual payments
+                });
 
-            profileBtn.addEventListener("click", () => {
-                const isExpanded = profileBtn.getAttribute("aria-expanded") === "true";
-                profileBtn.setAttribute("aria-expanded", !isExpanded);
-                profileDetails.style.display = isExpanded ? "none" : "block";
-            });
+                // Update user's payment status to "Pending Review"
+                const userRef = doc(db, "users", currentUserId);
+                await updateDoc(userRef, { paymentStatus: "Pending Review" });
 
-            logoutBtn.addEventListener("click", async () => {
-                try {
-                    await signOut(auth);
-                    window.location.href = "index.html"; // Redirect to login page
-                } catch (error) {
-                    console.error("Error signing out:", error);
-                    alert("Failed to log out. Please try again.");
-                }
-            });
-
-            copyLinkBtn.addEventListener("click", async () => {
-                const referralLink = referralLinkField.textContent;
-                try {
-                    await navigator.clipboard.writeText(referralLink);
-                    alert("Referral link copied to clipboard!");
-                } catch (err) {
-                    console.error("Failed to copy: ", err);
-                    alert("Failed to copy link. Please copy it manually: " + referralLink);
-                }
-            });
-
-            toggleReferralBtn.addEventListener("click", () => {
-                const isExpanded = toggleReferralBtn.getAttribute("aria-expanded") === "true";
-                toggleReferralBtn.setAttribute("aria-expanded", !isExpanded);
-                referralSection.style.display = isExpanded ? "none" : "block";
-            });
-
-            coursesBtn.addEventListener("click", () => {
-                alert("Redirecting to courses page!");
-                // window.location.href = "courses.html"; // Uncomment and replace with your actual courses page
-            });
-
-
-            // Withdrawal Modal Logic
-            withdrawBtn.addEventListener("click", () => {
-                const availableBalance = parseFloat(availableBalanceDisplay.textContent.replace('₹', ''));
-                if (availableBalance < 100) {
-                    alert("Minimum withdrawal amount is ₹100.");
-                    return;
-                }
-                totalAmountModal.value = `₹${availableBalance}`;
-                availableAmountInput.value = `₹${availableBalance}`;
-                withdrawAmountInput.value = ""; // Clear previous input
-                paymentMethodDropdown.value = ""; // Reset dropdown
-                paymentDetailsDiv.style.display = "none"; // Hide details until method is selected
-                submitWithdrawalButton.disabled = true; // Disable until valid input
-                openModal(withdrawModal);
-            });
-
-            withdrawModalCloseButton.addEventListener("click", () => {
-                closeModal(withdrawModal);
-            });
-            cancelWithdrawalButton.addEventListener("click", () => {
-                closeModal(withdrawModal);
-            });
-
-            paymentMethodDropdown.addEventListener("change", () => {
-                const selectedMethod = paymentMethodDropdown.value;
-                paymentDetailsDiv.style.display = selectedMethod ? "block" : "none";
-                paymentIdInput.value = ""; // Clear previous ID
-
-                if (selectedMethod) {
-                    paymentIdInput.placeholder = `Enter your ${selectedMethod} ID/Number`;
-                    submitWithdrawalButton.disabled = false; // Enable once method selected
-                } else {
-                    submitWithdrawalButton.disabled = true;
-                }
-            });
-
-            withdrawAmountInput.addEventListener("input", () => {
-                const availableBalance = parseFloat(availableAmountInput.value.replace('₹', ''));
-                const withdrawAmount = parseFloat(withdrawAmountInput.value);
-
-                if (isNaN(withdrawAmount) || withdrawAmount < 100 || withdrawAmount > availableBalance) {
-                    submitWithdrawalButton.disabled = true;
-                    statusMessage.textContent = "Withdrawal amount must be at least ₹100 and not exceed available balance.";
-                    statusMessage.style.color = "red";
-                } else {
-                    submitWithdrawalButton.disabled = false;
-                    statusMessage.textContent = "";
-                }
-            });
-
-            submitWithdrawalButton.addEventListener("click", async () => {
-                const amount = parseFloat(withdrawAmountInput.value);
-                const method = paymentMethodDropdown.value;
-                const paymentId = paymentIdInput.value.trim();
-                const availableBalance = parseFloat(availableAmountInput.value.replace('₹', ''));
-
-                if (isNaN(amount) || amount < 100 || amount > availableBalance) {
-                    alert("Please enter a valid withdrawal amount (minimum ₹100 and not exceeding available balance).");
-                    return;
-                }
-                if (!method) {
-                    alert("Please select a payment method.");
-                    return;
-                }
-                if (!paymentId) {
-                    alert("Please enter your UPI ID/Number.");
-                    return;
-                }
-                if (!currentUserId) {
-                    alert("User not logged in. Please refresh and try again.");
-                    return;
-                }
-
-                try {
-                    await addDoc(collection(db, "withdrawals"), {
-                        userId: currentUserId,
-                        fullName: currentUserName,
-                        email: currentUserEmail,
-                        phone: currentUserMobile, // Add phone number to withdrawal record
-                        amount: amount,
-                        paymentMethod: method,
-                        paymentId: paymentId,
-                        status: "Pending",
-                        requestedAt: serverTimestamp()
-                    });
-
-                    // Deduct the withdrawn amount from the user's earnings balance
-                    const userDocRef = doc(db, "users", currentUserId);
-                    const userDocSnap = await getDoc(userDocRef);
-                    if (userDocSnap.exists()) {
-                        const userData = userDocSnap.data();
-                        const currentTotalEarnings = userData.totalEarnings || 0;
-                        const currentTotalWithdrawn = userData.totalWithdrawn || 0;
-
-                        await updateDoc(userDocRef, {
-                            totalEarnings: currentTotalEarnings - amount, // Deduct from totalEarnings for simplicity or adjust as per your earnings model
-                            totalWithdrawn: currentTotalWithdrawn + amount
-                        });
-                    }
-
-                    alert("Withdrawal request submitted successfully! It will be processed soon.");
-                    closeModal(withdrawModal);
-                    await fetchUserData(currentUserId); // Refresh dashboard to show updated balance
-                } catch (error) {
-                    console.error("Error submitting withdrawal:", error);
-                    alert("Failed to submit withdrawal request.");
-                }
-            });
-
-            // Initiate Payment Modal Logic
-            initiatePaymentBtn.addEventListener("click", () => {
-                openModal(paymentFormModal);
-                // Pre-fill user details if available
-                paymentFullNameInput.value = currentUserName || '';
-                paymentPhoneNumberInput.value = currentUserMobile || '';
-                paymentEmailInput.value = currentUserEmail || '';
-                // Reset fields
-                chosenPaymentMethodSelect.value = '';
-                paymentDetailsDisplay.style.display = 'none';
-                paymentDetailsDisplay.innerHTML = '';
-                transactionIdInput.value = '';
-                screenshotUploadInput.value = '';
-                paymentConfirmationCheckbox.checked = false; // Ensure checkbox is unchecked initially
-            });
-
-            paymentFormModalCloseButton.addEventListener("click", () => {
+                alert("Your payment details have been submitted for review. Please allow up to 6 hours for verification. For faster activation, call 7731879173.");
                 closeModal(paymentFormModal);
-            });
-
-            cancelManualPaymentBtn.addEventListener("click", () => {
-                closeModal(paymentFormModal);
-            });
-
-            chosenPaymentMethodSelect.addEventListener("change", () => {
-                const selectedMethod = chosenPaymentMethodSelect.value;
-                const detailsContainer = paymentDetailsDisplay;
-                detailsContainer.innerHTML = ''; // Clear previous details
-
-                if (selectedMethod && OUR_PAYMENT_DETAILS[selectedMethod]) {
-                    const methodInfo = OUR_PAYMENT_DETAILS[selectedMethod];
-                    detailsContainer.style.display = 'block';
-
-                    let content = `<h4>${methodInfo.label}</h4><p>${methodInfo.instructions}</p>`;
-
-                    if (methodInfo.value) {
-                        content += `<p><strong>${methodInfo.label}:</strong> <span style="font-size: 1.1em; color: #0056b3;">${methodInfo.value}</span></p>`;
-                    }
-                    if (methodInfo.accountName) {
-                        content += `<p><strong>Account Name:</strong> <span style="font-size: 1.1em; color: #0056b3;">${methodInfo.accountName}</span></p>`;
-                        content += `<p><strong>Account Number:</strong> <span style="font-size: 1.1em; color: #0056b3;">${methodInfo.accountNumber}</span></p>`;
-                        content += `<p><strong>IFSC Code:</strong> <span style="font-size: 1.1em; color: #0056b3;">${methodInfo.ifscCode}</span></p>`;
-                    }
-                    if (methodInfo.imageUrl) {
-                        content += `<img src="${methodInfo.imageUrl}" alt="${methodInfo.label} QR Code" aria-label="${methodInfo.label} QR Code">`;
-                    }
-                    detailsContainer.innerHTML = content;
-                } else {
-                    detailsContainer.style.display = 'none';
-                }
-            });
-
-            // Submit Manual Payment
-            submitManualPaymentBtn.addEventListener("click", async () => {
-                // **THIS IS THE CRUCIAL CHANGE: Check checkbox status on submit click**
-                if (!paymentConfirmationCheckbox.checked) {
-                    alert("Please confirm that you have made the payment by selecting the checkbox.");
-                    return; // Stop the submission process
-                }
-
-                const chosenMethod = chosenPaymentMethodSelect.value;
-                const transactionId = transactionIdInput.value.trim();
-                const screenshotFile = screenshotUploadInput.files[0];
-
-                if (!chosenMethod) {
-                    alert("Please select a payment method.");
-                    return;
-                }
-
-                if (!currentUserId) {
-                    alert("User not logged in or ID not found. Please refresh and try again.");
-                    console.error("currentUserId is null or undefined.");
-                    return;
-                }
-
-                let screenshotURL = '';
-                if (screenshotFile) {
-                    const storageRef = ref(storage, `payment_screenshots/${currentUserId}_${Date.now()}_${screenshotFile.name}`);
-                    try {
-                        const uploadResult = await uploadBytes(storageRef, screenshotFile);
-                        screenshotURL = await getDownloadURL(storageRef);
-                    } catch (uploadError) {
-                        console.error("Error uploading screenshot:", uploadError);
-                        alert("Failed to upload screenshot. Please try again. " + (uploadError.message || "Unknown error during upload."));
-                        return; // Halting submission if screenshot upload fails.
-                    }
-                }
-
-                try {
-                    // Add payment request to a 'manualPayments' collection for admin review
-                    await addDoc(collection(db, "manualPayments"), {
-                        userId: currentUserId,
-                        fullName: currentUserName,
-                        phoneNumber: currentUserMobile,
-                        email: currentUserEmail,
-                        chosenPaymentMethod: chosenMethod,
-                        transactionId: transactionId,
-                        screenshotURL: screenshotURL,
-                        status: "Pending", // Admin needs to approve
-                        submittedAt: serverTimestamp()
-                    });
-
-                    // Update user's payment status to "Under Review"
-                    await updateDoc(doc(db, "users", currentUserId), {
-                        paymentStatus: "Under Review"
-                    });
+                location.reload(); // Reload to show the "Pending Review" message to the user
+            } catch (e) {
+                console.error("Error submitting manual payment:", e);
+                alert("Failed to submit payment details. Please try again.");
+            }
+        };
 
 
-                    alert("Payment details submitted successfully! Your payment is now under review.");
-                    closeModal(paymentFormModal);
-                    await fetchUserData(currentUserId); // Refresh dashboard to show "Under Review" status
-                } catch (error) {
-                    console.error("Error submitting manual payment to Firestore:", error);
-                    alert("Failed to submit payment details. " + (error.message || "An unknown error occurred. Please check console for details."));
-                }
-            });
+        // Withdrawal Modal Logic
+        withdrawBtn.onclick = () => {
+            if (currentEarnings < 100) {
+                statusMessage.textContent = "Minimum ₹100 to withdraw";
+                return;
+            }
+            openModal(withdrawModal);
+            totalAmountModal.value = `₹${currentEarnings}`;
+            availableAmountInput.value = `₹${currentEarnings}`;
+        };
 
+        withdrawModalCloseButton.onclick = function() {
+            closeModal(withdrawModal);
+            withdrawBtn.focus(); // Return focus to the withdraw button
+        }
 
-            // Initial authentication state check
-            onAuthStateChanged(auth, async (user) => {
-                if (user) {
-                    currentUserId = user.uid;
-                    await fetchUserData(currentUserId);
+        cancelWithdrawalButton.onclick = function() {
+            closeModal(withdrawModal);
+            withdrawBtn.focus(); // Return focus to the withdraw button
+        }
 
-                    // Check if the user is redirected from a referral link
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const referrerId = urlParams.get('ref');
-                    if (referrerId && referrerId !== currentUserId) {
-                        const userDocRef = doc(db, "users", currentUserId);
-                        const userDocSnap = await getDoc(userDocRef);
+        paymentMethodDropdown.addEventListener('change', function() {
+            if (this.value) {
+                paymentDetailsDiv.style.display = "block";
+            } else {
+                paymentDetailsDiv.style.display = "none";
+                paymentIdInput.value = "";
+                withdrawAmountInput.value = "";
+            }
+            validateWithdrawalForm();
+        });
 
-                        if (userDocSnap.exists() && !userDocSnap.data().referredBy) {
-                            // Only update if not already referred
-                            await updateDoc(userDocRef, {
-                                referredBy: referrerId
-                            });
-                            console.log(`User ${currentUserId} referred by ${referrerId}`);
-                            // Optional: Alert or notify the user
-                            // alert(`You were referred by user: ${referrerId}`);
-                        }
-                    }
-                } else {
-                    currentUserId = null;
-                    console.log("No user logged in, redirecting to index.html");
-                    window.location.href = "index.html"; // Redirect to login page
-                }
-            });
+        paymentIdInput.addEventListener('input', validateWithdrawalForm);
+        withdrawAmountInput.addEventListener('input', validateWithdrawalForm);
+
+        function validateWithdrawalForm() {
+            const amount = parseFloat(withdrawAmountInput.value);
+            const isValidAmount = !isNaN(amount) && amount >= 100 && amount <= currentEarnings;
+            const hasPaymentDetails = paymentMethodDropdown.value && paymentIdInput.value.trim() !== "";
+            submitWithdrawalButton.disabled = !(isValidAmount && hasPaymentDetails);
+        }
+
+        submitWithdrawalButton.onclick = async () => {
+            const selectedMethod = paymentMethodDropdown.value;
+            const paymentId = paymentIdInput.value.trim();
+            const requestedAmount = parseFloat(withdrawAmountInput.value);
+
+            if (!selectedMethod || !paymentId) {
+                alert("Please select a payment method and enter your UPI ID/Number.");
+                return;
+            }
+
+            if (isNaN(requestedAmount) || requestedAmount < 100) {
+                alert("Minimum withdrawal amount is ₹100.");
+                return;
+            }
+            if (requestedAmount <= 0 || requestedAmount > currentEarnings) {
+                alert(`Please enter a valid withdrawal amount (up to ₹${currentEarnings}).`);
+                return;
+            }
+
+            try {
+                await addDoc(collection(db, "withdrawals"), {
+                    userId: currentUserId,
+                    fullName: currentUserName,
+                    email: currentUserEmail,
+                    phone: currentUserMobile,
+                    amount: requestedAmount,
+                    paymentMethod: selectedMethod,
+                    paymentId: paymentId,
+                    requestedAt: serverTimestamp(),
+                    status: "Pending"
+                });
+                statusMessage.textContent = "Withdrawal request submitted successfully! You will receive the amount within 24-48 hours.";
+
+                // Update the total withdrawn amount in the database
+                const userRef = doc(db, "users", currentUserId);
+                const userData = (await getDoc(userRef)).data();
+                const currentWithdrawn = userData?.totalWithdrawnAmount || 0;
+                const newTotalWithdrawn = currentWithdrawn + requestedAmount;
+                await updateDoc(userRef, {
+                    totalWithdrawnAmount: newTotalWithdrawn
+                });
+
+                // Update the local currentEarnings variable and the displayed value
+                currentEarnings -= requestedAmount;
+                earningsField.textContent = `₹${currentEarnings}`;
+                totalAmountModal.value = `₹${currentEarnings}`;
+                availableAmountInput.value = `₹${currentEarnings}`;
+
+                alert("Withdrawal request submitted! You will receive the amount in 24-48 hours on the provided payment method.");
+                closeModal(withdrawModal);
+                // Consider reloading or re-fetching data here to update all displays if needed
+            } catch (e) {
+                console.error("Error submitting withdrawal request:", e);
+                statusMessage.textContent = "Could not submit withdrawal request. Please try again.";
+                alert("Failed to submit withdrawal request. Please try again.");
+            }
+        };
+
+        // Courses Access Button
+        coursesBtn.onclick = () => window.location.href = 'courses.html';
     </script>
 </body>
 </html>
