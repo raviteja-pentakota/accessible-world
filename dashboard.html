@@ -172,20 +172,21 @@
         #paymentMethodDetails div {
             margin-bottom: 10px;
         }
-#paymentMethodDetails img {
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    display: block;
-    margin: 10px auto;
-    border: 1px solid #ccc;
-    padding: 5px;
+#paymentDetailsDisplay img {
+    max-width: 200px; /* Set a maximum width for the image */
+    width: 100%; /* Make it responsive within its container */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Make it a block-level element */
+    margin: 20px auto; /* Center horizontally with more vertical spacing */
+    border: 1px solid #ddd; /* Slightly softer border */
+    padding: 8px; /* Slightly more padding */
     box-sizing: border-box;
+    border-radius: 4px; /* Slightly rounded corners */
 
-    /* Image rendering for sharp display */
-    image-rendering: auto;         /* Default fallback */
-    image-rendering: crisp-edges;  /* For sharp edges on supported browsers */
-    image-rendering: -webkit-optimize-contrast; /* Safari/Chrome (optional) */
+    /* Image rendering for sharp display (keep these if desired) */
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
 }
         .instruction-box {
             background-color: #e9f7ef;
@@ -519,7 +520,8 @@
             qr_code: {
                 label: "Scan Our QR Code",
                 imageUrl: "qr_scanner.png", // <<< REPLACE THIS with your actual QR code image path
-                instructions: "If scanner is not working, kindly use other payment methods. We will resolve this problem shortly. "
+                instructions: "Scan the QR code to pay ₹1000.
+Place your screen reader focus on the QR code image. Then, use PhonePe, Google Pay, or any other UPI app on your phone to scan the QR code and complete the payment."
             },
             bank_transfer: {
                 label: "Our Bank Account Details",
