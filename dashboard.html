@@ -291,7 +291,7 @@
 
     <div id="payment-section">
         <div id="payment-rejected" style="display:none; margin-top:10px; background-color: #ffe6e6; border: 1px solid #ffcccc; padding: 15px; border-radius: 5px; color: #cc0000;">
-            <h3>Payment Not Received</h3>
+            <h3>Payment Rejected:</h3>
             <p style="font-weight: bold;">We have not received the payment.</p>
             <p>Please share the payment successful screenshot to the mobile: <strong style="font-size: 1.1em;">7731879173</strong>.</p>
             <p>If the money was not deducted from your account or has already been refunded, click the button below to make the payment again.</p>
@@ -299,6 +299,7 @@
         <button id="initiatePaymentBtn">Join and Pay ₹1000 Membership</button>
     </div>
     <div id="payment-review" style="display:none; margin-top:10px;">
+<h3>Payment Review</h3>
         <p style="color:orange;">Your payment is under review. We will verify it within 6 hours. Would you like to access the courses quickly in 30 minuts, call on this number +917731879173. Thank you for your patience!</p>
     </div>
 
@@ -867,7 +868,7 @@
                 case "qr_code":
                     paymentDetailsDisplay.innerHTML = `
                         <p><strong>Scan this QR Code to Pay:</strong></p>
-                        <img src="/qr_scanner.png" alt="Payment QR Code">
+                        <img src="qr_scanner.png" alt="Payment QR Code" style="width: 200%; hight: auto;">
                         <p>Scan this QR code using any UPI app (PhonePe, Google Pay, Paytm, etc.) to complete your payment of ₹1000.</p>
                     `;
                     break;
