@@ -7,12 +7,139 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 2rem;
-            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
             color: #333;
         }
-        .tab-list {
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background-color: #007bff;
+            color: white;
+            padding: 8px;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em 20px; /* Added padding to the sides */
+            text-align: center;
+            position: relative; /* Needed for absolute positioning of profile dropdown */
+        }
+
+        header h1 {
+            margin-bottom: 10px; /* Adjust spacing below the title */
+        }
+
+        nav {
+            background-color: #ddd;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav ul {
             list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 1em;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav h2 {
+            margin-top: 1em;
+            color: #555;
+            font-size: 1.2em;
+        }
+
+        main {
+            padding: 20px;
+            background-color: #fff;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 80px; /* Ensure space for fixed footer */
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Styles for profile button and dropdown */
+        .profile-container {
+            position: absolute; /* Position relative to the header */
+            top: 10px;
+            right: 20px; /* Adjust as needed */
+            display: inline-block;
+        }
+
+        .profile-container button {
+            padding: 8px 15px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .profile-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .profile-dropdown {
+            display: none; /* Hidden by default */
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px; /* Adjust width as needed */
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0; /* Align dropdown to the right of the button */
+            border-radius: 4px;
+            padding: 10px;
+            top: 45px; /* Position below the button */
+            color: #333; /* Ensure text is visible */
+            text-align: left;
+        }
+
+        .profile-dropdown p {
+            margin: 5px 0;
+            font-size: 14px;
+            padding: 0 5px; /* Add some padding inside the dropdown */
+        }
+
+        .profile-dropdown button {
+            width: calc(100% - 10px); /* Adjust width to fit padding */
+            margin: 10px 5px 0; /* Adjust margin for logout button */
+            background-color: #dc3545; /* Red for logout */
+        }
+
+        .profile-dropdown button:hover {
+            background-color: #c82333;
+        }
+        .tab-list {
+            list-style: none; /* Already handles removing bullets for tabs */
             padding: 0;
             margin: 0 0 1rem 0;
             display: flex;
@@ -91,14 +218,44 @@
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header>
+        <h1>Welcome to Accessible World Tutorials</h1>
+        <div class="profile-container">
+            <button id="profileBtn" aria-expanded="false" aria-controls="profileDetails">Profile</button>
+            <div id="profileDetails" class="profile-dropdown">
+                <p class="profile-item"><strong aria-label="User Name">Name:</strong> <span id="profile-name"></span></p>
+                <p class="profile-item"><strong aria-label="Mobile Number">Mobile:</strong> <span id="profile-mobile"></span></p>
+                <p class="profile-item"><strong aria-label="Email Address">Email:</strong> <span id="profile-email"></span></p>
+                <p><strong aria-label="Referral Link">Referral Link:</strong> <span id="referral-link-span"></span></p>
+                <button id="logout-btn">Logout</button>
+            </div>
+        </div>
+    </header>
+    <nav aria-label="main">
+        <ul type="none">
+            <li><a href="courses.html">Go to Courses Home Page</a></li>
+            <li><a href="dashboard.html">Go to dashboard page</a></li>
+        </ul>
+    </nav>
+    <nav aria-label="Course Navigation">
+        <ul type="none">
+            <li><a href="programming_language.html">Programming Languages</a></li>
+            <li><a href="accessibility.html">Web Accessibility</a></li>
+            <li><a href="interview.html">Interview Questions</a></li>
+            <li><a href="gk.html">GK Bits</a></li>
+        </ul>
+    </nav>
+    <main id="main-content">
     <h1>Basic Computer Course for Blind Users</h1>
 
     <div role="tablist" aria-label="Course Topics">
         <ul class="tab-list">
             <li><button type="button" role="tab" id="tab-intro" aria-controls="panel-intro" aria-selected="true" class="tab-button" tabindex="0">Introduction to Computers</button></li>
-            <li><button type="button" role="tab" id="tab-screenreader" aria-controls="panel-screenreader" aria-selected="false" class="tab-button" tabindex="-1">Screen Reader Basics</button></li>
             <li><button type="button" role="tab" id="tab-keyboard" aria-controls="panel-keyboard" aria-selected="false" class="tab-button" tabindex="-1">Mastering the Keyboard</button></li>
-            <li><button type="button" role="tab" id="tab-files" aria-controls="panel-files" aria-selected="false" class="tab-button" tabindex="-1">Working with Files and Folders</button></li>
+            <li><button type="button" role="tab" id="tab-desktop" aria-controls="panel-desktop" aria-selected="false" class="tab-button" tabindex="-1">Desktop, Start Menu, Taskbar</button></li>
+            <li><button type="button" role="tab" id="tab-screenreader" aria-controls="panel-screenreader" aria-selected="false" class="tab-button" tabindex="-1">Screen Reader Basics</button></li>
+            <li><button type="button" role="tab" id="tab-files" aria-controls="panel-files" aria-selected="false" class="tab-button" tabindex="-1">Working with Files, Folders and understanding Menus</button></li>
             <li><button type="button" role="tab" id="tab-windows" aria-controls="panel-windows" aria-selected="false" class="tab-button" tabindex="-1">Windows Operating System Basics</button></li>
             <li><button type="button" role="tab" id="tab-apps" aria-controls="panel-apps" aria-selected="false" class="tab-button" tabindex="-1">Using Built-in Applications</button></li>
             <li><button type="button" role="tab" id="tab-accessibility" aria-controls="panel-accessibility" aria-selected="false" class="tab-button" tabindex="-1">Accessibility and Security</button></li>
@@ -114,8 +271,95 @@
         <button id="prevButton" disabled>Previous Topic</button>
         <button id="nextButton">Next Topic</button>
     </div>
+    <footer>
+        <p>&copy; 2025 Accessible World</p>
+    </footer>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
 
-    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k", // Replace with your actual API key
+            authDomain: "accessibleworld-7f599.firebaseapp.com", // Replace with your auth domain
+            projectId: "accessibleworld-7f599",              // Replace with your project ID
+            storageBucket: "accessibleworld-7f599.appspot.com", // Replace with your storage bucket
+            messagingSenderId: "264437218598",               // Replace with your messaging sender ID
+            appId: "1:264437218598:web:cae58c1e578c7b08b815e7", // Replace with your app ID
+            measurementId: "G-1QRWXYRZ76"                   // Replace with your measurement ID
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const db = getFirestore(app);
+
+        const bodyElement = document.body;
+        // Removed elements that are not present in this HTML for clarity:
+        // const accessDeniedMessage = document.getElementById('access-denied-message');
+        // const courseContent = document.getElementById('course-content');
+        // const paidCoursesList = document.getElementById('paid-courses-list');
+
+        // Get the new profile elements
+        const profileBtn = document.getElementById('profileBtn');
+        const profileDetails = document.getElementById('profileDetails');
+
+        const profileNameSpan = document.getElementById('profile-name');
+        const profileMobileSpan = document.getElementById('profile-mobile');
+        const profileEmailSpan = document.getElementById('profile-email');
+        const referralLinkSpan = document.getElementById('referral-link-span');
+        const logoutButton = document.getElementById('logout-btn');
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const uid = user.uid;
+                const userDocRef = doc(db, "users", uid);
+                const userDocSnap = await getDoc(userDocRef);
+
+                if (userDocSnap.exists()) {
+                    const userData = userDocSnap.data();
+                    if (userData.paymentStatus === "Paid") {
+                        console.log("User is logged in and has paid. Allowing access.");
+
+                        profileNameSpan.textContent = userData.fullName || 'N/A';
+                        profileMobileSpan.textContent = userData.mobile || 'N/A';
+                        profileEmailSpan.textContent = user.email;
+                        referralLinkSpan.textContent = `${location.origin}/register.html?ref=${uid}`;
+                        bodyElement.style.display = 'block'; // Show the content
+                    } else {
+                        console.log("User is logged in but has not paid. Redirecting to index.");
+                        alert("Please join our membership to access the courses.");
+                        window.location.href = "login.html"; // Or your pricing page
+                    }
+                } else {
+                    console.error("User data not found for UID:", uid);
+                    alert("Error: Could not verify your membership. Please log in again.");
+                    window.location.href = "login.html"; // Or your login page
+                }
+            } else {
+                console.log("User is not logged in. Redirecting to index.");
+                alert("Please log in to access the courses.");
+                window.location.href = "login.html"; // Or your login page
+            }
+        });
+
+        // Event listener for the profile button
+        profileBtn.addEventListener('click', () => {
+            const isExpanded = profileBtn.getAttribute("aria-expanded") === "true";
+            profileBtn.setAttribute("aria-expanded", !isExpanded);
+            profileDetails.style.display = isExpanded ? "none" : "block"; // Toggle visibility
+        });
+
+        logoutButton.addEventListener('click', async () => {
+            try {
+                await signOut(auth);
+                console.log('User signed out');
+                window.location.href = "index.html"; // Redirect to your homepage or login page
+            } catch (error) {
+                console.error('Error signing out:', error);
+                alert('Error signing out. Please try again.');
+            }
+        });
+
         const topicsData = {
             intro: {
                 title: "Introduction to Computers",
@@ -134,80 +378,17 @@
                         <li><strong>Keyboard:</strong> Used for typing text and entering commands.</li>
                         <li><strong>Monitor (Display):</strong> Shows visual information. For blind users, a screen reader converts this visual information into spoken words.</li>
                         <li><strong>CPU (Central Processing Unit):</strong> The "brain" of the computer, responsible for executing instructions.</li>
-                        <li><strong>Mouse:</strong> A pointing device used for navigation. While primarily visual, some tasks can be performed with the mouse, but we'll focus on keyboard navigation.</li>
+                        <li><strong>Mouse:</b> A pointing device used for navigation. While primarily visual, some tasks can be performed with the mouse, but we'll focus on keyboard navigation.</li>
                         <li><strong>Speakers/Headphones:</strong> Essential for hearing the screen reader's output.</li>
                     </ul>
                     <h3>Input and Output Devices</h3>
                     <ul>
                         <li><strong>Input Devices:</strong> These allow you to send information to the computer. Examples include the keyboard, mouse, microphone, and scanner.</li>
-                        <li><strong>Output Devices:</strong> These allow the computer to send information back to you. Examples include the monitor, printer, and speakers.</li>
+                        <li><strong>Output Devices:</b> These allow the computer to send information back to you. Examples include the monitor, printer, and speakers.</li>
                     </ul>
                     <h3>Powering On and Shutting Down</h3>
                     <p>To power on a desktop computer, locate the power button on the computer tower and press it. For a laptop, the power button is usually on the keyboard or side. To shut down, press the <strong>Windows key</strong>, then use the <strong>Tab key</strong> to navigate to the power options and select "Shut down." You can also press <strong>Alt + F4</strong> from the desktop to open the shutdown dialog.</p>
                 `
-            },
-            screenreader: {
-                title: "Screen Reader Basics", // Main title for the tab
-                subPages: [
-                    {
-                        title: "1. What is a Screen Reader?",
-                        content: `
-                            <p>A screen reader is crucial software for blind and visually impaired individuals, converting text and images on the screen into speech or braille output.</p>
-                            <h3>Definition</h3>
-                            <p>A screen reader is a software application that interprets the information displayed on a computer screen and presents it to the user in a non-visual format, typically synthesized speech or a refreshable braille display. It allows you to interact with the operating system and applications.</p>
-                            <h3>How it Works</h3>
-                            <ul>
-                                <li>It reads out loud text on the screen, including menus, buttons, and document content.</li>
-                                <li>It describes images and other graphical elements, if they have proper alternative text.</li>
-                                <li>It allows navigation using the keyboard, as opposed to a mouse.</li>
-                            </ul>
-                        `
-                    },
-                    {
-                        title: "2. Installing and Launching NVDA",
-                        content: `
-                            <p>NVDA (NonVisual Desktop Access) is a popular, free, and open-source screen reader. You can download it from the official NV Access website.</p>
-                            <h3>Download and Installation</h3>
-                            <p>Visit <a href="https://www.nvaccess.org/" target="_blank">www.nvaccess.org</a> to download the latest stable version of NVDA. After downloading, run the installer and follow the on-screen prompts. It's recommended to install NVDA to your hard drive so it can start automatically.</p>
-                            <h3>Launching NVDA</h3>
-                            <ul>
-                                <li><strong>Default Hotkey:</strong> After installation, you can usually launch NVDA by pressing <strong>Ctrl + Alt + N</strong>.</li>
-                                <li><strong>From Start Menu:</strong> Press the <strong>Windows key</strong>, type "NVDA", and press <strong>Enter</strong> when "NVDA" is announced.</li>
-                                <li><strong>Portable Version:</strong> If you downloaded the portable version, navigate to its folder and press <strong>Enter</strong> on the "nvda_portable" executable.</li>
-                            </ul>
-                        `
-                    },
-                    {
-                        title: "3. Turning NVDA On/Off",
-                        content: `
-                            <p>It's important to know how to quickly enable or disable NVDA as needed.</p>
-                            <h3>Toggle NVDA On/Off</h3>
-                            <p>The primary hotkey to toggle NVDA on or off (start or stop speech) is <strong>Ctrl + Alt + N</strong>. This is useful for situations where you might need to temporarily mute the screen reader.</p>
-                            <h3>Temporarily Disable Speech</h3>
-                            <p>To temporarily disable NVDA's speech without exiting the program, press <strong>NVDA key + S</strong> (where NVDA key is Insert by default or Caps Lock if you've changed it). Press it again to resume speech.</p>
-                            <h3>Exiting NVDA Completely</h3>
-                            <p>To close NVDA completely, press <strong>NVDA key + Q</strong>. You will be prompted to confirm if you want to exit. Press <strong>Enter</strong> for "Yes" or <strong>Tab</strong> to "No" and press <strong>Enter</strong>.</p>
-                        `
-                    },
-                    {
-                        title: "4. Adjusting Speech Settings & Keyboard Layouts",
-                        content: `
-                            <p>NVDA allows you to customize many speech and keyboard settings to suit your preferences.</p>
-                            <h3>Adjusting Speech Settings</h3>
-                            <p>To open NVDA's preferences, press <strong>NVDA key + N</strong> to open the NVDA menu, then navigate with the <strong>down arrow</strong> to "Preferences" and press the <strong>right arrow</strong> to open the sub-menu. Here you'll find options like:</p>
-                            <ul>
-                                <li><strong>Synthesizer:</strong> Choose your speech synthesizer (e.g., eSpeak NG, OneCore).</li>
-                                <li><strong>Voice:</strong> Select a voice for the chosen synthesizer.</li>
-                                <li><strong>Rate:</strong> Adjust the speaking speed.</li>
-                                <li><strong>Pitch:</strong> Change the pitch of the voice.</li>
-                                <li><strong>Volume:</strong> Control the volume of NVDA's speech.</li>
-                            </ul>
-                            <p>Use the <strong>up and down arrows</strong> to select an option and <strong>Enter</strong> to adjust it.</p>
-                            <h3>Keyboard Layouts in NVDA</h3>
-                            <p>NVDA offers different keyboard layouts to suit your preference. The default is "Desktop layout," which uses the Insert key as the NVDA modifier key. You can also switch to "Laptop layout," where the Caps Lock key acts as the NVDA modifier. To change this, go to NVDA Menu (<strong>NVDA key + N</strong>) > Preferences > Keyboard.</p>
-                        `
-                    }
-                ]
             },
             keyboard: {
                 title: "Mastering the Keyboard",
@@ -218,52 +399,283 @@
                             <p>The keyboard is your primary tool for navigating and interacting with a computer when using a screen reader. Understanding its layout and key functions is fundamental.</p>
                             <h3>Typing with a Keyboard</h3>
                             <p>The keyboard is laid out similar to a typewriter. Your hands should be placed on the home row keys: F and J have tactile bumps for easy identification. The left index finger rests on F, and the right index finger on J. Practice typing by placing your fingers correctly and reaching for surrounding keys.</p>
+                            <p><em>In the next topic, you will learn about the different types of keys and their uses.</em></p>
                         `
                     },
                     {
-                        title: "2. Modifier Keys",
+                        title: "2. Types of Keys on the Keyboard",
                         content: `
-                            <h3>Modifier Keys: Control, Alt, Shift, Windows Key</h3>
+                            <h3>Main Categories of Keys</h3>
                             <ul>
-                                <li><strong>Control (Ctrl) Key:</strong> Used in combination with other keys to perform commands (e.g., <strong>Ctrl + C</strong> for copy, <strong>Ctrl + V</strong> for paste, <strong>Ctrl + S</strong> for save).</li>
-                                <li><strong>Alt (Alternate) Key:</strong> Often used for accessing menu options in applications (e.g., pressing <strong>Alt</strong> will typically put focus on the menu bar). <strong>Alt + Tab</strong> switches between open applications.</li>
-                                <li><strong>Shift Key:</strong> Used to capitalize letters or type the upper symbol on a key (e.g., <strong>Shift + A</strong> types capital A, <strong>Shift + 1</strong> types an exclamation mark).</li>
-                                <li><strong>Windows Key (Start Key):</strong> Opens the Start Menu. In combination with other keys, it performs various Windows functions (e.g., <strong>Windows key + D</strong> shows the desktop).</li>
+                                <li><strong>Alphanumeric Keys:</strong> Letters and numbers used for text input.</li>
+                                <li><strong>Modifier Keys:</strong> Ctrl, Alt, Shift, etc., used with other keys for shortcuts.</li>
+                                <li><strong>Function Keys:</strong> F1 to F12, used for specific actions.</li>
+                                <li><strong>Navigation Keys:</strong> Arrows, Home, End, Page Up/Down for moving within documents.</li>
+                                <li><strong>Numeric Keypad:</strong> For quick number entry (on full-size keyboards).</li>
+                                <li><strong>Special Keys:</strong> Esc, Tab, Enter, Backspace, etc.</li>
+                            </ul>
+                            <p><em>In the next topic, we will explore the modifier keys in detail.</em></p>
+                        `
+                    },
+                    {
+                        title: "3. Modifier Keys",
+                        content: `
+                            <h3>Common Modifier Keys</h3>
+                            <ul>
+                                <li><strong>Control (Ctrl):</strong> Used in shortcuts (e.g., Ctrl+C to copy).</li>
+                                <li><strong>Alt:</strong> Used for menus or switching tasks (Alt+Tab).</li>
+                                <li><strong>Shift:</strong> Capitalizes letters or types symbols.</li>
+                                <li><strong>Caps Lock:</strong> Toggles capital letter mode on or off.</li>
+                                <li><strong>Windows Key:</strong> Opens the Start Menu or system shortcuts (Win+D shows desktop).</li>
+                                <li><strong>Fn (Function):</strong> Activates secondary actions on laptops.</li>
+                            </ul>
+                            <p><em>In the next topic, we will focus on the function keys and their purpose.</em></p>
+                        `
+                    },
+                    {
+                        title: "4. Function Keys and Their Use",
+                        content: `
+                            <h3>Function Keys (F1 to F12)</h3>
+                            <ul>
+                                <li><strong>F1:</strong> Help</li>
+                                <li><strong>F2:</strong> Rename</li>
+                                <li><strong>F3:</strong> Search</li>
+                                <li><strong>F4:</strong> Alt + F4 closes applications</li>
+                                <li><strong>F5:</strong> Refresh page</li>
+                                <li><strong>F6 to F12:</strong> Vary based on software</li>
+                            </ul>
+                            <p><em>In the next topic, we will cover the navigation keys used for moving through content.</em></p>
+                        `
+                    },
+                    {
+                        title: "5. Navigation and Editing Keys",
+                        content: `
+                            <h3>Navigation Keys</h3>
+                            <ul>
+                                <li><strong>Arrow Keys:</strong> Move character-by-character or line-by-line.</li>
+                                <li><strong>Home / End:</b> Jump to beginning or end of a line/document.</li>
+                                <li><strong>Page Up / Page Down:</strong> Scroll one screen at a time.</li>
+                            </ul>
+                            <h3>Editing Keys</h3>
+                            <ul>
+                                <li><strong>Insert:</strong> Toggles between insert and overwrite mode.</li>
+                                <li><strong>Delete:</strong> Removes the next character or item.</li>
+                                <li><strong>Backspace:</strong> Deletes the previous character.</li>
+                            </ul>
+                            <p><em>In the next topic, we'll look at special keys and their role in accessibility and shortcuts.</em></p>
+                        `
+                    },
+                    {
+                        title: "6. Special and Accessibility Keys",
+                        content: `
+                            <h3>Important Special Keys</h3>
+                            <ul>
+                                <li><strong>Esc (Escape):</strong> Cancels or exits operations.</li>
+                                <li><strong>Tab:</strong> Moves focus forward between controls or fields.</li>
+                                <li><strong>Enter:</strong> Executes a command or starts a new line.</li>
+                                <li><strong>Print Screen:</strong> Takes a screenshot.</li>
+                                <li><strong>NVDA/JAWS Modifier Key:</strong> Often Insert or Caps Lock, used for screen reader commands.</li>
+                            </ul>
+                            <p><em>In the next topic, you'll get hands-on with keyboard practice exercises.</em></p>
+                        `
+                    },
+                    {
+                        title: "7. Home Row Typing Exercises: ASDF ;LKJ",
+                        content: `
+                            <h3>Practice with Home Row Keys</h3>
+                            <p>Place your fingers on the home row keys:</p>
+                            <ul>
+                                <li>Left hand: A, S, D, F</li>
+                                <li>Right hand: ;, L, K, J</li>
+                            </ul>
+                            <p>Daily practice examples:</p>
+                            <ol>
+                                <li>asdf jkl;</li>
+                                <li>fads lkja</li>
+                                <li>as as df df jk jk</li>
+                                <li>aa ss dd ff jj kk ll ;;</li>
+                                <li>asdf asdf jkl; jkl;</li>
+                                <li>aj sj dk fl</li>
+                                <li>lad jfk ask</li>
+                                <li>fjd sla kas</li>
+                                <li>ask fjd lkj</li>
+                                <li>type: asdf jkl; asdf jkl; without looking</li>
+                            </ol>
+                            <p><em>In the next topic, you'll practice the top row (QWERTY) typing drills.</em></p>
+                        `
+                    },
+                    {
+                        title: "8. Top Row Typing Exercises: QWERTY",
+                        content: `
+                            <h3>Top Row Keys: Q, W, E, R, T, Y, U, I, O, P</h3>
+                            <p>These keys are typed by reaching up from the home row. Practice stretching and returning to the home position.</p>
+                            <ol>
+                                <li>qwerty uiop</li>
+                                <li>qw er ty ui op</li>
+                                <li>qq ww ee rr tt yy uu ii oo pp</li>
+                                <li>qwe rty uio p</li>
+                                <li>type: qwe qwe uio uio</li>
+                                <li>we try our typing</li>
+                                <li>quiet power tier</li>
+                                <li>i owe you pure joy</li>
+                                <li>practice qwe uiop</li>
+                            </ol>
+                            <p><em>In the next topic, you will practice the bottom row keys (Z, X, C, V, B, N, M).</em></p>
+                        `
+                    },
+                    {
+                        title: "9. Bottom Row Typing Exercises: ZXCVBNM",
+                        content: `
+                            <h3>Bottom Row Keys: Z, X, C, V, B, N, M</h3>
+                            <p>These keys are typed by reaching downward from the home row. It takes time to build muscle memory.</p>
+                            <ol>
+                                <li>zxcvbnm</li>
+                                <li>zx cv bn nm</li>
+                                <li>zz xx cc vv bb nn mm</li>
+                                <li>zoom back next move</li>
+                                <li>zx zx nm nm cv cv</li>
+                                <li>zoo box calm van</li>
+                                <li>man can ban van</li>
+                                <li>move back next zone</li>
+                                <li>buzz cam mix vex</li>
+                                <li>type zxcvbnm twice</li>
+                            </ol>
+                            <p><em>In the next topic, we will put all the rows together with daily keyboard exercises.</em></p>
+                        `
+                    },
+                    {
+                        title: "10. Keyboard Practice: 10 Daily Exercises",
+                        content: `
+                            <h3>Daily Practice Exercises</h3>
+                            <ol>
+                                <li>Type A–Z using proper finger placement.</li>
+                                <li>Type numbers 0–9 from the top row.</li>
+                                <li>Use Shift + letters to type A–Z in uppercase.</li>
+                                <li>Use Shift + number row to type symbols (!, @, #, etc.).</li>
+                                <li>Use Ctrl + C, Ctrl + V, Ctrl + X to copy, paste, and cut.</li>
+                                <li>Navigate a paragraph using arrow keys and Home/End.</li>
+                                <li>Practice opening Start Menu and switching apps (Win key, Alt+Tab).</li>
+                                <li>Use Tab and Shift+Tab to move between form fields on a webpage.</li>
+                                <li>Practice typing full sentences using punctuation and capital letters.</li>
+                                <li>Use Backspace and Delete keys for editing sentences.</li>
+                            </ol>
+                            <p>Repeat these exercises daily to gain typing speed and navigation fluency.</p>
+                            <p><em>In the next section, we will begin exploring screen reader basics with keyboard commands.</em></p>
+                        `
+                    }
+                ]
+            },
+            desktop: {
+                title: "Desktop, Start Menu, Taskbar",
+                subPages: [
+                    {
+                        title: "1. Navigating the Desktop",
+                        content: `
+                            <p>The desktop is the main workspace of your computer, containing icons for quick access to programs, files, and folders.</p>
+                            <h3>Accessing and Navigating the Desktop</h3>
+                            <ul>
+                                <li>To go directly to the desktop from any application, press <strong>Windows key + D</strong>. Your screen reader will announce "Desktop."</li>
+                                <li>Once on the desktop, use the <strong>arrow keys</strong> (up, down, left, right) to navigate through the icons. NVDA will announce each icon's name as you highlight it.</li>
+                                <li>To open an application or file on the desktop, highlight its icon with the arrow keys and press <strong>Enter</strong>.</li>
+                                <li>You can also type the first letter of an icon's name to jump to it if multiple icons start with the same letter, keep typing the letter until you find the desired icon.</li>
                             </ul>
                         `
                     },
                     {
-                        title: "3. Function and Navigation Keys",
+                        title: "2. Exploring the Start Menu",
                         content: `
-                            <h3>Function Keys: F1 to F12</h3>
-                            <p>These keys are located at the top of the keyboard and perform specific functions depending on the active application or context.</p>
+                            <p>The Start Menu is your central hub for launching applications, accessing settings, and performing system actions like shutting down or restarting your computer.</p>
+                            <h3>Opening and Navigating the Start Menu</h3>
                             <ul>
-                                <li><strong>F1:</strong> Often opens help.</li>
-                                <li><strong>F2:</strong> Renames a selected item.</li>
-                                <li><strong>F3:</strong> Opens a search function.</li>
-                                <li><strong>F4:</strong> Closes an active window when pressed with Alt (<strong>Alt + F4</strong>).</li>
-                                <li><strong>F5:</strong> Refreshes a page or window.</li>
-                                <li>And so on, up to F12.</li>
+                                <li>To open the Start Menu, press the <strong>Windows key</strong>. NVDA will typically announce "Start Menu."</li>
+                                <li>Once the Start Menu is open, you can immediately start typing the name of an application you want to find. For example, type "Notepad" and NVDA will guide you. Press <strong>Enter</strong> to open the application.</li>
+                                <li>Alternatively, you can navigate the Start Menu using the <strong>Tab key</strong> and <strong>arrow keys</strong>.
+                                    <ul>
+                                        <li>Press <strong>Tab</strong> to move between sections (e.g., "Pinned apps," "All apps," "Power").</li>
+                                        <li>Use the <strong>Up</strong> and <strong>Down arrow keys</strong> to navigate within a section.</li>
+                                        <li>Press <strong>Enter</strong> to select an item or open a sub-menu.</li>
+                                        <li>Press <strong>Escape</strong> to close the Start Menu.</li>
+                                    </ul>
+                                </li>
                             </ul>
-                            <h3>Navigation Keys: Insert, Delete, Home, End, Page Up, Page Down</h3>
+                        `
+                    },
+                    {
+                        title: "3. Understanding and Using the Taskbar",
+                        content: `
+                            <p>The Taskbar, usually located at the bottom of your screen, provides quick access to running applications and pinned programs. It also houses system icons and the notification area.</p>
+                            <h3>Navigating the Taskbar</h3>
                             <ul>
-                                <li><strong>Insert Key:</strong> In NVDA, this is often the NVDA modifier key. It can also be used to toggle insert/overwrite mode in some text editors.</li>
-                                <li><strong>Delete Key:</strong> Deletes selected items or characters to the right of the cursor.</li>
-                                <li><strong>Home Key:</strong> Moves the cursor to the beginning of a line or the top of a document.</li>
-                                <li><strong>End Key:</strong> Moves the cursor to the end of a line or the bottom of a document.</li>
-                                <li><strong>Page Up (PgUp):</strong> Scrolls up one screen or page.</li>
-                                <li><strong>Page Down (PgDn):</strong> Scrolls down one screen or page.</li>
-                                <li><strong>Arrow Keys (Up, Down, Left, Right):</strong> Used for navigating character by character, line by line, or item by item.</li>
+                                <li>To move focus to the Taskbar, press <strong>Windows key + T</strong>. NVDA will announce the name of the first item on the Taskbar, usually a pinned application or a running program.</li>
+                                <li>Use the <strong>Right</strong> and <strong>Left arrow keys</strong> to move between the pinned applications and currently open programs on the Taskbar.</li>
+                                <li>Press <strong>Enter</strong> to open the highlighted application. If an application is already open, pressing Enter will bring it to the foreground.</li>
+                                <li>To cycle through the System Tray (notification area) icons (like volume, network, battery), press <strong>Windows key + B</strong>. Use the <strong>arrow keys</strong> to navigate and <strong>Enter</strong> to activate an icon.</li>
                             </ul>
                         `
                     }
                 ]
             },
+            screenreader: {
+                title: "Screen Reader Basics",
+                content: `
+                    <h2>Screen Reader Basics</h2>
+                    <p>This section will cover the fundamentals of using a screen reader, focusing on NVDA (NonVisual Desktop Access).</p>
+                    <h3>What is a Screen Reader?</h3>
+                    <p>A screen reader is a software application that reads the content of a computer screen aloud to users who are blind or visually impaired. It translates visual elements into speech or braille, enabling navigation and interaction with the operating system and applications.</p>
+                    <h3>Introduction to NVDA</h3>
+                    <p>NVDA is a free and open-source screen reader for Microsoft Windows. It's widely used and provides comprehensive access to computers.</p>
+                    <ul>
+                        <li><strong>Downloading and Installing NVDA:</strong> You can download NVDA from <a href="https://www.nvaccess.org/" target="_blank">nvaccess.org</a>. Follow the spoken instructions during installation.</li>
+                        <li><strong>Starting NVDA:</strong> By default, NVDA starts automatically when Windows starts. If it doesn't, you can start it by pressing <strong>Ctrl + Alt + N</strong>, or by finding it in your Start Menu and pressing Enter.</li>
+                    </ul>
+                    <h3>Basic NVDA Commands (Navigation)</h3>
+                    <p>These commands are crucial for moving around and understanding what's on the screen:</p>
+                    <ul>
+                        <li><strong>NVDA Key:</strong> This is your primary modifier key for NVDA commands. By default, it's either the <strong>Insert key</strong> (on the numeric keypad or above the arrow keys) or the <strong>Caps Lock key</strong>. You can configure this in NVDA settings.</li>
+                        <li><strong>Reading All:</strong> Press <strong>NVDA key + Down Arrow</strong> to start reading from the current position.</li>
+                        <li><strong>Stop Speech:</strong> Press <strong>Ctrl</strong> to stop NVDA from speaking.</li>
+                        <li><strong>Read Current Line:</strong> Press <strong>NVDA key + Up Arrow</strong>.</li>
+                        <li><strong>Read Next Line:</strong> Press <strong>Down Arrow</strong> (when in browse mode).</li>
+                        <li><strong>Read Previous Line:</strong> Press <strong>Up Arrow</strong> (when in browse mode).</li>
+                        <li><strong>Read Current Word:</strong> Press <strong>NVDA key + K</strong>.</li>
+                        <li><strong>Move to Next Heading:</strong> Press <strong>H</strong> (in browse mode).</li>
+                        <li><strong>Move to Next Link:</strong> Press <strong>K</strong> (in browse mode).</li>
+                        <li><strong>Move to Next Form Field:</strong> Press <strong>F</strong> (in browse mode).</li>
+                    </ul>
+                    <h3>Object Navigation vs. Browse Mode</h3>
+                    <ul>
+                        <li><strong>Browse Mode:</strong> This is the default mode when Browse web pages or documents. NVDA presents content as a flat, linear document, and you use arrow keys to read line by line.</li>
+                        <li><strong>Focus Mode (Object Navigation):</strong> When you interact with form fields, buttons, or other interactive elements, NVDA often automatically switches to focus mode. In this mode, keys behave as they would in the application (e.g., typing into a text field). You can often manually switch modes by pressing <strong>NVDA key + Spacebar</strong>.</li>
+                    </ul>
+                    <p>Practice these basic commands regularly to become proficient with your screen reader.</p>
+                `
+            },
             files: {
                 title: "Working with Files and Folders",
                 subPages: [
                     {
-                        title: "1. Creating, Renaming, Deleting",
+                        title: "1. Introduction to File Explorer",
+                        content: `
+                            <p>File Explorer (formerly Windows Explorer) is the file management application in Windows. It allows you to view, open, move, copy, and organize your files and folders.</p>
+                            <h3>Opening File Explorer</h3>
+                            <ul>
+                                <li>The quickest way to open File Explorer is by pressing <strong>Windows key + E</strong>. NVDA will announce "File Explorer."</li>
+                                <li>Alternatively, you can find it in the Start Menu by pressing the <strong>Windows key</strong> and typing "File Explorer," then pressing <strong>Enter</strong>.</li>
+                            </ul>
+                            <h3>Navigating in File Explorer</h3>
+                            <ul>
+                                <li>Once in File Explorer, you'll typically land in "Quick Access" or "This PC."</li>
+                                <li>Use the <strong>Tab key</strong> to move between different panes: the navigation pane (tree view of folders), the content pane (files and folders in the current location), and the details pane.</li>
+                                <li>Use <strong>Up</strong> and <strong>Down arrow keys</strong> to navigate items within the active pane.</li>
+                                <li>To open a folder or file, highlight it with the arrow keys and press <strong>Enter</strong>.</li>
+                                <li>To go back to the previous folder, press <strong>Alt + Left Arrow</strong> or <strong>Backspace</strong>.</li>
+                                <li>To go forward, press <strong>Alt + Right Arrow</strong>.</li>
+                            </ul>
+                            <p><em>In the next section, we will cover creating, renaming, and deleting files and folders.</em></p>
+                        `
+                    },
+                    {
+                        title: "2. Creating, Renaming, Deleting",
                         content: `
                             <p>Organizing your digital information involves understanding files and folders. File Explorer is your primary tool for managing them.</p>
                             <h3>Creating, Renaming, and Deleting Files and Folders</h3>
@@ -272,10 +684,11 @@
                                 <li><strong>Renaming:</strong> Select the file or folder you want to rename using the <strong>arrow keys</strong>. Press <strong>F2</strong>. NVDA will announce "Renaming." Type the new name and press <strong>Enter</strong>.</li>
                                 <li><strong>Deleting:</strong> Select the file or folder using the <strong>arrow keys</strong>. Press the <strong>Delete key</strong>. You'll usually be asked to confirm. Press <strong>Enter</strong> for "Yes" or <strong>Tab</strong> to "No" and press <strong>Enter</strong>. Items are moved to the Recycle Bin first. To permanently delete, press <strong>Shift + Delete</strong>.</li>
                             </ul>
+                            <p><em>In the next section, we will cover copying, cutting, and pasting files and folders.</em></p>
                         `
                     },
                     {
-                        title: "2. Copying, Cutting, Pasting & Context Menu",
+                        title: "3. Copying, Cutting, Pasting & Context Menu",
                         content: `
                             <h3>Copying, Cutting, and Pasting</h3>
                             <p>These actions are fundamental for moving and duplicating files and text.</p>
@@ -286,15 +699,68 @@
                             </ul>
                             <h3>Context Menu Navigation</h3>
                             <p>The context menu provides options specific to the selected item. To open it, select the item and press the <strong>Applications key</strong> (often located near the right Ctrl key) or <strong>Shift + F10</strong>. Use the <strong>up and down arrow keys</strong> to navigate the menu options, and press <strong>Enter</strong> to select one.</p>
+                            <p><em>In the next section, we will learn about navigating different drives on your computer.</em></p>
                         `
                     },
-                    {
-                        title: "3. Navigating Drives",
-                        content: `
-                            <h3>Navigating Drives like C: and USB</h3>
-                            <p>To access different drives, including your main C: drive or a connected USB drive, open File Explorer by pressing <strong>Windows key + E</strong>. Once in File Explorer, use the <strong>Tab key</strong> to navigate between panes until you reach the "This PC" or "Drives" section. Use the <strong>arrow keys</strong> to select a drive and press <strong>Enter</strong> to open it.</p>
-                        `
-                    }
+{
+    title: "4. Navigating Drives",
+    content: `
+        <h3>Navigating Drives like C: and USB</h3>
+        <p>You can access different drives and even open specific folders or files using two methods:</p>
+
+        <h4>Method 1: Using File Explorer</h4>
+        <p>Press <strong>Windows key + E</strong> to open File Explorer. Use the <strong>Tab key</strong> to move through sections until you reach "This PC" or "Drives". Then use the <strong>Arrow keys</strong> to select the desired drive (such as C: or D:) and press <strong>Enter</strong> to open it.</p>
+
+        <h4>Method 2: Using the Run Dialog Box</h4>
+        <p>Press <strong>Windows key + R</strong> to open the Run dialog box.</p>
+        <ul>
+            <li>To open a drive: Type <strong>C:</strong> or <strong>D:</strong> and press <strong>Enter</strong>.</li>
+            <li>To open a folder: Type the full path. For example: <strong>C:\\Users\\YourName\\Documents</strong> and press <strong>Enter</strong>.</li>
+            <li>To launch a file: Type the complete path to the file. For example: <strong>C:\\Users\\YourName\\Desktop\\notes.txt</strong></li>
+        </ul>
+        <p><strong>Tip:</strong> You can also open programs using their executable names, like <strong>notepad</strong>, <strong>cmd</strong>, or <strong>chrome</strong> (if installed).</p>
+
+        <p><em>In the next topic you will learn the menus in the file explorer..</em></p>
+    `
+},
+{
+    title: "5. Menus in File Explorer",
+    content: `
+        <h3>Exploring the File Explorer Menus</h3>
+        <p>File Explorer includes various menus that help you manage files and folders efficiently. You can access these menus using keyboard shortcuts and screen reader navigation.</p>
+
+        <h4>How to Open File Explorer</h4>
+        <p>Press <strong>Windows key + E</strong> to launch File Explorer.</p>
+
+        <h4>Accessing the Menus</h4>
+        <p>Once File Explorer is open, press <strong>Alt</strong> to move focus to the menu bar. You can then use the <strong>Left and Right Arrow keys</strong> to move across menu tabs such as <strong>File</strong>, <strong>Home</strong>, <strong>Share</strong>, and <strong>View</strong>.</p>
+
+        <h4>Menu Options and Their Use</h4>
+        <ul>
+            <li>
+                <strong>File Menu:</strong> Contains options like opening a new window, accessing settings, or closing File Explorer. Press <strong>Alt + F</strong> to open.
+            </li>
+            <li>
+                <strong>Home Menu:</strong> Provides common actions like <strong>Copy</strong> (Ctrl + C), <strong>Paste</strong> (Ctrl + V), <strong>Rename</strong> (F2), <strong>Delete</strong> (Delete key), and <strong>New Folder</strong>. Press <strong>Alt + H</strong> to access.
+            </li>
+            <li>
+                <strong>Share Menu:</strong> Allows you to share files or folders via email or network. Use <strong>Alt + S</strong> to open.
+            </li>
+            <li>
+                <strong>View Menu:</strong> Lets you change how items are displayed (like List, Details, Large icons), and toggle visibility of file name extensions or hidden items. Use <strong>Alt + V</strong> to open.
+            </li>
+        </ul>
+
+        <h4>Using the Ribbon with a Screen Reader</h4>
+        <p>Once in a menu tab, use the <strong>Tab key</strong> to move through the available options. The screen reader will announce each button, such as “New Folder button,” “Copy button,” etc. Press <strong>Enter</strong> to activate any item.</p>
+
+        <h4>Quick Access Toolbar</h4>
+        <p>Located at the very top left corner, it includes frequently used actions. Use <strong>Alt</strong> followed by number keys (like Alt + 1) to activate items from this toolbar.</p>
+
+        <p><em>This concludes the section on using File Explorer Menus with a screen reader.</em></p>
+    `
+},
+
                 ]
             },
             windows: {
@@ -346,23 +812,16 @@
                             <h3>Notepad for Editing Text</h3>
                             <p>Notepad is a simple text editor ideal for plain text documents without any formatting. To open Notepad, press the <strong>Windows key</strong>, type "Notepad," and press <strong>Enter</strong>. You can then type your text. To save, press <strong>Ctrl + S</strong>. To open a file, press <strong>Ctrl + O</strong>.</p>
                             <h3>Calculator for Basic Math</h3>
-                            <p>The Calculator app can perform basic arithmetic operations. To open it, press the <strong>Windows key</strong>, type "Calculator," and press <strong>Enter</strong>. You can input numbers using the number keys on your keyboard and perform operations using keys like <strong>+ (plus), - (minus), * (multiply), / (divide)</strong>. Press <strong>Enter</strong> for the result. Use <strong>Backspace</strong> to clear the last entry and <strong>Delete</strong> or <strong>Escape</strong> to clear the entire calculation.</p>
+                            <p>The Calculator app can perform basic arithmetic operations. To open it, press the <strong>Windows key</strong>, type "Calculator," and press <strong>Enter</strong>. You can input numbers using the number keys on your keyboard and use the arithmetic operators (+, -, *, /).</p>
                         `
                     },
                     {
-                        title: "2. WordPad and File Explorer",
+                        title: "2. WordPad and Paint",
                         content: `
-                            <h3>WordPad for Simple Formatting</h3>
-                            <p>WordPad is a basic word processor that allows for more formatting options than Notepad, such as bolding, italicizing, and changing font sizes. To open WordPad, press the <strong>Windows key</strong>, type "WordPad," and press <strong>Enter</strong>. You can use standard text editing shortcuts like <strong>Ctrl + B</strong> for bold, <strong>Ctrl + I</strong> for italics, and <strong>Ctrl + U</strong> for underline. Save documents with <strong>Ctrl + S</strong>.</p>
-                            <h3>File Explorer</h3>
-                            <p>File Explorer (formerly Windows Explorer) is the primary tool for managing files and folders on your computer. To open it, press <strong>Windows key + E</strong>. Use <strong>Tab</strong> to navigate between panes, and <strong>arrow keys</strong> to navigate within lists of files and folders. You can perform actions like copying, pasting, and deleting files as discussed in the "Working with Files and Folders" topic.</p>
-                        `
-                    },
-                    {
-                        title: "3. Introduction to Narrator",
-                        content: `
-                            <h3>Introduction to Narrator</h3>
-                            <p>Narrator is Microsoft's built-in screen reader. While NVDA is often preferred for its advanced features, Narrator can be useful in situations where NVDA is not installed or when troubleshooting. To toggle Narrator on or off, press <strong>Windows key + Ctrl + Enter</strong>.</p>
+                            <h3>WordPad for Rich Text Documents</h3>
+                            <p>WordPad is a basic word processor that allows for more formatting options than Notepad, such as bold, italics, and different fonts. To open WordPad, press the <strong>Windows key</strong>, type "WordPad," and press <strong>Enter</strong>. Use <strong>Alt</strong> to access the menu bar and navigate with arrow keys to explore options for formatting and saving documents.</p>
+                            <h3>Paint for Simple Graphics</h3>
+                            <p>Paint is a simple drawing program. While primarily visual, it's worth knowing it exists. To open Paint, press the <strong>Windows key</strong>, type "Paint," and press <strong>Enter</strong>. For visually impaired users, navigating Paint effectively without visual cues is challenging, but you might use it for very basic image opening or saving tasks if guided by a sighted person.</p>
                         `
                     }
                 ]
@@ -371,28 +830,34 @@
                 title: "Accessibility and Security",
                 subPages: [
                     {
-                        title: "1. Ease of Access Settings",
+                        title: "1. Accessibility Features",
                         content: `
-                            <p>Windows offers various accessibility features to enhance usability, and understanding basic security practices is vital for protecting your computer.</p>
-                            <h3>Using Ease of Access Settings</h3>
-                            <p>Ease of Access settings are designed to make your computer easier to use, especially for individuals with disabilities. To access them, press the <strong>Windows key</strong>, type "Ease of Access," and press <strong>Enter</strong>. Here you can find settings for:</p>
+                            <h3>Windows Accessibility Features</h3>
+                            <p>Windows offers a range of built-in accessibility features to assist users with various needs.</p>
                             <ul>
-                                <li><strong>Narrator:</strong> (As discussed previously)</li>
-                                <li><strong>Magnifier:</strong> Enlarge parts of the screen.</li>
-                                <li><strong>High Contrast:</strong> Adjust color schemes for better visibility.</li>
-                                <li><strong>Sticky Keys:</strong> Allows you to press modifier keys (Ctrl, Alt, Shift, Windows key) one at a time instead of holding them down simultaneously. To turn on Sticky Keys, press the <strong>Shift key five times quickly</strong>.</li>
-                                <li><strong>Filter Keys:</strong> Helps ignore brief or repeated keystrokes.</li>
-                                <li><strong>Toggle Keys:</strong> Plays a sound when you press Caps Lock, Num Lock, or Scroll Lock.</li>
+                                <li><strong>Narrator:</strong> Microsoft's built-in screen reader. While NVDA is often preferred by blind users for its features, Narrator can be a good starting point (press <strong>Ctrl + Windows key + Enter</strong> to toggle).</li>
+                                <li><strong>Magnifier:</strong> Enlarges parts of the screen (press <strong>Windows key + Plus (+)</strong> to activate).</li>
+                                <li><strong>On-Screen Keyboard:</strong> A visual keyboard that can be used with a mouse or other pointing devices.</li>
+                                <li><strong>High Contrast Themes:</strong> Changes color schemes for better visibility.</li>
+                                <li><strong>Sticky Keys, Filter Keys, Toggle Keys:</strong> Keyboard accessibility options that modify how the keyboard responds to input for users with physical disabilities.</li>
                             </ul>
+                            <p>These features can be found in the <strong>Ease of Access Center</strong> (search "Ease of Access" in the Start Menu).</p>
                         `
                     },
                     {
-                        title: "2. Passwords and Privacy",
+                        title: "2. Basic Security Practices",
                         content: `
-                            <h3>Creating and Managing Passwords</h3>
-                            <p>Strong passwords are your first line of defense against unauthorized access. Always use a combination of uppercase and lowercase letters, numbers, and symbols. Avoid using easily guessable information like birthdays or common words. To manage your Windows password, press the <strong>Windows key</strong>, type "Change your password," and press <strong>Enter</strong>.</p>
-                            <h3>Privacy with Screen Readers</h3>
-                            <p>When using a screen reader, be mindful of privacy. Ensure you are in a secure environment when entering sensitive information. Avoid having your screen reader announce passwords or other confidential data in public places. When logging into websites or applications, NVDA will often automatically switch to a "password field" mode where it will announce each character you type, which is generally a good security measure, but be aware of your surroundings.</p>
+                            <h3>Basic Computer Security</h3>
+                            <p>Protecting your computer and personal information is essential.</p>
+                            <ul>
+                                <li><strong>Antivirus Software:</strong> Install and keep antivirus software updated (e.g., Windows Defender is built-in). Regularly scan your computer for threats.</li>
+                                <li><strong>Strong Passwords:</strong> Use unique, strong passwords for all your accounts. Combine uppercase and lowercase letters, numbers, and symbols.</li>
+                                <li><strong>Software Updates:</strong> Keep your operating system (Windows) and all applications updated. Updates often include security patches.</li>
+                                <li><strong>Firewall:</strong> Ensure your firewall is enabled. It controls network traffic and protects against unauthorized access.</li>
+                                <li><strong>Be Wary of Suspicious Emails/Links:</strong> Do not click on suspicious links or open attachments from unknown senders. This is a common way for malware to spread.</li>
+                                <li><strong>Backup Data:</strong> Regularly back up important files to an external drive or cloud storage.</li>
+                            </ul>
+                            <p>Practicing good security habits will help keep your digital life safe.</p>
                         `
                     }
                 ]
@@ -401,27 +866,55 @@
                 title: "Troubleshooting Basics",
                 subPages: [
                     {
-                        title: "1. Restarting Frozen Programs",
+                        title: "1. Common Computer Problems",
                         content: `
-                            <p>Even with a screen reader, you might encounter situations where programs freeze or your computer behaves unexpectedly. Knowing basic troubleshooting steps can help resolve common issues.</p>
-                            <h3>Restarting Frozen Programs</h3>
-                            <p>If an application becomes unresponsive, the first step is to try to close it. Press <strong>Alt + F4</strong>. If that doesn't work, you'll need to use the Task Manager.</p>
+                            <h3>Common Computer Problems and Solutions</h3>
+                            <p>Even with screen readers, you might encounter common computer issues. Here are a few and how to approach them:</p>
+                            <ul>
+                                <li><strong>Computer Freezing/Unresponsive:</strong>
+                                    <ul>
+                                        <li>Try pressing <strong>Ctrl + Alt + Delete</strong> to open Task Manager. From there, you can end unresponsive tasks (navigate with arrow keys and Enter).</li>
+                                        <li>If all else fails, a forced restart (holding the power button down) might be necessary, but use this as a last resort.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Application Not Responding:</strong>
+                                    <ul>
+                                        <li>Press <strong>Alt + F4</strong> to try and close the application.</li>
+                                        <li>If it doesn't close, use <strong>Ctrl + Shift + Esc</strong> (opens Task Manager directly) to find and "End task" for the unresponsive application.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>No Sound:</strong>
+                                    <ul>
+                                        <li>Check speaker/headphone connections.</li>
+                                        <li>Check volume levels in the system tray (<strong>Windows key + B</strong>, then arrow to volume icon).</li>
+                                        <li>Ensure NVDA's speech is not accidentally muted (<strong>NVDA Key + S</strong> toggles speech).</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Internet Connectivity Issues:</strong>
+                                    <ul>
+                                        <li>Check if your Wi-Fi is on (<strong>Windows key + B</strong>, navigate to network icon).</li>
+                                        <li>Restart your modem/router.</li>
+                                    </ul>
+                                </li>
+                            </ul>
                         `
                     },
                     {
-                        title: "2. Task Manager and Safe Shutdown",
+                        title: "2. Restarting and Shutting Down",
                         content: `
-                            <h3>Task Manager (Ctrl + Shift + Esc)</h3>
-                            <p>The Task Manager allows you to see all running processes and applications, and to force-close unresponsive ones. To open Task Manager, press <strong>Ctrl + Shift + Esc</strong>. Once open, NVDA will typically read the list of running applications. Use the <strong>up and down arrow keys</strong> to navigate to the frozen application, then press <strong>Alt + E</strong> to select "End task" or press the <strong>Delete key</strong>. Confirm the action if prompted.</p>
-                            <h3>Safe Shutdown</h3>
-                            <p>If your computer becomes completely unresponsive and you cannot shut it down normally, a safe shutdown is necessary. Press the <strong>Windows key</strong>, then use the <strong>Tab key</strong> to navigate to the power options and select "Shut down." If the keyboard is unresponsive, press and hold the physical power button on your computer for about 5-10 seconds until it turns off. Only use this as a last resort, as it can sometimes lead to data loss if programs are not properly closed.</p>
-                        `
-                    },
-                    {
-                        title: "3. Using the Run Command",
-                        content: `
-                            <h3>Using the Run Command (Windows key + R)</h3>
-                            <p>The Run command allows you to quickly open applications, files, or folders by typing their name or path. To open the Run dialog box, press <strong>Windows key + R</strong>. Type the command (e.g., "notepad", "explorer", "cmd") and press <strong>Enter</strong>. This is a powerful tool for quickly accessing system utilities.</p>
+                            <h3>When to Restart vs. Shut Down</h3>
+                            <ul>
+                                <li><strong>Restart:</strong> A restart is often recommended for resolving temporary glitches, applying updates, or when a program asks you to restart. It clears the computer's memory and reinitializes processes.</li>
+                                <li><strong>Shut Down:</strong> A full shutdown powers off the computer completely. This is good for saving power, performing hardware maintenance, or when you won't be using the computer for an extended period.</li>
+                            </ul>
+                            <h3>How to Restart/Shut Down</h3>
+                            <ul>
+                                <li>Press the <strong>Windows key</strong> to open the Start Menu.</li>
+                                <li>Use the <strong>Tab key</strong> to navigate to the "Power" button (often found in the lower-left or top-right of the Start Menu, depending on Windows version).</li>
+                                <li>Press <strong>Enter</strong> on the "Power" button.</li>
+                                <li>Use the <strong>Up/Down arrow keys</strong> to select "Restart" or "Shut down" and press <strong>Enter</strong>.</li>
+                            </ul>
+                            <p>Another quick way to shut down is from the desktop (<strong>Windows key + D</strong> to get to desktop), then press <strong>Alt + F4</strong>, and use <strong>Up/Down arrow keys</strong> to select "Shut down" or "Restart" from the dialog box.</p>
                         `
                     }
                 ]
@@ -430,23 +923,50 @@
                 title: "Typing Skills for the Blind",
                 subPages: [
                     {
-                        title: "1. Typing Practice Techniques",
+                        title: "1. Importance of Touch Typing",
                         content: `
-                            <p>Developing proficient typing skills is essential for efficient computer use without relying on visual feedback.</p>
-                            <h3>Typing Practice Techniques</h3>
-                            <p>Touch typing is the most effective method, where you learn to type without looking at the keyboard. Focus on maintaining correct hand posture with your index fingers on the F and J keys (which have tactile bumps). Practice consistently to develop muscle memory. Start slowly and focus on accuracy over speed.</p>
+                            <h3>The Importance of Touch Typing</h3>
+                            <p>Touch typing is the ability to type without looking at the keyboard, using all ten fingers. For blind users, it's not just a skill; it's a fundamental requirement for efficient computer use.</p>
+                            <ul>
+                                <li><strong>Speed and Efficiency:</strong> Touch typing dramatically increases your typing speed and efficiency, allowing you to produce documents, emails, and interact with applications much faster.</li>
+                                <li><strong>Accuracy:</strong> With practice, touch typing leads to fewer errors, as your fingers develop muscle memory for key locations.</li>
+                                <li><strong>Reduced Strain:</strong> It promotes a more ergonomic posture, reducing strain on your neck and eyes (though eye strain is less a concern for blind users, good posture is still important).</li>
+                                <li><strong>Full Computer Access:</strong> Many advanced keyboard shortcuts and screen reader commands rely on efficient keyboard use, making touch typing indispensable for full computer accessibility.</li>
+                            </ul>
+                            <p>This course integrates touch typing exercises into the keyboard section, but consistent daily practice is key to mastery.</p>
                         `
                     },
                     {
-                        title: "2. Typing Tools for the Blind",
+                        title: "2. Practicing with Typing Tutors",
                         content: `
-                            <h3>Typing Tools for the Blind</h3>
-                            <p>Several software applications are designed to help blind users learn and improve their typing skills. These programs provide auditory feedback, guiding you through lessons and identifying errors.</p>
+                            <h3>Using Typing Tutors</h3>
+                            <p>While this course provides foundational exercises, dedicated typing tutor software or websites can significantly enhance your practice.</p>
                             <ul>
-                                <li><strong>Talking Typer:</strong> This is a popular and robust typing tutor specifically designed for blind users. It provides comprehensive lessons and feedback.</li>
-                                <li><strong>Typing Master:</strong> While not specifically for the blind, its auditory feedback features can be useful when combined with a screen reader.</li>
-                                <li><strong>Online Typing Tutors:</strong> Many websites offer free typing lessons with auditory feedback. Search for "accessible online typing tutor."</li>
+                                <li><strong>Benefits:</strong> Typing tutors provide structured lessons, track your progress, identify weak areas, and offer immediate feedback. Many are designed to be accessible with screen readers.</li>
+                                <li><strong>Accessible Typing Tutors:</strong>
+                                    <ul>
+                                        <li><strong>TypingClub:</strong> An online platform with a structured curriculum that is generally accessible.</li>
+                                        <li><strong>KeyBlaze Typing Tutor:</strong> A desktop application that offers accessibility features.</li>
+                                        <li><strong>GNU Typist:</strong> A free, open-source command-line typing tutor that works well with screen readers.</li>
+                                    </ul>
+                                </li>
                             </ul>
+                            <p>Look for tutors that emphasize home row placement, proper finger usage, and offer auditory feedback to help you learn without sight.</p>
+                        `
+                    },
+                    {
+                        title: "3. Ergonomics for Typing",
+                        content: `
+                            <h3>Ergonomics for Comfortable Typing</h3>
+                            <p>Even without looking at the screen, good posture and ergonomic practices are vital to prevent discomfort and repetitive strain injuries.</p>
+                            <ul>
+                                <li><strong>Chair and Desk:</strong> Adjust your chair height so your feet are flat on the floor or on a footrest. Your forearms should be parallel to the floor, and your elbows should be at a 90-degree angle.</li>
+                                <li><strong>Keyboard Position:</strong> Place the keyboard directly in front of you, centered with your body. Keep your wrists straight and avoid bending them up or down.</li>
+                                <li><strong>Relaxed Shoulders:</strong> Keep your shoulders relaxed and down, not hunched up.</li>
+                                <li><strong>Breaks:</strong> Take regular breaks (e.g., 5-10 minutes every hour) to stretch your hands, wrists, and arms.</li>
+                                <li><strong>Lighting (if applicable):</strong> If you have some residual vision, ensure adequate, glare-free lighting.</li>
+                            </ul>
+                            <p>Maintaining good ergonomic habits will help you type comfortably and for longer periods.</p>
                         `
                     }
                 ]
@@ -454,77 +974,167 @@
         };
 
         const tabButtons = document.querySelectorAll('.tab-button');
-        const topicContent = document.getElementById('topicContent');
+        const topicContentDiv = document.getElementById('topicContent');
         const prevButton = document.getElementById('prevButton');
         const nextButton = document.getElementById('nextButton');
 
-        let currentTopicKey = 'intro';
-        let currentSubPageIndex = 0;
+        let currentTopicKey = 'intro'; // Keep track of the currently active topic
+        let currentSubPageIndex = 0; // Keep track of the current sub-page within a topic
 
-        function renderContent() {
-            const currentTopic = topicsData[currentTopicKey];
-            topicContent.setAttribute('aria-labelledby', `tab-${currentTopicKey}`);
+        // --- Function to update content ---
+        function updateContent(shouldFocusContent = true) { // Added a parameter
+            const topic = topicsData[currentTopicKey];
+            let contentToDisplay = '';
+            let totalSubPages = 1;
 
-            if (currentTopic.subPages) {
-                const subPage = currentTopic.subPages[currentSubPageIndex];
-                topicContent.innerHTML = `<h2>${currentTopic.title}: ${subPage.title}</h2>${subPage.content}`;
-                updateNavigationButtons(currentTopic.subPages.length);
+            if (topic.subPages) {
+                contentToDisplay = `<h2>${topic.subPages[currentSubPageIndex].title}</h2>${topic.subPages[currentSubPageIndex].content}`;
+                totalSubPages = topic.subPages.length;
             } else {
-                topicContent.innerHTML = `<h2>${currentTopic.title}</h2>${currentTopic.content}`;
-                prevButton.style.display = 'none';
-                nextButton.style.display = 'none';
+                contentToDisplay = `<h2>${topic.title}</h2>${topic.content}`;
+                currentSubPageIndex = 0; // Reset sub-page index for single-page topics
             }
-            topicContent.focus(); // Focus on the content for screen readers
+
+            topicContentDiv.innerHTML = contentToDisplay;
+
+            const selectedTabButton = document.getElementById(`tab-${currentTopicKey}`);
+            if (selectedTabButton) {
+                topicContentDiv.setAttribute('aria-labelledby', selectedTabButton.id);
+            }
+
+            // --- IMPORTANT CHANGE HERE ---
+            // Focus the main heading within the content panel or the panel itself
+            if (shouldFocusContent) {
+                const heading = topicContentDiv.querySelector('h2');
+                if (heading) {
+                    heading.setAttribute('tabindex', '-1'); // Make heading programmatically focusable
+                    heading.focus();
+                } else {
+                    topicContentDiv.focus(); // Fallback to focusing the panel
+                }
+            }
+            // --- END IMPORTANT CHANGE ---
+
+            updateNavigationButtons(totalSubPages);
         }
 
-        function updateNavigationButtons(subPageCount) {
-            if (subPageCount > 1) {
-                prevButton.style.display = 'inline-block';
-                nextButton.style.display = 'inline-block';
-                prevButton.disabled = currentSubPageIndex === 0;
-                nextButton.disabled = currentSubPageIndex === subPageCount - 1;
+        // --- Function to update navigation button states ---
+        function updateNavigationButtons(totalSubPages) {
+            prevButton.disabled = (currentSubPageIndex === 0 && Array.from(tabButtons).findIndex(btn => btn.id === `tab-${currentTopicKey}`) === 0);
+
+            const currentTopicIndex = Array.from(tabButtons).findIndex(btn => btn.id === `tab-${currentTopicKey}`);
+            const totalTopics = tabButtons.length;
+
+            if (totalSubPages > 1) {
+                nextButton.disabled = (currentSubPageIndex === totalSubPages - 1 && currentTopicIndex === totalTopics -1); // Disable if last sub-page AND last main topic
             } else {
-                prevButton.style.display = 'none';
-                nextButton.style.display = 'none';
+                nextButton.disabled = (currentTopicIndex === totalTopics - 1);
             }
         }
 
+        // --- Event Listener for Tab Clicks ---
         tabButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                // Deactivate current tab
+            button.addEventListener('click', () => {
                 tabButtons.forEach(btn => {
                     btn.setAttribute('aria-selected', 'false');
                     btn.setAttribute('tabindex', '-1');
                 });
 
-                // Activate clicked tab
-                event.currentTarget.setAttribute('aria-selected', 'true');
-                event.currentTarget.setAttribute('tabindex', '0');
+                button.setAttribute('aria-selected', 'true');
+                button.setAttribute('tabindex', '0');
 
-                // Update current topic and reset sub-page index
-                currentTopicKey = event.currentTarget.id.replace('tab-', '');
-                currentSubPageIndex = 0; // Reset to first sub-page when changing tabs
-                renderContent();
+                currentTopicKey = button.id.replace('tab-', '');
+                currentSubPageIndex = 0;
+                updateContent(true); // Always focus content when a new main tab is clicked
             });
         });
 
+        // --- Event Listener for Previous Button ---
         prevButton.addEventListener('click', () => {
-            if (currentSubPageIndex > 0) {
+            const topic = topicsData[currentTopicKey];
+            if (topic.subPages && currentSubPageIndex > 0) {
                 currentSubPageIndex--;
-                renderContent();
+                updateContent(true); // Focus content
+            } else {
+                const currentTopicIndex = Array.from(tabButtons).findIndex(btn => btn.id === `tab-${currentTopicKey}`);
+                if (currentTopicIndex > 0) {
+                    const prevTopicButton = tabButtons[currentTopicIndex - 1];
+                    // Before clicking the previous tab, set the subPageIndex to the last sub-page of that topic
+                    const prevTopicData = topicsData[prevTopicButton.id.replace('tab-', '')];
+                    if (prevTopicData.subPages) {
+                        currentSubPageIndex = prevTopicData.subPages.length - 1;
+                    } else {
+                        currentSubPageIndex = 0; // For single-page topics
+                    }
+                    prevTopicButton.click(); // This will call updateContent
+                }
             }
         });
 
+        // --- Event Listener for Next Button ---
         nextButton.addEventListener('click', () => {
-            const currentTopic = topicsData[currentTopicKey];
-            if (currentTopic.subPages && currentSubPageIndex < currentTopic.subPages.length - 1) {
+            const topic = topicsData[currentTopicKey];
+            if (topic.subPages && currentSubPageIndex < topic.subPages.length - 1) {
                 currentSubPageIndex++;
-                renderContent();
+                updateContent(true); // Focus content
+            } else {
+                const currentTopicIndex = Array.from(tabButtons).findIndex(btn => btn.id === `tab-${currentTopicKey}`);
+                const totalTopics = tabButtons.length;
+                if (currentTopicIndex < totalTopics - 1) {
+                    const nextTopicButton = tabButtons[currentTopicIndex + 1];
+                    currentSubPageIndex = 0; // Always start at the first sub-page of the new main topic
+                    nextTopicButton.click(); // This will call updateContent
+                }
             }
         });
 
-        // Initial content load
-        renderContent();
+        // Initial content load when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const initialTab = document.querySelector('.tab-button[aria-selected="true"]');
+            if (initialTab) {
+                currentTopicKey = initialTab.id.replace('tab-', '');
+            } else {
+                currentTopicKey = 'intro';
+                document.getElementById('tab-intro').setAttribute('aria-selected', 'true');
+                document.getElementById('tab-intro').setAttribute('tabindex', '0');
+            }
+            updateContent(true); // Focus content on initial load
+        });
+
+        // --- Keyboard Navigation for Tabs (Accessibility) ---
+        document.querySelector('.tab-list').addEventListener('keydown', (e) => {
+            const currentActiveTab = document.querySelector('.tab-button[aria-selected="true"]');
+            let newTab = null;
+
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                const nextTab = currentActiveTab.parentElement.nextElementSibling;
+                if (nextTab && nextTab.querySelector('.tab-button')) {
+                    newTab = nextTab.querySelector('.tab-button');
+                } else {
+                    newTab = tabButtons[0];
+                }
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                const prevTab = currentActiveTab.parentElement.previousElementSibling;
+                if (prevTab && prevTab.querySelector('.tab-button')) {
+                    newTab = prevTab.querySelector('.tab-button');
+                } else {
+                    newTab = tabButtons[tabButtons.length - 1];
+                }
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                newTab = tabButtons[0];
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                newTab = tabButtons[tabButtons.length - 1];
+            }
+
+            if (newTab && newTab !== currentActiveTab) {
+                newTab.focus(); // Focus the tab first
+                newTab.click(); // Then trigger the click to update content (which will now focus the content)
+            }
+        });
     </script>
 </body>
 </html>
