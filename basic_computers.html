@@ -255,9 +255,10 @@
             <li><button type="button" role="tab" id="tab-keyboard" aria-controls="panel-keyboard" aria-selected="false" class="tab-button" tabindex="-1">Mastering the Keyboard</button></li>
             <li><button type="button" role="tab" id="tab-desktop" aria-controls="panel-desktop" aria-selected="false" class="tab-button" tabindex="-1">Desktop, Start Menu, Taskbar</button></li>
             <li><button type="button" role="tab" id="tab-screenreader" aria-controls="panel-screenreader" aria-selected="false" class="tab-button" tabindex="-1">Screen Reader Basics</button></li>
+            <li><button type="button" role="tab" id="tab-windows" aria-controls="panel-windows" aria-selected="false" class="tab-button" tabindex="-1">Switch between windows</button></li>
+
             <li><button type="button" role="tab" id="tab-files" aria-controls="panel-files" aria-selected="false" class="tab-button" tabindex="-1">Working with Files, Folders and understanding Menus</button></li>
-            <li><button type="button" role="tab" id="tab-windows" aria-controls="panel-windows" aria-selected="false" class="tab-button" tabindex="-1">Windows Operating System Basics</button></li>
-            <li><button type="button" role="tab" id="tab-apps" aria-controls="panel-apps" aria-selected="false" class="tab-button" tabindex="-1">Using Built-in Applications</button></li>
+            <li><button type="button" role="tab" id="tab-apps" aria-controls="panel-apps" aria-selected="false" class="tab-button" tabindex="-1">Notepad, Wordpad, Calculater</button></li>
             <li><button type="button" role="tab" id="tab-accessibility" aria-controls="panel-accessibility" aria-selected="false" class="tab-button" tabindex="-1">Accessibility and Security</button></li>
             <li><button type="button" role="tab" id="tab-troubleshooting" aria-controls="panel-troubleshooting" aria-selected="false" class="tab-button" tabindex="-1">Troubleshooting Basics</button></li>
             <li><button type="button" role="tab" id="tab-typing" aria-controls="panel-typing" aria-selected="false" class="tab-button" tabindex="-1">Typing Skills for the Blind</button></li>
@@ -760,70 +761,241 @@
         <p><em>This concludes the section on using File Explorer Menus with a screen reader.</em></p>
     `
 },
-
                 ]
             },
             windows: {
-                title: "Windows Operating System Basics",
+                title: "Switch between windows",
                 subPages: [
                     {
-                        title: "1. Understanding the Desktop",
-                        content: `
-                            <p>Understanding the fundamental components of the Windows operating system will help you navigate your computer efficiently.</p>
-                            <h3>Understanding the Desktop</h3>
-                            <p>The Desktop is the first screen you see after logging in. It contains icons for frequently used programs, files, and folders. You can navigate desktop icons by pressing the first letter of an icon's name or by using the <strong>arrow keys</strong>. To access the desktop, press <strong>Windows key + D</strong>.</p>
-                        `
-                    },
-                    {
-                        title: "2. Start Menu and Taskbar",
-                        content: `
-                            <h3>Start Menu and Taskbar</h3>
-                            <ul>
-                                <li><strong>Start Menu:</strong> This is your gateway to applications, settings, and documents. To open it, press the <strong>Windows key</strong>. Once open, you can type the name of an application to search for it, or use the <strong>Tab key</strong> and <strong>arrow keys</strong> to explore the menu.</li>
-                                <li><strong>Taskbar:</strong> Located at the bottom of the screen (by default), the Taskbar displays running applications and pinned programs. To navigate pinned applications and running programs on the Taskbar, press <strong>Windows key + T</strong>. Use the <strong>arrow keys</strong> to move between items, and press <strong>Enter</strong> to open a selected application.</li>
-                            </ul>
-                        `
-                    },
-                    {
-                        title: "3. System Tray and Switching Apps",
-                        content: `
-                            <h3>System Tray (Notification Area)</h3>
-                            <p>The System Tray, also known as the Notification Area, is located at the far right of the Taskbar. It contains icons for background applications, system notifications, and quick settings like volume, network, and battery status. To access the System Tray, press <strong>Windows key + B</strong>. Use the <strong>arrow keys</strong> to navigate through the icons and <strong>Enter</strong> to activate them.</p>
-                            <h3>Switching Applications with Alt + Tab</h3>
-                            <p>A quick way to switch between open applications is by using the <strong>Alt + Tab</strong> shortcut. Press and hold the <strong>Alt key</strong>, then press the <strong>Tab key</strong> repeatedly to cycle through open windows. Release both keys when NVDA announces the application you wish to switch to.</p>
-                        `
-                    },
-                    {
-                        title: "4. Closing Applications",
-                        content: `
-                            <h3>Closing Applications with Alt + F4</h3>
-                            <p>To close the currently active application or window, press <strong>Alt + F4</strong>. If there are unsaved changes, the application might prompt you to save before closing.</p>
-                        `
-                    }
+        title: "1. Switching between the windows",
+        content: `
+            <h3>Using Alt + Tab to Switch Apps</h3>
+            <p>Switching between multiple open applications is a common and essential task. The <strong>Alt + Tab</strong> keyboard shortcut allows you to quickly move between all active windows.</p>
+            <p>To use this feature:</p>
+            <ul>
+                <li>Hold down the <strong>Alt</strong> key.</li>
+                <li>Tap the <strong>Tab</strong> key once to display a list of open applications.</li>
+                <li>While still holding <strong>Alt</strong>, press <strong>Tab</strong> repeatedly to move through the list.</li>
+                <li>Release both keys when NVDA or your screen reader announces the application you want to switch to.</li>
+            </ul>
+            <p>This method is highly efficient for multitasking and increases productivity without the need for a mouse.</p>
+        `
+    },
+    {
+        title: "2. Closing Applications Quickly",
+        content: `
+            <h3>Using Alt + F4 to Close Windows</h3>
+            <p>The <strong>Alt + F4</strong> shortcut is the fastest way to close the currently focused application or window.</p>
+            <p>To use this command:</p>
+            <ul>
+                <li>Make sure the application you want to close is active (you can use <strong>Alt + Tab</strong> to focus it).</li>
+                <li>Press <strong>Alt + F4</strong>.</li>
+                <li>If the application has unsaved work, you may be prompted to save before the window closes.</li>
+            </ul>
+            <p>This is particularly useful when you need to quickly exit an app or clean up your desktop.</p>
+        `
+    },
+    {
+        title: "3. Switching Between Tabs",
+        content: `
+            <h3>Ctrl + Tab and Ctrl + Shift + Tab</h3>
+            <p>Many applications, such as web browsers (Chrome, Firefox, Edge), support tabbed browsing or tabbed interfaces. You can switch between these tabs using the following shortcuts:</p>
+            <ul>
+                <li><strong>Ctrl + Tab</strong>: Move to the next tab.</li>
+                <li><strong>Ctrl + Shift + Tab</strong>: Move to the previous tab.</li>
+            </ul>
+            <p>This is helpful for efficiently navigating between multiple open pages or documents without using a mouse.</p>
+            <p>Additionally, you can jump directly to a specific tab using <strong>Ctrl + 1</strong> through <strong>Ctrl + 8</strong>. For example:</p>
+            <ul>
+                <li><strong>Ctrl + 1</strong>: Go to the first tab</li>
+                <li><strong>Ctrl + 2</strong>: Go to the second tab</li>
+                <li>...and so on, up to <strong>Ctrl + 8</strong>.</li>
+                <li><strong>Ctrl + 9</strong>: Always takes you to the last tab</li>
+            </ul>
+            <p>These shortcuts are essential for browsing the web or managing multiple documents in a single application window.</p>
+        `
+},
                 ]
             },
             apps: {
                 title: "Using Built-in Applications",
                 subPages: [
                     {
-                        title: "1. Notepad and Calculator",
+                        title: "1. Introduction to Notepad",
                         content: `
-                            <p>Windows comes with several useful built-in applications that can help you perform common tasks.</p>
-                            <h3>Notepad for Editing Text</h3>
-                            <p>Notepad is a simple text editor ideal for plain text documents without any formatting. To open Notepad, press the <strong>Windows key</strong>, type "Notepad," and press <strong>Enter</strong>. You can then type your text. To save, press <strong>Ctrl + S</strong>. To open a file, press <strong>Ctrl + O</strong>.</p>
-                            <h3>Calculator for Basic Math</h3>
-                            <p>The Calculator app can perform basic arithmetic operations. To open it, press the <strong>Windows key</strong>, type "Calculator," and press <strong>Enter</strong>. You can input numbers using the number keys on your keyboard and use the arithmetic operators (+, -, *, /).</p>
+        <p>Notepad is a basic text editor included with Microsoft Windows. It is useful for writing and editing plain text files. It opens quickly and is easy to use, especially for simple tasks like taking notes or writing code.</p>
+        <h3>Why Use Notepad?</h3>
+        <ul>
+            <li>Fast and lightweight</li>
+            <li>No formatting – only plain text</li>
+            <li>Helpful for editing HTML, batch files, or scripts</li>
+            <li>Great for learning typing and basic keyboard navigation</li>
+        </ul>
+        <p>Notepad is also screen reader-friendly and works well with keyboard commands.</p>
                         `
                     },
-                    {
-                        title: "2. WordPad and Paint",
-                        content: `
-                            <h3>WordPad for Rich Text Documents</h3>
-                            <p>WordPad is a basic word processor that allows for more formatting options than Notepad, such as bold, italics, and different fonts. To open WordPad, press the <strong>Windows key</strong>, type "WordPad," and press <strong>Enter</strong>. Use <strong>Alt</strong> to access the menu bar and navigate with arrow keys to explore options for formatting and saving documents.</p>
-                            <h3>Paint for Simple Graphics</h3>
-                            <p>Paint is a simple drawing program. While primarily visual, it's worth knowing it exists. To open Paint, press the <strong>Windows key</strong>, type "Paint," and press <strong>Enter</strong>. For visually impaired users, navigating Paint effectively without visual cues is challenging, but you might use it for very basic image opening or saving tasks if guided by a sighted person.</p>
-                        `
-                    }
+{
+    title: "2. Opening and Closing Notepad",
+    content: `
+        <p>Notepad is a simple text editor built into Windows. You can open it easily without using a mouse, which is helpful for screen reader users.</p>
+        <h3>How to Open Notepad</h3>
+        <ul>
+            <li>Press <strong>Windows + R</strong> to open the Run dialog box.</li>
+            <li>Type <strong>notepad</strong> and press <strong>Enter</strong>.</li>
+        </ul>
+        <h3>How to Close Notepad</h3>
+        <ul>
+            <li>Press <strong>Alt + F4</strong> to close the window.</li>
+            <li>If you have unsaved changes, a dialog box will appear. Use <strong>Tab</strong> and <strong>Enter</strong> to save, discard, or cancel.</li>
+        </ul>
+    `
+},
+{
+    title: "3. Typing and Editing Text",
+    content: `
+        <p>Notepad allows basic text entry and editing. For screen reader users, learning to navigate and select text using the keyboard is very important.</p>
+
+        <h3>Reading Text</h3>
+        <ul>
+            <li><strong>Left / Right Arrow:</strong> Read character by character</li>
+            <li><strong>Ctrl + Left / Right Arrow:</strong> Read word by word</li>
+            <li><strong>Up / Down Arrow:</strong> Move and read line by line</li>
+            <li><strong>Ctrl + Up / Down Arrow:</strong> Scroll line by line without moving the cursor (in some screen readers)</li>
+            <li><strong>Ctrl + Home:</strong> Move to the top of the file</li>
+            <li><strong>Ctrl + End:</strong> Move to the bottom of the file</li>
+            <li><strong>Home:</strong> Move to the beginning of the current line</li>
+            <li><strong>End:</strong> Move to the end of the current line</li>
+        </ul>
+
+        <h3>Typing</h3>
+        <p>Just start typing with your keyboard. The text appears as you type. Press <strong>Enter</strong> to move to a new line.</p>
+
+        <h3>Selecting Text</h3>
+        <ul>
+            <li><strong>Shift + Left / Right Arrow:</strong> Select text character by character</li>
+            <li><strong>Ctrl + Shift + Left / Right Arrow:</strong> Select word by word</li>
+            <li><strong>Shift + Up / Down Arrow:</strong> Select line by line</li>
+            <li><strong>Shift + End:</strong> Select from the cursor to the end of the line</li>
+            <li><strong>Shift + Home:</strong> Select from the cursor to the start of the line</li>
+        </ul>
+
+        <h3>Editing</h3>
+        <ul>
+            <li><strong>Backspace:</strong> Deletes the character to the left of the cursor</li>
+            <li><strong>Delete:</strong> Deletes the character to the right of the cursor</li>
+            <li><strong>Ctrl + Z:</strong> Undo your last action</li>
+            <li><strong>Ctrl + A:</strong> Select all text in the document</li>
+            <li><strong>Ctrl + C:</strong> Copy selected text</li>
+            <li><strong>Ctrl + X:</strong> Cut selected text</li>
+            <li><strong>Ctrl + V:</strong> Paste copied or cut text</li>
+        </ul>
+
+
+
+    `
+},
+{
+    title: "4. Saving a File in Notepad",
+    content: `
+        <p>After typing your content, you can save the file to your computer for later use.</p>
+        <h3>Steps to Save</h3>
+        <ul>
+            <li>Press <strong>Ctrl + S</strong> to open the Save dialog box.</li>
+            <li>Type the desired file name.</li>
+            <li>Use <strong>Tab</strong> to navigate to the Save button and press <strong>Enter</strong>.</li>
+        </ul>
+        <p>To save with a specific extension like <strong>.html</strong> or <strong>.txt</strong>, type the full name such as <code>myfile.html</code> in the file name field.</p>
+    `
+},
+{
+    title: "5. Using Menus in Notepad",
+    content: `
+        <p>Notepad's menu bar provides options for file handling, editing, formatting, and more.</p>
+        <h3>Accessing Menus</h3>
+        <p>Press <strong>Alt</strong> to activate the menu bar. Use left and right arrow keys to move across menus, and down arrow to explore menu items.</p>
+        <h3>Menu Overview</h3>
+        <ul>
+            <li><strong>File:</strong> New, Open, Save, Save As, Page Setup, Print, Exit</li>
+            <li><strong>Edit:</strong> Undo, Cut, Copy, Paste, Find, Replace, Select All</li>
+            <li><strong>Format:</strong> Word Wrap, Font</li>
+            <li><strong>View:</strong> Status Bar (only visible if Word Wrap is off)</li>
+            <li><strong>Help:</strong> View Help, About Notepad</li>
+        </ul>
+    `
+},
+{
+    title: "6. Introduction to WordPad",
+    content: `
+        <p>WordPad is a basic word processor that comes with Windows. It offers more features than Notepad, such as bold, italic, font changes, and paragraph alignment. It's useful for creating simple documents with formatting while still being accessible with a screen reader.</p>
+
+        <h3>How to Open WordPad</h3>
+        <ul>
+            <li>Press <strong>Windows + R</strong> to open the Run dialog box.</li>
+            <li>Type <strong>wordpad</strong> and press <strong>Enter</strong>.</li>
+            <li>You can also search for "WordPad" in the Start Menu.</li>
+        </ul>
+
+        <h3>Key Features of WordPad</h3>
+        <ul>
+            <li>Supports rich text formatting (bold, italic, underline)</li>
+            <li>Change font size and color</li>
+            <li>Insert pictures and date/time</li>
+            <li>Align text (left, center, right)</li>
+            <li>Supports saving as .rtf, .docx, .txt, and other formats</li>
+        </ul>
+
+        <h3>Basic Keyboard Shortcuts</h3>
+        <ul>
+            <li><strong>Ctrl + B:</strong> Bold selected text</li>
+            <li><strong>Ctrl + I:</strong> Italic</li>
+            <li><strong>Ctrl + U:</strong> Underline</li>
+            <li><strong>Ctrl + E:</strong> Center align</li>
+            <li><strong>Ctrl + L:</strong> Left align</li>
+            <li><strong>Ctrl + R:</strong> Right align</li>
+            <li><strong>Ctrl + S:</strong> Save the document</li>
+            <li><strong>Ctrl + P:</strong> Print the document</li>
+        </ul>
+
+        <h3>Accessibility Tips</h3>
+        <p>WordPad works well with screen readers. Use the <strong>Alt</strong> key to access the ribbon menu. Use arrow keys to navigate between tabs like Home, View, and Print.</p>
+    `
+},
+{
+    title: "7. Using the Calculator",
+    content: `
+        <p>The Calculator in Windows is a helpful tool for performing basic arithmetic, scientific calculations, and more. It is fully accessible with screen readers and works well with keyboard shortcuts.</p>
+
+        <h3>How to Open Calculator</h3>
+        <ul>
+            <li>Press <strong>Windows + R</strong> to open the Run dialog box.</li>
+            <li>Type <strong>calc</strong> and press <strong>Enter</strong>.</li>
+            <li>You can also search for "Calculator" from the Start menu.</li>
+        </ul>
+
+        <h3>Basic Calculator Functions</h3>
+        <p>By default, Calculator opens in Standard mode. You can perform basic operations like:</p>
+        <ul>
+            <li><strong>+ (Plus):</strong> Addition</li>
+            <li><strong>- (Minus):</strong> Subtraction</li>
+            <li><strong>* (Asterisk):</strong> Multiplication</li>
+            <li><strong>/ (Slash):</strong> Division</li>
+            <li><strong>Enter:</strong> Calculate the result</li>
+            <li><strong>Esc or Delete:</strong> Clear the current input</li>
+        </ul>
+
+        <h3>Useful Keyboard Shortcuts</h3>
+        <ul>
+            <li><strong>Ctrl + H:</strong> Switch to History view</li>
+            <li><strong>Ctrl + E:</strong> Switch to Scientific mode</li>
+            <li><strong>Ctrl + M:</strong> Memory functions (Store, Recall, Clear)</li>
+            <li><strong>Alt + F4:</strong> Close the calculator</li>
+        </ul>
+
+        <h3>Screen Reader Tips</h3>
+        <p>Calculator buttons are read clearly by screen readers. You can use <strong>Tab</strong> to move between groups, and arrow keys to navigate within those groups. Use <strong>Enter</strong> to press a selected button.</p>
+    `
+},
+
                 ]
             },
             accessibility: {
