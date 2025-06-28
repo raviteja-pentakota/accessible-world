@@ -170,6 +170,7 @@
         .intro-page,
         .disability-page,
         .principle-page,
+.automationTools-page,
         .wcag-page,
         .aria-page {
             display: none;
@@ -179,6 +180,7 @@
         .intro-page.active,
         .disability-page.active,
         .principle-page.active,
+        .automationTools-page.active,
         .wcag-page.active,
         .aria-page.active {
             display: block;
@@ -401,6 +403,7 @@
                 <li role="presentation"><button role="tab" id="wcag-principles-tab" aria-controls="wcag-principles-content" aria-selected="false">4 Principals of WCAG</button></li>
                 <li role="presentation"><button role="tab" id="wcag-tab" aria-controls="wcag-content" aria-selected="false">WCAG Success Criteria</button></li>
                 <li role="presentation"><button role="tab" id="aria-tab" aria-controls="aria-content" aria-selected="false">Aria</button></li>
+                <li role="presentation"><button role="tab" id="automationTools-tab" aria-controls="automationTools-content" aria-selected="false">Automation Tools</button></li>
             </ul>
         </div>
         <div id="intro-content" class="tab-content active" role="tabpanel" aria-labelledby="intro-tab">
@@ -4065,6 +4068,188 @@ Users must remember and type a password with no alternative login methods like b
                 <button id="next-aria">Next</button>
             </div>
         </div>
+        <div id="automationTools-content" class="tab-content" role="tabpanel" aria-labelledby="automationTools-tab">
+            <h2>Automation Tools</h2>
+            <div id="automationTools-pages">
+                <div id="automationTools-page1" class="automationTools-page active" aria-live="polite">
+<h2>How to Perform Accessibility Testing Using Axe DevTools Add-on</h2>
+
+<h3>Step 1: Install the Axe DevTools Extension</h3>
+<ul>
+  <li>Open your Chrome or Firefox browser.</li>
+  <li>Go to the web store and search for <strong>"Axe DevTools"</strong>.</li>
+  <li>Click on <strong>"Add to Chrome"</strong> or <strong>"Add to Firefox"</strong>.</li>
+  <li>Once installed, you will see the axe icon in the browser toolbar.</li>
+</ul>
+
+<h3>Step 2: Open the Web Page You Want to Test</h3>
+<ul>
+  <li>Navigate to any webpage you want to check for accessibility issues.</li>
+  <li>Press <kbd>F12</kbd> or <kbd>Ctrl + Shift + I</kbd> to open Developer Tools.</li>
+  <li>Find and click on the <strong>"axe DevTools"</strong> tab inside Developer Tools.</li>
+</ul>
+
+<h3>Step 3: Run the Accessibility Test</h3>
+<ul>
+  <li>In the axe DevTools tab, click the button that says <strong>"Scan ALL of my page"</strong>.</li>
+  <li>Wait a few seconds while axe scans the page.</li>
+</ul>
+
+<h3>Step 4: Review the Results</h3>
+<ul>
+  <li>Axe will show you a list of accessibility issues found on the page.</li>
+  <li>Each issue includes:
+    <ul>
+      <li>A description of the problem</li>
+      <li>Why it matters</li>
+      <li>How to fix it (with code examples)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Step 5: Fix and Re-test</h3>
+<ul>
+  <li>Use the suggestions provided by axe to fix accessibility issues in your code.</li>
+  <li>After making changes, refresh the page and run the test again to confirm the issues are resolved.</li>
+</ul>
+
+<h3>Benefits of Using Axe DevTools:</h3>
+<ul>
+  <li>Free and easy to use</li>
+  <li>Helpful for beginners in accessibility testing</li>
+  <li>Works directly in your browser</li>
+</ul>
+
+<h3>Official Link:</h3>
+<p>
+  <a href="https://www.deque.com/axe/devtools/" target="_blank">Download Axe DevTools from Deque</a>
+</p>
+<h3>Video Demo</h3>
+<p>The video will upload soon</p>
+                </div>
+
+                <div id="automationTools-page2" class="automationTools-page" aria-live="polite">
+<h2>How to Perform Accessibility Testing Using WAVE Tool</h2>
+
+<h3>Step 1: Install the WAVE Browser Extension</h3>
+<ul>
+  <li>Open your Chrome or Firefox browser.</li>
+  <li>Go to the web store and search for <strong>"WAVE Evaluation Tool"</strong>.</li>
+  <li>Click <strong>"Add to Chrome"</strong> or <strong>"Add to Firefox"</strong> to install the extension.</li>
+  <li>Once installed, you will see the WAVE icon in your browser toolbar.</li>
+</ul>
+
+<h3>Step 2: Open the Web Page You Want to Test</h3>
+<ul>
+  <li>Navigate to the webpage you want to check for accessibility issues.</li>
+  <li>Click the WAVE icon in your browser toolbar.</li>
+</ul>
+
+<h3>Step 3: View the Accessibility Report</h3>
+<ul>
+  <li>The page will reload with WAVE’s overlay showing icons and panels.</li>
+  <li>You will see:
+    <ul>
+      <li>Errors – accessibility issues that must be fixed</li>
+      <li>Alerts – possible issues to review</li>
+      <li>Features – elements that improve accessibility</li>
+      <li>Structural elements – headings, landmarks, etc.</li>
+      <li>ARIA usage – if present</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Step 4: Understand and Fix Issues</h3>
+<ul>
+  <li>Click on any icon or item in the sidebar to learn more about that issue.</li>
+  <li>WAVE provides a description and suggestions to fix each problem.</li>
+  <li>Use this information to improve your HTML or ARIA code.</li>
+</ul>
+
+<h3>Step 5: Re-Test the Page</h3>
+<ul>
+  <li>After making changes to your website, reload the page.</li>
+  <li>Click the WAVE icon again to run another accessibility scan.</li>
+  <li>Continue fixing issues until the page has no critical errors.</li>
+</ul>
+
+<h3>Benefits of Using WAVE Tool:</h3>
+<ul>
+  <li>Free and easy to use</li>
+  <li>Does not require programming skills</li>
+  <li>Great for visually identifying accessibility issues</li>
+</ul>
+
+<h3>Official Link:</h3>
+<p>
+  <a href="https://wave.webaim.org/extension/" target="_blank">Download WAVE Extension from WebAIM</a>
+</p>
+
+<h3>Video Demo</h3>
+<p>The video will upload soon</p>
+                </div>
+                <div id="automationTools-page3" class="automationTools-page" aria-live="polite">
+<h2>How to Perform Accessibility Testing Using Lighthouse</h2>
+
+<h3>What is Lighthouse?</h3>
+<p>
+  Lighthouse is an open-source tool built into Google Chrome. It helps you check a website's performance, accessibility, SEO, and more.
+</p>
+
+<h3>Step 1: Open the Web Page You Want to Test</h3>
+<ul>
+  <li>Open Google Chrome browser.</li>
+  <li>Go to the website or web page you want to test.</li>
+</ul>
+
+<h3>Step 2: Open Chrome Developer Tools</h3>
+<ul>
+  <li>Press <kbd>F12</kbd> or <kbd>Ctrl + Shift + I</kbd> to open Developer Tools.</li>
+  <li>Click on the <strong>"Lighthouse"</strong> tab in the Developer Tools panel. If it's not visible, click the <strong>"&gt;&gt;"</strong> menu to find it.</li>
+</ul>
+
+<h3>Step 3: Configure the Report</h3>
+<ul>
+  <li>Select the categories you want to test. Make sure <strong>Accessibility</strong> is checked.</li>
+  <li>Choose the device type: <strong>Mobile</strong> or <strong>Desktop</strong>.</li>
+  <li>Click the <strong>"Analyze Page Load"</strong> or <strong>"Generate Report"</strong> button.</li>
+</ul>
+
+<h3>Step 4: View the Accessibility Report</h3>
+<ul>
+  <li>Lighthouse will run the test and generate a report.</li>
+  <li>Look at the <strong>Accessibility</strong> section in the report.</li>
+  <li>It will show a score out of 100 and list the accessibility issues found.</li>
+  <li>Each issue includes a description and how to fix it.</li>
+</ul>
+
+<h3>Step 5: Fix and Re-test</h3>
+<ul>
+  <li>Update your webpage based on the suggestions provided.</li>
+  <li>Re-run the Lighthouse test to see if the issues are resolved.</li>
+</ul>
+
+<h3>Benefits of Using Lighthouse:</h3>
+<ul>
+  <li>Free and built into Chrome</li>
+  <li>No need to install any extension</li>
+  <li>Gives detailed and easy-to-understand reports</li>
+</ul>
+
+<h3>Learn More:</h3>
+<p>
+  <a href="https://developer.chrome.com/docs/lighthouse/overview/" target="_blank">Lighthouse Documentation – Chrome Developers</a>
+</p>
+<h3>Video Demo</h3>
+<p>The video will upload soon</p>
+</div>
+
+            <div class="pagination-controls">
+                <button id="prev-automationTools" disabled>Previous</button>
+                <span id="current-automationTools-num" aria-live="polite"></span>
+                <button id="next-automationTools">Next</button>
+            </div>
+        </div>
     </main>
     <footer>
         <p>© 2025 Accessible World</p>
@@ -4176,6 +4361,12 @@ Users must remember and type a password with no alternative login methods like b
             const nextDisabilityButton = document.getElementById('next-disability');
             const currentDisabilityNum = document.getElementById('current-disability-num');
             let currentDisabilityIndex = 0;
+            // automation tools  Section Elements
+            const automationToolsPages = document.querySelectorAll('#automationTools-pages .automationTools-page');
+            const prevAutomationToolsButton = document.getElementById('prev-automationTools');
+            const nextAutomationToolsButton = document.getElementById('next-automationTools');
+            const currentAutomationToolsNum = document.getElementById('current-automationTools-num');
+            let currentAutomationToolsIndex = 0;
 
             // WCAG Principles Section Elements
             const principlePages = document.querySelectorAll('#principle-pages .principle-page');
@@ -4253,6 +4444,11 @@ Users must remember and type a password with no alternative login methods like b
                             currentAriaIndex = 0;
                             showPage(ariaPages, currentAriaIndex, prevAriaButton, nextAriaButton, currentAriaNum);
                             break;
+                        case 'automationTools-content':
+                            currentAutomationToolsIndex = 0;
+                            showPage(automationToolsPages, currentAutomationToolsIndex, prevAutomationToolsButton, nextAutomationToolsButton, currentAutomationToolsNum);
+                            break;
+
                         default:
                             console.warn("Unhandled tab targetId:", targetId);
                             break;
@@ -4267,6 +4463,22 @@ Users must remember and type a password with no alternative login methods like b
             }
 
             // Pagination event listeners
+            prevAutomationToolsButton.addEventListener('click', () => {
+                if (currentAutomationToolsIndex > 0) {
+                    currentAutomationToolsIndex--;
+                    showPage(automationToolsPages, currentAutomationToolsIndex, prevAutomationToolsButton, nextAutomationToolsButton, currentAutomationToolsNum);
+                }
+            });
+
+            nextAutomationToolsButton.addEventListener('click', () => {
+                if (currentAutomationToolsIndex < automationToolsPages.length - 1) {
+                    currentAutomationToolsIndex++;
+                    showPage(automationToolsPages, currentAutomationToolsIndex, prevAutomationToolsButton, nextAutomationToolsButton, currentAutomationToolsNum);
+                }
+            });
+
+
+
             prevAriaButton.addEventListener('click', () => {
                 if (currentAriaIndex > 0) {
                     currentAriaIndex--;
