@@ -709,13 +709,13 @@
                     <p>level: A</p>
                     <h3>description:</h3>
                     <p>All non-text content that serves a purpose—such as images, icons, charts, graphical buttons, and media control symbols—must include a text alternative that conveys the same meaning or function. This ensures accessibility for users who rely on assistive technologies like screen readers. Images that convey information, perform actions, or represent meaningful content must have appropriate alt text. Decorative images that do not convey information should have empty alt attributes (alt="") so they can be ignored by screen readers. Complex images like graphs or charts may need a longer text explanation or reference to nearby text. Avoid using images of text unless necessary, and provide the same content in text format whenever possible. Examples of required alt text: logos, action icons (like play or close), informative photos, and charts. Examples where alt="" is acceptable: borders, spacers, purely decorative icons, or background graphics.</p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.1.1 Non-text Content</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Verify all non-text content (images, icons, inputs) has appropriate text alternatives.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Turn on a screen reader (NVDA/JAWS/VoiceOver).</li>
@@ -724,7 +724,7 @@
                     <li>Check if the screen reader announces meaningful descriptions.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Every non-text element should have a meaningful alt, aria-label, or label that conveys purpose.
             </div>
         </div>
@@ -750,7 +750,8 @@
 <video width="720" height="405" controls controlsList="nodownload" disablePictureInPicture>    
 <source src="wcag_telugu_videos/Non-text-content-Telugu.mp4" type="video/mp4">
     Your browser does not support the video tag.
-  </video>                </div>
+  </video>                
+</div>
 
 
                 <div id="wcag-page2" class="wcag-page">
@@ -758,13 +759,13 @@
                     <p>level: A</p>
                     <h3>description:</h3>
                     <p>For prerecorded audio-only content (like podcasts) and video-only content (like silent videos), provide an alternative format that presents the same information. This helps users who are deaf, hard of hearing, or blind to access equivalent content either via text or audio alternatives.</p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.2.1 Audio-only and Video-only (Prerecorded)</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure audio-only or video-only content provides alternatives.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Play the media.</li>
@@ -772,7 +773,7 @@
                     <li>Navigate using keyboard/screen reader to access the alternative.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Transcript or description is present and accessible via keyboard/screen reader.
             </div>
         </div>
@@ -805,13 +806,13 @@
                     <h3>description:</h3>
                     <p>Captions must be provided for all prerecorded videos that contain audio. These captions should include spoken dialogue and other relevant sounds (such as laughter or music) so that users who are deaf or hard of hearing can understand the audio content.</p>
 
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.2.2 Captions (Prerecorded)</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Verify all prerecorded synchronized media (video with audio) has captions.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Turn on a screen reader (NVDA/JAWS/VoiceOver).</li>
@@ -820,7 +821,7 @@
                     <li>Listen/read captions as video plays.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Captions are present and synchronized with audio, providing text equivalents for all spoken dialogue and relevant sounds.
             </div>
         </div>
@@ -851,13 +852,13 @@
     <p>level: A</p>
     <h3>description:</h3>
     <p>For prerecorded videos that contain essential visual information (e.g., gestures, charts, on-screen actions), an audio description must be provided as a separate track or alternative. This ensures that users who are blind or visually impaired can understand the visual aspects of the video content.</p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.2.3 Audio Description or Media Alternative (Prerecorded)</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Verify prerecorded video has either audio description or a full media alternative describing visual content.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Turn on a screen reader.</li>
@@ -865,7 +866,7 @@
                     <li>Check if an audio description track or a detailed transcript with visual descriptions is provided.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Either an audio description track or a comprehensive media alternative (e.g., transcript including descriptions) is available and accessible.
             </div>
         </div>
@@ -896,13 +897,13 @@
     <p>level: AA</p>
     <h3>description:</h3>
     <p>Captions must be provided for all live audio content in synchronized media, such as live webinars, news broadcasts, or virtual meetings. This helps users who are deaf or hard of hearing understand the real-time audio information.</p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.2.4 Captions (Live)</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure live audio content has synchronized captions.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Navigate to live video or audio stream.</li>
@@ -910,7 +911,7 @@
                     <li>Visually verify presence of live captions.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Captions are present, synchronized, and readable.
             </div>
         </div>
@@ -960,29 +961,26 @@
     Your browser does not support the video tag.
   </video>                
 </div>
-
- 
-
 <div id="wcag-page7" class="wcag-page">
     <h2>1.3.1: Info and Relationships</h2>
     <p>level: A</p>
     <h3>description:</h3>
     <p>Information, structure, and relationships that are visually conveyed (like headings, lists, form labels, or table data) must also be available in the code. This allows assistive technologies to understand and present the content meaningfully to users who cannot see the visual layout.</p>
 
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.3.1 Info and Relationships</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Check if relationships (headings, lists, forms) are conveyed programmatically.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Use screen reader to navigate (H for headings, L for lists, F for forms).</li>
                     <li>Inspect the underlying HTML (&lt;h1&gt;, &lt;ul&gt;, &lt;label&gt;).</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Screen reader announces structural information correctly.
             </div>
         </div>
@@ -1023,21 +1021,20 @@ For example, if there are steps in a process or items in a timeline, they must b
 <p>
 Using correct HTML tags and putting content in a logical order helps all users, especially people who rely on screen readers, understand the content properly.
 </p>
-        <div class="success-criteria">
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.3.2 Meaningful Sequence</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure content is presented in a meaningful reading order.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Use keyboard and screen reader to read the page from top to bottom.</li>
                     <li>Confirm logical reading order without visual cues.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Screen reader reads content in intended sequence without confusion.
             </div>
         </div>
@@ -1112,28 +1109,25 @@ Using correct HTML tags and putting content in a logical order helps all users, 
     Your browser does not support the video tag.
   </video>                
 </div>
-
- 
-
 <div id="wcag-page9" class="wcag-page">
     <h2>1.3.3: Sensory Characteristics</h2>
     <p>level: A</p>
     <h3>description:</h3>
     <p>Do not rely only on things like color, shape, size, sound, or location to give instructions or convey information. People who are blind, have low vision, or color blindness may not understand such clues. Always include text or labels to explain what to do.</p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.3.3 Sensory Characteristics</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure instructions do not rely solely on sensory cues.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Find instructions like “Click the red button” or “See image on the right.”</li>
                     <li>Verify if additional text or labels exist for clarity.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Instructions are understandable without relying only on color, shape, or position.
             </div>
         </div>
@@ -1183,20 +1177,20 @@ Using correct HTML tags and putting content in a logical order helps all users, 
     <p>level: AA</p>
     <h3>description:</h3>
     <p>The content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific orientation is essential. This means users can view and interact with the content whether their device is held vertically (portrait) or horizontally (landscape), unless it’s absolutely necessary to force one layout (for example, in a piano app or game). This helps users who may have their devices mounted or fixed in one position.</p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.3.4 Orientation</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure content is usable in both portrait and landscape orientations.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Open the page on a mobile device.</li>
                     <li>Rotate the device between portrait and landscape.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> No functionality or content is lost when orientation changes.
             </div>
         </div>
@@ -1240,20 +1234,20 @@ This helps in two main ways:
 
 If the input field is missing the correct autocomplete value, or if the value is wrong, screen reader users may not know what to enter, and the browser may not autofill it correctly. This can lead to confusion and make form completion harder for users with disabilities.
 </p>    
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.3.5 Identify Input Purpose</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure input fields can be auto-filled with correct purpose.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Use screen reader to navigate form fields.</li>
                     <li>Check for autocomplete attributes like email, name, etc.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Screen reader announces purpose and browser autofill works.
             </div>
         </div>
@@ -1311,13 +1305,13 @@ If the input field is missing the correct autocomplete value, or if the value is
     <p>level: A</p>
     <h3>description:</h3>
     <p>Don’t use color as the only way to show information or meaning. Users who are color blind may not be able to tell the difference. Add text, shapes, or other indicators along with color.</p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.4.1 Use of Color</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Check that color alone is not used to convey meaning.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Look for form errors or charts.</li>
@@ -1325,7 +1319,7 @@ If the input field is missing the correct autocomplete value, or if the value is
                     <li>Use screen reader to verify alternate indication is present.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Color-coded content also provides text, icons, or ARIA labels for meaning.
             </div>
         </div>
@@ -1355,20 +1349,20 @@ If the input field is missing the correct autocomplete value, or if the value is
     <p>level: A</p>
     <h3>description:</h3>
     <p>If any sound plays automatically for more than 3 seconds when a page loads, the user must be able to pause or stop it, or control its volume separately from the main system volume. This is important for users who use screen readers or need to focus.</p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.4.2 Audio Control</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure users can pause or stop autoplaying audio.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Visit a page with background audio.</li>
                     <li>Try to stop/pause audio using visible controls or keyboard.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> User can control or stop audio that plays automatically.
             </div>
         </div>
@@ -1410,20 +1404,20 @@ The **minimum contrast ratio** depends on the size of the text:
 <p>
 If text doesn’t meet these contrast levels, many users — especially those with vision impairments — may not be able to read it clearly. This includes text in buttons, headings, paragraphs, and links.
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.4.3 Contrast (Minimum)</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure text has a contrast ratio of at least 4.5:1.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Use a color contrast checker (e.g., TPGI or WebAIM).</li>
                     <li>Test all text over background colors.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> All text (except large/disabled) passes 4.5:1 ratio.
             </div>
         </div>
@@ -1453,20 +1447,20 @@ If text doesn’t meet these contrast levels, many users — especially those wi
     <p>level: AA</p>
     <h3>description:</h3>
     <p>Users must be able to resize text up to 200% without losing content or functionality. This helps users with low vision read more comfortably using browser zoom or screen magnifiers.</p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.4.4 Resize Text</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure text can be resized up to 200% without loss of content.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Zoom in browser to 200%.</li>
                     <li>Use screen reader or keyboard to navigate.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> No overlapping, cutoff, or hidden text occurs.
             </div>
         </div>
@@ -1505,20 +1499,20 @@ Using real text improves accessibility, responsiveness, and overall readability.
 <p>
 Text in images cannot be resized, reflowed, or styled by users—making it harder for people with low vision or reading disabilities.
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.4.5 Images of Text</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure text is not used in images unless essential.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Navigate all content with screen reader and keyboard.</li>
                     <li>Inspect any image containing text.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Text content is selectable and real, not inside an image.
             </div>
         </div>
@@ -1557,13 +1551,13 @@ This helps people with low vision who zoom up to 400%, and mobile users with nar
 <p>
 There are a few exceptions, like maps, charts, or images where two-way scrolling might be necessary. But for text, buttons, forms, and menus—everything should reflow vertically without requiring horizontal scrolling.
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.4.10 Reflow</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure content reflows without needing horizontal scroll at 320px width.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Set browser to 1280px wide.</li>
@@ -1571,7 +1565,7 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
                     <li>Navigate using keyboard or screen reader.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> No horizontal scrolling required (except for very large content like tables).
             </div>
         </div>
@@ -1605,19 +1599,19 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
     <p>level: AA</p>
     <h3>description:</h3>
     <p>Visual elements that are important for understanding content or functionality, like buttons, icons, focus indicators, or graph bars, must have a contrast ratio of at least 3:1 against adjacent colors. This helps users with low vision distinguish important components from the background or surrounding elements. It applies to user interface components (like form controls and links) and graphical objects that convey meaning.</p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.4.11 Non-Text Contrast</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure graphical objects and focus indicators meet 3:1 contrast.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Use a contrast checker to measure contrast of icons, buttons, focus outlines.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> All essential UI components pass 3:1 contrast ratio.
             </div>
         </div>
@@ -1662,13 +1656,13 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
     <li><strong>Prevent Overlapping or Clipping:</strong> Ensure that when text spacing is increased up to the required thresholds, no text overlaps other elements, gets cut off, or becomes hidden. All content must remain readable, and interactive elements (like buttons or links) must still be usable.</li>
     <li><strong>Test Your Design:</strong> Use browser extensions or custom style sheets to simulate increased text spacing and confirm that your design remains accessible and functional under these conditions.</li>
 </ul>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.4.12 Text Spacing</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure content is readable with increased spacing.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Use a browser extension or custom CSS to apply:
@@ -1682,7 +1676,7 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
                     <li>Verify layout remains usable.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> No clipping or overlapping. Content remains readable.
             </div>
         </div>
@@ -1727,20 +1721,20 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
 </ol>
 
 <p>This benefits users with <strong>low vision</strong>, <strong>mobility impairments</strong>, or <strong>cognitive challenges</strong> who need more time to read and interact with extra content.</p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 1.4.13 Content on Hover or Focus</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure tooltips or popups on hover/focus are dismissible and persistent.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Use keyboard to focus (Tab) and mouse to hover over elements with tooltips/popups.</li>
                     <li>Try dismissing them with Esc key or moving the pointer.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Popups remain visible while focused and can be dismissed.
             </div>
         </div>
@@ -1901,20 +1895,20 @@ This is important for:
 </ul>
 
 ---
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 2.1.1 Keyboard</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure all functionality is operable with a keyboard.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Turn off mouse.</li>
                     <li>Use Tab, Shift+Tab, Enter, Space, Arrow keys to navigate and operate.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> All elements are accessible and operable using only a keyboard.
             </div>
         </div>
@@ -1992,20 +1986,20 @@ This is important for:
     <p>level: A</p>
     <h3>description:</h3>
     <p>When using only a keyboard, users should never get stuck on a part of the page. They must be able to move in and out of any interactive element (like a form or dialog) using standard keyboard keys.</p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 2.1.2 No Keyboard Trap</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Verify keyboard users are not trapped in components.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Use Tab to enter widgets like dropdowns or modals.</li>
                     <li>Attempt to navigate out using Tab or Esc.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Focus can move in and out of widgets smoothly using keyboard.
             </div>
         </div>
@@ -2108,13 +2102,13 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
   <li><b>Remap:</b> Let users change the shortcut key to another one.</li>
   <li><b>Activate only on focus:</b> Make the shortcut work only when a specific element is focused, like a text box or button.</li>
 </ul>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 2.1.4 Character Key Shortcuts</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Verify keyboard shortcuts using only letters/punctuation/numbers can be disabled or remapped.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Identify keyboard shortcuts triggered by single character keys without modifiers.</li>
@@ -2122,7 +2116,7 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
                     <li>Use keyboard to disable or remap, then verify the shortcuts no longer trigger or have changed behavior.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Users can disable or remap single-character keyboard shortcuts.
             </div>
         </div>
@@ -2198,20 +2192,19 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
     <source src="wcag_telugu_videos/character key shortcut.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-
 </div>
 <div id="wcag-page24" class="wcag-page">
     <h2>2.2.1: Timing Adjustable</h2>
     <p>level: A</p>
     <h3>description:</h3>
     <p>If users have a time limit to complete something (like filling a form), they must have options to turn off, adjust, or extend the time unless it’s essential. This is important for users with cognitive disabilities or who need more time.</p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 2.2.1 Timing Adjustable</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Verify users can turn off, adjust, or extend any time limits.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Use keyboard to start an activity with a time limit (e.g., quiz, session timeout).</li>
@@ -2219,7 +2212,7 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
                     <li>If no UI control is provided, confirm that exceptions apply (e.g., security).</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Users are able to turn off, adjust, or extend the time limit unless an exception applies.
             </div>
         </div>
@@ -2247,13 +2240,13 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
     <p>level: A</p>
     <h3>description:</h3>
     <p>Any moving, blinking, scrolling, or auto-updating content that starts automatically and lasts more than 5 seconds must have a way to pause, stop, or hide it. This avoids distractions and helps users focus, especially those with cognitive or visual disabilities.</p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 2.2.2 Pause, Stop, Hide</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Verify any moving, blinking, scrolling, or auto-updating content that starts automatically and lasts more than 5 seconds has controls to pause, stop, or hide it.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Navigate the page with a screen reader and keyboard.</li>
@@ -2262,7 +2255,7 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
                     <li>Activate the control using keyboard and confirm movement stops.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Users can pause, stop, or hide all relevant moving or auto-updating content except when essential to an activity.
             </div>
         </div>
@@ -2291,13 +2284,13 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
     <p>level: A</p>
     <h3>description:</h3>
     <p>Web content must not flash more than 3 times in one second. Flashing lights can cause seizures, especially in people with photosensitive epilepsy. If flashing is needed, it should stay within a safe limit.</p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 2.3.1 Three Flashes or Below Threshold</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Verify that no content flashes more than three times in one second or exceeds flash thresholds.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Visually observe page or use tools (like the Photosensitive Epilepsy Analysis Tool).</li>
@@ -2305,7 +2298,7 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
                     <li>Confirm flashes do not exceed three times per second and do not use red flashes above threshold.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Content does not flash in a way that could cause seizures or physical reactions.
             </div>
         </div>
@@ -2342,13 +2335,13 @@ This rule helps keyboard and screen reader users skip repeated content like navi
 <p>
 Other ways to meet this rule include using ARIA landmarks (like <code>main</code>, <code>nav</code>, <code>header</code>) or using headings to help screen reader users navigate easily.
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 2.4.1 Bypass Blocks</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Verify mechanisms exist to skip repeated content.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Use Tab key on page load.</li>
@@ -2356,7 +2349,7 @@ Other ways to meet this rule include using ARIA landmarks (like <code>main</code
                     <li>Press Enter and verify main content is focused.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Users can skip navigation or repeated sections.
             </div>
         </div>
@@ -2453,20 +2446,20 @@ Every web page must have a clear and descriptive title using the <code>&lt;title
 <p>
 The title should be short, specific, and related to the page’s main content. Ideally, the title should also match or closely relate to the main heading on the page (the <code>&lt;h1&gt;</code>).
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 2.4.2 Page Titled</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure page has a meaningful title.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Open the page.</li>
                     <li>Inspect browser tab title or screen reader announcement.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Title describes page purpose and matches page content.
             </div>
         </div>
@@ -2554,20 +2547,20 @@ Good focus order means:
   <li>**Focus return**: When temporary content (like modals or popups) is closed, focus should return to the element that triggered it (e.g., the button that opened the modal).</li>
 </ul>
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 2.4.3 Focus Order</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure logical tab order.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Use Tab key to navigate.</li>
                     <li>Follow the focus visually or with screen reader.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Focus follows a meaningful and expected sequence.
             </div>
         </div>
@@ -2658,20 +2651,20 @@ When the "Open Help" button is activated:<br>
   <p>
     If someone reads just the link (for example, using a screen reader’s “list of links” feature), they should still understand what the link does without guessing.
   </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 2.4.4 Link Purpose (In Context)</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure link purpose is clear from text and surrounding context.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Navigate with Tab or screen reader to links.</li>
                     <li>Listen to or read link text in isolation.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Link purpose is understandable from text or nearby context.
             </div>
         </div>
@@ -2762,19 +2755,19 @@ Users should be able to find a web page using more than one method. This is impo
 <p>
 This SC helps ensure that content is discoverable through more than just one way, improving usability and accessibility.
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 2.4.5 Multiple Ways</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Provide more than one way to reach each page.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Navigate to multiple pages using menu, sitemap, or search.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Each page is accessible via more than one method.
             </div>
         </div>
@@ -2839,20 +2832,20 @@ The website uses only dropdown menus to access pages and provides no search box 
 <p>
 Headings and labels must clearly describe the topic or purpose of the content they refer to. This is especially important for screen reader users who navigate using heading shortcuts. Headings like "Introduction", "Features", or "Contact Us" help all users understand the structure of the content. Vague or generic headings (like "Section 1" or "Untitled") are confusing and unhelpful.
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 2.4.6 Headings and Labels</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure headings and labels describe their topic or purpose.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Use screen reader (H key) to review all headings.</li>
                     <li>Tab through form fields to hear labels.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Headings are meaningful. Labels clearly identify inputs.
             </div>
         </div>
@@ -2899,20 +2892,20 @@ Headings and labels must clearly describe the topic or purpose of the content th
 <p>
   When users navigate using a keyboard (like pressing Tab), the element that is currently focused must be clearly visible on the page. This means the focused item should have a visible outline, border, or color change so users know where they are. Without this visible focus indicator, keyboard users, especially those who cannot see a mouse pointer, may get lost on the page or not know which control is active.
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 2.4.7 Focus Visible</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure keyboard focus is visually apparent.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Navigate using Tab.</li>
                     <li>Observe if focused element has visible outline or style.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Clear visual indicator of focused element.
             </div>
         </div>
@@ -2970,13 +2963,13 @@ Headings and labels must clearly describe the topic or purpose of the content th
 <p>
   When users navigate with the keyboard, the element that receives focus should never be completely hidden behind other page content, such as sticky headers, popups, or overlays. The focused element must always be at least partially visible on the screen, so users can see where the focus is and interact with it. If the focused item is hidden, keyboard users can get confused or lose track of where they are on the page.
 </p>
-<div class="success-criteria">
+<div>
     <h3>Practical Test Case: 2.4.11 Focus Not Obscured (Minimum)</h3>
     <p><strong>Level:</strong> AA</p>
-    <div class="test-scenario">
+    <div>
         <strong>Test Scenario:</strong> Verify that when a user interface component receives keyboard focus, the component is not entirely hidden by author-created content.
     </div>
-    <div class="steps-to-reproduce">
+    <div>
         <strong>Steps to Reproduce:</strong>
         <ol>
             <li>Use **Tab** and **Shift + Tab** to navigate through all interactive elements on the page (e.g., links, buttons, form fields).</li>
@@ -2985,7 +2978,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
             <li>If the page is responsive, repeat the test at different viewport sizes (e.g., narrow mobile view) where content might reflow or overlays might behave differently.</li>
         </ol>
     </div>
-    <div class="expected-result">
+    <div>
         <strong>Expected Result:</strong> When any element receives keyboard focus, it is **not entirely hidden** by other content on the page (e.g., sticky headers, pop-ups). At least a part of the focused component must remain visible.
     </div>
 </div>
@@ -3066,13 +3059,13 @@ Headings and labels must clearly describe the topic or purpose of the content th
 <p>
   For example, if a photo gallery uses a two-finger swipe to go to the next image, it must also provide a way to navigate images with a single tap or click.
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case:2.5.1 Pointer Gestures</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Verify functionality using multipoint or path-based gestures can also be operated with a single pointer.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Identify features requiring multi-touch or path-based gestures.</li>
@@ -3080,7 +3073,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
                     <li>Confirm the function completes successfully.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> All multi-touch or path-based gestures have equivalent single-pointer alternatives.
             </div>
         </div>
@@ -3163,13 +3156,13 @@ Headings and labels must clearly describe the topic or purpose of the content th
 <p>
   For example, a “Delete” button should not immediately delete without confirmation, or a drag-and-drop action should allow users to cancel before dropping.
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 2.5.2 Pointer Cancellation</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Verify that single-pointer functions allow cancellation or reversal before completion unless essential to complete on down-event.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Use mouse or touch to trigger functions requiring down-event.</li>
@@ -3177,7 +3170,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
                     <li>Confirm abort or undo is possible or verify essential exceptions.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Users can cancel or undo single-pointer functions before completion unless essential otherwise.
             </div>
         </div>
@@ -3241,13 +3234,13 @@ Headings and labels must clearly describe the topic or purpose of the content th
 <p>
   When the accessible name matches or includes the visible label, screen reader users get the same meaningful information as sighted users.
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 2.5.3 Label in Name</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Verify UI components with visible labels have accessible names containing the visible text.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Use screen reader to focus UI components.</li>
@@ -3255,7 +3248,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
                     <li>Compare visible label text with accessible name (aria-label, aria-labelledby).</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Accessible names include all visible label text exactly or equivalently.
             </div>
         </div>
@@ -3317,13 +3310,13 @@ Headings and labels must clearly describe the topic or purpose of the content th
 <p>
   Providing multiple input options ensures accessibility and usability for everyone, including people who rely on assistive technologies or have limited mobility.
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 2.5.4 Motion Actuation</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Verify functionality controlled by device or user motion is also operable by UI controls, and motion actuation can be disabled.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Identify motion-based controls (e.g., shaking device).</li>
@@ -3331,7 +3324,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
                     <li>Confirm there is an option to disable motion activation.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Motion-controlled functions have alternative UI controls and allow disabling motion activation.
             </div>
         </div>
@@ -3383,13 +3376,13 @@ Headings and labels must clearly describe the topic or purpose of the content th
 <p>
   For example, if a slider can only be adjusted by dragging, there should also be buttons or keyboard controls to change the slider’s value step by step.
 </p>
-<div class="success-criteria">
+<div>
     <h3>Practical Test Case: 2.5.7 Dragging Movements</h3>
     <p><strong>Level:</strong> AA</p>
-    <div class="test-scenario">
+    <div>
         <strong>Test Scenario:</strong> Verify that all functionality that uses a dragging movement can be achieved by a single pointer without dragging, unless dragging is essential.
     </div>
-    <div class="steps-to-reproduce">
+    <div>
         <strong>Steps to Reproduce:</strong>
         <ol>
             <li>Identify any user interface components or functionalities that require a "dragging" movement (e.g., drag-and-drop interfaces, sliders, drawing tools, map panning).</li>
@@ -3399,7 +3392,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
             <li>Confirm that the functionality is successfully completed without a dragging movement.</li>
         </ol>
     </div>
-    <div class="expected-result">
+    <div>
         <strong>Expected Result:</strong> All functionality that normally requires a dragging movement can also be performed by a single pointer action (e.g., tap/click) without requiring a continuous drag, or through an accessible keyboard equivalent, unless the dragging movement itself is fundamental to the function (e.g., freehand drawing).
     </div>
 </div>
@@ -3465,13 +3458,13 @@ Headings and labels must clearly describe the topic or purpose of the content th
 <p>
   For example, a button that is just 10x10 pixels is very hard to click, while a button of 30x30 pixels or larger is easier.
 </p>
-    <div class="success-criteria">
+    <div>
         <h3>Practical Test Case: 2.5.8 Target Size (Minimum)</h3>
         <p><strong>Level:</strong> AA</p>
-        <div class="test-scenario">
+        <div>
             <strong>Test Scenario:</strong> Verify that the size of target for pointer inputs (e.g., buttons, links, interactive elements) is at least 24 by 24 CSS pixels.
         </div>
-        <div class="steps-to-reproduce">
+        <div>
             <strong>Steps to Reproduce:</strong>
             <ol>
                 <li>Identify all interactive target elements on the page that can be activated by a pointer (e.g., buttons, links, form fields, checkboxes, radio buttons, custom controls).</li>
@@ -3481,7 +3474,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
                 <li>Note that this applies to the target size, not necessarily the visual size of the icon/text within it.</li>
             </ol>
         </div>
-        <div class="expected-result">
+        <div>
             <strong>Expected Result:</strong> All interactive target elements have a target size of at least 24 by 24 CSS pixels, or one of the following exceptions applies:
             <ul>
                 <li><strong>Equivalent:</strong> The target is available through an equivalent link or control on the same page that meets the 24x24 CSS pixel minimum.</li>
@@ -3532,20 +3525,20 @@ Headings and labels must clearly describe the topic or purpose of the content th
 <p>
   For example, a page primarily in English but with a French quote should mark that quote with <code>lang="fr"</code>.
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 3.1.1 Language of Page</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure correct language is set in the HTML element.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Inspect &lt;html lang="en"&gt; or appropriate language code.</li>
                     <li>Use screen reader to verify pronunciation.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Language is correctly declared and spoken appropriately.
             </div>
         </div>
@@ -3582,20 +3575,20 @@ Headings and labels must clearly describe the topic or purpose of the content th
 <p>
   For example, if the main page language is English (<code>lang="en"</code>) but there is a paragraph or phrase in Spanish, that part should use <code>lang="es"</code>.
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 3.1.2 Language of Parts</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure content in another language has correct language attribute.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Find multi-language content.</li>
                     <li>Inspect using screen reader or dev tools for lang attribute on element.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Screen reader announces the text with correct pronunciation.
             </div>
         </div>
@@ -3629,20 +3622,20 @@ Headings and labels must clearly describe the topic or purpose of the content th
 <p>
   When a user focuses on an element (like a form field or button), it should not automatically trigger a major change like submitting a form or opening a new page. Changes should only happen when the user chooses to do something, like clicking a button.
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 3.2.1 On Focus</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure elements do not trigger unexpected changes on focus.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Tab through form fields or menus.</li>
                     <li>Observe if focus causes content to move or change.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Focusing alone does not cause page navigation or dynamic changes.
             </div>
         </div>
@@ -3690,20 +3683,20 @@ Headings and labels must clearly describe the topic or purpose of the content th
 <p>
   When users fill in or change something in a form, it should not cause unexpected changes, like submitting the form or refreshing the page, without warning.
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 3.2.2 On Input</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure form changes only occur with user confirmation.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Change dropdown or checkbox selection.</li>
                     <li>Ensure no automatic navigation or submission occurs.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Users are notified or given control before changes occur.
             </div>
         </div>
@@ -3759,20 +3752,20 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <p>level: AA</p>
     <h3>description:</h3>
     <p>If a website has the same navigation links on multiple pages, they should appear in the same order and location. This helps users learn and rely on the navigation.</p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 3.2.3 Consistent Navigation</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Navigation components appear in consistent order across pages.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Visit multiple pages.</li>
                     <li>Tab through navigation menus and compare order.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Navigation links are consistent in order and placement.
             </div>
         </div>
@@ -3800,20 +3793,20 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <p>level: AA</p>
     <h3>description:</h3>
     <p>Components with the same function should be labeled the same way across pages. This avoids confusion for users.</p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 3.2.4 Consistent Identification</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Elements with the same function have consistent labels/icons.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Navigate across pages and find similar buttons (e.g., Search, Submit).</li>
                     <li>Use screen reader to verify the announced names.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Identical controls have identical labels.
             </div>
         </div>
@@ -3842,13 +3835,13 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <p>level: A</p>
     <h3>description:</h3>
     <p>If help is available on a page (like live chat, FAQs, or contact info), it should be located in the same place on all pages.</p>
-    <div class="success-criteria">
+    <div>
         <h3>Practical Test Case: 3.2.6 Consistent Help</h3>
         <p><strong>Level:</strong> A</p>
-        <div class="test-scenario">
+        <div>
             <strong>Test Scenario:</strong> Verify that if help mechanisms (e.g., contextual help, support contact information, FAQs) are repeated across multiple Web pages, they occur in the same relative order.
         </div>
-        <div class="steps-to-reproduce">
+        <div>
             <strong>Steps to Reproduce:</strong>
             <ol>
                 <li>Identify any mechanisms provided for help (e.g., "Help" link, "Contact Us" link, "FAQ" link, persistent chat icon, contextual help tips).</li>
@@ -3858,7 +3851,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
                 <li>If different types of help are available (e.g., a "Help" link and a separate "Contact Us" page link), ensure their relative positions (e.g., "Help" always before "Contact Us") are maintained.</li>
             </ol>
         </div>
-        <div class="expected-result">
+        <div>
             <strong>Expected Result:</strong> Any help mechanisms that are repeated on multiple pages appear in the same relative order each time they occur. For instance, if "FAQ" and "Contact Us" links are in the footer, "FAQ" should always precede "Contact Us" on every page where both appear.
         </div>
     </div>
@@ -3902,20 +3895,20 @@ Good error messages should:
 <p>
 For example, if a user submits a form without entering their email, they should immediately see a message like “Please enter your email address” under the email input field.
 </p>
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 3.3.1 Error Identification</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure form errors are clearly identified.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Submit a form with missing or incorrect fields.</li>
                     <li>Use screen reader to hear error announcement.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Errors are visually and programmatically identified.
             </div>
         </div>
@@ -3991,20 +3984,20 @@ Incorrect or missing labels can confuse users or prevent screen readers from rea
 </p>
 
 ---
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 3.3.2 Labels or Instructions</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure all inputs have labels and instructions where needed.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Navigate form fields using screen reader.</li>
                     <li>Listen for associated labels or helper text.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Each form element has an accessible label or instruction.
             </div>
         </div>
@@ -4074,20 +4067,20 @@ For example, instead of simply showing “Invalid input,” a helpful error mess
 </p>
 
 ---
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 3.3.3 Error Suggestion</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Suggestions are provided for fixing input errors.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Submit invalid form input.</li>
                     <li>Use screen reader to hear suggestions.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Clear, helpful suggestions for correcting errors.
             </div>
         </div>
@@ -4190,20 +4183,20 @@ This is especially important for tasks like placing orders, making payments, sub
 </p>
 
 ---
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 3.3.4 Error Prevention (Legal, Financial, Data)</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure user can review and confirm legal/financial submissions.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Complete and submit a form involving financial/legal action.</li>
                     <li>Check for review, confirmation, or correction steps.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> User has a chance to review, confirm, and correct input before final submission.
             </div>
         </div>
@@ -4304,13 +4297,13 @@ When users are filling out forms or completing processes, they should not be for
 A common solution is to provide a checkbox like “Shipping address is the same as billing address” that copies information automatically.
 </p>
 
-    <div class="success-criteria">
+    <div>
         <h3>Practical Test Case: 3.3.7 Redundant Entry</h3>
         <p><strong>Level:</strong> A</p>
-        <div class="test-scenario">
+        <div>
             <strong>Test Scenario:</strong> Verify that information previously entered by or provided to the user that is required to be entered again in the same process, is either auto-populated or available for the user to select.
         </div>
-        <div class="steps-to-reproduce">
+        <div>
             <strong>Steps to Reproduce:</strong>
             <ol>
                 <li>Identify multi-step processes or forms where a user might be asked to provide the same information more than once (e.g., email address for account creation and then for billing, shipping address repeated as billing address, confirm password field).</li>
@@ -4325,7 +4318,7 @@ A common solution is to provide a checkbox like “Shipping address is the same 
                 <li>Test with different types of data (e.g., text, numbers, selections).</li>
             </ol>
         </div>
-        <div class="expected-result">
+        <div>
             <strong>Expected Result:</strong> When information previously entered by or provided to the user is required again within the same process, it is either automatically populated into the field, or the user is provided with a clear option to select or easily copy the previous entry, preventing redundant manual input. Exceptions apply if re-entering the information is essential (e.g., for security reasons like confirming a new password).
         </div>
     </div>
@@ -4410,13 +4403,13 @@ Authentication processes should be accessible to all users, including those who 
 Additionally, if passwords are used, users should be able to easily see or hear what they are typing, and alternative authentication options should always be provided.
 </p>
 
-    <div class="success-criteria">
+    <div>
         <h3>Practical Test Case: 3.3.8 Accessible Authentication</h3>
         <p><strong>Level:</strong> AA</p>
-        <div class="test-scenario">
+        <div>
             <strong>Test Scenario:</strong> Verify that authentication processes that rely on cognitive function tests (e.g., memorizing passwords, solving puzzles) provide an alternative method that does not rely on such a test, or a mechanism to assist the user.
         </div>
-        <div class="steps-to-reproduce">
+        <div>
             <strong>Steps to Reproduce:</strong>
             <ol>
                 <li>Navigate to all authentication mechanisms (e.g., login pages, registration forms, password reset flows, secure transactions).</li>
@@ -4443,7 +4436,7 @@ Additionally, if passwords are used, users should be able to easily see or hear 
                 </li>
             </ol>
         </div>
-        <div class="expected-result">
+        <div>
             <strong>Expected Result:</strong>
             Authentication processes that rely on a cognitive function test (memorization, transcription, manipulation, or puzzle solving) either provide:
             <ul>
@@ -4515,20 +4508,20 @@ Users must remember and type a password with no alternative login methods like b
 </p>
 
 ---
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 4.1.2 Name, Role, Value</h3>
             <p><strong>Level:</strong> A</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure all custom components expose name, role, and value.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps to Reproduce:</strong>
                 <ol>
                     <li>Use screen reader to interact with custom widgets (sliders, modals, tabs).</li>
                     <li>Confirm all roles and labels are announced correctly.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Accessible roles, labels, and states are exposed to assistive tech.
             </div>
         </div>
@@ -4617,20 +4610,20 @@ Users must remember and type a password with no alternative login methods like b
   This automatic announcement is implemented using ARIA live regions such as <code>aria-live="polite"</code> or <code>aria-live="assertive"</code>. These attributes tell screen readers to monitor the region for changes and speak the new content as it appears.
 </p>
 
-        <div class="success-criteria">
+        <div>
             <h3>Practical Test Case: 4.1.3 Status Messages</h3>
             <p><strong>Level:</strong> AA</p>
-            <div class="test-scenario">
+            <div>
                 <strong>Test Scenario:</strong> Ensure status messages are programmatically available without receiving focus.
             </div>
-            <div class="steps-to-reproduce">
+            <div>
                 <strong>Steps:</strong>
                 <ol>
                     <li>Trigger a status message (e.g., form validation success or error).</li>
                     <li>Use a screen reader to verify that the status message is announced automatically without keyboard focus moving to it.</li>
                 </ol>
             </div>
-            <div class="expected-result">
+            <div>
                 <strong>Expected Result:</strong> Screen reader announces the status message as soon as it appears without requiring focus change.
             </div>
         </div>
@@ -4715,6 +4708,8 @@ Users must remember and type a password with no alternative login methods like b
                 <button id="next-wcag">Next</button>
             </div>
         </div>
+
+
         <div id="aria-content" class="tab-content" role="tabpanel" aria-labelledby="aria-tab">
             <h2>ARIA Attributes</h2>
             <div id="aria-pages">
@@ -5256,8 +5251,8 @@ Users must remember and type a password with no alternative login methods like b
             <h2>Automation Tools</h2>
             <div id="automationTools-pages">
                 <div id="automationTools-page1" class="automationTools-page active" aria-live="polite">
-<a href="#video-lesson">Skip to video lesson</a>
 <h2>How to Perform Accessibility Testing Using Axe DevTools Add-on</h2>
+<a href="#video-lesson">Skip to video lesson</a>
 
 <h3>Step 1: Install the Axe DevTools Extension</h3>
 <ul>
@@ -5318,6 +5313,7 @@ Users must remember and type a password with no alternative login methods like b
 
                 <div id="automationTools-page2" class="automationTools-page" aria-live="polite">
 <h2>How to Perform Accessibility Testing Using WAVE Tool</h2>
+<a href="#video-lesson">Skip to video lesson</a>
 
 <h3>Step 1: Install the WAVE Browser Extension</h3>
 <ul>
@@ -5373,11 +5369,12 @@ Users must remember and type a password with no alternative login methods like b
   <a href="https://wave.webaim.org/extension/" target="_blank">Download WAVE Extension from WebAIM</a>
 </p>
 
-<h3>Video Demo</h3>
+<h3 id="video-lesson">Video Demo</h3>
 <p>The video will upload soon</p>
                 </div>
                 <div id="automationTools-page3" class="automationTools-page" aria-live="polite">
 <h2>How to Perform Accessibility Testing Using Lighthouse</h2>
+<a href="#video-lesson">Skip to video lesson</a>
 
 <h3>What is Lighthouse?</h3>
 <p>
@@ -5428,7 +5425,7 @@ Users must remember and type a password with no alternative login methods like b
 <p>
   <a href="https://developer.chrome.com/docs/lighthouse/overview/" target="_blank">Lighthouse Documentation – Chrome Developers</a>
 </p>
-<h3>Video Demo</h3>
+<h3 id="video-lesson">Video Demo</h3>
 <p>The video will upload soon</p>
 </div>
 
