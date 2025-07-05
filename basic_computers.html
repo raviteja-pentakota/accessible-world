@@ -4,9 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basic Computer Course for Blind Users</title>
-  <link rel="stylesheet" href="video_style.css">
-
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -218,12 +215,58 @@
             background-color: #cccccc;
             cursor: not-allowed;
         }
+
+        /* Video Player Styles */
+        .video-container {
+            width: 100%;
+            max-width: 720px; /* Or a suitable max-width */
+            margin: 20px 0;
+            background-color: #000;
+            position: relative;
+            aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .custom-video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ensure the video fits within the container */
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            box-sizing: border-box;
+        }
+
+        .controls button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .controls button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
-<p>Due to some technical issues, the videos will not be play for some time.</p>
-<p>We are working on it</p>
-
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header>
         <h1>Welcome to Accessible World Tutorials</h1>
@@ -278,12 +321,10 @@
     <div class="navigation-buttons">
         <button id="prevButton" disabled>Previous Topic</button>
         <button id="nextButton">Next Topic</button>
-19:02 03-07-2025    </div>
-
+    </div>
     <footer>
         <p>&copy; 2025 Accessible World</p>
     </footer>
-
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
@@ -407,12 +448,10 @@
   </video>
 
   <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
+    <button class="playPause">Play</button>    <button class="mute">Mute</button>
+    <button class="fullscreen">Fullscreen</button>
   </div>
 </div>
-	
                 `
             },
             keyboard: {
@@ -422,23 +461,21 @@
                         title: "1. Understanding Keyboard Layout",
                         content: `
 <a href="#skiptovideo">Skip to video lesson</a>
-
                             <p>The keyboard is your primary tool for navigating and interacting with a computer when using a screen reader. Understanding its layout and key functions is fundamental.</p>
                             <h3>Typing with a Keyboard</h3>
                             <p>The keyboard is laid out similar to a typewriter. Your hands should be placed on the home row keys: F and J have tactile bumps for easy identification. The left index finger rests on F, and the right index finger on J. Practice typing by placing your fingers correctly and reaching for surrounding keys.</p>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Understanding Keyboard Layout - Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Understanding Keyboard Layout.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Understanding Keyboard Layout.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
                             <p><em>In the next topic, you will learn about the different types of keys and their uses.</em></p>
                         `
                     },
@@ -446,7 +483,6 @@
                         title: "2. Types of Keys on the Keyboard",
                         content: `
 <a href="#skiptovideo">Skip to video lesson</a>
-
                             <h3>Main Categories of Keys</h3>
                             <ul>
                                 <li><strong>Alphanumeric Keys:</strong> Letters and numbers used for text input.</li>
@@ -456,19 +492,18 @@
                                 <li><strong>Numeric Keypad:</strong> For quick number entry (on full-size keyboards).</li>
                                 <li><strong>Special Keys:</strong> Esc, Tab, Enter, Backspace, etc.</li>
                             </ul>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Types of Keys on the Keyboard - Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Types of Keys on the Keyboard.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Types of Keys on the Keyboard.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
                             <p><em>In the next topic, we will explore the modifier keys in detail.</em></p>
                         `
                     },
@@ -476,7 +511,6 @@
                         title: "3. Modifier Keys",
                         content: `
 <a href="#skiptovideo">Skip to video lesson</a>
-
                             <h3>Common Modifier Keys</h3>
                             <ul>
                                 <li><strong>Control (Ctrl):</strong> Used in shortcuts (e.g., Ctrl+C to copy).</li>
@@ -486,19 +520,18 @@
                                 <li><strong>Windows Key:</strong> Opens the Start Menu or system shortcuts (Win+D shows desktop).</li>
                                 <li><strong>Fn (Function):</strong> Activates secondary actions on laptops.</li>
                             </ul>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Modifier Keys - Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Modifier Keys.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Modifier Keys.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
                             <p><em>In the next topic, we will focus on the function keys and their purpose.</em></p>
                         `
                     },
@@ -506,7 +539,6 @@
                         title: "4. Function Keys and Their Use",
                         content: `
 <a href="#skiptovideo">Skip to video lesson</a>
-
                             <h3>Function Keys (F1 to F12)</h3>
                             <ul>
                                 <li><strong>F1:</strong> Help</li>
@@ -516,19 +548,18 @@
                                 <li><strong>F5:</strong> Refresh page</li>
                                 <li><strong>F6 to F12:</strong> Vary based on software</li>
                             </ul>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Function Keys and Their Use - Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Function Keys and Their Use.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Function Keys and Their Use.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
                             <p><em>In the next topic, we will cover the navigation keys used for moving through content.</em></p>
                         `
                     },
@@ -536,11 +567,10 @@
                         title: "5. Navigation and Editing Keys",
                         content: `
 <a href="#skiptovideo">Skip to video lesson</a>
-
                             <h3>Navigation Keys</h3>
                             <ul>
                                 <li><strong>Arrow Keys:</strong> Move character-by-character or line-by-line.</li>
-                                <li><strong>Home / End:</b> Jump to beginning or end of a line/document.</li>
+                                <li><strong>Home / End:</strong> Jump to beginning or end of a line/document.</li>
                                 <li><strong>Page Up / Page Down:</strong> Scroll one screen at a time.</li>
                             </ul>
                             <h3>Editing Keys</h3>
@@ -549,19 +579,18 @@
                                 <li><strong>Delete:</strong> Removes the next character or item.</li>
                                 <li><strong>Backspace:</strong> Deletes the previous character.</li>
                             </ul>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Navigation and Editing Keys - Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Navigation and Editing Keys.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Navigation and Editing Keys.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
                             <p><em>In the next topic, we'll look at special keys and their role in accessibility and shortcuts.</em></p>
                         `
                     },
@@ -569,7 +598,6 @@
                         title: "6. Special and Accessibility Keys",
                         content: `
 <a href="#skiptovideo">Skip to video lesson</a>
-
                             <h3>Important Special Keys</h3>
                             <ul>
                                 <li><strong>Esc (Escape):</strong> Cancels or exits operations.</li>
@@ -578,19 +606,18 @@
                                 <li><strong>Print Screen:</strong> Takes a screenshot.</li>
                                 <li><strong>NVDA/JAWS Modifier Key:</strong> Often Insert or Caps Lock, used for screen reader commands.</li>
                             </ul>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Special and Accessibility Keys - Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Special and Accessibility Keys.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Special and Accessibility Keys.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
                             <p><em>In the next topic, you'll get hands-on with keyboard practice exercises.</em></p>
                         `
                     },
@@ -598,7 +625,6 @@
                         title: "7. Home Row Typing Exercises: ASDF ;LKJ",
                         content: `
 <a href="#skiptovideo">Skip to video lesson</a>
-
                             <h3>Practice with Home Row Keys</h3>
                             <p>Place your fingers on the home row keys:</p>
                             <ul>
@@ -618,13 +644,25 @@
                                 <li>ask fjd lkj</li>
                                 <li>type: asdf jkl; asdf jkl; without looking</li>
                             </ol>
+<h3 id="skiptovideo">Home Row Typing Exercises: ASDF ;LKJ - Video Lesson</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Home Row Typing Exercises ASDF ;LKJ.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
                             <p><em>In the next topic, you'll practice the top row (QWERTY) typing drills.</em></p>
                         `
                     },
                     {
                         title: "8. Top Row Typing Exercises: QWERTY",
                         content: `
-
+<a href="#skiptovideo">Skip to video lesson</a>
                             <h3>Top Row Keys: Q, W, E, R, T, Y, U, I, O, P</h3>
                             <p>These keys are typed by reaching up from the home row. Practice stretching and returning to the home position.</p>
                             <ol>
@@ -638,12 +676,25 @@
                                 <li>i owe you pure joy</li>
                                 <li>practice qwe uiop</li>
                             </ol>
+<h3 id="skiptovideo">Top Row Typing Exercises: QWERTY - Video Lesson</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Top Row Typing Exercises QWERTY.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
                             <p><em>In the next topic, you will practice the bottom row keys (Z, X, C, V, B, N, M).</em></p>
                         `
                     },
                     {
                         title: "9. Bottom Row Typing Exercises: ZXCVBNM",
                         content: `
+<a href="#skiptovideo">Skip to video lesson</a>
                             <h3>Bottom Row Keys: Z, X, C, V, B, N, M</h3>
                             <p>These keys are typed by reaching downward from the home row. It takes time to build muscle memory.</p>
                             <ol>
@@ -658,6 +709,18 @@
                                 <li>buzz cam mix vex</li>
                                 <li>type zxcvbnm twice</li>
                             </ol>
+<h3 id="skiptovideo">Bottom Row Typing Exercises: ZXCVBNM - Video Lesson</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Bottom Row Typing Exercises ZXCVBNM.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
                             <p><em>In the next topic, we will put all the rows together with daily keyboard exercises.</em></p>
                         `
                     },
@@ -665,7 +728,6 @@
                         title: "10. Keyboard Practice: 10 Daily Exercises",
                         content: `
 <a href="#skiptovideo">Skip to video lesson</a>
-
                             <h3>Daily Practice Exercises</h3>
                             <ol>
                                 <li>Type A–Z using proper finger placement.</li>
@@ -676,121 +738,21 @@
                                 <li>Navigate a paragraph using arrow keys and Home/End.</li>
                                 <li>Practice opening Start Menu and switching apps (Win key, Alt+Tab).</li>
                                 <li>Use Tab and Shift+Tab to move between form fields on a webpage.</li>
-                                <li>Practice typing full sentences using punctuation and capital letters.</li>
-                                <li>Use Backspace and Delete keys for editing sentences.</li>
+                                <li>Practice using the numeric keypad for number entry.</li>
+                                <li>Spend 15 minutes typing freely to build speed and accuracy.</li>
                             </ol>
-                            <p>Repeat these exercises daily to gain typing speed and navigation fluency.</p>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Keyboard Practice: 10 Daily Exercises - Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Keyboard Practice.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Keyboard Practice.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
-                            <p><em>In the next section, we will begin exploring screen reader basics with keyboard commands.</em></p>
-                        `
-                    }
-                ]
-            },
-            desktop: {
-                title: "Desktop, Start Menu, Taskbar",
-                subPages: [
-                    {
-                        title: "1. Navigating the Desktop",
-                        content: `
-<a href="#skiptovideo">Skip to video lesson</a>
-
-                            <p>The desktop is the main workspace of your computer, containing icons for quick access to programs, files, and folders.</p>
-                            <h3>Accessing and Navigating the Desktop</h3>
-                            <ul>
-                                <li>To go directly to the desktop from any application, press <strong>Windows key + D</strong>. Your screen reader will announce "Desktop."</li>
-                                <li>Once on the desktop, use the <strong>arrow keys</strong> (up, down, left, right) to navigate through the icons. NVDA will announce each icon's name as you highlight it.</li>
-                                <li>To open an application or file on the desktop, highlight its icon with the arrow keys and press <strong>Enter</strong>.</li>
-                                <li>You can also type the first letter of an icon's name to jump to it if multiple icons start with the same letter, keep typing the letter until you find the desired icon.</li>
-                            </ul>
-<h3 id="skiptovideo">Video Lesson</h3>
-<div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Navigating the Desktop.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
-
-                        `
-                    },
-                    {
-                        title: "2. Exploring the Start Menu",
-                        content: `
-<a href="#skiptovideo">Skip to video lesson</a>
-
-                            <p>The Start Menu is your central hub for launching applications, accessing settings, and performing system actions like shutting down or restarting your computer.</p>
-                            <h3>Opening and Navigating the Start Menu</h3>
-                            <ul>
-                                <li>To open the Start Menu, press the <strong>Windows key</strong>. NVDA will typically announce "Start Menu."</li>
-                                <li>Once the Start Menu is open, you can immediately start typing the name of an application you want to find. For example, type "Notepad" and NVDA will guide you. Press <strong>Enter</strong> to open the application.</li>
-                                <li>Alternatively, you can navigate the Start Menu using the <strong>Tab key</strong> and <strong>arrow keys</strong>.
-                                    <ul>
-                                        <li>Press <strong>Tab</strong> to move between sections (e.g., "Pinned apps," "All apps," "Power").</li>
-                                        <li>Use the <strong>Up</strong> and <strong>Down arrow keys</strong> to navigate within a section.</li>
-                                        <li>Press <strong>Enter</strong> to select an item or open a sub-menu.</li>
-                                        <li>Press <strong>Escape</strong> to close the Start Menu.</li>
-                                    </ul>
-                                </li>
-                            </ul>
-<h3 id="skiptovideo">Video Lesson</h3>
-<div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Exploring the Start Menu.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
-
-                        `
-                    },
-                    {
-                        title: "3. Understanding and Using the Taskbar",
-                        content: `
-<a href="#skiptovideo">Skip to video lesson</a>
-
-                            <p>The Taskbar, usually located at the bottom of your screen, provides quick access to running applications and pinned programs. It also houses system icons and the notification area.</p>
-                            <h3>Navigating the Taskbar</h3>
-                            <ul>
-                                <li>To move focus to the Taskbar, press <strong>Windows key + T</strong>. NVDA will announce the name of the first item on the Taskbar, usually a pinned application or a running program.</li>
-                                <li>Use the <strong>Right</strong> and <strong>Left arrow keys</strong> to move between the pinned applications and currently open programs on the Taskbar.</li>
-                                <li>Press <strong>Enter</strong> to open the highlighted application. If an application is already open, pressing Enter will bring it to the foreground.</li>
-                                <li>To cycle through the System Tray (notification area) icons (like volume, network, battery), press <strong>Windows key + B</strong>. Use the <strong>arrow keys</strong> to navigate and <strong>Enter</strong> to activate an icon.</li>
-                            </ul>
-<h3 id="skiptovideo">Video Lesson</h3>
-<div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-
-    <source src="computer_telugu_videos/Understanding and Using the Taskbar.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
-
-
                         `
                     }
                 ]
@@ -798,9 +760,9 @@
             screenreader: {
                 title: "Screen Reader Basics",
                 subPages: [
-{
-    title: "1. Introduction to Screen Readers",
-    content: `
+                    {
+                        title: "1. Introduction to Screen Readers",
+                        content: `
 <a href="#skiptovideo">Skip to video lesson</a>
 
         <h2>Screen Reader Basics</h2>
@@ -839,28 +801,27 @@
 
         <p>In the following sections, we will explore NVDA's navigation keys, reading commands, and accessibility tips to help you become confident in using it for day-to-day tasks.</p>
 
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Introduction to Screen Readers NVDA - Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Introduction to Screen Readers.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Introduction to Screen Readers.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
+                        `
+                    },
+                    {
+                        title: "2. Customizing NVDA Settings",
+                        content: `
+        <h2>Customizing NVDA Settings</h2>
 
-
-`
-},
-{
-    title: "2. Customizing NVDA Settings",
-    content: `
 <a href="#skiptovideo">Skip to video lesson</a>
 
-        <h2>Customizing NVDA Settings</h2>
         <p>NVDA allows you to customize its behavior to match your preferences. This includes voice settings, keyboard layout, speech rate, punctuation level, and more. All settings are accessible with a screen reader and keyboard.</p>
 
         <h3>How to Open NVDA Settings</h3>
@@ -892,28 +853,27 @@
         <p>Use <strong>NVDA key + Ctrl + G</strong> to directly open the General settings dialog.</p>
 
         <p>Exploring these settings helps you tailor NVDA to your needs, making your computing experience faster and more comfortable.</p>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Basic NVDA settings- Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Customizing NVDA Settings.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Customizing NVDA Settings.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-    `
-},
-
-{
+                        `
+                    },
+                    {
     title: "3. Basic Reading Commands in NVDA",
     content: `
-<a href="#skiptovideo">Skip to video lesson</a>
-
         <h2>Basic Reading Commands in NVDA</h2>
+<p>This lesson is only available for reading</p>
+
         <p>NVDA offers various reading commands using the keyboard, especially the number pad in desktop layout. These commands help screen reader users review content by character, word, or line without moving the cursor.</p>
 
         <h3>Read Continuously</h3>
@@ -962,15 +922,254 @@
         </ul>
 
         <p><strong>Note:</strong> These commands use the numeric keypad and work best with the Desktop keyboard layout. If you use a laptop keyboard without a numpad, NVDA provides alternate commands that can be configured in settings.</p>
-    `
-}
-]
-},
-            files: {
-                title: "Working with Files and Folders",
+                        `
+                    }
+                ]
+            },
+            desktop: {
+                title: "Desktop, Start Menu, Taskbar",
                 subPages: [
                     {
-                        title: "1. Introduction to File Explorer",
+                        title: "1. Understanding the Desktop and Icons",
+                        content: `
+<a href="#skiptovideo">Skip to video lesson</a>
+
+                            <p>The <strong>Desktop</strong> is the main workspace on your computer screen. It's where you'll find shortcuts to programs, files, and folders.</p>
+                            <h3>Desktop Navigation</h3>
+                            <ul>
+                                <li><strong>Windows Key + D:</strong> Switches focus to the desktop, or minimizes all open windows to reveal the desktop.</li>
+                                <li><strong>Arrow Keys:</strong> Once on the desktop, use the arrow keys (Up, Down, Left, Right) to navigate between icons. NVDA will announce each icon as you move.</li>
+                                <li><strong>First Letter Navigation:</strong> Press the first letter of an icon's name to jump directly to it (e.g., press 'M' for "My Computer" or "Microsoft Edge").</li>
+                                <li><strong>Enter:</strong> Press Enter to open the selected icon (e.g., launch a program, open a folder, or open a file).</li>
+                                <li><strong>Applications Key (or Shift+F10):</strong> Opens the context menu (right-click menu) for the selected icon. This menu provides options like "Open," "Run as administrator," "Delete," "Properties," etc.</li>
+                            </ul>
+                            <h3>Common Desktop Icons</h3>
+                            <ul>
+                                <li><strong>Recycle Bin:</strong> Where deleted files go before being permanently removed.</li>
+                                <li><strong>This PC (or My Computer):</strong> Provides access to your drives and connected devices.</li>
+                                <li><strong>Network:</strong> Access to networked computers and devices.</li>
+                                <li><strong>User's Files (or your name's folder):</strong> A shortcut to your personal documents, pictures, and other user-specific folders.</li>
+                                <li><strong>Program Shortcuts:</strong> Icons that launch applications (e.g., web browsers, word processors).</li>
+                                <li><strong>Folder Shortcuts:</strong> Icons that open specific folders.</li>
+                            </ul>
+<h3 id="skiptovideo">Video Lesson</h3>
+<div class="video-container">
+  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+    <source src="computer_telugu_videos/Understanding the Desktop and Icons.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="controls">
+    <button class="playPause">Play</button>    <button class="mute">Mute</button>
+    <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
+                            <p><em>In the next topic, we will explore the Start Menu and its functionality.</em></p>
+                        `
+                    },
+                    {
+                        title: "2. Exploring the Start Menu",
+                        content: `
+<a href="#skiptovideo">Skip to video lesson</a>
+
+                            <p>The <strong>Start Menu</strong> is your gateway to applications, settings, and files on your Windows computer. It's a central hub for navigating your system.</p>
+                            <h3>Opening the Start Menu</h3>
+                            <ul>
+                                <li><strong>Windows Key:</strong> Press the Windows key (usually located between Ctrl and Alt on the left side of the keyboard) to open or close the Start Menu. NVDA will typically announce "Start button" or "Start menu."</li>
+                            </ul>
+                            <h3>Navigating the Start Menu</h3>
+                            <p>Once the Start Menu is open, its layout can vary slightly depending on your Windows version (Windows 10, Windows 11, etc.), but the core navigation methods remain similar:</p>
+                            <ul>
+                                <li><strong>Arrow Keys:</strong> Use Up/Down Arrow keys to navigate through the list of applications, settings, and other items. NVDA will read out each item.</li>
+                                <li><strong>First Letter Navigation:</strong> Similar to the desktop, press the first letter of an application's name to jump to it in the "All apps" list.</li>
+                                <li><strong>Tab Key:</strong> Use the Tab key to move between different sections of the Start Menu, such as:
+                                    <ul>
+                                        <li>"Pinned apps" (frequently used applications).</li>
+                                        <li>"All apps" list (alphabetical list of all installed programs).</li>
+                                        <li>Power options (Shut down, Restart, Sleep).</li>
+                                        <li>User account options (Sign out, Lock).</li>
+                                        <li>Settings, Documents, Pictures shortcuts.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Enter:</strong> Press Enter to open the selected application or setting.</li>
+                                <li><strong>Escape:</strong> Press Escape to close the Start Menu.</li>
+                            </ul>
+                            <h3>Searching from the Start Menu</h3>
+                            <p>One of the most efficient ways to launch applications or find files is by searching directly from the Start Menu:</p>
+                            <ol>
+                                <li>Press the <strong>Windows Key</strong> to open the Start Menu.</li>
+                                <li>Start typing the name of the application or file you want to find (e.g., "Word," "Notepad," "Control Panel"). As you type, Windows Search will show relevant results.</li>
+                                <li>Use the <strong>Down Arrow</strong> key to navigate through the search results.</li>
+                                <li>Press <strong>Enter</strong> to open the desired item.</li>
+                            </ol>
+<h3 id="skiptovideo">Video Lesson</h3>
+<div class="video-container">
+  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+    <source src="computer_telugu_videos/Exploring the Start Menu.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="controls">
+    <button class="playPause">Play</button>    <button class="mute">Mute</button>
+    <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
+                            <p><em>In the next topic, we will discuss the Taskbar and its useful features.</em></p>
+                        `
+                    },
+                    {
+                        title: "3. The Taskbar and System Tray",
+                        content: `
+<a href="#skiptovideo">Skip to video lesson</a>
+
+                            <p>The <strong>Taskbar</strong> is a bar typically located at the bottom of your screen, though its position can be customized. It serves several important functions:</p>
+                            <h3>Taskbar Features</h3>
+                            <ul>
+                                <li><strong>Start Button:</strong> On the far left (by default), it opens the Start Menu.</li>
+                                <li><strong>Search Box/Icon:</strong> Allows you to search for apps, files, and web content.</li>
+                                <li><strong>Task View:</strong> Shows all open windows and virtual desktops.</li>
+                                <li><strong>Pinned Applications:</strong> Shortcuts to your favorite applications, always visible for quick launch.</li>
+                                <li><strong>Open Applications:</strong> Icons representing currently running programs.</li>
+                                <li><strong>System Tray (Notification Area):</strong> Located on the far right, it contains icons for background processes, system functions (like network, volume, battery), and notifications.</li>
+                                <li><strong>Clock and Date:</strong> Displays the current time and date.</li>
+                            </ul>
+                            <h3>Navigating the Taskbar</h3>
+                            <ul>
+                                <li><strong>Windows Key + T:</strong> Moves focus to the Taskbar. NVDA will announce the first item, often the Search button or pinned apps.</li>
+                                <li><strong>Arrow Keys:</strong> Use Left/Right Arrow keys to navigate between pinned apps and open applications on the Taskbar. NVDA will announce each item.</li>
+                                <li><strong>Enter:</strong> Press Enter to launch a pinned app or switch to an open application. If the app is already open, pressing Enter will bring its window to the foreground.</li>
+                                <li><strong>Applications Key (or Shift+F10):</strong> Opens the context menu for a selected Taskbar item, offering options like "Close window," "Unpin from taskbar," etc.</li>
+                            </ul>
+                            <h3>Navigating the System Tray</h3>
+                            <ul>
+                                <li><strong>Windows Key + B:</strong> Moves focus to the System Tray (Notification Area). NVDA will announce the first icon, often "Show hidden icons" or "Network."</li>
+                                <li><strong>Arrow Keys:</strong> Use Left/Right Arrow keys to navigate between the icons in the System Tray.</li>
+                                <li><strong>Enter:</strong> Activates the selected System Tray icon (e.g., opens network settings, volume control).</li>
+                                <li><strong>Applications Key (or Shift+F10):</strong> Opens the context menu for a selected System Tray icon.</li>
+                            </ul>
+                            <h3>Accessing the Clock and Date</h3>
+                            <ul>
+                                <li>Navigate to the clock in the System Tray using <strong>Windows Key + B</strong> and then arrow keys.</li>
+                                <li>Press <strong>Enter</strong> to open the calendar and clock panel, where you can check the date, time, and notifications.</li>
+                            </ul>
+<h3 id="skiptovideo">Video Lesson</h3>
+<div class="video-container">
+  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+    <source src="computer_telugu_videos/Understanding and Using the Taskbar.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="controls">
+    <button class="playPause">Play</button>    <button class="mute">Mute</button>
+    <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
+                            <p><em>In the next topic, you'll learn how to switch between open applications and windows efficiently.</em></p>
+                        `
+                    }
+                ]
+            },
+            windows: {
+                title: "Switch between windows",
+                subPages: [
+                    {
+        title: "1. Switching between the windows",
+        content: `
+<a href="#skiptovideo">Skip to video lesson</a>
+
+            <h3>Using Alt + Tab to Switch Apps</h3>
+            <p>Switching between multiple open applications is a common and essential task. The <strong>Alt + Tab</strong> keyboard shortcut allows you to quickly move between all active windows.</p>
+            <p>To use this feature:</p>
+            <ul>
+                <li>Hold down the <strong>Alt</strong> key.</li>
+                <li>Tap the <strong>Tab</strong> key once to display a list of open applications.</li>
+                <li>While still holding <strong>Alt</strong>, press <strong>Tab</strong> repeatedly to move through the list.</li>
+                <li>Release both keys when NVDA or your screen reader announces the application you want to switch to.</li>
+            </ul>
+            <p>This method is highly efficient for multitasking and increases productivity without the need for a mouse.</p>
+<h3 id="skiptovideo">Switch between windows - Video Lesson</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Switch Between Windows.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+                `
+            },
+    {
+        title: "2. Closing Applications Quickly",
+        content: `
+<a href="#skiptovideo">Skip to video lesson</a>
+
+            <h3>Using Alt + F4 to Close Windows</h3>
+            <p>The <strong>Alt + F4</strong> shortcut is the fastest way to close the currently focused application or window.</p>
+            <p>To use this command:</p>
+            <ul>
+                <li>Make sure the application you want to close is active (you can use <strong>Alt + Tab</strong> to focus it).</li>
+                <li>Press <strong>Alt + F4</strong>.</li>
+                <li>If the application has unsaved work, you may be prompted to save before the window closes.</li>
+            </ul>
+            <p>This is particularly useful when you need to quickly exit an app or clean up your desktop.</p>
+<h3 id="skiptovideo">Closing Applications Quickly- Video Lesson</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Closing Applications Quickly.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+        `
+    },
+    {
+        title: "3. Switching Between Tabs",
+        content: `
+<a href="#skiptovideo">Skip to video lesson</a>
+
+            <h3>Ctrl + Tab and Ctrl + Shift + Tab</h3>
+            <p>Many applications, such as web browsers (Chrome, Firefox, Edge), support tabbed browsing or tabbed interfaces. You can switch between these tabs using the following shortcuts:</p>
+            <ul>
+                <li><strong>Ctrl + Tab</strong>: Move to the next tab.</li>
+                <li><strong>Ctrl + Shift + Tab</strong>: Move to the previous tab.</li>
+            </ul>
+            <p>This is helpful for efficiently navigating between multiple open pages or documents without using a mouse.</p>
+            <p>Additionally, you can jump directly to a specific tab using <strong>Ctrl + 1</strong> through <strong>Ctrl + 8</strong>. For example:</p>
+            <ul>
+                <li><strong>Ctrl + 1</strong>: Go to the first tab</li>
+                <li><strong>Ctrl + 2</strong>: Go to the second tab</li>
+                <li>...and so on, up to <strong>Ctrl + 8</strong>.</li>
+                <li><strong>Ctrl + 9</strong>: Always takes you to the last tab</li>
+            </ul>
+            <p>These shortcuts are essential for browsing the web or managing multiple documents in a single application window.</p>
+<h3 id="skiptovideo">Switching Between Tabs- Video Lesson</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Switching Between Tabs.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+        `
+}
+                ]
+            },
+            files: {
+                title: "Working with Files, Folders and understanding Menus",
+                subPages: [
+                    {
+                        title: "1. Understanding Files and Folders",
                         content: `
 <a href="#skiptovideo">Skip to video lesson</a>
 
@@ -990,19 +1189,19 @@
                                 <li>To go forward, press <strong>Alt + Right Arrow</strong>.</li>
                             </ul>
                             <p><em>In the next section, we will cover creating, renaming, and deleting files and folders.</em></p>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Understanding Files and Folders - Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Introduction to File Explorer.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Introduction to File Explorer.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
+                            <p><em>In the next topic, you'll learn how to create, rename, copy, and delete files and folders.</em></p>
                         `
                     },
                     {
@@ -1017,20 +1216,19 @@
                                 <li><strong>Renaming:</strong> Select the file or folder you want to rename using the <strong>arrow keys</strong>. Press <strong>F2</strong>. NVDA will announce "Renaming." Type the new name and press <strong>Enter</strong>.</li>
                                 <li><strong>Deleting:</strong> Select the file or folder using the <strong>arrow keys</strong>. Press the <strong>Delete key</strong>. You'll usually be asked to confirm. Press <strong>Enter</strong> for "Yes" or <strong>Tab</strong> to "No" and press <strong>Enter</strong>. Items are moved to the Recycle Bin first. To permanently delete, press <strong>Shift + Delete</strong>.</li>
                             </ul>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Creating, Renaming, Deleting the files and folders- Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Creating, Renaming, Deleting.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Creating, Renaming, Deleting.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
-                            <p><em>In the next section, we will cover copying, cutting, and pasting files and folders.</em></p>
+                            <p><em>In the next topic, you'll learn how to copy cut and paste the files and folders.</em></p>
                         `
                     },
                     {
@@ -1048,22 +1246,21 @@
                             <h3>Context Menu Navigation</h3>
                             <p>The context menu provides options specific to the selected item. To open it, select the item and press the <strong>Applications key</strong> (often located near the right Ctrl key) or <strong>Shift + F10</strong>. Use the <strong>up and down arrow keys</strong> to navigate the menu options, and press <strong>Enter</strong> to select one.</p>
                             <p><em>In the next section, we will learn about navigating different drives on your computer.</em></p>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Copying, Cutting, Pasting & Context Menu- Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Copying, Cutting, Pasting & Context Menu.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Copying, Cutting, Pasting & Context Menu.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
                         `
                     },
-{
+                    {
     title: "4. Navigating Drives",
     content: `
 <a href="#skiptovideo">Skip to video lesson</a>
@@ -1082,23 +1279,21 @@
             <li>To launch a file: Type the complete path to the file. For example: <strong>C:\\Users\\YourName\\Desktop\\notes.txt</strong></li>
         </ul>
         <p><strong>Tip:</strong> You can also open programs using their executable names, like <strong>notepad</strong>, <strong>cmd</strong>, or <strong>chrome</strong> (if installed).</p>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Navigating Drives using run dialog box- Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Navigating Drives using run dialog box.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload nopownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Navigating Drives using run dialog box.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
-
         <p><em>In the next topic you will learn the menus in the file explorer..</em></p>
-    `
-},
+                        `
+                    },
 {
     title: "5. Menus in File Explorer",
     content: `
@@ -1134,131 +1329,29 @@
 
         <h4>Quick Access Toolbar</h4>
         <p>Located at the very top left corner, it includes frequently used actions. Use <strong>Alt</strong> followed by number keys (like Alt + 1) to activate items from this toolbar.</p>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Menus in File Explorer- Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Menus in File Explorer.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload nopownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Menus in File Explorer.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
-
         <p><em>This concludes the section on using File Explorer Menus with a screen reader.</em></p>
-    `
-},
-                ]
-            },
-            windows: {
-                title: "Switch between windows",
-                subPages: [
-                    {
-        title: "1. Switching between the windows",
-        content: `
-<a href="#skiptovideo">Skip to video lesson</a>
 
-            <h3>Using Alt + Tab to Switch Apps</h3>
-            <p>Switching between multiple open applications is a common and essential task. The <strong>Alt + Tab</strong> keyboard shortcut allows you to quickly move between all active windows.</p>
-            <p>To use this feature:</p>
-            <ul>
-                <li>Hold down the <strong>Alt</strong> key.</li>
-                <li>Tap the <strong>Tab</strong> key once to display a list of open applications.</li>
-                <li>While still holding <strong>Alt</strong>, press <strong>Tab</strong> repeatedly to move through the list.</li>
-                <li>Release both keys when NVDA or your screen reader announces the application you want to switch to.</li>
-            </ul>
-            <p>This method is highly efficient for multitasking and increases productivity without the need for a mouse.</p>
-<h3 id="skiptovideo">Video Lesson</h3>
-<div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Switching between the windows.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
-
-
-        `
-    },
-    {
-        title: "2. Closing Applications Quickly",
-        content: `
-<a href="#skiptovideo">Skip to video lesson</a>
-
-            <h3>Using Alt + F4 to Close Windows</h3>
-            <p>The <strong>Alt + F4</strong> shortcut is the fastest way to close the currently focused application or window.</p>
-            <p>To use this command:</p>
-            <ul>
-                <li>Make sure the application you want to close is active (you can use <strong>Alt + Tab</strong> to focus it).</li>
-                <li>Press <strong>Alt + F4</strong>.</li>
-                <li>If the application has unsaved work, you may be prompted to save before the window closes.</li>
-            </ul>
-            <p>This is particularly useful when you need to quickly exit an app or clean up your desktop.</p>
-<h3 id="skiptovideo">Video Lesson</h3>
-<div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Closing Applications Quickly.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
-
-
-        `
-    },
-    {
-        title: "3. Switching Between Tabs",
-        content: `
-<a href="#skiptovideo">Skip to video lesson</a>
-
-            <h3>Ctrl + Tab and Ctrl + Shift + Tab</h3>
-            <p>Many applications, such as web browsers (Chrome, Firefox, Edge), support tabbed browsing or tabbed interfaces. You can switch between these tabs using the following shortcuts:</p>
-            <ul>
-                <li><strong>Ctrl + Tab</strong>: Move to the next tab.</li>
-                <li><strong>Ctrl + Shift + Tab</strong>: Move to the previous tab.</li>
-            </ul>
-            <p>This is helpful for efficiently navigating between multiple open pages or documents without using a mouse.</p>
-            <p>Additionally, you can jump directly to a specific tab using <strong>Ctrl + 1</strong> through <strong>Ctrl + 8</strong>. For example:</p>
-            <ul>
-                <li><strong>Ctrl + 1</strong>: Go to the first tab</li>
-                <li><strong>Ctrl + 2</strong>: Go to the second tab</li>
-                <li>...and so on, up to <strong>Ctrl + 8</strong>.</li>
-                <li><strong>Ctrl + 9</strong>: Always takes you to the last tab</li>
-            </ul>
-            <p>These shortcuts are essential for browsing the web or managing multiple documents in a single application window.</p>
-<h3 id="skiptovideo">Video Lesson</h3>
-<div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Switching Between Tabs.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
-
-        `
-},
+                        `
+                    }
                 ]
             },
             apps: {
-                title: "Using Built-in Applications",
+                title: "Notepad, Wordpad, Calculater",
                 subPages: [
-                    {
-                        title: "1. Introduction to Notepad",
+                                     {
+                        title: "1. Using Notepad (Text Editor)",
                         content: `
 <a href="#skiptovideo">Skip to video lesson</a>
 
@@ -1271,19 +1364,18 @@
             <li>Great for learning typing and basic keyboard navigation</li>
         </ul>
         <p>Notepad is also screen reader-friendly and works well with keyboard commands.</p>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Using Notepad (Text Editor) - Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Introduction to Notepad.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Introduction to Notepad.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
                         `
                     },
 {
@@ -1302,19 +1394,18 @@
             <li>Press <strong>Alt + F4</strong> to close the window.</li>
             <li>If you have unsaved changes, a dialog box will appear. Use <strong>Tab</strong> and <strong>Enter</strong> to save, discard, or cancel.</li>
         </ul>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Opening and Closing Notepad-Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Opening and Closing Notepad.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Opening and Closing Notepad.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
     `
 },
 {
@@ -1359,20 +1450,18 @@
             <li><strong>Ctrl + V:</strong> Paste copied or cut text</li>
         </ul>
 
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Typing and Editing Text in Notepad-Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Typing and Editing Text in Notepad.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Typing and Editing Text in Notepad.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
-
 
     `
 },
@@ -1389,19 +1478,18 @@
             <li>Use <strong>Tab</strong> to navigate to the Save button and press <strong>Enter</strong>.</li>
         </ul>
         <p>To save with a specific extension like <strong>.html</strong> or <strong>.txt</strong>, type the full name such as <code>myfile.html</code> in the file name field.</p>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Saving a File in Notepad-Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Saving a File in Notepad.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Saving a File in Notepad.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
 
     `
 },
@@ -1421,20 +1509,18 @@
             <li><strong>View:</strong> Status Bar (only visible if Word Wrap is off)</li>
             <li><strong>Help:</strong> View Help, About Notepad</li>
         </ul>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Using Menus in Notepad-Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Using Menus in Notepad.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Using Menus in Notepad.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
-
     `
 },
 {
@@ -1469,26 +1555,25 @@
         </ul>
 
         <p>These tools improve your efficiency while editing text, especially for code or structured data. All are fully keyboard and screen reader accessible.</p>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Find, Replace, and Go To in Notepad-Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Find, Replace, and Go To in Notepad.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Find, Replace, and Go To in Notepad.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
 
     `
 },
 
-{
-    title: "7. Introduction to WordPad",
-    content: `
+                    {
+                        title: "7. Using WordPad (Simple Word Processor)",
+                        content: `
 <a href="#skiptovideo">Skip to video lesson</a>
 
         <p>WordPad is a basic word processor that comes with Windows. It offers more features than Notepad, such as bold, italic, font changes, and paragraph alignment. It's useful for creating simple documents with formatting while still being accessible with a screen reader.</p>
@@ -1523,25 +1608,24 @@
 
         <h3>Accessibility Tips</h3>
         <p>WordPad works well with screen readers. Use the <strong>Alt</strong> key to access the ribbon menu. Use arrow keys to navigate between tabs like Home, View, and Print.</p>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Using WordPad (Simple Word Processor) - Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Introduction to WordPad.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Introduction to WordPad.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
-
-    `
-},
-{
-    title: "8. Using the Calculator",
-    content: `
+                            <p><em>In the next topic, you'll learn how to use the built-in Windows Calculator.</em></p>
+                        `
+                    },
+                    {
+                        title: "8. Using Calculator",
+                        content: `
 <a href="#skiptovideo">Skip to video lesson</a>
 
         <p>The Calculator in Windows is a helpful tool for performing basic arithmetic, scientific calculations, and more. It is fully accessible with screen readers and works well with keyboard shortcuts.</p>
@@ -1574,31 +1658,28 @@
 
         <h3>Screen Reader Tips</h3>
         <p>Calculator buttons are read clearly by screen readers. You can use <strong>Tab</strong> to move between groups, and arrow keys to navigate within those groups. Use <strong>Enter</strong> to press a selected button.</p>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Using Calculator - Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Using the Calculator.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Using the Calculator.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
-
-
-    `
-},
-
+                            <p><em>This concludes the Basic Applications module. Next, we will cover Accessibility and Security.</em></p>
+                        `
+                    }
                 ]
             },
             accessibility: {
                 title: "Accessibility and Security",
                 subPages: [
                     {
-                        title: "1. Accessibility Features",
+                        title: "1. Windows Accessibility Features",
                         content: `
 <a href="#skiptovideo">Skip to video lesson</a>
 
@@ -1620,23 +1701,23 @@
     <li><strong>Toggle Keys:</strong> Plays a sound when pressing Caps Lock, Num Lock, or Scroll Lock, which helps users know when these keys are turned on or off. You can enable it in Ease of Access Keyboard settings.</li>
 </ul>
 <p>All these features are available in the <strong>Ease of Access Center</strong>. To open it, search for "Ease of Access" in the Start Menu or press <strong>Windows key + U</strong>.</p>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Windows Accessibility Features - Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Accessibility and Security.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Accessibility and Security.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
-`
+                            <p><em>In the next topic, we will discuss basic computer security practices.</em></p>
+                        `
                     },
                     {
-                        title: "2. Basic Security Practices",
+                        title: "2. Basic Computer Security",
                         content: `
 <a href="#skiptovideo">Skip to video lesson</a>
 
@@ -1679,20 +1760,19 @@
     </li>
 </ul>
 <p>Practicing good keyboard-based security habits helps keep your digital life secure, especially for screen reader users.</p>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Basic Computer Security - Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Basic Security Practices.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Basic Security Practices.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
-
+                            <p><em>This concludes the Accessibility and Security module. Next, you'll learn basic troubleshooting.</em></p>
                         `
                     }
                 ]
@@ -1701,7 +1781,7 @@
                 title: "Troubleshooting Basics",
                 subPages: [
                     {
-                        title: "1. Common Computer Problems",
+                        title: "1. Common Computer Problems and Solutions",
                         content: `
 <a href="#skiptovideo">Skip to video lesson</a>
 
@@ -1734,20 +1814,19 @@
                                     </ul>
                                 </li>
                             </ul>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Common Computer Problems and Solutions - Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Common Computer Problems.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Common Computer Problems.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
-
+                            <p><em>In the next topic, we will discuss when and how to seek further help.</em></p>
                         `
                     },
                     {
@@ -1768,23 +1847,23 @@
                                 <li>Use the <strong>Up/Down arrow keys</strong> to select "Restart" or "Shut down" and press <strong>Enter</strong>.</li>
                             </ul>
                             <p>Another quick way to shut down is from the desktop (<strong>Windows key + D</strong> to get to desktop), then press <strong>Alt + F4</strong>, and use <strong>Up/Down arrow keys</strong> to select "Shut down" or "Restart" from the dialog box.</p>
-<h3 id="skiptovideo">Video Lesson</h3>
+<h3 id="skiptovideo">Restarting and Shutting Down- Video Lesson</h3>
 <div class="video-container">
-  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="computer_telugu_videos/Restarting and Shutting Down.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="computer_telugu_videos/Restarting and Shutting Down.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+        <button class="playPause">Play</button>
+        <button class="mute">Mute</button>
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-
+                            <p><em>Congratulations on completing the Basic Computer Course for Blind Users! Keep practicing and exploring.</em></p>
                         `
                     }
                 ]
-            },
+            }
         };
 
         const tabButtons = document.querySelectorAll('.tab-button');
@@ -1792,166 +1871,181 @@
         const prevButton = document.getElementById('prevButton');
         const nextButton = document.getElementById('nextButton');
 
-        let currentTopicKey = 'intro'; // Keep track of the currently active topic
-        let currentSubPageIndex = 0; // Keep track of the current sub-page within a topic
+        let currentTopicKey = 'intro';
+        let currentSubPageIndex = 0;
 
-        // --- Function to update content ---
-        function updateContent(shouldFocusContent = true) { // Added a parameter
-            const topic = topicsData[currentTopicKey];
-            let contentToDisplay = '';
-            let totalSubPages = 1;
-
-            if (topic.subPages) {
-                contentToDisplay = `<h2>${topic.subPages[currentSubPageIndex].title}</h2>${topic.subPages[currentSubPageIndex].content}`;
-                totalSubPages = topic.subPages.length;
-            } else {
-                contentToDisplay = `<h2>${topic.title}</h2>${topic.content}`;
-                currentSubPageIndex = 0; // Reset sub-page index for single-page topics
+        function loadContent(topicKey, subPageIndex = 0) {
+            const topic = topicsData[topicKey];
+            if (!topic) {
+                console.error("Topic not found:", topicKey);
+                return;
             }
 
-            topicContentDiv.innerHTML = contentToDisplay;
+            let contentToLoad = '';
+            let titleToSet = '';
+            let hasSubPages = false;
 
-            const selectedTabButton = document.getElementById(`tab-${currentTopicKey}`);
-            if (selectedTabButton) {
-                topicContentDiv.setAttribute('aria-labelledby', selectedTabButton.id);
-            }
-
-            // --- IMPORTANT CHANGE HERE ---
-            // Focus the main heading within the content panel or the panel itself
-            if (shouldFocusContent) {
-                const heading = topicContentDiv.querySelector('h2');
-                if (heading) {
-                    heading.setAttribute('tabindex', '-1'); // Make heading programmatically focusable
-                    heading.focus();
+            if (topic.subPages && topic.subPages.length > 0) {
+                hasSubPages = true;
+                if (subPageIndex >= 0 && subPageIndex < topic.subPages.length) {
+                    contentToLoad = topic.subPages[subPageIndex].content;
+                    titleToSet = topic.subPages[subPageIndex].title;
                 } else {
-                    topicContentDiv.focus(); // Fallback to focusing the panel
+                    console.error("Sub-page index out of bounds:", subPageIndex);
+                    return;
                 }
-            }
-            // --- END IMPORTANT CHANGE ---
-
-            updateNavigationButtons(totalSubPages);
-        }
-
-        // --- Function to update navigation button states ---
-        function updateNavigationButtons(totalSubPages) {
-            prevButton.disabled = (currentSubPageIndex === 0 && Array.from(tabButtons).findIndex(btn => btn.id === `tab-${currentTopicKey}`) === 0);
-
-            const currentTopicIndex = Array.from(tabButtons).findIndex(btn => btn.id === `tab-${currentTopicKey}`);
-            const totalTopics = tabButtons.length;
-
-            if (totalSubPages > 1) {
-                nextButton.disabled = (currentSubPageIndex === totalSubPages - 1 && currentTopicIndex === totalTopics -1); // Disable if last sub-page AND last main topic
             } else {
-                nextButton.disabled = (currentTopicIndex === totalTopics - 1);
+                contentToLoad = topic.content;
+                titleToSet = topic.title;
+            }
+
+            topicContentDiv.innerHTML = `<h2>${titleToSet}</h2>${contentToLoad}`;
+            currentTopicKey = topicKey;
+            currentSubPageIndex = subPageIndex;
+            updateNavigationButtons();
+            setupVideoPlayers(); // Call the function to set up video players
+            topicContentDiv.focus(); // Set focus to the new content for screen readers
+        }
+
+        function updateNavigationButtons() {
+            const topic = topicsData[currentTopicKey];
+            const isFirstTopic = currentTopicKey === 'intro';
+            const isLastTopic = currentTopicKey === Object.keys(topicsData)[Object.keys(topicsData).length - 1];
+
+            const currentTopicIndex = Object.keys(topicsData).indexOf(currentTopicKey);
+
+            let hasPrevSubPage = false;
+            let hasNextSubPage = false;
+
+            if (topic.subPages && topic.subPages.length > 0) {
+                hasPrevSubPage = currentSubPageIndex > 0;
+                hasNextSubPage = currentSubPageIndex < topic.subPages.length - 1;
+            }
+
+            prevButton.disabled = isFirstTopic && !hasPrevSubPage;
+            nextButton.disabled = isLastTopic && !hasNextSubPage;
+
+            // If it's the first sub-page of a topic, and not the very first topic, enable prevButton
+            if (currentSubPageIndex === 0 && currentTopicIndex > 0) {
+                prevButton.disabled = false;
+            }
+
+            // If it's the last sub-page of a topic, and not the very last topic, enable nextButton
+            if (topic.subPages && currentSubPageIndex === topic.subPages.length - 1 && currentTopicIndex < Object.keys(topicsData).length - 1) {
+                nextButton.disabled = false;
             }
         }
 
-        // --- Event Listener for Tab Clicks ---
+
         tabButtons.forEach(button => {
             button.addEventListener('click', () => {
+                const targetPanelId = button.getAttribute('aria-controls');
+                const targetTopicKey = targetPanelId.replace('panel-', '');
+
+                // Deactivate current tab
                 tabButtons.forEach(btn => {
                     btn.setAttribute('aria-selected', 'false');
                     btn.setAttribute('tabindex', '-1');
                 });
 
+                // Activate clicked tab
                 button.setAttribute('aria-selected', 'true');
                 button.setAttribute('tabindex', '0');
 
-                currentTopicKey = button.id.replace('tab-', '');
-                currentSubPageIndex = 0;
-                updateContent(true); // Always focus content when a new main tab is clicked
+                loadContent(targetTopicKey, 0); // Always load the first sub-page when switching topics via tabs
             });
         });
 
-        // --- Event Listener for Previous Button ---
         prevButton.addEventListener('click', () => {
             const topic = topicsData[currentTopicKey];
             if (topic.subPages && currentSubPageIndex > 0) {
-                currentSubPageIndex--;
-                updateContent(true); // Focus content
+                loadContent(currentTopicKey, currentSubPageIndex - 1);
             } else {
-                const currentTopicIndex = Array.from(tabButtons).findIndex(btn => btn.id === `tab-${currentTopicKey}`);
+                // Move to the last sub-page of the previous main topic
+                const topicKeys = Object.keys(topicsData);
+                const currentTopicIndex = topicKeys.indexOf(currentTopicKey);
                 if (currentTopicIndex > 0) {
-                    const prevTopicButton = tabButtons[currentTopicIndex - 1];
-                    // Before clicking the previous tab, set the subPageIndex to the last sub-page of that topic
-                    const prevTopicData = topicsData[prevTopicButton.id.replace('tab-', '')];
-                    if (prevTopicData.subPages) {
-                        currentSubPageIndex = prevTopicData.subPages.length - 1;
-                    } else {
-                        currentSubPageIndex = 0; // For single-page topics
-                    }
-                    prevTopicButton.click(); // This will call updateContent
+                    const prevTopicKey = topicKeys[currentTopicIndex - 1];
+                    const prevTopic = topicsData[prevTopicKey];
+                    const lastSubPageIndex = (prevTopic.subPages ? prevTopic.subPages.length - 1 : 0);
+                    loadContent(prevTopicKey, lastSubPageIndex);
+
+                    // Update tab selection for the new main topic
+                    document.querySelector(`[aria-controls="panel-${currentTopicKey}"]`).setAttribute('aria-selected', 'false');
+                    document.querySelector(`[aria-controls="panel-${prevTopicKey}"]`).setAttribute('aria-selected', 'true');
+                    document.querySelector(`[aria-controls="panel-${currentTopicKey}"]`).setAttribute('tabindex', '-1');
+                    document.querySelector(`[aria-controls="panel-${prevTopicKey}"]`).setAttribute('tabindex', '0');
                 }
             }
         });
 
-        // --- Event Listener for Next Button ---
         nextButton.addEventListener('click', () => {
             const topic = topicsData[currentTopicKey];
             if (topic.subPages && currentSubPageIndex < topic.subPages.length - 1) {
-                currentSubPageIndex++;
-                updateContent(true); // Focus content
+                loadContent(currentTopicKey, currentSubPageIndex + 1);
             } else {
-                const currentTopicIndex = Array.from(tabButtons).findIndex(btn => btn.id === `tab-${currentTopicKey}`);
-                const totalTopics = tabButtons.length;
-                if (currentTopicIndex < totalTopics - 1) {
-                    const nextTopicButton = tabButtons[currentTopicIndex + 1];
-                    currentSubPageIndex = 0; // Always start at the first sub-page of the new main topic
-                    nextTopicButton.click(); // This will call updateContent
+                // Move to the first sub-page of the next main topic
+                const topicKeys = Object.keys(topicsData);
+                const currentTopicIndex = topicKeys.indexOf(currentTopicKey);
+                if (currentTopicIndex < topicKeys.length - 1) {
+                    const nextTopicKey = topicKeys[currentTopicIndex + 1];
+                    loadContent(nextTopicKey, 0);
+
+                    // Update tab selection for the new main topic
+                    document.querySelector(`[aria-controls="panel-${currentTopicKey}"]`).setAttribute('aria-selected', 'false');
+                    document.querySelector(`[aria-controls="panel-${nextTopicKey}"]`).setAttribute('aria-selected', 'true');
+                    document.querySelector(`[aria-controls="panel-${currentTopicKey}"]`).setAttribute('tabindex', '-1');
+                    document.querySelector(`[aria-controls="panel-${nextTopicKey}"]`).setAttribute('tabindex', '0');
                 }
             }
         });
 
-        // Initial content load when the page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            const initialTab = document.querySelector('.tab-button[aria-selected="true"]');
-            if (initialTab) {
-                currentTopicKey = initialTab.id.replace('tab-', '');
-            } else {
-                currentTopicKey = 'intro';
-                document.getElementById('tab-intro').setAttribute('aria-selected', 'true');
-                document.getElementById('tab-intro').setAttribute('tabindex', '0');
-            }
-            updateContent(true); // Focus content on initial load
-        });
 
-        // --- Keyboard Navigation for Tabs (Accessibility) ---
-        document.querySelector('.tab-list').addEventListener('keydown', (e) => {
-            const currentActiveTab = document.querySelector('.tab-button[aria-selected="true"]');
-            let newTab = null;
+        // Initial load
+        loadContent('intro', 0);
 
-            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                e.preventDefault();
-                const nextTab = currentActiveTab.parentElement.nextElementSibling;
-                if (nextTab && nextTab.querySelector('.tab-button')) {
-                    newTab = nextTab.querySelector('.tab-button');
-                } else {
-                    newTab = tabButtons[0];
-                }
-            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                e.preventDefault();
-                const prevTab = currentActiveTab.parentElement.previousElementSibling;
-                if (prevTab && prevTab.querySelector('.tab-button')) {
-                    newTab = prevTab.querySelector('.tab-button');
-                } else {
-                    newTab = tabButtons[tabButtons.length - 1];
-                }
-            } else if (e.key === 'Home') {
-                e.preventDefault();
-                newTab = tabButtons[0];
-            } else if (e.key === 'End') {
-                e.preventDefault();
-                newTab = tabButtons[tabButtons.length - 1];
-            }
 
-            if (newTab && newTab !== currentActiveTab) {
-                newTab.focus(); // Focus the tab first
-                newTab.click(); // Then trigger the click to update content (which will now focus the content)
-            }
-        });
+        function setupVideoPlayers() {
+            document.querySelectorAll('.video-container').forEach(container => {
+                const video = container.querySelector('.custom-video');
+                const playPauseButton = container.querySelector('.playPause');
+                const muteButton = container.querySelector('.mute');
+                const fullscreenButton = container.querySelector('.fullscreen');
 
+                // Set initial button text based on video state
+                video.paused ? (playPauseButton.textContent = 'Play') : (playPauseButton.textContent = 'Pause');
+                video.muted ? (muteButton.textContent = 'Unmute') : (muteButton.textContent = 'Mute');
+
+                playPauseButton.onclick = () => {
+                    if (video.paused) {
+                        video.play();
+                        playPauseButton.textContent = 'Pause';
+                    } else {
+                        video.pause();
+                        playPauseButton.textContent = 'Play';
+                    }
+                };
+
+                muteButton.onclick = () => {
+                    video.muted = !video.muted;
+                    video.muted ? (muteButton.textContent = 'Unmute') : (muteButton.textContent = 'Mute');
+                };
+
+                fullscreenButton.onclick = () => {
+                    if (video.requestFullscreen) {
+                        video.requestFullscreen();
+                    } else if (video.webkitRequestFullscreen) { /* Safari */
+                        video.webkitRequestFullscreen();
+                    } else if (video.msRequestFullscreen) { /* IE11 */
+                        video.msRequestFullscreen();
+                    }
+                };
+
+                // Update play/pause button text when video state changes
+                video.onplay = () => playPauseButton.textContent = 'Pause';
+                video.onpause = () => playPauseButton.textContent = 'Play';
+            });
+        }
     </script>
-<script src="video_script.js"></script>
-
 </body>
 </html>
