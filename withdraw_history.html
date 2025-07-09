@@ -214,11 +214,9 @@
           let calculatedReferralEarnings = 0;
           refs.forEach(r => {
             if (r.paymentStatus === "Paid") {
-              if (r.level === 1) calculatedReferralEarnings += 240;
-              else if (r.level === 2) calculatedReferralEarnings += 150;
-              else if (r.level === 3) calculatedReferralEarnings += 110;
-              else if (r.level === 4) calculatedReferralEarnings += 60;
-              else if (r.level === 5) calculatedReferralEarnings += 40;
+              if (r.level === 1) calculatedReferralEarnings += 150;
+              else if (r.level === 2) calculatedReferralEarnings += 100;
+              else if (r.level === 3) calculatedReferralEarnings += 50;
             }
           });
 

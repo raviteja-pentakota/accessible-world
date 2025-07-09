@@ -440,15 +440,12 @@
             <div id="paymentDetailsDisplay" class="payment-display-section">
                 </div>
 
-            <div class="modal-input-group">
-                <label for="screenshotUpload">Upload Screenshot (Optional):</label>
-                <input type="file" id="screenshotUpload" accept="image/*">
-
+<div class="modal-input-group">
                 <input type="checkbox" id="paymentConfirmationCheckbox">
                 <label for="paymentConfirmationCheckbox">Select this checkbox if you have already made the payment.</label>
                 <p>Without making the payment, you cannot submit this form.</p>
-            </div>
-            <div class="modal-actions">
+            </div>            
+<div class="modal-actions">
                 <button id="submitManualPayment" disabled>Submit Payment Details</button>
                 <button id="cancelManualPayment">Cancel</button>
             </div>
@@ -544,8 +541,6 @@
         const paymentEmail = document.getElementById("paymentEmail");
         const chosenPaymentMethod = document.getElementById("chosenPaymentMethod");
         const paymentDetailsDisplay = document.getElementById("paymentDetailsDisplay");
-        const transactionIdInput = document.getElementById("transactionId");
-        const screenshotUploadInput = document.getElementById("screenshotUpload");
         const paymentConfirmationCheckbox = document.getElementById("paymentConfirmationCheckbox");
         const submitManualPaymentBtn = document.getElementById("submitManualPayment");
         const cancelManualPaymentBtn = document.getElementById("cancelManualPayment");
@@ -577,20 +572,17 @@
                 chosenPaymentMethod.value = "";
                 paymentDetailsDisplay.innerHTML = "";
                 paymentDetailsDisplay.style.display = "none";
-                transactionIdInput.value = "";
-                screenshotUploadInput.value = ""; // Clear file input
                 paymentConfirmationCheckbox.checked = false;
                 submitManualPaymentBtn.disabled = true;
             } else if (modalElement === withdrawModal) {
                 paymentMethodDropdown.value = "";
                 paymentDetailsDiv.style.display = "none";
-                paymentIdInput.value = "";
                 withdrawAmountInput.value = "";
                 submitWithdrawalButton.disabled = true;
             }
         }
 
-        async function fetchReferralLevels(uid, level = 1, max = 5) {
+        async function fetchReferralLevels(uid, level = 1, max = 3) {
             if (level > max) return [];
             const q = query(collection(db, "users"), where("referredBy", "==", uid));
             const snap = await getDocs(q);
@@ -643,7 +635,9 @@
                     card.innerHTML = `
                         <p><strong>User:</strong> ${data.fullName} (${data.email})</p>
                         <p><strong>Mobile:</strong> ${data.phoneNumber}</p>
-                        <p><strong>Payment Method:</strong> ${data.paymentMethod}</p>
+                        <p><strong>Payment Method:</strong> ${datascreenshot
+
+.paymentMethod}</p>
                         ${data.transactionId ? `<p><strong>Transaction ID:</strong> ${data.transactionId}</p>` : ''}
                         ${data.screenshotUrl ? `<p><a href="${data.screenshotUrl}" target="_blank">View Screenshot</a></p>` : ''}
                         <p><strong>Amount:</strong> ₹${data.amount || 'N/A'}</p>
@@ -897,9 +891,6 @@
         // Submit Manual Payment Button
         submitManualPaymentBtn.onclick = async () => {
             const selectedMethod = chosenPaymentMethod.value;
-            const transactionId = transactionIdInput.value.trim(); // Trim whitespace
-            const screenshotFile = screenshotUploadInput.files[0];
-
             if (!selectedMethod) {
                 alert("Please select a payment method.");
                 return;
@@ -909,24 +900,6 @@
                 return;
             }
 
-            // Optional: Basic validation for transactionId if a screenshot is not uploaded
-            if (!screenshotFile && !transactionId) {
-                alert("Please provide either a Transaction ID or upload a screenshot for verification.");
-                return;
-            }
-
-            let screenshotUrl = null;
-            if (screenshotFile) {
-                const storageRef = ref(storage, `payment_screenshots/${currentUserId}_${Date.now()}_${screenshotFile.name}`);
-                try {
-                    const snapshot = await uploadBytes(storageRef, screenshotFile);
-                    screenshotUrl = await getDownloadURL(snapshot.ref);
-                } catch (error) {
-                    console.error("Error uploading screenshot:", error);
-                    alert("Failed to upload screenshot. Please try again or contact support.");
-                    return;
-                }
-            }
 
             try {
                 await addDoc(collection(db, "manualPayments"), {
@@ -935,8 +908,6 @@
                     phoneNumber: currentUserMobile,
                     email: currentUserEmail,
                     paymentMethod: selectedMethod,
-                    transactionId: transactionId,
-                    screenshotUrl: screenshotUrl,
                     amount: 1000, // Fixed amount for membership
                     timestamp: serverTimestamp(),
                     status: "Pending" // Initial status for manual payments
