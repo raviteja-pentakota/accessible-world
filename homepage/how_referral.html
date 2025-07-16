@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Referral System Works?</title>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    .dashboard {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2, h3 {
+      text-align: center;
+      color: #333;
+    }
+    .subscription-info, .info, .note {
+      background: #eef9ff;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    p {
+      font-size: 16px;
+      color: #555;
+      margin: 8px 0;
+    }
+    .note {
+      background: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffeeba;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <h2>How Referral System Works?</h2>
+
+    <div class="subscription-info">
+      <h3>Joining Subscription Fee Details:</h3>
+      <p><strong>Total Joining Fee:</strong> Rs. 1000</p>
+      <p><strong>Admin Share:</strong> Rs. 700</p>
+      <p><strong>Referral Distribution:</strong> Rs. 300</p>
+    </div>
+
+    <div class="info">
+      <h3>Referral Earnings Distribution (3 Levels):</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Level</th>
+            <th>Percentage</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Level 1</td>
+            <td>15%</td>
+            <td>Rs. 150</td>
+          </tr>
+          <tr>
+            <td>Level 2</td>
+            <td>10%</td>
+            <td>Rs. 100</td>
+          </tr>
+          <tr>
+            <td>Level 3</td>
+            <td>5%</td>
+            <td>Rs. 50</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+<p><strong>Disclaimer:</strong> The referral amounts are subject to change at any time without prior notice.</p>
+  </div>
+</body>
+</html>

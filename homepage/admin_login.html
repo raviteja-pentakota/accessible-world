@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Accessible World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      padding: 25px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2, p {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background: #3399cc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #287ba3;
+    }
+
+    .redirect {
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Welcome Back!</h2>
+    <p>
+      Ready to turn knowledge into income? With Accessible World, you get training, tools, and a 5-level referral system.
+      Accessible Learning and Win is a platform that offers free accessibility testing and computer training.
+      Refer friends, grow together, and earn while learning in a fully inclusive environment!
+    </p>
+    <p><strong>Important Information:</strong><br>
+      Do not login or register. This site is under maintenance.</p>
+
+    <form id="loginForm">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="redirect">
+      <p>Don't have an account? <a href="register.html">Register here</a></p>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
+      authDomain: "accessibleworld-7f599.firebaseapp.com",
+      projectId: "accessibleworld-7f599",
+      storageBucket: "accessibleworld-7f599.appspot.com",
+      messagingSenderId: "264437218598",
+      appId: "1:264437218598:web:cae58c1e578c7b08b815e7",
+      measurementId: "G-1QRWXYRZ76"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.getElementById("loginForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          alert("Login successful!");
+          window.location.href = "admin_dashboard.html";
+        })
+        .catch((error) => {
+          alert("Login failed: " + error.message);
+        });
+    });
+  </script>
+
+  <script>
+    // Auto-focus the email input
+    window.onload = function() {
+      const emailInput = document.getElementById("email");
+      if (emailInput) {
+        emailInput.focus();
+      }
+    };
+  </script>
+
+</body>
+</html>

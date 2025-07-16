@@ -1,0 +1,33 @@
+.video-container {
+  position: relative;
+  width: 720px;
+  margin: auto;
+}
+
+video {
+  width: 100%;
+  height: auto;
+  background: black;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #222;
+  padding: 10px;
+}
+
+.controls button {
+  background: #444;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.controls button:hover {
+  background: #666;
+}
