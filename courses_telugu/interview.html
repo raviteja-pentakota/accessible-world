@@ -120,18 +120,19 @@
             </div>
         </div>
     </header>
-<nav aria-label="main">
+    <nav aria-label="main">
         <ul type="none">
             <li><a href="courses.html">Go to Courses Home Page</a></li>
-            <li><a href="dashboard.html">Go to dashboard page</a></li>
-
+            <li><a href="/dashboard.html">Go to dashboard page</a></li>
         </ul>
-</nav>
+    </nav>
     <nav aria-label="Course Navigation">
         <ul type="none">
-<li><a href="basic_computers.html">Basic Computers</a></li>
-            <li><a href="programming_language.html">Programming Languages</a></li>
-            <li><a href="accessibility.html">Web Accessibility</a></li>
+<li><a href="basic_computers_telugu.html">Basic Computers with Telugu explanation</a></li>
+            <li><a href="programming_language_telugu.html">Programming Languages with Telugu explanation</a></li>
+            <li><a href="programming_language_english.html">Programming Languages with English explanation</a>
+            <li><a href="accessibility_telugu.html">Web Accessibility with Telugu explanation</a></li>
+            <li><a href="accessibility_english.html">Web Accessibility with English explanation</a></li>
             <li><a href="interview.html">Interview Questions</a></li>
             <li><a href="gk.html">GK Bits</a></li>
         </ul>
@@ -283,15 +284,15 @@ Click on each category below to explore and strengthen your preparation!
                         bodyElement.style.display = 'block';
                     } else {
                         alert("Please join our membership to access the courses.");
-                        window.location.href = "login.html";
+                        window.location.href = "/login.html";
                     }
                 } else {
                     alert("Error: Could not verify your membership. Please log in again.");
-                    window.location.href = "login.html";
+                    window.location.href = "/login.html";
                 }
             } else {
                 alert("Please log in to access the courses.");
-                window.location.href = "login.html";
+                window.location.href = "/login.html";
             }
         });
         // Event listener for the profile button
@@ -304,7 +305,7 @@ Click on each category below to explore and strengthen your preparation!
         logoutButton.addEventListener('click', async () => {
             try {
                 await signOut(auth);
-                window.location.href = "index.html";
+                window.location.href = "/index.html";
             } catch (error) {
                 console.error('Error signing out:', error);
                 alert('Error signing out. Please try again.');

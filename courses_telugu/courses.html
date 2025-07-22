@@ -158,14 +158,15 @@
     <nav aria-label="main">
         <ul type="none">
             <li><a href="courses.html">Go to Courses Home Page</a></li>
-            <li><a href="dashboard.html">Go to dashboard page</a></li>
+            <li><a href="/dashboard.html">Go to dashboard page</a></li>
         </ul>
     </nav>
     <nav aria-label="Course Navigation">
         <ul type="none">
-<li><a href="basic_computers.html">Basic Computers</a></li>
-            <li><a href="programming_language.html">Programming Languages</a></li>
-            <li><a href="accessibility.html">Web Accessibility</a></li>
+<li><a href="basic_computers_telugu.html">Basic Computers with Telugu explanation</a></li>
+            <li><a href="programming_language_english.html">Programming Languages with English explanation</a>
+            <li><a href="accessibility_telugu.html">Web Accessibility with Telugu explanation</a></li>
+            <li><a href="accessibility_english.html">Web Accessibility with English explanation</a></li>
             <li><a href="interview.html">Interview Questions</a></li>
             <li><a href="gk.html">GK Bits</a></li>
         </ul>
@@ -233,17 +234,17 @@
                     } else {
                         console.log("User is logged in but has not paid. Redirecting to index.");
                         alert("Please join our membership to access the courses.");
-                        window.location.href = "login.html"; // Or your pricing page
+                        window.location.href = "/login.html"; // Or your pricing page
                     }
                 } else {
                     console.error("User data not found for UID:", uid);
                     alert("Error: Could not verify your membership. Please log in again.");
-                    window.location.href = "login.html"; // Or your login page
+                    window.location.href = "/login.html"; // Or your login page
                 }
             } else {
                 console.log("User is not logged in. Redirecting to index.");
                 alert("Please log in to access the courses.");
-                window.location.href = "login.html"; // Or your login page
+                window.location.href = "/login.html"; // Or your login page
             }
         });
 
@@ -258,7 +259,7 @@
             try {
                 await signOut(auth);
                 console.log('User signed out');
-                window.location.href = "index.html"; // Redirect to your homepage or login page
+                window.location.href = "/index.html"; // Redirect to your homepage or login page
             } catch (error) {
                 console.error('Error signing out:', error);
                 alert('Error signing out. Please try again.');
