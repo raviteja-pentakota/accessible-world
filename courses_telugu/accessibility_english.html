@@ -2125,7 +2125,7 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
 </p>
                     <h3>English video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_english_videos/text spacing.mp4" type="video/mp4">
+    <source src="wcag_english_videos/text-spacing.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
@@ -2654,7 +2654,7 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
 </script>
                     <h3>English video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_english_videos/character key shortcut.mp4" type="video/mp4">
+    <source src="wcag_english_videos/Character Key Shortcuts.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
@@ -2704,7 +2704,7 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
     </p>
                     <h3>English video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_english_videos/timing eduectable.mp4" type="video/mp4">
+    <source src="wcag_english_videos/Timing Adjustable.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
@@ -2756,7 +2756,7 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
     </p>
                     <h3>English video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_english_videos/pause stop hide.mp4" type="video/mp4">
+    <source src="wcag_english_videos/Pause, Stop, Hide.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
@@ -2809,7 +2809,7 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
     </p>
                     <h3>English video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_english_videos/flasses and below.mp4" type="video/mp4">
+    <source src="wcag_english_videos/Flashes or Below Thresholdb.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
@@ -2929,7 +2929,7 @@ Other ways to meet this rule include using ARIA landmarks (like <code>main</code
 </div>
                     <h3>English video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_english_videos/bypass blocks.mp4" type="video/mp4">
+    <source src="wcag_english_videos/Bypass Blocks.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
@@ -3033,7 +3033,7 @@ The title should be short, specific, and related to the page’s main content. I
 </main>
                     <h3>English video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_english_videos/page title.mp4" type="video/mp4">
+    <source src="wcag_english_videos/Page Titled.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
@@ -3085,67 +3085,134 @@ Good focus order means:
         </div>
 
 
-<h3>Pass Examples:</h3>
+<section>
+  <h2>Pass Examples</h2>
 
-<!-- Example 1 -->
-<p>✅ Focus moves logically from top to bottom:</p>
-<pre><code>
-&lt;header&gt;
-  &lt;a href="#home"&gt;Home&lt;/a&gt;
-  &lt;a href="#about"&gt;About&lt;/a&gt;
-&lt;/header&gt;
-&lt;main&gt;
-  &lt;button&gt;Start&lt;/button&gt;
-&lt;/main&gt;
-&lt;footer&gt;
-  &lt;a href="#contact"&gt;Contact Us&lt;/a&gt;
-&lt;/footer&gt;
-</code></pre>
-<p>Focus goes: Home → About → Start → Contact Us</p>
+  <!-- Pass Example 1 -->
+  <h3>✅ Focus moves logically from top to bottom</h3>
+  <p>
+    In the example below, pressing <kbd>Tab</kbd> moves the focus logically:
+  </p>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+  </nav>
+  <main>
+    <button>Enroll Now</button>
+  </main>
+  <footer>
+    <a href="#contact">Contact Us</a>
+  </footer>
+  <p>
+    <strong>Focus Order:</strong> Home → About → Enroll Now → Contact Us
+  </p>
+  <hr>
 
-<!-- Example 2 -->
-<p>✅ Modal opens, traps focus, and returns focus when closed:</p>
-<pre><code>
-&lt;button id="openModal"&gt;Open Help&lt;/button&gt;
+  <!-- Pass Example 2 -->
+  <h3>✅ Modal opens, traps focus, and returns focus when closed</h3>
+  <button id="openModal">Open Help</button>
 
-&lt;div id="modal" role="dialog" aria-modal="true" hidden&gt;
-  &lt;button id="closeModal"&gt;Close&lt;/button&gt;
-  &lt;p&gt;This is a help dialog.&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-<p>
-When the "Open Help" button is activated:<br>
-– Focus moves to the modal’s close button (focus reveal).<br>
-– User can tab inside the modal.<br>
-– On closing, focus returns to "Open Help" (focus return).
-</p>
+  <div id="modal" role="dialog" aria-modal="true" hidden style="border: 2px solid black; padding: 1em; background: #eee; max-width: 300px;">
+    <button id="closeModal">Close</button>
+    <p>This is a help dialog. Use Tab to navigate inside and Escape to close.</p>
+  </div>
 
-<h3>Fail Examples:</h3>
+  <p>
+    When "Open Help" is activated:<br>
+    – Focus moves to "Close"<br>
+    – Tab stays within the modal<br>
+    – On close, focus returns to "Open Help"
+  </p>
+</section>
 
-<!-- Example 1 -->
-<p>❌ Focus jumps unpredictably:</p>
-<pre><code>
-&lt;main&gt;
-  &lt;button&gt;Submit&lt;/button&gt;
-  &lt;a href="#footer"&gt;Footer Link&lt;/a&gt;
-  &lt;input type="text" placeholder="Name"&gt;
-&lt;/main&gt;
-</code></pre>
-<p>Focus jumps: Submit → Footer Link → Name (not in reading order)</p>
+<section>
+  <h2>Fail Examples</h2>
 
-<!-- Example 2 -->
-<p>❌ Modal opens but focus stays behind it, or doesn’t return:</p>
-<pre><code>
-&lt;button&gt;Open Info&lt;/button&gt;
-&lt;div role="dialog"&gt;
-  &lt;p&gt;Some info here&lt;/p&gt;
-  &lt;button&gt;Close&lt;/button&gt;
-&lt;/div&gt;
-</code></pre>
-<p>
-– The modal opens but focus stays on background elements (no focus reveal).<br>
-– When modal closes, focus jumps somewhere else, not back to "Open Info" (no focus return).
-</p>
+  <!-- Fail Example 1 -->
+  <h3>❌ Focus jumps unpredictably</h3>
+  <p>
+    In the example below, the tab order is not logical:
+  </p>
+  <div>
+    <button>Submit</button>
+    <a href="#footer">Go to Footer</a>
+    <input type="text" placeholder="Enter Name">
+  </div>
+  <p>
+    <strong>Focus Order:</strong> Submit → Footer Link → Name (not in reading order)
+  </p>
+  <hr>
+
+  <!-- Fail Example 2 -->
+  <h3>❌ Modal opens but focus stays behind it or doesn’t return</h3>
+  <button id="openBadModal">Open Info</button>
+
+  <div id="badModal" role="dialog" hidden style="border: 2px dashed red; padding: 1em; background: #ffecec; max-width: 300px;">
+    <p>This is a broken modal.</p>
+    <button id="closeBadModal">Close</button>
+  </div>
+
+  <p>
+    – The modal opens but focus stays behind it (no focus reveal).<br>
+    – When modal closes, focus does not return to "Open Info".
+  </p>
+</section>
+
+<script>
+  // Pass Example Modal Logic
+  const openModal = document.getElementById('openModal');
+  const closeModal = document.getElementById('closeModal');
+  const modal = document.getElementById('modal');
+
+  openModal.addEventListener('click', () => {
+    modal.hidden = false;
+    closeModal.focus();
+  });
+
+  closeModal.addEventListener('click', () => {
+    modal.hidden = true;
+    openModal.focus();
+  });
+
+  // Trap focus inside modal (basic example)
+  modal.addEventListener('keydown', (e) => {
+    const focusable = modal.querySelectorAll('button, [tabindex]:not([tabindex="-1"])');
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.key === 'Tab') {
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    } else if (e.key === 'Escape') {
+      modal.hidden = true;
+      openModal.focus();
+    }
+  });
+
+  // Fail Example Modal Logic (broken intentionally)
+  const openBadModal = document.getElementById('openBadModal');
+  const closeBadModal = document.getElementById('closeBadModal');
+  const badModal = document.getElementById('badModal');
+
+  openBadModal.addEventListener('click', () => {
+    badModal.hidden = false;
+    // Focus NOT moved to modal
+  });
+
+  closeBadModal.addEventListener('click', () => {
+    badModal.hidden = true;
+    // Focus NOT returned properly
+  });
+</script>
                     <h3>English video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_english_videos/focus order.mp4" type="video/mp4">
