@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accessibility Testing Course - Accessible World</title>
+    <title>Web development - Accessible World</title>
+  <link rel="stylesheet" href="video_style.css">
+
     <style>
         /* Your existing CSS remains the same */
         body {
@@ -317,7 +319,7 @@
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header>
-        <h1>Welcome to Accessible World Tutorials</h1>
+        <h1>Welcome to Accessible World Tutorials - Web development</h1>
         <div class="profile-container">
             <button id="profileBtn" aria-expanded="false" aria-controls="profileDetails">Profile</button>
             <div id="profileDetails" class="profile-dropdown">
@@ -347,19 +349,30 @@
         </ul>
     </nav>
     <main id="main-content">
-        <h2>Accessibility Testing Course</h2>
+        <h1>Web development course</h1>
         <div class="tab-container">
             <ul class="tab-buttons" role="tablist">
-                <li role="presentation"><button role="tab" id="intro-tab" aria-controls="intro-content" aria-selected="true" class="active">Introduction to HTML</button></li>
+                <li role="presentation"><button role="tab" id="intro-tab" aria-controls="intro-content" aria-selected="true" class="active">HTML Topics</button></li>
             </ul>
         </div>
         <div id="intro-content" class="tab-content active" role="tabpanel" aria-labelledby="intro-tab">
-            <h3>Learning HTML Basics</h3>
             <div id="intro-pages">
                 <div id="intro-page1" class="intro-page active">
-                    <h4>Welcome to HTML Topics</h4>
-                    <p><strong>HTML (HyperText Markup Language)</strong> is the standard language used to create and design the structure of web pages...</p>
-                    <h5>Key Topics We Cover:</h5>
+                    <h2>Lesson 1: Introduction to HTML </h2>
+<a href="#video-lesson1">Jump to video lesson</a>
+<p>
+  HTML stands for HyperText Markup Language. It is the standard language used to create and design web pages. HTML provides the basic structure of a web page by using elements like headings, paragraphs, links, images, lists, and more. These elements are represented by tags such as &lt;h1&gt;, &lt;p&gt;, &lt;a&gt;, &lt;img&gt;, and others.
+</p>
+
+<p>
+  Learning HTML is essential for anyone who wants to build websites or become a web developer. It is the foundation of all web content. Without HTML, there would be no way to display text, images, or multimedia on a webpage. Understanding HTML also helps in learning CSS and JavaScript, which are used to style and add interactivity to web pages.
+</p>
+
+<p>
+  HTML was first developed by Tim Berners-Lee in 1991 while he was working at CERN (European Organization for Nuclear Research). He created it as a way to share documents over the internet using hyperlinks. Since then, HTML has gone through many updates and improvements, with the latest version being HTML5.
+</p>
+
+                    <h3>Key Topics We Cover:</h3>
                     <ul>
                         <li>HTML Basic Structure</li>
                         <li>Headings</li>
@@ -372,21 +385,58 @@
                         <li>Meta Tags (for SEO and accessibility)</li>
                         <li>Creating a Complete Web Page</li>
                     </ul>
-                    <p>Click on the next button to start the first topic: HTML Headings.</p>
-                </div>
+                    <h3 id="video-lesson1">English video explanation with practical:</h3>
+  <div class="video-container">
+<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+ <source src="HTML_English_Videos/introduction to HTML.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>                
+  <div class="controls">
+    <button class="playPause">Play</button>
+    <button class="mute">Mute</button>
+   <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
 
-                <div id="intro-page2" class="intro-page">
-                    <h4>Introduction to HTML: Creating Headings and Paragraphs</h4>
-                    <p>Welcome to the first episode of our HTML tutorial series...</p>
-                    <ul>
-                        <li>Identify the importance of headings and paragraphs...</li>
-                        <li>Utilize HTML tags to create different heading levels...</li>
-                        <li>Understand how screen readers interpret these elements...</li>
-                    </ul>
-                    <p>Let's get started building your web pages!</p>
-                    <h5>Video Tutorial</h5>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/ZoJ0kpVOApI?rel=0" title="Video Tutorial: HTML Headings and Paragraphs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <h5>Topic 1 example code:</h5>
+                    <p>Click on the next button to start the first topic: HTML basic code.</p>
+                </div>
+                <div id="intro-page3" class="intro-page">
+                    <h2>Lesson2: Basic HTML code</h2>
+<a href="#video-lesson2">Jump to video lesson</a>
+
+<p>
+  Every HTML web page starts with a special declaration: <code>&lt;!DOCTYPE html&gt;</code>. This tells the web browser that the document is written using HTML5, the latest version of HTML. It helps browsers understand and display the content correctly.
+</p>
+
+<p>
+  After the doctype, the structure begins with the <code>&lt;html&gt;</code> tag, which wraps the entire content of the page. Inside the HTML tag, there are two main sections: <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code>.
+</p>
+
+<p>
+  The <code>&lt;head&gt;</code> section contains important information about the web page that is not visible to users, such as the page title, character encoding, and links to other resources. The <code>&lt;title&gt;</code> tag, which is placed inside the head section, sets the text shown in the browser’s title bar or tab.
+</p>
+
+<p>
+  The <code>&lt;body&gt;</code> section includes all the content that appears on the web page, like text, images, links, and buttons. Everything the user interacts with goes inside this tag.
+</p>
+
+<p>
+  HTML elements usually have an opening tag and a closing tag. The closing tag has a forward slash <code>/</code> before the tag name. For example, <code>&lt;title&gt;</code> is the opening tag and <code>&lt;/title&gt;</code> is the closing tag. This structure tells the browser where each element starts and ends.
+</p>
+                    <h3 id="video-lesson2">English video explanation with practical:</h3>
+  <div class="video-container">
+<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+ <source src="HTML_English_Videos/lesson2_basic_html_code.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>                
+  <div class="controls">
+    <button class="playPause">Play</button>
+    <button class="mute">Mute</button>
+   <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
+
+                    <h3>Topic 1 example code:</h3>
                     <button id="viewCode1" aria-expanded="false" aria-controls="codeExample1">View example code</button>
                     <div id="codeExample1" hidden>
     <p>All the below content is the HTML code for the first topic:</p>
@@ -394,13 +444,10 @@
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-    &lt;title&gt;Home Page&lt;/title&gt;
+    &lt;title&gt;My first code&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;h1&gt;Main heading&lt;/h1&gt;
-    &lt;p&gt;This is the main paragraph....&lt;/p&gt;
-    &lt;h2&gt;Sub heading&lt;/h2&gt;
-    &lt;p&gt;This is the sub paragraph.&lt;/p&gt;
+
 &lt;/body&gt;
 &lt;/html&gt;
     </code></pre>
@@ -408,33 +455,137 @@
                 </div>
 
                 <div id="intro-page3" class="intro-page">
-                    <h4>Building Blocks: Paragraphs and Line Breaks in HTML</h4>
-                    <p>Welcome to the second episode of our HTML tutorial series!...</p>
-                    <ul>
-                        <li>Craft well-structured paragraphs using the &lt;p&gt; tag.</li>
-                        <li>Understand how browsers render paragraphs...</li>
-                        <li>Utilize the &lt;br&gt; tag strategically...</li>
-                    </ul>
-                    <p>Let's get started building your web pages!</p>
-                    <h5>Video Tutorial</h5>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/msfFc9uRqns?si=CmYuzSnekeOxoyu_" title="Video Tutorial: HTML Paragraphs and Line Breaks" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <h5>Topic 2 example code:</h5>
+                    <h2>Lesson3: Headings and paragraphs</h2>
+<a href="#video-lesson3">Jump to video lesson</a>
+
+<p>
+  Headings and paragraphs are the basic building blocks of content in an HTML page. They help structure the content in a readable and meaningful way. HTML provides six levels of headings, from <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code>. The <code>&lt;h1&gt;</code> tag is used for the main heading of the page, and it is the largest in size. The <code>&lt;h6&gt;</code> is the smallest heading. You should use headings in order to show the importance or structure of content—just like titles, subtitles, and section headings.
+</p>
+
+<p>
+  Paragraphs in HTML are created using the <code>&lt;p&gt;</code> tag. This tag is used to add blocks of text. When you write text between the opening <code>&lt;p&gt;</code> and closing <code>&lt;/p&gt;</code> tags, the browser automatically adds some space before and after the paragraph to separate it from other elements.
+</p>
+
+<p>
+  If you want to break a line within a paragraph (without starting a new paragraph), you can use the <code>&lt;br&gt;</code> tag. This is an empty or self-closing tag, meaning it doesn’t need a closing tag. It’s useful for writing addresses, poems, or whenever you need a manual line break in the content.
+</p>
+
+<p>
+  After writing your HTML code with headings and paragraphs in a text editor like Notepad, it’s important to save the file correctly. To do this, click on <strong>File &gt; Save As</strong>, type a name like <strong>headings.html</strong>, and make sure to select <strong>All Files</strong> in the "Save as type" dropdown. Add the <strong>.html</strong> extension at the end of your file name. Also, choose <strong>UTF-8</strong> encoding if it is available. Once saved, you can open the file in any web browser to see how your headings and paragraphs appear.
+</p>
+                    <h3 id="video-lesson3">English video explanation with practical:</h3>
+  <div class="video-container">
+<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+ <source src="HTML_English_Videos/lesson3_headings_paragraphs.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>                
+  <div class="controls">
+    <button class="playPause">Play</button>
+    <button class="mute">Mute</button>
+   <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
+
+
+                    <h3>Lesson 3 example code:</h3>
                     <button id="viewCode2" aria-expanded="false" aria-controls="codeExample2">View example code</button>
                     <div id="codeExample2" hidden>
-    <p>All the below content is the HTML code for the second topic:</p>
+    <p>All the below content is the HTML code for the third topic:</p>
+    <pre><code>
+&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+&lt;head&gt;<br>
+&lt;title&gt;Sun School&lt;/title&gt;<br>
+&lt;/head&gt;<br>
+&lt;body&gt;<br>
+&lt;h1&gt;Welcome to Sun School&lt;/h1&gt;<br>
+&lt;p&gt;Sun school is the most rated international school in Delhi.&lt;/p&gt;<br>
+&lt;h2&gt;About Sun School&lt;/h2&gt;<br>
+&lt;p&gt;Sun school is the recognised international school having 2000 students.&lt;br&gt;<br>
+It is situated allover India.&lt;br&gt;<br>
+The main branch of the school is in New Delhi.&lt;/p&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;
+    </code></pre>
+                    </div>
+                </div>
+
+                <div id="intro-page4" class="intro-page">
+                    <h2>Lesson 4: Paragraph Formatting</h2>
+<a href="#video-lesson4">Jump to video lesson</a>
+
+<p>
+  HTML allows you to format specific parts of your paragraph text to highlight important information, add emphasis, or show changes. These formatting tags help improve readability and meaning for both sighted users and screen reader users.
+</p>
+
+<p>
+  The <code>&lt;strong&gt;</code> tag is used to give strong importance to the text. Most browsers display it in bold, and screen readers also give it extra emphasis. It is preferred over just making text bold because it conveys meaning, not just style.
+</p>
+
+<p>
+  The <code>&lt;b&gt;</code> tag also makes the text bold, but it is used for styling only without any additional importance or meaning. Use this when you want the text to stand out visually, but not semantically.
+</p>
+
+<p>
+  The <code>&lt;i&gt;</code> tag is used to italicize text, usually for technical terms, foreign words, or names of books. Like <code>&lt;b&gt;</code>, it is a visual style and doesn't add any meaning to screen readers.
+</p>
+
+<p>
+  The <code>&lt;em&gt;</code> tag is used to emphasize text. It is usually displayed in italics and screen readers pronounce it with added stress. It is more meaningful than just using <code>&lt;i&gt;</code> for styling.
+</p>
+
+<p>
+  The <code>&lt;ins&gt;</code> tag is used to indicate inserted text, often shown with an underline. It is useful when showing changes or additions in a paragraph, especially in edited documents.
+</p>
+
+<p>
+  The <code>&lt;del&gt;</code> tag shows deleted text, usually displayed with a line through it (strikethrough). It can be used to show corrections or revisions in your content.
+</p>
+
+<p>
+  Another useful formatting tag is <code>&lt;mark&gt;</code>, which highlights text (typically with a yellow background) to draw the reader’s attention to something important.
+</p>
+
+<p>
+  You can also use <code>&lt;sub&gt;</code> for subscript text (like H<sub>2</sub>O) and <code>&lt;sup&gt;</code> for superscript text (like x<sup>2</sup>) within your paragraphs when writing scientific or mathematical content.
+</p>
+
+<p>
+  These formatting tags make your paragraphs more expressive and accessible. Remember to use semantic tags like <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> when the meaning is important, not just the appearance.
+</p>
+
+                    <h3 id="video-lesson4">English video explanation with practical:</h3>
+  <div class="video-container">
+<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+ <source src="HTML_English_Videos/Lesson4_paragraph_formatting.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>                
+  <div class="controls">
+    <button class="playPause">Play</button>
+    <button class="mute">Mute</button>
+   <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
+
+
+                    <h3>Topic 4 example code:</h3>
+                    <button id="viewCode4" aria-expanded="false" aria-controls="codeExample4">View example code</button>
+                    <div id="codeExample4" hidden>
+    <p>All the below content is the HTML code for the 4th topic:</p>
     <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-    &lt;title&gt;Paragraphs&lt;/title&gt;
+&lt;title&gt;Sun School&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;h1&gt;Paragraph formatting&lt;/h1&gt;
-    &lt;p&gt;Welcome to Accessible world!&lt;br&gt;
-    My name is Raviteja&lt;br&gt;
-    my location is Visakhapatnam&lt;br&gt;
-    I am teaching HTML&lt;br&gt;
-    For the cost of 1000&lt;/p&gt;
+&lt;h1&gt;Welcome to Sun School&lt;/h1&gt;
+&lt;p&gt;Sun school is the most rated international school in &lt;b&gt;Delhi&lt;/b&gt;.&lt;/p&gt;
+&lt;h2&gt;About Sun School&lt;/h2&gt;
+&lt;p&gt;&lt;i&gt;Sun school&lt;/i&gt; is the recognised international school &lt;ins&gt;having 2000 students.&lt;/ins&gt;&lt;br&gt;
+It is situated &lt;strong&gt;allover India.&lt;/strong&gt;&lt;br&gt;
+The main branch of the school is in &lt;em&gt;New Delhi.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The school fee will be &lt;del&gt;Rs.100000&lt;/del&gt;&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
     </code></pre>
@@ -442,7 +593,9 @@
                 </div>
 
                 <div id="intro-page4" class="intro-page">
-                    <h4>Bringing Your Web Pages to Life with Images</h4>
+                    <h2>Lesson 5: Bringing Your Web Pages to Life with Images</h2>
+<a href="#video-lesson5">Jump to video lesson</a>
+
                     <p>Welcome back to our HTML tutorial series! In this episode, we'll be focusing on the power of images...</p>
                     <ul>
                         <li><strong>Effortlessly add images:</strong> Utilize the &lt;img&gt; tag...</li>
@@ -450,21 +603,39 @@
                         <li><strong>Optimize for all devices:</strong> ...</li>
                     </ul>
                     <p>Let's get started building your web pages!</p>
-                    <h5>Video Tutorial</h5>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/HSaJCROLzRQ?si=JyC8iTHh9iEFBKXa" title="Video Tutorial: HTML Images" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <h5>Topic 3 example code:</h5>
-                    <button id="viewCode3" aria-expanded="false" aria-controls="codeExample3">View example code</button>
-                    <div id="codeExample3" hidden>
-    <p>All the below content is the HTML code for the third topic:</p>
+                    <h3 id="video-lesson5">English video explanation with practical:</h3>
+  <div class="video-container">
+<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+ <source src="HTML_English_Videos/Lesson5_images.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>                
+  <div class="controls">
+    <button class="playPause">Play</button>
+    <button class="mute">Mute</button>
+   <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
+
+                    <h3>Topic 3 example code:</h3>
+                    <button id="viewCode5" aria-expanded="false" aria-controls="codeExample5">View example code</button>
+                    <div id="codeExample5" hidden>
+    <p>All the below content is the HTML code for the 5th topic:</p>
     <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-    &lt;title&gt;Graphics&lt;/title&gt;
+&lt;title&gt;
+Sun School&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;h1&gt;HTML Graphics&lt;/h1&gt;
-    &lt;img src=&quot;sample.jpg&quot; alt=&quot;BSE India price&quot; style=&quot;width:250px; height: 512px&quot;&gt;
+&lt;img src="sun_school_logo.jpg" alt="Sun School Logo" style="width: 250px; height: 512px;"&gt;
+&lt;h1&gt;Welcome to Sun School&lt;/h1&gt;
+&lt;p&gt;Sun school is the most rated international school in &lt;b&gt;Delhi&lt;/b&gt;.&lt;/p&gt;
+&lt;h2&gt;About Sun School&lt;/h2&gt;
+&lt;p&gt;&lt;i&gt;Sun school&lt;/i&gt; is the recognised international school &lt;ins&gt;having 2000 students.&lt;/ins&gt;&lt;br&gt;
+It is situated &lt;strong&gt;allover India.&lt;/strong&gt;&lt;br&gt;
+The main branch of the school is in &lt;em&gt;New Delhi.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The school fee will be &lt;del&gt;Rs.100000&lt;/del&gt;&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
     </code></pre>
@@ -961,5 +1132,7 @@
             });
         }
     </script>
+<script src="video_script.js"></script>
+
 </body>
 </html>

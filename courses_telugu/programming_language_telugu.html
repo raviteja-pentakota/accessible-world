@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accessibility Testing Course - Accessible World</title>
+    <title>Web development - Accessible World</title>
+  <link rel="stylesheet" href="video_style.css">
+
     <style>
         /* Your existing CSS remains the same */
         body {
@@ -317,7 +319,7 @@
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header>
-        <h1>Welcome to Accessible World Tutorials</h1>
+        <h1>Welcome to Accessible World Tutorials - Web development</h1>
         <div class="profile-container">
             <button id="profileBtn" aria-expanded="false" aria-controls="profileDetails">Profile</button>
             <div id="profileDetails" class="profile-dropdown">
@@ -330,6 +332,7 @@
         </div>
     </header>
     <nav aria-label="main">
+
         <ul type="none">
             <li><a href="courses.html">Go to Courses Home Page</a></li>
             <li><a href="/dashboard.html">Go to dashboard page</a></li>
@@ -338,7 +341,6 @@
     <nav aria-label="Course Navigation">
         <ul type="none">
 <li><a href="basic_computers_telugu.html">Basic Computers with Telugu explanation</a></li>
-            <li><a href="programming_language_telugu.html">Programming Languages with Telugu explanation</a></li>
             <li><a href="programming_language_english.html">Programming Languages with English explanation</a>
             <li><a href="accessibility_telugu.html">Web Accessibility with Telugu explanation</a></li>
             <li><a href="accessibility_english.html">Web Accessibility with English explanation</a></li>
@@ -347,19 +349,30 @@
         </ul>
     </nav>
     <main id="main-content">
-        <h2>Accessibility Testing Course</h2>
+        <h1>Web development course</h1>
         <div class="tab-container">
             <ul class="tab-buttons" role="tablist">
-                <li role="presentation"><button role="tab" id="intro-tab" aria-controls="intro-content" aria-selected="true" class="active">Introduction to HTML</button></li>
+                <li role="presentation"><button role="tab" id="intro-tab" aria-controls="intro-content" aria-selected="true" class="active">HTML Topics</button></li>
             </ul>
         </div>
         <div id="intro-content" class="tab-content active" role="tabpanel" aria-labelledby="intro-tab">
-            <h3>Learning HTML Basics</h3>
             <div id="intro-pages">
                 <div id="intro-page1" class="intro-page active">
-                    <h4>Welcome to HTML Topics</h4>
-                    <p><strong>HTML (HyperText Markup Language)</strong> is the standard language used to create and design the structure of web pages...</p>
-                    <h5>Key Topics We Cover:</h5>
+                    <h2>Lesson 1: Introduction to HTML </h2>
+<a href="#video-lesson1">Jump to video lesson</a>
+<p>
+  HTML stands for HyperText Markup Language. It is the standard language used to create and design web pages. HTML provides the basic structure of a web page by using elements like headings, paragraphs, links, images, lists, and more. These elements are represented by tags such as &lt;h1&gt;, &lt;p&gt;, &lt;a&gt;, &lt;img&gt;, and others.
+</p>
+
+<p>
+  Learning HTML is essential for anyone who wants to build websites or become a web developer. It is the foundation of all web content. Without HTML, there would be no way to display text, images, or multimedia on a webpage. Understanding HTML also helps in learning CSS and JavaScript, which are used to style and add interactivity to web pages.
+</p>
+
+<p>
+  HTML was first developed by Tim Berners-Lee in 1991 while he was working at CERN (European Organization for Nuclear Research). He created it as a way to share documents over the internet using hyperlinks. Since then, HTML has gone through many updates and improvements, with the latest version being HTML5.
+</p>
+
+                    <h3>Key Topics We Cover:</h3>
                     <ul>
                         <li>HTML Basic Structure</li>
                         <li>Headings</li>
@@ -372,11 +385,67 @@
                         <li>Meta Tags (for SEO and accessibility)</li>
                         <li>Creating a Complete Web Page</li>
                     </ul>
-                    <p>Click on the next button to start the first topic: HTML Headings.</p>
+                    <h3 id="video-lesson1">English video explanation with practical:</h3>
+  <div class="video-container">
+<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+ <source src="HTML_English_Videos/introduction to HTML.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>                
+  <div class="controls">
+    <button class="playPause">Play</button>
+    <button class="mute">Mute</button>
+   <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
+
+                    <p>Click on the next button to start the first topic: HTML basic code.</p>
+                </div>
+                <div id="intro-page3" class="intro-page">
+                    <h2>Lesson2: Basic HTML code</h2>
+<p>
+  Every HTML web page starts with a special declaration: <code>&lt;!DOCTYPE html&gt;</code>. This tells the web browser that the document is written using HTML5, the latest version of HTML. It helps browsers understand and display the content correctly.
+</p>
+
+<p>
+  After the doctype, the structure begins with the <code>&lt;html&gt;</code> tag, which wraps the entire content of the page. Inside the HTML tag, there are two main sections: <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code>.
+</p>
+
+<p>
+  The <code>&lt;head&gt;</code> section contains important information about the web page that is not visible to users, such as the page title, character encoding, and links to other resources. The <code>&lt;title&gt;</code> tag, which is placed inside the head section, sets the text shown in the browser’s title bar or tab.
+</p>
+
+<p>
+  The <code>&lt;body&gt;</code> section includes all the content that appears on the web page, like text, images, links, and buttons. Everything the user interacts with goes inside this tag.
+</p>
+
+<p>
+  HTML elements usually have an opening tag and a closing tag. The closing tag has a forward slash <code>/</code> before the tag name. For example, <code>&lt;title&gt;</code> is the opening tag and <code>&lt;/title&gt;</code> is the closing tag. This structure tells the browser where each element starts and ends.
+</p>
+
+<p>
+  After writing your basic HTML code in a text editor like Notepad, you must save the file with a <strong>.html</strong> extension. To do this, choose <strong>File &gt; Save As</strong>, then in the file name field, type something like <strong>index.html</strong>. Make sure to set “Save as type” to “All Files” and encoding to “UTF-8” if available. Once saved, you can double-click the file to open it in any web browser and view your webpage.
+</p>
+
+                    <h3>Topic 1 example code:</h3>
+                    <button id="viewCode1" aria-expanded="false" aria-controls="codeExample1">View example code</button>
+                    <div id="codeExample1" hidden>
+    <p>All the below content is the HTML code for the first topic:</p>
+    <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My first code&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+                    </div>
                 </div>
 
-                <div id="intro-page2" class="intro-page">
-                    <h4>Introduction to HTML: Creating Headings and Paragraphs</h4>
+                <div id="intro-page3" class="intro-page">
+                    <h4>Lesson2: Basic HTML code</h4>
                     <p>Welcome to the first episode of our HTML tutorial series...</p>
                     <ul>
                         <li>Identify the importance of headings and paragraphs...</li>
@@ -825,15 +894,15 @@
                         bodyElement.style.display = 'block'; // Show content if authenticated and paid
                     } else {
                         alert("Please join our membership to access the courses.");
-                        window.location.href = "/login.html"; // Redirect if not paid
+                        window.location.href = "login.html"; // Redirect if not paid
                     }
                 } else {
                     alert("Error: Could not verify your membership. Please log in again.");
-                    window.location.href = "/login.html"; // Redirect if user data not found
+                    window.location.href = "login.html"; // Redirect if user data not found
                 }
             } else {
                 alert("Please log in to access the courses.");
-                window.location.href = "/login.html"; // Redirect if not logged in
+                window.location.href = "login.html"; // Redirect if not logged in
             }
         });
 
@@ -953,7 +1022,7 @@
                 try {
                     await signOut(auth);
                     alert("You have been logged out.");
-                    window.location.href = "/login.html"; // Redirect to login page
+                    window.location.href = "login.html"; // Redirect to login page
                 } catch (error) {
                     console.error("Error signing out:", error);
                     alert("Error logging out. Please try again.");
@@ -961,5 +1030,7 @@
             });
         }
     </script>
+<script src="video_script.js"></script>
+
 </body>
 </html>
