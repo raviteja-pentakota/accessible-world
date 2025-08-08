@@ -439,7 +439,7 @@
                     <h3>Topic 1 example code:</h3>
                     <button id="viewCode1" aria-expanded="false" aria-controls="codeExample1">View example code</button>
                     <div id="codeExample1" hidden>
-    <p>All the below content is the HTML code for the first topic:</p>
+    <p>All the below content is the HTML code for the 2nd lesson:</p>
     <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -490,7 +490,7 @@
                     <h3>Lesson 3 example code:</h3>
                     <button id="viewCode2" aria-expanded="false" aria-controls="codeExample2">View example code</button>
                     <div id="codeExample2" hidden>
-    <p>All the below content is the HTML code for the third topic:</p>
+    <p>All the below content is the HTML code for the third lesson:</p>
     <pre><code>
 &lt;!DOCTYPE html&gt;<br>
 &lt;html&gt;<br>
@@ -571,7 +571,7 @@ The main branch of the school is in New Delhi.&lt;/p&gt;<br>
                     <h3>Topic 4 example code:</h3>
                     <button id="viewCode4" aria-expanded="false" aria-controls="codeExample4">View example code</button>
                     <div id="codeExample4" hidden>
-    <p>All the below content is the HTML code for the 4th topic:</p>
+    <p>All the below content is the HTML code for the 4th lesson:</p>
     <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -619,7 +619,7 @@ The main branch of the school is in &lt;em&gt;New Delhi.&lt;/em&gt;&lt;/p&gt;
                     <h3>Topic 3 example code:</h3>
                     <button id="viewCode5" aria-expanded="false" aria-controls="codeExample5">View example code</button>
                     <div id="codeExample5" hidden>
-    <p>All the below content is the HTML code for the 5th topic:</p>
+    <p>All the below content is the HTML code for the 5th lesson:</p>
     <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -641,34 +641,176 @@ The main branch of the school is in &lt;em&gt;New Delhi.&lt;/em&gt;&lt;/p&gt;
     </code></pre>
                     </div>
                 </div>
-
                 <div id="intro-page5" class="intro-page">
-                    <h4>Connecting Your Web Pages with HTML Hyperlinks</h4>
-                    <p>Welcome back to our HTML tutorial series! In this episode, we're diving into hyperlinks...</p>
-                    <ul>
-                        <li><strong>Create basic hyperlinks:</strong> ...`&lt;a&gt;` tag...</li>
-                        <li><strong>Enhance accessibility:</strong> ...meaningful link text...</li>
-                        <li><strong>Open links in new tabs:</strong> ...`target="_blank"`...</li>
-                    </ul>
-                    <p>Let's get started building your web pages!</p>
-                    <h5>Video Tutorial</h5>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/AG9ovHuIax4?si=pf4vRkqmWYhPvX_K" title="Video Tutorial: HTML Hyperlinks" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <h5>Topic 4 example code:</h5>
-                    <button id="viewCode4" aria-expanded="false" aria-controls="codeExample4">View example code</button>
-                    <div id="codeExample4" hidden>
-    <p>All the below content is the HTML code for the fourth topic:</p>
+                    <h2>Lesson 6: Organizing Your Content with HTML Lists</h2>
+<a href="#video-lesson6">Jump to video lesson</a>
+<p>
+  Lists in HTML are used to group related items together in an organized way. They help structure content for better readability and accessibility. HTML supports three main types of lists: unordered lists, ordered lists, and definition (or description) lists.
+</p>
+
+<p>
+  An <strong>unordered list</strong> is used when the sequence of items does not matter. It displays items with bullet points. To create it, you use the <code>&lt;ul&gt;</code> tag, and each item in the list is added using the <code>&lt;li&gt;</code> tag.
+</p>
+
+<p>
+  An <strong>ordered list</strong> is used when the order of the items is important, such as in step-by-step instructions, rankings, or procedures. It displays items with numbers or letters by default. It is created using the <code>&lt;ol&gt;</code> tag, and items are listed inside <code>&lt;li&gt;</code> tags.
+</p>
+
+<p>
+  A <strong>definition list</strong> (also known as a <strong>description list</strong>) is used to display terms and their corresponding definitions or descriptions. This type of list is useful for glossaries, FAQs, or any case where you need to present pairs of items. It is created using the <code>&lt;dl&gt;</code> tag (definition list), where each term is placed inside a <code>&lt;dt&gt;</code> tag (definition term), followed by its description in a <code>&lt;dd&gt;</code> tag (definition description).
+</p>
+
+<p>
+  HTML also allows you to nest lists—placing one list inside another. This is helpful when you need to show sub-items under a main list item, like categories and subcategories.
+</p>
+
+<p>
+  Using lists properly improves your web page’s structure and enhances accessibility. Screen readers can easily detect list structures, making your content more user-friendly for people with visual impairments.
+</p>
+                    <h3 id="video-lesson6">English video explanation with practical:</h3>
+  <div class="video-container">
+<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+ <source src="HTML_English_Videos/lesson6_list.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>                
+  <div class="controls">
+    <button class="playPause">Play</button>
+    <button class="mute">Mute</button>
+   <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
+
+                    <h3>Topic 6 example code:</h3>
+                    <button id="viewCode6" aria-expanded="false" aria-controls="codeExample6">View example code</button>
+                    <div id="codeExample6" hidden>
+    <p>All the below content is the HTML code for the 6th lesson:</p>
     <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-    &lt;title&gt;HTML Links&lt;/title&gt;
+&lt;title&gt;HTML List&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;h1&gt;HTML Links&lt;/h1&gt;
-    &lt;a href=&quot;HTML_Headings.html&quot;&gt;Example for HTML headings&lt;/a&gt;&lt;br&gt;
-    &lt;a href=&quot;test/HTML_Graphics.html&quot;&gt;Example for HTML Graphics&lt;/a&gt;&lt;br&gt;
-    &lt;a href=&quot;https://www.youtube.com&quot; target=&quot;_blank&quot;&gt;YouTube&lt;/a&gt;&lt;br&gt;
-    &lt;a href=&quot;https://www.google.com&quot; title=&quot;google home page&quot;&gt;Google&lt;/a&gt;
+
+&lt;h1&gt;HTML List&lt;/h1&gt;
+
+&lt;h2&gt;HTML Topics in Ordered list&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;Basic code of HTML&lt;/li&gt;
+  &lt;li&gt;HTML headings and paragraphs&lt;/li&gt;
+  &lt;li&gt;HTML Graphics&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;Remaining HTML topics with alphabetics example&lt;/h3&gt;
+&lt;ol type="A"&gt;
+  &lt;li&gt;HTML list&lt;/li&gt;
+  &lt;li&gt;HTML Tables&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;List of Screen Readers&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;JAWS&lt;/li&gt;
+  &lt;li&gt;NVDA&lt;/li&gt;
+  &lt;li&gt;Talkback&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;List of screen readers with type = none example&lt;/h3&gt;
+&lt;ul type="none"&gt;
+  &lt;li&gt;JAWS&lt;/li&gt;
+  &lt;li&gt;NVDA&lt;/li&gt;
+  &lt;li&gt;Talkback&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Fullform of screen reader names [Definition list]&lt;/h2&gt;
+&lt;dl&gt;
+  &lt;dt&gt;JAWS&lt;/dt&gt;
+  &lt;dd&gt;Job Access With Speech&lt;/dd&gt;
+  &lt;dt&gt;NVDA&lt;/dt&gt;
+  &lt;dd&gt;Non Visual Desktop Access&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+                    </div>
+</div>
+
+                <div id="intro-page7" class="intro-page">
+                    <h2>Lesson 7: Connecting Your Web Pages with HTML Hyperlinks</h2>
+<a href="#video-lesson7">Jump to video lesson</a>
+<p>
+  <strong>HTML Hyperlinks</strong> allow users to navigate from one page to another or to different sections of the same page. Hyperlinks are created using the <code>&lt;a&gt;</code> (anchor) tag in HTML.
+</p>
+
+<p>
+  The <code>&lt;a&gt;</code> tag uses the <code>href</code> attribute to specify the destination of the link. When users click the link, they are taken to the page or section specified in the <code>href</code>.
+</p>
+
+<p>
+  <strong>Example:</strong><br>
+  <code>&lt;a href="https://www.example.com"&gt;Visit Example Website&lt;/a&gt;</code>
+</p>
+
+<p>
+  You can also use hyperlinks to link to internal pages of your website. For example:<br>
+  <code>&lt;a href="contact.html"&gt;Contact Us&lt;/a&gt;</code>
+</p>
+
+<p>
+  <strong>Target attribute:</strong><br>
+  Use <code>target="_blank"</code> to open the link in a new tab.<br>
+  Example:<br>
+  <code>&lt;a href="https://www.google.com" target="_blank"&gt;Open Google in new tab&lt;/a&gt;</code>
+</p>
+
+<p>
+  <strong>Link to a specific section in the same page:</strong><br>
+  You can link to an element with an <code>id</code> using <code>#idname</code>.<br>
+  Example:<br>
+  <code>&lt;a href="#about"&gt;Go to About Section&lt;/a&gt;</code><br>
+  and later in the page:<br>
+  <code>&lt;h2 id="about"&gt;About Us&lt;/h2&gt;</code>
+</p>
+
+<p>
+  <strong>Types of Hyperlinks:</strong><br>
+  1. External Link – opens another website.<br>
+  2. Internal Link – opens a different page of your own website.<br>
+  3. Anchor Link – jumps to a specific section of the current page.
+</p>
+
+<p>
+  Hyperlinks are an essential part of web navigation and help connect content across the web.
+</p>
+                    <h3 id="video-lesson7">English video explanation with practical:</h3>
+  <div class="video-container">
+<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+ <source src="HTML_English_Videos/Lesson7_links.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>                
+  <div class="controls">
+    <button class="playPause">Play</button>
+    <button class="mute">Mute</button>
+   <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
+
+
+                    <h3>Topic 7 example code:</h3>
+                    <button id="viewCode7" aria-expanded="false" aria-controls="codeExample7">View example code</button>
+                    <div id="codeExample7" hidden>
+    <p>All the below content is the HTML code for the 7th lesson:</p>
+    <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;HTML Links&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;HTML Links&lt;/h1&gt;
+&lt;a href="https://www.facebook.com"&gt;Go to Facebook&lt;/a&gt;
+&lt;a href="https://www.youtube.com" target="_blank"&gt;Go to youtube home page&lt;/a&gt;
+&lt;a href="HTML_tables.html" title="example link for table"&gt;HTML Tables&lt;/a&gt;
 &lt;/body&gt;
 &lt;/html&gt;
     </code></pre>
@@ -676,118 +818,190 @@ The main branch of the school is in &lt;em&gt;New Delhi.&lt;/em&gt;&lt;/p&gt;
                 </div>
 
                 <div id="intro-page6" class="intro-page">
-                    <h4>Crafting Accessible Tables in HTML</h4>
-                    <p>Welcome back to our HTML tutorial series! In this episode, we're diving into accessible tables...</p>
-                    <ul>
-                        <li><strong>Effortlessly create tables:</strong> ... `&lt;table&gt;` tag...</li>
-                        <li><strong>Ensure clarity and structure:</strong> ...`&lt;thead&gt;`, `&lt;tbody&gt;`...</li>
-                        <li><strong>Enhance accessibility:</strong> ...`scope`, `caption`...</li>
-                    </ul>
-                    <p>Let's get started building your web pages!</p>
-                    <h5>Video Tutorial</h5>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/ZWzpf05zL6g?si=8jVGfNgMhaHlJh5T" title="Video Tutorial: HTML Accessible Tables" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <h5>Topic 5 example code:</h5>
-                    <button id="viewCode5" aria-expanded="false" aria-controls="codeExample5">View example code</button>
-                    <div id="codeExample5" hidden>
-    <p>All the below content is the HTML code for the fifth topic:</p>
+                    <h2>Lesson 8: Crafting Accessible Tables in HTML</h2>
+<a href="#video-lesson8">Jump to video lesson</a>
+<p>
+HTML tables are used to organize data into rows and columns, making the information easy to read and compare. Tables are especially useful for displaying structured data like schedules, price lists, or comparison charts.
+</p>
+
+<p>
+To create a table in HTML, the <code>&lt;table&gt;</code> element is used. Inside the table, rows are defined using <code>&lt;tr&gt;</code> (table row), and within each row, cells are defined using either <code>&lt;th&gt;</code> (table header) for headings or <code>&lt;td&gt;</code> (table data) for regular cells.
+</p>
+
+<p>
+Making tables accessible is very important for screen reader users. To improve table accessibility:
+</p>
+
+<p>
+• Use the <code>&lt;caption&gt;</code> tag to provide a summary or title for the table.<br>
+• Use <code>&lt;th&gt;</code> to identify column and row headers.<br>
+• Add the <code>scope</code> attribute (e.g., <code>scope="col"</code> or <code>scope="row"</code>) to <code>&lt;th&gt;</code> elements to specify which part of the table the header applies to.<br>
+• Use the <code>summary</code> attribute or visually hidden text (for modern HTML) to describe complex tables.<br>
+• Avoid using tables for layout purposes; instead, use CSS for page layout.
+</p>
+
+<p>
+Proper use of these semantic elements ensures that assistive technologies can accurately interpret the table’s structure and present it meaningfully to users.
+</p>
+                    <h3 id="video-lesson8">English video explanation with practical:</h3>
+  <div class="video-container">
+<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+ <source src="HTML_English_Videos/lesson8_tables.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>                
+  <div class="controls">
+    <button class="playPause">Play</button>
+    <button class="mute">Mute</button>
+   <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
+                    <h3>Topic 8 example code:</h3>
+                    <button id="viewCode8" aria-expanded="false" aria-controls="codeExample8">View example code</button>
+                    <div id="codeExample8" hidden>
+    <p>All the below content is the HTML code for the 8th lesson:</p>
     <pre><code>
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;HTML Tables&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;HTML Tables&lt;/h1&gt;
-    &lt;table&gt;
-        &lt;caption&gt;Student Details&lt;/caption&gt;
-        &lt;thead&gt;
-            &lt;tr&gt;
-                &lt;th&gt;Name&lt;/th&gt;
-                &lt;th&gt;Email&lt;/th&gt;
-                &lt;th&gt;Phone Number&lt;/th&gt;
-                &lt;th&gt;Age&lt;/th&gt;
-            &lt;/tr&gt;
-        &lt;/thead&gt;
-        &lt;tbody&gt;
-            &lt;tr&gt;
-                &lt;td&gt;Raviteja&lt;/td&gt;
-                &lt;td&gt;pravitje@gmail.com&lt;/td&gt;
-                &lt;td&gt;8178888888&lt;/td&gt;
-                &lt;td&gt;32&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;Srinu&lt;/td&gt;
-                &lt;td&gt;srinu@gmail.com&lt;/td&gt;
-                &lt;td&gt;8888888888&lt;/td&gt;
-                &lt;td&gt;31&lt;/td&gt;
-            &lt;/tr&gt;
-        &lt;/tbody&gt;
-    &lt;/table&gt;
-&lt;/body&gt;
+&lt;!DOCTYPE html&gt;  
+&lt;html&gt;  
+&lt;head&gt;  
+  &lt;title&gt;HTML Tables&lt;/title&gt;  
+&lt;/head&gt;  
+&lt;body&gt;  
+  &lt;h1&gt;HTML Tables&lt;/h1&gt;  
+  &lt;table border="1"&gt;  
+    &lt;caption&gt;Student Details&lt;/caption&gt;  
+    &lt;thead&gt;  
+      &lt;tr&gt;  
+        &lt;th scope="col"&gt;Name&lt;/th&gt;   
+        &lt;th scope="col"&gt;Age&lt;/th&gt;   
+        &lt;th scope="col"&gt;Class&lt;/th&gt;  
+      &lt;/tr&gt;  
+    &lt;/thead&gt;  
+    &lt;tbody&gt;  
+      &lt;tr&gt;  
+        &lt;th scope="row"&gt;Ravi&lt;/th&gt;   
+        &lt;td&gt;12&lt;/td&gt;   
+        &lt;td&gt;5th&lt;/td&gt;  
+      &lt;/tr&gt;  
+      &lt;tr&gt;  
+        &lt;th scope="row"&gt;Pradyuth&lt;/th&gt;   
+        &lt;td&gt;7&lt;/td&gt;   
+        &lt;td&gt;2nd&lt;/td&gt;  
+      &lt;/tr&gt;  
+    &lt;/tbody&gt;  
+  &lt;/table&gt;  
+&lt;/body&gt;  
 &lt;/html&gt;
     </code></pre>
                     </div>
                 </div>
 
-                <div id="intro-page7" class="intro-page">
-                    <h4>Organizing Your Content with HTML Lists</h4>
-                    <p>Welcome back to our HTML tutorial series! In this episode, we'll explore HTML lists...</p>
-                    <ul>
-                        <li><strong>Create unordered lists:</strong> ...`&lt;ul&gt;` tag...</li>
-                        <li><strong>Create ordered lists:</strong> ...`&lt;ol&gt;` tag...</li>
-                        <li><strong>Define list items:</strong> ...`&lt;li&gt;` tag...</li>
-                    </ul>
-                    <p>Let's get started building your web pages!</p>
-                    <h5>Video Tutorial</h5>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/wpPfJt8hmNo?si=xASq37SeqVX7mHK2" title="Video Tutorial: HTML Lists" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <h5>Topic 6 example code:</h5>
-                    <button id="viewCode6" aria-expanded="false" aria-controls="codeExample6">View example code</button>
-                    <div id="codeExample6" hidden>
-    <p>All the below content is the HTML code for the sixth topic:</p>
+                <div id="intro-page8" class="intro-page">
+<h2>Lesson 9: HTML Forms part 1</h2>
+<a href="#video-lesson9">Jump to video lesson</a>
+
+<p>
+HTML forms are used to collect user input on a webpage. They allow users to enter data, such as their name, email, or date of birth, which can then be processed by the server or handled with client-side scripts. A form is created using the <code>&lt;form&gt;</code> element, and it can include various input fields depending on the type of information required.
+</p>
+
+<p>
+In this part, we will focus on the most common form input types: <b>text</b>, <b>email</b>, <b>tel</b>, <b>date</b>, <b>password</b>, <b>number</b>, and the <b>submit</b> button.
+</p>
+
+<p>
+The <b>text</b> input type allows users to enter plain text, such as their name or address. The <b>email</b> input type ensures that the entered text follows the correct email format, which helps in validating email addresses before submission. The <strong>tel</strong> input type is used for phone numbers and can display a numeric keypad on mobile devices for easier input. The <strong>date</strong> input type provides a date picker so that users can choose a date instead of typing it manually.
+</p>
+
+<p>
+The <b>password</b> input type hides the characters as the user types, making it suitable for sensitive information like login credentials. The <b>number</b> input type allows only numeric values and may include up and down arrows for adjusting the value. Finally, the <b>submit</b> button is used to send the form data to the specified server or script for processing.
+</p>
+
+<p>
+For better accessibility, always associate form fields with descriptive labels using the <code>&lt;label&gt;</code> element. This helps screen readers announce the purpose of each input. You should also use clear placeholder text or instructions, and ensure that error messages are provided if the input is invalid. Making forms accessible ensures that all users, including those using assistive technologies, can interact with your form easily.
+</p>
+                    <h3 id="video-lesson9">English video explanation with practical:</h3>
+  <div class="video-container">
+<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+ <source src="HTML_English_Videos/lesson9_forms_p1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>                
+  <div class="controls">
+    <button class="playPause">Play</button>
+    <button class="mute">Mute</button>
+   <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
+
+<h3>Topic 9 example code:</h3>
+                    <button id="viewCode9" aria-expanded="false" aria-controls="codeExample9">View example code</button>
+<div id="codeExample9" hidden>
+        <p>All the below content is the HTML code for the 9th lesson:</p>
     <pre><code>
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;HTML List&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;HTML List&lt;/h1&gt;
-    &lt;ol type=&quot;a&quot;&gt;
-        &lt;li&gt;Jaws&lt;/li&gt;
-        &lt;li&gt;NVDA&lt;/li&gt;
-        &lt;li&gt;VoiceOver&lt;/li&gt;
-        &lt;li&gt;Talkback&lt;/li&gt;
-    &lt;/ol&gt;
-    &lt;h2&gt;Unordered List&lt;/h2&gt;
-    &lt;ul&gt;
-        &lt;li&gt;Jaws&lt;/li&gt;
-        &lt;li&gt;NVDA&lt;/li&gt;
-        &lt;li&gt;VoiceOver&lt;/li&gt;
-        &lt;li&gt;Talkback&lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;h2&gt;Definition List&lt;/h2&gt;
-    &lt;dl&gt;
-        &lt;dt&gt;Term 1&lt;/dt&gt;
-        &lt;dd&gt;Definition 1&lt;/dd&gt;
-        &lt;dt&gt;Term 2&lt;/dt&gt;
-        &lt;dd&gt;Definition 2&lt;/dd&gt;
-    &lt;/dl&gt;
-&lt;/body&gt;
+&lt;!DOCTYPE html&gt;  
+&lt;html&gt;  
+&lt;head&gt;  
+&lt;title&gt;HTML forms&lt;/title&gt;  
+&lt;/head&gt;  
+&lt;body&gt;  
+&lt;h1&gt;Student Registration form&lt;/h1&gt;  
+&lt;form&gt;  
+&lt;label for="uid"&gt;User Id:&lt;/label&gt;  
+&lt;input type="text" id="uid" required&gt;&lt;br&gt;  
+&lt;label for="password"&gt;Password:&lt;/label&gt;  
+&lt;input type="password" id="password" required&gt;&lt;br&gt;  
+&lt;label for="fn"&gt;Full Name:&lt;/label&gt;  
+&lt;input type="text" id="fn" required&gt;&lt;br&gt;  
+&lt;label for="email"&gt;Email:&lt;/label&gt;  
+&lt;input type="email" id="email" placeholder="abcd@xyz.com" required&gt;&lt;br&gt;  
+&lt;label for="dob"&gt;Date of Birth:&lt;/label&gt;  
+&lt;input type="date" id="dob" required&gt;&lt;br&gt;  
+&lt;label for="age"&gt;Age:&lt;/label&gt;  
+&lt;input type="number" id="age"&gt;&lt;br&gt;  
+&lt;label for="phone"&gt;Phone Number:&lt;/label&gt;  
+&lt;input type="tel" id="phone" required&gt;&lt;br&gt;  
+&lt;input type="submit"&gt;  
+
+&lt;/form&gt;  
+&lt;/body&gt;  
 &lt;/html&gt;
     </code></pre>
-                    </div>
 </div>
+                </div>
                 <div id="intro-page8" class="intro-page">
-<h4>Building Interactive Forms with HTML</h4>
-<p>Welcome back to our HTML tutorial series! In this episode, we're diving into the essential skill of creating forms. You'll learn how to create and structure forms to collect user input, making your web pages interactive and dynamic.</p> <p>By the end of this video, you'll be proficient in creating functional and accessible forms! You'll be able to:</p> <ul> <li><strong>Construct forms:</strong> Learn how to create a container that holds all the elements needed for user input.</li> <li><strong>Add input fields:</strong> Discover how to implement various input types such as text fields, password fields, and email fields to gather different kinds of data.</li> <li><strong>Use labels effectively:</strong> Understand the importance of labels for accessibility and learn how to associate them with form controls.</li> <li><strong>Organize form data:</strong> Explore how to handle larger text inputs and create dropdown menus to enhance the organization of your form.</li> <li><strong>Enhance form usability:</strong> Learn to use attributes that guide user input and validate data, ensuring that your forms are user-friendly.</li> <li><strong>Style your forms:</strong> Apply CSS to improve the visual presentation and usability of your forms, making sure they offer a seamless experience for users.</li> </ul> <p>This is just the start of your journey into creating interactive and user-friendly web forms! Stay tuned for upcoming episodes where we'll explore advanced form features and techniques to elevate your web development skills.</p> <p>Let's build a strong foundation for your web content!</p> <p>Whether you're a complete beginner or looking to refresh your HTML knowledge, this tutorial is the perfect starting point.</p> <p>For your practice and reference, a downloadable link to the practice file used in the video will be provided below the video itself.</p> <p>Let's get started building your web pages!</p> 
+<h2>Lesson 10: HTML Forms part 2</h2>
 
-<h5>Video Tutorial</h5>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/bTBDF5Nti4k?si=83eBpVLr2hURVcgy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<a href="#video-lesson10">Jump to video lesson</a>
+<p>
+Radio buttons, checkboxes, and combo boxes are form controls that allow users to select one or more options from a set. Radio buttons are used when only one option can be chosen from a group. They should always share the same <code>name</code> attribute so that only one button can be selected at a time. Each radio button should have a clearly associated label, which can be provided using the <code>&lt;label&gt;</code> element.
+</p>
 
-<h5>Topic 7 example code:</h5>
-                    <button id="viewCode7" aria-expanded="false" aria-controls="codeExample7">View example code</button>
-<div id="codeExample7" hidden>
-        <p>All the below content is the HTML code for the seventh topic:</p>
+<p>
+Checkboxes are used when the user can select multiple options from a list. Each checkbox should also be paired with a descriptive label, ensuring that assistive technologies can convey the purpose of the control. When there are multiple checkboxes for related options, it is good practice to group them within the <code>&lt;fieldset&gt;</code> element, with a <code>&lt;legend&gt;</code> that describes the group.
+</p>
+
+<p>
+Combo boxes, or drop-down lists, are created using the <code>&lt;select&gt;</code> element, with one or more <code>&lt;option&gt;</code> elements inside. They allow users to select from a predefined list of choices. When creating a combo box, provide a meaningful label and avoid using generic text like "Select one" without context. If the list is long, consider grouping related options with the <code>&lt;optgroup&gt;</code> element for better accessibility. Always ensure that combo boxes are keyboard accessible and screen reader friendly.
+</p>
+
+<p>
+To make these controls more accessible, always use clear and descriptive labels, ensure keyboard navigation works smoothly, and group related controls logically. Using semantic HTML elements like <code>&lt;label&gt;</code>, <code>&lt;fieldset&gt;</code>, and <code>&lt;legend&gt;</code> helps screen readers convey the form structure accurately to users.
+</p>
+                    <h3 id="video-lesson10">English video explanation with practical:</h3>
+  <div class="video-container">
+<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+ <source src="HTML_English_Videos/lesson10_forms_p2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>                
+  <div class="controls">
+    <button class="playPause">Play</button>
+    <button class="mute">Mute</button>
+   <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
+
+<h3>Topic 10 example code:</h3>
+                    <button id="viewCode10" aria-expanded="false" aria-controls="codeExample10">View example code</button>
+<div id="codeExample10" hidden>
+        <p>All the below content is the HTML code for the 10th lesson:</p>
     <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -829,34 +1043,40 @@ The main branch of the school is in &lt;em&gt;New Delhi.&lt;/em&gt;&lt;/p&gt;
     </code></pre>
 </div>
                 </div>
-                <div id="intro-page9" class="intro-page">
-<h4>Enhancing Your Web Pages with Accessible Audio and Video</h4>
-<p>Welcome back to our HTML tutorial series! In this episode, we'll be exploring how to integrate accessible multimedia elements into your web pages. You'll learn how to use the `<audio>` and `<video>` tags to embed audio and video content, ensuring it is accessible to all users.</p>
-<p>By the end of this video, you'll be skilled in embedding and enhancing multimedia content! You'll be able to:</p>
-<ul>
-  <li><strong>Embed audio files:</strong> Utilize the `<audio>` tag to add audio content to your web pages, including controls for play, pause, and volume.</li>
-  <li><strong>Embed video files:</strong> Use the `<video>` tag to incorporate video content, complete with controls for play, pause, volume, and full-screen viewing.</li>
-  <li><strong>Provide accessible media controls:</strong> Ensure your audio and video players are navigable via keyboard and screen readers by using appropriate attributes and controls.</li>
-  <li><strong>Add captions and transcripts:</strong> Implement `<track>` elements for subtitles, captions, and descriptions, making your content accessible to users with hearing impairments.</li>
-  <li><strong>Optimize for all devices:</strong> Learn best practices for ensuring your media players work seamlessly across different screen sizes and devices.</li>
-  <li><strong>Style your media players:</strong> Apply CSS to customize the appearance of your audio and video players, matching your website's design and improving user experience.</li>
-</ul>
-<p>This is just the beginning of your journey into creating rich, multimedia web experiences! Stay tuned for upcoming episodes where we'll delve into more advanced HTML features and techniques to elevate your web development skills.</p>
 
-<p>Let's build a strong foundation for your web content!</p>
-<p>Whether you're a complete beginner or looking to refresh your HTML knowledge, this tutorial is the perfect starting point!</p>
+                <div id="intro-page10" class="intro-page">
+<h2>Lesson 11: Enhancing Your Web Pages with Accessible Audio and Video</h2>
+<a href="#video-lesson11">Jump to video lesson</a>
 
-<p>For your practice and reference, a downloadable link to the practice file used in the video will be provided below the video itself.</p>
+<p>
+Multimedia elements such as audio and video allow us to add sound, music, and moving images to a web page. The <code>&lt;audio&gt;</code> element is used to embed audio files, such as music tracks, podcasts, or sound effects. The <code>&lt;video&gt;</code> element is used to display videos directly in the browser without needing extra plugins. Both elements require a <code>src</code> attribute to define the media file and can include controls for play, pause, volume, and seeking.
+</p>
 
-<p>Let's get started building your web pages!</p>
+<p>
+To make multimedia accessible, always include the <code>controls</code> attribute so users can operate playback with a mouse, keyboard, or touch screen. For audio, provide a transcript of the spoken content so users who cannot hear can still understand the message. For video, provide captions for spoken words and important sounds, and if possible, include audio descriptions for visually impaired users. This ensures that everyone can access the media content regardless of their abilities.
+</p>
 
-<h5>Video Tutorial</h5>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/HgBL1zjVGFY?si=3JrZ7ffFqXRLNBNJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<h5>Topic 8 example code:</h5>
-                    <button id="viewCode8" aria-expanded="false" aria-controls="codeExample8">View example code</button>
-<div id="codeExample8" hidden>
+<p>
+You can also provide multiple file formats, such as MP3, OGG, and WAV for audio, or MP4, WebM, and OGV for video, to ensure that the media works in all browsers. Additionally, make sure that auto-playing media is avoided or muted by default, as it can be disruptive for users, especially those using screen readers. Accessibility guidelines like WCAG recommend giving users full control over media playback.
+</p>
+                    <h3 id="video-lesson11">English video explanation with practical:</h3>
+  <div class="video-container">
+<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+ <source src="HTML_English_Videos/lesson11_media.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>                
+  <div class="controls">
+    <button class="playPause">Play</button>
+    <button class="mute">Mute</button>
+   <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
 
-    <p>All the below content is the HTML code for the eighth topic:</p>
+<h3>Topic 11 example code:</h3>
+                    <button id="viewCode11" aria-expanded="false" aria-controls="codeExample11">View example code</button>
+<div id="codeExample11" hidden>
+
+    <p>All the below content is the HTML code for the 11th lesson:</p>
     <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -877,52 +1097,56 @@ The main branch of the school is in &lt;em&gt;New Delhi.&lt;/em&gt;&lt;/p&gt;
     </code></pre>
 </div>
 </div>
-                <div id="intro-page10" class="intro-page">
-<h4>Creating a Complete HTML Page with a Screen Reader </h4>
-<p>Welcome to Accessible World Tutorials! In this video, I’ll guide you through the process of building an entire HTML page using a screen reader. This step-by-step tutorial is designed to help visually impaired users create accessible and fully functional web pages. Whether you’re new to HTML or looking to refine your skills, this video covers everything from setting up the basic structure to adding content and ensuring your page is screen reader-friendly.</p> <p>By the end of this tutorial, you’ll have a comprehensive understanding of how to create a complete HTML page that’s accessible to all users. Join me as we explore the essential techniques and best practices for building web content that’s both functional and inclusive.</p> <p>🔗 What You'll Learn:</p> <ul> <li>Setting up a basic HTML structure</li> <li>Adding and organizing content</li> <li>Using semantic HTML elements for better accessibility</li> <li>Tips for screen reader-friendly web development</li> </ul> 
+                <div id="intro-page12" class="intro-page">
+<h2>Lesson 12: Meta tags</h2>
+<a href="#video-lesson12">Jump to video lesson</a>
 
-<p>Let's build a strong foundation for your web content!</p>
-<p>Whether you're a complete beginner or looking to refresh your HTML knowledge, this tutorial is the perfect starting point!</p>
+<p>
+In HTML, the <code>&lt;meta&gt;</code> tag is placed inside the <code>&lt;head&gt;</code> section and is used to provide metadata about the web page. Metadata means “data about data,” which is information that helps browsers, search engines, and other tools understand more about your page. Meta tags do not appear visually on the page but are important for accessibility, SEO (Search Engine Optimization), and proper browser rendering.
+</p>
 
-<p>For your practice and reference, a downloadable link to the practice file used in the video will be provided below the video itself.</p>
+<p>
+One of the most important meta tags is the <code>&lt;meta charset="UTF-8"&gt;</code> tag. This tag tells the browser which character encoding to use. UTF-8 is the most widely used encoding, and it supports almost all characters from all languages, making it suitable for multilingual websites.
+</p>
 
-<p>Let's get started building your web pages!</p>
+<p>
+Another common meta tag is the viewport meta tag: <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code>. This tag is essential for responsive web design. It instructs the browser to adjust the page’s width and scaling according to the device’s screen size, so your page looks good on both mobile and desktop devices.
+</p>
 
-<h5>Video Tutorial</h5>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/xZ55B5pYENI?si=9kkYm5ECvqpI254v" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<p>
+There are also meta tags for descriptions and keywords. For example: <code>&lt;meta name="description" content="A brief description of the web page"&gt;</code> helps search engines display a meaningful summary in search results. Similarly, <code>&lt;meta name="keywords" content="HTML, tutorial, accessibility"&gt;</code> provides search keywords, though modern search engines rely less on this tag.
+</p>
 
-<h5>Topic 9 example code:</h5>
-                    <button id="viewCode9" aria-expanded="false" aria-controls="codeExample9">View example code</button>
-<div id="codeExample9" hidden>
-    <p>All the below content is the HTML code for the ninth topic:</p>
+<p>
+From an accessibility perspective, the charset meta tag ensures that text displays correctly for assistive technologies such as screen readers. The viewport meta tag ensures that zoom and scaling work properly for users with low vision. Additionally, using clear and relevant descriptions in meta tags helps screen readers and search engines present better information about the page to the user.
+</p>
+                    <h3 id="video-lesson12">English video explanation with practical:</h3>
+  <div class="video-container">
+<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+ <source src="HTML_English_Videos/lesson12_meta.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>                
+  <div class="controls">
+    <button class="playPause">Play</button>
+    <button class="mute">Mute</button>
+   <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
+
+<h3>Topic 12 example code:</h3>
+                    <button id="viewCode12" aria-expanded="false" aria-controls="codeExample12">View example code</button>
+<div id="codeExample12" hidden>
+    <p>All the below content is the HTML code for the 12th lesson:</p>
     <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;eng&quot;&gt;
 &lt;head&gt;
-    &lt;title&gt;Accessible World&lt;/title&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Accessible World&lt;/title&gt;
+
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;a href=&quot;#main&quot;&gt;Skip to main content&lt;/a&gt;
-    &lt;header&gt;
-        &lt;h1&gt;Welcome to Accessible World&lt;/h1&gt;
-        &lt;img src=&quot;#&quot; alt=&quot;Accessible World Logo&quot;&gt;
-        &lt;nav&gt;
-            &lt;ul type=&quot;none&quot;&gt;
-                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;About Us&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Contact Us&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Our Tutorials&lt;/a&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/nav&gt;
-    &lt;/header&gt;
-    &lt;main id=&quot;main&quot;&gt;
-        &lt;h2&gt;About Us&lt;/h2&gt;
-        &lt;p&gt;At Accessible World Tutorials, we are dedicated to making the digital world accessible to everyone. Our mission is to provide high-quality, accessible learning materials specifically designed for the visually impaired community. Whether you&apos;re looking to learn the latest web standards, delve into JavaScript programming, or understand the stock market, we have you covered.&lt;/p&gt;
-    &lt;/main&gt;
-    &lt;footer&gt;
-        &lt;p&gt;Copyright by Accessible World&lt;/p&gt;
-    &lt;/footer&gt;
 &lt;/body&gt;
 &lt;/html&gt;
     </code></pre>
@@ -931,7 +1155,7 @@ The main branch of the school is in &lt;em&gt;New Delhi.&lt;/em&gt;&lt;/p&gt;
             </div>
             <div class="pagination-controls" aria-label="HTML Topics Pagination">
                 <button id="prevBtn" disabled>Previous</button>
-                <span id="pageIndicator">Page 1 of 7</span> <button id="nextBtn">Next</button>
+                <span id="pageIndicator">Page 1 of 12</span> <button id="nextBtn">Next</button>
             </div>
         </div>
     </main>
