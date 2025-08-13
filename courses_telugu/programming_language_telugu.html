@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web development - Accessible World</title>
+    <title>Web development [Telugu Explanation]- Accessible World</title>
   <link rel="stylesheet" href="video_style.css">
 
     <style>
@@ -1014,38 +1014,33 @@ To make these controls more accessible, always use clear and descriptive labels,
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-    &lt;title&gt;HTML Forms&lt;/title&gt;
+&lt;title&gt;HTML forms&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;h1&gt;HTML Forms&lt;/h1&gt;
-    &lt;form&gt;
-        &lt;label for=&quot;fn&quot;&gt;Full Name&lt;/label&gt;
-        &lt;input type=&quot;text&quot; id=&quot;fn&quot; name=&quot;full_name&quot; required autofocus&gt;
-        &lt;br&gt;
-        &lt;label&gt;Select Gender&lt;/label&gt;
-        &lt;br&gt;
-        &lt;input type=&quot;radio&quot; id=&quot;ml&quot; name=&quot;gender&quot; value=&quot;male&quot; required&gt;
-        &lt;label for=&quot;ml&quot;&gt;Male&lt;/label&gt;
-        &lt;input type=&quot;radio&quot; id=&quot;fm&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt;
-        &lt;label for=&quot;fm&quot;&gt;Female&lt;/label&gt;
-        &lt;br&gt;
-        &lt;label&gt;What languages you know&lt;/label&gt;
-        &lt;br&gt;
-        &lt;input type=&quot;checkbox&quot; id=&quot;english&quot; value=&quot;english&quot;&gt;
-        &lt;label for=&quot;english&quot;&gt;I know English&lt;/label&gt;
-        &lt;input type=&quot;checkbox&quot; id=&quot;hindi&quot; value=&quot;hindi&quot;&gt;
-        &lt;label for=&quot;hindi&quot;&gt;I know Hindi&lt;/label&gt;
-        &lt;br&gt;
-        &lt;label for=&quot;fruit&quot;&gt;Select fruit&lt;/label&gt;
-        &lt;br&gt;
-        &lt;select id=&quot;fruit&quot; name=&quot;fruit&quot;&gt;
-            &lt;option value=&quot;mango&quot;&gt;Mango&lt;/option&gt;
-            &lt;option value=&quot;banana&quot;&gt;Banana&lt;/option&gt;
-            &lt;option value=&quot;apple&quot;&gt;Apple&lt;/option&gt;
-        &lt;/select&gt;
-        &lt;br&gt;
-        &lt;input type=&quot;submit&quot; value=&quot;submit&quot;&gt;
-    &lt;/form&gt;
+&lt;h1&gt;Student registration form part 2&lt;/h1&gt;
+&lt;form&gt;
+&lt;fieldset&gt;
+&lt;legend&gt;Select your Gender?&lt;/legend&gt;
+&lt;input type="radio" id="male" name="gender" value="male"&gt;
+&lt;label for="male"&gt;Male&lt;/label&gt;
+&lt;input type="radio" id="female" name="gender" value="female"&gt;
+&lt;label for="female"&gt;Female&lt;/label&gt;
+&lt;/fieldset&gt;
+&lt;fieldset&gt;
+&lt;legend&gt;Languages You Know&lt;/legend&gt;
+&lt;input type="checkbox" id="en" name="language" value="english"&gt;
+&lt;label for="en"&gt;English&lt;/label&gt;
+&lt;input type="checkbox" id="hi" name="language" value="Hindi"&gt;
+&lt;label for="hi"&gt;Hindi&lt;/label&gt;
+&lt;/fieldset&gt;
+&lt;label for="state"&gt;Select your State&lt;/label&gt;
+&lt;select id="state" required&gt;
+&lt;option value="ap"&gt;Andhra Pradesh&lt;/option&gt;
+&lt;option value="arunachal pradesh"&gt;Arunachal Pradesh&lt;/option&gt;
+&lt;option value="assam"&gt;Assam&lt;/option&gt;
+&lt;/select&gt;
+&lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
 &lt;/body&gt;
 &lt;/html&gt;
     </code></pre>
