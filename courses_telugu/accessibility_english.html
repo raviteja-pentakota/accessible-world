@@ -6,6 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comprehensive Web Accessibility Testing[English Explanation]- Accessible World</title>
     <style>
+.video-container {
+  position: relative;
+  width: 100%; /* Adjust as needed */
+  height: auto;
+  overflow: hidden; /* Ensures controls don't spill out */
+}
+/* Styling for the sliders */
+.seek-slider,
+.volume-slider {
+  -webkit-appearance: none;
+  background: #ccc;
+  height: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.seek-slider::-webkit-slider-thumb,
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  background: #ff5722;
+  border-radius: 50%;
+}
+.custom-video {
+  width: 100%;
+  height: 100%;
+}
+
+.controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  padding: 10px;
+  display: flex;
+  justify-content: center; /* Center the buttons */
+  transition: opacity 0.3s ease; /* Fade in/out effect */
+}
+
+/* Optional: Hide controls when the user isn't interacting with the video */
+.video-container:not(:hover) .controls {
+  opacity: 0;
+}
 .wcag-list-container {
     max-height: 0;
     overflow: hidden;
@@ -822,16 +868,23 @@
                     </p>
 
                     <h3 id="video-lesson1">English video explanation with practical:</h3>
-  <div class="video-container">
-<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
- <source src="wcag_english_videos/Non-text-content.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="wcag_english_videos/Non-text-content.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 </div>
 
@@ -917,11 +970,18 @@
     Your browser does not support the video tag.
   </video>
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-    <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 </div>
@@ -973,11 +1033,18 @@
     <source src="wcag_english_videos/captions pre.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
                 </div>
@@ -1027,11 +1094,18 @@
     <source src="wcag_english_videos/audio description or media alter.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 </div>
@@ -1081,11 +1155,19 @@
     <source src="wcag_english_videos/captions live.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+  <div class="controls">    
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+
 </div>
 
 </div>
@@ -1117,11 +1199,18 @@
     <source src="wcag_english_videos/Audio description for pre recorded videos.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 </div>
@@ -1283,11 +1372,18 @@
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 </div>
@@ -1398,11 +1494,18 @@ Using correct HTML tags and putting content in a logical order helps all users, 
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 </div>
@@ -1468,11 +1571,18 @@ Using correct HTML tags and putting content in a logical order helps all users, 
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 </div>
 
@@ -1522,11 +1632,18 @@ Using correct HTML tags and putting content in a logical order helps all users, 
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -1616,11 +1733,18 @@ If the input field is missing the correct autocomplete value, or if the value is
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -1744,11 +1868,18 @@ If the input field is missing the correct autocomplete value, or if the value is
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -1798,11 +1929,18 @@ If the input field is missing the correct autocomplete value, or if the value is
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -1863,11 +2001,18 @@ If text doesn’t meet these contrast levels, many users — especially those wi
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -1916,11 +2061,18 @@ If text doesn’t meet these contrast levels, many users — especially those wi
     <source src="wcag_english_videos/resize.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -1981,11 +2133,18 @@ Text in images cannot be resized, reflowed, or styled by users—making it harde
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -2046,11 +2205,18 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -2103,11 +2269,18 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -2178,11 +2351,18 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -2359,11 +2539,18 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -2477,11 +2664,18 @@ This is important for:
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -2595,11 +2789,18 @@ This is important for:
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -2713,11 +2914,18 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -2764,11 +2972,18 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -2817,11 +3032,18 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -2871,11 +3093,18 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -2992,11 +3221,18 @@ Other ways to meet this rule include using ARIA landmarks (like <code>main</code
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -3097,11 +3333,19 @@ The title should be short, specific, and related to the page’s main content. I
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+
 </div>
 
 
@@ -3281,11 +3525,18 @@ Good focus order means:
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -3395,11 +3646,18 @@ function copySC244() {
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -3491,11 +3749,18 @@ The website uses only dropdown menus to access pages and provides no search box 
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -3563,11 +3828,18 @@ Headings and labels must clearly describe the topic or purpose of the content th
     Your browser does not support the video tag.
   </video>                
 
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -3643,11 +3915,18 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <source src="wcag_english_videos/Focus Visible.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -3749,11 +4028,18 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <source src="wcag_english_videos/Focus Not Obscured.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -3855,11 +4141,18 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <source src="wcag_english_videos/Pointer Gestures.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -3921,11 +4214,18 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <source src="wcag_english_videos/Pointer Cancellation.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -4020,11 +4320,18 @@ The visible label is submit form but screen reader reads proceed for the below b
     <source src="wcag_english_videos/Label in Name.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -4095,11 +4402,18 @@ The visible label is submit form but screen reader reads proceed for the below b
     <source src="wcag_english_videos/Motion Actuation.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -4187,11 +4501,18 @@ The visible label is submit form but screen reader reads proceed for the below b
     <source src="wcag_english_videos/Dragging Movements.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -4265,11 +4586,18 @@ The visible label is submit form but screen reader reads proceed for the below b
     <source src="wcag_english_videos/Target Size.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -4326,11 +4654,18 @@ The visible label is submit form but screen reader reads proceed for the below b
     <source src="wcag_english_videos/language of page.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -4386,11 +4721,18 @@ The visible label is submit form but screen reader reads proceed for the below b
     <source src="wcag_english_videos/langes of parts.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -4454,11 +4796,18 @@ The visible label is submit form but screen reader reads proceed for the below b
     <source src="wcag_english_videos/on focus.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -4536,11 +4885,18 @@ The visible label is submit form but screen reader reads proceed for the below b
     <source src="wcag_english_videos/on input.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -4587,11 +4943,18 @@ The visible label is submit form but screen reader reads proceed for the below b
     <source src="wcag_english_videos/consistent navigation.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -4639,11 +5002,18 @@ The visible label is submit form but screen reader reads proceed for the below b
     <source src="wcag_english_videos/consistent identification.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -4692,11 +5062,18 @@ The visible label is submit form but screen reader reads proceed for the below b
     <source src="wcag_english_videos/consistent help.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -4795,11 +5172,18 @@ If the user leaves the field blank and submits the form, the page reloads and no
     <source src="wcag_english_videos/error identification.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -4892,11 +5276,18 @@ Incorrect or missing labels can confuse users or prevent screen readers from rea
     <source src="wcag_english_videos/labels or instructions.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -5014,11 +5405,18 @@ For example, instead of simply showing “Invalid input,” a helpful error mess
     <source src="wcag_english_videos/error suggestion.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -5144,11 +5542,18 @@ This is especially important for tasks like placing orders, making payments, sub
     <source src="wcag_english_videos/error prevenction.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -5260,11 +5665,18 @@ Users must manually enter the same address twice with no option to copy or autof
     <source src="wcag_english_videos/redented entry.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -5369,11 +5781,18 @@ Users must remember and type a password with no alternative login methods like b
     <source src="wcag_english_videos/Accessible Authentication.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 </div>
 <div id="wcag-page54" class="wcag-page"> 
@@ -5483,11 +5902,18 @@ Users must remember and type a password with no alternative login methods like b
     <source src="wcag_english_videos/name role value.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -5598,11 +6024,18 @@ Users must remember and type a password with no alternative login methods like b
     <source src="wcag_english_videos/status message.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
 
@@ -5617,18 +6050,6 @@ Users must remember and type a password with no alternative login methods like b
 <span id="current-wcag-num" aria-live="polite"></span>
     <button id="next-wcag">Next</button>
 </div>
-
-<div id="wcag-pages">
-    <div id="wcag-page1" class="wcag-page active">
-        <h2>1.1.1: Non-text Content</h2>
-    </div>
-    <div id="wcag-page2" class="wcag-page">
-        <h2>1.2.1: Audio-only and Video-only (Prerecorded)</h2>
-    </div>
-    <div id="wcag-page56" class="wcag-page">
-<h2>4.1.3: Status Messages</h2>
-
-    </div>
 </div>
 
         <div id="aria-content" class="tab-content" role="tabpanel" aria-labelledby="aria-tab">
@@ -6232,11 +6653,18 @@ Users must remember and type a password with no alternative login methods like b
  <source src="wcag_english_videos/axe.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 </div>
 
@@ -6304,11 +6732,18 @@ Users must remember and type a password with no alternative login methods like b
  <source src="wcag_english_videos/wave.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
                 </div>
                 <div id="automationTools-page3" class="automationTools-page" aria-live="polite">
@@ -6370,11 +6805,18 @@ Users must remember and type a password with no alternative login methods like b
  <source src="wcag_english_videos/lighthouse.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 </div>
 
@@ -6454,13 +6896,22 @@ Users must remember and type a password with no alternative login methods like b
                 window.location.href = "/login.html"; // Redirect if not logged in
             }
         });
-        // Event listener for the profile button
-        profileBtn.addEventListener('click', () => {
-            const isExpanded = profileBtn.getAttribute("aria-expanded") === "true";
-            profileBtn.setAttribute("aria-expanded", !isExpanded);
-            profileDetails.style.display = isExpanded ? "none" : "block"; // Toggle visibility
-        });
+// Event listener for the profile button
+if (profileBtn) {
+    profileBtn.addEventListener('click', () => {
+        const isExpanded = profileBtn.getAttribute("aria-expanded") === "true";
+        profileBtn.setAttribute("aria-expanded", !isExpanded);
+        profileDetails.style.display = isExpanded ? "none" : "block";
+    });
 
+    // Event listener to collapse the profile dropdown on 'Escape' key press
+    document.addEventListener('keydown', (event) => {
+        if (event.key === "Escape" && profileBtn.getAttribute("aria-expanded") === "true") {
+            profileBtn.setAttribute("aria-expanded", "false");
+            profileDetails.style.display = "none";
+        }
+    });
+}
         logoutButton.addEventListener('click', async () => {
             try {
                 await signOut(auth);

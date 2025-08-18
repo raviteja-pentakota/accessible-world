@@ -788,13 +788,22 @@
             }
         });
 
-        // Profile Button
-        profileBtn.addEventListener('click', () => {
-            const isExpanded = profileBtn.getAttribute("aria-expanded") === "true";
-            profileBtn.setAttribute("aria-expanded", !isExpanded);
-            profileDetails.style.display = isExpanded ? "none" : "block";
-        });
+// Event listener for the profile button
+if (profileBtn) {
+    profileBtn.addEventListener('click', () => {
+        const isExpanded = profileBtn.getAttribute("aria-expanded") === "true";
+        profileBtn.setAttribute("aria-expanded", !isExpanded);
+        profileDetails.style.display = isExpanded ? "none" : "block";
+    });
 
+    // Event listener to collapse the profile dropdown on 'Escape' key press
+    document.addEventListener('keydown', (event) => {
+        if (event.key === "Escape" && profileBtn.getAttribute("aria-expanded") === "true") {
+            profileBtn.setAttribute("aria-expanded", "false");
+            profileDetails.style.display = "none";
+        }
+    });
+}
         // Logout Button
         logoutBtn.onclick = () => signOut(auth).then(() => location.href = "index.html");
 

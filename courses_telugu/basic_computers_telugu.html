@@ -402,6 +402,13 @@
             profileBtn.setAttribute("aria-expanded", !isExpanded);
             profileDetails.style.display = isExpanded ? "none" : "block"; // Toggle visibility
         });
+    document.addEventListener('keydown', (event) => {
+        // Check if the key pressed is the Escape key and if the profile details are visible
+        if (event.key === "Escape" && profileBtn.getAttribute("aria-expanded") === "true") {
+            profileBtn.setAttribute("aria-expanded", "false");
+            profileDetails.style.display = "none";
+        }
+    });
 
         logoutButton.addEventListener('click', async () => {
             try {
