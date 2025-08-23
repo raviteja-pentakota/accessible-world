@@ -6055,15 +6055,30 @@ Users must remember and type a password with no alternative login methods like b
         <div id="aria-content" class="tab-content" role="tabpanel" aria-labelledby="aria-tab">
             <h2>ARIA Attributes</h2>
             <div id="aria-pages">
-                <div id="aria-page1" class="aria-page active" aria-live="polite">
+<div id="aria-page1" class="aria-page">
+  <h2>Introduction to ARIA</h2>
+  <h3><strong>What is ARIA?</strong></h3>
+  <p>ARIA stands for <em>Accessible Rich Internet Applications</em>. It is a set of attributes defined by the W3C’s Web Accessibility Initiative (WAI) to make web content and applications more accessible to people with disabilities.</p>
+  
+  <h3><strong>Why is ARIA Important?</strong></h3>
+  <p>Modern websites often use interactive elements such as tabs, sliders, menus, and dialog boxes. These elements may not always be accessible to screen readers and other assistive technologies. ARIA helps bridge this gap by:</p>
+  <ul>
+    <li>Providing additional information about the role, state, and properties of elements.</li>
+    <li>Improving navigation for users who rely on screen readers.</li>
+    <li>Making dynamic content and rich user interfaces usable for people with visual, motor, or cognitive impairments.</li>
+  </ul>
+  
+</div>
+
+                <div id="aria-page2" class="aria-page active" aria-live="polite">
                     <h2>aria-label</h2>
-                    <p>The <code>aria-label</code> attribute is used to give an invisible name to an element. It’s helpful when there is no visible text but you want screen readers to speak something meaningful. This is often used for icon buttons, input fields, and elements that need a label but don’t have one. The text in <code>aria-label</code> will only be read by assistive technologies like screen readers.</p>
+                    <p>The <code>roleIt’s helpful when there is no visible text but you want screen readers to speak something meaningful. This is often used for icon buttons, input fields, and elements that need a label but don’t have one. The text in <code>aria-label</code> will only be read by assistive technologies like screen readers.</p>
 
                     <h3><strong>Example:</strong> A search button with a magnifying glass icon.</h3>
                     <pre><code>&lt;button aria-label="Search"&gt;🔍&lt;/button&gt;</code></pre>
                 </div>
 
-                <div id="aria-page2" class="aria-page" aria-live="polite">
+                <div id="aria-page3" class="aria-page" aria-live="polite">
                     <h2>aria-labelledby</h2>
                     <p>The <code>aria-labelledby</code> attribute tells the screen reader to use another element’s text as the label. You must give the label element an <code>id</code>, and use that ID in the <code>aria-labelledby</code> attribute. This is useful when an input or section is described by a heading or label already on the page. It's great for reusing visible text as the accessible label.</p>
 
@@ -6124,7 +6139,7 @@ Users must remember and type a password with no alternative login methods like b
   <pre><code>&lt;button aria-pressed="false"&gt;Bold&lt;/button&gt;</code></pre>
 </div>
 <div id="aria-page9" class="aria-page">
-  <h2>aria-live</h2>
+<h2>Aria-Live  </h2>
   <p>The <code>aria-live</code> attribute is used for dynamic content updates. It tells screen readers to automatically read changes in a region, even if the user’s focus is somewhere else. This is helpful for alerts, timers, or chat messages. You can use values like "polite", "assertive", or "off".</p>
 
   <h3><strong>Example:</strong> A polite live region that updates without interrupting.</h3>
@@ -6132,6 +6147,46 @@ Users must remember and type a password with no alternative login methods like b
   New message received!
 &lt;/div&gt;</code></pre>
 </div>
+<div id="aria-page46" class="aria-page">
+  <h2>aria-relevant</h2>
+  <p>The <code>aria-relevant</code> attribute is used with live regions to specify what types of changes should be announced to assistive technologies, such as screen readers. It helps control how users are notified about updates in dynamic content.</p>
+
+  <h3>Possible values:</h3>
+  <ul>
+    <li><code>additions</code> – Announce only new nodes added.</li>
+    <li><code>removals</code> – Announce when nodes are removed.</li>
+    <li><code>text</code> – Announce text changes.</li>
+    <li><code>all</code> – Announce all changes (additions, removals, text updates).</li>
+  </ul>
+
+  <h3><strong>Example:</strong> Live chat messages announcing new entries only.</h3>
+  <pre><code>
+&lt;div role="log" aria-live="polite" aria-relevant="additions"&gt;
+  &lt;div&gt;User1: Hello!&lt;/div&gt;
+  &lt;div&gt;User2: Hi, how are you?&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+<div id="aria-page47" class="aria-page">
+  <h2>aria-atomic</h2>
+  <p>The <code>aria-atomic</code> attribute is used with live regions to control whether assistive technologies should present the entire region or only the changed part when content updates.</p>
+
+  <h3>Possible values:</h3>
+  <ul>
+    <li><code>false</code> – Only the changed content inside the live region is announced (default).</li>
+    <li><code>true</code> – The entire region is announced, even if only part of it changes.</li>
+  </ul>
+
+  <h3>Example: Weather update with entire region announcement.</h3>
+  <pre><code>
+&lt;div aria-live="polite" aria-atomic="true"&gt;
+  &lt;h4&gt;Weather Update&lt;/h4&gt;
+  &lt;p&gt;Temperature: 30°C&lt;/p&gt;
+  &lt;p&gt;Condition: Sunny&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
 <div id="aria-page10" class="aria-page">
   <h2>aria-disabled</h2>
   <p>The <code>aria-disabled</code> attribute tells assistive technology that an element is disabled, even if it is not visually shown as such. Unlike the HTML <code>disabled</code> attribute, <code>aria-disabled</code> works on more elements and gives developers more control over how things appear vs. behave.</p>
@@ -6230,74 +6285,36 @@ Users must remember and type a password with no alternative login methods like b
   Please confirm your action before continuing.
 &lt;/div&gt;</code></pre>
 </div>
+<div id="aria-page49" class="aria-page">
+  <h2>aria-owns</h2>
+  <p>The <code>aria-owns</code> attribute defines a parent–child relationship between elements when that relationship cannot be determined from the DOM structure alone. 
+  It allows authors to override the accessibility tree to include elements that are elsewhere in the DOM as children of the current element.</p>
+
+  <h3>Important notes:</h3>
+  <ul>
+    <li>Used when the DOM order does not match the logical relationship for assistive technologies.</li>
+    <li>Should be used carefully, as it can cause confusion if misapplied.</li>
+    <li>It does not move elements visually, only in the accessibility tree.</li>
+  </ul>
+
+  <h3>Example: Associating menu items with a menu container.</h3>
+  <pre><code>
+&lt;div role="menu" aria-owns="item1 item2"&gt;
+  Main Menu
+&lt;/div&gt;
+
+&lt;div id="item1" role="menuitem"&gt;Profile&lt;/div&gt;
+&lt;div id="item2" role="menuitem"&gt;Settings&lt;/div&gt;
+</code></pre>
+</div>
 <div id="aria-page21" class="aria-page">
-  <h2>aria-hidden</h2>
-  <p>The <code>aria-hidden</code> attribute is used to hide elements from screen readers. When set to <code>true</code>, assistive technologies will ignore the element. This is useful when content is decorative or not meant for accessibility tools, even if it's visible on the screen.</p>
-
-  <p><strong>Example:</strong> Hiding decorative text from screen readers.</p>
-  <pre><code>&lt;span aria-hidden="true"&gt;★&lt;/span&gt;</code></pre>
-</div>
-<div id="aria-page22" class="aria-page">
-  <h2>aria-describedby</h2>
-  <p>The <code>aria-describedby</code> attribute points to the ID of another element that describes the current element. It provides extra information to screen reader users, like helpful instructions or hints.</p>
-
-  <p><strong>Example:</strong> Adding a hint to an input field.</p>
-  <pre><code>&lt;input type="text" aria-describedby="hint"&gt;
-&lt;div id="hint"&gt;Enter your full name as shown on ID.&lt;/div&gt;</code></pre>
-</div>
-<div id="aria-page23" class="aria-page">
-  <h2>aria-labelledby</h2>
-  <p>The <code>aria-labelledby</code> attribute links an element to another that acts as its label. It tells screen readers to read the content of the referenced label instead of a normal label or <code>aria-label</code>.</p>
-
-  <p><strong>Example:</strong> Labeling a section with a heading.</p>
-  <pre><code>&lt;h2 id="profile-heading"&gt;User Profile&lt;/h2&gt;
-&lt;section aria-labelledby="profile-heading"&gt;...&lt;/section&gt;</code></pre>
-</div>
-<div id="aria-page24" class="aria-page">
-  <h2>aria-label</h2>
-  <p>The <code>aria-label</code> attribute gives a custom text label to an element when there’s no visible label. It helps screen reader users know the purpose of the element, like a button or icon.</p>
-
-  <p><strong>Example:</strong> Labeling a button with an icon.</p>
-  <pre><code>&lt;button aria-label="Close"&gt;
-  &lt;span aria-hidden="true"&gt;×&lt;/span&gt;
-&lt;/button&gt;</code></pre>
-</div>
-<div id="aria-page25" class="aria-page">
   <h2>aria-readonly</h2>
   <p>The <code>aria-readonly</code> attribute tells assistive technologies that a form control is read-only. The user can read the content but cannot change it. This helps screen reader users understand they cannot edit the field.</p>
 
   <p><strong>Example:</strong> A read-only input field.</p>
   <pre><code>&lt;input type="text" value="Not Editable" aria-readonly="true"&gt;</code></pre>
 </div>
-<div id="aria-page26" class="aria-page">
-  <h2>aria-live</h2>
-  <p>The <code>aria-live</code> attribute is used for regions that update dynamically, like notifications or chat messages. Screen readers will announce any change in that region without needing to focus on it. Values include <code>polite</code> and <code>assertive</code>.</p>
-
-  <p><strong>Example:</strong> Live announcement area.</p>
-  <pre><code>&lt;div aria-live="polite"&gt;
-  You have 1 new message.
-&lt;/div&gt;</code></pre>
-</div>
-<div id="aria-page27" class="aria-page">
-  <h2>aria-pressed</h2>
-  <p>The <code>aria-pressed</code> attribute is used with toggle buttons to tell whether the button is in a pressed (active) or unpressed (inactive) state. This helps screen readers convey the button's current status.</p>
-
-  <p><strong>Example:</strong> Toggle button for favorites.</p>
-  <pre><code>&lt;button aria-pressed="false"&gt;
-  Add to Favorites
-&lt;/button&gt;</code></pre>
-</div>
-<div id="aria-page28" class="aria-page">
-  <h2>aria-expanded</h2>
-  <p>The <code>aria-expanded</code> attribute tells screen readers whether a collapsible section or menu is currently expanded or collapsed. When a user toggles content visibility, this value should be updated dynamically.</p>
-
-  <p><strong>Example:</strong> Toggle FAQ answer section.</p>
-  <pre><code>&lt;button aria-expanded="false" aria-controls="faq1"&gt;
-  What is ARIA?
-&lt;/button&gt;
-&lt;div id="faq1"&gt;ARIA stands for Accessible Rich Internet Applications...&lt;/div&gt;</code></pre>
-</div>
-<div id="aria-page29" class="aria-page">
+<div id="aria-page22" class="aria-page">
   <h2>aria-activedescendant</h2>
   <p>The <code>aria-activedescendant</code> attribute is used in composite widgets like autocomplete or listbox to show which item is currently active. It helps assistive technologies track the focus without moving the actual input focus.</p>
 
@@ -6308,7 +6325,7 @@ Users must remember and type a password with no alternative login methods like b
   &lt;li id="option2"&gt;Banana&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
 </div>
-<div id="aria-page30" class="aria-page">
+<div id="aria-page23" class="aria-page">
   <h2>aria-valuemin, aria-valuemax, aria-valuenow</h2>
   <p>These attributes are used in widgets like sliders or progress bars. <code>aria-valuemin</code> and <code>aria-valuemax</code> set the range, while <code>aria-valuenow</code> tells the current value. This allows screen reader users to understand how far along a process is.</p>
 
@@ -6320,7 +6337,7 @@ Users must remember and type a password with no alternative login methods like b
   70% Complete
 &lt;/div&gt;</code></pre>
 </div>
-<div id="aria-page31" class="aria-page">
+<div id="aria-page24" class="aria-page">
   <h2>aria-orientation</h2>
   <p>The <code>aria-orientation</code> attribute defines whether a widget like a tab list or slider is arranged vertically or horizontally. This helps screen readers announce how the items are displayed so users can navigate accordingly.</p>
 
@@ -6330,7 +6347,7 @@ Users must remember and type a password with no alternative login methods like b
   &lt;div role="tab"&gt;Tab 2&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 </div>
-<div id="aria-page32" class="aria-page">
+<div id="aria-page25" class="aria-page">
   <h2>aria-multiselectable</h2>
   <p>Used on a listbox or grid, <code>aria-multiselectable</code> tells screen readers if the user can select more than one item. This is useful in scenarios where users need to select multiple options like in filters or checklists.</p>
 
@@ -6340,42 +6357,54 @@ Users must remember and type a password with no alternative login methods like b
   &lt;li role="option"&gt;Option B&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
 </div>
-<div id="aria-page33" class="aria-page">
+<div id="aria-page26" class="aria-page">
   <h2>aria-sort</h2>
   <p>The <code>aria-sort</code> attribute is used on table headers to indicate the sorting direction: ascending, descending, none, or other. This is very helpful for screen reader users to know how data is sorted.</p>
 
   <p><strong>Example:</strong> Column sorted in descending order.</p>
   <pre><code>&lt;th aria-sort="descending"&gt;Price&lt;/th&gt;</code></pre>
 </div>
-<div id="aria-page34" class="aria-page">
+<div id="aria-page27" class="aria-page">
   <h2>aria-dropeffect</h2>
   <p><code>aria-dropeffect</code> was used to show what kind of drop action would be allowed in a drag-and-drop interface (e.g., copy, move, link). This attribute is now deprecated, and better alternatives should be used with HTML5 drag and drop.</p>
 
   <p><strong>Example:</strong> (Deprecated usage)</p>
   <pre><code>&lt;div aria-dropeffect="move"&gt;Drop files here&lt;/div&gt;</code></pre>
 </div>
-<div id="aria-page35" class="aria-page">
+<div id="aria-page48" class="aria-page">
+  <h2>aria-grabbed</h2>
+  <p>The <code>aria-grabbed</code> attribute was used in older ARIA specifications to indicate whether an element is currently grabbed for drag-and-drop operations. 
+  However, it is now <strong>deprecated in ARIA 1.1</strong>, and authors are encouraged to use modern drag-and-drop APIs instead.</p>
+
+  <h3>Possible values:</h3>
+  <ul>
+    <li><code>true</code> – The element is currently grabbed (selected for dragging).</li>
+    <li><code>false</code> – The element is not grabbed (default).</li>
+  </ul>
+
+  <h3>Example: Draggable list item marked as grabbed.</h3>
+  <pre><code>
+&lt;div role="listitem" draggable="true" aria-grabbed="true"&gt;
+  File1.txt (dragging)
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page28" class="aria-page">
   <h2>aria-keyshortcuts</h2>
   <p>The <code>aria-keyshortcuts</code> attribute tells assistive technologies what keyboard shortcut activates the element. It allows users to know that a specific key combo like "Ctrl+S" will perform an action.</p>
 
   <p><strong>Example:</strong> Button triggered with Ctrl+S.</p>
   <pre><code>&lt;button aria-keyshortcuts="Ctrl+S"&gt;Save&lt;/button&gt;</code></pre>
 </div>
-<div id="aria-page35" class="aria-page">
-  <h2>aria-keyshortcuts</h2>
-  <p>The <code>aria-keyshortcuts</code> attribute tells assistive technologies what keyboard shortcut activates the element. It allows users to know that a specific key combo like "Ctrl+S" will perform an action.</p>
-
-  <p><strong>Example:</strong> Button triggered with Ctrl+S.</p>
-  <pre><code>&lt;button aria-keyshortcuts="Ctrl+S"&gt;Save&lt;/button&gt;</code></pre>
-</div>
-<div id="aria-page36" class="aria-page">
+<div id="aria-page29" class="aria-page">
   <h2>aria-relevant</h2>
   <p><code>aria-relevant</code> defines what types of changes (like additions, text updates, or removals) in a live region should be announced by assistive technologies. It is used with <code>aria-live</code> for better control.</p>
 
   <p><strong>Example:</strong> Announce additions in a live chat.</p>
   <pre><code>&lt;div aria-live="polite" aria-relevant="additions"&gt;&lt;/div&gt;</code></pre>
 </div>
-<div id="aria-page37" class="aria-page">
+<div id="aria-page30" class="aria-page">
   <h2>aria-flowto</h2>
   <p>The <code>aria-flowto</code> attribute specifies the next element in the reading flow. It’s used when the visual order differs from the logical DOM order, helping screen readers follow the correct reading sequence.</p>
 
@@ -6383,21 +6412,7 @@ Users must remember and type a password with no alternative login methods like b
   <pre><code>&lt;div id="box1" aria-flowto="box2"&gt;Step 1&lt;/div&gt;
 &lt;div id="box2"&gt;Step 2&lt;/div&gt;</code></pre>
 </div>
-<div id="aria-page38" class="aria-page">
-  <h2>aria-current</h2>
-  <p>The <code>aria-current</code> attribute tells screen readers which item is currently active, such as in a menu, breadcrumb, or pagination. It improves orientation for visually impaired users.</p>
-
-  <p><strong>Example:</strong> Highlighting the current page in a menu.</p>
-  <pre><code>&lt;li aria-current="page"&gt;Home&lt;/li&gt;</code></pre>
-</div>
-<div id="aria-page38" class="aria-page">
-  <h2>aria-current</h2>
-  <p>The <code>aria-current</code> attribute tells screen readers which item is currently active, such as in a menu, breadcrumb, or pagination. It improves orientation for visually impaired users.</p>
-
-  <p><strong>Example:</strong> Highlighting the current page in a menu.</p>
-  <pre><code>&lt;li aria-current="page"&gt;Home&lt;/li&gt;</code></pre>
-</div>
-<div id="aria-page39" class="aria-page">
+<div id="aria-page31" class="aria-page">
   <h2>aria-autocomplete</h2>
   <p>Used in input fields, <code>aria-autocomplete</code> tells screen readers if autocomplete suggestions are available. It can have values like <code>inline</code>, <code>list</code>, or <code>both</code>, helping users understand how they can choose suggestions.</p>
 
@@ -6408,121 +6423,56 @@ Users must remember and type a password with no alternative login methods like b
   &lt;li&gt;Banana&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
 </div>
-<div id="aria-page40" class="aria-page">
+<div id="aria-page32" class="aria-page">
   <h2>aria-colspan</h2>
   <p><code>aria-colspan</code> defines how many columns a cell should span in a grid. It helps screen readers understand the structure of complex grids, just like the HTML <code>colspan</code> attribute in tables.</p>
 
   <p><strong>Example:</strong> A cell spanning two columns.</p>
   <pre><code>&lt;div role="gridcell" aria-colspan="2"&gt;Merged Column&lt;/div&gt;</code></pre>
 </div>
-<div id="aria-page41" class="aria-page">
+<div id="aria-page33" class="aria-page">
   <h2>aria-rowspan</h2>
   <p>The <code>aria-rowspan</code> attribute defines how many rows a cell spans in a grid or table structure. It works similarly to the HTML <code>rowspan</code> and helps screen readers interpret table layout correctly.</p>
 
   <p><strong>Example:</strong> A cell spanning two rows.</p>
   <pre><code>&lt;div role="gridcell" aria-rowspan="2"&gt;Merged Row&lt;/div&gt;</code></pre>
 </div>
-<div id="aria-page42" class="aria-page">
+<div id="aria-page34" class="aria-page">
   <h2>aria-colindex</h2>
   <p><code>aria-colindex</code> tells assistive technologies the column number for a grid or table cell. This is helpful when table headers are complex and don’t appear in the usual DOM order.</p>
 
   <p><strong>Example:</strong> A cell at column 3.</p>
   <pre><code>&lt;div role="gridcell" aria-colindex="3"&gt;Data&lt;/div&gt;</code></pre>
 </div>
-<div id="aria-page43" class="aria-page">
+<div id="aria-page35" class="aria-page">
   <h2>aria-rowindex</h2>
   <p>The <code>aria-rowindex</code> attribute tells screen readers the row number of a cell in a table or grid. It is useful for creating accessible data grids with proper navigation for screen reader users.</p>
 
   <p><strong>Example:</strong> A cell in row 2.</p>
   <pre><code>&lt;div role="gridcell" aria-rowindex="2"&gt;Item&lt;/div&gt;</code></pre>
 </div>
-<div id="aria-page44" class="aria-page">
+<div id="aria-page36" class="aria-page">
   <h2>aria-placeholder</h2>
   <p><code>aria-placeholder</code> provides placeholder text for assistive technologies when the native HTML <code>placeholder</code> isn't enough or is visually hidden. It describes the expected input.</p>
 
   <p><strong>Example:</strong> Input for entering a city name.</p>
   <pre><code>&lt;input type="text" aria-placeholder="Enter your city"&gt;</code></pre>
 </div>
-<div id="aria-page45" class="aria-page">
-  <h2>aria-hidden</h2>
-  <p>The <code>aria-hidden</code> attribute hides content from screen readers. It's useful when certain visual elements (like decorative icons) should not be announced.</p>
-
-  <p><strong>Example:</strong> Icon hidden from screen reader.</p>
-  <pre><code>&lt;span class="icon" aria-hidden="true"&gt;★&lt;/span&gt;</code></pre>
-</div>
-<div id="aria-page46" class="aria-page">
-  <h2>aria-labelledby</h2>
-  <p>Use <code>aria-labelledby</code> when an element's label is provided by another element on the page. The attribute references the ID of the labeling element to make the relationship clear to screen readers.</p>
-
-  <p><strong>Example:</strong> Labeling a form section.</p>
-  <pre><code>&lt;h2 id="formTitle"&gt;User Details&lt;/h2&gt;
-&lt;form aria-labelledby="formTitle"&gt;...&lt;/form&gt;</code></pre>
-</div>
-<div id="aria-page47" class="aria-page">
-  <h2>aria-controls</h2>
-  <p><code>aria-controls</code> identifies the element that is controlled by the current element. For example, a button might control the visibility of a panel or tab content.</p>
-
-  <p><strong>Example:</strong> Button controlling a panel.</p>
-  <pre><code>&lt;button aria-controls="infoPanel"&gt;Toggle Info&lt;/button&gt;
-&lt;div id="infoPanel"&gt;Additional Information&lt;/div&gt;</code></pre>
-</div>
-<div id="aria-page48" class="aria-page">
+<div id="aria-page37" class="aria-page">
   <h2>aria-posinset</h2>
   <p>The <code>aria-posinset</code> attribute defines an element’s position in a set. It helps users understand their current position among siblings (like "3 of 5").</p>
 
   <p><strong>Example:</strong> Item 2 of 4 in a list.</p>
   <pre><code>&lt;li role="option" aria-posinset="2" aria-setsize="4"&gt;Option 2&lt;/li&gt;</code></pre>
 </div>
-<div id="aria-page49" class="aria-page">
+<div id="aria-page38" class="aria-page">
   <h2>aria-setsize</h2>
   <p><code>aria-setsize</code> tells assistive technologies the total number of items in a set or list. When used with <code>aria-posinset</code>, it helps screen readers provide context like “item 2 of 5”.</p>
 
   <p><strong>Example:</strong> Set of 4 options.</p>
   <pre><code>&lt;li role="option" aria-posinset="1" aria-setsize="4"&gt;Option 1&lt;/li&gt;</code></pre>
 </div>
-<div id="aria-page50" class="aria-page">
-  <h2>aria-valuemin, aria-valuemax, aria-valuenow</h2>
-  <p>These attributes are used for elements with roles like <code>slider</code> or <code>progressbar</code>. They define the minimum, maximum, and current values, which screen readers use to announce progress or position.</p>
-
-  <p><strong>Example:</strong> A slider at value 70.</p>
-  <pre><code>&lt;div role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70"&gt;&lt;/div&gt;</code></pre>
-</div>
-<div id="aria-page51" class="aria-page">
-  <h2>aria-flowto</h2>
-  <p><code>aria-flowto</code> tells screen readers what element should be read next, especially when the order is not the same as the visual layout. This helps users follow content more easily.</p>
-  <p><strong>Example:</strong> After reading paragraph1, go to paragraph2.</p>
-  <pre><code>
-&lt;p id="paragraph1" aria-flowto="paragraph2"&gt;
-  Step 1: Turn on the switch.
-&lt;/p&gt;
-&lt;p id="paragraph2"&gt;
-  Step 2: Wait for the light.
-&lt;/p&gt;
-</code></pre>
-</div>
-<div id="aria-page52" class="aria-page">
-  <h2>aria-haspopup</h2>
-  <p>This attribute tells screen readers that clicking or focusing on an element will open a popup, like a menu or dialog. It improves awareness of interactive elements.</p>
-  <p><strong>Example:</strong> A button opens a menu.</p>
-  <pre><code>
-&lt;button aria-haspopup="true" aria-controls="menu1"&gt;
-  Open Menu
-&lt;/button&gt;
-&lt;div id="menu1" role="menu"&gt;...&lt;/div&gt;
-</code></pre>
-</div>
-<div id="aria-page53" class="aria-page">
-  <h2>aria-multiselectable</h2>
-  <p>Use <code>aria-multiselectable</code> on listboxes or grids to let screen readers know multiple items can be selected. It's helpful for checklists or selection tools.</p>
-  <p><strong>Example:</strong> A list where multiple items can be selected.</p>
-  <pre><code>
-&lt;ul role="listbox" aria-multiselectable="true"&gt;
-  &lt;li role="option"&gt;Item 1&lt;/li&gt;
-  &lt;li role="option"&gt;Item 2&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
-</div>
-<div id="aria-page54" class="aria-page">
+<div id="aria-page39" class="aria-page">
   <h2>aria-braillelabel</h2>
   <p>This attribute gives a label specifically for braille displays. It may differ from the spoken label and helps provide better accessibility for braille readers.</p>
   <p><strong>Example:</strong> Label for a braille display.</p>
@@ -6532,7 +6482,7 @@ Users must remember and type a password with no alternative login methods like b
 &lt;/button&gt;
 </code></pre>
 </div>
-<div id="aria-page55" class="aria-page">
+<div id="aria-page40" class="aria-page">
   <h2>aria-brailleroledescription</h2>
   <p>This attribute customizes the role name spoken or shown on a braille display. It is useful when the default role name is too long or not meaningful for braille users.</p>
   <p><strong>Example:</strong> Shortened braille role for a switch.</p>
@@ -6540,15 +6490,7 @@ Users must remember and type a password with no alternative login methods like b
 &lt;div role="switch" aria-brailleroledescription="Sw"&gt;On/Off&lt;/div&gt;
 </code></pre>
 </div>
-<div id="aria-page56" class="aria-page">
-  <h2>aria-keyshortcuts</h2>
-  <p>Use <code>aria-keyshortcuts</code> to inform users of available keyboard shortcuts. This makes your app more user-friendly for keyboard-only users.</p>
-  <p><strong>Example:</strong> A button with a shortcut key.</p>
-  <pre><code>
-&lt;button aria-keyshortcuts="Ctrl+S"&gt;Save&lt;/button&gt;
-</code></pre>
-</div>
-<div id="aria-page57" class="aria-page">
+<div id="aria-page41" class="aria-page">
   <h2>aria-errormessage</h2>
   <p><code>aria-errormessage</code> provides a reference to an error message element that explains what's wrong with the input. This improves form validation messages for screen readers.</p>
   <p><strong>Example:</strong> Input with an error message.</p>
@@ -6557,7 +6499,7 @@ Users must remember and type a password with no alternative login methods like b
 &lt;div id="error1"&gt;Please enter a valid email address.&lt;/div&gt;
 </code></pre>
 </div>
-<div id="aria-page58" class="aria-page">
+<div id="aria-page42" class="aria-page">
   <h2>aria-roledescription</h2>
   <p>This gives a custom role description that screen readers announce. It replaces the default role name with something more meaningful or familiar to users.</p>
   <p><strong>Example:</strong> Role description for a custom slider.</p>
@@ -6565,7 +6507,7 @@ Users must remember and type a password with no alternative login methods like b
 &lt;div role="slider" aria-roledescription="volume control"&gt;&lt;/div&gt;
 </code></pre>
 </div>
-<div id="aria-page59" class="aria-page">
+<div id="aria-page43" class="aria-page">
   <h2>aria-details</h2>
   <p>The <code>aria-details</code> attribute links to another element that provides more detailed information. It’s useful for charts, summaries, and tooltips.</p>
   <p><strong>Example:</strong> Element with additional explanation.</p>
@@ -6574,15 +6516,768 @@ Users must remember and type a password with no alternative login methods like b
 &lt;div id="info1"&gt;This data shows infection rates from Jan to March.&lt;/div&gt;
 </code></pre>
 </div>
-<div id="aria-page60" class="aria-page">
-  <h2>aria-required</h2>
-  <p><code>aria-required</code> indicates that a field is required to complete a form. Screen readers will notify users so they don’t miss important inputs.</p>
-  <p><strong>Example:</strong> Required input field.</p>
+<div id="aria-page44" class="aria-page">
+  <h2>aria-valuetext</h2>
+  <p>The <code>aria-valuetext</code> attribute defines a human-readable text alternative for the current value of a widget, such as a slider, spin button, or progress bar. It is especially useful when numeric values need to be expressed in words or more descriptive terms.</p>
+  
+  <p><strong>Example 1:</strong> Slider with descriptive value text for volume control.</p>
   <pre><code>
-&lt;input type="text" aria-required="true"&gt;
+&lt;input type="range" 
+       min="0" 
+       max="100" 
+       value="75" 
+       role="slider" 
+       aria-valuemin="0" 
+       aria-valuemax="100" 
+       aria-valuenow="75" 
+       aria-valuetext="High volume"&gt;
+</code></pre>
+
+  <p><strong>Example 2:</strong> Temperature slider with descriptive value text.</p>
+  <pre><code>
+&lt;input type="range" 
+       min="0" 
+       max="40" 
+       value="30" 
+       role="slider" 
+       aria-valuemin="0" 
+       aria-valuemax="40" 
+       aria-valuenow="30" 
+       aria-valuetext="Warm"&gt;
 </code></pre>
 </div>
-            </div>
+<div id="aria-page45" class="aria-page">
+  <h2>aria-invalid</h2>
+  <p>The <code>aria-invalid</code> attribute indicates whether the value entered into an input field is invalid or contains errors. 
+  It helps assistive technologies notify users when a field requires correction.</p>
+
+  <h3>Possible values:</h3>
+  <ul>
+    <li><code>false</code> – The field value is valid (default).</li>
+    <li><code>true</code> – The field value is invalid.</li>
+    <li><code>grammar</code> – The field has a grammatical error.</li>
+    <li><code>spelling</code> – The field contains a spelling mistake.</li>
+  </ul>
+  
+  <p><strong>Example 1:</strong> Text input marked invalid (email format error).</p>
+  <pre><code>
+&lt;input type="email" 
+       value="user@@example.com" 
+       aria-invalid="true"&gt;
+</code></pre>
+
+  <p><strong>Example 2:</strong> Password field with weak password.</p>
+  <pre><code>
+&lt;input type="password" 
+       value="1234" 
+       aria-invalid="true" 
+       aria-describedby="pwdHelp"&gt;
+&lt;div id="pwdHelp"&gt;Password too weak. Use at least 8 characters.&lt;/div&gt;
+</code></pre>
+
+  <p><strong>Example 3:</strong> Input with spelling mistake indication.</p>
+  <pre><code>
+&lt;input type="text" 
+       value="Acessibility" 
+       aria-invalid="spelling"&gt;
+</code></pre>
+</div>
+<div id="aria-page50" class="aria-page">
+  <h2>aria-posinset</h2>
+  <p>The <code>aria-posinset</code> attribute defines the position of an item within a set of related elements. 
+  It is typically used together with <code>aria-setsize</code> to help assistive technologies convey list or tree structures when the DOM alone does not provide enough information.</p>
+
+  <h3>Important notes:</h3>
+  <ul>
+    <li>It is a 1-based index (first item is 1, second is 2, etc.).</li>
+    <li>Commonly used with <code>role="listitem"</code>, <code>role="treeitem"</code>, or similar grouped roles.</li>
+    <li>Should be used when items are dynamically generated, hidden, or not sequential in the DOM.</li>
+  </ul>
+
+  <h3>Example: List items with explicit position in a set.</h3>
+  <pre><code>
+&lt;ul role="list"&gt;
+  &lt;li role="listitem" aria-posinset="1" aria-setsize="3"&gt;Apple&lt;/li&gt;
+  &lt;li role="listitem" aria-posinset="2" aria-setsize="3"&gt;Banana&lt;/li&gt;
+  &lt;li role="listitem" aria-posinset="3" aria-setsize="3"&gt;Cherry&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+</div>
+<div id="aria-page51" class="aria-page">
+  <h2>role="button"</h2>
+  <p>The <code>button</code> role identifies an element as a button, which can be pressed by the user to perform an action. 
+  Native HTML <code>&lt;button&gt;</code> elements already have this role by default, but it can be applied to custom elements like <code>&lt;div&gt;</code> or <code>&lt;span&gt;</code> when needed.</p>
+
+  <h3>Important notes:</h3>
+  <ul>
+    <li>Users expect it to be focusable with <kbd>Tab</kbd> and operable with <kbd>Enter</kbd> or <kbd>Space</kbd>.</li>
+    <li>Use native <code>&lt;button&gt;</code> when possible for built-in accessibility.</li>
+  </ul>
+
+  <h3>Example: Custom div as a button</h3>
+  <pre><code>
+&lt;div role="button" tabindex="0"&gt;
+  Submit Form
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page52" class="aria-page">
+  <h2>role="checkbox"</h2>
+  <p>The <code>checkbox</code> role identifies an element as a checkbox that can be checked, unchecked, or mixed. 
+  Native HTML checkboxes already have this role by default, but it can be applied to custom elements when building accessible widgets.</p>
+
+  <h3>Important notes:</h3>
+  <ul>
+    <li>Use <code>aria-checked</code> to indicate state (<code>true</code>, <code>false</code>, or <code>mixed</code>).</li>
+    <li>Ensure the element is focusable and togglable with the <kbd>Space</kbd> key.</li>
+  </ul>
+
+  <h3>Example: Custom checkbox</h3>
+  <pre><code>
+&lt;div role="checkbox" tabindex="0" aria-checked="false"&gt;
+  I agree to the terms
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page53" class="aria-page">
+  <h2>role="link"</h2>
+  <p>The <code>link</code> role identifies an element as a link that navigates to another page or resource. 
+  Native HTML <code>&lt;a href&gt;</code> already has this role by default.</p>
+
+  <h3>Important notes:</h3>
+  <ul>
+    <li>Should be keyboard operable with <kbd>Enter</kbd>.</li>
+    <li>If using a custom element, ensure it has <code>tabindex="0"</code>.</li>
+  </ul>
+
+  <h3>Example: Custom link</h3>
+  <pre><code>
+&lt;div role="link" tabindex="0"&gt;
+  Go to Home Page
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page54" class="aria-page">
+  <h2>role="menuitem"</h2>
+  <p>The <code>menuitem</code> role identifies an element as an item inside a menu. 
+  It is usually a child of <code>role="menu"</code> or <code>role="menubar"</code>.</p>
+
+  <h3>Important notes:</h3>
+  <ul>
+    <li>Use in combination with <code>role="menu"</code>.</li>
+    <li>Can also use <code>menuitemcheckbox</code> or <code>menuitemradio</code> for specific states.</li>
+  </ul>
+
+  <h3>Example: Menu with items</h3>
+  <pre><code>
+&lt;div role="menu"&gt;
+  &lt;div role="menuitem"&gt;New File&lt;/div&gt;
+  &lt;div role="menuitem"&gt;Save&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page55" class="aria-page">
+  <h2>role="radio"</h2>
+  <p>The <code>radio</code> role identifies an element as a radio button within a group. 
+  It should be used inside a <code>radiogroup</code>.</p>
+
+  <h3>Important notes:</h3>
+  <ul>
+    <li>Use <code>aria-checked</code> to indicate selection (<code>true</code> or <code>false</code>).</li>
+    <li>Should be keyboard operable with <kbd>Arrow</kbd> keys inside a group.</li>
+  </ul>
+
+  <h3>Example: Custom radio buttons</h3>
+  <pre><code>
+&lt;div role="radiogroup"&gt;
+  &lt;div role="radio" aria-checked="true" tabindex="0"&gt;Male&lt;/div&gt;
+  &lt;div role="radio" aria-checked="false" tabindex="-1"&gt;Female&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page56" class="aria-page">
+  <h2>role="switch"</h2>
+  <p>The <code>switch</code> role identifies a toggle control that represents on/off states. 
+  It is similar to a checkbox but indicates a different kind of interaction (like a light switch).</p>
+
+  <h3>Important notes:</h3>
+  <ul>
+    <li>State is managed using <code>aria-checked</code> (<code>true</code> or <code>false</code>).</li>
+    <li>Keyboard activation should use <kbd>Space</kbd>.</li>
+  </ul>
+
+  <h3>Example: Custom switch</h3>
+  <pre><code>
+&lt;div role="switch" tabindex="0" aria-checked="false"&gt;
+  Dark Mode
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page57" class="aria-page">
+  <h2>role="tab"</h2>
+  <p>The <code>tab</code> role identifies an element as a tab in a tabbed interface. 
+  It is usually part of a <code>tablist</code> and controls a <code>tabpanel</code>.</p>
+
+  <h3>Important notes:</h3>
+  <ul>
+    <li>Selected tab should have <code>aria-selected="true"</code>.</li>
+    <li>Keyboard navigation uses <kbd>Arrow</kbd> keys.</li>
+  </ul>
+
+  <h3>Example: Tab list</h3>
+  <pre><code>
+&lt;div role="tablist"&gt;
+  &lt;div role="tab" aria-selected="true"&gt;Home&lt;/div&gt;
+  &lt;div role="tab" aria-selected="false"&gt;Profile&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page58" class="aria-page">
+  <h2>role="tabpanel"</h2>
+  <p>The <code>tabpanel</code> role defines the content area associated with a tab in a tabbed interface. 
+  It is controlled by a <code>role="tab"</code>.</p>
+
+  <h3>Important notes:</h3>
+  <ul>
+    <li>Should have <code>aria-labelledby</code> pointing to its controlling tab.</li>
+    <li>Only the active panel should be visible.</li>
+  </ul>
+
+  <h3>Example: Tab panel</h3>
+  <pre><code>
+&lt;div role="tabpanel" aria-labelledby="tab1"&gt;
+  Home content goes here.
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page59" class="aria-page">
+  <h2>role="textbox"</h2>
+  <p>The <code>textbox</code> role identifies an element as an input field for text. 
+  Native HTML text inputs and textareas already have this role by default.</p>
+
+  <h3>Important notes:</h3>
+  <ul>
+    <li>Use <code>aria-multiline="true"</code> if the textbox accepts multiple lines (like a textarea).</li>
+    <li>Ensure the element is editable and keyboard accessible.</li>
+  </ul>
+
+  <h3>Example: Custom text box</h3>
+  <pre><code>
+&lt;div role="textbox" contenteditable="true"&gt;
+  Type here...
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page60" class="aria-page">
+  <h2>role="treeitem"</h2>
+  <p>The <code>treeitem</code> role identifies an element as an item in a hierarchical tree structure. 
+  It is usually a child of <code>role="tree"</code> or another <code>treeitem</code>.</p>
+
+  <h3>Important notes:</h3>
+  <ul>
+    <li>Use <code>aria-expanded</code> to indicate if the item is expanded or collapsed.</li>
+    <li>Keyboard navigation typically uses <kbd>Arrow</kbd> keys.</li>
+  </ul>
+
+  <h3>Example: Tree with items</h3>
+  <pre><code>
+&lt;ul role="tree"&gt;
+  &lt;li role="treeitem" aria-expanded="true"&gt;Documents&lt;/li&gt;
+  &lt;li role="treeitem"&gt;Pictures&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+</div>
+<div id="aria-page61" class="aria-page">
+  <h2>Role: listitem</h2>
+  <p>The <code>listitem</code> role represents a single item in a list. It should be contained within elements with <code>role="list"</code> or <code>role="group"</code>.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;ul role="list"&gt;
+  &lt;li role="listitem"&gt;First item&lt;/li&gt;
+  &lt;li role="listitem"&gt;Second item&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+</div>
+
+<div id="aria-page62" class="aria-page">
+  <h2>Role: log</h2>
+  <p>The <code>log</code> role is used for content that changes frequently, like chat logs or live updates. Screen readers automatically announce new content.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;div role="log"&gt;
+  &lt;p&gt;User1: Hello!&lt;/p&gt;
+  &lt;p&gt;User2: Hi there!&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page63" class="aria-page">
+  <h2>Role: main</h2>
+  <p>The <code>main</code> role identifies the main content area of a page. Each page should only have one main region.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;main role="main"&gt;
+  &lt;h1&gt;Welcome to Accessible World&lt;/h1&gt;
+  &lt;p&gt;This is the main content of the page.&lt;/p&gt;
+&lt;/main&gt;
+</code></pre>
+</div>
+
+<div id="aria-page64" class="aria-page">
+  <h2>Role: marquee</h2>
+  <p>The <code>marquee</code> role is used for scrolling or moving text. However, it is rarely recommended for accessibility since moving text can be distracting.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;div role="marquee"&gt;
+  Breaking News: Accessibility matters!
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page65" class="aria-page">
+  <h2>Role: math</h2>
+  <p>The <code>math</code> role is used to indicate that the content represents a mathematical expression.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;div role="math"&gt;
+  E = mc&lt;sup&gt;2&lt;/sup&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page66" class="aria-page">
+  <h2>Role: menu</h2>
+  <p>The <code>menu</code> role is used for a group of commands or options presented to the user, often in navigation or context menus.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;ul role="menu"&gt;
+  &lt;li role="menuitem"&gt;New File&lt;/li&gt;
+  &lt;li role="menuitem"&gt;Open File&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+</div>
+
+<div id="aria-page67" class="aria-page">
+  <h2>Role: menubar</h2>
+  <p>The <code>menubar</code> role represents a horizontal menu, usually placed at the top of an application window or page.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;div role="menubar"&gt;
+  &lt;div role="menuitem"&gt;File&lt;/div&gt;
+  &lt;div role="menuitem"&gt;Edit&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page68" class="aria-page">
+  <h2>Role: menuitem</h2>
+  <p>The <code>menuitem</code> role is used for items within a menu that a user can activate.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;ul role="menu"&gt;
+  &lt;li role="menuitem"&gt;Save&lt;/li&gt;
+  &lt;li role="menuitem"&gt;Close&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+</div>
+
+<div id="aria-page69" class="aria-page">
+  <h2>Role: menuitemcheckbox</h2>
+  <p>The <code>menuitemcheckbox</code> role is a menu item that behaves like a checkbox. It can be checked or unchecked within a menu.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;ul role="menu"&gt;
+  &lt;li role="menuitemcheckbox" aria-checked="true"&gt;Show Line Numbers&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+</div>
+
+<div id="aria-page70" class="aria-page">
+  <h2>Role: menuitemradio</h2>
+  <p>The <code>menuitemradio</code> role is a menu item that acts like a radio button, allowing one option to be selected from a group.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;ul role="menu"&gt;
+  &lt;li role="menuitemradio" aria-checked="true"&gt;Light Theme&lt;/li&gt;
+  &lt;li role="menuitemradio" aria-checked="false"&gt;Dark Theme&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+</div>
+
+<div id="aria-page71" class="aria-page">
+  <h2>Role: navigation</h2>
+  <p>The <code>navigation</code> role identifies a section of a page that provides links for navigating the website.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;nav role="navigation"&gt;
+  &lt;a href="#home"&gt;Home&lt;/a&gt;
+  &lt;a href="#about"&gt;About&lt;/a&gt;
+&lt;/nav&gt;
+</code></pre>
+</div>
+
+<div id="aria-page72" class="aria-page">
+  <h2>Role: none</h2>
+  <p>The <code>none</code> role removes the semantic meaning of an element for assistive technologies, making it purely presentational.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;div role="none"&gt;Decorative box&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page73" class="aria-page">
+  <h2>Role: note</h2>
+  <p>The <code>note</code> role indicates additional information or annotations that may be useful for the user.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;div role="note"&gt;
+  Remember to save your work frequently.
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page74" class="aria-page">
+  <h2>Role: option</h2>
+  <p>The <code>option</code> role is used for selectable items inside a listbox, representing one choice from a set of options.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;ul role="listbox"&gt;
+  &lt;li role="option"&gt;Option 1&lt;/li&gt;
+  &lt;li role="option"&gt;Option 2&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+</div>
+
+<div id="aria-page75" class="aria-page">
+  <h2>Role: presentation</h2>
+  <p>The <code>presentation</code> role makes an element ignored by assistive technologies, similar to <code>role="none"</code>. It’s used for layout-only elements.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;table role="presentation"&gt;
+  &lt;tr&gt;&lt;td&gt;Layout only&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+</div>
+
+<div id="aria-page76" class="aria-page">
+  <h2>Role: progressbar</h2>
+  <p>The <code>progressbar</code> role is used to indicate the progress of a task, such as file download or loading.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;div role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"&gt;
+  50% Complete
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page77" class="aria-page">
+  <h2>Role: radio</h2>
+  <p>The <code>radio</code> role represents a single radio button in a group, allowing only one selection at a time.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;div role="radiogroup"&gt;
+  &lt;div role="radio" aria-checked="true"&gt;Option A&lt;/div&gt;
+  &lt;div role="radio" aria-checked="false"&gt;Option B&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page78" class="aria-page">
+  <h2>Role: radiogroup</h2>
+  <p>The <code>radiogroup</code> role groups related radio buttons together, ensuring only one can be selected within the group.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;div role="radiogroup"&gt;
+  &lt;div role="radio" aria-checked="true"&gt;Male&lt;/div&gt;
+  &lt;div role="radio" aria-checked="false"&gt;Female&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page79" class="aria-page">
+  <h2>Role: region</h2>
+  <p>The <code>region</code> role identifies a perceivable section of a page that is important enough to be included in a page summary or landmark navigation.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;div role="region" aria-label="User Profile"&gt;
+  &lt;h2&gt;Profile Information&lt;/h2&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page80" class="aria-page">
+  <h2>Role: row</h2>
+  <p>The <code>row</code> role represents a row of cells within a table, grid, or treegrid.</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>
+&lt;table role="grid"&gt;
+  &lt;tr role="row"&gt;
+    &lt;td role="gridcell"&gt;Data 1&lt;/td&gt;
+    &lt;td role="gridcell"&gt;Data 2&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+</div>
+<div id="aria-page81" class="aria-page">
+  <h2>role="switch"</h2>
+  <p>The <code>switch</code> role represents a toggle control that can be either "on" or "off". It is similar to a checkbox but indicates a different kind of binary option.</p>
+  <p><strong>Example:</strong> Dark mode toggle.</p>
+  <pre><code>
+&lt;div role="switch" aria-checked="false"&gt;Dark Mode&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page82" class="aria-page">
+  <h2>role="tab"</h2>
+  <p>The <code>tab</code> role is used for items in a tablist that switch between panels of content.</p>
+  <p><strong>Example:</strong> A tab control.</p>
+  <pre><code>
+&lt;div role="tab" aria-selected="true"&gt;Overview&lt;/div&gt;
+&lt;div role="tab" aria-selected="false"&gt;Details&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page83" class="aria-page">
+  <h2>role="tablist"</h2>
+  <p>The <code>tablist</code> role groups together a set of tabs.</p>
+  <p><strong>Example:</strong> Tab container.</p>
+  <pre><code>
+&lt;div role="tablist"&gt;
+  &lt;div role="tab"&gt;Home&lt;/div&gt;
+  &lt;div role="tab"&gt;Profile&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page84" class="aria-page">
+  <h2>role="tabpanel"</h2>
+  <p>The <code>tabpanel</code> role defines the content area associated with a tab.</p>
+  <p><strong>Example:</strong> Panel of tab content.</p>
+  <pre><code>
+&lt;div role="tabpanel"&gt;This is the Home tab content.&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page85" class="aria-page">
+  <h2>role="term"</h2>
+  <p>The <code>term</code> role identifies a word or phrase being defined in a definition list.</p>
+  <p><strong>Example:</strong> Definition term.</p>
+  <pre><code>
+&lt;div role="term"&gt;HTML&lt;/div&gt;
+&lt;div role="definition"&gt;A markup language for web pages.&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page86" class="aria-page">
+  <h2>role="textbox"</h2>
+  <p>The <code>textbox</code> role defines an input field that allows users to enter free text.</p>
+  <p><strong>Example:</strong> Search field.</p>
+  <pre><code>
+&lt;div role="textbox" aria-multiline="false"&gt;Type here...&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page87" class="aria-page">
+  <h2>role="timer"</h2>
+  <p>The <code>timer</code> role represents a numerical counter or stopwatch that updates over time.</p>
+  <p><strong>Example:</strong> Countdown timer.</p>
+  <pre><code>
+&lt;div role="timer" aria-live="polite"&gt;10 seconds left&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page88" class="aria-page">
+  <h2>role="toolbar"</h2>
+  <p>The <code>toolbar</code> role groups interactive controls such as buttons and menus.</p>
+  <p><strong>Example:</strong> Text editor toolbar.</p>
+  <pre><code>
+&lt;div role="toolbar"&gt;
+  &lt;button&gt;Bold&lt;/button&gt;
+  &lt;button&gt;Italic&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page89" class="aria-page">
+  <h2>role="tooltip"</h2>
+  <p>The <code>tooltip</code> role is used for a popup label that provides extra information about an element when hovered or focused.</p>
+  <p><strong>Example:</strong> Help tooltip.</p>
+  <pre><code>
+&lt;div role="tooltip"&gt;Enter your email address.&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page90" class="aria-page">
+  <h2>role="tree"</h2>
+  <p>The <code>tree</code> role represents a hierarchical list of items, such as a file explorer.</p>
+  <p><strong>Example:</strong> File tree structure.</p>
+  <pre><code>
+&lt;ul role="tree"&gt;
+  &lt;li role="treeitem"&gt;Folder 1&lt;/li&gt;
+  &lt;li role="treeitem"&gt;Folder 2&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+</div>
+
+<div id="aria-page91" class="aria-page">
+  <h2>role="treegrid"</h2>
+  <p>The <code>treegrid</code> role combines tree and grid, useful for data that is hierarchical and tabular.</p>
+  <p><strong>Example:</strong> Expandable data grid.</p>
+  <pre><code>
+&lt;div role="treegrid"&gt;Project Data&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page92" class="aria-page">
+  <h2>role="treeitem"</h2>
+  <p>The <code>treeitem</code> role defines an item within a tree structure.</p>
+  <p><strong>Example:</strong> File item in a tree.</p>
+  <pre><code>
+&lt;div role="treeitem"&gt;index.html&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page93" class="aria-page">
+  <h2>role="menuitemcheckbox"</h2>
+  <p>The <code>menuitemcheckbox</code> role defines a menu item that can be checked or unchecked.</p>
+  <p><strong>Example:</strong> Menu with options.</p>
+  <pre><code>
+&lt;div role="menuitemcheckbox" aria-checked="true"&gt;Show Toolbar&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page94" class="aria-page">
+  <h2>role="menuitemradio"</h2>
+  <p>The <code>menuitemradio</code> role defines a menu item that is part of a group where only one can be selected.</p>
+  <p><strong>Example:</strong> Font size options.</p>
+  <pre><code>
+&lt;div role="menuitemradio" aria-checked="true"&gt;Small&lt;/div&gt;
+&lt;div role="menuitemradio" aria-checked="false"&gt;Large&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page95" class="aria-page">
+  <h2>role="note"</h2>
+  <p>The <code>note</code> role is used for content that is an annotation or advisory note.</p>
+  <p><strong>Example:</strong> Side note.</p>
+  <pre><code>
+&lt;div role="note"&gt;Note: Changes will be saved automatically.&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page96" class="aria-page">
+  <h2>role="math"</h2>
+  <p>The <code>math</code> role indicates a mathematical expression, often rendered with MathML.</p>
+  <p><strong>Example:</strong> Formula display.</p>
+  <pre><code>
+&lt;div role="math"&gt;E = mc²&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page97" class="aria-page">
+  <h2>role="log"</h2>
+  <p>The <code>log</code> role is for dynamic content where new entries are added and old entries disappear, like chat or error logs.</p>
+  <p><strong>Example:</strong> Chat log.</p>
+  <pre><code>
+&lt;div role="log"&gt;User joined the chat.&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page98" class="aria-page">
+  <h2>role="marquee"</h2>
+  <p>The <code>marquee</code> role is used for content that scrolls or moves across the screen.</p>
+  <p><strong>Example:</strong> Scrolling news.</p>
+  <pre><code>
+&lt;div role="marquee"&gt;Breaking News: Accessibility updates released.&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page99" class="aria-page">
+  <h2>role="status"</h2>
+  <p>The <code>status</code> role is for advisory messages that are not critical, such as progress updates.</p>
+  <p><strong>Example:</strong> Save status.</p>
+  <pre><code>
+&lt;div role="status"&gt;Your document has been saved.&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page100" class="aria-page">
+  <h2>role="alertdialog"</h2>
+  <p>The <code>alertdialog</code> role represents a dialog box that interrupts the user with important information and requires acknowledgment.</p>
+  <p><strong>Example:</strong> Delete confirmation.</p>
+  <pre><code>
+&lt;div role="alertdialog"&gt;Are you sure you want to delete this file?&lt;/div&gt;
+</code></pre>
+</div>
+<div id="aria-page101" class="aria-page">
+  <h2>role="article"</h2>
+  <p>The <code>article</code> role represents a self-contained piece of content intended for independent use or distribution.</p>
+  <p><strong>Example:</strong> A blog post or news article.</p>
+  <pre><code>
+&lt;div role="article"&gt;
+  &lt;h2&gt;Breaking News&lt;/h2&gt;
+  &lt;p&gt;Today’s top story...&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<div id="aria-page102" class="aria-page">
+  <h2>role="banner"</h2>
+  <p>The <code>banner</code> role represents a site-wide header that usually contains the logo or main identity.</p>
+  <p><strong>Example:</strong> Website header section.</p>
+  <pre><code>
+&lt;header role="banner"&gt;
+  &lt;h1&gt;Accessible World&lt;/h1&gt;
+&lt;/header&gt;
+</code></pre>
+</div>
+
+<div id="aria-page103" class="aria-page">
+  <h2>role="complementary"</h2>
+  <p>The <code>complementary</code> role represents a section that supports the main content but is meaningful on its own.</p>
+  <p><strong>Example:</strong> Sidebar with related articles.</p>
+  <pre><code>
+&lt;aside role="complementary"&gt;
+  &lt;h3&gt;Related Topics&lt;/h3&gt;
+  &lt;ul&gt;&lt;li&gt;Topic 1&lt;/li&gt;&lt;/ul&gt;
+&lt;/aside&gt;
+</code></pre>
+</div>
+
+<div id="aria-page104" class="aria-page">
+  <h2>role="contentinfo"</h2>
+  <p>The <code>contentinfo</code> role identifies the footer or information about the content of the page.</p>
+  <p><strong>Example:</strong> Website footer section.</p>
+  <pre><code>
+&lt;footer role="contentinfo"&gt;
+  &lt;p&gt;© 2025 Accessible World&lt;/p&gt;
+&lt;/footer&gt;
+</code></pre>
+</div>
+
+<div id="aria-page105" class="aria-page">
+  <h2>role="definition"</h2>
+  <p>The <code>definition</code> role indicates the definition of a term.</p>
+  <p><strong>Example:</strong> Glossary entry.</p>
+  <pre><code>
+&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd role="definition"&gt;A markup language for web pages.&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre>
+</div>
+
+
+</div>
             <div class="pagination-controls">
                 <button id="prev-aria" disabled>Previous</button>
                 <span id="current-aria-num" aria-live="polite"></span>

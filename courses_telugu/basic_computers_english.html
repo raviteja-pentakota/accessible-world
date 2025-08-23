@@ -415,33 +415,24 @@
 
         const topicsData = {
             intro: {
-                title: "Introduction to Computers",
-                content: `
+title: "Introduction to Computers",
+subPages: [
+  {
+    title: "1. What is computer? Why should I learn computers?",
+    content: `
 <a href="#skiptovideo">Skip to video lesson</a>
-                    <p>Welcome to the Basic Computer Course for Blind Users! This course will guide you through the essential concepts of using a computer effectively with a screen reader like NVDA.</p>
-                    <h3>What is a computer?</h3>
-                    <p>A computer is an electronic device that processes information. It takes input, stores and processes data, and then produces output. Think of it as a powerful tool for various tasks, from writing documents to Browse the internet.</p>
-                    <h3>Types of Computers</h3>
-                    <ul>
-                        <li><strong>Desktop Computers:</strong> These are typically stationary and consist of separate components like a monitor, keyboard, mouse, and a main computer unit (tower).</li>
-                        <li><strong>Laptop Computers:</strong> Portable computers that integrate all components into a single, compact unit, including a built-in screen, keyboard, and trackpad.</li>
-                        <li><strong>Smartphones and Tablets:</strong> While not traditional computers, these devices function similarly, allowing you to perform many computer-like tasks.</li>
-                    </ul>
-                    <h3>Basic Parts of a Computer</h3>
-                    <ul>
-                        <li><strong>Keyboard:</strong> Used for typing text and entering commands.</li>
-                        <li><strong>Monitor (Display):</strong> Shows visual information. For blind users, a screen reader converts this visual information into spoken words.</li>
-                        <li><strong>CPU (Central Processing Unit):</strong> The "brain" of the computer, responsible for executing instructions.</li>
-                        <li><strong>Mouse:</b> A pointing device used for navigation. While primarily visual, some tasks can be performed with the mouse, but we'll focus on keyboard navigation.</li>
-                        <li><strong>Speakers/Headphones:</strong> Essential for hearing the screen reader's output.</li>
-                    </ul>
-                    <h3>Input and Output Devices</h3>
-                    <ul>
-                        <li><strong>Input Devices:</strong> These allow you to send information to the computer. Examples include the keyboard, mouse, microphone, and scanner.</li>
-                        <li><strong>Output Devices:</b> These allow the computer to send information back to you. Examples include the monitor, printer, and speakers.</li>
-                    </ul>
-                    <h3>Powering On and Shutting Down</h3>
-                    <p>To power on a desktop computer, locate the power button on the computer tower and press it. For a laptop, the power button is usually on the keyboard or side. To shut down, press the <strong>Windows key</strong>, then use the <strong>Tab key</strong> to navigate to the power options and select "Shut down." You can also press <strong>Alt + F4</strong> from the desktop to open the shutdown dialog.</p>
+<h2>What is a Computer?</h2>
+<p>A <b>computer</b> is an electronic machine that takes input, processes it, stores information, and gives output. 
+It works faster and more accurately than humans for many tasks such as calculations, document writing, communication, and browsing the internet.</p>
+
+<h2>Why should you learn computers?</h2>
+<ul>
+  <li>Computers are used in almost every field like education, banking, shopping, and healthcare.</li>
+  <li>Basic computer knowledge helps you work independently with technology.</li>
+  <li>It improves your career opportunities and allows you to connect with the world.</li>
+  <li>For visually impaired users, computers open the door to accessibility tools such as screen readers.</li>
+</ul>
+
 <h3 id="skiptovideo">Video Lesson</h3>
 <div class="video-container">
   <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
@@ -450,41 +441,138 @@
   </video>
 
   <div class="controls">
-    <button class="playPause">Play</button>    <button class="mute">Mute</button>
+    <button class="playPause">Play</button>
+    <button class="mute">Mute</button>
     <button class="fullscreen">Fullscreen</button>
   </div>
 </div>
-                `
+    `
+  },
+  {
+    title: "2. Types and Generations of Computers",
+    content: `
+<a href="#skiptovideo">Skip to video lesson</a>
+
+<h2>Types of Computers</h2>
+<ul>
+  <li><b>Supercomputers:</b> Extremely powerful, used for research and weather forecasting.</li>
+  <li><b>Mainframe Computers:</b> Large systems used in banks, airlines, and big companies.</li>
+  <li><b>Mini Computers:</b> Mid-sized, used in small organizations.</li>
+  <li><b>Microcomputers (PCs):</b> Personal computers, laptops, and tablets used at home and office.</li>
+</ul>
+
+<h2>Generations of Computers</h2>
+<ul>
+  <li><b>1st Generation (1940–1956):</b> Used vacuum tubes, very large and slow.</li>
+  <li><b>2nd Generation (1956–1963):</b> Used transistors, smaller and faster.</li>
+  <li><b>3rd Generation (1964–1971):</b> Used integrated circuits (ICs), more reliable.</li>
+  <li><b>4th Generation (1971–Present):</b> Based on microprocessors, used in today’s PCs and laptops.</li>
+  <li><b>5th Generation (Present & Future):</b> Focus on Artificial Intelligence (AI) and super-fast computing.</li>
+</ul>
+
+<h3 id="skiptovideo">Video Lesson</h3>
+<div class="video-container">
+  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+    <source src="computer_telugu_videos/Introduction to Computers.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="controls">
+    <button class="playPause">Play</button>
+    <button class="mute">Mute</button>
+    <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
+    `
+  },
+  {
+    title: "3. Input and Output Devices",
+    content: `
+<a href="#skiptovideo">Skip to video lesson</a>
+
+<h2>Input Devices</h2>
+<p>These are devices that allow users to give data to the computer.</p>
+<ul>
+  <li>Keyboard – for typing text.</li>
+  <li>Mouse – for pointing and clicking.</li>
+  <li>Microphone – for voice input.</li>
+  <li>Scanner – for scanning documents.</li>
+  <li>Braille Keyboard / Screen Reader – for visually impaired users.</li>
+</ul>
+
+<h2>Output Devices</h2>
+<p>These show the results of computer processing.</p>
+<ul>
+  <li>Monitor – displays text and graphics.</li>
+  <li>Speakers – produce sound and music.</li>
+  <li>Printer – prints documents on paper.</li>
+  <li>Braille Display – converts text into Braille for blind users.</li>
+</ul>
+
+<h3 id="skiptovideo">Video Lesson</h3>
+<div class="video-container">
+  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+    <source src="computer_telugu_videos/Introduction to Computers.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="controls">
+    <button class="playPause">Play</button>
+    <button class="mute">Mute</button>
+    <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
+    `
+  },
+  {
+    title: "4. Powering On and Off the Computer",
+    content: `
+<a href="#skiptovideo">Skip to video lesson</a>
+
+<h2>Powering On</h2>
+<ol>
+  <li>Make sure the computer is connected to electricity or has a charged battery (for laptops).</li>
+  <li>Press the <b>Power button</b> on the CPU (desktop) or laptop.</li>
+  <li>Wait for the operating system (Windows, macOS, Linux) to load.</li>
+  <li>Login with your username and password if required.</li>
+</ol>
+
+<h2>Powering Off</h2>
+<ol>
+  <li>Save your work and close all applications.</li>
+  <li>Click the <b>Start Menu</b> (Windows) or power icon.</li>
+  <li>Select <b>Shut Down</b>.</li>
+  <li>Wait until the computer turns off completely before unplugging.</li>
+</ol>
+
+<p><b>Note:</b> Never turn off the computer directly from the power supply without shutting it down. It may cause data loss or damage.</p>
+
+<h3 id="skiptovideo">Video Lesson</h3>
+<div class="video-container">
+  <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+    <source src="computer_telugu_videos/Introduction to Computers.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="controls">
+    <button class="playPause">Play</button>
+    <button class="mute">Mute</button>
+    <button class="fullscreen">Fullscreen</button>
+  </div>
+</div>
+    `
+  }
+]
             },
+
             keyboard: {
                 title: "Mastering the Keyboard",
                 subPages: [
                     {
-                        title: "1. Understanding Keyboard Layout",
+                        title: "1. Understanding the keyboard and Types of Keys on the Keyboard",
                         content: `
 <a href="#skiptovideo">Skip to video lesson</a>
-                            <p>The keyboard is your primary tool for navigating and interacting with a computer when using a screen reader. Understanding its layout and key functions is fundamental.</p>
-                            <h3>Typing with a Keyboard</h3>
-                            <p>The keyboard is laid out similar to a typewriter. Your hands should be placed on the home row keys: F and J have tactile bumps for easy identification. The left index finger rests on F, and the right index finger on J. Practice typing by placing your fingers correctly and reaching for surrounding keys.</p>
-<h3 id="skiptovideo">Understanding Keyboard Layout - Video Lesson</h3>
-<div class="video-container">
-    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-        <source src="computer_telugu_videos/Understanding Keyboard Layout.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="controls">
-        <button class="playPause">Play</button>
-        <button class="mute">Mute</button>
-        <button class="fullscreen">Fullscreen</button>
-    </div>
-</div>
-                            <p><em>In the next topic, you will learn about the different types of keys and their uses.</em></p>
-                        `
-                    },
-                    {
-                        title: "2. Types of Keys on the Keyboard",
-                        content: `
-<a href="#skiptovideo">Skip to video lesson</a>
+<p>The keyboard is your primary tool for navigating and interacting with a computer when using a screen reader. Understanding its layout and key functions is fundamental.</p>
                             <h3>Main Categories of Keys</h3>
                             <ul>
                                 <li><strong>Alphanumeric Keys:</strong> Letters and numbers used for text input.</li>
