@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard | Accessible World</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #0056b3;
+            margin: 0;
+        }
+        .welcome-message {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .dashboard-section {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            background-color: #fcfcfc;
+        }
+        .dashboard-section h3 {
+            color: #007bff;
+            margin-top: 0;
+        }
+        .services-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .services-table th, .services-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .services-table th {
+            background-color: #007bff;
+            color: white;
+        }
+        .services-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .loading {
+            text-align: center;
+            font-style: italic;
+            color: #777;
+        }
+        .buttons-group {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+        #bookServiceButton {
+            background-color: #28a745;
+            color: white;
+        }
+        #bookServiceButton:hover {
+            background-color: #218838;
+        }
+        #logoutButton {
+            background-color: #dc3545;
+            color: white;
+        }
+        #logoutButton:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h2>Client Dashboard</h2>
+            <button id="logoutButton">Log Out</button>
+        </div>
+        <p class="welcome-message">Welcome, <span id="userName">...</span>!</p>
+
+        <div class="dashboard-section">
+            <h3>Your Services History</h3>
+            <div id="loadingServices" class="loading">Loading services history...</div>
+            <table class="services-table" id="servicesTable" style="display:none;">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Service Type</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody id="servicesBody">
+                    </tbody>
+            </table>
+        </div>
+
+        <div class="buttons-group">
+            <button id="bookServiceButton">Book a New Service</button>
+        </div>
+
+    </div>
+
+    <script type="module">
+        // Import Firebase services
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+        import { collection, query, where, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+
+        // Firebase config from your project
+        const firebaseConfig = {
+          apiKey: "AIzaSyBZUQXgfdDHrntbBVSVFf8Vvtp9V5qnERg",
+          authDomain: "accessible-learn-and-win-ad21f.firebaseapp.com",
+          projectId: "accessible-learn-and-win-ad21f",
+          storageBucket: "accessible-learn-and-win-ad21f.appspot.com",
+          messagingSenderId: "299849578412",
+          appId: "1:299849578412:web:1e66a3292e35578f102c09",
+          measurementId: "G-G832YW57EK"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Get DOM elements
+        const userNameSpan = document.getElementById("userName");
+        const loadingServicesDiv = document.getElementById("loadingServices");
+        const servicesTable = document.getElementById("servicesTable");
+        const servicesBody = document.getElementById("servicesBody");
+        const bookServiceButton = document.getElementById("bookServiceButton");
+        const logoutButton = document.getElementById("logoutButton");
+
+        // Listen for authentication state changes
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // User is signed in, fetch user details
+                const userDocRef = doc(db, "users", user.uid);
+                const userDocSnap = await getDoc(userDocRef);
+
+                if (userDocSnap.exists()) {
+                    const userData = userDocSnap.data();
+                    userNameSpan.textContent = userData.fullName || "Client";
+                } else {
+                    console.warn("User data not found in Firestore.");
+                    userNameSpan.textContent = "Client";
+                }
+
+                // Fetch and display the services history
+                fetchServicesHistory(user.uid);
+
+            } else {
+                // User is signed out, redirect to login page
+                window.location.href = 'assistant_index.html'; // Or the correct path to your login page
+            }
+        });
+
+        // Function to fetch and display services data
+        async function fetchServicesHistory(userId) {
+            loadingServicesDiv.style.display = 'block';
+            servicesTable.style.display = 'none';
+
+            try {
+                // In a real application, you would query the "services" collection
+                // where the client's ID matches the current user's ID.
+                const servicesRef = collection(db, "services");
+                const q = query(servicesRef, where("clientId", "==", userId), orderBy("date", "desc"));
+                const querySnapshot = await getDocs(q);
+
+                servicesBody.innerHTML = '';
+
+                if (querySnapshot.empty) {
+                    servicesBody.innerHTML = '<tr><td colspan="4">You have no past services.</td></tr>';
+                } else {
+                    querySnapshot.forEach((doc) => {
+                        const service = doc.data();
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${service.date}</td>
+                            <td>${service.type}</td>
+                            <td>${service.status}</td>
+                            <td>${service.details}</td>
+                        `;
+                        servicesBody.appendChild(row);
+                    });
+                }
+            } catch (error) {
+                console.error("Error fetching services history:", error);
+                servicesBody.innerHTML = '<tr><td colspan="4">Failed to load services history.</td></tr>';
+            } finally {
+                loadingServicesDiv.style.display = 'none';
+                servicesTable.style.display = 'table';
+            }
+        }
+
+        // Handle Logout
+        logoutButton.addEventListener('click', async () => {
+            try {
+                await signOut(auth);
+                window.location.href = 'assistant_index.html'; // Redirect to login page
+            } catch (error) {
+                console.error("Error signing out:", error);
+                alert("Failed to log out. Please try again.");
+            }
+        });
+
+        // Handle "Book a New Service" button click
+        bookServiceButton.addEventListener('click', () => {
+            // Redirect the user to the service booking page
+            // Replace 'booking.html' with the actual path to your booking page
+            window.location.href = 'service_booking.html'; 
+        });
+
+    </script>
+
+</body>
+</html>
