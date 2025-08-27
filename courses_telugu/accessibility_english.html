@@ -7141,93 +7141,76 @@ Users must remember and type a password with no alternative login methods like b
 
 </div>
 <div id="aria-page32" class="aria-page">
-  <h2>aria-colspan</h2>
-  <p><code>aria-colspan</code> defines how many columns a cell should span in a grid. It helps screen readers understand the structure of complex grids, just like the HTML <code>colspan</code> attribute in tables.</p>
+  <h2>aria-colspan and aria-rowspan</h2>
+  <p>
+    The <code>aria-colspan</code> and <code>aria-rowspan</code> attributes are used to define how many columns or rows a cell should span within a grid or table. 
+    They work just like the HTML <code>colspan</code> and <code>rowspan</code> attributes, but are specifically for ARIA-enabled grids.
+    These attributes help screen readers understand and announce the correct table or grid structure, 
+    making complex layouts more accessible.
+  </p>
 
-  <p><strong>Example:</strong> A cell spanning two columns.</p>
+  <p><strong>aria-colspan:</strong> Defines how many columns a cell should span.</p>
   <pre><code>&lt;div role="gridcell" aria-colspan="2"&gt;Merged Column&lt;/div&gt;</code></pre>
-                    <h3 id="video-lesson1">English video explanation with practical:</h3>
-<div class="video-container">
-    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-        <source src="aria_english_videos/aria-colspan.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="controls">
-<label for="seek">Seek</label>
-        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
 
-        <button class="rewind">Rewind 10s</button>
-        <button class="playPause">Play</button>
-        <button class="forward">Forward 10s</button>
-        <button class="mute">Mute</button>
-<label for="volume">Volume</label>        
-<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
-        <button class="fullscreen">Fullscreen</button>
-    </div>
-</div>
-
-</div>
-<div id="aria-page33" class="aria-page">
-  <h2>aria-rowspan</h2>
-  <p>The <code>aria-rowspan</code> attribute defines how many rows a cell spans in a grid or table structure. It works similarly to the HTML <code>rowspan</code> and helps screen readers interpret table layout correctly.</p>
-
-  <p><strong>Example:</strong> A cell spanning two rows.</p>
+  <p><strong>aria-rowspan:</strong> Defines how many rows a cell should span.</p>
   <pre><code>&lt;div role="gridcell" aria-rowspan="2"&gt;Merged Row&lt;/div&gt;</code></pre>
-                    <h3 id="video-lesson1">English video explanation with practical:</h3>
-<div class="video-container">
-    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-        <source src="aria_english_videos/aria-colspan.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="controls">
-<label for="seek">Seek</label>
-        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
 
-        <button class="rewind">Rewind 10s</button>
-        <button class="playPause">Play</button>
-        <button class="forward">Forward 10s</button>
-        <button class="mute">Mute</button>
-<label for="volume">Volume</label>        
-<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
-        <button class="fullscreen">Fullscreen</button>
-    </div>
-</div>
+  <h3>English video explanation with practical:</h3>
+  <div class="video-container">
+      <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+          <source src="aria_english_videos/aria-colspan.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+      <div class="controls">
+          <label for="seek">Seek</label>
+          <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
 
+          <button class="rewind">Rewind 10s</button>
+          <button class="playPause">Play</button>
+          <button class="forward">Forward 10s</button>
+          <button class="mute">Mute</button>
+          <label for="volume">Volume</label>        
+          <input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+          <button class="fullscreen">Fullscreen</button>
+      </div>
+  </div>
 </div>
 <div id="aria-page34" class="aria-page">
-  <h2>aria-colindex</h2>
-  <p><code>aria-colindex</code> tells assistive technologies the column number for a grid or table cell. This is helpful when table headers are complex and don’t appear in the usual DOM order.</p>
+  <h2>aria-colindex and aria-rowindex</h2>
+  <p>	
+    The <code>aria-colindex</code> and <code>aria-rowindex</code> attributes are used in grids and tables 
+    to define the exact <strong>column</strong> and <strong>row</strong> numbers of a cell. 
+    They are especially useful when headers or cells do not appear in the usual DOM order, 
+    helping assistive technologies present the correct table structure to screen reader users.
+  </p>
 
-  <p><strong>Example:</strong> A cell at column 3.</p>
+  <p><strong>aria-colindex:</strong> Defines the column number of a cell.</p>
   <pre><code>&lt;div role="gridcell" aria-colindex="3"&gt;Data&lt;/div&gt;</code></pre>
-                    <h3 id="video-lesson1">English video explanation with practical:</h3>
-<div class="video-container">
-    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-        <source src="aria_english_videos/aria-colindex.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="controls">
-<label for="seek">Seek</label>
-        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
 
-        <button class="rewind">Rewind 10s</button>
-        <button class="playPause">Play</button>
-        <button class="forward">Forward 10s</button>
-        <button class="mute">Mute</button>
-<label for="volume">Volume</label>        
-<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
-        <button class="fullscreen">Fullscreen</button>
-    </div>
-</div>
-
-</div>
-<div id="aria-page35" class="aria-page">
-  <h2>aria-rowindex</h2>
-  <p>The <code>aria-rowindex</code> attribute tells screen readers the row number of a cell in a table or grid. It is useful for creating accessible data grids with proper navigation for screen reader users.</p>
-
-  <p><strong>Example:</strong> A cell in row 2.</p>
+  <p><strong>aria-rowindex:</strong> Defines the row number of a cell.</p>
   <pre><code>&lt;div role="gridcell" aria-rowindex="2"&gt;Item&lt;/div&gt;</code></pre>
+
+  <h3>English video explanation with practical:</h3>
+  <div class="video-container">
+      <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+          <source src="aria_english_videos/aria-colindex.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+      <div class="controls">
+          <label for="seek">Seek</label>
+          <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+          <button class="rewind">Rewind 10s</button>
+          <button class="playPause">Play</button>
+          <button class="forward">Forward 10s</button>
+          <button class="mute">Mute</button>
+          <label for="volume">Volume</label>        
+          <input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+          <button class="fullscreen">Fullscreen</button>
+      </div>
+  </div>
 </div>
+
 <div id="aria-page36" class="aria-page">
   <h2>aria-placeholder</h2>
   <p><code>aria-placeholder</code> provides placeholder text for assistive technologies when the native HTML <code>placeholder</code> isn't enough or is visually hidden. It describes the expected input.</p>
@@ -7256,59 +7239,50 @@ Users must remember and type a password with no alternative login methods like b
 
 </div>
 <div id="aria-page37" class="aria-page">
-  <h2>aria-posinset</h2>
-  <p>The <code>aria-posinset</code> attribute defines an element’s position in a set. It helps users understand their current position among siblings (like "3 of 5").</p>
+  <h2>aria-posinset and aria-setsize</h2>
+  <p>
+    The <code>aria-posinset</code> and <code>aria-setsize</code> attributes work together to 
+    describe an element’s position within a list or set.
+    They help assistive technologies provide context like 
+    <em>“Option 2 of 4”</em> so users know their place in the sequence.
+  </p>
 
-  <p><strong>Example:</strong> Item 2 of 4 in a list.</p>
-  <pre><code>&lt;li role="option" aria-posinset="2" aria-setsize="4"&gt;Option 2&lt;/li&gt;</code></pre>
-                    <h3 id="video-lesson1">English video explanation with practical:</h3>
-<div class="video-container">
-    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-        <source src="aria_english_videos/aria-posinset.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="controls">
-<label for="seek">Seek</label>
-        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+  <ul role="listbox">
+    <li role="option" aria-posinset="1" aria-setsize="4">Option 1</li>
+    <li role="option" aria-posinset="2" aria-setsize="4">Option 2</li>
+    <li role="option" aria-posinset="3" aria-setsize="4">Option 3</li>
+    <li role="option" aria-posinset="4" aria-setsize="4">Option 4</li>
+  </ul>
 
-        <button class="rewind">Rewind 10s</button>
-        <button class="playPause">Play</button>
-        <button class="forward">Forward 10s</button>
-        <button class="mute">Mute</button>
-<label for="volume">Volume</label>        
-<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
-        <button class="fullscreen">Fullscreen</button>
-    </div>
+  <p><strong>Explanation:</strong></p>
+  <ul>
+    <li><code>aria-posinset</code> = The current item’s position in the set.</li>
+    <li><code>aria-setsize</code> = The total number of items in the set.</li>
+    <li>Together, they allow a screen reader to announce context like 
+        <em>“Option 2 of 4”</em>.</li>
+  </ul>
+
+  <h3>English video explanation with practical:</h3>
+  <div class="video-container">
+      <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+          <source src="aria_english_videos/aria-posinset.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+      <div class="controls">
+          <label for="seek">Seek</label>
+          <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+          <button class="rewind">Rewind 10s</button>
+          <button class="playPause">Play</button>
+          <button class="forward">Forward 10s</button>
+          <button class="mute">Mute</button>
+          <label for="volume">Volume</label>        
+          <input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+          <button class="fullscreen">Fullscreen</button>
+      </div>
+  </div>
 </div>
 
-</div>
-<div id="aria-page38" class="aria-page">
-  <h2>aria-setsize</h2>
-  <p><code>aria-setsize</code> tells assistive technologies the total number of items in a set or list. When used with <code>aria-posinset</code>, it helps screen readers provide context like “item 2 of 5”.</p>
-
-  <p><strong>Example:</strong> Set of 4 options.</p>
-  <pre><code>&lt;li role="option" aria-posinset="1" aria-setsize="4"&gt;Option 1&lt;/li&gt;</code></pre>
-                    <h3 id="video-lesson1">English video explanation with practical:</h3>
-<div class="video-container">
-    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-        <source src="aria_english_videos/aria-posinset.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="controls">
-<label for="seek">Seek</label>
-        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
-
-        <button class="rewind">Rewind 10s</button>
-        <button class="playPause">Play</button>
-        <button class="forward">Forward 10s</button>
-        <button class="mute">Mute</button>
-<label for="volume">Volume</label>        
-<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
-        <button class="fullscreen">Fullscreen</button>
-    </div>
-</div>
-
-</div>
 <div id="aria-page41" class="aria-page">
   <h2>aria-errormessage</h2>
   <p><code>aria-errormessage</code> provides a reference to an error message element that explains what's wrong with the input. This improves form validation messages for screen readers.</p>
@@ -7451,90 +7425,76 @@ Users must remember and type a password with no alternative login methods like b
 </div>
 
 </div>
-<div id="aria-page5" class="aria-page">
-  <h2>Role Introduction</h2>
-  <p>The <code>role</code> attribute defines what kind of element it is, especially when the element is not a native HTML tag like a button or checkbox. It helps screen readers understand the purpose of the element. Use <code>role</code> to make a <code>&lt;div&gt;</code> act like a button, a <code>&lt;span&gt;</code> act like a checkbox, and so on. It's a powerful tool when creating custom UI components.</p>
+<div id="aria-page51-55" class="aria-page">
+  <h2>Common ARIA Roles for Interactive Elements</h2>
+  <p>
+    ARIA roles help assistive technologies recognize custom elements as familiar
+    interactive controls (like links, buttons, checkboxes, radios, and textboxes).
+    While native HTML elements already have these roles by default, developers
+    sometimes use ARIA roles to make custom elements accessible.
+  </p>
 
-  <h3><strong>Example:</strong> A div that behaves like a button.</h3>
-  <pre><code>&lt;div role="button" tabindex="0"&gt;Click Me&lt;/div&gt;</code></pre>
-                    <h3 id="video-lesson1">English video explanation with practical:</h3>
-<div class="video-container">
-    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-        <source src="aria_english_videos/aria-role.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="controls">
-<label for="seek">Seek</label>
-        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
-
-        <button class="rewind">Rewind 10s</button>
-        <button class="playPause">Play</button>
-        <button class="forward">Forward 10s</button>
-        <button class="mute">Mute</button>
-<label for="volume">Volume</label>        
-<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
-        <button class="fullscreen">Fullscreen</button>
-    </div>
-</div>
-
-</div>
-
-<div id="aria-page51" class="aria-page">
-  <h2>role="button"</h2>
-  <p>The <code>button</code> role identifies an element as a button, which can be pressed by the user to perform an action. 
-  Native HTML <code>&lt;button&gt;</code> elements already have this role by default, but it can be applied to custom elements like <code>&lt;div&gt;</code> or <code>&lt;span&gt;</code> when needed.</p>
-
-  <h3>Important notes:</h3>
-  <ul>
-    <li>Users expect it to be focusable with <kbd>Tab</kbd> and operable with <kbd>Enter</kbd> or <kbd>Space</kbd>.</li>
-    <li>Use native <code>&lt;button&gt;</code> when possible for built-in accessibility.</li>
-  </ul>
-
-  <h3>Example: Custom div as a button</h3>
+  <h3>1. role="link"</h3>
+  <p>
+    Identifies an element as a hyperlink that navigates to another page or resource.
+    Native <code>&lt;a href&gt;</code> has this role automatically.
+  </p>
   <pre><code>
-&lt;div role="button" tabindex="0"&gt;
-  Submit Form
-&lt;/div&gt;
+&lt;div role="link" tabindex="0"&gt;Go to Home Page&lt;/div&gt;
 </code></pre>
-</div>
 
-<div id="aria-page52" class="aria-page">
-  <h2>role="checkbox"</h2>
-  <p>The <code>checkbox</code> role identifies an element as a checkbox that can be checked, unchecked, or mixed. 
-  Native HTML checkboxes already have this role by default, but it can be applied to custom elements when building accessible widgets.</p>
+  <h3>2. role="button"</h3>
+  <p>
+    Identifies an element as a button. Should be focusable and operable with 
+    <kbd>Enter</kbd> or <kbd>Space</kbd>. Prefer native <code>&lt;button&gt;</code>.
+  </p>
+  <pre><code>
+&lt;div role="button" tabindex="0"&gt;Submit Form&lt;/div&gt;
+</code></pre>
 
-  <h3>Important notes:</h3>
-  <ul>
-    <li>Use <code>aria-checked</code> to indicate state (<code>true</code>, <code>false</code>, or <code>mixed</code>).</li>
-    <li>Ensure the element is focusable and togglable with the <kbd>Space</kbd> key.</li>
-  </ul>
-
-  <h3>Example: Custom checkbox</h3>
+  <h3>3. role="checkbox"</h3>
+  <p>
+    Identifies an element as a checkbox. Use <code>aria-checked</code> to indicate 
+    its state (<code>true</code>, <code>false</code>, or <code>mixed</code>).
+  </p>
   <pre><code>
 &lt;div role="checkbox" tabindex="0" aria-checked="false"&gt;
   I agree to the terms
 &lt;/div&gt;
 </code></pre>
-</div>
 
-<div id="aria-page53" class="aria-page">
-  <h2>role="link"</h2>
-  <p>The <code>link</code> role identifies an element as a link that navigates to another page or resource. 
-  Native HTML <code>&lt;a href&gt;</code> already has this role by default.</p>
-
-  <h3>Important notes:</h3>
-  <ul>
-    <li>Should be keyboard operable with <kbd>Enter</kbd>.</li>
-    <li>If using a custom element, ensure it has <code>tabindex="0"</code>.</li>
-  </ul>
-
-  <h3>Example: Custom link</h3>
+  <h3>4. role="radio"</h3>
+  <p>
+    Identifies an element as a radio button. Radios are grouped with 
+    <code>role="radiogroup"</code> and only one option can be selected.
+  </p>
   <pre><code>
-&lt;div role="link" tabindex="0"&gt;
-  Go to Home Page
+&lt;div role="radiogroup"&gt;
+  &lt;div role="radio" aria-checked="true"&gt;Option A&lt;/div&gt;
+  &lt;div role="radio" aria-checked="false"&gt;Option B&lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
+
+  <h3>5. role="textbox"</h3>
+  <p>
+    Identifies an element as a text input. Use <code>aria-multiline</code> for 
+    single-line (<code>false</code>) or multi-line (<code>true</code>) input.
+  </p>
+  <pre><code>
+&lt;div role="textbox" aria-multiline="false"&gt;Type here...&lt;/div&gt;
+</code></pre>
+
+  <h3>Key Notes:</h3>
+  <ul>
+    <li>Prefer native HTML elements whenever possible.</li>
+    <li>When using custom elements, ensure they are focusable with 
+        <code>tabindex="0"</code>.</li>
+    <li>Ensure keyboard operability (<kbd>Tab</kbd>, <kbd>Enter</kbd>, 
+        <kbd>Space</kbd> as appropriate).</li>
+  </ul>
 </div>
+
+
 
 <div id="aria-page61" class="aria-page">
   <h2>Role: listitem</h2>
@@ -7667,17 +7627,6 @@ Users must remember and type a password with no alternative login methods like b
 </code></pre>
 </div>
 
-<div id="aria-page77" class="aria-page">
-  <h2>Role: radio</h2>
-  <p>The <code>radio</code> role represents a single radio button in a group, allowing only one selection at a time.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;div role="radiogroup"&gt;
-  &lt;div role="radio" aria-checked="true"&gt;Option A&lt;/div&gt;
-  &lt;div role="radio" aria-checked="false"&gt;Option B&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-</div>
 
 <div id="aria-page78" class="aria-page">
   <h2>Role: radiogroup</h2>
@@ -7765,14 +7714,7 @@ Users must remember and type a password with no alternative login methods like b
 </code></pre>
 </div>
 
-<div id="aria-page86" class="aria-page">
-  <h2>role="textbox"</h2>
-  <p>The <code>textbox</code> role defines an input field that allows users to enter free text.</p>
-  <p><strong>Example:</strong> Search field.</p>
-  <pre><code>
-&lt;div role="textbox" aria-multiline="false"&gt;Type here...&lt;/div&gt;
-</code></pre>
-</div>
+
 
 <div id="aria-page87" class="aria-page">
   <h2>role="timer"</h2>
