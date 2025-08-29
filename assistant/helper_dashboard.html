@@ -276,7 +276,7 @@
 
       } else {
         // User is signed out, redirect to login page
-        window.location.href = 'login.html'; // Or the correct path to your login page
+        window.location.href = 'assistant_index.html'; // Or the correct path to your login page
       }
     });
 
@@ -322,7 +322,7 @@
     logoutButton.addEventListener('click', async () => {
       try {
         await signOut(auth);
-        window.location.href = 'login.html'; // Redirect to login page
+        window.location.href = 'assistant_index.html'; // Redirect to login page
       } catch (error) {
         console.error("Error signing out:", error);
         withdrawalMessage.textContent = "Failed to log out. Please try again.";

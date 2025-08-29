@@ -7492,24 +7492,164 @@ Users must remember and type a password with no alternative login methods like b
     <li>Ensure keyboard operability (<kbd>Tab</kbd>, <kbd>Enter</kbd>, 
         <kbd>Space</kbd> as appropriate).</li>
   </ul>
+                    <h3 id="video-lesson1">English video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_english_videos/role-button.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
+</div>
+<div id="aria-page60" class="aria-page">
 
+  <h2>Landmark Roles in ARIA</h2>
+  <p>
+    Landmark roles help screen reader users and other assistive technologies to easily navigate and understand the structure of a web page. They provide meaningful regions of the page such as headers, navigation, main content, sidebars, and footers. These landmarks act like quick access points, allowing users to jump directly to the desired section.
+  </p>
+
+  <p><strong>Common landmark roles include:</strong></p>
+  <ul>
+    <li><code>role="banner"</code>: Represents the site-wide header.</li>
+    <li><code>role="navigation"</code>: Defines a navigation section with links.</li>
+    <li><code>role="main"</code>: Represents the main content area of the page.</li>
+    <li><code>role="complementary"</code>: Represents a supporting section, like a sidebar.</li>
+    <li><code>role="contentinfo"</code>: Represents the footer or information about the page.</li>
+    <li><code>role="region"</code>: Defines a significant region of the page.</li>
+    <li><code>role="article"</code>: Represents a self-contained piece of content.</li>
+    <li><code>role="note"</code>: Represents a note or advisory information.</li>
+  </ul>
+
+  <p><strong>Example Code:</strong></p>
+  <pre>
+<code>&lt;div role="banner"&gt;
+  &lt;h1&gt;Accessible World Tutorials&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;nav role="navigation"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Courses&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;About Us&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;main role="main"&gt;
+  &lt;article role="article"&gt;
+    &lt;h2&gt;Introduction to ARIA&lt;/h2&gt;
+    &lt;p&gt;This article explains why ARIA is important for accessibility.&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+
+&lt;aside role="complementary"&gt;
+  &lt;p&gt;Related tutorials and resources can be found here.&lt;/p&gt;
+&lt;/aside&gt;
+
+&lt;section role="region"&gt;
+  &lt;h3&gt;Updates&lt;/h3&gt;
+  &lt;p&gt;We are adding new accessibility videos every week.&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;div role="note"&gt;
+  &lt;p&gt;Note: Always test ARIA roles with a screen reader.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;footer role="contentinfo"&gt;
+  &lt;p&gt;© 2025 Accessible World Tutorials&lt;/p&gt;
+&lt;/footer&gt;
+</code>
+  </pre>
+                    <h3 id="video-lesson1">English video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_english_videos/role-region.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
+</div>
 
 <div id="aria-page61" class="aria-page">
-  <h2>Role: listitem</h2>
-  <p>The <code>listitem</code> role represents a single item in a list. It should be contained within elements with <code>role="list"</code> or <code>role="group"</code>.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;ul role="list"&gt;
-  &lt;li role="listitem"&gt;First item&lt;/li&gt;
-  &lt;li role="listitem"&gt;Second item&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
+  <h2>role="list" and role="listitem"</h2>
+  <p>
+    The <code>list</code> role is used to identify a group of related items, similar to the HTML 
+    <code>&lt;ul&gt;</code> or <code>&lt;ol&gt;</code> elements. It helps assistive technologies understand 
+    that the content is a structured list, making navigation easier for screen reader users.
+  </p>
+
+  <p>
+    The <code>listitem</code> role is used inside a <code>list</code> to represent an individual item. 
+    Screen readers will announce each item in the list and its position (for example, "item 1 of 4").
+  </p>
+
+  <h3>When to use:</h3>
+  <ul>
+    <li>Use <code>role="list"</code> when creating custom components that visually look like a list 
+    but are not marked up with <code>&lt;ul&gt;</code> or <code>&lt;ol&gt;</code>.</li>
+    <li>Use <code>role="listitem"</code> for each element inside the list to ensure screen readers 
+    treat them as list items.</li>
+  </ul>
+
+  <h3>Example:</h3>
+<pre><code>
+&lt;div role="list"&gt;
+  &lt;div role="listitem"&gt;HTML&lt;/div&gt;
+  &lt;div role="listitem"&gt;CSS&lt;/div&gt;
+  &lt;div role="listitem"&gt;JavaScript&lt;/div&gt;
+  &lt;div role="listitem"&gt;ARIA&lt;/div&gt;
+&lt;/div&gt;
+	</code></pre>
+  <p><strong>Screen Reader Output:</strong> The screen reader will announce this block as a 
+  list with 4 items, and then read each item one by one.</p>
+                    <h3 id="video-lesson1">English video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_english_videos/role-list.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
 </div>
 
 <div id="aria-page62" class="aria-page">
-  <h2>Role: log</h2>
+  <h2>role="log"</h2>
   <p>The <code>log</code> role is used for content that changes frequently, like chat logs or live updates. Screen readers automatically announce new content.</p>
   <p><strong>Example:</strong></p>
   <pre><code>
@@ -7518,70 +7658,70 @@ Users must remember and type a password with no alternative login methods like b
   &lt;p&gt;User2: Hi there!&lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
+                    <h3 id="video-lesson1">English video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_english_videos/role-log.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page63" class="aria-page">
-  <h2>Role: main</h2>
-  <p>The <code>main</code> role identifies the main content area of a page. Each page should only have one main region.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;main role="main"&gt;
-  &lt;h1&gt;Welcome to Accessible World&lt;/h1&gt;
-  &lt;p&gt;This is the main content of the page.&lt;/p&gt;
-&lt;/main&gt;
-</code></pre>
 </div>
-
-
 
 <div id="aria-page66" class="aria-page">
-  <h2>Role: menu</h2>
-  <p>The <code>menu</code> role is used for a group of commands or options presented to the user, often in navigation or context menus.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;ul role="menu"&gt;
-  &lt;li role="menuitem"&gt;New File&lt;/li&gt;
-  &lt;li role="menuitem"&gt;Open File&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
-</div>
+  <h2>ARIA Menu Roles</h2>
+  <p>
+    ARIA provides several roles to describe menus and their items for screen reader users. 
+    These roles help in building accessible navigation structures like application menus, 
+    dropdowns, or context menus.
+  </p>
 
-<div id="aria-page67" class="aria-page">
-  <h2>Role: menubar</h2>
-  <p>The <code>menubar</code> role represents a horizontal menu, usually placed at the top of an application window or page.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;div role="menubar"&gt;
-  &lt;div role="menuitem"&gt;File&lt;/div&gt;
-  &lt;div role="menuitem"&gt;Edit&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-</div>
+  <h3>Roles Explained</h3>
+  <ul>
+    <li><code>role="menu"</code> – Represents a container for a list of menu items (like a dropdown menu).</li>
+    <li><code>role="menubar"</code> – Represents a horizontal menu bar that usually holds multiple menus.</li>
+    <li><code>role="menuitem"</code> – A single actionable item within a menu (like "Open File").</li>
+    <li><code>role="menuitemcheckbox"</code> – A menu item that can be toggled on/off (like a checkbox).</li>
+    <li><code>role="menuitemradio"</code> – A menu item that belongs to a radio group, only one option can be selected at a time.</li>
+  </ul>
 
-<div id="aria-page68" class="aria-page">
-  <h2>Role: menuitem</h2>
-  <p>The <code>menuitem</code> role is used for items within a menu that a user can activate.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;ul role="menu"&gt;
-  &lt;li role="menuitem"&gt;Save&lt;/li&gt;
-  &lt;li role="menuitem"&gt;Close&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
-</div>
+  <h3>Example Code</h3>
+  <p>The following example demonstrates all the menu roles:</p>
 
-
-
-<div id="aria-page71" class="aria-page">
-  <h2>Role: navigation</h2>
-  <p>The <code>navigation</code> role identifies a section of a page that provides links for navigating the website.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;nav role="navigation"&gt;
-  &lt;a href="#home"&gt;Home&lt;/a&gt;
-  &lt;a href="#about"&gt;About&lt;/a&gt;
+  <pre>
+    <code>
+&lt;nav role="menubar" aria-label="Application Menu"&gt;
+  &lt;ul role="menu"&gt;
+    &lt;li role="menuitem"&gt;New File&lt;/li&gt;
+    &lt;li role="menuitem"&gt;Open File&lt;/li&gt;
+    &lt;li role="menuitemcheckbox" aria-checked="true"&gt;Show Line Numbers&lt;/li&gt;
+    &lt;li role="menuitemcheckbox" aria-checked="false"&gt;Enable Dark Mode&lt;/li&gt;
+    &lt;li role="menuitemradio" aria-checked="true" aria-setsize="2" aria-posinset="1"&gt;List View&lt;/li&gt;
+    &lt;li role="menuitemradio" aria-checked="false" aria-setsize="2" aria-posinset="2"&gt;Grid View&lt;/li&gt;
+  &lt;/ul&gt;
 &lt;/nav&gt;
-</code></pre>
+    </code>
+  </pre>
+
+  <h3>Screen Reader Behavior</h3>
+  <p>
+    - Screen readers announce <strong>Menu bar</strong> and inform users when they are inside a menu. <br>
+    - Each <code>menuitem</code> is announced as a menu option. <br>
+    - <code>menuitemcheckbox</code> is announced with its state (checked/unchecked). <br>
+    - <code>menuitemradio</code> is announced as part of a radio group with its selection state. 
+  </p>
 </div>
 
 <div id="aria-page72" class="aria-page">
@@ -7640,16 +7780,6 @@ Users must remember and type a password with no alternative login methods like b
 </code></pre>
 </div>
 
-<div id="aria-page79" class="aria-page">
-  <h2>Role: region</h2>
-  <p>The <code>region</code> role identifies a perceivable section of a page that is important enough to be included in a page summary or landmark navigation.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;div role="region" aria-label="User Profile"&gt;
-  &lt;h2&gt;Profile Information&lt;/h2&gt;
-&lt;/div&gt;
-</code></pre>
-</div>
 
 <div id="aria-page80" class="aria-page">
   <h2>Role: row</h2>
@@ -7776,33 +7906,6 @@ Users must remember and type a password with no alternative login methods like b
 </code></pre>
 </div>
 
-<div id="aria-page93" class="aria-page">
-  <h2>role="menuitemcheckbox"</h2>
-  <p>The <code>menuitemcheckbox</code> role defines a menu item that can be checked or unchecked.</p>
-  <p><strong>Example:</strong> Menu with options.</p>
-  <pre><code>
-&lt;div role="menuitemcheckbox" aria-checked="true"&gt;Show Toolbar&lt;/div&gt;
-</code></pre>
-</div>
-
-<div id="aria-page94" class="aria-page">
-  <h2>role="menuitemradio"</h2>
-  <p>The <code>menuitemradio</code> role defines a menu item that is part of a group where only one can be selected.</p>
-  <p><strong>Example:</strong> Font size options.</p>
-  <pre><code>
-&lt;div role="menuitemradio" aria-checked="true"&gt;Small&lt;/div&gt;
-&lt;div role="menuitemradio" aria-checked="false"&gt;Large&lt;/div&gt;
-</code></pre>
-</div>
-
-<div id="aria-page95" class="aria-page">
-  <h2>role="note"</h2>
-  <p>The <code>note</code> role is used for content that is an annotation or advisory note.</p>
-  <p><strong>Example:</strong> Side note.</p>
-  <pre><code>
-&lt;div role="note"&gt;Note: Changes will be saved automatically.&lt;/div&gt;
-</code></pre>
-</div>
 
 <div id="aria-page96" class="aria-page">
   <h2>role="math"</h2>
@@ -7812,16 +7915,6 @@ Users must remember and type a password with no alternative login methods like b
 &lt;div role="math"&gt;E = mc²&lt;/div&gt;
 </code></pre>
 </div>
-
-<div id="aria-page97" class="aria-page">
-  <h2>role="log"</h2>
-  <p>The <code>log</code> role is for dynamic content where new entries are added and old entries disappear, like chat or error logs.</p>
-  <p><strong>Example:</strong> Chat log.</p>
-  <pre><code>
-&lt;div role="log"&gt;User joined the chat.&lt;/div&gt;
-</code></pre>
-</div>
-
 <div id="aria-page98" class="aria-page">
   <h2>role="marquee"</h2>
   <p>The <code>marquee</code> role is used for content that scrolls or moves across the screen.</p>
@@ -7846,51 +7939,6 @@ Users must remember and type a password with no alternative login methods like b
   <p><strong>Example:</strong> Delete confirmation.</p>
   <pre><code>
 &lt;div role="alertdialog"&gt;Are you sure you want to delete this file?&lt;/div&gt;
-</code></pre>
-</div>
-<div id="aria-page101" class="aria-page">
-  <h2>role="article"</h2>
-  <p>The <code>article</code> role represents a self-contained piece of content intended for independent use or distribution.</p>
-  <p><strong>Example:</strong> A blog post or news article.</p>
-  <pre><code>
-&lt;div role="article"&gt;
-  &lt;h2&gt;Breaking News&lt;/h2&gt;
-  &lt;p&gt;Today’s top story...&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-</div>
-
-<div id="aria-page102" class="aria-page">
-  <h2>role="banner"</h2>
-  <p>The <code>banner</code> role represents a site-wide header that usually contains the logo or main identity.</p>
-  <p><strong>Example:</strong> Website header section.</p>
-  <pre><code>
-&lt;header role="banner"&gt;
-  &lt;h1&gt;Accessible World&lt;/h1&gt;
-&lt;/header&gt;
-</code></pre>
-</div>
-
-<div id="aria-page103" class="aria-page">
-  <h2>role="complementary"</h2>
-  <p>The <code>complementary</code> role represents a section that supports the main content but is meaningful on its own.</p>
-  <p><strong>Example:</strong> Sidebar with related articles.</p>
-  <pre><code>
-&lt;aside role="complementary"&gt;
-  &lt;h3&gt;Related Topics&lt;/h3&gt;
-  &lt;ul&gt;&lt;li&gt;Topic 1&lt;/li&gt;&lt;/ul&gt;
-&lt;/aside&gt;
-</code></pre>
-</div>
-
-<div id="aria-page104" class="aria-page">
-  <h2>role="contentinfo"</h2>
-  <p>The <code>contentinfo</code> role identifies the footer or information about the content of the page.</p>
-  <p><strong>Example:</strong> Website footer section.</p>
-  <pre><code>
-&lt;footer role="contentinfo"&gt;
-  &lt;p&gt;© 2025 Accessible World&lt;/p&gt;
-&lt;/footer&gt;
 </code></pre>
 </div>
 

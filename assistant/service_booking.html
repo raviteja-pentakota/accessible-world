@@ -36,6 +36,9 @@
         <option>Other</option>
       </select>
 
+            <label for="pickupAddress">Full Pickup address:</label>
+      <textarea id="pickupAddress" rows="4" required></textarea>
+
       <label for="need">Need Assistance For</label>
       <select id="need" required>
         <option value="">Select</option>
@@ -59,7 +62,7 @@
       </div>
 
       <button type="submit">Submit Request</button>
-      <p id="statusMessage"></p>
+      <p id="statusMessage"></p>
     </form>
   </div>
 
@@ -85,7 +88,7 @@
 
     const needSelect = document.getElementById("need");
     const travelDetails = document.getElementById("travelDetails");
-    const statusMessage = document.getElementById("statusMessage");
+    const statusMessage = document.getElementById("statusMessage");
 
     needSelect.addEventListener("change", () => {
       travelDetails.style.display = needSelect.value === "travel" ? "block" : "none";
@@ -93,8 +96,8 @@
 
     document.getElementById("assistanceForm").addEventListener("submit", async (e) => {
       e.preventDefault();
-      statusMessage.textContent = "Submitting your request...";
-      statusMessage.style.color = "#0056b3";
+      statusMessage.textContent = "Submitting your request...";
+      statusMessage.style.color = "#0056b3";
 
       try {
         await addDoc(collection(db, "assistanceRequests"), {
@@ -102,6 +105,7 @@
           phone: document.getElementById("phone").value,
           altPhone: document.getElementById("altPhone").value,
           gender: document.getElementById("gender").value,
+          pickupAddress: document.getElementById("pickupAddress").value, // NEW FIELD
           need: document.getElementById("need").value,
           from: document.getElementById("from").value || null,
           to: document.getElementById("to").value || null,
@@ -109,13 +113,13 @@
           submittedAt: serverTimestamp()
         });
         statusMessage.textContent = "Your request has been submitted successfully!";
-        statusMessage.style.color = "green";
+        statusMessage.style.color = "green";
         e.target.reset();
         travelDetails.style.display = "none";
       } catch (err) {
         console.error("Error submitting request:", err);
         statusMessage.textContent = "Failed to submit request. Please try again.";
-        statusMessage.style.color = "red";
+        statusMessage.style.color = "red";
       }
     });
   </script>
