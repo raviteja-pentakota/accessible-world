@@ -5862,7 +5862,26 @@ Users must remember and type a password with no alternative login methods like b
     <li>Improving navigation for users who rely on screen readers.</li>
     <li>Making dynamic content and rich user interfaces usable for people with visual, motor, or cognitive impairments.</li>
   </ul>
-  
+                      <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-intro.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
 </div>
 
                 <div id="aria-page2" class="aria-page active" aria-live="polite">
@@ -5871,6 +5890,26 @@ Users must remember and type a password with no alternative login methods like b
 
                     <h3><strong>Example:</strong> A search button with a magnifying glass icon.</h3>
                     <pre><code>&lt;button aria-label="Search"&gt;🔍&lt;/button&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-label.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
                 </div>
 
                 <div id="aria-page3" class="aria-page" aria-live="polite">
@@ -5880,8 +5919,28 @@ Users must remember and type a password with no alternative login methods like b
                     <h3><strong>Example:</strong> Input field labeled by a heading.</h3>
                     <pre><code>&lt;h2 id="name-label"&gt;Full Name&lt;/h2&gt;
 &lt;input type="text" aria-labelledby="name-label"&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-labelledby.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
                 </div>
-<div id="aria-page3" class="aria-page">
+<div id="aria-page4" class="aria-page">
   <h2>aria-describedby</h2>
   <p>The <code>aria-describedby</code> attribute is used when you want to give extra information about an element. Screen readers will first read the label, then read the description from the element referenced by this ID. It’s very useful for form inputs, buttons, or anything that needs additional help text or instructions for users.</p>
 
@@ -5889,21 +5948,54 @@ Users must remember and type a password with no alternative login methods like b
   <pre><code>&lt;label for="email"&gt;Email&lt;/label&gt;
 &lt;input type="email" id="email" aria-describedby="email-help"&gt;
 &lt;small id="email-help"&gt;We'll never share your email with anyone.&lt;/small&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-describedby.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
 </div>
  
-<div id="aria-page4" class="aria-page">
+<div id="aria-page5" class="aria-page">
   <h2>aria-hidden</h2>
   <p>The <code>aria-hidden</code> attribute hides elements from screen readers. If you set <code>aria-hidden="true"</code>, that part of the page will not be read aloud. This is helpful for decorative elements like icons or repeated visual content that doesn’t add meaning. It improves the screen reader experience by reducing unnecessary information.</p>
 
   <h3><strong>Example:</strong> Star icon hidden from screen reader.</h3>
   <pre><code>&lt;span aria-hidden="true"&gt;★&lt;/span&gt;</code></pre>
-</div>
-<div id="aria-page5" class="aria-page">
-  <h2>role</h2>
-  <p>The <code>role</code> attribute defines what kind of element it is, especially when the element is not a native HTML tag like a button or checkbox. It helps screen readers understand the purpose of the element. Use <code>role</code> to make a <code>&lt;div&gt;</code> act like a button, a <code>&lt;span&gt;</code> act like a checkbox, and so on. It's a powerful tool when creating custom UI components.</p>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-hidden.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
 
-  <h3><strong>Example:</strong> A div that behaves like a button.</h3>
-  <pre><code>&lt;div role="button" tabindex="0"&gt;Click Me&lt;/div&gt;</code></pre>
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
 </div>
 <div id="aria-page6" class="aria-page">
   <h2>aria-expanded</h2>
@@ -5916,6 +6008,26 @@ Users must remember and type a password with no alternative login methods like b
 &lt;div id="details" hidden&gt;
   Here are the details!
 &lt;/div&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-expanded.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
 </div>
 <div id="aria-page7" class="aria-page">
   <h2>aria-checked</h2>
@@ -5925,6 +6037,26 @@ Users must remember and type a password with no alternative login methods like b
   <pre><code>&lt;div role="checkbox" aria-checked="true" tabindex="0"&gt;
   Subscribe to Newsletter
 &lt;/div&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-checked.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
 </div>
 <div id="aria-page8" class="aria-page">
   <h2>aria-pressed</h2>
@@ -5932,6 +6064,26 @@ Users must remember and type a password with no alternative login methods like b
 
   <h3><strong>Example:</strong> A toggle button for bold text.</h3>
   <pre><code>&lt;button aria-pressed="false"&gt;Bold&lt;/button&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-pressed.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
 </div>
 <div id="aria-page9" class="aria-page">
 <h2>Aria-Live  </h2>
@@ -5941,8 +6093,28 @@ Users must remember and type a password with no alternative login methods like b
   <pre><code>&lt;div aria-live="polite"&gt;
   New message received!
 &lt;/div&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-live.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-<div id="aria-page46" class="aria-page">
+
+</div>
+<div id="aria-page10" class="aria-page">
   <h2>aria-relevant</h2>
   <p>The <code>aria-relevant</code> attribute is used with live regions to specify what types of changes should be announced to assistive technologies, such as screen readers. It helps control how users are notified about updates in dynamic content.</p>
 
@@ -5961,8 +6133,28 @@ Users must remember and type a password with no alternative login methods like b
   &lt;div&gt;User2: Hi, how are you?&lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-relevant.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-<div id="aria-page47" class="aria-page">
+
+</div>
+<div id="aria-page11" class="aria-page">
   <h2>aria-atomic</h2>
   <p>The <code>aria-atomic</code> attribute is used with live regions to control whether assistive technologies should present the entire region or only the changed part when content updates.</p>
 
@@ -5980,30 +6172,111 @@ Users must remember and type a password with no alternative login methods like b
   &lt;p&gt;Condition: Sunny&lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-atomic.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page10" class="aria-page">
+</div>
+
+<div id="aria-page12" class="aria-page">
   <h2>aria-disabled</h2>
   <p>The <code>aria-disabled</code> attribute tells assistive technology that an element is disabled, even if it is not visually shown as such. Unlike the HTML <code>disabled</code> attribute, <code>aria-disabled</code> works on more elements and gives developers more control over how things appear vs. behave.</p>
 
   <h3><strong>Example:</strong> A button that appears clickable but is announced as disabled.</h3>
   <pre><code>&lt;button aria-disabled="true"&gt;Submit&lt;/button&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-disabled.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-<div id="aria-page11" class="aria-page">
+
+</div>
+<div id="aria-page13" class="aria-page">
   <h2>aria-required</h2>
   <p>The <code>aria-required</code> attribute tells assistive technologies that a form field must be filled out before submitting. It is useful for custom form fields that don’t use the native <code>required</code> HTML attribute. Screen readers will announce that the field is required, helping users understand form rules clearly.</p>
 
   <h3><strong>Example:</strong> A custom input field marked as required.</h3>
   <pre><code>&lt;input type="text" aria-required="true" aria-label="First Name"&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-required.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-<div id="aria-page12" class="aria-page">
+
+</div>
+<div id="aria-page14" class="aria-page">
   <h2>aria-current</h2>
   <p>The <code>aria-current</code> attribute indicates the current item in a list, navigation, or set of tabs. It helps screen reader users know which item is currently active or selected. Common values are "page", "step", or "true". It is mostly used in navigation menus to highlight the current page.</p>
 
   <h3><strong>Example:</strong> Highlighting the current page in a navigation list.</h3>
   <pre><code>&lt;a href="home.html" aria-current="page"&gt;Home&lt;/a&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-current.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-<div id="aria-page13" class="aria-page">
+
+
+</div>
+<div id="aria-page15" class="aria-page">
   <h2>aria-haspopup</h2>
   <p>The <code>aria-haspopup</code> attribute shows that an element will open a popup like a menu, dialog, or listbox. This helps screen reader users prepare for a new type of interaction. You can also set values like "menu", "listbox", "dialog", or "grid" to describe the popup type.</p>
 
@@ -6011,8 +6284,29 @@ Users must remember and type a password with no alternative login methods like b
   <pre><code>&lt;button aria-haspopup="true" aria-controls="menu1"&gt;
   Options
 &lt;/button&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-haspopup.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-<div id="aria-page14" class="aria-page">
+
+
+</div>
+<div id="aria-page16" class="aria-page">
   <h2>aria-busy</h2>
   <p>The <code>aria-busy</code> attribute tells assistive technologies that content is loading or being updated. When <code>aria-busy="true"</code>, screen readers will wait before reading changes in that region. It is very helpful for dynamic areas like search results or dashboards that load data in real-time.</p>
 
@@ -6020,8 +6314,28 @@ Users must remember and type a password with no alternative login methods like b
   <pre><code>&lt;div aria-busy="true"&gt;
   Loading your dashboard...
 &lt;/div&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-busy.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-<div id="aria-page15" class="aria-page">
+
+</div>
+<div id="aria-page17" class="aria-page">
   <h2>aria-level</h2>
   <p>The <code>aria-level</code> attribute defines the heading level for an element, especially when it's not using a native <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> tag. It tells screen readers the importance or rank of the heading. This is useful when using styled text or <code>&lt;div&gt;</code> elements for headings.</p>
 
@@ -6029,8 +6343,28 @@ Users must remember and type a password with no alternative login methods like b
   <pre><code>&lt;div role="heading" aria-level="2"&gt;
   Section Title
 &lt;/div&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-level.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-<div id="aria-page16" class="aria-page">
+
+</div>
+<div id="aria-page18" class="aria-page">
   <h2>aria-selected</h2>
   <p>The <code>aria-selected</code> attribute indicates if an item in a group (like a tab or a listbox) is currently selected. It helps screen reader users know which item is active among others. This is useful in tab interfaces, selectable lists, or grids where visual selection is shown but needs to be announced accessibly.</p>
 
@@ -6039,8 +6373,28 @@ Users must remember and type a password with no alternative login methods like b
   &lt;button role="tab" aria-selected="true"&gt;Overview&lt;/button&gt;
   &lt;button role="tab" aria-selected="false"&gt;Details&lt;/button&gt;
 &lt;/div&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-selected.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-<div id="aria-page17" class="aria-page">
+
+</div>
+<div id="aria-page19" class="aria-page">
   <h2>aria-controls</h2>
   <p>The <code>aria-controls</code> attribute identifies the ID of the element that is being controlled by another element, like a button controlling a panel. It helps users understand which area will change when they interact with the button or control.</p>
 
@@ -6052,26 +6406,28 @@ Users must remember and type a password with no alternative login methods like b
 &lt;div id="info-panel"&gt;
   Additional information is shown here.
 &lt;/div&gt;</code></pre>
-</div>
-<div id="aria-page18" class="aria-page">
-  <h2>role="alert"</h2>
-  <p>The <code>role="alert"</code> makes content automatically announced by screen readers as soon as it appears. This is useful for error messages or important notices that users should know about immediately without moving their focus.</p>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-controls.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
 
-  <h3><strong>Example:</strong> Displaying an error message.</h3>
-  <pre><code>&lt;div role="alert"&gt;
-  Error: You must fill out all required fields.
-&lt;/div&gt;</code></pre>
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-<div id="aria-page19" class="aria-page">
-  <h2>role="dialog"</h2>
-  <p>The <code>role="dialog"</code> is used for modal or popup dialog boxes. It lets screen reader users know they’re inside a dialog and should not interact with the rest of the page until it’s closed. It's often paired with <code>aria-modal="true"</code> and focus trapping.</p>
 
-  <p><strong>Example:</strong> A modal popup with content.</p>
-  <pre><code>&lt;div role="dialog" aria-modal="true"&gt;
-  Are you sure you want to delete this item?
-&lt;/div&gt;</code></pre>
 </div>
-<div id="aria-page20" class="aria-page">
+<div id="aria-page22" class="aria-page">
   <h2>aria-modal</h2>
   <p>The <code>aria-modal</code> attribute is used with <code>role="dialog"</code> to tell screen readers that the dialog is modal. This means users should interact only with the dialog content until it's closed. It prevents screen readers from reading other content in the background.</p>
 
@@ -6079,8 +6435,28 @@ Users must remember and type a password with no alternative login methods like b
   <pre><code>&lt;div role="dialog" aria-modal="true"&gt;
   Please confirm your action before continuing.
 &lt;/div&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-modal.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-<div id="aria-page49" class="aria-page">
+
+</div>
+<div id="aria-page23" class="aria-page">
   <h2>aria-owns</h2>
   <p>The <code>aria-owns</code> attribute defines a parent–child relationship between elements when that relationship cannot be determined from the DOM structure alone. 
   It allows authors to override the accessibility tree to include elements that are elsewhere in the DOM as children of the current element.</p>
@@ -6101,15 +6477,55 @@ Users must remember and type a password with no alternative login methods like b
 &lt;div id="item1" role="menuitem"&gt;Profile&lt;/div&gt;
 &lt;div id="item2" role="menuitem"&gt;Settings&lt;/div&gt;
 </code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-owns.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-<div id="aria-page21" class="aria-page">
+
+</div>
+<div id="aria-page24" class="aria-page">
   <h2>aria-readonly</h2>
   <p>The <code>aria-readonly</code> attribute tells assistive technologies that a form control is read-only. The user can read the content but cannot change it. This helps screen reader users understand they cannot edit the field.</p>
 
   <p><strong>Example:</strong> A read-only input field.</p>
   <pre><code>&lt;input type="text" value="Not Editable" aria-readonly="true"&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-readonly.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-<div id="aria-page22" class="aria-page">
+
+</div>
+<div id="aria-page25" class="aria-page">
   <h2>aria-activedescendant</h2>
   <p>The <code>aria-activedescendant</code> attribute is used in composite widgets like autocomplete or listbox to show which item is currently active. It helps assistive technologies track the focus without moving the actual input focus.</p>
 
@@ -6119,8 +6535,28 @@ Users must remember and type a password with no alternative login methods like b
   &lt;li id="option1"&gt;Apple&lt;/li&gt;
   &lt;li id="option2"&gt;Banana&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-activedescendant.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-<div id="aria-page23" class="aria-page">
+
+</div>
+<div id="aria-page26" class="aria-page">
   <h2>aria-valuemin, aria-valuemax, aria-valuenow</h2>
   <p>These attributes are used in widgets like sliders or progress bars. <code>aria-valuemin</code> and <code>aria-valuemax</code> set the range, while <code>aria-valuenow</code> tells the current value. This allows screen reader users to understand how far along a process is.</p>
 
@@ -6131,180 +6567,28 @@ Users must remember and type a password with no alternative login methods like b
      aria-valuenow="70"&gt;
   70% Complete
 &lt;/div&gt;</code></pre>
-</div>
-<div id="aria-page24" class="aria-page">
-  <h2>aria-orientation</h2>
-  <p>The <code>aria-orientation</code> attribute defines whether a widget like a tab list or slider is arranged vertically or horizontally. This helps screen readers announce how the items are displayed so users can navigate accordingly.</p>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-value.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
 
-  <p><strong>Example:</strong> Horizontal tab list.</p>
-  <pre><code>&lt;div role="tablist" aria-orientation="horizontal"&gt;
-  &lt;div role="tab"&gt;Tab 1&lt;/div&gt;
-  &lt;div role="tab"&gt;Tab 2&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-<div id="aria-page25" class="aria-page">
-  <h2>aria-multiselectable</h2>
-  <p>Used on a listbox or grid, <code>aria-multiselectable</code> tells screen readers if the user can select more than one item. This is useful in scenarios where users need to select multiple options like in filters or checklists.</p>
 
-  <p><strong>Example:</strong> Listbox that supports multiple selection.</p>
-  <pre><code>&lt;ul role="listbox" aria-multiselectable="true"&gt;
-  &lt;li role="option"&gt;Option A&lt;/li&gt;
-  &lt;li role="option"&gt;Option B&lt;/li&gt;
-&lt;/ul&gt;</code></pre>
-</div>
-<div id="aria-page26" class="aria-page">
-  <h2>aria-sort</h2>
-  <p>The <code>aria-sort</code> attribute is used on table headers to indicate the sorting direction: ascending, descending, none, or other. This is very helpful for screen reader users to know how data is sorted.</p>
-
-  <p><strong>Example:</strong> Column sorted in descending order.</p>
-  <pre><code>&lt;th aria-sort="descending"&gt;Price&lt;/th&gt;</code></pre>
 </div>
 <div id="aria-page27" class="aria-page">
-  <h2>aria-dropeffect</h2>
-  <p><code>aria-dropeffect</code> was used to show what kind of drop action would be allowed in a drag-and-drop interface (e.g., copy, move, link). This attribute is now deprecated, and better alternatives should be used with HTML5 drag and drop.</p>
-
-  <p><strong>Example:</strong> (Deprecated usage)</p>
-  <pre><code>&lt;div aria-dropeffect="move"&gt;Drop files here&lt;/div&gt;</code></pre>
-</div>
-<div id="aria-page48" class="aria-page">
-  <h2>aria-grabbed</h2>
-  <p>The <code>aria-grabbed</code> attribute was used in older ARIA specifications to indicate whether an element is currently grabbed for drag-and-drop operations. 
-  However, it is now <strong>deprecated in ARIA 1.1</strong>, and authors are encouraged to use modern drag-and-drop APIs instead.</p>
-
-  <h3>Possible values:</h3>
-  <ul>
-    <li><code>true</code> – The element is currently grabbed (selected for dragging).</li>
-    <li><code>false</code> – The element is not grabbed (default).</li>
-  </ul>
-
-  <h3>Example: Draggable list item marked as grabbed.</h3>
-  <pre><code>
-&lt;div role="listitem" draggable="true" aria-grabbed="true"&gt;
-  File1.txt (dragging)
-&lt;/div&gt;
-</code></pre>
-</div>
-
-<div id="aria-page28" class="aria-page">
-  <h2>aria-keyshortcuts</h2>
-  <p>The <code>aria-keyshortcuts</code> attribute tells assistive technologies what keyboard shortcut activates the element. It allows users to know that a specific key combo like "Ctrl+S" will perform an action.</p>
-
-  <p><strong>Example:</strong> Button triggered with Ctrl+S.</p>
-  <pre><code>&lt;button aria-keyshortcuts="Ctrl+S"&gt;Save&lt;/button&gt;</code></pre>
-</div>
-<div id="aria-page30" class="aria-page">
-  <h2>aria-flowto</h2>
-  <p>The <code>aria-flowto</code> attribute specifies the next element in the reading flow. It’s used when the visual order differs from the logical DOM order, helping screen readers follow the correct reading sequence.</p>
-
-  <p><strong>Example:</strong> Directing screen readers to jump to another section.</p>
-  <pre><code>&lt;div id="box1" aria-flowto="box2"&gt;Step 1&lt;/div&gt;
-&lt;div id="box2"&gt;Step 2&lt;/div&gt;</code></pre>
-</div>
-<div id="aria-page31" class="aria-page">
-  <h2>aria-autocomplete</h2>
-  <p>Used in input fields, <code>aria-autocomplete</code> tells screen readers if autocomplete suggestions are available. It can have values like <code>inline</code>, <code>list</code>, or <code>both</code>, helping users understand how they can choose suggestions.</p>
-
-  <p><strong>Example:</strong> Autocomplete for a search bar.</p>
-  <pre><code>&lt;input aria-autocomplete="list" aria-owns="suggestions"&gt;
-&lt;ul id="suggestions"&gt;
-  &lt;li&gt;Apple&lt;/li&gt;
-  &lt;li&gt;Banana&lt;/li&gt;
-&lt;/ul&gt;</code></pre>
-</div>
-<div id="aria-page32" class="aria-page">
-  <h2>aria-colspan</h2>
-  <p><code>aria-colspan</code> defines how many columns a cell should span in a grid. It helps screen readers understand the structure of complex grids, just like the HTML <code>colspan</code> attribute in tables.</p>
-
-  <p><strong>Example:</strong> A cell spanning two columns.</p>
-  <pre><code>&lt;div role="gridcell" aria-colspan="2"&gt;Merged Column&lt;/div&gt;</code></pre>
-</div>
-<div id="aria-page33" class="aria-page">
-  <h2>aria-rowspan</h2>
-  <p>The <code>aria-rowspan</code> attribute defines how many rows a cell spans in a grid or table structure. It works similarly to the HTML <code>rowspan</code> and helps screen readers interpret table layout correctly.</p>
-
-  <p><strong>Example:</strong> A cell spanning two rows.</p>
-  <pre><code>&lt;div role="gridcell" aria-rowspan="2"&gt;Merged Row&lt;/div&gt;</code></pre>
-</div>
-<div id="aria-page34" class="aria-page">
-  <h2>aria-colindex</h2>
-  <p><code>aria-colindex</code> tells assistive technologies the column number for a grid or table cell. This is helpful when table headers are complex and don’t appear in the usual DOM order.</p>
-
-  <p><strong>Example:</strong> A cell at column 3.</p>
-  <pre><code>&lt;div role="gridcell" aria-colindex="3"&gt;Data&lt;/div&gt;</code></pre>
-</div>
-<div id="aria-page35" class="aria-page">
-  <h2>aria-rowindex</h2>
-  <p>The <code>aria-rowindex</code> attribute tells screen readers the row number of a cell in a table or grid. It is useful for creating accessible data grids with proper navigation for screen reader users.</p>
-
-  <p><strong>Example:</strong> A cell in row 2.</p>
-  <pre><code>&lt;div role="gridcell" aria-rowindex="2"&gt;Item&lt;/div&gt;</code></pre>
-</div>
-<div id="aria-page36" class="aria-page">
-  <h2>aria-placeholder</h2>
-  <p><code>aria-placeholder</code> provides placeholder text for assistive technologies when the native HTML <code>placeholder</code> isn't enough or is visually hidden. It describes the expected input.</p>
-
-  <p><strong>Example:</strong> Input for entering a city name.</p>
-  <pre><code>&lt;input type="text" aria-placeholder="Enter your city"&gt;</code></pre>
-</div>
-<div id="aria-page37" class="aria-page">
-  <h2>aria-posinset</h2>
-  <p>The <code>aria-posinset</code> attribute defines an element’s position in a set. It helps users understand their current position among siblings (like "3 of 5").</p>
-
-  <p><strong>Example:</strong> Item 2 of 4 in a list.</p>
-  <pre><code>&lt;li role="option" aria-posinset="2" aria-setsize="4"&gt;Option 2&lt;/li&gt;</code></pre>
-</div>
-<div id="aria-page38" class="aria-page">
-  <h2>aria-setsize</h2>
-  <p><code>aria-setsize</code> tells assistive technologies the total number of items in a set or list. When used with <code>aria-posinset</code>, it helps screen readers provide context like “item 2 of 5”.</p>
-
-  <p><strong>Example:</strong> Set of 4 options.</p>
-  <pre><code>&lt;li role="option" aria-posinset="1" aria-setsize="4"&gt;Option 1&lt;/li&gt;</code></pre>
-</div>
-<div id="aria-page39" class="aria-page">
-  <h2>aria-braillelabel</h2>
-  <p>This attribute gives a label specifically for braille displays. It may differ from the spoken label and helps provide better accessibility for braille readers.</p>
-  <p><strong>Example:</strong> Label for a braille display.</p>
-  <pre><code>
-&lt;button aria-label="Submit form" aria-braillelabel="Braille: Submit"&gt;
-  Send
-&lt;/button&gt;
-</code></pre>
-</div>
-<div id="aria-page40" class="aria-page">
-  <h2>aria-brailleroledescription</h2>
-  <p>This attribute customizes the role name spoken or shown on a braille display. It is useful when the default role name is too long or not meaningful for braille users.</p>
-  <p><strong>Example:</strong> Shortened braille role for a switch.</p>
-  <pre><code>
-&lt;div role="switch" aria-brailleroledescription="Sw"&gt;On/Off&lt;/div&gt;
-</code></pre>
-</div>
-<div id="aria-page41" class="aria-page">
-  <h2>aria-errormessage</h2>
-  <p><code>aria-errormessage</code> provides a reference to an error message element that explains what's wrong with the input. This improves form validation messages for screen readers.</p>
-  <p><strong>Example:</strong> Input with an error message.</p>
-  <pre><code>
-&lt;input id="email" aria-invalid="true" aria-errormessage="error1"&gt;
-&lt;div id="error1"&gt;Please enter a valid email address.&lt;/div&gt;
-</code></pre>
-</div>
-<div id="aria-page42" class="aria-page">
-  <h2>aria-roledescription</h2>
-  <p>This gives a custom role description that screen readers announce. It replaces the default role name with something more meaningful or familiar to users.</p>
-  <p><strong>Example:</strong> Role description for a custom slider.</p>
-  <pre><code>
-&lt;div role="slider" aria-roledescription="volume control"&gt;&lt;/div&gt;
-</code></pre>
-</div>
-<div id="aria-page43" class="aria-page">
-  <h2>aria-details</h2>
-  <p>The <code>aria-details</code> attribute links to another element that provides more detailed information. It’s useful for charts, summaries, and tooltips.</p>
-  <p><strong>Example:</strong> Element with additional explanation.</p>
-  <pre><code>
-&lt;div aria-details="info1"&gt;COVID Data&lt;/div&gt;
-&lt;div id="info1"&gt;This data shows infection rates from Jan to March.&lt;/div&gt;
-</code></pre>
-</div>
-<div id="aria-page44" class="aria-page">
   <h2>aria-valuetext</h2>
   <p>The <code>aria-valuetext</code> attribute defines a human-readable text alternative for the current value of a widget, such as a slider, spin button, or progress bar. It is especially useful when numeric values need to be expressed in words or more descriptive terms.</p>
   
@@ -6333,8 +6617,496 @@ Users must remember and type a password with no alternative login methods like b
        aria-valuenow="30" 
        aria-valuetext="Warm"&gt;
 </code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-valuetext.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-<div id="aria-page45" class="aria-page">
+
+</div>
+<div id="aria-page28" class="aria-page">
+  <h2>aria-orientation</h2>
+  <p>The <code>aria-orientation</code> attribute defines whether a widget like a tab list or slider is arranged vertically or horizontally. This helps screen readers announce how the items are displayed so users can navigate accordingly.</p>
+
+  <p><strong>Example:</strong> Horizontal tab list.</p>
+  <pre><code>&lt;div role="tablist" aria-orientation="horizontal"&gt;
+  &lt;div role="tab"&gt;Tab 1&lt;/div&gt;
+  &lt;div role="tab"&gt;Tab 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-orientation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
+</div>
+<div id="aria-page29" class="aria-page">
+  <h2>aria-multiselectable</h2>
+  <p>Used on a listbox or grid, <code>aria-multiselectable</code> tells screen readers if the user can select more than one item. This is useful in scenarios where users need to select multiple options like in filters or checklists.</p>
+
+  <p><strong>Example:</strong> Listbox that supports multiple selection.</p>
+  <pre><code>&lt;ul role="listbox" aria-multiselectable="true"&gt;
+  &lt;li role="option"&gt;Option A&lt;/li&gt;
+  &lt;li role="option"&gt;Option B&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-multiselectable.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
+</div>
+<div id="aria-page30" class="aria-page">
+  <h2>aria-sort</h2>
+  <p>The <code>aria-sort</code> attribute is used on table headers to indicate the sorting direction: ascending, descending, none, or other. This is very helpful for screen reader users to know how data is sorted.</p>
+
+  <p><strong>Example:</strong> Column sorted in descending order.</p>
+  <pre><code>&lt;th aria-sort="descending"&gt;Price&lt;/th&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-sort.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
+</div>
+<div id="aria-page31" class="aria-page">
+  <h2>aria-dropeffec	t</h2>
+  <p><code>aria-dropeffect</code> was used to show what kind of drop action would be allowed in a drag-and-drop interface (e.g., copy, move, link). This attribute is now deprecated, and better alternatives should be used with HTML5 drag and drop.</p>
+
+  <p><strong>Example:</strong> (Deprecated usage)</p>
+  <pre><code>&lt;div aria-dropeffect="move"&gt;Drop files here&lt;/div&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-dropeffect.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
+</div>
+<div id="aria-page32" class="aria-page">
+  <h2>aria-grabbed</h2>
+  <p>The <code>aria-grabbed</code> attribute was used in older ARIA specifications to indicate whether an element is currently grabbed for drag-and-drop operations. 
+  However, it is now <strong>deprecated in ARIA 1.1</strong>, and authors are encouraged to use modern drag-and-drop APIs instead.</p>
+
+  <h3>Possible values:</h3>
+  <ul>
+    <li><code>true</code> – The element is currently grabbed (selected for dragging).</li>
+    <li><code>false</code> – The element is not grabbed (default).</li>
+  </ul>
+
+  <h3>Example: Draggable list item marked as grabbed.</h3>
+  <pre><code>
+&lt;div role="listitem" draggable="true" aria-grabbed="true"&gt;
+  File1.txt (dragging)
+&lt;/div&gt;
+</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-grabbed.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
+</div>
+
+<div id="aria-page33" class="aria-page">
+  <h2>aria-keyshortcuts</h2>
+  <p>The <code>aria-keyshortcuts</code> attribute tells assistive technologies what keyboard shortcut activates the element. It allows users to know that a specific key combo like "Ctrl+S" will perform an action.</p>
+
+  <p><strong>Example:</strong> Button triggered with Ctrl+S.</p>
+  <pre><code>&lt;button aria-keyshortcuts="Ctrl+S"&gt;Save&lt;/button&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-keyshortcuts.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
+</div>
+<div id="aria-page34" class="aria-page">
+  <h2>aria-flowto</h2>
+  <p>The <code>aria-flowto</code> attribute specifies the next element in the reading flow. It’s used when the visual order differs from the logical DOM order, helping screen readers follow the correct reading sequence.</p>
+
+  <p><strong>Example:</strong> Directing screen readers to jump to another section.</p>
+  <pre><code>&lt;div id="box1" aria-flowto="box2"&gt;Step 1&lt;/div&gt;
+&lt;div id="box2"&gt;Step 2&lt;/div&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-flowto.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
+</div>
+<div id="aria-page35" class="aria-page">
+  <h2>aria-autocomplete</h2>
+  <p>Used in input fields, <code>aria-autocomplete</code> tells screen readers if autocomplete suggestions are available. It can have values like <code>inline</code>, <code>list</code>, or <code>both</code>, helping users understand how they can choose suggestions.</p>
+
+  <p><strong>Example:</strong> Autocomplete for a search bar.</p>
+  <pre><code>&lt;input aria-autocomplete="list" aria-owns="suggestions"&gt;
+&lt;ul id="suggestions"&gt;
+  &lt;li&gt;Apple&lt;/li&gt;
+  &lt;li&gt;Banana&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-autocomplete.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
+</div>
+<div id="aria-page36" class="aria-page">
+  <h2>aria-colspan and aria-rowspan</h2>
+  <p>
+    The <code>aria-colspan</code> and <code>aria-rowspan</code> attributes are used to define how many columns or rows a cell should span within a grid or table. 
+    They work just like the HTML <code>colspan</code> and <code>rowspan</code> attributes, but are specifically for ARIA-enabled grids.
+    These attributes help screen readers understand and announce the correct table or grid structure, 
+    making complex layouts more accessible.
+  </p>
+
+  <p><strong>aria-colspan:</strong> Defines how many columns a cell should span.</p>
+  <pre><code>&lt;div role="gridcell" aria-colspan="2"&gt;Merged Column&lt;/div&gt;</code></pre>
+
+  <p><strong>aria-rowspan:</strong> Defines how many rows a cell should span.</p>
+  <pre><code>&lt;div role="gridcell" aria-rowspan="2"&gt;Merged Row&lt;/div&gt;</code></pre>
+
+  <h3>Telugu video explanation with practical:</h3>
+  <div class="video-container">
+      <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+          <source src="aria_telugu_videos/aria-colspan.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+      <div class="controls">
+          <label for="seek">Seek</label>
+          <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+          <button class="rewind">Rewind 10s</button>
+          <button class="playPause">Play</button>
+          <button class="forward">Forward 10s</button>
+          <button class="mute">Mute</button>
+          <label for="volume">Volume</label>        
+          <input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+          <button class="fullscreen">Fullscreen</button>
+      </div>
+  </div>
+</div>
+<div id="aria-page37" class="aria-page">
+  <h2>aria-colindex and aria-rowindex</h2>
+  <p>	
+    The <code>aria-colindex</code> and <code>aria-rowindex</code> attributes are used in grids and tables 
+    to define the exact <strong>column</strong> and <strong>row</strong> numbers of a cell. 
+    They are especially useful when headers or cells do not appear in the usual DOM order, 
+    helping assistive technologies present the correct table structure to screen reader users.
+  </p>
+
+  <p><strong>aria-colindex:</strong> Defines the column number of a cell.</p>
+  <pre><code>&lt;div role="gridcell" aria-colindex="3"&gt;Data&lt;/div&gt;</code></pre>
+
+  <p><strong>aria-rowindex:</strong> Defines the row number of a cell.</p>
+  <pre><code>&lt;div role="gridcell" aria-rowindex="2"&gt;Item&lt;/div&gt;</code></pre>
+
+  <h3>Telugu video explanation with practical:</h3>
+  <div class="video-container">
+      <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+          <source src="aria_telugu_videos/aria-colindex.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+      <div class="controls">
+          <label for="seek">Seek</label>
+          <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+          <button class="rewind">Rewind 10s</button>
+          <button class="playPause">Play</button>
+          <button class="forward">Forward 10s</button>
+          <button class="mute">Mute</button>
+          <label for="volume">Volume</label>        
+          <input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+          <button class="fullscreen">Fullscreen</button>
+      </div>
+  </div>
+</div>
+
+<div id="aria-page38" class="aria-page">
+  <h2>aria-placeholder</h2>
+  <p><code>aria-placeholder</code> provides placeholder text for assistive technologies when the native HTML <code>placeholder</code> isn't enough or is visually hidden. It describes the expected input.</p>
+
+  <p><strong>Example:</strong> Input for entering a city name.</p>
+  <pre><code>&lt;input type="text" aria-placeholder="Enter your city"&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-colindex.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
+</div>
+<div id="aria-page39" class="aria-page">
+  <h2>aria-posinset and aria-setsize</h2>
+  <p>
+    The <code>aria-posinset</code> and <code>aria-setsize</code> attributes work together to 
+    describe an element’s position within a list or set.
+    They help assistive technologies provide context like 
+    <em>“Option 2 of 4”</em> so users know their place in the sequence.
+  </p>
+
+  <ul role="listbox">
+    <li role="option" aria-posinset="1" aria-setsize="4">Option 1</li>
+    <li role="option" aria-posinset="2" aria-setsize="4">Option 2</li>
+    <li role="option" aria-posinset="3" aria-setsize="4">Option 3</li>
+    <li role="option" aria-posinset="4" aria-setsize="4">Option 4</li>
+  </ul>
+
+  <p><strong>Explanation:</strong></p>
+  <ul>
+    <li><code>aria-posinset</code> = The current item’s position in the set.</li>
+    <li><code>aria-setsize</code> = The total number of items in the set.</li>
+    <li>Together, they allow a screen reader to announce context like 
+        <em>“Option 2 of 4”</em>.</li>
+  </ul>
+
+  <h3>Telugu video explanation with practical:</h3>
+  <div class="video-container">
+      <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+          <source src="aria_telugu_videos/aria-posinset.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+      <div class="controls">
+          <label for="seek">Seek</label>
+          <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+          <button class="rewind">Rewind 10s</button>
+          <button class="playPause">Play</button>
+          <button class="forward">Forward 10s</button>
+          <button class="mute">Mute</button>
+          <label for="volume">Volume</label>        
+          <input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+          <button class="fullscreen">Fullscreen</button>
+      </div>
+  </div>
+</div>
+
+<div id="aria-page40" class="aria-page">
+  <h2>aria-errormessage</h2>
+  <p><code>aria-errormessage</code> provides a reference to an error message element that explains what's wrong with the input. This improves form validation messages for screen readers.</p>
+  <p><strong>Example:</strong> Input with an error message.</p>
+  <pre><code>
+&lt;input id="email" aria-invalid="true" aria-errormessage="error1"&gt;
+&lt;div id="error1"&gt;Please enter a valid email address.&lt;/div&gt;
+</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-errormessage.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
+</div>
+<div id="aria-page41" class="aria-page">
+  <h2>aria-roledescription</h2>
+  <p>This gives a custom role description that screen readers announce. It replaces the default role name with something more meaningful or familiar to users.</p>
+  <p><strong>Example:</strong> Role description for a custom slider.</p>
+  <pre><code>
+&lt;div role="slider" aria-roledescription="volume control"&gt;&lt;/div&gt;
+</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-roledescription.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
+</div>
+<div id="aria-page42" class="aria-page">
+  <h2>aria-details</h2>
+  <p>The <code>aria-details</code> attribute links to another element that provides more detailed information. It’s useful for charts, summaries, and tooltips.</p>
+  <p><strong>Example:</strong> Element with additional explanation.</p>
+  <pre><code>
+&lt;div aria-details="info1"&gt;COVID Data&lt;/div&gt;
+&lt;div id="info1"&gt;This data shows infection rates from Jan to March.&lt;/div&gt;
+</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-details.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
+</div>
+<div id="aria-page43" class="aria-page">
   <h2>aria-invalid</h2>
   <p>The <code>aria-invalid</code> attribute indicates whether the value entered into an input field is invalid or contains errors. 
   It helps assistive technologies notify users when a field requires correction.</p>
@@ -6369,235 +7141,252 @@ Users must remember and type a password with no alternative login methods like b
        value="Acessibility" 
        aria-invalid="spelling"&gt;
 </code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/aria-invalid.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
-<div id="aria-page50" class="aria-page">
-  <h2>aria-posinset</h2>
-  <p>The <code>aria-posinset</code> attribute defines the position of an item within a set of related elements. 
-  It is typically used together with <code>aria-setsize</code> to help assistive technologies convey list or tree structures when the DOM alone does not provide enough information.</p>
 
-  <h3>Important notes:</h3>
-  <ul>
-    <li>It is a 1-based index (first item is 1, second is 2, etc.).</li>
-    <li>Commonly used with <code>role="listitem"</code>, <code>role="treeitem"</code>, or similar grouped roles.</li>
-    <li>Should be used when items are dynamically generated, hidden, or not sequential in the DOM.</li>
-  </ul>
+</div>
+<div id="aria-page44-55" class="aria-page">
+  <h2>Common ARIA Roles for Interactive Elements</h2>
+  <p>
+    ARIA roles help assistive technologies recognize custom elements as familiar
+    interactive controls (like links, buttons, checkboxes, radios, and textboxes).
+    While native HTML elements already have these roles by default, developers
+    sometimes use ARIA roles to make custom elements accessible.
+  </p>
 
-  <h3>Example: List items with explicit position in a set.</h3>
+  <h3>1. role="link"</h3>
+  <p>
+    Identifies an element as a hyperlink that navigates to another page or resource.
+    Native <code>&lt;a href&gt;</code> has this role automatically.
+  </p>
   <pre><code>
-&lt;ul role="list"&gt;
-  &lt;li role="listitem" aria-posinset="1" aria-setsize="3"&gt;Apple&lt;/li&gt;
-  &lt;li role="listitem" aria-posinset="2" aria-setsize="3"&gt;Banana&lt;/li&gt;
-  &lt;li role="listitem" aria-posinset="3" aria-setsize="3"&gt;Cherry&lt;/li&gt;
-&lt;/ul&gt;
+&lt;div role="link" tabindex="0"&gt;Go to Home Page&lt;/div&gt;
 </code></pre>
-</div>
-<div id="aria-page51" class="aria-page">
-  <h2>role="button"</h2>
-  <p>The <code>button</code> role identifies an element as a button, which can be pressed by the user to perform an action. 
-  Native HTML <code>&lt;button&gt;</code> elements already have this role by default, but it can be applied to custom elements like <code>&lt;div&gt;</code> or <code>&lt;span&gt;</code> when needed.</p>
 
-  <h3>Important notes:</h3>
-  <ul>
-    <li>Users expect it to be focusable with <kbd>Tab</kbd> and operable with <kbd>Enter</kbd> or <kbd>Space</kbd>.</li>
-    <li>Use native <code>&lt;button&gt;</code> when possible for built-in accessibility.</li>
-  </ul>
-
-  <h3>Example: Custom div as a button</h3>
+  <h3>2. role="button"</h3>
+  <p>
+    Identifies an element as a button. Should be focusable and operable with 
+    <kbd>Enter</kbd> or <kbd>Space</kbd>. Prefer native <code>&lt;button&gt;</code>.
+  </p>
   <pre><code>
-&lt;div role="button" tabindex="0"&gt;
-  Submit Form
-&lt;/div&gt;
+&lt;div role="button" tabindex="0"&gt;Submit Form&lt;/div&gt;
 </code></pre>
-</div>
 
-<div id="aria-page52" class="aria-page">
-  <h2>role="checkbox"</h2>
-  <p>The <code>checkbox</code> role identifies an element as a checkbox that can be checked, unchecked, or mixed. 
-  Native HTML checkboxes already have this role by default, but it can be applied to custom elements when building accessible widgets.</p>
-
-  <h3>Important notes:</h3>
-  <ul>
-    <li>Use <code>aria-checked</code> to indicate state (<code>true</code>, <code>false</code>, or <code>mixed</code>).</li>
-    <li>Ensure the element is focusable and togglable with the <kbd>Space</kbd> key.</li>
-  </ul>
-
-  <h3>Example: Custom checkbox</h3>
+  <h3>3. role="checkbox"</h3>
+  <p>
+    Identifies an element as a checkbox. Use <code>aria-checked</code> to indicate 
+    its state (<code>true</code>, <code>false</code>, or <code>mixed</code>).
+  </p>
   <pre><code>
 &lt;div role="checkbox" tabindex="0" aria-checked="false"&gt;
   I agree to the terms
 &lt;/div&gt;
 </code></pre>
-</div>
 
-<div id="aria-page53" class="aria-page">
-  <h2>role="link"</h2>
-  <p>The <code>link</code> role identifies an element as a link that navigates to another page or resource. 
-  Native HTML <code>&lt;a href&gt;</code> already has this role by default.</p>
-
-  <h3>Important notes:</h3>
-  <ul>
-    <li>Should be keyboard operable with <kbd>Enter</kbd>.</li>
-    <li>If using a custom element, ensure it has <code>tabindex="0"</code>.</li>
-  </ul>
-
-  <h3>Example: Custom link</h3>
-  <pre><code>
-&lt;div role="link" tabindex="0"&gt;
-  Go to Home Page
-&lt;/div&gt;
-</code></pre>
-</div>
-
-<div id="aria-page54" class="aria-page">
-  <h2>role="menuitem"</h2>
-  <p>The <code>menuitem</code> role identifies an element as an item inside a menu. 
-  It is usually a child of <code>role="menu"</code> or <code>role="menubar"</code>.</p>
-
-  <h3>Important notes:</h3>
-  <ul>
-    <li>Use in combination with <code>role="menu"</code>.</li>
-    <li>Can also use <code>menuitemcheckbox</code> or <code>menuitemradio</code> for specific states.</li>
-  </ul>
-
-  <h3>Example: Menu with items</h3>
-  <pre><code>
-&lt;div role="menu"&gt;
-  &lt;div role="menuitem"&gt;New File&lt;/div&gt;
-  &lt;div role="menuitem"&gt;Save&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-</div>
-
-<div id="aria-page55" class="aria-page">
-  <h2>role="radio"</h2>
-  <p>The <code>radio</code> role identifies an element as a radio button within a group. 
-  It should be used inside a <code>radiogroup</code>.</p>
-
-  <h3>Important notes:</h3>
-  <ul>
-    <li>Use <code>aria-checked</code> to indicate selection (<code>true</code> or <code>false</code>).</li>
-    <li>Should be keyboard operable with <kbd>Arrow</kbd> keys inside a group.</li>
-  </ul>
-
-  <h3>Example: Custom radio buttons</h3>
+  <h3>4. role="radio"</h3>
+  <p>
+    Identifies an element as a radio button. Radios are grouped with 
+    <code>role="radiogroup"</code> and only one option can be selected.
+  </p>
   <pre><code>
 &lt;div role="radiogroup"&gt;
-  &lt;div role="radio" aria-checked="true" tabindex="0"&gt;Male&lt;/div&gt;
-  &lt;div role="radio" aria-checked="false" tabindex="-1"&gt;Female&lt;/div&gt;
+  &lt;div role="radio" aria-checked="true"&gt;Option A&lt;/div&gt;
+  &lt;div role="radio" aria-checked="false"&gt;Option B&lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
+
+  <h3>5. role="textbox"</h3>
+  <p>
+    Identifies an element as a text input. Use <code>aria-multiline</code> for 
+    single-line (<code>false</code>) or multi-line (<code>true</code>) input.
+  </p>
+  <pre><code>
+&lt;div role="textbox" aria-multiline="false"&gt;Type here...&lt;/div&gt;
+</code></pre>
+
+  <h3>Key Notes:</h3>
+  <ul>
+    <li>Prefer native HTML elements whenever possible.</li>
+    <li>When using custom elements, ensure they are focusable with 
+        <code>tabindex="0"</code>.</li>
+    <li>Ensure keyboard operability (<kbd>Tab</kbd>, <kbd>Enter</kbd>, 
+        <kbd>Space</kbd> as appropriate).</li>
+  </ul>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-button.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page56" class="aria-page">
-  <h2>role="switch"</h2>
-  <p>The <code>switch</code> role identifies a toggle control that represents on/off states. 
-  It is similar to a checkbox but indicates a different kind of interaction (like a light switch).</p>
+</div>
+<div id="aria-page45" class="aria-page">
 
-  <h3>Important notes:</h3>
+  <h2>Landmark Roles in ARIA</h2>
+  <p>
+    Landmark roles help screen reader users and other assistive technologies to easily navigate and understand the structure of a web page. They provide meaningful regions of the page such as headers, navigation, main content, sidebars, and footers. These landmarks act like quick access points, allowing users to jump directly to the desired section.
+  </p>
+
+  <p><strong>Common landmark roles include:</strong></p>
   <ul>
-    <li>State is managed using <code>aria-checked</code> (<code>true</code> or <code>false</code>).</li>
-    <li>Keyboard activation should use <kbd>Space</kbd>.</li>
+    <li><code>role="banner"</code>: Represents the site-wide header.</li>
+    <li><code>role="navigation"</code>: Defines a navigation section with links.</li>
+    <li><code>role="main"</code>: Represents the main content area of the page.</li>
+    <li><code>role="complementary"</code>: Represents a supporting section, like a sidebar.</li>
+    <li><code>role="contentinfo"</code>: Represents the footer or information about the page.</li>
+    <li><code>role="region"</code>: Defines a significant region of the page.</li>
+    <li><code>role="article"</code>: Represents a self-contained piece of content.</li>
+    <li><code>role="note"</code>: Represents a note or advisory information.</li>
   </ul>
 
-  <h3>Example: Custom switch</h3>
-  <pre><code>
-&lt;div role="switch" tabindex="0" aria-checked="false"&gt;
-  Dark Mode
+  <p><strong>Example Code:</strong></p>
+  <pre>
+<code>&lt;div role="banner"&gt;
+  &lt;h1&gt;Accessible World Tutorials&lt;/h1&gt;
 &lt;/div&gt;
-</code></pre>
-</div>
 
-<div id="aria-page57" class="aria-page">
-  <h2>role="tab"</h2>
-  <p>The <code>tab</code> role identifies an element as a tab in a tabbed interface. 
-  It is usually part of a <code>tablist</code> and controls a <code>tabpanel</code>.</p>
+&lt;nav role="navigation"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Courses&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;About Us&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
 
-  <h3>Important notes:</h3>
-  <ul>
-    <li>Selected tab should have <code>aria-selected="true"</code>.</li>
-    <li>Keyboard navigation uses <kbd>Arrow</kbd> keys.</li>
-  </ul>
+&lt;main role="main"&gt;
+  &lt;article role="article"&gt;
+    &lt;h2&gt;Introduction to ARIA&lt;/h2&gt;
+    &lt;p&gt;This article explains why ARIA is important for accessibility.&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
 
-  <h3>Example: Tab list</h3>
-  <pre><code>
-&lt;div role="tablist"&gt;
-  &lt;div role="tab" aria-selected="true"&gt;Home&lt;/div&gt;
-  &lt;div role="tab" aria-selected="false"&gt;Profile&lt;/div&gt;
+&lt;aside role="complementary"&gt;
+  &lt;p&gt;Related tutorials and resources can be found here.&lt;/p&gt;
+&lt;/aside&gt;
+
+&lt;section role="region"&gt;
+  &lt;h3&gt;Updates&lt;/h3&gt;
+  &lt;p&gt;We are adding new accessibility videos every week.&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;div role="note"&gt;
+  &lt;p&gt;Note: Always test ARIA roles with a screen reader.&lt;/p&gt;
 &lt;/div&gt;
-</code></pre>
+
+&lt;footer role="contentinfo"&gt;
+  &lt;p&gt;© 2025 Accessible World Tutorials&lt;/p&gt;
+&lt;/footer&gt;
+</code>
+  </pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-region.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page58" class="aria-page">
-  <h2>role="tabpanel"</h2>
-  <p>The <code>tabpanel</code> role defines the content area associated with a tab in a tabbed interface. 
-  It is controlled by a <code>role="tab"</code>.</p>
+</div>
 
-  <h3>Important notes:</h3>
+<div id="aria-page46" class="aria-page">
+  <h2>role="list" and role="listitem"</h2>
+  <p>
+    The <code>list</code> role is used to identify a group of related items, similar to the HTML 
+    <code>&lt;ul&gt;</code> or <code>&lt;ol&gt;</code> elements. It helps assistive technologies understand 
+    that the content is a structured list, making navigation easier for screen reader users.
+  </p>
+
+  <p>
+    The <code>listitem</code> role is used inside a <code>list</code> to represent an individual item. 
+    Screen readers will announce each item in the list and its position (for example, "item 1 of 4").
+  </p>
+
+  <h3>When to use:</h3>
   <ul>
-    <li>Should have <code>aria-labelledby</code> pointing to its controlling tab.</li>
-    <li>Only the active panel should be visible.</li>
+    <li>Use <code>role="list"</code> when creating custom components that visually look like a list 
+    but are not marked up with <code>&lt;ul&gt;</code> or <code>&lt;ol&gt;</code>.</li>
+    <li>Use <code>role="listitem"</code> for each element inside the list to ensure screen readers 
+    treat them as list items.</li>
   </ul>
 
-  <h3>Example: Tab panel</h3>
-  <pre><code>
-&lt;div role="tabpanel" aria-labelledby="tab1"&gt;
-  Home content goes here.
+  <h3>Example:</h3>
+<pre><code>
+&lt;div role="list"&gt;
+  &lt;div role="listitem"&gt;HTML&lt;/div&gt;
+  &lt;div role="listitem"&gt;CSS&lt;/div&gt;
+  &lt;div role="listitem"&gt;JavaScript&lt;/div&gt;
+  &lt;div role="listitem"&gt;ARIA&lt;/div&gt;
 &lt;/div&gt;
-</code></pre>
+	</code></pre>
+  <p><strong>Screen Reader Output:</strong> The screen reader will announce this block as a 
+  list with 4 items, and then read each item one by one.</p>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-listitem.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page59" class="aria-page">
-  <h2>role="textbox"</h2>
-  <p>The <code>textbox</code> role identifies an element as an input field for text. 
-  Native HTML text inputs and textareas already have this role by default.</p>
-
-  <h3>Important notes:</h3>
-  <ul>
-    <li>Use <code>aria-multiline="true"</code> if the textbox accepts multiple lines (like a textarea).</li>
-    <li>Ensure the element is editable and keyboard accessible.</li>
-  </ul>
-
-  <h3>Example: Custom text box</h3>
-  <pre><code>
-&lt;div role="textbox" contenteditable="true"&gt;
-  Type here...
-&lt;/div&gt;
-</code></pre>
 </div>
 
-<div id="aria-page60" class="aria-page">
-  <h2>role="treeitem"</h2>
-  <p>The <code>treeitem</code> role identifies an element as an item in a hierarchical tree structure. 
-  It is usually a child of <code>role="tree"</code> or another <code>treeitem</code>.</p>
-
-  <h3>Important notes:</h3>
-  <ul>
-    <li>Use <code>aria-expanded</code> to indicate if the item is expanded or collapsed.</li>
-    <li>Keyboard navigation typically uses <kbd>Arrow</kbd> keys.</li>
-  </ul>
-
-  <h3>Example: Tree with items</h3>
-  <pre><code>
-&lt;ul role="tree"&gt;
-  &lt;li role="treeitem" aria-expanded="true"&gt;Documents&lt;/li&gt;
-  &lt;li role="treeitem"&gt;Pictures&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
-</div>
-<div id="aria-page61" class="aria-page">
-  <h2>Role: listitem</h2>
-  <p>The <code>listitem</code> role represents a single item in a list. It should be contained within elements with <code>role="list"</code> or <code>role="group"</code>.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;ul role="list"&gt;
-  &lt;li role="listitem"&gt;First item&lt;/li&gt;
-  &lt;li role="listitem"&gt;Second item&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
-</div>
-
-<div id="aria-page62" class="aria-page">
-  <h2>Role: log</h2>
+<div id="aria-page47" class="aria-page">
+  <h2>role="log"</h2>
   <p>The <code>log</code> role is used for content that changes frequently, like chat logs or live updates. Screen readers automatically announce new content.</p>
   <p><strong>Example:</strong></p>
   <pre><code>
@@ -6606,134 +7395,122 @@ Users must remember and type a password with no alternative login methods like b
   &lt;p&gt;User2: Hi there!&lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-log.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page63" class="aria-page">
-  <h2>Role: main</h2>
-  <p>The <code>main</code> role identifies the main content area of a page. Each page should only have one main region.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;main role="main"&gt;
-  &lt;h1&gt;Welcome to Accessible World&lt;/h1&gt;
-  &lt;p&gt;This is the main content of the page.&lt;/p&gt;
-&lt;/main&gt;
-</code></pre>
 </div>
 
-<div id="aria-page64" class="aria-page">
-  <h2>Role: marquee</h2>
-  <p>The <code>marquee</code> role is used for scrolling or moving text. However, it is rarely recommended for accessibility since moving text can be distracting.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;div role="marquee"&gt;
-  Breaking News: Accessibility matters!
-&lt;/div&gt;
-</code></pre>
-</div>
+<div id="aria-page48" class="aria-page">
+  <h2>ARIA Menu Roles</h2>
+  <p>
+    ARIA provides several roles to describe menus and their items for screen reader users. 
+    These roles help in building accessible navigation structures like application menus, 
+    dropdowns, or context menus.
+  </p>
 
-<div id="aria-page65" class="aria-page">
-  <h2>Role: math</h2>
-  <p>The <code>math</code> role is used to indicate that the content represents a mathematical expression.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;div role="math"&gt;
-  E = mc&lt;sup&gt;2&lt;/sup&gt;
-&lt;/div&gt;
-</code></pre>
-</div>
+  <h3>Roles Explained</h3>
+  <ul>
+    <li><code>role="menu"</code> – Represents a container for a list of menu items (like a dropdown menu).</li>
+    <li><code>role="menubar"</code> – Represents a horizontal menu bar that usually holds multiple menus.</li>
+    <li><code>role="menuitem"</code> – A single actionable item within a menu (like "Open File").</li>
+    <li><code>role="menuitemcheckbox"</code> – A menu item that can be toggled on/off (like a checkbox).</li>
+    <li><code>role="menuitemradio"</code> – A menu item that belongs to a radio group, only one option can be selected at a time.</li>
+  </ul>
 
-<div id="aria-page66" class="aria-page">
-  <h2>Role: menu</h2>
-  <p>The <code>menu</code> role is used for a group of commands or options presented to the user, often in navigation or context menus.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;ul role="menu"&gt;
-  &lt;li role="menuitem"&gt;New File&lt;/li&gt;
-  &lt;li role="menuitem"&gt;Open File&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
-</div>
+  <h3>Example Code</h3>
+  <p>The following example demonstrates all the menu roles:</p>
 
-<div id="aria-page67" class="aria-page">
-  <h2>Role: menubar</h2>
-  <p>The <code>menubar</code> role represents a horizontal menu, usually placed at the top of an application window or page.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;div role="menubar"&gt;
-  &lt;div role="menuitem"&gt;File&lt;/div&gt;
-  &lt;div role="menuitem"&gt;Edit&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-</div>
-
-<div id="aria-page68" class="aria-page">
-  <h2>Role: menuitem</h2>
-  <p>The <code>menuitem</code> role is used for items within a menu that a user can activate.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;ul role="menu"&gt;
-  &lt;li role="menuitem"&gt;Save&lt;/li&gt;
-  &lt;li role="menuitem"&gt;Close&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
-</div>
-
-<div id="aria-page69" class="aria-page">
-  <h2>Role: menuitemcheckbox</h2>
-  <p>The <code>menuitemcheckbox</code> role is a menu item that behaves like a checkbox. It can be checked or unchecked within a menu.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;ul role="menu"&gt;
-  &lt;li role="menuitemcheckbox" aria-checked="true"&gt;Show Line Numbers&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
-</div>
-
-<div id="aria-page70" class="aria-page">
-  <h2>Role: menuitemradio</h2>
-  <p>The <code>menuitemradio</code> role is a menu item that acts like a radio button, allowing one option to be selected from a group.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;ul role="menu"&gt;
-  &lt;li role="menuitemradio" aria-checked="true"&gt;Light Theme&lt;/li&gt;
-  &lt;li role="menuitemradio" aria-checked="false"&gt;Dark Theme&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
-</div>
-
-<div id="aria-page71" class="aria-page">
-  <h2>Role: navigation</h2>
-  <p>The <code>navigation</code> role identifies a section of a page that provides links for navigating the website.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;nav role="navigation"&gt;
-  &lt;a href="#home"&gt;Home&lt;/a&gt;
-  &lt;a href="#about"&gt;About&lt;/a&gt;
+  <pre>
+    <code>
+&lt;nav role="menubar" aria-label="Application Menu"&gt;
+  &lt;ul role="menu"&gt;
+    &lt;li role="menuitem"&gt;New File&lt;/li&gt;
+    &lt;li role="menuitem"&gt;Open File&lt;/li&gt;
+    &lt;li role="menuitemcheckbox" aria-checked="true"&gt;Show Line Numbers&lt;/li&gt;
+    &lt;li role="menuitemcheckbox" aria-checked="false"&gt;Enable Dark Mode&lt;/li&gt;
+    &lt;li role="menuitemradio" aria-checked="true" aria-setsize="2" aria-posinset="1"&gt;List View&lt;/li&gt;
+    &lt;li role="menuitemradio" aria-checked="false" aria-setsize="2" aria-posinset="2"&gt;Grid View&lt;/li&gt;
+  &lt;/ul&gt;
 &lt;/nav&gt;
-</code></pre>
+    </code>
+  </pre>
+
+  <h3>Screen Reader Behavior</h3>
+  <p>
+    - Screen readers announce <strong>Menu bar</strong> and inform users when they are inside a menu. <br>
+    - Each <code>menuitem</code> is announced as a menu option. <br>
+    - <code>menuitemcheckbox</code> is announced with its state (checked/unchecked). <br>
+    - <code>menuitemradio</code> is announced as part of a radio group with its selection state. 
+  </p>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-menu.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page72" class="aria-page">
+</div>
+
+<div id="aria-page49" class="aria-page">
   <h2>Role: none</h2>
   <p>The <code>none</code> role removes the semantic meaning of an element for assistive technologies, making it purely presentational.</p>
   <p><strong>Example:</strong></p>
   <pre><code>
 &lt;div role="none"&gt;Decorative box&lt;/div&gt;
 </code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-none.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page73" class="aria-page">
-  <h2>Role: note</h2>
-  <p>The <code>note</code> role indicates additional information or annotations that may be useful for the user.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;div role="note"&gt;
-  Remember to save your work frequently.
-&lt;/div&gt;
-</code></pre>
 </div>
 
-<div id="aria-page74" class="aria-page">
+<div id="aria-page50" class="aria-page">
   <h2>Role: option</h2>
   <p>The <code>option</code> role is used for selectable items inside a listbox, representing one choice from a set of options.</p>
   <p><strong>Example:</strong></p>
@@ -6743,9 +7520,29 @@ Users must remember and type a password with no alternative login methods like b
   &lt;li role="option"&gt;Option 2&lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-option.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page75" class="aria-page">
+</div>
+
+<div id="aria-page51" class="aria-page">
   <h2>Role: presentation</h2>
   <p>The <code>presentation</code> role makes an element ignored by assistive technologies, similar to <code>role="none"</code>. It’s used for layout-only elements.</p>
   <p><strong>Example:</strong></p>
@@ -6754,9 +7551,29 @@ Users must remember and type a password with no alternative login methods like b
   &lt;tr&gt;&lt;td&gt;Layout only&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 </code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-presentation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page76" class="aria-page">
+</div>
+
+<div id="aria-page52" class="aria-page">
   <h2>Role: progressbar</h2>
   <p>The <code>progressbar</code> role is used to indicate the progress of a task, such as file download or loading.</p>
   <p><strong>Example:</strong></p>
@@ -6765,21 +7582,30 @@ Users must remember and type a password with no alternative login methods like b
   50% Complete
 &lt;/div&gt;
 </code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-progressbar.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page77" class="aria-page">
-  <h2>Role: radio</h2>
-  <p>The <code>radio</code> role represents a single radio button in a group, allowing only one selection at a time.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;div role="radiogroup"&gt;
-  &lt;div role="radio" aria-checked="true"&gt;Option A&lt;/div&gt;
-  &lt;div role="radio" aria-checked="false"&gt;Option B&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
 </div>
 
-<div id="aria-page78" class="aria-page">
+
+<div id="aria-page53" class="aria-page">
   <h2>Role: radiogroup</h2>
   <p>The <code>radiogroup</code> role groups related radio buttons together, ensuring only one can be selected within the group.</p>
   <p><strong>Example:</strong></p>
@@ -6789,281 +7615,702 @@ Users must remember and type a password with no alternative login methods like b
   &lt;div role="radio" aria-checked="false"&gt;Female&lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-radiogroup.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page79" class="aria-page">
-  <h2>Role: region</h2>
-  <p>The <code>region</code> role identifies a perceivable section of a page that is important enough to be included in a page summary or landmark navigation.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;div role="region" aria-label="User Profile"&gt;
-  &lt;h2&gt;Profile Information&lt;/h2&gt;
+</div>
+
+
+<div id="aria-page54" class="aria-page">
+  <h2>ARIA Table Roles</h2>
+  <p>
+    ARIA provides roles that help define the structure of tables for assistive technologies. 
+    These roles make it clear how rows, columns, headers, and cells relate to each other, 
+    improving accessibility for screen reader users.
+  </p>
+
+  <h3>Roles Explained</h3>
+  <ul>
+    <li><code>role="table"</code> – Defines the container as a table.</li>
+    <li><code>role="row"</code> – Represents a single row in the table.</li>
+    <li><code>role="cell"</code> – Represents a standard data cell in the table.</li>
+    <li><code>role="rowheader"</code> – Marks a cell as a row header, describing its row.</li>
+    <li><code>role="columnheader"</code> – Marks a cell as a column header, describing its column.</li>
+  </ul>
+
+  <h3>Example Code</h3>
+  <p>The following example demonstrates a simple student marks table using ARIA table roles:</p>
+
+  <pre>
+    <code>
+&lt;div role="table" aria-label="Student Marks Table"&gt;
+  &lt;div role="row"&gt;
+    &lt;div role="columnheader"&gt;Name&lt;/div&gt;
+    &lt;div role="columnheader"&gt;Math&lt;/div&gt;
+    &lt;div role="columnheader"&gt;Science&lt;/div&gt;
+    &lt;div role="columnheader"&gt;English&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div role="row"&gt;
+    &lt;div role="rowheader"&gt;Alice&lt;/div&gt;
+    &lt;div role="cell"&gt;85&lt;/div&gt;
+    &lt;div role="cell"&gt;90&lt;/div&gt;
+    &lt;div role="cell"&gt;88&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div role="row"&gt;
+    &lt;div role="rowheader"&gt;Bob&lt;/div&gt;
+    &lt;div role="cell"&gt;78&lt;/div&gt;
+    &lt;div role="cell"&gt;82&lt;/div&gt;
+    &lt;div role="cell"&gt;80&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div role="row"&gt;
+    &lt;div role="rowheader"&gt;Charlie&lt;/div&gt;
+    &lt;div role="cell"&gt;92&lt;/div&gt;
+    &lt;div role="cell"&gt;89&lt;/div&gt;
+    &lt;div role="cell"&gt;94&lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;
-</code></pre>
+    </code>
+  </pre>
+
+  <h3>Screen Reader Behavior</h3>
+  <p>
+    - Screen readers announce the <strong>table</strong> and its accessible name if provided via <code>aria-label</code>. <br>
+    - <code>rowheader</code> and <code>columnheader</code> cells are announced as headers, providing context for the data. <br>
+    - <code>cell</code> elements are read with their corresponding row and column headers. <br>
+    - The table structure is communicated, allowing users to understand relationships between data. 
+  </p>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-table.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page80" class="aria-page">
-  <h2>Role: row</h2>
-  <p>The <code>row</code> role represents a row of cells within a table, grid, or treegrid.</p>
-  <p><strong>Example:</strong></p>
-  <pre><code>
-&lt;table role="grid"&gt;
-  &lt;tr role="row"&gt;
-    &lt;td role="gridcell"&gt;Data 1&lt;/td&gt;
-    &lt;td role="gridcell"&gt;Data 2&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
-</code></pre>
 </div>
-<div id="aria-page81" class="aria-page">
+<div id="aria-page55" class="aria-page">
   <h2>role="switch"</h2>
   <p>The <code>switch</code> role represents a toggle control that can be either "on" or "off". It is similar to a checkbox but indicates a different kind of binary option.</p>
   <p><strong>Example:</strong> Dark mode toggle.</p>
   <pre><code>
 &lt;div role="switch" aria-checked="false"&gt;Dark Mode&lt;/div&gt;
 </code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-switch.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page82" class="aria-page">
-  <h2>role="tab"</h2>
-  <p>The <code>tab</code> role is used for items in a tablist that switch between panels of content.</p>
-  <p><strong>Example:</strong> A tab control.</p>
-  <pre><code>
-&lt;div role="tab" aria-selected="true"&gt;Overview&lt;/div&gt;
-&lt;div role="tab" aria-selected="false"&gt;Details&lt;/div&gt;
-</code></pre>
 </div>
 
-<div id="aria-page83" class="aria-page">
-  <h2>role="tablist"</h2>
-  <p>The <code>tablist</code> role groups together a set of tabs.</p>
-  <p><strong>Example:</strong> Tab container.</p>
-  <pre><code>
-&lt;div role="tablist"&gt;
-  &lt;div role="tab"&gt;Home&lt;/div&gt;
-  &lt;div role="tab"&gt;Profile&lt;/div&gt;
+<div id="aria-page56" class="aria-page">
+  <h2>ARIA Tab Roles</h2>
+  <p>
+    Use ARIA tab roles to build accessible tabbed interfaces. These roles define the relationship
+    between a set of tabs and their associated content panels so assistive technologies can announce
+    and navigate them correctly.
+  </p>
+
+  <h3>Roles Explained</h3>
+  <ul>
+    <li><code>role="tablist"</code> – The container that groups all tabs. Optionally set <code>aria-orientation</code> to <code>horizontal</code> or <code>vertical</code>.</li>
+    <li><code>role="tab"</code> – A selectable tab. Use <code>aria-selected</code> (<code>true</code>/<code>false</code>), <code>id</code>, and <code>aria-controls</code> to point to its panel. Inactive tabs typically have <code>tabindex="-1"</code>.</li>
+    <li><code>role="tabpanel"</code> – The content panel for a tab. Reference its tab with <code>aria-labelledby</code>. Hide inactive panels (e.g., <code>hidden</code>).</li>
+  </ul>
+
+  <h3>Example Code</h3>
+  <p>The following example demonstrates a basic tab interface using ARIA roles:</p>
+
+  <pre>
+    <code>
+&lt;div role="tablist" aria-label="Product Details" aria-orientation="horizontal"&gt;
+  &lt;button role="tab" id="tab-1" aria-selected="true" aria-controls="panel-1" tabindex="0"&gt;Overview&lt;/button&gt;
+  &lt;button role="tab" id="tab-2" aria-selected="false" aria-controls="panel-2" tabindex="-1"&gt;Specs&lt;/button&gt;
+  &lt;button role="tab" id="tab-3" aria-selected="false" aria-controls="panel-3" tabindex="-1"&gt;Reviews&lt;/button&gt;
 &lt;/div&gt;
-</code></pre>
+
+&lt;section id="panel-1" role="tabpanel" aria-labelledby="tab-1"&gt;
+  &lt;p&gt;Overview content goes here.&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden&gt;
+  &lt;p&gt;Specifications content goes here.&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section id="panel-3" role="tabpanel" aria-labelledby="tab-3" hidden&gt;
+  &lt;p&gt;Reviews content goes here.&lt;/p&gt;
+&lt;/section&gt;
+    </code>
+  </pre>
+
+  <h3>Screen Reader Behavior</h3>
+  <p>
+    - Screen readers announce the <strong>tab list</strong> and the number of tabs. <br>
+    - Each <code>tab</code> is announced with its selected state (e.g., “selected”/“not selected”). <br>
+    - Activating a tab exposes its <code>tabpanel</code>, which is labelled by the active tab via <code>aria-labelledby</code>. <br>
+    - Hidden panels are skipped until their corresponding tab is selected.
+  </p>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-tab.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page84" class="aria-page">
-  <h2>role="tabpanel"</h2>
-  <p>The <code>tabpanel</code> role defines the content area associated with a tab.</p>
-  <p><strong>Example:</strong> Panel of tab content.</p>
-  <pre><code>
-&lt;div role="tabpanel"&gt;This is the Home tab content.&lt;/div&gt;
-</code></pre>
 </div>
 
-<div id="aria-page85" class="aria-page">
-  <h2>role="term"</h2>
-  <p>The <code>term</code> role identifies a word or phrase being defined in a definition list.</p>
-  <p><strong>Example:</strong> Definition term.</p>
-  <pre><code>
-&lt;div role="term"&gt;HTML&lt;/div&gt;
-&lt;div role="definition"&gt;A markup language for web pages.&lt;/div&gt;
-</code></pre>
+
+<div id="aria-page57" class="aria-page">
+  <h2>Using role="term" and role="definition"</h2>
+  <p>
+    The <code>role="term"</code> and <code>role="definition"</code> roles are used together 
+    to provide accessible semantic meaning for glossary-style content.  
+    They help assistive technologies like screen readers understand which part of the 
+    content is the term being defined and which part is its explanation.
+  </p>
+
+  <h3>Key Points</h3>
+  <ul>
+    <li><code>role="term"</code> identifies a word or phrase being defined.</li>
+    <li><code>role="definition"</code> describes the meaning of the term.</li>
+    <li>They are typically used inside a <code>&lt;dl&gt;</code> (description list) structure.</li>
+    <li>Screen readers can announce the term followed by its definition for better comprehension.</li>
+  </ul>
+
+  <h3>Example Code</h3>
+  <pre>
+    <code>
+&lt;dl&gt;
+  &lt;dt role="term"&gt;HTML&lt;/dt&gt;
+  &lt;dd role="definition"&gt;A markup language used to structure content on the web.&lt;/dd&gt;
+
+  &lt;dt role="term"&gt;ARIA&lt;/dt&gt;
+  &lt;dd role="definition"&gt;Accessible Rich Internet Applications, a set of attributes that make web content more accessible.&lt;/dd&gt;
+
+  &lt;dt role="term"&gt;JavaScript&lt;/dt&gt;
+  &lt;dd role="definition"&gt;A programming language used to create dynamic and interactive web pages.&lt;/dd&gt;
+&lt;/dl&gt;
+    </code>
+  </pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-term.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page86" class="aria-page">
-  <h2>role="textbox"</h2>
-  <p>The <code>textbox</code> role defines an input field that allows users to enter free text.</p>
-  <p><strong>Example:</strong> Search field.</p>
-  <pre><code>
-&lt;div role="textbox" aria-multiline="false"&gt;Type here...&lt;/div&gt;
-</code></pre>
 </div>
 
-<div id="aria-page87" class="aria-page">
+
+
+<div id="aria-page58" class="aria-page">
   <h2>role="timer"</h2>
   <p>The <code>timer</code> role represents a numerical counter or stopwatch that updates over time.</p>
   <p><strong>Example:</strong> Countdown timer.</p>
   <pre><code>
 &lt;div role="timer" aria-live="polite"&gt;10 seconds left&lt;/div&gt;
 </code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-timer.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page88" class="aria-page">
-  <h2>role="toolbar"</h2>
-  <p>The <code>toolbar</code> role groups interactive controls such as buttons and menus.</p>
-  <p><strong>Example:</strong> Text editor toolbar.</p>
-  <pre><code>
-&lt;div role="toolbar"&gt;
-  &lt;button&gt;Bold&lt;/button&gt;
-  &lt;button&gt;Italic&lt;/button&gt;
-&lt;/div&gt;
-</code></pre>
 </div>
 
-<div id="aria-page89" class="aria-page">
+
+<div id="aria-page60" class="aria-page">
   <h2>role="tooltip"</h2>
   <p>The <code>tooltip</code> role is used for a popup label that provides extra information about an element when hovered or focused.</p>
-  <p><strong>Example:</strong> Help tooltip.</p>
+  <p><strong>Example:</strong> Help tooltip for a button.</p>
   <pre><code>
-&lt;div role="tooltip"&gt;Enter your email address.&lt;/div&gt;
+&lt;button aria-describedby="tooltip1"&gt;Help&lt;/button&gt;
+&lt;div role="tooltip" id="tooltip1"&gt;Click this button to get help information.&lt;/div&gt;
 </code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-tooltip.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page90" class="aria-page">
-  <h2>role="tree"</h2>
-  <p>The <code>tree</code> role represents a hierarchical list of items, such as a file explorer.</p>
-  <p><strong>Example:</strong> File tree structure.</p>
+</div>
+
+<div id="aria-page61" class="aria-page">
+  <h2>role="tree" and role="treeitem"</h2>
+  <p>
+    The <code>tree</code> role represents a hierarchical structure, similar to a file explorer or an outline. 
+    It allows users to expand and collapse items, navigate with the keyboard, and understand nested levels of content.
+  </p>
+
+  <h3>Important Notes:</h3>
+  <ul>
+    <li><code>role="treeitem"</code> is used for each node inside the tree.</li>
+    <li>Use <code>aria-expanded</code> on items that can be expanded or collapsed.</li>
+    <li><code>role="group"</code> wraps nested child items inside a parent node.</li>
+    <li>ARIA attributes like <code>aria-level</code>, <code>aria-setsize</code>, and <code>aria-posinset</code> help assistive technologies understand the tree structure.</li>
+    <li>Make tree items keyboard accessible using <code>tabindex</code>.</li>
+  </ul>
+
+  <h3>Example Code</h3>
+  <p>The following example demonstrates a tree structure for subjects, chapters, and topics:</p>
+
   <pre><code>
-&lt;ul role="tree"&gt;
-  &lt;li role="treeitem"&gt;Folder 1&lt;/li&gt;
-  &lt;li role="treeitem"&gt;Folder 2&lt;/li&gt;
+&lt;ul role="tree" aria-label="Subjects Tree"&gt;
+  &lt;!-- Subject 1 --&gt;
+  &lt;li role="treeitem" aria-expanded="false" class="collapsed subject"
+      aria-level="1" aria-setsize="2" aria-posinset="1" tabindex="0"&gt;
+    Mathematics
+    &lt;ul role="group"&gt;
+      &lt;li role="treeitem" aria-expanded="false" class="collapsed chapter"
+          aria-level="2" aria-setsize="2" aria-posinset="1" tabindex="-1"&gt;
+        Chapter 1: Algebra
+        &lt;ul role="group"&gt;
+          &lt;li role="treeitem" class="topic"
+              aria-level="3" aria-setsize="2" aria-posinset="1" tabindex="-1"&gt;
+            Topic 1.1: Linear Equations
+          &lt;/li&gt;
+          &lt;li role="treeitem" class="topic"
+              aria-level="3" aria-setsize="2" aria-posinset="2" tabindex="-1"&gt;
+            Topic 1.2: Quadratic Equations
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li role="treeitem" aria-expanded="false" class="collapsed chapter"
+          aria-level="2" aria-setsize="2" aria-posinset="2" tabindex="-1"&gt;
+        Chapter 2: Geometry
+        &lt;ul role="group"&gt;
+          &lt;li role="treeitem" class="topic"
+              aria-level="3" aria-setsize="2" aria-posinset="1" tabindex="-1"&gt;
+            Topic 2.1: Triangles
+          &lt;/li&gt;
+          &lt;li role="treeitem" class="topic"
+              aria-level="3" aria-setsize="2" aria-posinset="2" tabindex="-1"&gt;
+            Topic 2.2: Circles
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+
+  &lt;!-- Subject 2 --&gt;
+  &lt;li role="treeitem" aria-expanded="false" class="collapsed subject"
+      aria-level="1" aria-setsize="2" aria-posinset="2" tabindex="-1"&gt;
+    Science
+    &lt;ul role="group"&gt;
+      &lt;li role="treeitem" aria-expanded="false" class="collapsed chapter"
+          aria-level="2" aria-setsize="2" aria-posinset="1" tabindex="-1"&gt;
+        Chapter 1: Physics
+        &lt;ul role="group"&gt;
+          &lt;li role="treeitem" class="topic"
+              aria-level="3" aria-setsize="2" aria-posinset="1" tabindex="-1"&gt;
+            Topic 1.1: Motion
+          &lt;/li&gt;
+          &lt;li role="treeitem" class="topic"
+              aria-level="3" aria-setsize="2" aria-posinset="2" tabindex="-1"&gt;
+            Topic 1.2: Force
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li role="treeitem" aria-expanded="false" class="collapsed chapter"
+          aria-level="2" aria-setsize="2" aria-posinset="2" tabindex="-1"&gt;
+        Chapter 2: Chemistry
+        &lt;ul role="group"&gt;
+          &lt;li role="treeitem" class="topic"
+              aria-level="3" aria-setsize="2" aria-posinset="1" tabindex="-1"&gt;
+            Topic 2.1: Atoms
+          &lt;/li&gt;
+          &lt;li role="treeitem" class="topic"
+              aria-level="3" aria-setsize="2" aria-posinset="2" tabindex="-1"&gt;
+            Topic 2.2: Molecules
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
-</code></pre>
+  </code></pre>
+
+  <h3>Screen Reader Behavior</h3>
+  <p>
+    - Screen readers announce the hierarchy (levels, expanded/collapsed states). <br>
+    - Users can navigate using arrow keys, and expand/collapse with <kbd>Enter</kbd> or <kbd>Space</kbd>. <br>
+    - <code>aria-level</code>, <code>aria-setsize</code>, and <code>aria-posinset</code> help users understand their position within the tree. 
+  </p>                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-tree.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page91" class="aria-page">
+</div>
+
+<div id="aria-page62" class="aria-page">
   <h2>role="treegrid"</h2>
-  <p>The <code>treegrid</code> role combines tree and grid, useful for data that is hierarchical and tabular.</p>
-  <p><strong>Example:</strong> Expandable data grid.</p>
-  <pre><code>
-&lt;div role="treegrid"&gt;Project Data&lt;/div&gt;
-</code></pre>
+  <p>
+    The <strong>role="treegrid"</strong> is used to define a grid that behaves like a tree structure, where rows can be expanded or collapsed to reveal more information.  
+    It is a combination of <strong>tree</strong> and <strong>grid</strong> roles, allowing hierarchical data to be presented in a table-like format with rows and columns.  
+    Each row is represented by <code>role="row"</code>, and cells within that row use <code>role="gridcell"</code>. Expandable rows should be marked with <code>aria-expanded</code> to indicate their state.
+  </p>
+
+  <h3>Key Attributes:</h3>
+  <ul>
+    <li><code>role="treegrid"</code> → Defines the container as a treegrid.</li>
+    <li><code>role="row"</code> → Identifies each row within the treegrid.</li>
+    <li><code>role="gridcell"</code> → Defines individual cells inside a row.</li>
+    <li><code>aria-expanded</code> → Indicates whether a row is expanded or collapsed.</li>
+    <li><code>aria-level</code> → Defines the hierarchical level of a row.</li>
+  </ul>
+
+  <h3>Example:</h3>
+  <pre>
+&lt;table role="treegrid" aria-label="Employee Hierarchy"&gt;
+  &lt;tr role="row" aria-expanded="true" aria-level="1"&gt;
+    &lt;td role="gridcell"&gt;CEO&lt;/td&gt;
+    &lt;td role="gridcell"&gt;Head of Company&lt;/td&gt;
+  &lt;/tr&gt;
+
+  &lt;tr role="row" aria-expanded="false" aria-level="2"&gt;
+    &lt;td role="gridcell"&gt;Manager 1&lt;/td&gt;
+    &lt;td role="gridcell"&gt;Sales Department&lt;/td&gt;
+  &lt;/tr&gt;
+
+  &lt;tr role="row" aria-expanded="false" aria-level="2"&gt;
+    &lt;td role="gridcell"&gt;Manager 2&lt;/td&gt;
+    &lt;td role="gridcell"&gt;HR Department&lt;/td&gt;
+  &lt;/tr&gt;
+
+  &lt;tr role="row" aria-expanded="false" aria-level="3"&gt;
+    &lt;td role="gridcell"&gt;Employee A&lt;/td&gt;
+    &lt;td role="gridcell"&gt;Sales Executive&lt;/td&gt;
+  &lt;/tr&gt;
+
+  &lt;tr role="row" aria-expanded="false" aria-level="3"&gt;
+    &lt;td role="gridcell"&gt;Employee B&lt;/td&gt;
+    &lt;td role="gridcell"&gt;HR Assistant&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+  </pre>
+
+  <h3>Screen Reader Behavior:</h3>
+  <p>
+    When navigating with a screen reader, users will hear hierarchical levels, row states (expanded or collapsed), and the content of each cell. This helps users understand structured data with parent-child relationships in a table format.
+  </p>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-treegrid.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page92" class="aria-page">
-  <h2>role="treeitem"</h2>
-  <p>The <code>treeitem</code> role defines an item within a tree structure.</p>
-  <p><strong>Example:</strong> File item in a tree.</p>
-  <pre><code>
-&lt;div role="treeitem"&gt;index.html&lt;/div&gt;
-</code></pre>
 </div>
 
-<div id="aria-page93" class="aria-page">
-  <h2>role="menuitemcheckbox"</h2>
-  <p>The <code>menuitemcheckbox</code> role defines a menu item that can be checked or unchecked.</p>
-  <p><strong>Example:</strong> Menu with options.</p>
-  <pre><code>
-&lt;div role="menuitemcheckbox" aria-checked="true"&gt;Show Toolbar&lt;/div&gt;
-</code></pre>
-</div>
+<div id="aria-page63" class="aria-page">
+<h2>role="math"</h2>
+<p>
+  The <code>math</code> role is used to identify a mathematical expression or formula on a webpage. 
+  It is especially important for screen reader users, because math expressions can be difficult to 
+  interpret when read as plain text. By assigning the <code>math</code> role, assistive technologies 
+  can recognize that the content is a mathematical expression and attempt to present it in a more 
+  understandable way.
+</p>
 
-<div id="aria-page94" class="aria-page">
-  <h2>role="menuitemradio"</h2>
-  <p>The <code>menuitemradio</code> role defines a menu item that is part of a group where only one can be selected.</p>
-  <p><strong>Example:</strong> Font size options.</p>
-  <pre><code>
-&lt;div role="menuitemradio" aria-checked="true"&gt;Small&lt;/div&gt;
-&lt;div role="menuitemradio" aria-checked="false"&gt;Large&lt;/div&gt;
-</code></pre>
-</div>
+<p>
+  Typically, math expressions are marked up with <code>MathML</code>, which provides detailed 
+  semantic meaning for mathematical notations. However, when <code>MathML</code> is not used, 
+  applying <code>role="math"</code> to a container element (like <code>div</code> or 
+  <code>span</code>) can still help assistive technologies understand the context.
+</p>
 
-<div id="aria-page95" class="aria-page">
-  <h2>role="note"</h2>
-  <p>The <code>note</code> role is used for content that is an annotation or advisory note.</p>
-  <p><strong>Example:</strong> Side note.</p>
-  <pre><code>
-&lt;div role="note"&gt;Note: Changes will be saved automatically.&lt;/div&gt;
-</code></pre>
-</div>
+<p><strong>Why it's useful:</strong></p>
+<ul>
+  <li>Helps screen readers announce math expressions properly.</li>
+  <li>Improves accessibility for students, researchers, and professionals working with STEM content.</li>
+  <li>Provides a semantic cue that the enclosed text should be interpreted as mathematics.</li>
+</ul>
 
-<div id="aria-page96" class="aria-page">
-  <h2>role="math"</h2>
-  <p>The <code>math</code> role indicates a mathematical expression, often rendered with MathML.</p>
-  <p><strong>Example:</strong> Formula display.</p>
-  <pre><code>
+<p><strong>Example 1: Simple formula</strong></p>
+<pre><code>
 &lt;div role="math"&gt;E = mc²&lt;/div&gt;
 </code></pre>
-</div>
 
-<div id="aria-page97" class="aria-page">
-  <h2>role="log"</h2>
-  <p>The <code>log</code> role is for dynamic content where new entries are added and old entries disappear, like chat or error logs.</p>
-  <p><strong>Example:</strong> Chat log.</p>
-  <pre><code>
-&lt;div role="log"&gt;User joined the chat.&lt;/div&gt;
+<p><strong>Example 2: Using MathML with role="math"</strong></p>
+<pre><code>
+&lt;math role="math"&gt;
+  &lt;msup&gt;
+    &lt;mi&gt;x&lt;/mi&gt;
+    &lt;mn&gt;2&lt;/mn&gt;
+  &lt;/msup&gt;
+  &lt;mo&gt;+&lt;/mo&gt;
+  &lt;mn&gt;5&lt;/mn&gt;
+&lt;/math&gt;
 </code></pre>
+
+<p>
+  In the second example, the equation <em>x² + 5</em> is written in MathML, and the 
+  <code>role="math"</code> reinforces its purpose for assistive technologies.
+</p>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-math.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page98" class="aria-page">
-  <h2>role="marquee"</h2>
-  <p>The <code>marquee</code> role is used for content that scrolls or moves across the screen.</p>
-  <p><strong>Example:</strong> Scrolling news.</p>
-  <pre><code>
-&lt;div role="marquee"&gt;Breaking News: Accessibility updates released.&lt;/div&gt;
-</code></pre>
+
+</div>
+<div id="aria-page20" class="aria-page">
+  <h2>role="alert"</h2>
+  <p>The <code>role="alert"</code> makes content automatically announced by screen readers as soon as it appears. This is useful for error messages or important notices that users should know about immediately without moving their focus.</p>
+
+  <h3><strong>Example:</strong> Displaying an error message.</h3>
+  <pre><code>&lt;div role="alert"&gt;
+  Error: You must fill out all required fields.
+&lt;/div&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-alert.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page99" class="aria-page">
+</div>
+<div id="aria-page21" class="aria-page">
+  <h2>role="dialog"</h2>
+  <p>The <code>role="dialog"</code> is used for modal or popup dialog boxes. It lets screen reader users know they’re inside a dialog and should not interact with the rest of the page until it’s closed. It's often paired with <code>aria-modal="true"</code> and focus trapping.</p>
+
+  <p><strong>Example:</strong> A modal popup with content.</p>
+  <pre><code>&lt;div role="dialog" aria-modal="true"&gt;
+  Are you sure you want to delete this item?
+&lt;/div&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-dialog.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
+<div id="aria-page64" class="aria-page">
   <h2>role="status"</h2>
   <p>The <code>status</code> role is for advisory messages that are not critical, such as progress updates.</p>
   <p><strong>Example:</strong> Save status.</p>
   <pre><code>
 &lt;div role="status"&gt;Your document has been saved.&lt;/div&gt;
 </code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-status.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page100" class="aria-page">
+</div>
+
+<div id="aria-page65" class="aria-page">
   <h2>role="alertdialog"</h2>
   <p>The <code>alertdialog</code> role represents a dialog box that interrupts the user with important information and requires acknowledgment.</p>
   <p><strong>Example:</strong> Delete confirmation.</p>
   <pre><code>
 &lt;div role="alertdialog"&gt;Are you sure you want to delete this file?&lt;/div&gt;
 </code></pre>
-</div>
-<div id="aria-page101" class="aria-page">
-  <h2>role="article"</h2>
-  <p>The <code>article</code> role represents a self-contained piece of content intended for independent use or distribution.</p>
-  <p><strong>Example:</strong> A blog post or news article.</p>
-  <pre><code>
-&lt;div role="article"&gt;
-  &lt;h2&gt;Breaking News&lt;/h2&gt;
-  &lt;p&gt;Today’s top story...&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-alertdialog.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
 </div>
 
-<div id="aria-page102" class="aria-page">
-  <h2>role="banner"</h2>
-  <p>The <code>banner</code> role represents a site-wide header that usually contains the logo or main identity.</p>
-  <p><strong>Example:</strong> Website header section.</p>
-  <pre><code>
-&lt;header role="banner"&gt;
-  &lt;h1&gt;Accessible World&lt;/h1&gt;
-&lt;/header&gt;
-</code></pre>
 </div>
-
-<div id="aria-page103" class="aria-page">
-  <h2>role="complementary"</h2>
-  <p>The <code>complementary</code> role represents a section that supports the main content but is meaningful on its own.</p>
-  <p><strong>Example:</strong> Sidebar with related articles.</p>
-  <pre><code>
-&lt;aside role="complementary"&gt;
-  &lt;h3&gt;Related Topics&lt;/h3&gt;
-  &lt;ul&gt;&lt;li&gt;Topic 1&lt;/li&gt;&lt;/ul&gt;
-&lt;/aside&gt;
-</code></pre>
-</div>
-
-<div id="aria-page104" class="aria-page">
-  <h2>role="contentinfo"</h2>
-  <p>The <code>contentinfo</code> role identifies the footer or information about the content of the page.</p>
-  <p><strong>Example:</strong> Website footer section.</p>
-  <pre><code>
-&lt;footer role="contentinfo"&gt;
-  &lt;p&gt;© 2025 Accessible World&lt;/p&gt;
-&lt;/footer&gt;
-</code></pre>
-</div>
-
-<div id="aria-page105" class="aria-page">
-  <h2>role="definition"</h2>
-  <p>The <code>definition</code> role indicates the definition of a term.</p>
-  <p><strong>Example:</strong> Glossary entry.</p>
-  <pre><code>
-&lt;dl&gt;
-  &lt;dt&gt;HTML&lt;/dt&gt;
-  &lt;dd role="definition"&gt;A markup language for web pages.&lt;/dd&gt;
-&lt;/dl&gt;
-</code></pre>
-</div>
-
 
 </div>
 
