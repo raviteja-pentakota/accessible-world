@@ -1,0 +1,410 @@
+.video-container {
+  position: relative;
+  width: 100%; /* Adjust as needed */
+  height: auto;
+  overflow: hidden; /* Ensures controls don't spill out */
+}
+/* Styling for the sliders */
+.seek-slider,
+.volume-slider {
+  -webkit-appearance: none;
+  background: #ccc;
+  height: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.seek-slider::-webkit-slider-thumb,
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  background: #ff5722;
+  border-radius: 50%;
+}
+.custom-video {
+  width: 100%;
+  height: 100%;
+}
+
+.controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  padding: 10px;
+  display: flex;
+  justify-content: center; /* Center the buttons */
+  transition: opacity 0.3s ease; /* Fade in/out effect */
+}
+
+/* Optional: Hide controls when the user isn't interacting with the video */
+.video-container:not(:hover) .controls {
+  opacity: 0;
+}
+.wcag-list-container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.wcag-list-container[aria-expanded="true"] {
+    max-height: 500px; /* Adjust this value as needed to show the full list */
+}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: none; /* Hidden until Firebase authentication confirms access */
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #007bff;
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        #user-profile, #referral-info {
+            background-color: #004494;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            text-align: left;
+            display: inline-block; /* Aligns next to logout button */
+            margin-right: 10px;
+        }
+
+        .profile-item {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        #logout-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            float: right; /* Aligns to the right */
+            margin-top: 15px;
+        }
+
+        #logout-btn:hover {
+            background-color: #c82333;
+        }
+
+        nav ul {
+            list-style-type: none; /* Corrected: Use CSS for list style */
+            padding: 0;
+            margin: 0;
+            background-color: #e2e6ea;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #0056b3;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a:focus {
+            background-color: #d6dbe0;
+            color: #003e80;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        main h2 {
+            color: #0056b3;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tab-container {
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .tab-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0;
+            margin: 0;
+            list-style-type: none; /* Corrected: Use CSS for list style */
+        }
+
+        .tab-buttons button {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .tab-buttons button.active {
+            background-color: white;
+            border-color: #007bff;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .tab-buttons button:hover:not(.active) {
+            background-color: #e0e0e0;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            min-height: 300px; /* Ensure content area has a minimum height */
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .intro-page,
+        .disability-page,
+        .principle-page,
+.automationTools-page,
+        .wcag-page,
+        .aria-page {
+            display: none;
+            padding: 10px 0;
+        }
+
+        .intro-page.active,
+        .disability-page.active,
+        .principle-page.active,
+        .automationTools-page.active,
+        .wcag-page.active,
+        .aria-page.active {
+            display: block;
+        }
+
+        .pagination-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .pagination-controls button {
+            padding: 8px 15px;
+            border: 1px solid #007bff;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .pagination-controls button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+
+        .pagination-controls button:disabled {
+            background-color: #cccccc;
+            border-color: #cccccc;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        .pagination-controls span {
+            font-weight: bold;
+            color: #555;
+            min-width: 70px; /* Adjust as needed */
+            text-align: center;
+        }
+
+        /* Styling for WCAG examples */
+        .wcag-page hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+            margin: 30px 0;
+        }
+
+        .wcag-page h2 {
+            color: #0056b3;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .wcag-page h3 {
+            color: #004085;
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+
+        .wcag-page p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .wcag-page ul {
+            list-style-type: disc;
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .wcag-page li {
+            margin-bottom: 5px;
+        }
+
+        .wcag-page iframe {
+            width: 100%;
+            max-width: 700px;
+            height: 394px; /* Maintain aspect ratio for 16:9 */
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Styling for ARIA examples */
+        .aria-page h2 {
+            color: #0056b3;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .aria-page p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .aria-page pre {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .aria-page code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #c7254e;
+        }
+
+        .aria-page strong {
+            color: #004085;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            background-color: #0056b3;
+            color: white;
+            font-size: 0.9em;
+        }
+        /* Styles for profile button and dropdown */
+        .profile-container {
+            position: absolute; /* Position relative to the header */
+            top: 10px;
+            right: 20px; /* Adjust as needed */
+            display: inline-block;
+        }
+
+        .profile-container button {
+            padding: 8px 15px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .profile-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .profile-dropdown {
+            display: none; /* Hidden by default */
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px; /* Adjust width as needed */
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0; /* Align dropdown to the right of the button */
+            border-radius: 4px;
+            padding: 10px;
+            top: 45px; /* Position below the button */
+            color: #333; /* Ensure text is visible */
+            text-align: left;
+        }
+
+        .profile-dropdown p {
+            margin: 5px 0;
+            font-size: 14px;
+            padding: 0 5px; /* Add some padding inside the dropdown */
+        }
+
+        .profile-dropdown button {
+            width: calc(100% - 10px); /* Adjust width to fit padding */
+            margin: 10px 5px 0; /* Adjust margin for logout button */
+            background-color: #dc3545; /* Red for logout */
+        }
+
+        .profile-dropdown button:hover {
+            background-color: #c82333;
+        }
+
+
+
