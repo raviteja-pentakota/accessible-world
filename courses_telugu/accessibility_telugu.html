@@ -4,13 +4,13 @@
   <link rel="stylesheet" href="video_style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprehensive Web Accessibility Testing[Telugu Explanation]- Accessible World</title>
+    <title>Comprehensive Web Accessibility Testing[English Explanation]- Accessible World</title>
 <link rel="stylesheet" href="accessibility.css">
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header>
-        <h1>Welcome to Accessible World Tutorials – Comprehensive Web Accessibility Testing [Telugu Explanation]</h1>
+        <h1>Welcome to Accessible World Tutorials – Comprehensive Web Accessibility Testing [English Explanation]</h1>
         <div class="profile-container">
             <button id="profileBtn" aria-expanded="false" aria-controls="profileDetails">Profile</button>
             <div id="profileDetails" class="profile-dropdown">
@@ -34,8 +34,8 @@
 <li><a href="basic_computers_telugu.html">Basic Computers with Telugu explanation</a></li>
             <li><a href="programming_language_telugu.html">Web Development with Telugu Explanation</a>
             <li><a href="programming_language_english.html">Web Development with English Explanation</a>
-            <li><a href="accessibility_telugu.html" aria-current="page">Web Accessibility with Telugu Explanation</a></li>
-            <li><a href="accessibility_english.html">Web Accessibility with English Explanation</a></li>
+            <li><a href="accessibility_telugu.html">Web Accessibility with Telugu Explanation</a></li>
+            <li><a href="accessibility_english.html" aria-current="page">Web Accessibility with English Explanation</a></li>
             <li><a href="interview.html">Interview Questions</a></li>
             <li><a href="gk.html">GK Bits</a></li>
         </ul>
@@ -416,7 +416,8 @@
                     <h2>1.1.1: Non-text Content</h2>
 <p>Guideline Name: Text Alternatives</p>
                     <p>level: A</p>
-                    <h3>description:</h3>
+                    <h3>description:</h3>    
+<a href="#video-lesson1">Skip to video lesson</a>
                     <p>All non-text content that serves a purpose—such as images, icons, charts, graphical buttons, and media control symbols—must include a text alternative that conveys the same meaning or function. This ensures accessibility for users who rely on assistive technologies like screen readers. Images that convey information, perform actions, or represent meaningful content must have appropriate alt text. Decorative images that do not convey information should have empty alt attributes (alt="") so they can be ignored by screen readers. Complex images like graphs or charts may need a longer text explanation or reference to nearby text. Avoid using images of text unless necessary, and provide the same content in text format whenever possible. Examples of required alt text: logos, action icons (like play or close), informative photos, and charts. Examples where alt="" is acceptable: borders, spacers, purely decorative icons, or background graphics.</p>
         <div>
             <h3>Practical Test Case: 1.1.1 Non-text Content</h3>
@@ -455,15 +456,16 @@
                         <svg>...</svg>
                     </p>
 
-                    <h3>Telugu video explanation with practical:</h3>
-  <div class="video-container">
-<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
- <source src="wcag_telugu_videos/Non-text-content-Telugu.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="wcag_telugu_videos/non-text-content.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -480,7 +482,8 @@
                     <h2>1.2.1: Audio-only and Video-only (Prerecorded)</h2>
 <p>Guideline Name: Time-based Media</p>
                     <p>level: A</p>
-                    <h3>description:</h3>
+                    <h3>description:</h3>    
+<a href="#video-lesson2">Skip to video lesson</a>
                     <p>For prerecorded audio-only content (like audio lessons) and video-only content (like silent videos), provide an alternative format that presents the same information. This helps users who are deaf, hard of hearing, or blind to access equivalent content either via text or audio alternatives.</p>
         <div>
             <h3>Practical Test Case: 1.2.1 Audio-only and Video-only (Prerecorded)</h3>
@@ -549,7 +552,7 @@
   Your browser does not support the video tag.
 </video>
 <!-- No description – fail example -->
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson2">Telugu video explanation with practical:</h3>
 <div class="video-container">
   <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/audio only video only.mp4" type="video/mp4">
@@ -559,6 +562,7 @@
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -577,7 +581,8 @@
                     <h2>1.2.2: Captions (Prerecorded)</h2>
 <p>Guideline Name: Time-based Media</p>
                     <p>level: A</p>
-                    <h3>description:</h3>
+                    <h3>description:</h3>    
+<a href="#video-lesson3">Skip to video lesson</a>
                     <p>Captions must be provided for all prerecorded videos that contain audio. These captions should include spoken dialogue and other relevant sounds (such as laughter or music) so that users who are deaf or hard of hearing can understand the audio content.</p>
 
         <div>
@@ -611,7 +616,7 @@
                         A promotional video with spoken audio but no captions. <br>
                         A tutorial video that relies on speech but has no captioning option.
                     </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson3">Telugu video explanation with practical:</h3>
 
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/captions pre.mp4" type="video/mp4">
@@ -620,6 +625,7 @@
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -638,7 +644,8 @@
     <h2>1.2.3: Audio Description or Media Alternative (Prerecorded)</h2>
 <p>Guideline Name: Time-based Media</p>
     <p>level: A</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    
+<a href="#video-lesson4">Skip to video lesson</a>
     <p>For prerecorded videos that contain essential visual information (e.g., gestures, charts, on-screen actions), an audio description must be provided as a separate track or alternative. This ensures that users who are blind or visually impaired can understand the visual aspects of the video content.</p>
         <div>
             <h3>Practical Test Case: 1.2.3 Audio Description or Media Alternative (Prerecorded)</h3>
@@ -670,7 +677,7 @@
         A cooking demonstration video where all actions are visual, with no descriptive narration or transcript. <br>
         A product demo video with on-screen instructions only and no explanation for blind users.
     </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson4">Telugu video explanation with practical:</h3>
 
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/audio description or media alter.mp4" type="video/mp4">
@@ -679,6 +686,7 @@
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -697,7 +705,8 @@
     <h2>1.2.4: Captions (Live)</h2>
 <p>Guideline Name: Time-based Media</p>
     <p>level: AA</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    
+<a href="#video-lesson5">Skip to video lesson</a>
     <p>Captions must be provided for all live audio content in synchronized media, such as live webinars, news broadcasts, or virtual meetings. This helps users who are deaf or hard of hearing understand the real-time audio information.</p>
         <div>
             <h3>Practical Test Case: 1.2.4 Captions (Live)</h3>
@@ -729,15 +738,16 @@
         A live stream with audio but no captions at all. <br>
         Captions are used but are severely delayed or inaccurate.
     </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson5">Telugu video explanation with practical:</h3>
 
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/captions live.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
-    <div class="controls">
+  <div class="controls">    
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -746,6 +756,7 @@
 <input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
         <button class="fullscreen">Fullscreen</button>
     </div>
+
 </div>
 
 </div>
@@ -754,9 +765,9 @@
 <div id="wcag-page6" class="wcag-page">
     <h2>1.2.5: Audio Description (Prerecorded)</h2>
 <p>Guideline Name: Time-based Media</p>
-
     <p>level: AA</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    
+<a href="#video-lesson6">Skip to video lesson</a>
     <p>All prerecorded video content must include audio descriptions of important visual information that cannot be understood from the audio alone. This makes the content accessible to users who are blind or visually impaired and ensures they don’t miss out on visual-only cues.</p>
 
     <h3>passExamples:</h3>
@@ -770,7 +781,7 @@
         A video that shows a process or demonstration without describing it for blind users. <br>
         A movie with key visual elements not described in the audio track.
     </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson6">Telugu video explanation with practical:</h3>
 
 <div class="video-container">
   <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
@@ -780,6 +791,7 @@
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -794,9 +806,9 @@
 <div id="wcag-page7" class="wcag-page">
     <h2>1.3.1: Info and Relationships</h2>
 <p>Guideline Name: Adaptable</p>
-
     <p>level: A</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    
+<a href="#video-lesson7">Skip to video lesson</a>
     <p>Information, structure, and relationships that are visually conveyed (like headings, lists, form labels, or table data) must also be available in the code. This allows assistive technologies to understand and present the content meaningfully to users who cannot see the visual layout.</p>
 
         <div>
@@ -941,7 +953,7 @@
     <td>$40,000</td>
   </tr>
 </table>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson7">Telugu video explanation with practical:</h3>
 
 <div class="video-container">
   <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
@@ -952,6 +964,7 @@
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -969,10 +982,10 @@
 <div id="wcag-page8" class="wcag-page">
 <h2>1.3.2: Meaningful Sequence</h2>
 <p>Guideline Name: Adaptable</p>
-
 <p>level: A</p>
 
-<h3>description:</h3>
+<h3>description:</h3>    
+<a href="#video-lesson8">Skip to video lesson</a>
 <p>
 When the order of content is important for understanding, it should also be correct in the code. This helps screen readers and other assistive tools read the content in the right order.
 </p>
@@ -1064,15 +1077,16 @@ Using correct HTML tags and putting content in a logical order helps all users, 
     <p>Using CSS to float a "Submit" button above input fields while in code the button comes last — screen reader users reach the button before the form, which breaks the logic.</p>
   </li>
 </ul>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson8">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/Meaningful sequance.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Meaningful Sequence.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -1088,7 +1102,8 @@ Using correct HTML tags and putting content in a logical order helps all users, 
     <h2>1.3.3: Sensory Characteristics</h2>
 <p>Guideline Name: Adaptable</p>
     <p>level: A</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    
+<a href="#video-lesson9">Skip to video lesson</a>
     <p>Do not rely only on things like color, shape, size, sound, or location to give instructions or convey information. People who are blind, have low vision, or color blindness may not understand such clues. Always include text or labels to explain what to do.</p>
         <div>
             <h3>Practical Test Case: 1.3.3 Sensory Characteristics</h3>
@@ -1139,15 +1154,16 @@ Using correct HTML tags and putting content in a logical order helps all users, 
     <p>Select the large square icon at the top right.</p>
   </li>
 </ul>
-                    <h3>Telugu video explanation with practical:</h3> 
+                    <h3 id="video-lesson9">Telugu video explanation with practical:</h3> 
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/Sencary.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Sensory Characteristics.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -1165,7 +1181,8 @@ Using correct HTML tags and putting content in a logical order helps all users, 
     <h2>1.3.4: Orientation</h2>
 <p>Guideline Name: Adaptable</p>
     <p>level: AA</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    
+<a href="#video-lesson10">Skip to video lesson</a>
     <p>The content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific orientation is essential. This means users can view and interact with the content whether their device is held vertically (portrait) or horizontally (landscape), unless it’s absolutely necessary to force one layout (for example, in a piano app or game). This helps users who may have their devices mounted or fixed in one position.</p>
         <div>
             <h3>Practical Test Case: 1.3.4 Orientation</h3>
@@ -1198,15 +1215,16 @@ Using correct HTML tags and putting content in a logical order helps all users, 
         A mobile app that shows a blank screen in portrait mode and requires the device to be turned. <br>
         A website layout that breaks or becomes unusable in one orientation.
     </p>
-                    <h3>Telugu video explanation with practical:</h3> 
+                    <h3 id="video-lesson10">Telugu video explanation with practical:</h3> 
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/oriantation.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/orientation.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -1225,9 +1243,9 @@ Using correct HTML tags and putting content in a logical order helps all users, 
 <div id="wcag-page11" class="wcag-page">
     <h2>1.3.5: Identify Input Purpose</h2>
 <p>Guideline Name: Adaptable</p>
-
     <p>level: AA</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    
+<a href="#video-lesson11">Skip to video lesson</a>
 <p>
 "Identify Input Purpose" means that when a website has forms asking for information like name, email, phone number, or address, each input field should clearly indicate its purpose using HTML attributes — especially the <code>autocomplete</code> attribute.
 
@@ -1298,7 +1316,7 @@ If the input field is missing the correct autocomplete value, or if the value is
     <p>Missing label or description of the field</p>
   </li>
 </ul>
-                    <h3>Telugu video explanation with practical:</h3> 
+                    <h3 id="video-lesson11">Telugu video explanation with practical:</h3> 
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/identify input purpose.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -1307,6 +1325,7 @@ If the input field is missing the correct autocomplete value, or if the value is
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -1326,7 +1345,8 @@ If the input field is missing the correct autocomplete value, or if the value is
     <h2>1.4.1: Use of Color</h2>
 <p>Guideline Name: Distinguishable</p>
     <p>level: A</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    
+<a href="#video-lesson12">Skip to video lesson</a>
     <p>Don’t use color as the only way to show information or meaning. Users who are color blind may not be able to tell the difference. Add text, shapes, or other indicators along with color.</p>
         <div>
             <h3>Practical Test Case: 1.4.1 Use of Color</h3>
@@ -1430,7 +1450,8 @@ If the input field is missing the correct autocomplete value, or if the value is
   </tr>
 </table>
 
-</p>                    <h3>Telugu video explanation with practical:</h3> 
+</p>                    
+<h3 id="video-lesson12">Telugu video explanation with practical:</h3> 
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/use of color.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -1439,6 +1460,7 @@ If the input field is missing the correct autocomplete value, or if the value is
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -1458,7 +1480,8 @@ If the input field is missing the correct autocomplete value, or if the value is
     <h2>1.4.2: Audio Control</h2>
 <p>Guideline Name: Distinguishable</p>
     <p>level: A</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    
+<a href="#video-lesson13">Skip to video lesson</a>
     <p>If any sound plays automatically for more than 3 seconds when a page loads, the user must be able to pause or stop it, or control its volume separately from the main system volume. This is important for users who use screen readers or need to focus.</p>
         <div>
             <h3>Practical Test Case: 1.4.2 Audio Control</h3>
@@ -1489,7 +1512,7 @@ If the input field is missing the correct autocomplete value, or if the value is
         A page that starts playing music with no way to stop it. <br>
         A video that autoplays and has no volume or pause controls.
     </p>
-                    <h3>Telugu video explanation with practical:</h3> 
+                    <h3 id="video-lesson13">Telugu video explanation with practical:</h3> 
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/audio control.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -1498,6 +1521,7 @@ If the input field is missing the correct autocomplete value, or if the value is
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -1517,7 +1541,8 @@ If the input field is missing the correct autocomplete value, or if the value is
     <h2>1.4.3: Contrast (Minimum)</h2>
 <p>Guideline Name: Distinguishable</p>
     <p>level: AA</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    
+<a href="#video-lesson14">Skip to video lesson</a>
 <p>
 This rule makes sure that text is easy to read for everyone, especially for people with low vision. To be readable, the color of the text and the background behind it must be different enough — this is called contrast.
 
@@ -1559,15 +1584,16 @@ If text doesn’t meet these contrast levels, many users — especially those wi
         '&lt;p style="color: #AAAAAA; background: #FFFFFF;"&gt;Light gray text on white background&lt;/p&gt;' <br>
         '&lt;span style="color: yellow; background: white;"&gt;Yellow text on white background&lt;/span&gt;'
     </p>
-                    <h3>Telugu video explanation with practical:</h3> 
+                    <h3 id="video-lesson14">Telugu video explanation with practical:</h3> 
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/contrast minumum.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/contrast minimum.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -1587,7 +1613,8 @@ If text doesn’t meet these contrast levels, many users — especially those wi
     <h2>1.4.4: Resize Text</h2>
 <p>Guideline Name: Distinguishable</p>
     <p>level: AA</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    
+<a href="#video-lesson15">Skip to video lesson</a>
     <p>Users must be able to resize text up to 200% without losing content or functionality. This helps users with low vision read more comfortably using browser zoom or screen magnifiers.</p>
         <div>
             <h3>Practical Test Case: 1.4.4 Resize Text</h3>
@@ -1618,7 +1645,7 @@ If text doesn’t meet these contrast levels, many users — especially those wi
         Text overlaps or cuts off when zoomed to 150%. <br>
         Buttons become hidden or impossible to click when zoom is increased.
     </p>
-                    <h3>Telugu video explanation with practical:</h3> 
+                    <h3 id="video-lesson15">Telugu video explanation with practical:</h3> 
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/resize.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -1626,6 +1653,7 @@ If text doesn’t meet these contrast levels, many users — especially those wi
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -1646,7 +1674,8 @@ If text doesn’t meet these contrast levels, many users — especially those wi
 <p>Guideline Name: Distinguishable</p>
 <p><strong>Level:</strong> AA</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    
+<a href="#video-lesson16">Skip to video lesson</a>
 <p>
 This success criterion requires that text should be displayed using real text (HTML or styled with CSS) rather than images, so that users can zoom in, change font size or color, and use screen readers easily. Images of text should only be used when the text is part of a logo or when it’s essential (for example, a scanned handwritten signature).
 </p>
@@ -1687,7 +1716,7 @@ Text in images cannot be resized, reflowed, or styled by users—making it harde
   <li>Button designed as an image with text inside, rather than using an actual <code>&lt;button&gt;</code> element with real text</li>
   <li>Menu items shown as images with text instead of regular text with styling</li>
 </ul>
-                    <h3>Telugu video explanation with practical:</h3> 
+                    <h3 id="video-lesson16">Telugu video explanation with practical:</h3> 
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/images of text.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -1696,6 +1725,7 @@ Text in images cannot be resized, reflowed, or styled by users—making it harde
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -1709,12 +1739,13 @@ Text in images cannot be resized, reflowed, or styled by users—making it harde
 
 </div>
 
-<div id="wcag-page18" class="wcag-page">
+<div id="wcag-page17" class="wcag-page">
 <h2>1.4.10: Reflow</h2>
 <p>Guideline Name: Distinguishable</p>
-<p>Level: AA</p>
+<p><strong>Level:</strong> AA</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    
+<a href="#video-lesson17">Skip to video lesson</a>
 <p>
 Reflow means that content should adjust properly when users zoom in or use smaller screens—without needing to scroll left and right. Users should only need to scroll up and down to read or use the page.
 </p>
@@ -1757,7 +1788,7 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
   <li>Text or buttons that get cut off, overlap, or disappear when zoomed in</li>
   <li>Forms where fields or buttons are moved out of view and require both horizontal and vertical scrolling to use</li>
 </ul>
-                    <h3>Telugu video explanation with practical:</h3> 
+                    <h3 id="video-lesson17">Telugu video explanation with practical:</h3> 
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/reflow.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -1766,6 +1797,7 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -1782,11 +1814,12 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
 
  
 
-<div id="wcag-page19" class="wcag-page">
+<div id="wcag-page18" class="wcag-page">
     <h2>1.4.11: Non-Text Contrast</h2>
 <p>Guideline Name: Distinguishable</p>
     <p>level: AA</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    
+<a href="#video-lesson18">Skip to video lesson</a>
     <p>Visual elements that are important for understanding content or functionality, like buttons, icons, focus indicators, or graph bars, must have a contrast ratio of at least 3:1 against adjacent colors. This helps users with low vision distinguish important components from the background or surrounding elements. It applies to user interface components (like form controls and links) and graphical objects that convey meaning.</p>
         <div>
             <h3>Practical Test Case: 1.4.11 Non-Text Contrast</h3>
@@ -1819,15 +1852,16 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
         A button with border and background colors that are too similar (less than 3:1 contrast). <br>
         Focus indicators (like outlines) that are nearly invisible due to low contrast.
     </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson18">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/non text contrast.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Non-Text Contrast.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -1843,12 +1877,13 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
 
  
 
-<div id="wcag-page20" class="wcag-page">
+<div id="wcag-page19" class="wcag-page">
 <h2>1.4.12: Text Spacing</h2>
 <p>Guideline Name: Distinguishable</p>
-<p>Level: AA</p>
+<p><strong>Level:</strong> AA</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    
+<a href="#video-lesson19">Skip to video lesson</a>
 <p>
     Imagine you need to read a lot of text online, but it's hard for you because the letters, words, or lines are too close together. This rule ensures that websites allow you to increase that spacing to make reading easier. Even if you make the text significantly more spread out—for example, increasing the <strong>line height to at least 1.5 times the font size</strong>, or adding more space between <strong>words (0.16 times), letters (0.12 times), and paragraphs (2	 times)</strong>—the website's content should still remain clear, readable, and fully functional. 
     This is especially helpful for people with <strong>dyslexia, low vision, or cognitive and learning disabilities</strong>.
@@ -1899,15 +1934,16 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
     Paragraphs or controls become unreadable when letter or word spacing is adjusted. <br>
     Elements break or disappear when custom text spacing styles are applied.
 </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson19">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/text spacing.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/text-spacing.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -1925,12 +1961,13 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
 
  
 
-<div id="wcag-page21" class="wcag-page">
+<div id="wcag-page20" class="wcag-page">
 <h2>1.4.13: Content on Hover or Focus</h2>
 <p>Guideline Name: Distinguishable</p>
-<p>Level: AA</p>
+<p><strong>Level:</strong> AA</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    
+<a href="#video-lesson20">Skip to video lesson</a>
 <p>
     When extra content appears on <strong>hover</strong> or <strong>focus</strong>—such as tooltips, dropdowns, or popups—it must meet the following 3 rules:
 </p>
@@ -2085,7 +2122,7 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
     }, 50); // Too fast for user to reach
   }
 </script>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson20">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/hover or focus.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -2094,6 +2131,7 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -2109,12 +2147,13 @@ There are a few exceptions, like maps, charts, or images where two-way scrolling
 
  
 
-<div id="wcag-page22" class="wcag-page">
+<div id="wcag-page21" class="wcag-page">
 <h2>2.1.1: Keyboard</h2>
 <p>Guideline Name: Keyboard Accessible</p>
-<p>Level: A</p>
+<p><strong>Level:</strong> A</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    
+<a href="#video-lesson21">Skip to video lesson</a>
 <p>
 All parts of a website must be usable with only a keyboard — without requiring a mouse. This means you should be able to:
 </p>
@@ -2208,7 +2247,7 @@ This is important for:
 >
   ❌ Looks like button, but no Enter support
 </div>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson21">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/keyboard.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -2217,6 +2256,7 @@ This is important for:
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -2233,11 +2273,11 @@ This is important for:
 
  
 
-<div id="wcag-page23" class="wcag-page">
+<div id="wcag-page22" class="wcag-page">
     <h2>2.1.2: No Keyboard Trap</h2>
 <p>Guideline Name: Keyboard Accessible</p>
     <p>level: A</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    <a href="#video-lesson22">Skip to video lesson</a>
     <p>When using only a keyboard, users should never get stuck on a part of the page. They must be able to move in and out of any interactive element (like a form or dialog) using standard keyboard keys.</p>
         <div>
             <h3>Practical Test Case: 2.1.2 No Keyboard Trap</h3>
@@ -2332,15 +2372,16 @@ This is important for:
     document.getElementById("badModal").focus();
   });
 </script>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson22">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/no keyboard trap.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/no keyboard trapped.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -2353,12 +2394,12 @@ This is important for:
 
 
 </div>
-<div id="wcag-page24" class="wcag-page">
+<div id="wcag-page23" class="wcag-page">
  <h2>2.1.4: Character Key Shortcuts</h2>
 <p>Guideline Name: Keyboard Accessible</p>
 <p>level: A</p>
 
-<h3>description:</h3>
+<h3>description:</h3>    <a href="#video-lesson23">Skip to video lesson</a>
 <p>
 Sometimes websites or web apps allow users to do actions quickly by pressing a single letter on the keyboard, like pressing "D" to delete or "S" to search. But this can create problems for people who use speech recognition (like Dragon), screen readers, or who have motor disabilities. 
 <br><br>
@@ -2456,15 +2497,16 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
     }
   });
 </script>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson23">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/character key shortcut.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Character Key Shortcuts.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -2480,9 +2522,8 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
 <div id="wcag-page24" class="wcag-page">
     <h2>2.2.1: Timing Adjustable</h2>
 <p>Guideline Name: Enough Time</p>
-
     <p>level: A</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    <a href="#video-lesson24">Skip to video lesson</a>
     <p>If users have a time limit to complete something (like filling a form), they must have options to turn off, adjust, or extend the time unless it’s essential. This is important for users with cognitive disabilities or who need more time.</p>
         <div>
             <h3>Practical Test Case: 2.2.1 Timing Adjustable</h3>
@@ -2514,15 +2555,16 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
         Form times out after 1 minute with no warning. <br>
         Online exam that ends automatically with no way to extend time.
     </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson24">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/timing eduectable.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Timing Adjustable.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -2539,9 +2581,8 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
 <div id="wcag-page25" class="wcag-page">
     <h2>2.2.2: Pause, Stop, Hide</h2>
 <p>Guideline Name: Enough Time</p>
-
     <p>level: A</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    <a href="#video-lesson25">Skip to video lesson</a>
     <p>Any moving, blinking, scrolling, or auto-updating content that starts automatically and lasts more than 5 seconds must have a way to pause, stop, or hide it. This avoids distractions and helps users focus, especially those with cognitive or visual disabilities.</p>
         <div>
             <h3>Practical Test Case: 2.2.2 Pause, Stop, Hide</h3>
@@ -2574,15 +2615,16 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
         A banner that scrolls endlessly with no way to stop it. <br>
         Animations that loop and distract users, with no controls.
     </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson25">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/pause stop hide.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Pause, Stop, Hide.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -2597,12 +2639,11 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
 
 </div>
 
-<div id="wcag-page27" class="wcag-page">
+<div id="wcag-page26" class="wcag-page">
     <h2>2.3.1: Flashes or Below Thresholdb  d</h2>
-
 <p>Guideline Name: Seizures</p>
     <p>level: A</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    <a href="#video-lesson26">Skip to video lesson</a>
     <p>Web content must not flash more than 3 times in one second. Flashing lights can cause seizures, especially in people with photosensitive epilepsy. If flashing is needed, it should stay within a safe limit.</p>
         <div>
             <h3>Practical Test Case: 2.3.1 Three Flashes or Below Threshold</h3>
@@ -2635,15 +2676,16 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
         A banner that flashes rapidly 6 times per second. <br>
         Game scenes with repeated fast flashing effects.
     </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson26">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/flasses and below.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Flashes or Below Thresholdb.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -2659,12 +2701,12 @@ To avoid this, if your website uses single-character shortcuts, it must do one o
 
  
 
-<div id="wcag-page28" class="wcag-page">
+<div id="wcag-page27" class="wcag-page">
 <h2>2.4.1: Bypass Blocks</h2>
 <p>Guideline Name: Navigable</p>
 <p>level: A</p>
 
-<h3>description:</h3>
+<h3>description:</h3>    <a href="#video-lesson27">Skip to video lesson</a>
 <p>
 This rule helps keyboard and screen reader users skip repeated content like navigation menus and headers. It means that websites should give users a way to quickly jump to the main part of the page. For example, a “Skip to main content” link lets someone press Tab once and skip all the menu links to go straight to the important content.
 </p>
@@ -2762,15 +2804,16 @@ Other ways to meet this rule include using ARIA landmarks (like <code>main</code
   <div>Lots of links here...</div>
   <div>This is the main content but there’s no semantic structure for screen reader users.</div>
 </div>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson27">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/bypass blocks.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Bypass Blocks.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -2786,12 +2829,12 @@ Other ways to meet this rule include using ARIA landmarks (like <code>main</code
 
  
 
-<div id="wcag-page29" class="wcag-page">
+<div id="wcag-page28" class="wcag-page">
 <h2>2.4.2: Page Titled</h2>
 <p>Guideline Name: Navigable</p>
 <p>Level: A</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    <a href="#video-lesson28">Skip to video lesson</a>
 <p>
 Every web page must have a clear and descriptive title using the <code>&lt;title&gt;</code> tag in the HTML <code>&lt;head&gt;</code>. The title appears in the browser tab, bookmarks, and screen readers. It helps all users — including those with visual impairments — quickly understand the purpose of the page.
 </p>
@@ -2873,15 +2916,16 @@ The title should be short, specific, and related to the page’s main content. I
   <h1>About Accessible World</h1>
   <p>This is our about page, but the title says "Home".</p>
 </main>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson28">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/page title.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Page Titled.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -2890,6 +2934,7 @@ The title should be short, specific, and related to the page’s main content. I
 <input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
         <button class="fullscreen">Fullscreen</button>
     </div>
+
 </div>
 
 
@@ -2897,12 +2942,13 @@ The title should be short, specific, and related to the page’s main content. I
 
  
 
-<div id="wcag-page30" class="wcag-page">
+<div id="wcag-page29" class="wcag-page">
 <h2>2.4.3: Focus Order</h2>
 <p>Guideline Name: Navigable</p>
+
 <p>Level: A</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    <a href="#video-lesson30">Skip to video lesson</a>
 <p>
 When using the keyboard (usually with the <kbd>Tab</kbd> key), the **focus** should move in a logical, meaningful order that matches the visual layout and reading order of the content. This helps keyboard and screen reader users understand and interact with the page easily.
 </p>
@@ -2934,68 +2980,135 @@ Good focus order means:
         </div>
 
 
-<h3>Pass Examples:</h3>
+<section>
+  <h3>Pass Examples</h3>
 
-<!-- Example 1 -->
-<p>✅ Focus moves logically from top to bottom:</p>
-<pre><code>
-&lt;header&gt;
-  &lt;a href="#home"&gt;Home&lt;/a&gt;
-  &lt;a href="#about"&gt;About&lt;/a&gt;
-&lt;/header&gt;
-&lt;main&gt;
-  &lt;button&gt;Start&lt;/button&gt;
-&lt;/main&gt;
-&lt;footer&gt;
-  &lt;a href="#contact"&gt;Contact Us&lt;/a&gt;
-&lt;/footer&gt;
-</code></pre>
-<p>Focus goes: Home → About → Start → Contact Us</p>
+  <!-- Pass Example 1 -->
+  <h3>✅ Focus moves logically from top to bottom</h3>
+  <p>
+    In the example below, pressing <kbd>Tab</kbd> moves the focus logically:
+  </p>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+  </nav>
+  <main>
+    <button>Enroll Now</button>
+  </main>
+  <footer>
+    <a href="#contact">Contact Us</a>
+  </footer>
+  <p>
+    <strong>Focus Order:</strong> Home → About → Enroll Now → Contact Us
+  </p>
+  <hr>
 
-<!-- Example 2 -->
-<p>✅ Modal opens, traps focus, and returns focus when closed:</p>
-<pre><code>
-&lt;button id="openModal"&gt;Open Help&lt;/button&gt;
+  <!-- Pass Example 2 -->
+  <h3>✅ Modal opens, traps focus, and returns focus when closed</h3>
+  <button id="openModal">Open Help</button>
 
-&lt;div id="modal" role="dialog" aria-modal="true" hidden&gt;
-  &lt;button id="closeModal"&gt;Close&lt;/button&gt;
-  &lt;p&gt;This is a help dialog.&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-<p>
-When the "Open Help" button is activated:<br>
-– Focus moves to the modal’s close button (focus reveal).<br>
-– User can tab inside the modal.<br>
-– On closing, focus returns to "Open Help" (focus return).
-</p>
+  <div id="modal" role="dialog" aria-modal="true" hidden style="border: 2px solid black; padding: 1em; background: #eee; max-width: 300px;">
+    <button id="closeModal">Close</button>
+    <p>This is a help dialog. Use Tab to navigate inside and Escape to close.</p>
+  </div>
 
-<h3>Fail Examples:</h3>
+  <p>
+    When "Open Help" is activated:<br>
+    – Focus moves to "Close"<br>
+    – Tab stays within the modal<br>
+    – On close, focus returns to "Open Help"
+  </p>
+</section>
 
-<!-- Example 1 -->
-<p>❌ Focus jumps unpredictably:</p>
-<pre><code>
-&lt;main&gt;
-  &lt;button&gt;Submit&lt;/button&gt;
-  &lt;a href="#footer"&gt;Footer Link&lt;/a&gt;
-  &lt;input type="text" placeholder="Name"&gt;
-&lt;/main&gt;
-</code></pre>
-<p>Focus jumps: Submit → Footer Link → Name (not in reading order)</p>
+<section>
+  <h3>Fail Examples</h3>
 
-<!-- Example 2 -->
-<p>❌ Modal opens but focus stays behind it, or doesn’t return:</p>
-<pre><code>
-&lt;button&gt;Open Info&lt;/button&gt;
-&lt;div role="dialog"&gt;
-  &lt;p&gt;Some info here&lt;/p&gt;
-  &lt;button&gt;Close&lt;/button&gt;
-&lt;/div&gt;
-</code></pre>
-<p>
-– The modal opens but focus stays on background elements (no focus reveal).<br>
-– When modal closes, focus jumps somewhere else, not back to "Open Info" (no focus return).
-</p>
-                    <h3>Telugu video explanation with practical:</h3>
+  <!-- Fail Example 1 -->
+  <h3>❌ Focus jumps unpredictably</h3>
+  <p>
+    In the example below, the tab order is not logical:
+  </p>
+  <div>
+    <button>Submit</button>
+    <a href="#footer">Go to Footer</a>
+    <input type="text" placeholder="Enter Name">
+  </div>
+  <p>
+    <strong>Focus Order:</strong> Submit → Footer Link → Name (not in reading order)
+  </p>
+  <hr>
+
+  <!-- Fail Example 2 -->
+  <h3>❌ Modal opens but focus stays behind it or doesn’t return</h3>
+  <button id="openBadModal">Open Info</button>
+
+  <div id="badModal" role="dialog" hidden style="border: 2px dashed red; padding: 1em; background: #ffecec; max-width: 300px;">
+    <p>This is a broken modal.</p>
+    <button id="closeBadModal">Close</button>
+  </div>
+
+  <p>
+    – The modal opens but focus stays behind it (no focus reveal).<br>
+    – When modal closes, focus does not return to "Open Info".
+  </p>
+</section>
+
+<script>
+  // Pass Example Modal Logic
+  const openModal = document.getElementById('openModal');
+  const closeModal = document.getElementById('closeModal');
+  const modal = document.getElementById('modal');
+
+  openModal.addEventListener('click', () => {
+    modal.hidden = false;
+    closeModal.focus();
+  });
+
+  closeModal.addEventListener('click', () => {
+    modal.hidden = true;
+    openModal.focus();
+  });
+
+  // Trap focus inside modal (basic example)
+  modal.addEventListener('keydown', (e) => {
+    const focusable = modal.querySelectorAll('button, [tabindex]:not([tabindex="-1"])');
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.key === 'Tab') {
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    } else if (e.key === 'Escape') {
+      modal.hidden = true;
+      openModal.focus();
+    }
+  });
+
+  // Fail Example Modal Logic (broken intentionally)
+  const openBadModal = document.getElementById('openBadModal');
+  const closeBadModal = document.getElementById('closeBadModal');
+  const badModal = document.getElementById('badModal');
+
+  openBadModal.addEventListener('click', () => {
+    badModal.hidden = false;
+    // Focus NOT moved to modal
+  });
+
+  closeBadModal.addEventListener('click', () => {
+    badModal.hidden = true;
+    // Focus NOT returned properly
+  });
+</script>
+                    <h3 id="video-lesson30">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/focus order.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -3004,6 +3117,7 @@ When the "Open Help" button is activated:<br>
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -3021,13 +3135,14 @@ When the "Open Help" button is activated:<br>
 
  
 
-<div id="wcag-page31" class="wcag-page">
+<div id="wcag-page30" class="wcag-page">
 <div id="sc-2-4-4">
   <h2>2.4.4: Link Purpose (In Context)</h2>
 <p>Guideline Name: Navigable</p>
+
   <p>Level: A</p>
 
-  <h3>Description:</h3>
+  <h3>description:</h3>    <a href="#video-lesson31">Skip to video lesson</a>
   <p>
     The purpose of every link on a web page must be clear either from the link text alone or from the text around it. This helps all users — especially screen reader users — understand where the link will take them or what action it will perform.
   </p>
@@ -3114,7 +3229,7 @@ function copySC244() {
   });
 }
 </script>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson31">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/link purpose.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -3123,6 +3238,7 @@ function copySC244() {
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -3137,12 +3253,13 @@ function copySC244() {
 
 </div>
 
-<div id="wcag-page32" class="wcag-page">
+<div id="wcag-page31" class="wcag-page">
 <h2>2.4.5: Multiple Ways</h2>
 <p>Guideline Name: Navigable</p>
+
 <p>Level: AA</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    <a href="#video-lesson33">Skip to video lesson</a>
 <p>
 Users should be able to find a web page using more than one method. This is important for users with different abilities and preferences. For example, on a shopping website, a user can find a product by:
 </p>
@@ -3215,15 +3332,16 @@ This SC helps ensure that content is discoverable through more than just one way
 <p>
 The website uses only dropdown menus to access pages and provides no search box or sitemap. Users using screen readers or keyboard navigation find it hard to locate pages.
 </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson33">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/multiple ways.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Multiple Ways.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -3239,12 +3357,13 @@ The website uses only dropdown menus to access pages and provides no search box 
 
  
 
-<div id="wcag-page33" class="wcag-page">
+<div id="wcag-page32" class="wcag-page">
 <h2>2.4.6: Headings and Labels</h2>
 <p>Guideline Name: Navigable</p>
+
 <p>Level: AA</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    <a href="#video-lesson34">Skip to video lesson</a>
 <p>
 Headings and labels must clearly describe the topic or purpose of the content they refer to. This is especially important for screen reader users who navigate using heading shortcuts. Headings like "Introduction", "Features", or "Contact Us" help all users understand the structure of the content. Vague or generic headings (like "Section 1" or "Untitled") are confusing and unhelpful.
 </p>
@@ -3292,15 +3411,16 @@ Headings and labels must clearly describe the topic or purpose of the content th
 <p><strong>Example 2: Generic, unclear heading</strong></p>
 <h3>Section 1</h3>
 <p>This heading does not describe what the section is about.</p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson34">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/headings and labels.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Headings and Labels.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
 
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -3316,12 +3436,11 @@ Headings and labels must clearly describe the topic or purpose of the content th
 
  
 
-<div id="wcag-page34" class="wcag-page">
+<div id="wcag-page33" class="wcag-page">
 <h2>2.4.7: Focus Visible</h2>
-
 <p>Guideline Name: Navigable</p>
 <p>level: AA</p>
-<h3>description:</h3>
+<h3>description:</h3>    <a href="#video-lesson35">Skip to video lesson</a>
 <p>
   When users navigate using a keyboard (like pressing Tab), the element that is currently focused must be clearly visible on the page. This means the focused item should have a visible outline, border, or color change so users know where they are. Without this visible focus indicator, keyboard users, especially those who cannot see a mouse pointer, may get lost on the page or not know which control is active.
 </p>
@@ -3380,14 +3499,15 @@ Headings and labels must clearly describe the topic or purpose of the content th
     Focusable Div (No Focus Visible)
   </div>
 </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson35">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/focus visible.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Focus Visible.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -3403,11 +3523,12 @@ Headings and labels must clearly describe the topic or purpose of the content th
 
  
 
-<div id="wcag-page35" class="wcag-page">
+<div id="wcag-page34" class="wcag-page">
 <h2>2.4.11: Focus Not Obscured (Minimum)</h2>
 <p>Guideline Name: Navigable</p>
+
 <p>level: AA</p>
-<h3>description:</h3>
+<h3>description:</h3>    <a href="#video-lesson36">Skip to video lesson</a>
 <p>
   When users navigate with the keyboard, the element that receives focus should never be completely hidden behind other page content, such as sticky headers, popups, or overlays. The focused element must always be at least partially visible on the screen, so users can see where the focus is and interact with it. If the focused item is hidden, keyboard users can get confused or lose track of where they are on the page.
 </p>
@@ -3491,14 +3612,15 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <input type="text" class="fail-input" placeholder="Hidden behind header" style="position: relative; top: -50px;">
   </div>
 </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson36">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/focus not upsquare.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Focus Not Obscured.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -3511,11 +3633,11 @@ Headings and labels must clearly describe the topic or purpose of the content th
 
 
 </div>
-<div id="wcag-page36" class="wcag-page">
+<div id="wcag-page35" class="wcag-page">
 <h2>2.5.1: Pointer Gestures</h2>
 <p>Guideline Name: Input Modalities</p>
 <p>level: A</p>
-<h3>description:</h3>
+<h3>description:</h3>    <a href="#video-lesson37">Skip to video lesson</a>
 <p>
   All functionality that requires complex pointer gestures, such as multi-finger swipes or pinches, must also be operable using simple pointer gestures (like single taps or clicks). This ensures users who can’t perform complex gestures, including people with motor disabilities, can still use the content.
 </p>
@@ -3603,14 +3725,15 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <p class="message">This gallery can only be navigated using a two-finger swipe gesture.</p>
   </div>
 </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson37">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/pointer jester.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Pointer Gestures.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -3623,11 +3746,12 @@ Headings and labels must clearly describe the topic or purpose of the content th
 
 
 </div>
-<div id="wcag-page37" class="wcag-page">
+<div id="wcag-page36" class="wcag-page">
 <h2>2.5.2: Pointer Cancellation</h2>
 <p>Guideline Name: Input Modalities</p>
+
 <p>level: A</p>
-<h3>description:</h3>
+<h3>description:</h3>    <a href="#video-lesson38">Skip to video lesson</a>
 <p>
   Users must be able to cancel or undo pointer actions that might have harmful or unexpected effects, such as deleting or submitting a form. This means if a user accidentally taps or clicks something, they can cancel the action before it completes.
 </p>
@@ -3674,14 +3798,15 @@ Headings and labels must clearly describe the topic or purpose of the content th
   <!-- Example: Delete button without confirmation -->
   <button onclick="alert('Item deleted immediately!')">Delete Item</button>
 </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson38">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/pointer cancil.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Pointer Cancellation.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -3694,11 +3819,12 @@ Headings and labels must clearly describe the topic or purpose of the content th
 
 
 </div>
-<div id="wcag-page38" class="wcag-page">
+<div id="wcag-page37" class="wcag-page">
 <h2>2.5.3: Label in Name</h2>
 <p>Guideline Name: Input Modalities</p>
+
 <p>level: A</p>
-<h3>description:</h3>
+<h3>description:</h3>    <a href="#video-lesson39">Skip to video lesson</a>
 <p>
   The visible label of a user interface element—such as a button, link, form control, or any interactive component—must be included in its accessible name. The accessible name is what screen readers and other assistive technologies announce to users.
 </p>
@@ -3767,28 +3893,26 @@ Headings and labels must clearly describe the topic or purpose of the content th
 
 <h3>failExamples:</h3>
 <p>
-  <!-- Button with visible label but missing accessible name -->
-  <button aria-label="">Submit Form</button><br><br>
+The visible label is submit form but screen reader reads proceed for the below button.
+  <button aria-label="proceed">Submit Form</button><br><br>
 
   <!-- Icon button with no aria-label or text, so no accessible name -->
   <button>
     <span aria-hidden="true">🔍</span>
   </button><br><br>
+<p>Visually the below link is download form but screen reader reads differently.</p>
+  <a href="report.pdf" aria-label="download report">download form</a><br><br>
 
-  <!-- Link with vague text "Click here" -->
-  <a href="report.pdf">Click here</a><br><br>
-
-  <!-- Form input without associated label or aria-label -->
-  <input type="email" />
 </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson39">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/label in name.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Label in Name.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -3801,11 +3925,12 @@ Headings and labels must clearly describe the topic or purpose of the content th
 
 
 </div>
- <div id="wcag-page39" class="wcag-page">
+ <div id="wcag-page38" class="wcag-page">
 <h2>2.5.4: Motion Actuation</h2>
 <p>Guideline Name: Input Modalities</p>
+
 <p>level: A</p>
-<h3>description:</h3>
+<h3>description:</h3>    <a href="#video-lesson40">Skip to video lesson</a>
 <p>
   Functionality that can be operated by device motion or user motion (like shaking, tilting, or rotating a phone) must also be operable by user interface components (such as buttons) or other standard input methods (like keyboard or touch). 
 </p>
@@ -3861,14 +3986,15 @@ Headings and labels must clearly describe the topic or purpose of the content th
   <!-- Game that moves character only by tilting phone, no keyboard or buttons -->
   <p>Game controls only react to device tilt and cannot be controlled by any buttons or keyboard keys.</p>
 </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson41">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/motion activation.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Motion Actuation.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -3881,12 +4007,13 @@ Headings and labels must clearly describe the topic or purpose of the content th
 
 
 </div>
-<div id="wcag-page40" class="wcag-page">
+<div id="wcag-page39" class="wcag-page">
 <h2>2.5.7: Dragging Movements</h2>
 <p>Guideline Name: Input Modalities</p>
+
 <p>Level: A</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    <a href="#video-lesson42">Skip to video lesson</a>
 <p>
   Functionality that requires dragging movements (like dragging sliders, map pins, or resizing elements) must also be operable by alternative methods that do not require dragging. 
 </p>
@@ -3958,14 +4085,15 @@ Headings and labels must clearly describe the topic or purpose of the content th
   Drag and drop your file here
 </div>
 <p>No keyboard or button option to upload file.</p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson42">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/dragging movements.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Dragging Movements.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -3979,11 +4107,12 @@ Headings and labels must clearly describe the topic or purpose of the content th
 
 </div>
 
-<div id="wcag-page41" class="wcag-page">
+<div id="wcag-page40" class="wcag-page">
 <h2>2.5.8: Target Size</h2>
 <p>Guideline Name: Input Modalities</p>
+
 <p>level: AA</p>
-<h3>description:</h3>
+<h3>description:</h3>    <a href="#video-lesson43">Skip to video lesson</a>
 <p>
   Interactive elements like buttons, links, and form controls must have a target size large enough to be easily activated by users.
 </p>
@@ -4041,14 +4170,15 @@ Headings and labels must clearly describe the topic or purpose of the content th
   <!-- Link with very small clickable area -->
   &lt;a href="#" style="font-size: 8px; padding: 2px;"&gt;Go&lt;/a&gt;
 </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson43">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/target size.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Target Size.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -4061,22 +4191,17 @@ Headings and labels must clearly describe the topic or purpose of the content th
 
 
 </div>
-<div id="wcag-page42" class="wcag-page">
-<h2>3.1.1: Language of Page</h2>
+<div id="wcag-page41" class="wcag-page">
+ <h2>3.1.1: Language of Page</h2>
 <p>Guideline Name: Readable</p>
-<p>level: A</p>
-<h3>description:</h3>
+<p>Level: A</p>
+
+<h3>description:</h3>    <a href="#video-lesson44">Skip to video lesson</a>
 <p>
-  Every web page must declare the default human language using the <code>lang</code> attribute in the <code>&lt;html&gt;</code> tag.
+  Every web page must declare the default primary language using the <code>lang</code> attribute in the <code>&lt;html&gt;</code> tag.
 </p>
 <p>
   This helps screen readers and other assistive technologies pronounce the text correctly and provide an accurate reading experience.
-</p>
-<p>
-  If parts of the page are in a different language, those sections should use the <code>lang</code> attribute with the appropriate language code.
-</p>
-<p>
-  For example, a page primarily in English but with a French quote should mark that quote with <code>lang="fr"</code>.
 </p>
         <div>
             <h3>Practical Test Case: 3.1.1 Language of Page</h3>
@@ -4101,15 +4226,19 @@ Headings and labels must clearly describe the topic or purpose of the content th
   <code>&lt;html lang="en"&gt;</code> <br>
   Text content is in English and screen readers read it accordingly.
   <br><br>
-  <code>&lt;p lang="fr"&gt;Bonjour tout le monde&lt;/p&gt;</code> inside an English page, so screen readers switch language for that paragraph.
+  <code>&lt;html lang="en"&gt;</code> <br>
+  Text content is in French and screen readers read it accordingly.
+
 </p>
 
 <h3>failExamples:</h3>
 <p>
   <code>&lt;html&gt;</code> (missing <code>lang</code> attribute) — screen readers may mispronounce text or guess the language incorrectly. <br>
-  Mixing languages in text without specifying <code>lang</code> on parts of the content, causing incorrect pronunciation.
+  <code>&lt;html lang="fr"&gt;</code> <br>
+  Text content is in English but lang attribute used as french.
+
 </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson44">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/language of page.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -4117,6 +4246,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -4129,11 +4259,11 @@ Headings and labels must clearly describe the topic or purpose of the content th
 
 
 </div>
-<div id="wcag-page43" class="wcag-page">
+<div id="wcag-page42" class="wcag-page">
 <h2>3.1.2: Language of Parts</h2>
 <p>Guideline Name: Readable</p>
 <p>level: AA</p>
-<h3>description:</h3>
+<h3>description:</h3>    <a href="#video-lesson45">Skip to video lesson</a>
 <p>
   When a web page contains sections of text in a different language than the main page language, those parts must have their language declared using the <code>lang</code> attribute.
 </p>
@@ -4175,7 +4305,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
   Spanish and French text included without <code>lang</code> attributes, causing screen readers to use English pronunciation and mispronounce the text. <br>
   For example: <code>&lt;p&gt;Buenos días a todos&lt;/p&gt;</code> without <code>lang="es"</code>.
 </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson45">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/langes of parts.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -4183,6 +4313,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -4196,12 +4327,12 @@ Headings and labels must clearly describe the topic or purpose of the content th
 
 </div>
 
-<div id="wcag-page44	" class="wcag-page">
+<div id="wcag-page43" class="wcag-page">
 <h2>3.2.1: On Focus</h2>
 <p>Guideline Name: Predictable</p>
 <p>Level: A</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    <a href="#video-lesson46">Skip to video lesson</a>
 <p>
   When a user focuses on an element (like a form field or button), it should not automatically trigger a major change like submitting a form or opening a new page. Changes should only happen when the user chooses to do something, like clicking a button.
 </p>
@@ -4249,7 +4380,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
   <option>Go to example.com</option>
 </select>
 <p>This triggers navigation just by focusing, without user action.</p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson46">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/on focus.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -4257,6 +4388,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -4272,12 +4404,13 @@ Headings and labels must clearly describe the topic or purpose of the content th
 
  
 
-<div id="wcag-page45" class="wcag-page">
+<div id="wcag-page44" class="wcag-page">
 <h2>3.2.2: On Input</h2>
 <p>Guideline Name: Predictable</p>
+
 <p>Level: A</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    <a href="#video-lesson47">Skip to video lesson</a>
 <p>
   When users fill in or change something in a form, it should not cause unexpected changes, like submitting the form or refreshing the page, without warning.
 </p>
@@ -4336,7 +4469,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
   </select>
 </form>
 <p>This dropdown submits the form as soon as the value is changed, without the user explicitly submitting.</p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson47">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/on input.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -4344,6 +4477,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -4359,11 +4493,12 @@ Headings and labels must clearly describe the topic or purpose of the content th
 
  
 
-<div id="wcag-page46" class="wcag-page">
+<div id="wcag-page45" class="wcag-page">
     <h2>3.2.3: Consistent Navigation</h2>
 <p>Guideline Name: Predictable</p>
+
     <p>level: AA</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    <a href="#video-lesson48">Skip to video lesson</a>
     <p>If a website has the same navigation links on multiple pages, they should appear in the same order and location. This helps users learn and rely on the navigation.</p>
         <div>
             <h3>Practical Test Case: 3.2.3 Consistent Navigation</h3>
@@ -4392,7 +4527,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <p>
         Navigation links are rearranged on different pages.
     </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson48">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/consistent navigation.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -4400,6 +4535,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -4415,11 +4551,12 @@ Headings and labels must clearly describe the topic or purpose of the content th
 
  
 
-<div id="wcag-page47" class="wcag-page">
+<div id="wcag-page46" class="wcag-page">
     <h2>3.2.4: Consistent Identification</h2>
 <p>Guideline Name: Predictable</p>
+
     <p>level: AA</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    <a href="#video-lesson49">Skip to video lesson</a>
     <p>Components with the same function should be labeled the same way across pages. This avoids confusion for users.</p>
         <div>
             <h3>Practical Test Case: 3.2.4 Consistent Identification</h3>
@@ -4449,7 +4586,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <p>
         One search button says “Go” and another says “Find” for the same function.
     </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson49">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/consistent identification.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -4457,6 +4594,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -4472,11 +4610,12 @@ Headings and labels must clearly describe the topic or purpose of the content th
 
  
 
-<div id="wcag-page48" class="wcag-page">
+<div id="wcag-page47" class="wcag-page">
     <h2>3.2.6: Consistent Help</h2>
 <p>Guideline Name: Predictable</p>
+
     <p>level: A</p>
-    <h3>description:</h3>
+    <h3>description:</h3>    <a href="#video-lesson50">Skip to video lesson</a>
     <p>If help is available on a page (like live chat, FAQs, or contact info), it should be located in the same place on all pages.</p>
     <div>
         <h3>Practical Test Case: 3.2.6 Consistent Help</h3>
@@ -4507,7 +4646,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <p>
         Help link appears on the home page only and nowhere else.
     </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson50">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/consistent help.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -4515,6 +4654,7 @@ Headings and labels must clearly describe the topic or purpose of the content th
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -4530,12 +4670,12 @@ Headings and labels must clearly describe the topic or purpose of the content th
 
  
 
-<div id="wcag-page49" class="wcag-page">
+<div id="wcag-page48" class="wcag-page">
 <h2>3.3.1: Error Identification</h2>
 <p>Guideline Name: Input Assistance</p>
 <p>Level: A</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    <a href="#video-lesson51">Skip to video lesson</a>
 <p>
 When users make a mistake in a form — such as leaving a required field empty, entering an invalid email address, or typing a password that doesn’t meet the rules — the error must be clearly shown to them. This helps everyone, especially people using screen readers or with cognitive disabilities, understand what went wrong and how to fix it.
 </p>
@@ -4616,8 +4756,7 @@ For example, if a user submits a form without entering their email, they should 
 If the user leaves the field blank and submits the form, the page reloads and no message is shown. This is confusing and makes it hard for the user to understand what they did wrong.
 </p>
 <a href="error_identification_testing.html" target="_blank">Example testing page [opens a new window]</a>
-
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson51">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/error identification.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -4625,6 +4764,7 @@ If the user leaves the field blank and submits the form, the page reloads and no
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -4640,12 +4780,13 @@ If the user leaves the field blank and submits the form, the page reloads and no
 
  
 
-<div id="wcag-page50" class="wcag-page">
+<div id="wcag-page49" class="wcag-page">
 <h2>3.3.2: Labels or Instructions</h2>
 <p>Guideline Name: Input Assistance</p>
+
 <p>Level: A</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    <a href="#video-lesson52">Skip to video lesson</a>
 <p>
 Every form control — such as text inputs, checkboxes, dropdowns, and buttons — must have a clear and descriptive label or instruction. This ensures users, including those using screen readers or with cognitive disabilities, can understand what information is expected in each field.
 </p>
@@ -4719,7 +4860,7 @@ Incorrect or missing labels can confuse users or prevent screen readers from rea
 <input type="text" placeholder="Enter email">
 
 <p>This input lacks a proper <code>&lt;label&gt;</code>. Placeholders are not accessible substitutes because they disappear as the user types and are not always read reliably by screen readers.</p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson52">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/labels or instructions.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -4727,6 +4868,7 @@ Incorrect or missing labels can confuse users or prevent screen readers from rea
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -4742,12 +4884,13 @@ Incorrect or missing labels can confuse users or prevent screen readers from rea
 
  
 
-<div id="wcag-page51" class="wcag-page">
+<div id="wcag-page50" class="wcag-page">
 <h2>3.3.3: Error Suggestion</h2>
 <p>Guideline Name: Input Assistance</p>
+
 <p>Level: AA</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    <a href="#video-lesson53">Skip to video lesson</a>
 <p>
 When a user makes a mistake while filling out a form, the error message should clearly explain how to fix the problem. This helps users complete their tasks without confusion or frustration, especially those with cognitive disabilities or those using assistive technologies.
 </p>
@@ -4846,7 +4989,7 @@ For example, instead of simply showing “Invalid input,” a helpful error mess
 </script>
 
 <p>In this example, the message “Invalid input” does not tell the user what exactly is wrong or how to fix it.</p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson53">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/error suggestion.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -4854,6 +4997,7 @@ For example, instead of simply showing “Invalid input,” a helpful error mess
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -4869,12 +5013,13 @@ For example, instead of simply showing “Invalid input,” a helpful error mess
 
  
 
-<div id="wcag-page52" class="wcag-page">
+<div id="wcag-page51" class="wcag-page">
 <h2>3.3.4: Error Prevention (Legal, Financial, Data)</h2>
 <p>Guideline Name: Input Assistance</p>
+
 <p>Level: AA</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    <a href="#video-lesson54">Skip to video lesson</a>
 <p>
 When users are about to submit critical information—such as financial details, legal agreements, or important personal data—the system should help prevent accidental errors. This can be done by offering one or more of the following:
 </p>
@@ -4981,7 +5126,7 @@ This is especially important for tasks like placing orders, making payments, sub
 </script>
 
 <p>This example places an order directly after clicking “Buy Now” with no opportunity to confirm or correct the quantity.</p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson54">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/error prevenction.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -4989,6 +5134,7 @@ This is especially important for tasks like placing orders, making payments, sub
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -5004,12 +5150,13 @@ This is especially important for tasks like placing orders, making payments, sub
 
  
 
-<div id="wcag-page53" class="wcag-page">
+<div id="wcag-page52" class="wcag-page">
 <h2>3.3.7: Redundant Entry</h2>
 <p>Guideline Name: Input Assistance</p>
+
 <p>Level: A</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    <a href="#video-lesson55">Skip to video lesson</a>
 <p>
 When users are filling out forms or completing processes, they should not be forced to enter the same information multiple times. For example, if billing and shipping addresses are required, the user should be able to copy one address into the other with a single action instead of typing it again. This reduces effort, errors, and frustration, especially for users with disabilities.
 </p>
@@ -5102,7 +5249,7 @@ A common solution is to provide a checkbox like “Shipping address is the same 
 <p>
 Users must manually enter the same address twice with no option to copy or autofill the shipping address from the billing address.
 </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson55">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/redented entry.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -5110,6 +5257,7 @@ Users must manually enter the same address twice with no option to copy or autof
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -5125,12 +5273,13 @@ Users must manually enter the same address twice with no option to copy or autof
 
  
 
-<div id="wcag-page54" class="wcag-page">
+<div id="wcag-page53" class="wcag-page">
 <h2>3.3.8: Accessible Authentication</h2>
 <p>Guideline Name: Input Assistance</p>
+
 <p>Level: AA</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    <a href="#video-lesson56">Skip to video lesson</a>
 <p>
 Authentication processes should be accessible to all users, including those who have difficulty remembering or typing passwords. This means providing alternative login methods such as biometric authentication (fingerprint, face recognition), one-time login links sent by email, or magic links. These methods reduce the barrier for users with cognitive, motor, or vision impairments.
 </p>
@@ -5216,14 +5365,15 @@ Additionally, if passwords are used, users should be able to easily see or hear 
 <p>
 Users must remember and type a password with no alternative login methods like biometric or magic links.
 </p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson56">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-    <source src="wcag_telugu_videos/accessible authontitation.mp4" type="video/mp4">
+    <source src="wcag_telugu_videos/Accessible Authentication.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -5239,7 +5389,7 @@ Users must remember and type a password with no alternative login methods like b
 <p>Guideline Name: Compatible</p>
 <p>Level: A</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    <a href="#video-lesson57">Skip to video lesson</a>
 <p>
   This guideline ensures that every user interface control (buttons, checkboxes, sliders, custom widgets, etc.) must clearly provide three important pieces of information to assistive technologies like screen readers:
 </p>
@@ -5336,7 +5486,7 @@ Users must remember and type a password with no alternative login methods like b
   oninput="console.log(this.value);" 
 />
 <p>The slider moves visually, but it does not update <code>aria-valuenow</code> or provide an accessible name, so screen readers cannot convey the current value to users.</p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson57">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/name role value.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -5344,6 +5494,7 @@ Users must remember and type a password with no alternative login methods like b
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -5359,10 +5510,9 @@ Users must remember and type a password with no alternative login methods like b
 
 <div id="wcag-page55" class="wcag-page"> 
 <h2>4.1.3: Status Messages</h2>
-<p>Guideline Name: Compatible</p>
 <p>Level: AA</p>
 
-<h3>Description:</h3>
+<h3>description:</h3>    <a href="#video-lesson58">Skip to video lesson</a>
 <p>
   This guideline ensures that users of assistive technologies like screen readers are automatically informed when important information or status updates appear on the page, without needing to move their keyboard focus.
 </p>
@@ -5458,7 +5608,7 @@ Users must remember and type a password with no alternative login methods like b
 </script>
 
 <p>The status updates are not announced because no <code>aria-live</code> attribute is used.</p>
-                    <h3>Telugu video explanation with practical:</h3>
+                    <h3 id="video-lesson58">Telugu video explanation with practical:</h3>
   <div class="video-container"><video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
     <source src="wcag_telugu_videos/status message.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -5466,6 +5616,7 @@ Users must remember and type a password with no alternative login methods like b
     <div class="controls">
 <label for="seek">Seek</label>
         <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
         <button class="rewind">Rewind 10s</button>
         <button class="playPause">Play</button>
         <button class="forward">Forward 10s</button>
@@ -5474,7 +5625,6 @@ Users must remember and type a password with no alternative login methods like b
 <input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
         <button class="fullscreen">Fullscreen</button>
     </div>
-
 </div>
 
 
@@ -6071,6 +6221,64 @@ Users must remember and type a password with no alternative login methods like b
 </div>
 
 </div>
+<div id="aria-page20" class="aria-page">
+  <h2>role="alert"</h2>
+  <p>The <code>role="alert"</code> makes content automatically announced by screen readers as soon as it appears. This is useful for error messages or important notices that users should know about immediately without moving their focus.</p>
+
+  <h3><strong>Example:</strong> Displaying an error message.</h3>
+  <pre><code>&lt;div role="alert"&gt;
+  Error: You must fill out all required fields.
+&lt;/div&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-alert.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
+</div>
+<div id="aria-page21" class="aria-page">
+  <h2>role="dialog"</h2>
+  <p>The <code>role="dialog"</code> is used for modal or popup dialog boxes. It lets screen reader users know they’re inside a dialog and should not interact with the rest of the page until it’s closed. It's often paired with <code>aria-modal="true"</code> and focus trapping.</p>
+
+  <p><strong>Example:</strong> A modal popup with content.</p>
+  <pre><code>&lt;div role="dialog" aria-modal="true"&gt;
+  Are you sure you want to delete this item?
+&lt;/div&gt;</code></pre>
+                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
+<div class="video-container">
+    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+        <source src="aria_telugu_videos/role-dialog.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+</div>
+
+</div>
 <div id="aria-page22" class="aria-page">
   <h2>aria-modal</h2>
   <p>The <code>aria-modal</code> attribute is used with <code>role="dialog"</code> to tell screen readers that the dialog is modal. This means users should interact only with the dialog content until it's closed. It prevents screen readers from reading other content in the background.</p>
@@ -6469,7 +6677,49 @@ Users must remember and type a password with no alternative login methods like b
   <pre><code>&lt;div role="gridcell" aria-colspan="2"&gt;Merged Column&lt;/div&gt;</code></pre>
 
   <p><strong>aria-rowspan:</strong> Defines how many rows a cell should span.</p>
-  <pre><code>&lt;div role="gridcell" aria-rowspan="2"&gt;Merged Row&lt;/div&gt;</code></pre>
+  <pre><code>&lt;div role="table" aria-label="Student Marks Report"&gt;
+    &lt;caption&gt;Student Marks Report&lt;/caption&gt;
+
+    &lt;!-- First row --&gt;
+    &lt;div role="row"&gt;
+      &lt;div role="columnheader" aria-rowspan="2"&gt;Student Name&lt;/div&gt;
+      &lt;div role="columnheader" aria-colspan="3"&gt;Subjects&lt;/div&gt;
+      &lt;div role="columnheader" aria-rowspan="2"&gt;Total&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Second row --&gt;
+    &lt;div role="row"&gt;
+      &lt;div role="columnheader"&gt;Math&lt;/div&gt;
+      &lt;div role="columnheader"&gt;Science&lt;/div&gt;
+      &lt;div role="columnheader"&gt;English&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Data rows --&gt;
+    &lt;div role="row"&gt;
+      &lt;div role="rowheader"&gt;Alice&lt;/div&gt;
+      &lt;div role="cell"&gt;85&lt;/div&gt;
+      &lt;div role="cell"&gt;90&lt;/div&gt;
+      &lt;div role="cell"&gt;88&lt;/div&gt;
+      &lt;div role="cell"&gt;263&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div role="row"&gt;
+      &lt;div role="rowheader"&gt;Bob&lt;/div&gt;
+      &lt;div role="cell"&gt;78&lt;/div&gt;
+      &lt;div role="cell"&gt;83&lt;/div&gt;
+      &lt;div role="cell"&gt;80&lt;/div&gt;
+      &lt;div role="cell"&gt;241&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div role="row"&gt;
+      &lt;div role="rowheader"&gt;Charlie&lt;/div&gt;
+      &lt;div role="cell"&gt;92&lt;/div&gt;
+      &lt;div role="cell"&gt;95&lt;/div&gt;
+      &lt;div role="cell"&gt;89&lt;/div&gt;
+      &lt;div role="cell"&gt;276&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
 
   <h3>Telugu video explanation with practical:</h3>
   <div class="video-container">
@@ -6536,7 +6786,7 @@ Users must remember and type a password with no alternative login methods like b
                     <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
 <div class="video-container">
     <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-        <source src="aria_telugu_videos/aria-colindex.mp4" type="video/mp4">
+        <source src="aria_telugu_videos/aria-placeholder.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <div class="controls">
@@ -6555,29 +6805,30 @@ Users must remember and type a password with no alternative login methods like b
 
 </div>
 <div id="aria-page39" class="aria-page">
-  <h2>aria-posinset and aria-setsize</h2>
-  <p>
-    The <code>aria-posinset</code> and <code>aria-setsize</code> attributes work together to 
-    describe an element’s position within a list or set.
-    They help assistive technologies provide context like 
-    <em>“Option 2 of 4”</em> so users know their place in the sequence.
-  </p>
+<h2>aria-posinset and aria-setsize</h2>
+<p>
+  The <code>aria-posinset</code> and <code>aria-setsize</code> attributes work together to 
+  describe an element’s position within a list or set.
+  They help assistive technologies provide context like 
+  <em>“Option 2 of 4”</em> so users know their place in the sequence.
+</p>
 
-  <ul role="listbox">
-    <li role="option" aria-posinset="1" aria-setsize="4">Option 1</li>
-    <li role="option" aria-posinset="2" aria-setsize="4">Option 2</li>
-    <li role="option" aria-posinset="3" aria-setsize="4">Option 3</li>
-    <li role="option" aria-posinset="4" aria-setsize="4">Option 4</li>
-  </ul>
+<pre><code>
+&lt;ul role="listbox"&gt;
+  &lt;li role="option" aria-posinset="1" aria-setsize="4"&gt;Option 1&lt;/li&gt;
+  &lt;li role="option" aria-posinset="2" aria-setsize="4"&gt;Option 2&lt;/li&gt;
+  &lt;li role="option" aria-posinset="3" aria-setsize="4"&gt;Option 3&lt;/li&gt;
+  &lt;li role="option" aria-posinset="4" aria-setsize="4"&gt;Option 4&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
 
-  <p><strong>Explanation:</strong></p>
-  <ul>
-    <li><code>aria-posinset</code> = The current item’s position in the set.</li>
-    <li><code>aria-setsize</code> = The total number of items in the set.</li>
-    <li>Together, they allow a screen reader to announce context like 
-        <em>“Option 2 of 4”</em>.</li>
-  </ul>
-
+<p><strong>Explanation:</strong></p>
+<ul>
+  <li><code>aria-posinset</code> = The current item’s position in the set.</li>
+  <li><code>aria-setsize</code> = The total number of items in the set.</li>
+  <li>Together, they allow a screen reader to announce context like 
+      <em>“Option 2 of 4”</em>.</li>
+</ul>
   <h3>Telugu video explanation with practical:</h3>
   <div class="video-container">
       <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
@@ -7776,62 +8027,6 @@ Users must remember and type a password with no alternative login methods like b
 
 
 </div>
-<div id="aria-page20" class="aria-page">
-  <h2>role="alert"</h2>
-  <p>The <code>role="alert"</code> makes content automatically announced by screen readers as soon as it appears. This is useful for error messages or important notices that users should know about immediately without moving their focus.</p>
-
-  <h3><strong>Example:</strong> Displaying an error message.</h3>
-  <pre><code>&lt;div role="alert"&gt;
-  Error: You must fill out all required fields.
-&lt;/div&gt;</code></pre>
-                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
-<div class="video-container">
-    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-        <source src="aria_telugu_videos/role-alert.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="controls">
-<label for="seek">Seek</label>
-        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
-
-        <button class="rewind">Rewind 10s</button>
-        <button class="playPause">Play</button>
-        <button class="forward">Forward 10s</button>
-        <button class="mute">Mute</button>
-<label for="volume">Volume</label>        
-<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
-        <button class="fullscreen">Fullscreen</button>
-    </div>
-</div>
-
-</div>
-<div id="aria-page21" class="aria-page">
-  <h2>role="dialog"</h2>
-  <p>The <code>role="dialog"</code> is used for modal or popup dialog boxes. It lets screen reader users know they’re inside a dialog and should not interact with the rest of the page until it’s closed. It's often paired with <code>aria-modal="true"</code> and focus trapping.</p>
-
-  <p><strong>Example:</strong> A modal popup with content.</p>
-  <pre><code>&lt;div role="dialog" aria-modal="true"&gt;
-  Are you sure you want to delete this item?
-&lt;/div&gt;</code></pre>
-                    <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
-<div class="video-container">
-    <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-        <source src="aria_telugu_videos/role-dialog.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="controls">
-<label for="seek">Seek</label>
-        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
-
-        <button class="rewind">Rewind 10s</button>
-        <button class="playPause">Play</button>
-        <button class="forward">Forward 10s</button>
-        <button class="mute">Mute</button>
-<label for="volume">Volume</label>        
-<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
-        <button class="fullscreen">Fullscreen</button>
-    </div>
-</div>
 
 <div id="aria-page64" class="aria-page">
   <h2>role="status"</h2>
@@ -7892,7 +8087,6 @@ Users must remember and type a password with no alternative login methods like b
 </div>
 
 </div>
-
             <div class="pagination-controls">
                 <button id="prev-aria" disabled>Previous</button>
                 <span id="current-aria-num" aria-live="polite"></span>
@@ -7960,7 +8154,7 @@ Users must remember and type a password with no alternative login methods like b
 
   <div class="video-container">
 <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
- <source src="wcag_english_videos/axe.mp4" type="video/mp4">
+ <source src="wcag_telugu_videos/axe.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
     <div class="controls">
@@ -8039,7 +8233,7 @@ Users must remember and type a password with no alternative login methods like b
 <h3 id="video-lesson">Video Demo</h3>
   <div class="video-container">
 <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
- <source src="wcag_english_videos/wave.mp4" type="video/mp4">
+ <source src="wcag_telugu_videos/wave.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
     <div class="controls">
@@ -8112,7 +8306,7 @@ Users must remember and type a password with no alternative login methods like b
 <h3 id="video-lesson">Video Demo</h3>
   <div class="video-container">
 <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
- <source src="wcag_english_videos/lighthouse.mp4" type="video/mp4">
+ <source src="wcag_telugu_videos/lighthouse.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>                
     <div class="controls">

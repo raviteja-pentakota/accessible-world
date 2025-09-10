@@ -6677,7 +6677,49 @@ Users must remember and type a password with no alternative login methods like b
   <pre><code>&lt;div role="gridcell" aria-colspan="2"&gt;Merged Column&lt;/div&gt;</code></pre>
 
   <p><strong>aria-rowspan:</strong> Defines how many rows a cell should span.</p>
-  <pre><code>&lt;div role="gridcell" aria-rowspan="2"&gt;Merged Row&lt;/div&gt;</code></pre>
+  <pre><code>&lt;div role="table" aria-label="Student Marks Report"&gt;
+    &lt;caption&gt;Student Marks Report&lt;/caption&gt;
+
+    &lt;!-- First row --&gt;
+    &lt;div role="row"&gt;
+      &lt;div role="columnheader" aria-rowspan="2"&gt;Student Name&lt;/div&gt;
+      &lt;div role="columnheader" aria-colspan="3"&gt;Subjects&lt;/div&gt;
+      &lt;div role="columnheader" aria-rowspan="2"&gt;Total&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Second row --&gt;
+    &lt;div role="row"&gt;
+      &lt;div role="columnheader"&gt;Math&lt;/div&gt;
+      &lt;div role="columnheader"&gt;Science&lt;/div&gt;
+      &lt;div role="columnheader"&gt;English&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Data rows --&gt;
+    &lt;div role="row"&gt;
+      &lt;div role="rowheader"&gt;Alice&lt;/div&gt;
+      &lt;div role="cell"&gt;85&lt;/div&gt;
+      &lt;div role="cell"&gt;90&lt;/div&gt;
+      &lt;div role="cell"&gt;88&lt;/div&gt;
+      &lt;div role="cell"&gt;263&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div role="row"&gt;
+      &lt;div role="rowheader"&gt;Bob&lt;/div&gt;
+      &lt;div role="cell"&gt;78&lt;/div&gt;
+      &lt;div role="cell"&gt;83&lt;/div&gt;
+      &lt;div role="cell"&gt;80&lt;/div&gt;
+      &lt;div role="cell"&gt;241&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div role="row"&gt;
+      &lt;div role="rowheader"&gt;Charlie&lt;/div&gt;
+      &lt;div role="cell"&gt;92&lt;/div&gt;
+      &lt;div role="cell"&gt;95&lt;/div&gt;
+      &lt;div role="cell"&gt;89&lt;/div&gt;
+      &lt;div role="cell"&gt;276&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
 
   <h3>English video explanation with practical:</h3>
   <div class="video-container">
@@ -6744,7 +6786,7 @@ Users must remember and type a password with no alternative login methods like b
                     <h3 id="video-lesson1">English video explanation with practical:</h3>
 <div class="video-container">
     <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-        <source src="aria_english_videos/aria-colindex.mp4" type="video/mp4">
+        <source src="aria_english_videos/aria-placeholder.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <div class="controls">
@@ -6763,29 +6805,30 @@ Users must remember and type a password with no alternative login methods like b
 
 </div>
 <div id="aria-page39" class="aria-page">
-  <h2>aria-posinset and aria-setsize</h2>
-  <p>
-    The <code>aria-posinset</code> and <code>aria-setsize</code> attributes work together to 
-    describe an element’s position within a list or set.
-    They help assistive technologies provide context like 
-    <em>“Option 2 of 4”</em> so users know their place in the sequence.
-  </p>
+<h2>aria-posinset and aria-setsize</h2>
+<p>
+  The <code>aria-posinset</code> and <code>aria-setsize</code> attributes work together to 
+  describe an element’s position within a list or set.
+  They help assistive technologies provide context like 
+  <em>“Option 2 of 4”</em> so users know their place in the sequence.
+</p>
 
-  <ul role="listbox">
-    <li role="option" aria-posinset="1" aria-setsize="4">Option 1</li>
-    <li role="option" aria-posinset="2" aria-setsize="4">Option 2</li>
-    <li role="option" aria-posinset="3" aria-setsize="4">Option 3</li>
-    <li role="option" aria-posinset="4" aria-setsize="4">Option 4</li>
-  </ul>
+<pre><code>
+&lt;ul role="listbox"&gt;
+  &lt;li role="option" aria-posinset="1" aria-setsize="4"&gt;Option 1&lt;/li&gt;
+  &lt;li role="option" aria-posinset="2" aria-setsize="4"&gt;Option 2&lt;/li&gt;
+  &lt;li role="option" aria-posinset="3" aria-setsize="4"&gt;Option 3&lt;/li&gt;
+  &lt;li role="option" aria-posinset="4" aria-setsize="4"&gt;Option 4&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
 
-  <p><strong>Explanation:</strong></p>
-  <ul>
-    <li><code>aria-posinset</code> = The current item’s position in the set.</li>
-    <li><code>aria-setsize</code> = The total number of items in the set.</li>
-    <li>Together, they allow a screen reader to announce context like 
-        <em>“Option 2 of 4”</em>.</li>
-  </ul>
-
+<p><strong>Explanation:</strong></p>
+<ul>
+  <li><code>aria-posinset</code> = The current item’s position in the set.</li>
+  <li><code>aria-setsize</code> = The total number of items in the set.</li>
+  <li>Together, they allow a screen reader to announce context like 
+      <em>“Option 2 of 4”</em>.</li>
+</ul>
   <h3>English video explanation with practical:</h3>
   <div class="video-container">
       <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
