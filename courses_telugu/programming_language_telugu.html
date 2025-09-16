@@ -4,317 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web development [Telugu Explanation]- Accessible World</title>
-  <link rel="stylesheet" href="video_style.css">
+    <link rel="stylesheet" href="video_style.css">
 
-    <style>
-        /* Your existing CSS remains the same */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            display: none; /* Hidden until Firebase authentication confirms access */
-        }
-
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: #007bff;
-            color: white;
-            padding: 8px;
-            z-index: 1000;
-            transition: top 0.3s;
-        }
-
-        .skip-link:focus {
-            top: 0;
-        }
-
-        header {
-            background-color: #0056b3;
-            color: white;
-            padding: 15px 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2em;
-        }
-
-        .profile-item {
-            margin: 5px 0;
-            font-size: 0.9em;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            background-color: #e2e6ea;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        nav ul li {
-            margin: 0;
-        }
-
-        nav ul li a {
-            display: block;
-            padding: 10px 15px;
-            text-decoration: none;
-            color: #0056b3;
-            font-weight: bold;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        nav ul li a:hover, nav ul li a:focus {
-            background-color: #d6dbe0;
-            color: #003e80;
-        }
-
-        main {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 20px auto;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        main h2 {
-            color: #0056b3;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .tab-container {
-            margin-bottom: 20px;
-            border-bottom: 2px solid #eee;
-        }
-
-        .tab-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 0;
-            margin: 0;
-            list-style-type: none;
-        }
-
-        .tab-buttons button {
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            border-bottom: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 1em;
-            border-radius: 5px 5px 0 0;
-            margin-right: 5px;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .tab-buttons button.active {
-            background-color: white;
-            border-color: #007bff;
-            color: #007bff;
-            font-weight: bold;
-        }
-
-        .tab-buttons button:hover:not(.active) {
-            background-color: #e0e0e0;
-        }
-
-        .tab-content {
-            display: none;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-top: none;
-            border-radius: 0 0 8px 8px;
-            min-height: 300px;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .intro-page {
-            display: none;
-            padding: 10px 0;
-        }
-
-        .intro-page.active {
-            display: block;
-        }
-
-        .pagination-controls {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .pagination-controls button {
-            padding: 8px 15px;
-            border: 1px solid #007bff;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 0.9em;
-            transition: background-color 0.3s ease, opacity 0.3s ease;
-        }
-
-        .pagination-controls button:hover:not(:disabled) {
-            background-color: #0056b3;
-        }
-
-        .pagination-controls button:disabled {
-            background-color: #cccccc;
-            border-color: #cccccc;
-            color: #666;
-            cursor: not-allowed;
-        }
-
-        .pagination-controls span {
-            font-weight: bold;
-            color: #555;
-            min-width: 70px;
-            text-align: center;
-        }
-
-        .wcag-page hr, .aria-page hr { /* Combined for brevity */
-            border: 0;
-            height: 1px;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-            margin: 30px 0;
-        }
-
-        .wcag-page h4, .wcag-page h5, .aria-page h4, .aria-page h5 { /* Adjusted from h2/h3 to match new structure */
-            color: #0056b3;
-            margin-bottom: 10px;
-        }
-        .wcag-page h5, .aria-page h5 {
-            color: #004085;
-            margin-top: 15px;
-        }
-
-        .wcag-page p, .aria-page p {
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        .wcag-page ul {
-            list-style-type: disc;
-            margin-left: 25px;
-            margin-bottom: 15px;
-        }
-
-        .wcag-page li {
-            margin-bottom: 5px;
-        }
-
-        .wcag-page iframe, .aria-page iframe {
-            width: 100%;
-            max-width: 700px;
-            height: 394px;
-            display: block;
-            margin: 20px auto;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .aria-page pre {
-            background-color: #f8f8f8;
-            border: 1px solid #ddd;
-            padding: 10px;
-            border-radius: 5px;
-            overflow-x: auto;
-            margin-bottom: 15px;
-        }
-
-        .aria-page code {
-            font-family: 'Courier New', Courier, monospace;
-            color: #c7254e;
-        }
-
-        .aria-page strong { /* For emphasis within aria page text */
-            color: #004085;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            background-color: #0056b3;
-            color: white;
-            font-size: 0.9em;
-        }
-
-        .profile-container {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            display: inline-block;
-        }
-
-        .profile-container > button { /* Style for the main Profile button */
-            padding: 8px 15px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .profile-container > button:hover {
-            background-color: #0056b3;
-        }
-
-        .profile-dropdown {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 220px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 100;
-            right: 0;
-            border-radius: 4px;
-            padding: 10px;
-            top: 45px;
-            color: #333;
-            text-align: left;
-        }
-
-        .profile-dropdown p {
-            margin: 8px 0;
-            font-size: 14px;
-            padding: 0 5px;
-        }
-        .profile-dropdown p strong { /* Ensure strong tag text is clear */
-            color: #333;
-        }
-
-        .profile-dropdown button#logout-btn {
-            width: calc(100% - 10px);
-            margin: 10px 5px 0;
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .profile-dropdown button#logout-btn:hover {
-            background-color: #c82333;
-        }
-    </style>
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -332,18 +23,19 @@
         </div>
     </header>
     <nav aria-label="main">
-
         <ul type="none">
             <li><a href="courses.html">Go to Courses Home Page</a></li>
             <li><a href="/dashboard.html">Go to dashboard page</a></li>
         </ul>
     </nav>
     <nav aria-label="Course Navigation">
+    <nav aria-label="Course Navigation">
         <ul type="none">
 <li><a href="basic_computers_telugu.html">Basic Computers with Telugu explanation</a></li>
-            <li><a href="programming_language_english.html">Programming Languages with English explanation</a>
-            <li><a href="accessibility_telugu.html">Web Accessibility with Telugu explanation</a></li>
-            <li><a href="accessibility_english.html">Web Accessibility with English explanation</a></li>
+            <li><a href="programming_language_telugu.html" aria-current="page">Web Development with Telugu Explanation</a>
+            <li><a href="programming_language_english.html">Web Development with English Explanation</a>
+            <li><a href="accessibility_telugu.html">Web Accessibility with Telugu Explanation</a></li>
+            <li><a href="accessibility_english.html">Web Accessibility with English Explanation</a></li>
             <li><a href="interview.html">Interview Questions</a></li>
             <li><a href="gk.html">GK Bits</a></li>
         </ul>
@@ -353,25 +45,23 @@
         <div class="tab-container">
             <ul class="tab-buttons" role="tablist">
                 <li role="presentation"><button role="tab" id="intro-tab" aria-controls="intro-content" aria-selected="true" class="active">HTML Topics</button></li>
+                <li role="presentation"><button role="tab" id="javascript-tab" aria-controls="javascript-content" aria-selected="false">Java Script Topics</button></li>
             </ul>
         </div>
         <div id="intro-content" class="tab-content active" role="tabpanel" aria-labelledby="intro-tab">
             <div id="intro-pages">
                 <div id="intro-page1" class="intro-page active">
-                    <h2>Lesson 1: Introduction to HTML </h2>
-<a href="#video-lesson1">Jump to video lesson</a>
-<p>
-  HTML stands for HyperText Markup Language. It is the standard language used to create and design web pages. HTML provides the basic structure of a web page by using elements like headings, paragraphs, links, images, lists, and more. These elements are represented by tags such as &lt;h1&gt;, &lt;p&gt;, &lt;a&gt;, &lt;img&gt;, and others.
-</p>
-
-<p>
-  Learning HTML is essential for anyone who wants to build websites or become a web developer. It is the foundation of all web content. Without HTML, there would be no way to display text, images, or multimedia on a webpage. Understanding HTML also helps in learning CSS and JavaScript, which are used to style and add interactivity to web pages.
-</p>
-
-<p>
-  HTML was first developed by Tim Berners-Lee in 1991 while he was working at CERN (European Organization for Nuclear Research). He created it as a way to share documents over the internet using hyperlinks. Since then, HTML has gone through many updates and improvements, with the latest version being HTML5.
-</p>
-
+                    <h2>Lesson 1: Introduction to HTML</h2>
+                    <a href="#video-lesson1">Jump to video lesson</a>
+                    <p>
+                        HTML stands for HyperText Markup Language. It is the standard language used to create and design web pages. HTML provides the basic structure of a web page by using elements like headings, paragraphs, links, images, lists, and more. These elements are represented by tags such as &lt;h1&gt;, &lt;p&gt;, &lt;a&gt;, &lt;img&gt;, and others.
+                    </p>
+                    <p>
+                        Learning HTML is essential for anyone who wants to build websites or become a web developer. It is the foundation of all web content. Without HTML, there would be no way to display text, images, or multimedia on a webpage. Understanding HTML also helps in learning CSS and JavaScript, which are used to style and add interactivity to web pages.
+                    </p>
+                    <p>
+                        HTML was first developed by Tim Berners-Lee in 1991 while he was working at CERN (European Organization for Nuclear Research). He created it as a way to share documents over the internet using hyperlinks. Since then, HTML has gone through many updates and improvements, with the latest version being HTML5.
+                    </p>
                     <h3>Key Topics We Cover:</h3>
                     <ul>
                         <li>HTML Basic Structure</li>
@@ -386,112 +76,97 @@
                         <li>Creating a Complete Web Page</li>
                     </ul>
                     <h3 id="video-lesson1">Telugu video explanation with practical:</h3>
-  <div class="video-container">
-<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
- <source src="HTML_Telugu_Videos/introduction to HTML.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
-
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="HTML_Telugu_Videos/introduction to HTML.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
                     <p>Click on the next button to start the first topic: HTML basic code.</p>
                 </div>
-                <div id="intro-page3" class="intro-page">
-                    <h2>Lesson2: Basic HTML code</h2>
-<a href="#video-lesson2">Jump to video lesson</a>
-
-<p>
-  Every HTML web page starts with a special declaration: <code>&lt;!DOCTYPE html&gt;</code>. This tells the web browser that the document is written using HTML5, the latest version of HTML. It helps browsers understand and display the content correctly.
-</p>
-
-<p>
-  After the doctype, the structure begins with the <code>&lt;html&gt;</code> tag, which wraps the entire content of the page. Inside the HTML tag, there are two main sections: <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code>.
-</p>
-
-<p>
-  The <code>&lt;head&gt;</code> section contains important information about the web page that is not visible to users, such as the page title, character encoding, and links to other resources. The <code>&lt;title&gt;</code> tag, which is placed inside the head section, sets the text shown in the browser’s title bar or tab.
-</p>
-
-<p>
-  The <code>&lt;body&gt;</code> section includes all the content that appears on the web page, like text, images, links, and buttons. Everything the user interacts with goes inside this tag.
-</p>
-
-<p>
-  HTML elements usually have an opening tag and a closing tag. The closing tag has a forward slash <code>/</code> before the tag name. For example, <code>&lt;title&gt;</code> is the opening tag and <code>&lt;/title&gt;</code> is the closing tag. This structure tells the browser where each element starts and ends.
-</p>
+                <div id="intro-page2" class="intro-page">
+                    <h2>Lesson 2: Basic HTML code</h2>
+                    <a href="#video-lesson2">Jump to video lesson</a>
+                    <p>
+                        Every HTML web page starts with a special declaration: <code>&lt;!DOCTYPE html&gt;</code>. This tells the web browser that the document is written using HTML5, the latest version of HTML. It helps browsers understand and display the content correctly.
+                    </p>
+                    <p>
+                        After the doctype, the structure begins with the <code>&lt;html&gt;</code> tag, which wraps the entire content of the page. Inside the HTML tag, there are two main sections: <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code>.
+                    </p>
+                    <p>
+                        The <code>&lt;head&gt;</code> section contains important information about the web page that is not visible to users, such as the page title, character encoding, and links to other resources. The <code>&lt;title&gt;</code> tag, which is placed inside the head section, sets the text shown in the browser’s title bar or tab.
+                    </p>
+                    <p>
+                        The <code>&lt;body&gt;</code> section includes all the content that appears on the web page, like text, images, links, and buttons. Everything the user interacts with goes inside this tag.
+                    </p>
+                    <p>
+                        HTML elements usually have an opening tag and a closing tag. The closing tag has a forward slash <code>/</code> before the tag name. For example, <code>&lt;title&gt;</code> is the opening tag and <code>&lt;/title&gt;</code> is the closing tag. This structure tells the browser where each element starts and ends.
+                    </p>
                     <h3 id="video-lesson2">Telugu video explanation with practical:</h3>
-  <div class="video-container">
-<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
- <source src="HTML_Telugu_Videos/lesson2_basic_html_code.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
-
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="HTML_Telugu_Videos/lesson2_basic_html_code.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
                     <h3>Lesson 2 example code:</h3>
                     <button id="viewCode1" aria-expanded="false" aria-controls="codeExample1">View example code</button>
                     <div id="codeExample1" hidden>
-    <p>All the below content is the HTML code for the 2nd lesson:</p>
-    <pre><code>
+                        <p>All the below content is the HTML code for the 2nd lesson:</p>
+                        <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;title&gt;My first code&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-
 &lt;/body&gt;
 &lt;/html&gt;
-    </code></pre>
+                        </code></pre>
                     </div>
                 </div>
-
                 <div id="intro-page3" class="intro-page">
-                    <h2>Lesson3: Headings and paragraphs</h2>
-<a href="#video-lesson3">Jump to video lesson</a>
-
-<p>
-  Headings and paragraphs are the basic building blocks of content in an HTML page. They help structure the content in a readable and meaningful way. HTML provides six levels of headings, from <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code>. The <code>&lt;h1&gt;</code> tag is used for the main heading of the page, and it is the largest in size. The <code>&lt;h6&gt;</code> is the smallest heading. You should use headings in order to show the importance or structure of content—just like titles, subtitles, and section headings.
-</p>
-
-<p>
-  Paragraphs in HTML are created using the <code>&lt;p&gt;</code> tag. This tag is used to add blocks of text. When you write text between the opening <code>&lt;p&gt;</code> and closing <code>&lt;/p&gt;</code> tags, the browser automatically adds some space before and after the paragraph to separate it from other elements.
-</p>
-
-<p>
-  If you want to break a line within a paragraph (without starting a new paragraph), you can use the <code>&lt;br&gt;</code> tag. This is an empty or self-closing tag, meaning it doesn’t need a closing tag. It’s useful for writing addresses, poems, or whenever you need a manual line break in the content.
-</p>
-
-<p>
-  After writing your HTML code with headings and paragraphs in a text editor like Notepad, it’s important to save the file correctly. To do this, click on <strong>File &gt; Save As</strong>, type a name like <strong>headings.html</strong>, and make sure to select <strong>All Files</strong> in the "Save as type" dropdown. Add the <strong>.html</strong> extension at the end of your file name. Also, choose <strong>UTF-8</strong> encoding if it is available. Once saved, you can open the file in any web browser to see how your headings and paragraphs appear.
-</p>
+                    <h2>Lesson 3: Headings and paragraphs</h2>
+                    <a href="#video-lesson3">Jump to video lesson</a>
+                    <p>
+                        Headings and paragraphs are the basic building blocks of content in an HTML page. They help structure the content in a readable and meaningful way. HTML provides six levels of headings, from <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code>. The <code>&lt;h1&gt;</code> tag is used for the main heading of the page, and it is the largest in size. The <code>&lt;h6&gt;</code> is the smallest heading. You should use headings in order to show the importance or structure of content—just like titles, subtitles, and section headings.
+                    </p>
+                    <p>
+                        Paragraphs in HTML are created using the <code>&lt;p&gt;</code> tag. This tag is used to add blocks of text. When you write text between the opening <code>&lt;p&gt;</code> and closing <code>&lt;/p&gt;</code> tags, the browser automatically adds some space before and after the paragraph to separate it from other elements.
+                    </p>
+                    <p>
+                        If you want to break a line within a paragraph (without starting a new paragraph), you can use the <code>&lt;br&gt;</code> tag. This is an empty or self-closing tag, meaning it doesn’t need a closing tag. It’s useful for writing addresses, poems, or whenever you need a manual line break in the content.
+                    </p>
+                    <p>
+                        After writing your HTML code with headings and paragraphs in a text editor like Notepad, it’s important to save the file correctly. To do this, click on <strong>File > Save As</strong>, type a name like <strong>headings.html</strong>, and make sure to select <strong>All Files</strong> in the "Save as type" dropdown. Add the <strong>.html</strong> extension at the end of your file name. Also, choose <strong>UTF-8</strong> encoding if it is available. Once saved, you can open the file in any web browser to see how your headings and paragraphs appear.
+                    </p>
                     <h3 id="video-lesson3">Telugu video explanation with practical:</h3>
-  <div class="video-container">
-<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
- <source src="HTML_Telugu_Videos/lesson3_headings_paragraphs.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
-
-
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="HTML_Telugu_Videos/lesson3_headings_paragraphs.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
                     <h3>Lesson 3 example code:</h3>
                     <button id="viewCode2" aria-expanded="false" aria-controls="codeExample2">View example code</button>
                     <div id="codeExample2" hidden>
-    <p>All the below content is the HTML code for the third lesson:</p>
-    <pre><code>
+                        <p>All the below content is the HTML code for the third lesson:</p>
+                        <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -503,76 +178,62 @@
 &lt;h2&gt;About Us&lt;/h2&gt;
 &lt;p&gt;Accessible world is the best place to learn and earn.&lt;br&gt;
 We offers complete online courses.&lt;br&gt;
-Our courses are available in both English and Telugu.&lt;/p&gt; 
+Our courses are available in both English and Telugu.&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-    </code></pre>
+                        </code></pre>
                     </div>
                 </div>
-
                 <div id="intro-page4" class="intro-page">
                     <h2>Lesson 4: Paragraph Formatting</h2>
-<a href="#video-lesson4">Jump to video lesson</a>
-
-<p>
-  HTML allows you to format specific parts of your paragraph text to highlight important information, add emphasis, or show changes. These formatting tags help improve readability and meaning for both sighted users and screen reader users.
-</p>
-
-<p>
-  The <code>&lt;strong&gt;</code> tag is used to give strong importance to the text. Most browsers display it in bold, and screen readers also give it extra emphasis. It is preferred over just making text bold because it conveys meaning, not just style.
-</p>
-
-<p>
-  The <code>&lt;b&gt;</code> tag also makes the text bold, but it is used for styling only without any additional importance or meaning. Use this when you want the text to stand out visually, but not semantically.
-</p>
-
-<p>
-  The <code>&lt;i&gt;</code> tag is used to italicize text, usually for technical terms, foreign words, or names of books. Like <code>&lt;b&gt;</code>, it is a visual style and doesn't add any meaning to screen readers.
-</p>
-
-<p>
-  The <code>&lt;em&gt;</code> tag is used to emphasize text. It is usually displayed in italics and screen readers pronounce it with added stress. It is more meaningful than just using <code>&lt;i&gt;</code> for styling.
-</p>
-
-<p>
-  The <code>&lt;ins&gt;</code> tag is used to indicate inserted text, often shown with an underline. It is useful when showing changes or additions in a paragraph, especially in edited documents.
-</p>
-
-<p>
-  The <code>&lt;del&gt;</code> tag shows deleted text, usually displayed with a line through it (strikethrough). It can be used to show corrections or revisions in your content.
-</p>
-
-<p>
-  Another useful formatting tag is <code>&lt;mark&gt;</code>, which highlights text (typically with a yellow background) to draw the reader’s attention to something important.
-</p>
-
-<p>
-  You can also use <code>&lt;sub&gt;</code> for subscript text (like H<sub>2</sub>O) and <code>&lt;sup&gt;</code> for superscript text (like x<sup>2</sup>) within your paragraphs when writing scientific or mathematical content.
-</p>
-
-<p>
-  These formatting tags make your paragraphs more expressive and accessible. Remember to use semantic tags like <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> when the meaning is important, not just the appearance.
-</p>
-
+                    <a href="#video-lesson4">Jump to video lesson</a>
+                    <p>
+                        HTML allows you to format specific parts of your paragraph text to highlight important information, add emphasis, or show changes. These formatting tags help improve readability and meaning for both sighted users and screen reader users.
+                    </p>
+                    <p>
+                        The <code>&lt;strong&gt;</code> tag is used to give strong importance to the text. Most browsers display it in bold, and screen readers also give it extra emphasis. It is preferred over just making text bold because it conveys meaning, not just style.
+                    </p>
+                    <p>
+                        The <code>&lt;b&gt;</code> tag also makes the text bold, but it is used for styling only without any additional importance or meaning. Use this when you want the text to stand out visually, but not semantically.
+                    </p>
+                    <p>
+                        The <code>&lt;i&gt;</code> tag is used to italicize text, usually for technical terms, foreign words, or names of books. Like <code>&lt;b&gt;</code>, it is a visual style and doesn't add any meaning to screen readers.
+                    </p>
+                    <p>
+                        The <code>&lt;em&gt;</code> tag is used to emphasize text. It is usually displayed in italics and screen readers pronounce it with added stress. It is more meaningful than just using <code>&lt;i&gt;</code> for styling.
+                    </p>
+                    <p>
+                        The <code>&lt;ins&gt;</code> tag is used to indicate inserted text, often shown with an underline. It is useful when showing changes or additions in a paragraph, especially in edited documents.
+                    </p>
+                    <p>
+                        The <code>&lt;del&gt;</code> tag shows deleted text, usually displayed with a line through it (strikethrough). It can be used to show corrections or revisions in your content.
+                    </p>
+                    <p>
+                        Another useful formatting tag is <code>&lt;mark&gt;</code>, which highlights text (typically with a yellow background) to draw the reader’s attention to something important.
+                    </p>
+                    <p>
+                        You can also use <code>&lt;sub&gt;</code> for subscript text (like H<sub>2</sub>O) and <code>&lt;sup&gt;</code> for superscript text (like x<sup>2</sup>) within your paragraphs when writing scientific or mathematical content.
+                    </p>
+                    <p>
+                        These formatting tags make your paragraphs more expressive and accessible. Remember to use semantic tags like <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> when the meaning is important, not just the appearance.
+                    </p>
                     <h3 id="video-lesson4">Telugu video explanation with practical:</h3>
-  <div class="video-container">
-<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
- <source src="HTML_Telugu_Videos/Lesson4_paragraph_formatting.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
-
-
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="HTML_Telugu_Videos/Lesson4_paragraph_formatting.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
                     <h3>Lesson 4 example code:</h3>
-                    <button id="viewCode4" aria-expanded="false" aria-controls="codeExample4">View example code</button>
-                    <div id="codeExample4" hidden>
-    <p>All the below content is the HTML code for the 4th lesson:</p>
-    <pre><code>
+                    <button id="viewCode3" aria-expanded="false" aria-controls="codeExample3">View example code</button>
+                    <div id="codeExample3" hidden>
+                        <p>All the below content is the HTML code for the 4th lesson:</p>
+                        <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -587,16 +248,13 @@ We offers complete online courses.&lt;br&gt;
 Our topics are available in both &lt;ins&gt;Telugu and English.&lt;/ins&gt;&lt;br&gt;
 Our subscription fee will be &lt;del&gt;Rs 1000&lt;/del&gt; and Only one time payment.&lt;/p&gt;
 &lt;/body&gt;
-
 &lt;/html&gt;
-    </code></pre>
+                        </code></pre>
                     </div>
                 </div>
-
-                <div id="intro-page4" class="intro-page">
+                <div id="intro-page5" class="intro-page">
                     <h2>Lesson 5: Bringing Your Web Pages to Life with Images</h2>
-<a href="#video-lesson5">Jump to video lesson</a>
-
+                    <a href="#video-lesson5">Jump to video lesson</a>
                     <p>Welcome back to our HTML tutorial series! In this episode, we'll be focusing on the power of images...</p>
                     <ul>
                         <li><strong>Effortlessly add images:</strong> Utilize the &lt;img&gt; tag...</li>
@@ -605,23 +263,22 @@ Our subscription fee will be &lt;del&gt;Rs 1000&lt;/del&gt; and Only one time pa
                     </ul>
                     <p>Let's get started building your web pages!</p>
                     <h3 id="video-lesson5">Telugu video explanation with practical:</h3>
-  <div class="video-container">
-<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
- <source src="HTML_Telugu_Videos/lesson5_images.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
-
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="HTML_Telugu_Videos/lesson5_images.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
                     <h3>Lesson 5 example code:</h3>
-                    <button id="viewCode5" aria-expanded="false" aria-controls="codeExample5">View example code</button>
-                    <div id="codeExample5" hidden>
-    <p>All the below content is the HTML code for the 5th lesson:</p>
-    <pre><code>
+                    <button id="viewCode4" aria-expanded="false" aria-controls="codeExample4">View example code</button>
+                    <div id="codeExample4" hidden>
+                        <p>All the below content is the HTML code for the 5th lesson:</p>
+                        <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -638,53 +295,47 @@ Our topics are available in both Telugu and English.&lt;br&gt;
 Our subscription fee will be Rs 1000 and Only one time payment.&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-    </code></pre>
+                        </code></pre>
                     </div>
                 </div>
-                <div id="intro-page5" class="intro-page">
+                <div id="intro-page6" class="intro-page">
                     <h2>Lesson 6: Organizing Your Content with HTML Lists</h2>
-<a href="#video-lesson6">Jump to video lesson</a>
-<p>
-  Lists in HTML are used to group related items together in an organized way. They help structure content for better readability and accessibility. HTML supports three main types of lists: unordered lists, ordered lists, and definition (or description) lists.
-</p>
-
-<p>
-  An <strong>unordered list</strong> is used when the sequence of items does not matter. It displays items with bullet points. To create it, you use the <code>&lt;ul&gt;</code> tag, and each item in the list is added using the <code>&lt;li&gt;</code> tag.
-</p>
-
-<p>
-  An <strong>ordered list</strong> is used when the order of the items is important, such as in step-by-step instructions, rankings, or procedures. It displays items with numbers or letters by default. It is created using the <code>&lt;ol&gt;</code> tag, and items are listed inside <code>&lt;li&gt;</code> tags.
-</p>
-
-<p>
-  A <strong>definition list</strong> (also known as a <strong>description list</strong>) is used to display terms and their corresponding definitions or descriptions. This type of list is useful for glossaries, FAQs, or any case where you need to present pairs of items. It is created using the <code>&lt;dl&gt;</code> tag (definition list), where each term is placed inside a <code>&lt;dt&gt;</code> tag (definition term), followed by its description in a <code>&lt;dd&gt;</code> tag (definition description).
-</p>
-
-<p>
-  HTML also allows you to nest lists—placing one list inside another. This is helpful when you need to show sub-items under a main list item, like categories and subcategories.
-</p>
-
-<p>
-  Using lists properly improves your web page’s structure and enhances accessibility. Screen readers can easily detect list structures, making your content more user-friendly for people with visual impairments.
-</p>
+                    <a href="#video-lesson6">Jump to video lesson</a>
+                    <p>
+                        Lists in HTML are used to group related items together in an organized way. They help structure content for better readability and accessibility. HTML supports three main types of lists: unordered lists, ordered lists, and definition (or description) lists.
+                    </p>
+                    <p>
+                        An <strong>unordered list</strong> is used when the sequence of items does not matter. It displays items with bullet points. To create it, you use the <code>&lt;ul&gt;</code> tag, and each item in the list is added using the <code>&lt;li&gt;</code> tag.
+                    </p>
+                    <p>
+                        An <strong>ordered list</strong> is used when the order of the items is important, such as in step-by-step instructions, rankings, or procedures. It displays items with numbers or letters by default. It is created using the <code>&lt;ol&gt;</code> tag, and items are listed inside <code>&lt;li&gt;</code> tags.
+                    </p>
+                    <p>
+                        A <strong>definition list</strong> (also known as a <strong>description list</strong>) is used to display terms and their corresponding definitions or descriptions. This type of list is useful for glossaries, FAQs, or any case where you need to present pairs of items. It is created using the <code>&lt;dl&gt;</code> tag (definition list), where each term is placed inside a <code>&lt;dt&gt;</code> tag (definition term), followed by its description in a <code>&lt;dd&gt;</code> tag (definition description).
+                    </p>
+                    <p>
+                        HTML also allows you to nest lists—placing one list inside another. This is helpful when you need to show sub-items under a main list item, like categories and subcategories.
+                    </p>
+                    <p>
+                        Using lists properly improves your web page’s structure and enhances accessibility. Screen readers can easily detect list structures, making your content more user-friendly for people with visual impairments.
+                    </p>
                     <h3 id="video-lesson6">Telugu video explanation with practical:</h3>
-  <div class="video-container">
-<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
- <source src="HTML_Telugu_Videos/lesson6_list.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
-
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="HTML_Telugu_Videos/lesson6_list.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
                     <h3>Lesson 6 example code:</h3>
-                    <button id="viewCode6" aria-expanded="false" aria-controls="codeExample6">View example code</button>
-                    <div id="codeExample6" hidden>
-    <p>All the below content is the HTML code for the 6th lesson:</p>
-    <pre><code>
+                    <button id="viewCode5" aria-expanded="false" aria-controls="codeExample5">View example code</button>
+                    <div id="codeExample5" hidden>
+                        <p>All the below content is the HTML code for the 6th lesson:</p>
+                        <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -692,7 +343,6 @@ Our subscription fee will be Rs 1000 and Only one time payment.&lt;/p&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;h1&gt;HTML List&lt;/h1&gt;
-
 &lt;h2&gt;Ordered List&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;Jaws&lt;/li&gt;
@@ -700,7 +350,6 @@ Our subscription fee will be Rs 1000 and Only one time payment.&lt;/p&gt;
 &lt;li&gt;TalkBack&lt;/li&gt;
 &lt;li&gt;VoiceOver&lt;/li&gt;
 &lt;/ol&gt;
-
 &lt;h3&gt;Order list example2&lt;/h3&gt;
 &lt;ol type=&quot;A&quot;&gt;
 &lt;li&gt;Jaws&lt;/li&gt;
@@ -708,7 +357,6 @@ Our subscription fee will be Rs 1000 and Only one time payment.&lt;/p&gt;
 &lt;li&gt;TalkBack&lt;/li&gt;
 &lt;li&gt;VoiceOver&lt;/li&gt;
 &lt;/ol&gt;
-
 &lt;h2&gt;Un order list&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Jaws&lt;/li&gt;
@@ -716,7 +364,6 @@ Our subscription fee will be Rs 1000 and Only one time payment.&lt;/p&gt;
 &lt;li&gt;TalkBack&lt;/li&gt;
 &lt;li&gt;VoiceOver&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;h3&gt;Un order list example 2&lt;/h3&gt;
 &lt;ul type=&quot;none&quot;&gt;
 &lt;li&gt;Jaws&lt;/li&gt;
@@ -724,7 +371,6 @@ Our subscription fee will be Rs 1000 and Only one time payment.&lt;/p&gt;
 &lt;li&gt;TalkBack&lt;/li&gt;
 &lt;li&gt;VoiceOver&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;h2&gt;Definition List&lt;/h2&gt;
 &lt;dl&gt;
 &lt;dt&gt;JAWS&lt;/dt&gt;
@@ -732,79 +378,68 @@ Our subscription fee will be Rs 1000 and Only one time payment.&lt;/p&gt;
 &lt;dt&gt;NVDA&lt;/dt&gt;
 &lt;dd&gt;Non Visible Desktop Access&lt;/dd&gt;
 &lt;/dl&gt;
-
 &lt;/body&gt;
 &lt;/html&gt;
-    </code></pre>
+                        </code></pre>
                     </div>
-</div>
-
+                </div>
                 <div id="intro-page7" class="intro-page">
                     <h2>Lesson 7: Connecting Your Web Pages with HTML Hyperlinks</h2>
-<a href="#video-lesson7">Jump to video lesson</a>
-<p>
-  <strong>HTML Hyperlinks</strong> allow users to navigate from one page to another or to different sections of the same page. Hyperlinks are created using the <code>&lt;a&gt;</code> (anchor) tag in HTML.
-</p>
-
-<p>
-  The <code>&lt;a&gt;</code> tag uses the <code>href</code> attribute to specify the destination of the link. When users click the link, they are taken to the page or section specified in the <code>href</code>.
-</p>
-
-<p>
-  <strong>Example:</strong><br>
-  <code>&lt;a href="https://www.example.com"&gt;Visit Example Website&lt;/a&gt;</code>
-</p>
-
-<p>
-  You can also use hyperlinks to link to internal pages of your website. For example:<br>
-  <code>&lt;a href="contact.html"&gt;Contact Us&lt;/a&gt;</code>
-</p>
-
-<p>
-  <strong>Target attribute:</strong><br>
-  Use <code>target="_blank"</code> to open the link in a new tab.<br>
-  Example:<br>
-  <code>&lt;a href="https://www.google.com" target="_blank"&gt;Open Google in new tab&lt;/a&gt;</code>
-</p>
-
-<p>
-  <strong>Link to a specific section in the same page:</strong><br>
-  You can link to an element with an <code>id</code> using <code>#idname</code>.<br>
-  Example:<br>
-  <code>&lt;a href="#about"&gt;Go to About Section&lt;/a&gt;</code><br>
-  and later in the page:<br>
-  <code>&lt;h2 id="about"&gt;About Us&lt;/h2&gt;</code>
-</p>
-
-<p>
-  <strong>Types of Hyperlinks:</strong><br>
-  1. External Link – opens another website.<br>
-  2. Internal Link – opens a different page of your own website.<br>
-  3. Anchor Link – jumps to a specific section of the current page.
-</p>
-
-<p>
-  Hyperlinks are an essential part of web navigation and help connect content across the web.
-</p>
+                    <a href="#video-lesson7">Jump to video lesson</a>
+                    <p>
+                        <strong>HTML Hyperlinks</strong> allow users to navigate from one page to another or to different sections of the same page. Hyperlinks are created using the <code>&lt;a&gt;</code> (anchor) tag in HTML.
+                    </p>
+                    <p>
+                        The <code>&lt;a&gt;</code> tag uses the <code>href</code> attribute to specify the destination of the link. When users click the link, they are taken to the page or section specified in the <code>href</code>.
+                    </p>
+                    <p>
+                        <strong>Example:</strong><br>
+                        <code>&lt;a href="https://www.example.com"&gt;Visit Example Website&lt;/a&gt;</code>
+                    </p>
+                    <p>
+                        You can also use hyperlinks to link to internal pages of your website. For example:<br>
+                        <code>&lt;a href="contact.html"&gt;Contact Us&lt;/a&gt;</code>
+                    </p>
+                    <p>
+                        <strong>Target attribute:</strong><br>
+                        Use <code>target="_blank"</code> to open the link in a new tab.<br>
+                        Example:<br>
+                        <code>&lt;a href="https://www.google.com" target="_blank"&gt;Open Google in new tab&lt;/a&gt;</code>
+                    </p>
+                    <p>
+                        <strong>Link to a specific section in the same page:</strong><br>
+                        You can link to an element with an <code>id</code> using <code>#idname</code>.<br>
+                        Example:<br>
+                        <code>&lt;a href="#about"&gt;Go to About Section&lt;/a&gt;</code><br>
+                        and later in the page:<br>
+                        <code>&lt;h2 id="about"&gt;About Us&lt;/h2&gt;</code>
+                    </p>
+                    <p>
+                        <strong>Types of Hyperlinks:</strong><br>
+                        1. External Link – opens another website.<br>
+                        2. Internal Link – opens a different page of your own website.<br>
+                        3. Anchor Link – jumps to a specific section of the current page.
+                    </p>
+                    <p>
+                        Hyperlinks are an essential part of web navigation and help connect content across the web.
+                    </p>
                     <h3 id="video-lesson7">Telugu video explanation with practical:</h3>
-  <div class="video-container">
-<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
- <source src="HTML_Telugu_Videos/lesson7_links.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
-
-
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="HTML_Telugu_Videos/lesson7_links.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
                     <h3>Lesson 7 example code:</h3>
-                    <button id="viewCode7" aria-expanded="false" aria-controls="codeExample7">View example code</button>
-                    <div id="codeExample7" hidden>
-    <p>All the below content is the HTML code for the 7th lesson:</p>
-    <pre><code>
+                    <button id="viewCode6" aria-expanded="false" aria-controls="codeExample6">View example code</button>
+                    <div id="codeExample6" hidden>
+                        <p>All the below content is the HTML code for the 7th lesson:</p>
+                        <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -817,198 +452,178 @@ Our subscription fee will be Rs 1000 and Only one time payment.&lt;/p&gt;
 &lt;a href="HTML_tables.html" title="example link for table"&gt;HTML Tables&lt;/a&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-    </code></pre>
+                        </code></pre>
                     </div>
                 </div>
-
-                <div id="intro-page6" class="intro-page">
+                <div id="intro-page8" class="intro-page">
                     <h2>Lesson 8: Crafting Accessible Tables in HTML</h2>
-<a href="#video-lesson8">Jump to video lesson</a>
-<p>
-HTML tables are used to organize data into rows and columns, making the information easy to read and compare. Tables are especially useful for displaying structured data like schedules, price lists, or comparison charts.
-</p>
-
-<p>
-To create a table in HTML, the <code>&lt;table&gt;</code> element is used. Inside the table, rows are defined using <code>&lt;tr&gt;</code> (table row), and within each row, cells are defined using either <code>&lt;th&gt;</code> (table header) for headings or <code>&lt;td&gt;</code> (table data) for regular cells.
-</p>
-
-<p>
-Making tables accessible is very important for screen reader users. To improve table accessibility:
-</p>
-
-<p>
-• Use the <code>&lt;caption&gt;</code> tag to provide a summary or title for the table.<br>
-• Use <code>&lt;th&gt;</code> to identify column and row headers.<br>
-• Add the <code>scope</code> attribute (e.g., <code>scope="col"</code> or <code>scope="row"</code>) to <code>&lt;th&gt;</code> elements to specify which part of the table the header applies to.<br>
-• Use the <code>summary</code> attribute or visually hidden text (for modern HTML) to describe complex tables.<br>
-• Avoid using tables for layout purposes; instead, use CSS for page layout.
-</p>
-
-<p>
-Proper use of these semantic elements ensures that assistive technologies can accurately interpret the table’s structure and present it meaningfully to users.
-</p>
+                    <a href="#video-lesson8">Jump to video lesson</a>
+                    <p>
+                        HTML tables are used to organize data into rows and columns, making the information easy to read and compare. Tables are especially useful for displaying structured data like schedules, price lists, or comparison charts.
+                    </p>
+                    <p>
+                        To create a table in HTML, the <code>&lt;table&gt;</code> element is used. Inside the table, rows are defined using <code>&lt;tr&gt;</code> (table row), and within each row, cells are defined using either <code>&lt;th&gt;</code> (table header) for headings or <code>&lt;td&gt;</code> (table data) for regular cells.
+                    </p>
+                    <p>
+                        Making tables accessible is very important for screen reader users. To improve table accessibility:
+                    </p>
+                    <p>
+                        • Use the <code>&lt;caption&gt;</code> tag to provide a summary or title for the table.<br>
+                        • Use <code>&lt;th&gt;</code> to identify column and row headers.<br>
+                        • Add the <code>scope</code> attribute (e.g., <code>scope="col"</code> or <code>scope="row"</code>) to <code>&lt;th&gt;</code> elements to specify which part of the table the header applies to.<br>
+                        • Use the <code>summary</code> attribute or visually hidden text (for modern HTML) to describe complex tables.<br>
+                        • Avoid using tables for layout purposes; instead, use CSS for page layout.
+                    </p>
+                    <p>
+                        Proper use of these semantic elements ensures that assistive technologies can accurately interpret the table’s structure and present it meaningfully to users.
+                    </p>
                     <h3 id="video-lesson8">Telugu video explanation with practical:</h3>
-  <div class="video-container">
-<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
- <source src="HTML_Telugu_Videos/lesson8_tables.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="HTML_Telugu_Videos/lesson8_tables.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
                     <h3>Lesson 8 example code:</h3>
+                    <button id="viewCode7" aria-expanded="false" aria-controls="codeExample7">View example code</button>
+                    <div id="codeExample7" hidden>
+                        <p>All the below content is the HTML code for the 8th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;HTML Tables&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;HTML Tables&lt;/h1&gt;
+  &lt;table border="1"&gt;
+    &lt;caption&gt;Student Details&lt;/caption&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th scope="col"&gt;Name&lt;/th&gt;
+        &lt;th scope="col"&gt;Age&lt;/th&gt;
+        &lt;th scope="col"&gt;Class&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;th scope="row"&gt;Ravi&lt;/th&gt;
+        &lt;td&gt;12&lt;/td&gt;
+        &lt;td&gt;5th&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th scope="row"&gt;Pradyuth&lt;/th&gt;
+        &lt;td&gt;7&lt;/td&gt;
+        &lt;td&gt;2nd&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+                    </div>
+                </div>
+                <div id="intro-page9" class="intro-page">
+                    <h2>Lesson 9: HTML Forms part 1</h2>
+                    <a href="#video-lesson9">Jump to video lesson</a>
+                    <p>
+                        HTML forms are used to collect user input on a webpage. They allow users to enter data, such as their name, email, or date of birth, which can then be processed by the server or handled with client-side scripts. A form is created using the <code>&lt;form&gt;</code> element, and it can include various input fields depending on the type of information required.
+                    </p>
+                    <p>
+                        In this part, we will focus on the most common form input types: <b>text</b>, <b>email</b>, <b>tel</b>, <b>date</b>, <b>password</b>, <b>number</b>, and the <b>submit</b> button.
+                    </p>
+                    <p>
+                        The <b>text</b> input type allows users to enter plain text, such as their name or address. The <b>email</b> input type ensures that the entered text follows the correct email format, which helps in validating email addresses before submission. The <strong>tel</strong> input type is used for phone numbers and can display a numeric keypad on mobile devices for easier input. The <strong>date</strong> input type provides a date picker so that users can choose a date instead of typing it manually.
+                    </p>
+                    <p>
+                        The <b>password</b> input type hides the characters as the user types, making it suitable for sensitive information like login credentials. The <b>number</b> input type allows only numeric values and may include up and down arrows for adjusting the value. Finally, the <b>submit</b> button is used to send the form data to the specified server or script for processing.
+                    </p>
+                    <p>
+                        For better accessibility, always associate form fields with descriptive labels using the <code>&lt;label&gt;</code> element. This helps screen readers announce the purpose of each input. You should also use clear placeholder text or instructions, and ensure that error messages are provided if the input is invalid. Making forms accessible ensures that all users, including those using assistive technologies, can interact with your form easily.
+                    </p>
+                    <h3 id="video-lesson9">Telugu video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="HTML_Telugu_Videos/lesson9_forms_p1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <h3>Lesson 9 example code:</h3>
                     <button id="viewCode8" aria-expanded="false" aria-controls="codeExample8">View example code</button>
                     <div id="codeExample8" hidden>
-    <p>All the below content is the HTML code for the 8th lesson:</p>
-    <pre><code>
-&lt;!DOCTYPE html&gt;  
-&lt;html&gt;  
-&lt;head&gt;  
-  &lt;title&gt;HTML Tables&lt;/title&gt;  
-&lt;/head&gt;  
-&lt;body&gt;  
-  &lt;h1&gt;HTML Tables&lt;/h1&gt;  
-  &lt;table border="1"&gt;  
-    &lt;caption&gt;Student Details&lt;/caption&gt;  
-    &lt;thead&gt;  
-      &lt;tr&gt;  
-        &lt;th scope="col"&gt;Name&lt;/th&gt;   
-        &lt;th scope="col"&gt;Age&lt;/th&gt;   
-        &lt;th scope="col"&gt;Class&lt;/th&gt;  
-      &lt;/tr&gt;  
-    &lt;/thead&gt;  
-    &lt;tbody&gt;  
-      &lt;tr&gt;  
-        &lt;th scope="row"&gt;Ravi&lt;/th&gt;   
-        &lt;td&gt;12&lt;/td&gt;   
-        &lt;td&gt;5th&lt;/td&gt;  
-      &lt;/tr&gt;  
-      &lt;tr&gt;  
-        &lt;th scope="row"&gt;Pradyuth&lt;/th&gt;   
-        &lt;td&gt;7&lt;/td&gt;   
-        &lt;td&gt;2nd&lt;/td&gt;  
-      &lt;/tr&gt;  
-    &lt;/tbody&gt;  
-  &lt;/table&gt;  
-&lt;/body&gt;  
+                        <p>All the below content is the HTML code for the 9th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;HTML forms&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Student Registration form&lt;/h1&gt;
+&lt;form&gt;
+&lt;label for="uid"&gt;User Id:&lt;/label&gt;
+&lt;input type="text" id="uid" required&gt;&lt;br&gt;
+&lt;label for="password"&gt;Password:&lt;/label&gt;
+&lt;input type="password" id="password" required&gt;&lt;br&gt;
+&lt;label for="fn"&gt;Full Name:&lt;/label&gt;
+&lt;input type="text" id="fn" required&gt;&lt;br&gt;
+&lt;label for="email"&gt;Email:&lt;/label&gt;
+&lt;input type="email" id="email" placeholder="abcd@xyz.com" required&gt;&lt;br&gt;
+&lt;label for="dob"&gt;Date of Birth:&lt;/label&gt;
+&lt;input type="date" id="dob" required&gt;&lt;br&gt;
+&lt;label for="age"&gt;Age:&lt;/label&gt;
+&lt;input type="number" id="age"&gt;&lt;br&gt;
+&lt;label for="phone"&gt;Phone Number:&lt;/label&gt;
+&lt;input type="tel" id="phone" required&gt;&lt;br&gt;
+&lt;input type="submit"&gt;
+&lt;/form&gt;
+&lt;/body&gt;
 &lt;/html&gt;
-    </code></pre>
+                        </code></pre>
                     </div>
                 </div>
-
-                <div id="intro-page8" class="intro-page">
-<h2>Lesson 9: HTML Forms part 1</h2>
-<a href="#video-lesson9">Jump to video lesson</a>
-
-<p>
-HTML forms are used to collect user input on a webpage. They allow users to enter data, such as their name, email, or date of birth, which can then be processed by the server or handled with client-side scripts. A form is created using the <code>&lt;form&gt;</code> element, and it can include various input fields depending on the type of information required.
-</p>
-
-<p>
-In this part, we will focus on the most common form input types: <b>text</b>, <b>email</b>, <b>tel</b>, <b>date</b>, <b>password</b>, <b>number</b>, and the <b>submit</b> button.
-</p>
-
-<p>
-The <b>text</b> input type allows users to enter plain text, such as their name or address. The <b>email</b> input type ensures that the entered text follows the correct email format, which helps in validating email addresses before submission. The <strong>tel</strong> input type is used for phone numbers and can display a numeric keypad on mobile devices for easier input. The <strong>date</strong> input type provides a date picker so that users can choose a date instead of typing it manually.
-</p>
-
-<p>
-The <b>password</b> input type hides the characters as the user types, making it suitable for sensitive information like login credentials. The <b>number</b> input type allows only numeric values and may include up and down arrows for adjusting the value. Finally, the <b>submit</b> button is used to send the form data to the specified server or script for processing.
-</p>
-
-<p>
-For better accessibility, always associate form fields with descriptive labels using the <code>&lt;label&gt;</code> element. This helps screen readers announce the purpose of each input. You should also use clear placeholder text or instructions, and ensure that error messages are provided if the input is invalid. Making forms accessible ensures that all users, including those using assistive technologies, can interact with your form easily.
-</p>
-                    <h3 id="video-lesson9">Telugu video explanation with practical:</h3>
-
-<div class="video-container">
-<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
- <source src="HTML_Telugu_Videos/lesson9_forms_p1.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
-
-<h3>Lesson 9 example code:</h3>
-                    <button id="viewCode9" aria-expanded="false" aria-controls="codeExample9">View example code</button>
-<div id="codeExample9" hidden>
-        <p>All the below content is the HTML code for the 9th lesson:</p>
-    <pre><code>
-&lt;!DOCTYPE html&gt;  
-&lt;html&gt;  
-&lt;head&gt;  
-&lt;title&gt;HTML forms&lt;/title&gt;  
-&lt;/head&gt;  
-&lt;body&gt;  
-&lt;h1&gt;Student Registration form&lt;/h1&gt;  
-&lt;form&gt;  
-&lt;label for="uid"&gt;User Id:&lt;/label&gt;  
-&lt;input type="text" id="uid" required&gt;&lt;br&gt;  
-&lt;label for="password"&gt;Password:&lt;/label&gt;  
-&lt;input type="password" id="password" required&gt;&lt;br&gt;  
-&lt;label for="fn"&gt;Full Name:&lt;/label&gt;  
-&lt;input type="text" id="fn" required&gt;&lt;br&gt;  
-&lt;label for="email"&gt;Email:&lt;/label&gt;  
-&lt;input type="email" id="email" placeholder="abcd@xyz.com" required&gt;&lt;br&gt;  
-&lt;label for="dob"&gt;Date of Birth:&lt;/label&gt;  
-&lt;input type="date" id="dob" required&gt;&lt;br&gt;  
-&lt;label for="age"&gt;Age:&lt;/label&gt;  
-&lt;input type="number" id="age"&gt;&lt;br&gt;  
-&lt;label for="phone"&gt;Phone Number:&lt;/label&gt;  
-&lt;input type="tel" id="phone" required&gt;&lt;br&gt;  
-&lt;input type="submit"&gt;  
-
-&lt;/form&gt;  
-&lt;/body&gt;  
-&lt;/html&gt;
-    </code></pre>
-</div>
-                </div>
-                <div id="intro-page8" class="intro-page">
-<h2>Lesson 10: HTML Forms part 2</h2>
-
-<a href="#video-lesson10">Jump to video lesson</a>
-<p>
-Radio buttons, checkboxes, and combo boxes are form controls that allow users to select one or more options from a set. Radio buttons are used when only one option can be chosen from a group. They should always share the same <code>name</code> attribute so that only one button can be selected at a time. Each radio button should have a clearly associated label, which can be provided using the <code>&lt;label&gt;</code> element.
-</p>
-
-<p>
-Checkboxes are used when the user can select multiple options from a list. Each checkbox should also be paired with a descriptive label, ensuring that assistive technologies can convey the purpose of the control. When there are multiple checkboxes for related options, it is good practice to group them within the <code>&lt;fieldset&gt;</code> element, with a <code>&lt;legend&gt;</code> that describes the group.
-</p>
-
-<p>
-Combo boxes, or drop-down lists, are created using the <code>&lt;select&gt;</code> element, with one or more <code>&lt;option&gt;</code> elements inside. They allow users to select from a predefined list of choices. When creating a combo box, provide a meaningful label and avoid using generic text like "Select one" without context. If the list is long, consider grouping related options with the <code>&lt;optgroup&gt;</code> element for better accessibility. Always ensure that combo boxes are keyboard accessible and screen reader friendly.
-</p>
-
-<p>
-To make these controls more accessible, always use clear and descriptive labels, ensure keyboard navigation works smoothly, and group related controls logically. Using semantic HTML elements like <code>&lt;label&gt;</code>, <code>&lt;fieldset&gt;</code>, and <code>&lt;legend&gt;</code> helps screen readers convey the form structure accurately to users.
-</p>
+                <div id="intro-page10" class="intro-page">
+                    <h2>Lesson 10: HTML Forms part 2</h2>
+                    <a href="#video-lesson10">Jump to video lesson</a>
+                    <p>
+                        Radio buttons, checkboxes, and combo boxes are form controls that allow users to select one or more options from a set. Radio buttons are used when only one option can be chosen from a group. They should always share the same <code>name</code> attribute so that only one button can be selected at a time. Each radio button should have a clearly associated label, which can be provided using the <code>&lt;label&gt;</code> element.
+                    </p>
+                    <p>
+                        Checkboxes are used when the user can select multiple options from a list. Each checkbox should also be paired with a descriptive label, ensuring that assistive technologies can convey the purpose of the control. When there are multiple checkboxes for related options, it is good practice to group them within the <code>&lt;fieldset&gt;</code> element, with a <code>&lt;legend&gt;</code> that describes the group.
+                    </p>
+                    <p>
+                        Combo boxes, or drop-down lists, are created using the <code>&lt;select&gt;</code> element, with one or more <code>&lt;option&gt;</code> elements inside. They allow users to select from a predefined list of choices. When creating a combo box, provide a meaningful label and avoid using generic text like "Select one" without context. If the list is long, consider grouping related options with the <code>&lt;optgroup&gt;</code> element for better accessibility. Always ensure that combo boxes are keyboard accessible and screen reader friendly.
+                    </p>
+                    <p>
+                        To make these controls more accessible, always use clear and descriptive labels, ensure keyboard navigation works smoothly, and group related controls logically. Using semantic HTML elements like <code>&lt;label&gt;</code>, <code>&lt;fieldset&gt;</code>, and <code>&lt;legend&gt;</code> helps screen readers convey the form structure accurately to users.
+                    </p>
                     <h3 id="video-lesson10">Telugu video explanation with practical:</h3>
-
-  <div class="video-container">
-<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
- <source src="HTML_Telugu_Videos/lesson10_forms_p2.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
-
-<h3>Lesson 10 example code:</h3>
-                    <button id="viewCode10" aria-expanded="false" aria-controls="codeExample10">View example code</button>
-<div id="codeExample10" hidden>
-        <p>All the below content is the HTML code for the 10th lesson:</p>
-    <pre><code>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="HTML_Telugu_Videos/lesson10_forms_p2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <h3>Lesson 10 example code:</h3>
+                    <button id="viewCode9" aria-expanded="false" aria-controls="codeExample9">View example code</button>
+                    <div id="codeExample9" hidden>
+                        <p>All the below content is the HTML code for the 10th lesson:</p>
+                        <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -1041,45 +656,38 @@ To make these controls more accessible, always use clear and descriptive labels,
 &lt;/form&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-    </code></pre>
-</div>
+                        </code></pre>
+                    </div>
                 </div>
-
-                <div id="intro-page10" class="intro-page">
-<h2>Lesson 11: Enhancing Your Web Pages with Accessible Audio and Video</h2>
-<a href="#video-lesson11">Jump to video lesson</a>
-
-<p>
-Multimedia elements such as audio and video allow us to add sound, music, and moving images to a web page. The <code>&lt;audio&gt;</code> element is used to embed audio files, such as music tracks, podcasts, or sound effects. The <code>&lt;video&gt;</code> element is used to display videos directly in the browser without needing extra plugins. Both elements require a <code>src</code> attribute to define the media file and can include controls for play, pause, volume, and seeking.
-</p>
-
-<p>
-To make multimedia accessible, always include the <code>controls</code> attribute so users can operate playback with a mouse, keyboard, or touch screen. For audio, provide a transcript of the spoken content so users who cannot hear can still understand the message. For video, provide captions for spoken words and important sounds, and if possible, include audio descriptions for visually impaired users. This ensures that everyone can access the media content regardless of their abilities.
-</p>
-
-<p>
-You can also provide multiple file formats, such as MP3, OGG, and WAV for audio, or MP4, WebM, and OGV for video, to ensure that the media works in all browsers. Additionally, make sure that auto-playing media is avoided or muted by default, as it can be disruptive for users, especially those using screen readers. Accessibility guidelines like WCAG recommend giving users full control over media playback.
-</p>
+                <div id="intro-page11" class="intro-page">
+                    <h2>Lesson 11: Enhancing Your Web Pages with Accessible Audio and Video</h2>
+                    <a href="#video-lesson11">Jump to video lesson</a>
+                    <p>
+                        Multimedia elements such as audio and video allow us to add sound, music, and moving images to a web page. The <code>&lt;audio&gt;</code> element is used to embed audio files, such as music tracks, podcasts, or sound effects. The <code>&lt;video&gt;</code> element is used to display videos directly in the browser without needing extra plugins. Both elements require a <code>src</code> attribute to define the media file and can include controls for play, pause, volume, and seeking.
+                    </p>
+                    <p>
+                        To make multimedia accessible, always include the <code>controls</code> attribute so users can operate playback with a mouse, keyboard, or touch screen. For audio, provide a transcript of the spoken content so users who cannot hear can still understand the message. For video, provide captions for spoken words and important sounds, and if possible, include audio descriptions for visually impaired users. This ensures that everyone can access the media content regardless of their abilities.
+                    </p>
+                    <p>
+                        You can also provide multiple file formats, such as MP3, OGG, and WAV for audio, or MP4, WebM, and OGV for video, to ensure that the media works in all browsers. Additionally, make sure that auto-playing media is avoided or muted by default, as it can be disruptive for users, especially those using screen readers. Accessibility guidelines like WCAG recommend giving users full control over media playback.
+                    </p>
                     <h3 id="video-lesson11">Telugu video explanation with practical:</h3>
-
-  <div class="video-container">
-<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
- <source src="HTML_Telugu_Videos/lesson11_media.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
-
-<h3>Lesson 11 example code:</h3>
-                    <button id="viewCode11" aria-expanded="false" aria-controls="codeExample11">View example code</button>
-<div id="codeExample11" hidden>
-
-    <p>All the below content is the HTML code for the 11th lesson:</p>
-    <pre><code>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="HTML_Telugu_Videos/lesson11_media.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <h3>Lesson 11 example code:</h3>
+                    <button id="viewCode10" aria-expanded="false" aria-controls="codeExample10">View example code</button>
+                    <div id="codeExample10" hidden>
+                        <p>All the below content is the HTML code for the 11th lesson:</p>
+                        <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -1096,75 +704,264 @@ You can also provide multiple file formats, such as MP3, OGG, and WAV for audio,
     &lt;/video&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-    </code></pre>
-</div>
-</div>
+                        </code></pre>
+                    </div>
+                </div>
                 <div id="intro-page12" class="intro-page">
-<h2>Lesson 12: Meta tags</h2>
-<a href="#video-lesson12">Jump to video lesson</a>
-
-<p>
-In HTML, the <code>&lt;meta&gt;</code> tag is placed inside the <code>&lt;head&gt;</code> section and is used to provide metadata about the web page. Metadata means “data about data,” which is information that helps browsers, search engines, and other tools understand more about your page. Meta tags do not appear visually on the page but are important for accessibility, SEO (Search Engine Optimization), and proper browser rendering.
-</p>
-
-<p>
-One of the most important meta tags is the <code>&lt;meta charset="UTF-8"&gt;</code> tag. This tag tells the browser which character encoding to use. UTF-8 is the most widely used encoding, and it supports almost all characters from all languages, making it suitable for multilingual websites.
-</p>
-
-<p>
-Another common meta tag is the viewport meta tag: <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code>. This tag is essential for responsive web design. It instructs the browser to adjust the page’s width and scaling according to the device’s screen size, so your page looks good on both mobile and desktop devices.
-</p>
-
-<p>
-There are also meta tags for descriptions and keywords. For example: <code>&lt;meta name="description" content="A brief description of the web page"&gt;</code> helps search engines display a meaningful summary in search results. Similarly, <code>&lt;meta name="keywords" content="HTML, tutorial, accessibility"&gt;</code> provides search keywords, though modern search engines rely less on this tag.
-</p>
-
-<p>
-From an accessibility perspective, the charset meta tag ensures that text displays correctly for assistive technologies such as screen readers. The viewport meta tag ensures that zoom and scaling work properly for users with low vision. Additionally, using clear and relevant descriptions in meta tags helps screen readers and search engines present better information about the page to the user.
-</p>
+                    <h2>Lesson 12: Meta tags</h2>
+                    <a href="#video-lesson12">Jump to video lesson</a>
+                    <p>
+                        In HTML, the <code>&lt;meta&gt;</code> tag is placed inside the <code>&lt;head&gt;</code> section and is used to provide metadata about the web page. Metadata means “data about data,” which is information that helps browsers, search engines, and other tools understand more about your page. Meta tags do not appear visually on the page but are important for accessibility, SEO (Search Engine Optimization), and proper browser rendering.
+                    </p>
+                    <p>
+                        One of the most important meta tags is the <code>&lt;meta charset="UTF-8"&gt;</code> tag. This tag tells the browser which character encoding to use. UTF-8 is the most widely used encoding, and it supports almost all characters from all languages, making it suitable for multilingual websites.
+                    </p>
+                    <p>
+                        Another common meta tag is the viewport meta tag: <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code>. This tag is essential for responsive web design. It instructs the browser to adjust the page’s width and scaling according to the device’s screen size, so your page looks good on both mobile and desktop devices.
+                    </p>
+                    <p>
+                        There are also meta tags for descriptions and keywords. For example: <code>&lt;meta name="description" content="A brief description of the web page"&gt;</code> helps search engines display a meaningful summary in search results. Similarly, <code>&lt;meta name="keywords" content="HTML, tutorial, accessibility"&gt;</code> provides search keywords, though modern search engines rely less on this tag.
+                    </p>
+                    <p>
+                        From an accessibility perspective, the charset meta tag ensures that text displays correctly for assistive technologies such as screen readers. The viewport meta tag ensures that zoom and scaling work properly for users with low vision. Additionally, using clear and relevant descriptions in meta tags helps screen readers and search engines present better information about the page to the user.
+                    </p>
                     <h3 id="video-lesson12">Telugu video explanation with practical:</h3>
-  <div class="video-container">
-<video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
- <source src="HTML_Telugu_Videos/lesson12_meta.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>                
-  <div class="controls">
-    <button class="playPause">Play</button>
-    <button class="mute">Mute</button>
-   <button class="fullscreen">Fullscreen</button>
-  </div>
-</div>
-
-<h3>Lesson 12 example code:</h3>
-                    <button id="viewCode12" aria-expanded="false" aria-controls="codeExample12">View example code</button>
-<div id="codeExample12" hidden>
-    <p>All the below content is the HTML code for the 12th lesson:</p>
-    <pre><code>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="HTML_Telugu_Videos/lesson12_meta.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <h3>Lesson 12 example code:</h3>
+                    <button id="viewCode11" aria-expanded="false" aria-controls="codeExample11">View example code</button>
+                    <div id="codeExample11" hidden>
+                        <p>All the below content is the HTML code for the 12th lesson:</p>
+                        <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;eng&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
     &lt;title&gt;Accessible World&lt;/title&gt;
-
 &lt;/head&gt;
 &lt;body&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-    </code></pre>
-</div>
-</div>
+                        </code></pre>
+                    </div>
+                </div>
             </div>
             <div class="pagination-controls" aria-label="HTML Topics Pagination">
                 <button id="prevBtn" disabled>Previous</button>
-                <span id="pageIndicator">Page 1 of 12</span> <button id="nextBtn">Next</button>
+                <span id="pageIndicator" aria-live="polite">Page 1 of 12</span> <button id="nextBtn">Next</button>
+            </div>
+        </div>
+        <div id="javascript-content" class="tab-content" role="tabpanel" aria-labelledby="javascript-tab">
+            <div id="javascript-pages">
+                <div id="javascript-page1" class="javascript-page active">
+                    <h2>Lesson 1: Introduction to JavaScript</h2>
+                    <a href="#video-js-lesson1">Jump to video lesson</a>
+<p>
+JavaScript is a powerful programming language used to make web pages interactive and dynamic. 
+While HTML defines the structure of a webpage and CSS controls its style, JavaScript adds 
+functionality, such as responding to user actions, updating content without reloading the page, 
+validating form inputs, creating animations, and much more. It was first developed in 1995 by 
+Brendan Eich at Netscape, originally named Mocha, then LiveScript, before becoming JavaScript. 
+Since then, it has grown into one of the most widely used programming languages, supported by all 
+modern browsers. Today, JavaScript not only powers front-end web development but is also used in 
+server-side applications, mobile apps, and even game development, making it one of the most 
+versatile languages in the world of technology.
+</p>
+
+                    <h3 id="video-js-lesson1">Telugu video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/intro-js-telugu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <p>Click on the next button to start the first topic: JavaScript variables.</p>
+                </div>
+                <div id="javascript-page2" class="javascript-page">
+<h2>Lesson 2: Displaying Text in HTML using JavaScript</h2>
+                    <a href="#video-js-lesson2">Jump to video lesson</a>
+<p>
+In JavaScript, we can display text inside an HTML element by using the 
+<code>document.getElementById()</code> method along with the 
+<code>innerHTML</code> property. The <code>document</code> is an object 
+that represents the entire web page. The <code>getElementById()</code> 
+is a method used to find a specific element by its unique id. Once the 
+element is selected, we can use the <code>innerHTML</code> property to 
+set or change the text or HTML content inside that element. This is one 
+of the most common ways to update content dynamically with JavaScript.
+</p>
+
+<p>
+In this example:
+<br>
+1. <strong>Object:</strong> The <code>document</code> is the object. It represents the entire HTML page.  
+<br>
+2. <strong>Method:</strong> The <code>getElementById()</code> is the method. A method is an action that can be performed on an object. Here, it searches for an element using its id.  
+<br>
+3. <strong>Property:</strong> The <code>innerHTML</code> is the property. A property is a value or characteristic of an object. Here, it holds the content of the selected element and allows us to change it.  
+</p>
+
+                    <h3 id="video-js-lesson2">Telugu video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/Displaying Text in HTML-telugu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <h3>Lesson 2 example code:</h3>
+                    <button id="viewCode12" aria-expanded="false" aria-controls="codeExample12">View example code</button>
+                    <div id="codeExample12" hidden>
+                        <p>All the below content is the HTML code for the 2nd lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;First Java Script Code&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;First Java Script code&lt;/h1&gt;
+&lt;p id="p1"&gt;&lt;/p&gt;
+&lt;script&gt;
+document.getElementById("p1").innerHTML = "Hello all!&lt;br&gt;We are learning Java Script&lt;br&gt;Thank you.";
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+	                        </code></pre>
+                    </div>
+                </div>
+                <div id="javascript-page3" class="javascript-page">
+<h2>Lesson 3: Show and Hide Elements using JavaScript</h2>
+                    <a href="#video-js-lesson3">Jump to video lesson</a>
+<p>
+In JavaScript, we can show or hide elements on a webpage by changing their 
+<code>style.display</code> property. Every HTML element has a <code>style</code> 
+object that controls how it appears. The <code>display</code> property can be set 
+to <code>"none"</code> to hide an element, or to <code>"block"</code>, 
+<code>"inline"</code>, or another suitable value to make it visible again. 
+This is often used for features like menus, popups, and expandable sections, 
+making web pages more interactive and user-friendly.
+</p>
+<p>
+Here also:
+<br>
+1. <strong>Object:</strong> The <code>document</code> represents the whole webpage.  
+<br>
+2. <strong>Method:</strong> The <code>getElementById()</code> method is used to select the element we want to show or hide.  
+<br>
+3. <strong>Property:</strong> The <code>style.display</code> property controls whether the element is visible or hidden.  
+</p>
+
+
+                    <h3 id="video-js-lesson3">Telugu video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/show and hide elements-telugu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <h3>Lesson 3 example code:</h3>
+                    <button id="viewCode14" aria-expanded="false" aria-controls="codeExample14">View example code</button>
+                    <div id="codeExample14" hidden>
+                        <p>All the below content is the HTML code for the third lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt; 
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;show / hide elements&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;show/hide elements&lt;/h1&gt;
+&lt;p id="p1" hidden&gt;Hello, This is a hidden text&lt;/p&gt;
+&lt;p id="p2"&gt;Welcome to accessible world&lt;/p&gt;
+&lt;script&gt;
+document.getElementById("p1").style.display = "block";
+document.getElementById("p2").style.display = "none";
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+                    </div>
+                </div>
+                <div id="javascript-page4" class="javascript-page">
+<h2>Lesson 4: JavaScript Data Types</h2>
+                    <a href="#video-js-lesson4">Jump to video lesson</a>
+<p>
+Data is any information that we store in a program, like a number, a name, 
+or a true/false value. In JavaScript, different kinds of data are grouped 
+into data types.
+</p>
+<p>
+There are two types of data types in JavaScript:  
+<br>1. Primitive Data Types  
+<br>2. Non-Primitive (Reference) Data Types
+</p>
+  <h3>Primitive Data Types</h3>
+  <p><strong>1. String:</strong> Used for text. Example: <code>let name = "Ravi";</code></p>
+  <p><strong>2. Number:</strong> Used for numbers, both whole and decimal. Example: <code>let age = 25;</code>, <code>let pi = 3.14;</code></p>
+  <p><strong>3. Boolean:</strong> Represents true or false. Example: <code>let isOnline = true;</code></p>
+  <p><strong>4. Undefined:</strong> A variable declared but not given a value. Example: <code>let x;</code></p>
+  <p><strong>5. Null:</strong> Represents empty or no value. Example: <code>let data = null;</code></p>
+  <p><strong>6. Symbol:</strong> A unique value, often used for special identifiers. Example: <code>let id = Symbol("id");</code></p>
+  <p><strong>7. BigInt:</strong> Used for very large numbers. Example: <code>let big = 1234567890123456789012345n;</code></p>
+
+  <h3>Non-Primitive (Reference) Data Types</h3>
+  <p><strong>1. Object:</strong> Stores data as key–value pairs. Example: <code>let person = {name: "Ravi", age: 25};</code></p>
+  <p><strong>2. Array:</strong> A list of values. Example: <code>let fruits = ["Apple", "Banana", "Mango"];</code></p>
+  <p><strong>3. Function:</strong> A block of code that can be reused. Example: <code>function greet() { return "Hello"; }</code></p>
+
+
+                    <h3 id="video-js-lesson4">Telugu video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/data-types-telugu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                </div>
+            <div class="pagination-controls" aria-label="Java Script Topics Pagination">
+                <button id="jsprevBtn" disabled>Previous</button>
+                <span id="jspageIndicator" aria-live="polite">Page 1 of 4</span> <button id="jsnextBtn">Next</button>
             </div>
         </div>
     </main>
     <footer>
         <p>© 2025 Accessible World. All rights reserved.</p>
     </footer>
-
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
@@ -1172,112 +969,88 @@ From an accessibility perspective, the charset meta tag ensures that text displa
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
-
         // Your Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k", // Replace with your actual API key
             authDomain: "accessibleworld-7f599.firebaseapp.com", // Replace with your auth domain
-            projectId: "accessibleworld-7f599",               // Replace with your project ID
+            projectId: "accessibleworld-7f599", // Replace with your project ID
             storageBucket: "accessibleworld-7f599.appspot.com", // Replace with your storage bucket
-            messagingSenderId: "264437218598",               // Replace with your messaging sender ID
+            messagingSenderId: "264437218598", // Replace with your messaging sender ID
             appId: "1:264437218598:web:cae58c1e578c7b08b815e7", // Replace with your app ID
-            measurementId: "G-1QRWXYRZ76"                   // Replace with your measurement ID
+            measurementId: "G-1QRWXYRZ76" // Replace with your measurement ID
         };
-
         const app = initializeApp(firebaseConfig);
         const auth = getAuth();
         const db = getFirestore(app);
-
         const bodyElement = document.body;
-        // const accessDeniedMessage = document.getElementById('access-denied-message'); // Not used, can be removed
-        // const courseContent = document.getElementById('course-content'); // Not used, can be removed
-        // const paidCoursesList = document.getElementById('paid-courses-list'); // Not used, can be removed
-
-        // Get the new profile elements
         const profileBtn = document.getElementById('profileBtn');
         const profileDetails = document.getElementById('profileDetails');
-
         const profileNameSpan = document.getElementById('profile-name');
         const profileMobileSpan = document.getElementById('profile-mobile');
         const profileEmailSpan = document.getElementById('profile-email');
         const referralLinkSpan = document.getElementById('referral-link-span');
         const logoutButton = document.getElementById('logout-btn');
-
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const uid = user.uid;
                 const userDocRef = doc(db, "users", uid);
                 const userDocSnap = await getDoc(userDocRef);
-
                 if (userDocSnap.exists()) {
                     const userData = userDocSnap.data();
-                    // Assuming 'paidCourse' is the field indicating access to this specific course
-                    // You might have a specific field like 'hasAccessibilityCourseAccess'
-                    // For now, I'm using the 'paymentStatus' you had for general access.
                     if (userData.paymentStatus === "Paid") {
                         profileNameSpan.textContent = userData.fullName || 'N/A';
                         profileMobileSpan.textContent = userData.mobile || 'N/A';
                         profileEmailSpan.textContent = user.email;
                         referralLinkSpan.textContent = `${location.origin}/register.html?ref=${uid}`;
-                        bodyElement.style.display = 'block'; // Show content if authenticated and paid
+                        bodyElement.style.display = 'block';
                     } else {
                         alert("Please join our membership to access the courses.");
-                        window.location.href = "login.html"; // Redirect if not paid
+                        window.location.href = "login.html";
                     }
                 } else {
                     alert("Error: Could not verify your membership. Please log in again.");
-                    window.location.href = "login.html"; // Redirect if user data not found
+                    window.location.href = "login.html";
                 }
             } else {
                 alert("Please log in to access the courses.");
-                window.location.href = "login.html"; // Redirect if not logged in
+                window.location.href = "login.html";
             }
         });
-
-        // --- Profile Dropdown Logic ---
         if (profileBtn && profileDetails) {
             profileBtn.addEventListener('click', (event) => {
-                event.stopPropagation(); // Prevent document click from closing immediately
+                event.stopPropagation();
                 const isExpanded = profileBtn.getAttribute('aria-expanded') === 'true';
                 profileBtn.setAttribute('aria-expanded', !isExpanded);
                 profileDetails.style.display = isExpanded ? 'none' : 'block';
                 if (!isExpanded) {
-                    // Optional: focus the logout button for keyboard navigation
                     const firstFocusableElement = profileDetails.querySelector('button, a, input');
                     if (firstFocusableElement) {
                         firstFocusableElement.focus();
                     } else {
-                        profileDetails.focus(); // Fallback focus for the dropdown itself
+                        profileDetails.focus();
                     }
                 }
             });
-
-            // Close dropdown when clicking outside
             document.addEventListener('click', (event) => {
                 if (profileDetails.style.display === 'block' && !profileDetails.contains(event.target) && event.target !== profileBtn) {
                     profileBtn.setAttribute('aria-expanded', 'false');
                     profileDetails.style.display = 'none';
                 }
             });
-
-            // Close dropdown with Escape key
             document.addEventListener('keydown', (event) => {
                 if (event.key === 'Escape' && profileDetails.style.display === 'block') {
                     profileBtn.setAttribute('aria-expanded', 'false');
                     profileDetails.style.display = 'none';
-                    profileBtn.focus(); // Return focus to the profile button
+                    profileBtn.focus();
                 }
             });
         }
-
-        // --- "View Example Code" Toggles ---
         const viewCodeButtons = document.querySelectorAll('button[id^="viewCode"]');
         viewCodeButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const controlsId = button.getAttribute('aria-controls');
                 const codeExample = document.getElementById(controlsId);
                 const isExpanded = button.getAttribute('aria-expanded') === 'true';
-
                 button.setAttribute('aria-expanded', !isExpanded);
                 if (codeExample) {
                     codeExample.hidden = isExpanded;
@@ -1285,72 +1058,92 @@ From an accessibility perspective, the charset meta tag ensures that text displa
                 button.textContent = isExpanded ? 'View example code' : 'Hide example code';
             });
         });
-
-        // --- Pagination for Intro Pages ---
+        const tabButtons = document.querySelectorAll('.tab-buttons button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-selected', 'false');
+                });
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                const targetContentId = button.getAttribute('aria-controls');
+                const targetContent = document.getElementById(targetContentId);
+                button.classList.add('active');
+                button.setAttribute('aria-selected', 'true');
+                targetContent.classList.add('active');
+            });
+        });
+        // Corrected Pagination for HTML
         const introPagesContainer = document.getElementById('intro-pages');
         if (introPagesContainer) {
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             const pageIndicator = document.getElementById('pageIndicator');
+            const pages = Array.from(introPagesContainer.querySelectorAll('.intro-page'));
             let currentPageIndex = 0;
-
+            const totalPages = pages.length;
             function updatePaginationUI() {
-                const pages = Array.from(introPagesContainer.querySelectorAll('.intro-page'));
-                const totalPages = pages.length;
-
                 pages.forEach((page, index) => {
                     page.classList.toggle('active', index === currentPageIndex);
-                    if (index === currentPageIndex) {
-                        const firstHeading = page.querySelector('h4, h5');
-                        if (firstHeading) {
-                            firstHeading.setAttribute('tabindex', '-1'); // Make it focusable
-                            firstHeading.focus({ preventScroll: true }); // Focus without scrolling
-                        }
-                    }
                 });
-                if (pageIndicator) pageIndicator.textContent = `Page ${currentPageIndex + 1} of ${totalPages}`;
-                if (prevBtn) prevBtn.disabled = (currentPageIndex === 0);
-                if (nextBtn) nextBtn.disabled = (currentPageIndex === totalPages - 1);
-
-                // Announce page change for screen readers
-                const mainContent = document.getElementById('main-content');
-                if (mainContent) {
-                    mainContent.setAttribute('aria-live', 'polite'); // Announce changes
-                    // A more robust solution for live region updates might involve
-                    // adding dynamic content to a visually hidden span with aria-live.
+                pageIndicator.textContent = `Page ${currentPageIndex + 1} of ${totalPages}`;
+                prevBtn.disabled = (currentPageIndex === 0);
+                nextBtn.disabled = (currentPageIndex === totalPages - 1);
+            }
+            nextBtn.addEventListener('click', () => {
+                if (currentPageIndex < totalPages - 1) {
+                    currentPageIndex++;
+                    updatePaginationUI();
                 }
-            }
-
-            if (nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    const pages = Array.from(introPagesContainer.querySelectorAll('.intro-page'));
-                    const totalPages = pages.length;
-                    if (currentPageIndex < totalPages - 1) {
-                        currentPageIndex++;
-                        updatePaginationUI();
-                    }
-                });
-            }
-            if (prevBtn) {
-                prevBtn.addEventListener('click', () => {
-                    if (currentPageIndex > 0) {
-                        currentPageIndex--;
-                        updatePaginationUI();
-                    }
-                });
-            }
-
-            // Initial call to set up the UI
+            });
+            prevBtn.addEventListener('click', () => {
+                if (currentPageIndex > 0) {
+                    currentPageIndex--;
+                    updatePaginationUI();
+                }
+            });
             updatePaginationUI();
         }
-
-        // --- Logout Functionality ---
+        // Corrected Pagination for JavaScript
+        const javascriptPagesContainer = document.getElementById('javascript-pages');
+        if (javascriptPagesContainer) {
+            const jsprevBtn = document.getElementById('jsprevBtn');
+            const jsnextBtn = document.getElementById('jsnextBtn');
+            const jspageIndicator = document.getElementById('jspageIndicator');
+            const jsPages = Array.from(javascriptPagesContainer.querySelectorAll('.javascript-page'));
+            let jsCurrentPageIndex = 0;
+            const jsTotalPages = jsPages.length;
+            function updateJsPaginationUI() {
+                jsPages.forEach((page, index) => {
+                    page.classList.toggle('active', index === jsCurrentPageIndex);
+                });
+                jspageIndicator.textContent = `Page ${jsCurrentPageIndex + 1} of ${jsTotalPages}`;
+                jsprevBtn.disabled = (jsCurrentPageIndex === 0);
+                jsnextBtn.disabled = (jsCurrentPageIndex === jsTotalPages - 1);
+            }
+            jsnextBtn.addEventListener('click', () => {
+                if (jsCurrentPageIndex < jsTotalPages - 1) {
+                    jsCurrentPageIndex++;
+                    updateJsPaginationUI();
+                }
+            });
+            jsprevBtn.addEventListener('click', () => {
+                if (jsCurrentPageIndex > 0) {
+                    jsCurrentPageIndex--;
+                    updateJsPaginationUI();
+                }
+            });
+            updateJsPaginationUI();
+        }
         if (logoutButton) {
             logoutButton.addEventListener('click', async () => {
                 try {
                     await signOut(auth);
                     alert("You have been logged out.");
-                    window.location.href = "login.html"; // Redirect to login page
+                    window.location.href = "login.html";
                 } catch (error) {
                     console.error("Error signing out:", error);
                     alert("Error logging out. Please try again.");
@@ -1358,7 +1151,6 @@ From an accessibility perspective, the charset meta tag ensures that text displa
             });
         }
     </script>
-<script src="video_script.js"></script>
-
+    <script src="video_script.js"></script>
 </body>
 </html>

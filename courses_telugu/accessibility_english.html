@@ -6786,7 +6786,7 @@ Users must remember and type a password with no alternative login methods like b
                     <h3 id="video-lesson1">English video explanation with practical:</h3>
 <div class="video-container">
     <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-        <source src="aria_english_videos/aria-placeholder.mp4" type="video/mp4">
+        <source src="aria_english_videos/aria-colindex.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <div class="controls">
@@ -8089,6 +8089,10 @@ Users must remember and type a password with no alternative login methods like b
 </div>
             <div class="pagination-controls">
                 <button id="prev-aria" disabled>Previous</button>
+<label for="aria-select">View all Aria Attributes:</label>
+<select aria-description="Press Alt+down Arrow to Expand" id="aria-select">
+    </select>    
+
                 <span id="current-aria-num" aria-live="polite"></span>
                 <button id="next-aria">Next</button>
             </div>
@@ -8334,20 +8338,20 @@ Users must remember and type a password with no alternative login methods like b
     <footer>
         <p>© 2025 Accessible World</p>
     </footer>
-    <script type="module">
+<script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
 
         // IMPORTANT: Replace with your actual Firebase configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k", // Replace with your actual API key
-            authDomain: "accessibleworld-7f599.firebaseapp.com", // Replace with your auth domain
-            projectId: "accessibleworld-7f599", // Replace with your project ID
-            storageBucket: "accessibleworld-7f599.appspot.com", // Replace with your storage bucket
-            messagingSenderId: "264437218598", // Replace with your messaging sender ID
-            appId: "1:264437218598:web:cae58c1e578c7b08b815e7", // Replace with your app ID
-            measurementId: "G-1QRWXYRZ76" // Replace with your measurement ID
+            apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
+            authDomain: "accessibleworld-7f599.firebaseapp.com",
+            projectId: "accessibleworld-7f599",
+            storageBucket: "accessibleworld-7f599.appspot.com",
+            messagingSenderId: "264437218598",
+            appId: "1:264437218598:web:cae58c1e578c7b08b815e7",
+            measurementId: "G-1QRWXYRZ76"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -8355,18 +8359,14 @@ Users must remember and type a password with no alternative login methods like b
         const db = getFirestore(app);
 
         const bodyElement = document.body;
-        // const accessDeniedMessage = document.getElementById('access-denied-message'); // Not used in this version
-        // const courseContent = document.getElementById('course-content'); // Not used in this version
-        // const paidCoursesList = document.getElementById('paid-courses-list'); // Not used in this version
-        // Get the new profile elements
         const profileBtn = document.getElementById('profileBtn');
         const profileDetails = document.getElementById('profileDetails');
-
         const profileNameSpan = document.getElementById('profile-name');
         const profileMobileSpan = document.getElementById('profile-mobile');
         const profileEmailSpan = document.getElementById('profile-email');
         const referralLinkSpan = document.getElementById('referral-link-span');
         const logoutButton = document.getElementById('logout-btn');
+
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const uid = user.uid;
@@ -8400,22 +8400,24 @@ Users must remember and type a password with no alternative login methods like b
                 window.location.href = "/login.html"; // Redirect if not logged in
             }
         });
-// Event listener for the profile button
-if (profileBtn) {
-    profileBtn.addEventListener('click', () => {
-        const isExpanded = profileBtn.getAttribute("aria-expanded") === "true";
-        profileBtn.setAttribute("aria-expanded", !isExpanded);
-        profileDetails.style.display = isExpanded ? "none" : "block";
-    });
 
-    // Event listener to collapse the profile dropdown on 'Escape' key press
-    document.addEventListener('keydown', (event) => {
-        if (event.key === "Escape" && profileBtn.getAttribute("aria-expanded") === "true") {
-            profileBtn.setAttribute("aria-expanded", "false");
-            profileDetails.style.display = "none";
+        // Event listener for the profile button
+        if (profileBtn) {
+            profileBtn.addEventListener('click', () => {
+                const isExpanded = profileBtn.getAttribute("aria-expanded") === "true";
+                profileBtn.setAttribute("aria-expanded", !isExpanded);
+                profileDetails.style.display = isExpanded ? "none" : "block";
+            });
+
+            // Event listener to collapse the profile dropdown on 'Escape' key press
+            document.addEventListener('keydown', (event) => {
+                if (event.key === "Escape" && profileBtn.getAttribute("aria-expanded") === "true") {
+                    profileBtn.setAttribute("aria-expanded", "false");
+                    profileDetails.style.display = "none";
+                }
+            });
         }
-    });
-}
+        
         logoutButton.addEventListener('click', async () => {
             try {
                 await signOut(auth);
@@ -8426,6 +8428,7 @@ if (profileBtn) {
             }
         });
 
+        // Consolidate all UI initialization code into a single DOMContentLoaded listener
         document.addEventListener('DOMContentLoaded', function() {
             const tabs = document.querySelectorAll('.tab-buttons button');
             const tabContents = document.querySelectorAll('.tab-content');
@@ -8450,7 +8453,8 @@ if (profileBtn) {
             const nextDisabilityButton = document.getElementById('next-disability');
             const currentDisabilityNum = document.getElementById('current-disability-num');
             let currentDisabilityIndex = 0;
-            // automation tools  Section Elements
+
+            // automation tools Section Elements
             const automationToolsPages = document.querySelectorAll('#automationTools-pages .automationTools-page');
             const prevAutomationToolsButton = document.getElementById('prev-automationTools');
             const nextAutomationToolsButton = document.getElementById('next-automationTools');
@@ -8486,6 +8490,104 @@ if (profileBtn) {
                     nextButton.disabled = true;
                     currentNumSpan.textContent = `0 of ${pages.length}`;
                 }
+            }
+
+            // A list of the success criteria to populate the select box
+            const criteriaList = [
+                '1.1.1 Non-text Content', '1.2.1 Audio-only and Video-only (Prerecorded)', '1.2.2 Captions (Prerecorded)',
+                '1.2.3 Audio Description or Media Alternative (Prerecorded)', '1.2.4 Captions (Live)', '1.2.5 Audio Description (Prerecorded)',
+                '1.3.1 Info and Relationships', '1.3.2 Meaningful Sequence', '1.3.3 Sensory Characteristics',
+                '1.3.4 Orientation', '1.3.5 Identify Input Purpose', '1.4.1 Use of Color',
+                '1.4.2 Audio Control', '1.4.3 Contrast (Minimum)', '1.4.4 Resize Text',
+                '1.4.5 Images of Text', '1.4.10 Reflow', '1.4.11 Non-text Contrast',
+                '1.4.12 Text Spacing', '1.4.13 Content on Hover or Focus', '2.1.1 Keyboard',
+                '2.1.2 No Keyboard Trap', '2.1.4 Character Key Shortcuts', '2.2.1 Timing Adjustable',
+                '2.2.2 Pause, Stop, Hide', '2.3.1 Three Flashes or Below Threshold', '2.4.1 Bypass Blocks',
+                '2.4.2 Page Titled', '2.4.3 Focus Order', '2.4.4 Link Purpose (In Context)',
+                '2.4.5 Multiple Ways', '2.4.6 Headings and Labels', '2.4.7 Focus Visible',
+                '2.4.11 Focus Not Obscured (Minimum)',
+                '2.5.1 Pointer Gestures', '2.5.2 Pointer Cancellation', '2.5.3 Label in Name',
+                '2.5.4 Motion Actuation', '2.5.7 Dragging Movements', '2.5.8 Target Size (Minimum)', '3.1.1 Language of Page', '3.1.2 Language of Parts',
+                '3.2.1 On Focus', '3.2.2 On Input', '3.2.3 Consistent Navigation',
+                '3.2.4 Consistent Identification', '3.2.6 Consistent Help', '3.3.1 Error Identification', '3.3.2 Labels or Instructions',
+                '3.3.3 Error Suggestion', '3.3.4 Error Prevention (Legal, Financial, Data)', '3.3.7 Redundant Entry', '3.3.8 Accessible Authentication (Minimum)',
+                '4.1.2 Name, Role, Value', '4.1.3 Status Messages',
+            ];
+
+            // A list of ARIA attributes to populate the select box
+            const ariaList = [
+'Introduction to ARIA', 'aria-label', 'aria-labelledby', 'aria-describedby', 'aria-hidden', 'aria-expanded', 'aria-checked', 'aria-pressed', 'aria-live', 'aria-relevant', 'aria-atomic', 'aria-disabled', 'aria-required', 'aria-current', 'aria-haspopup', 'aria-busy', 'aria-level', 'aria-selected', 'aria-controls', 'role-alert', 'role-dialog', 'aria-modal', 'aria-owns', 'aria-readonly', 'aria-activedescendant', 'aria-valuemin, aria-valuemax, aria-valuenow', 'aria-valuetext', 'aria-orientation', 'aria-multiselectable', 'aria-sort', 'aria-keyshortcuts', 'aria-flowto', 'aria-autocomplete', 'aria-colspan and aria-rowspan', 'aria-colindex and aria-rowindex', 'aria-placeholder', 'aria-posinset and aria-setsize', 'aria-errormessage', 
+'aria-roledescription', 'aria-details', 'aria-invalid', 'Common ARIA Roles for Interactive Elements', 'Landmark Roles in ARIA', 'role="list" and role="listitem', 'role="log', 'ARIA Menu Roles', 'Role: none', 'Role: option', 'Role: presentation', 'Role: progressbar', 'Role: radiogroup', 'ARIA Table Roles', 'role="switch', 'ARIA Tab Roles', 'Using role="term" and role="definition', 'role="timer', 'role="tooltip', 'role="tree', 'role="treegrid', 'role="math', 'role="status', 'role="alertdialog'
+            ];
+
+
+            // Populates the <select> element with all success criteria.
+            function populateWcagSelectBox() {
+                criteriaList.forEach((name, index) => {
+                    const option = document.createElement('option');
+                    option.value = `wcag-page${index + 1}`;
+                    option.textContent = name;
+                    document.getElementById('wcag-select').appendChild(option);
+                });
+            }
+
+            // Populates the <select> element with all ARIA attributes.
+            function populateAriaSelectBox() {
+                ariaList.forEach((name, index) => {
+                    const option = document.createElement('option');
+                    // Assuming your aria pages have IDs like 'aria-page1', 'aria-page2', etc.
+                    option.value = `aria-page${index + 1}`;
+                    option.textContent = name;
+                    document.getElementById('aria-select').appendChild(option);
+                });
+            }
+
+            // Displays a specific page based on its index and updates the UI.
+            function showWcagPage(index) {
+                const wcagPages = document.querySelectorAll('.wcag-page');
+                if (index >= 0 && index < wcagPages.length) {
+                    // Hide all pages
+                    wcagPages.forEach(page => page.classList.remove('active'));
+                    // Show the target page
+                    wcagPages[index].classList.add('active');
+                    currentWcagIndex = index;
+
+                    // Update all controls (buttons, number, and select box)
+                    updateWcagControls();
+                }
+            }
+
+            function showAriaPage(index) {
+                const ariaPages = document.querySelectorAll('.aria-page');
+                if (index >= 0 && index < ariaPages.length) {
+                    ariaPages.forEach(page => page.classList.remove('active'));
+                    ariaPages[index].classList.add('active');
+                    currentAriaIndex = index;
+                    updateAriaControls();
+                }
+            }
+
+
+            // Updates the state of the navigation controls for WCAG.
+            function updateWcagControls() {
+                const totalPages = document.querySelectorAll('.wcag-page').length;
+                document.getElementById('current-wcag-num').textContent = `Page ${currentWcagIndex + 1} of ${totalPages}`;
+                document.getElementById('prev-wcag').disabled = currentWcagIndex === 0;
+                document.getElementById('next-wcag').disabled = currentWcagIndex === totalPages - 1;
+
+                // Sync the select box to the current page
+                document.getElementById('wcag-select').value = `wcag-page${currentWcagIndex + 1}`;
+            }
+
+            // Updates the state of the navigation controls for ARIA.
+            function updateAriaControls() {
+                const totalPages = document.querySelectorAll('.aria-page').length;
+                document.getElementById('current-aria-num').textContent = `Page ${currentAriaIndex + 1} of ${totalPages}`;
+                document.getElementById('prev-aria').disabled = currentAriaIndex === 0;
+                document.getElementById('next-aria').disabled = currentAriaIndex === totalPages - 1;
+
+                // Sync the select box to the current page
+                document.getElementById('aria-select').value = `aria-page${currentAriaIndex + 1}`;
             }
 
             // Tab switching logic
@@ -8527,11 +8629,11 @@ if (profileBtn) {
                             break;
                         case 'wcag-content':
                             currentWcagIndex = 0;
-                            showPage(wcagPages, currentWcagIndex, prevWcagButton, nextWCAGButton, currentWcagNum);
+                            showWcagPage(currentWcagIndex);
                             break;
                         case 'aria-content':
                             currentAriaIndex = 0;
-                            showPage(ariaPages, currentAriaIndex, prevAriaButton, nextAriaButton, currentAriaNum);
+                            showAriaPage(currentAriaIndex);
                             break;
                         case 'automationTools-content':
                             currentAutomationToolsIndex = 0;
@@ -8546,7 +8648,6 @@ if (profileBtn) {
             });
 
             // Initialize the first tab as active on page load
-            // Simulate a click on the first tab to set up its content and pagination
             if (tabs.length > 0) {
                 tabs[0].click();
             }
@@ -8566,20 +8667,12 @@ if (profileBtn) {
                 }
             });
 
-
-
             prevAriaButton.addEventListener('click', () => {
-                if (currentAriaIndex > 0) {
-                    currentAriaIndex--;
-                    showPage(ariaPages, currentAriaIndex, prevAriaButton, nextAriaButton, currentAriaNum);
-                }
+                showAriaPage(currentAriaIndex - 1);
             });
 
             nextAriaButton.addEventListener('click', () => {
-                if (currentAriaIndex < ariaPages.length - 1) {
-                    currentAriaIndex++;
-                    showPage(ariaPages, currentAriaIndex, prevAriaButton, nextAriaButton, currentAriaNum);
-                }
+                showAriaPage(currentAriaIndex + 1);
             });
 
             prevIntroButton.addEventListener('click', () => {
@@ -8625,114 +8718,30 @@ if (profileBtn) {
             });
 
             prevWcagButton.addEventListener('click', () => {
-                if (currentWcagIndex > 0) {
-                    currentWcagIndex--;
-                    showPage(wcagPages, currentWcagIndex, prevWcagButton, nextWCAGButton, currentWcagNum);
-                }
+                showWcagPage(currentWcagIndex - 1);
             });
 
             nextWCAGButton.addEventListener('click', () => {
-                if (currentWcagIndex < wcagPages.length - 1) {
-                    currentWcagIndex++;
-                    showPage(wcagPages, currentWcagIndex, prevWcagButton, nextWCAGButton, currentWcagNum);
-                }
+                showWcagPage(currentWcagIndex + 1);
             });
+
+            // Event listeners for select boxes
+            document.getElementById('wcag-select').addEventListener('change', (event) => {
+                const selectedIndex = Array.from(document.getElementById('wcag-select').options).findIndex(opt => opt.value === event.target.value);
+                showWcagPage(selectedIndex);
+            });
+
+            document.getElementById('aria-select').addEventListener('change', (event) => {
+                const selectedIndex = Array.from(document.getElementById('aria-select').options).findIndex(opt => opt.value === event.target.value);
+                showAriaPage(selectedIndex);
+            });
+
+            // Initial setup when the page loads
+            populateWcagSelectBox();
+            populateAriaSelectBox();
         });
-document.addEventListener('DOMContentLoaded', () => {
-    const wcagSelect = document.getElementById('wcag-select');
-    const wcagPages = document.querySelectorAll('.wcag-page');
-    const prevBtn = document.getElementById('prev-wcag');
-    const nextBtn = document.getElementById('next-wcag');
-    const currentNumSpan = document.getElementById('current-wcag-num');
-
-    let currentPageIndex = 0;
-
-    // A list of the success criteria to populate the select box
-    const criteriaList = [
-        '1.1.1 Non-text Content', '1.2.1 Audio-only and Video-only (Prerecorded)', '1.2.2 Captions (Prerecorded)',
-        '1.2.3 Audio Description or Media Alternative (Prerecorded)', '1.2.4 Captions (Live)', '1.2.5 Audio Description (Prerecorded)',
-        '1.3.1 Info and Relationships', '1.3.2 Meaningful Sequence', '1.3.3 Sensory Characteristics',
-        '1.3.4 Orientation', '1.3.5 Identify Input Purpose', '1.4.1 Use of Color',
-        '1.4.2 Audio Control', '1.4.3 Contrast (Minimum)', '1.4.4 Resize Text',
-        '1.4.5 Images of Text', '1.4.10 Reflow', '1.4.11 Non-text Contrast',
-        '1.4.12 Text Spacing', '1.4.13 Content on Hover or Focus', '2.1.1 Keyboard',
-        '2.1.2 No Keyboard Trap', '2.1.4 Character Key Shortcuts', '2.2.1 Timing Adjustable',
-        '2.2.2 Pause, Stop, Hide', '2.3.1 Three Flashes or Below Threshold', '2.4.1 Bypass Blocks',
-        '2.4.2 Page Titled', '2.4.3 Focus Order', '2.4.4 Link Purpose (In Context)',
-        '2.4.5 Multiple Ways', '2.4.6 Headings and Labels', '2.4.7 Focus Visible',
-'2.4.11 Focus Not Obscured (Minimum)',
-       '2.5.1 Pointer Gestures', '2.5.2 Pointer Cancellation', '2.5.3 Label in Name',
-        '2.5.4 Motion Actuation',         '2.5.7 Dragging Movements', '2.5.8 Target Size (Minimum)', '3.1.1 Language of Page', '3.1.2 Language of Parts',
-        '3.2.1 On Focus', '3.2.2 On Input', '3.2.3 Consistent Navigation',
-        '3.2.4 Consistent Identification', '3.2.6 Consistent Help', '3.3.1 Error Identification', '3.3.2 Labels or Instructions',
-        '3.3.3 Error Suggestion', '3.3.4 Error Prevention (Legal, Financial, Data)',         '3.3.7 Redundant Entry', '3.3.8 Accessible Authentication (Minimum)',
-        '4.1.2 Name, Role, Value', '4.1.3 Status Messages', 
-
-    ];
-
-    // Populates the <select> element with all success criteria.
-    function populateSelectBox() {
-        criteriaList.forEach((name, index) => {
-            const option = document.createElement('option');
-            option.value = `wcag-page${index + 1}`;
-            option.textContent = name;
-            wcagSelect.appendChild(option);
-        });
-    }
-
-    // Displays a specific page based on its index and updates the UI.
-    function showPage(index) {
-        if (index >= 0 && index < wcagPages.length) {
-            // Hide all pages
-            wcagPages.forEach(page => page.classList.remove('active'));
-            // Show the target page
-            wcagPages[index].classList.add('active');
-            currentPageIndex = index;
-
-            // Update all controls (buttons, number, and select box)
-            updateControls();
-
-            // Set focus to the new page's main heading for accessibility
-            const mainHeading = wcagPages[index].querySelector('h2');
-            if (mainHeading) {
-                mainHeading.setAttribute('tabindex', '-1');
-                mainHeading.focus();
-            }
-        }
-    }
-
-    // Updates the state of the navigation controls.
-    function updateControls() {
-        const totalPages = wcagPages.length;
-        currentNumSpan.textContent = `Page ${currentPageIndex + 1} of ${totalPages}`;
-        prevBtn.disabled = currentPageIndex === 0;
-        nextBtn.disabled = currentPageIndex === totalPages - 1;
-
-        // Sync the select box to the current page
-        wcagSelect.value = `wcag-page${currentPageIndex + 1}`;
-    }
-
-    // Event listeners for navigation
-    wcagSelect.addEventListener('change', (event) => {
-        // Find the index of the selected option
-        const selectedIndex = Array.from(wcagSelect.options).findIndex(opt => opt.value === event.target.value);
-        showPage(selectedIndex);
-    });
-
-    prevBtn.addEventListener('click', () => {
-        showPage(currentPageIndex - 1);
-    });
-
-    nextBtn.addEventListener('click', () => {
-        showPage(currentPageIndex + 1);
-    });
-
-    // Initial setup when the page loads
-    populateSelectBox();
-    showPage(0); // Start on the first page
-});
     </script>
-<script src="video_script.js"></script>
+    <script src="video_script.js"></script>
 
 </body>
 </html>
