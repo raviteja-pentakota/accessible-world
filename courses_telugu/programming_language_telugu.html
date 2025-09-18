@@ -999,8 +999,82 @@ text (strings), true/false (boolean), objects, arrays, and more.
                             <button class="fullscreen">Fullscreen</button>
                         </div>
                     </div>
+<p>Click on the next button to learn the 6th topic: JavaScript Variables – Practical Examples (Part 1).</p>
+                </div>
+                <div id="javascript-page6" class="javascript-page">
+<h2>Lesson 6: JavaScript Variables – Practical Examples (Part 1)</h2>
+                    <a href="#video-js-lesson3">Jump to video lesson</a>
+<p>
+In this lesson, we will learn how to create variables using 
+<code>var</code>, <code>let</code>, and <code>const</code> with simple 
+examples of <code>name</code> and <code>age</code>.
+</p>
+
+<p>
+<strong>var:</strong>  
+<code>var name = "Ravi";</code>  
+We can later change it, for example <code>name = "Teja";</code>.  
+We can also declare <code>var name</code> again, but this is not safe in big programs.
+</p>
+
+<p>
+<strong>let:</strong>  
+<code>let age = 25;</code>  
+We can later change it, for example <code>age = 26;</code>.  
+But we cannot declare <code>let age = 30;</code> again in the same block.  
+</p>
+
+<p>
+<strong>const:</strong>  
+<code>const name = "Ravi";</code>  
+This value cannot be changed. <code>name</code> will always stay as "Ravi".  
+In the same way, <code>const age = 25;</code> means age will always remain 25.  
+</p>
+
+                    <h3 id="video-js-lesson6">Telugu video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/variables-practicle1-telugu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <h3>Lesson 6 example code:</h3>
+                    <button id="viewCode15" aria-expanded="false" aria-controls="codeExample15">View example code</button>
+                    <div id="codeExample15" hidden>
+                        <p>All the below content is the HTML code for the 6th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt; 
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Variables practical example 1&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Variables example 1&lt;/h1&gt;
+&lt;p id="p1"&gt;&lt;/p&gt;
+&lt;p id="p2"&gt;&lt;/p&gt;
+&lt;script&gt;
+const name = "Raviteja";
+const age = 33;
+document.getElementById("p1").innerHTML = name;
+document.getElementById("p2").innerHTML = age;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+
+                    </div>
+<p>Click on the next button to learn the 7th topic: JavaScript Variables – Practical Examples (Part 2).</p>
 
                 </div>
+
             <div class="pagination-controls" aria-label="Java Script Topics Pagination">
                 <button id="jsprevBtn" disabled>Previous</button>
                 <span id="jspageIndicator" aria-live="polite">Page 1 of 5</span> <button id="jsnextBtn">Next</button>
