@@ -1088,7 +1088,7 @@ text (strings), true/false (boolean), objects, arrays, and more.
                 </div>
                 <div id="javascript-page6" class="javascript-page">
 <h2>Lesson 6: JavaScript Variables – Practical Examples (Part 1)</h2>
-                    <a href="#video-js-lesson3">Jump to video lesson</a>
+                    <a href="#video-js-lesson6">Jump to video lesson</a>
 <p>
 In this lesson, we will learn how to create variables using 
 <code>var</code>, <code>let</code>, and <code>const</code> with simple 
@@ -1119,7 +1119,7 @@ In the same way, <code>const age = 25;</code> means age will always remain 25.
                     <h3 id="video-js-lesson6">English video explanation with practical:</h3>
                     <div class="video-container">
                         <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-                            <source src="javascript_videos/variables-practicle1-english.mp4" type="video/mp4">
+                            <source src="javascript_videos/variables-practical1-english.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                         <div class="controls">
@@ -1159,6 +1159,187 @@ document.getElementById("p2").innerHTML = age;
 <p>Click on the next button to learn the 7th topic: JavaScript Variables – Practical Examples (Part 2).</p>
 
                 </div>
+                <div id="javascript-page7" class="javascript-page">
+<h2>Lesson 7: JavaScript Variables – Practical Examples (Part 2)</h2>
+                    <a href="#video-js-lesson7">Jump to video lesson</a>
+<p>
+In this example, we will use the <code>const</code> keyword to create 
+three variables. First, we will declare <code>const a = 30;</code> and 
+<code>const b = 30;</code>. Then, we will create another variable 
+<code>const c = a + b;</code>.  
+</p>
+
+<p>
+Here, the value of <code>c</code> will be the sum of <code>a</code> and 
+<code>b</code>, which is 60.  
+We will display this result inside a paragraph tag on the web page.  
+</p>
+
+                    <h3 id="video-js-lesson7">English video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/variables-practical2-english.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <h3>Lesson 7 example code:</h3>
+                    <button id="viewCode16" aria-expanded="false" aria-controls="codeExample16">View example code</button>
+                    <div id="codeExample16" hidden>
+                        <p>All the below content is the HTML code for the 6th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Variables practical example 2&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Variables example 2&lt;/h1&gt;
+&lt;p id="p1"&gt;&lt;/p&gt;
+&lt;script&gt;
+const a = 30;
+const b = 30;
+const c = a + b;
+document.getElementById("p1").innerHTML = c;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+
+                    </div>
+<p>Click on the next button to learn the 8th topic: Concatenation in JavaScript.</p>
+
+                </div>
+                <div id="javascript-page8" class="javascript-page">
+<h2>Lesson 8: JavaScript Concatenation</h2>
+                    <a href="#video-js-lesson8">Jump to video lesson</a>
+<p>
+Concatenation means joining two or more values together. In JavaScript, we often join text (called strings) or mix text with variables using the <code>+</code> operator.  
+</p>
+
+<p>
+For example, if we have a variable <code>name</code> and another variable <code>age</code>, we can join them to form a sentence like:  
+<br><em>"My name is Ravi and I am 30 years old."</em>  
+</p>
+
+<p>
+The code will look like this:  
+<br><code>"My name is " + name + " and I am " + age</code>  
+</p>
+
+<p>
+Concatenation is useful when we want to display complete information by combining different values into one message.  
+</p>
+                    <h3 id="video-js-lesson8">English video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/concatenation-english.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <h3>Lesson 8 example code:</h3>
+                    <button id="viewCode17" aria-expanded="false" aria-controls="codeExample17">View example code</button>
+                    <div id="codeExample17" hidden>
+                        <p>All the below content is the HTML code for the 8th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Variables practical example 2&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Variables example 2&lt;/h1&gt;
+&lt;p id="p1"&gt;&lt;/p&gt;
+&lt;script&gt;
+let name = "Raviteja";
+let age = 30;
+let el = document.getElementById("p1");
+el.innerHTML = "My name is " + name + " I am " + age + " years old.";
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+
+                    </div>
+<p>Click on the next button to learn the 9th topic: Concatenation Example 2: Joining Text with a Result.</p>
+
+                </div>
+                <div id="javascript-page8" class="javascript-page">
+<h2>Lesson 9: Concatenation Example 2: Joining Text with a Result</h2>
+                    <a href="#video-js-lesson9">Jump to video lesson</a>
+<p>
+In this example, we use <code>let</code> to create variables. First, we store two numbers in <code>a</code> and <code>b</code>. Then we add them together and save the result in <code>c</code>.  
+</p>
+
+<p>
+Next, we create another variable <code>answer</code> where we join some text with the value of <code>c</code>. This is concatenation, because we are combining a string ("The answer is ") with a number result.  
+</p>
+
+<p>
+Finally, we take the element with id <code>p1</code> and use <code>innerHTML</code> to display the full message on the web page.  
+</p>
+
+<p>
+The output will be shown as:  
+<br><em>"The answer is 100"</em>  
+</p>                    
+<h3 id="video-js-lesson9">English video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/concatenation-example2-english.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <h3>Lesson 9 example code:</h3>
+                    <button id="viewCode18" aria-expanded="false" aria-controls="codeExample18">View example code</button>
+                    <div id="codeExample18" hidden>
+                        <p>All the below content is the HTML code for the 9th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Variables practical example 2&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Variables example 2&lt;/h1&gt;
+&lt;p id="p1"&gt;&lt;/p&gt;
+&lt;script&gt;
+let a = 60;
+let b = 40;
+let c = a + b;
+let answer = "The answer is " + c;
+let el = document.getElementById("p1");
+el.innerHTML = answer;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+
+                    </div>
+		                </div>
 
             <div class="pagination-controls" aria-label="Java Script Topics Pagination">
                 <button id="jsprevBtn" disabled>Previous</button>
