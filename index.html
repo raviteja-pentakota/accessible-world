@@ -18,19 +18,21 @@
         }
 
         .container {
-            max-width: 500px;
+            width: 100%; /* Changed max-width to 500px, now 100% up to 800px for better feedback display */
+            max-width: 800px; 
             padding: 25px;
             background: #ffffff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             text-align: center;
+            margin-bottom: 20px; /* Space above footer */
         }
 
         button {
             width: 100%;
             padding: 12px;
             margin: 10px 0;
-            background: #006699:
+            background: #006699;
             color: white;
             border: none;
             border-radius: 6px;
@@ -42,7 +44,7 @@
             background: #287ba3;
         }
 
-        label.sr-only { /* Style for screen-reader only labels */
+        label.sr-only {
             position: absolute;
             width: 1px;
             height: 1px;
@@ -68,50 +70,75 @@
             min-height: 50px;
             text-align: left;
             background-color: #e9e9e9;
+            padding: 15px;
         }
-        .answer-box:focus { /* Optional: visual cue when answer box is focused */
+        .answer-box:focus {
             outline: 2px solid #3399cc;
             outline-offset: 2px;
         }
 
+        /* Feedback Item Styles */
+        .feedback-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            margin-bottom: 10px;
+        }
+        .feedback-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .feedback-item strong {
+            color: #006699;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .feedback-item .meta {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 5px;
+        }
+
         /* Footer Styles */
-        .footer { /* Corrected selector from footer to .footer if using class */
+        .footer {
             background: #333;
             color: #fff;
             padding: 10px 20px;
             text-align: center;
             margin-top: auto;
-            border-radius: 0 0 8px 8px;
-            width: 100%; /* Ensure footer takes full width */
+            border-radius: 8px; /* Removed 0 0 from border-radius as container has no bottom radius */
+            width: 100%;
+            max-width: 800px; /* Match container width */
         }
 
-        .footer a { /* Corrected selector */
+        .footer a {
             color: #fff;
             text-decoration: none;
             margin: 0 10px;
         }
 
-        .footer a:hover { /* Corrected selector */
+        .footer a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
-<div class="container">
+    <div class="container">
         <h1>Welcome to Accessible World!</h1>
         <p>
             In today’s fast-moving world, success demands more than just hard work — it requires the right knowledge and preparation. At Accessible World, we equip you with everything you need: free training in accessibility testing, essential computer skills, and valuable materials like general knowledge, current affairs, and interview preparation resources.
             Plus, with our 3-level referral program, you have the opportunity to grow your network, learn new skills, and earn income at the same time — all within a fully inclusive and supportive environment.
             Don’t wait to unlock your full potential! Register now and log in to start your journey with Accessible World. Learn, explore, and achieve more with us!
         </p>
-<h2>Update: JavaScript Lessons in Web Development Courses!</h2>
-<p>Starting today, we are adding JavaScript topics under our Web Development courses in both Telugu and English. We are uploading the lessons along with videos gradually. As of now, you can explore a few JavaScript topics, and every day we will keep increasing the count. Once all the JavaScript topics are uploaded, we may revise the course price for new users.</p>
-<p>Along with this, we are excited to announce the launch of our Android application for easy access. Now you can access all our courses anytime, anywhere, right from your mobile device.</p>
-<p>You can download the Android application below this update and start learning on the go.</p>
-<p>Stay connected and keep learning with us — we’re committed to delivering the best in accessible education!</p>
-<a role="button" href="accessibleworld.apk" download>Click here to Download Accessible World Android Application</a>
-<button onclick="window.location.href='login.html'">Login</button>
+        <h2>Update: JavaScript Lessons in Web Development Courses!</h2>
+        <p>Starting today, we are adding JavaScript topics under our Web Development courses in both Telugu and English. We are uploading the lessons along with videos gradually. As of now, you can explore a few JavaScript topics, and every day we will keep increasing the count. Once all the JavaScript topics are uploaded, we may revise the course price for new users.</p>
+        <p>Along with this, we are excited to announce the launch of our Android application for easy access. Now you can access all our courses anytime, anywhere, right from your mobile device.</p>
+        <p>You can download the Android application below this update and start learning on the go.</p>
+        <p>Stay connected and keep learning with us — we’re committed to delivering the best in accessible education!</p>
+        <a role="button" href="accessibleworld.apk" download>Click here to Download Accessible World Android Application</a>
+        <button onclick="window.location.href='login.html'">Login</button>
         <button onclick="window.location.href='register.html'">Register</button>
+        
         <h2>Question and answers</h2>
         <label for="questionSelect" class="sr-only">Select a question about Accessible World</label>
         <select id="questionSelect">
@@ -128,14 +155,44 @@
             <option value="withdrawalProcess">How can I withdraw my referral earnings?</option>
         </select>
         <div id="answerBox" class="answer-box" tabindex="-1" aria-live="polite"></div>
-    </div>
-    <footer class="footer"> <p>&copy; 2025 Accessible World Tutorials</p>
+
+        <h2 style="margin-top: 30px;">Recent User Feedback</h2>
+        <div id="latestFeedbackContainer" class="answer-box" tabindex="-1">
+            <p>Loading recent feedback...</p>
+        </div>
+        </div>
+    
+    <footer class="footer"> 
+        <p>&copy; 2025 Accessible World Tutorials</p>
         <a href="privacy.html" target="_blank">Privacy Policy</a>
         <a href="terms.html" target="_blank">Terms of Service</a>
         <a href="contact.html" target="_blank">Contact Us</a>
     </footer>
 
-    <script>
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getFirestore, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+
+        // --- START: Firebase Configuration ---
+        // REPLACE with your actual Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
+            authDomain: "accessibleworld-7f599.firebaseapp.com",
+            projectId: "accessibleworld-7f599",
+            storageBucket: "accessibleworld-7f599.appspot.com",
+            messagingSenderId: "264437218598",
+            appId: "1:264437218598:web:cae58c1e578c7b08b815e7",
+            measurementId: "G-1QRWXYRZ76"
+        };
+
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        // --- END: Firebase Configuration ---
+
+        // --- START: FAQ LOGIC (Existing) ---
         const questionSelect = document.getElementById('questionSelect');
         const answerBox = document.getElementById('answerBox');
 
@@ -156,69 +213,104 @@ This way, you can build a growing network and earn passive income while helping 
             withdrawalProcess: "You can request a withdrawal once you earn referral income. Simply go to the dashboard, click on 'Show/Hide Referral Details', then select 'Request Withdrawal'. Enter your preferred withdrawal method and the amount, and submit the request. Your request will be sent for admin approval."
         };
 
-        // Function to update the answer content and manage focus
         function updateAnswerAndFocus() {
             const selectedValue = questionSelect.value;
             const answerText = answers[selectedValue] || "";
             answerBox.textContent = answerText;
 
             if (answerText) {
-                // Ensure answerBox is focusable (it should have tabindex="-1" from HTML)
-                // If not set in HTML, this line would add it:
-                // if (!answerBox.hasAttribute('tabindex')) {
-                //     answerBox.setAttribute('tabindex', '-1');
-                // }
                 answerBox.focus();
             }
         }
 
-        let wasArrowKeyUsed = false; // Flag to track if an arrow key was the last relevant keydown
+        let wasArrowKeyUsed = false;
 
         questionSelect.addEventListener('keydown', function(event) {
             if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-                wasArrowKeyUsed = true; // Mark that arrow keys are being used for navigation
+                wasArrowKeyUsed = true;
             } else if (event.key === 'Enter') {
-                event.preventDefault(); // Prevent default form submission or other select actions
-                wasArrowKeyUsed = false; // Enter is a commit action, not just arrow navigation
-                updateAnswerAndFocus(); // Update answer immediately on Enter
-                                        // Note: 'change' event will also fire after this.
+                event.preventDefault();
+                wasArrowKeyUsed = false;
+                updateAnswerAndFocus();
             } else {
-                // For any other key (e.g., character keys for jumping, Tab, Escape),
-                // assume it's not part of a sequence where 'change' should be ignored.
                 wasArrowKeyUsed = false;
             }
         });
 
         questionSelect.addEventListener('change', function() {
-            // 'change' fires after value is modified by arrow keys, click, Enter, or tabbing away.
             if (wasArrowKeyUsed) {
-                // If 'true', this 'change' was triggered by an arrow key press.
-                // We don't want to update the answer display yet.
-                // Reset the flag; the next 'change' (e.g., from a click or Enter) should not be blocked.
                 wasArrowKeyUsed = false;
-                return; // Skip updating the answer for this arrow-key-induced change
+                return;
             }
-
-            // If 'wasArrowKeyUsed' is false, the change was due to:
-            // 1. A mouse click.
-            // 2. An Enter key press (which already called updateAnswerAndFocus, so this might be redundant but is generally okay).
-            // 3. Tabbing away (blur will also handle this; this might be redundant).
-            // 4. Character key navigation that changes the value.
             updateAnswerAndFocus();
         });
 
-        // If the user mousedowns on the select (prelude to a click), it's a direct selection, not arrow navigation.
         questionSelect.addEventListener('mousedown', function() {
             wasArrowKeyUsed = false;
         });
 
         questionSelect.addEventListener('blur', function() {
-            // When the select element loses focus, any pending selection should be committed.
-            // This is crucial if arrow keys were used and then the user tabbed away or clicked outside.
-            // We update here regardless of 'wasArrowKeyUsed' because blur signifies a commit.
             updateAnswerAndFocus();
-            wasArrowKeyUsed = false; // Reset flag as interaction with select is ending or committed.
+            wasArrowKeyUsed = false;
         });
+        // --- END: FAQ LOGIC (Existing) ---
+
+
+        // --- START: FEEDBACK DISPLAY LOGIC (New) ---
+        const latestFeedbackContainer = document.getElementById('latestFeedbackContainer');
+
+        const renderFeedbackList = (feedbackList) => {
+            latestFeedbackContainer.innerHTML = ''; // Clear previous list
+
+            if (!feedbackList || feedbackList.length === 0) {
+                latestFeedbackContainer.innerHTML = '<p>No feedback submitted yet. Be the first to share your thoughts! 🚀</p>';
+                return;
+            }
+
+            feedbackList.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'feedback-item';
+                itemDiv.setAttribute('role', 'listitem');
+
+                // Safely format the timestamp
+                const date = item.timestamp?.toDate ? item.timestamp.toDate().toLocaleDateString('en-US', {
+                    year: 'numeric', month: 'short', day: 'numeric'
+                }) : 'N/A';
+                
+                // Escape HTML characters to prevent XSS (just in case)
+                const safeText = item.text ? item.text.replace(/</g, "&lt;").replace(/>/g, "&gt;") : 'No text provided.';
+                const safeName = item.name ? item.name.replace(/</g, "&lt;").replace(/>/g, "&gt;") : 'Anonymous';
+
+                itemDiv.innerHTML = `
+                    <strong>${safeText}</strong>
+                    <div class="meta">
+                        - ${safeName} (Topic: ${item.topic}) on ${date}
+                    </div>
+                `;
+                latestFeedbackContainer.appendChild(itemDiv);
+            });
+        };
+
+        const fetchAndDisplayFeedback = async () => {
+            try {
+                latestFeedbackContainer.innerHTML = '<p>Loading recent user feedback...</p>';
+                
+                // Query the 'feedback' collection: order by newest first, limit to top 3
+                const q = query(collection(db, "feedback"), orderBy("timestamp", "desc"), limit(3));
+                const snapshot = await getDocs(q);
+                
+                const feedbackList = snapshot.docs.map(doc => doc.data());
+                renderFeedbackList(feedbackList);
+
+            } catch (error) {
+                console.error("Error fetching feedback:", error);
+                latestFeedbackContainer.innerHTML = '<p style="color: red;">Could not load recent feedback at this time. 😞</p>';
+            }
+        };
+
+        // Call the function to load feedback when the page loads
+        fetchAndDisplayFeedback();
+        // --- END: FEEDBACK DISPLAY LOGIC (New) ---
 
     </script>
 </body>

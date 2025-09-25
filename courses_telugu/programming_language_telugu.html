@@ -21,6 +21,8 @@
                 <button id="logout-btn">Logout</button>
             </div>
         </div>
+<a href="feedback.html" role="button">Give your Valuable Feedback</a>
+
     </header>
     <nav aria-label="main">
         <ul type="none">
@@ -1228,6 +1230,78 @@ The output will be shown as:
                     <button id="viewCode18" aria-expanded="false" aria-controls="codeExample18">View example code</button>
                     <div id="codeExample18" hidden>
                         <p>All the below content is the HTML code for the 9th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Variables practical example 2&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Variables example 2&lt;/h1&gt;
+&lt;p id="p1"&gt;&lt;/p&gt;
+&lt;script&gt;
+let a = 60;
+let b = 40;
+let c = a + b;
+let answer = "The answer is " + c;
+let el = document.getElementById("p1");
+el.innerHTML = answer;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+
+                    </div>
+<p>Click on the next button to learn the 10th topic: Variable Initialization, and Modification.</p>
+
+                </div>
+                <div id="javascript-page10" class="javascript-page">
+<h2>Lesson 10: Variable Initialization and Modification</h2>
+                    <a href="#video-js-lesson10">Jump to video lesson</a>
+<p>
+When we create a variable in JavaScript, we can give it a value immediately.  
+This process is called <b>initialization</b>. It means that the variable is both declared and assigned a value in a single step.  
+</p>
+
+<p>
+For example:  
+<br><code>let age = 25;</code>  
+Here, <code>age</code> is declared as a variable and at the same time it is initialized with the value <code>25</code>.  
+</p>
+
+<p>
+Later, if we want to change the value stored in <code>age</code>, we simply assign a new value to it.  
+This process is called <b>modification</b> (or reassignment).  
+</p>
+
+<p>
+For example:  
+<br><code>age = 30;</code>  
+Now the variable <code>age</code> no longer stores <code>25</code>, but instead it stores <code>30</code>.  
+</p>
+
+<p>
+So, initialization gives the first value to a variable, and modification allows us to change it to a new value when needed.  
+</p>
+<h3 id="video-js-lesson10">Telugu video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/variables-im-telugu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <h3>Lesson 10 example code:</h3>
+                    <button id="viewCode19" aria-expanded="false" aria-controls="codeExample19">View example code</button>
+                    <div id="codeExample19" hidden>
+                        <p>All the below content is the HTML code for the 10th lesson:</p>
                         <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
