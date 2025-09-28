@@ -1341,7 +1341,152 @@ el.innerHTML = answer;
                         </code></pre>
 
                     </div>
-		                </div>
+<p>Click on the next button to learn the 10th topic: Variable Initialization, and Modification.</p>
+
+                </div>
+                <div id="javascript-page10" class="javascript-page">
+<h2>Lesson 10: Variable Initialization and Modification</h2>
+                    <a href="#video-js-lesson10">Jump to video lesson</a>
+<p>
+When we create a variable in JavaScript, we can give it a value immediately.  
+This process is called <b>initialization</b>. It means that the variable is both declared and assigned a value in a single step.  
+</p>
+
+<p>
+For example:  
+<br><code>let age = 25;</code>  
+Here, <code>age</code> is declared as a variable and at the same time it is initialized with the value <code>25</code>.  
+</p>
+
+<p>
+Later, if we want to change the value stored in <code>age</code>, we simply assign a new value to it.  
+This process is called <b>modification</b> (or reassignment).  
+</p>
+
+<p>
+For example:  
+<br><code>age = 30;</code>  
+Now the variable <code>age</code> no longer stores <code>25</code>, but instead it stores <code>30</code>.  
+</p>
+
+<p>
+So, initialization gives the first value to a variable, and modification allows us to change it to a new value when needed.  
+</p>
+<h3 id="video-js-lesson10">English video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/variables-im-english.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <h3>Lesson 10 example code:</h3>
+                    <button id="viewCode19" aria-expanded="false" aria-controls="codeExample19">View example code</button>
+                    <div id="codeExample19" hidden>
+                        <p>All the below content is the HTML code for the 10th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Variables Example: Initialization and Modification&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Variables Example: Initialization and Modification&lt;/h1&gt;
+&lt;p id="p1"&gt;&lt;/p&gt;
+&lt;script&gt;
+let age = 25;
+document.getElementById("p1").innerHTML = "My age is " + age;
+age = 40;
+document.getElementById("p1").innerHTML = "My age is " + age;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+
+                    </div>
+<p>Click on the next button to learn the 11th topic: Variable Declaration.</p>
+                </div>
+                <div id="javascript-page11" class="javascript-page">
+<h2>Lesson 11: Variable Declaration</h2>
+                    <a href="#video-js-lesson11">Jump to video lesson</a>
+<p>
+<p>
+Sometimes, we only want to create a variable first, without giving it any value.  
+This is called <b>declaration</b>.  
+</p>
+
+<p>
+For example:  
+<br><code>let name;</code>  
+Here, the variable <code>name</code> has been declared, but it does not hold any value yet.  
+</p>
+
+<p>
+In JavaScript, when a variable is declared without a value, it is automatically given a special value called <code>undefined</code>.  
+This means that the variable exists, but nothing has been stored in it yet.  
+</p>
+
+<p>
+Later, we can assign a value to this declared variable whenever we need.  
+For example:  
+<br><code>name = "Ravi";</code>  
+Now the variable <code>name</code> holds the value <code>"Ravi"</code>.  
+</p>
+
+<p>
+So, declaration only creates the variable, while initialization and modification give and change its value.  
+</p>
+<h3 id="video-js-lesson11>English video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/variables-d-english.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <h3>Lesson 11 example code:</h3>
+                    <button id="viewCode20" aria-expanded="false" aria-controls="codeExample20">View example code</button>
+                    <div id="codeExample20" hidden>
+                        <p>All the below content is the HTML code for the 11th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Variable Declaration&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Variable Declaration&lt;/h1&gt;
+&lt;p id="p1"&gt;&lt;/p&gt;
+&lt;script&gt;
+let name;
+let el = document.getElementById("p1");
+name = "Raviteja";
+el.innerHTML = "My name is " + name;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+
+                    </div>
+                </div>
+
+
+
+
 
             <div class="pagination-controls" aria-label="Java Script Topics Pagination">
                 <button id="jsprevBtn" disabled>Previous</button>

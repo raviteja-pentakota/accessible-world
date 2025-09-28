@@ -1308,18 +1308,88 @@ So, initialization gives the first value to a variable, and modification allows 
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-  &lt;title&gt;Variables practical example 2&lt;/title&gt;
+  &lt;title&gt;Variables Example: Initialization and Modification&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;h1&gt;Variables example 2&lt;/h1&gt;
+&lt;h1&gt;Variables Example: Initialization and Modification&lt;/h1&gt;
 &lt;p id="p1"&gt;&lt;/p&gt;
 &lt;script&gt;
-let a = 60;
-let b = 40;
-let c = a + b;
-let answer = "The answer is " + c;
+let age = 25;
+document.getElementById("p1").innerHTML = "My age is " + age;
+age = 40;
+document.getElementById("p1").innerHTML = "My age is " + age;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+
+                    </div>
+<p>Click on the next button to learn the 11th topic: Variable Declaration.</p>
+                </div>
+                <div id="javascript-page11" class="javascript-page">
+<h2>Lesson 11: Variable Declaration</h2>
+                    <a href="#video-js-lesson11">Jump to video lesson</a>
+<p>
+<p>
+Sometimes, we only want to create a variable first, without giving it any value.  
+This is called <b>declaration</b>.  
+</p>
+
+<p>
+For example:  
+<br><code>let name;</code>  
+Here, the variable <code>name</code> has been declared, but it does not hold any value yet.  
+</p>
+
+<p>
+In JavaScript, when a variable is declared without a value, it is automatically given a special value called <code>undefined</code>.  
+This means that the variable exists, but nothing has been stored in it yet.  
+</p>
+
+<p>
+Later, we can assign a value to this declared variable whenever we need.  
+For example:  
+<br><code>name = "Ravi";</code>  
+Now the variable <code>name</code> holds the value <code>"Ravi"</code>.  
+</p>
+
+<p>
+So, declaration only creates the variable, while initialization and modification give and change its value.  
+</p>
+<h3 id="video-js-lesson11">Telugu video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/variables-d-telugu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <h3>Lesson 11 example code:</h3>
+                    <button id="viewCode20" aria-expanded="false" aria-controls="codeExample20">View example code</button>
+                    <div id="codeExample20" hidden>
+                        <p>All the below content is the HTML code for the 11th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Variable Declaration&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Variable Declaration&lt;/h1&gt;
+
+&lt;p id="p1"&gt;&lt;/p&gt;
+&lt;script&gt;
+let name;
 let el = document.getElementById("p1");
-el.innerHTML = answer;
+name = "Raviteja";
+el.innerHTML = "My name is " + name;
 &lt;/script&gt;
 
 &lt;/body&gt;
