@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="./">
     <style>
+        /* Existing Styles */
         body {
             font-family: Arial, sans-serif;
             background: #f7f7f7;
@@ -18,14 +19,14 @@
         }
 
         .container {
-            width: 100%; /* Changed max-width to 500px, now 100% up to 800px for better feedback display */
-            max-width: 800px; 
+            width: 100%;
+            max-width: 800px;
             padding: 25px;
             background: #ffffff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             text-align: center;
-            margin-bottom: 20px; /* Space above footer */
+            margin-bottom: 20px;
         }
 
         button {
@@ -77,28 +78,6 @@
             outline-offset: 2px;
         }
 
-        /* Feedback Item Styles */
-        .feedback-item {
-            border-bottom: 1px solid #ddd;
-            padding: 10px 0;
-            margin-bottom: 10px;
-        }
-        .feedback-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-        .feedback-item strong {
-            color: #006699;
-            font-size: 1.1em;
-            display: block;
-            margin-bottom: 5px;
-        }
-        .feedback-item .meta {
-            font-size: 0.85em;
-            color: #666;
-            margin-top: 5px;
-        }
-
         /* Footer Styles */
         .footer {
             background: #333;
@@ -106,9 +85,9 @@
             padding: 10px 20px;
             text-align: center;
             margin-top: auto;
-            border-radius: 8px; /* Removed 0 0 from border-radius as container has no bottom radius */
+            border-radius: 8px;
             width: 100%;
-            max-width: 800px; /* Match container width */
+            max-width: 800px;
         }
 
         .footer a {
@@ -120,10 +99,99 @@
         .footer a:hover {
             text-decoration: underline;
         }
+
+        /* --- NEW MODAL STYLES --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.is-visible {
+            display: flex;
+        }
+
+        .modal {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            text-align: left;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            line-height: 1;
+            color: #333;
+        }
+
+        .modal-close-button:focus {
+            outline: 2px solid #006699;
+            outline-offset: 2px;
+        }
+
+        .modal h2 {
+            margin-top: 0;
+            color: #006699;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        /* Feedback List Styles (Modal Content) */
+        .feedback-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .feedback-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .feedback-list li:last-child {
+            border-bottom: none;
+        }
+        .feedback-meta {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .feedback-message {
+            font-style: italic;
+            color: #555;
+            line-height: 1.4;
+        }
+        /* Style for the new Feedback button to keep it consistent */
+        #showFeedbackButton {
+            background: #3c93d5; /* A slightly different blue for contrast */
+        }
+        #showFeedbackButton:hover {
+            background: #4a9fd6;
+        }
+
     </style>
 </head>
 <body>
-    <div class="container">
+    <div id="main-content" class="container">
         <h1>Welcome to Accessible World!</h1>
         <p>
             In today’s fast-moving world, success demands more than just hard work — it requires the right knowledge and preparation. At Accessible World, we equip you with everything you need: free training in accessibility testing, essential computer skills, and valuable materials like general knowledge, current affairs, and interview preparation resources.
@@ -132,13 +200,12 @@
         </p>
         <h2>Update: JavaScript Lessons in Web Development Courses!</h2>
         <p>Starting today, we are adding JavaScript topics under our Web Development courses in both Telugu and English. We are uploading the lessons along with videos gradually. As of now, you can explore a few JavaScript topics, and every day we will keep increasing the count. Once all the JavaScript topics are uploaded, we may revise the course price for new users.</p>
-        <p>Along with this, we are excited to announce the launch of our Android application for easy access. Now you can access all our courses anytime, anywhere, right from your mobile device.</p>
-        <p>You can download the Android application below this update and start learning on the go.</p>
         <p>Stay connected and keep learning with us — we’re committed to delivering the best in accessible education!</p>
-        <a role="button" href="accessibleworld.apk" download>Click here to Download Accessible World Android Application</a>
+
+        <button id="showFeedbackButton" onclick="openModal()">Show Recent User Feedback</button>
         <button onclick="window.location.href='login.html'">Login</button>
         <button onclick="window.location.href='register.html'">Register</button>
-        
+
         <h2>Question and answers</h2>
         <label for="questionSelect" class="sr-only">Select a question about Accessible World</label>
         <select id="questionSelect">
@@ -156,26 +223,35 @@
         </select>
         <div id="answerBox" class="answer-box" tabindex="-1" aria-live="polite"></div>
 
-        <h2 style="margin-top: 30px;">Recent User Feedback</h2>
-        <div id="latestFeedbackContainer" class="answer-box" tabindex="-1">
-            <p>Loading recent feedback...</p>
-        </div>
-        </div>
-    
-    <footer class="footer"> 
+        <div id="latestFeedbackContainer" style="display: none;"></div>
+    </div>
+
+    <footer class="footer">
         <p>&copy; 2025 Accessible World Tutorials</p>
         <a href="privacy.html" target="_blank">Privacy Policy</a>
         <a href="terms.html" target="_blank">Terms of Service</a>
         <a href="contact.html" target="_blank">Contact Us</a>
     </footer>
 
+    <div id="feedbackModalOverlay" class="modal-overlay">
+        <div id="feedbackModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <h2 id="modalTitle">Recent User Feedback</h2>
+
+            <ul id="feedbackList" class="feedback-list" role="list">
+                <li style="text-align: center;">Loading feedback...</li>
+            </ul>
+
+            <button id="closeModalButton" class="modal-close-button" aria-label="Close feedback modal" title="Close">
+                &times;
+            </button>
+        </div>
+    </div>
     <script type="module">
         // Import Firebase modules
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
         import { getFirestore, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
 
-        // --- START: Firebase Configuration ---
-        // REPLACE with your actual Firebase configuration
+        // --- START: Firebase Configuration (Keep this section) ---
         const firebaseConfig = {
             apiKey: "AIzaSyBWtr_ZwK8hfA1We-yq9uUOjw5C6wXhx0k",
             authDomain: "accessibleworld-7f599.firebaseapp.com",
@@ -186,16 +262,104 @@
             measurementId: "G-1QRWXYRZ76"
         };
 
-
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         // --- END: Firebase Configuration ---
 
-        // --- START: FAQ LOGIC (Existing) ---
+        // --- START: DOM ELEMENTS AND ACCESSIBILITY VARS ---
         const questionSelect = document.getElementById('questionSelect');
         const answerBox = document.getElementById('answerBox');
+        const showFeedbackButton = document.getElementById('showFeedbackButton');
+        const feedbackModalOverlay = document.getElementById('feedbackModalOverlay');
+        const feedbackModal = document.getElementById('feedbackModal');
+        const feedbackListContainer = document.getElementById('feedbackList');
+        const closeModalButton = document.getElementById('closeModalButton');
+        const mainContent = document.getElementById('main-content');
+        // We no longer need 'previouslyFocusedElement' in closeModal, as we will explicitly focus the showFeedbackButton.
 
+        // Find all focusable elements within the modal
+        const getFocusableElements = () => {
+            return feedbackModal.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+        };
+        // --- END: DOM ELEMENTS AND ACCESSIBILITY VARS ---
+
+        // --- START: MODAL FUNCTIONS (Updated) ---
+        const openModal = () => {
+            // 1. Store the currently focused element (not strictly needed since we hard-focus on close, but good practice)
+            // previouslyFocusedElement = document.activeElement; 
+            
+            // 2. Make the main content inert to screen readers
+            mainContent.setAttribute('aria-hidden', 'true');
+            document.querySelector('.footer').setAttribute('aria-hidden', 'true');
+
+            // 3. Show the modal
+            feedbackModalOverlay.classList.add('is-visible');
+            document.body.style.overflow = 'hidden';
+
+            // 4. Load the feedback data
+            fetchAndDisplayFeedback();
+
+            // 5. Move focus to the close button
+            closeModalButton.focus();
+        };
+
+        const closeModal = () => {
+            // 1. Hide the modal
+            feedbackModalOverlay.classList.remove('is-visible');
+            document.body.style.overflow = '';
+
+            // 2. Restore main content accessibility
+            mainContent.removeAttribute('aria-hidden');
+            document.querySelector('.footer').removeAttribute('aria-hidden');
+
+            // 3. Return focus explicitly to the 'Show Recent User Feedback' button (FIX)
+            showFeedbackButton.focus(); 
+        };
+
+        const trapFocus = (e) => {
+            if (feedbackModalOverlay.classList.contains('is-visible')) {
+                const focusableElements = getFocusableElements();
+                // If there are no other focusable elements (only the close button), the trap is trivial
+                if (focusableElements.length <= 1) return; 
+                
+                const firstFocusableElement = focusableElements[0];
+                const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) { // Shift + Tab
+                        if (document.activeElement === firstFocusableElement) {
+                            lastFocusableElement.focus();
+                            e.preventDefault();
+                        }
+                    } else { // Tab
+                        if (document.activeElement === lastFocusableElement) {
+                            firstFocusableElement.focus();
+                            e.preventDefault();
+                        }
+                    }
+                } else if (e.key === 'Escape') {
+                    closeModal();
+                }
+            }
+        };
+        // --- END: MODAL FUNCTIONS ---
+
+        // --- START: MODAL EVENT LISTENERS (New) ---
+        showFeedbackButton.addEventListener('click', openModal);
+        closeModalButton.addEventListener('click', closeModal);
+        feedbackModalOverlay.addEventListener('click', (e) => {
+            if (e.target === feedbackModalOverlay) {
+                closeModal();
+            }
+        });
+        document.addEventListener('keydown', trapFocus);
+        // --- END: MODAL EVENT LISTENERS ---
+
+
+        // --- START: FAQ LOGIC (Unchanged) ---
         const answers = {
             about: "Accessible World Tutorials is an inclusive learning platform dedicated to empowering individuals, especially the visually impaired. It offers practical training in accessibility testing, HTML, basic computer skills, interview materials, general knowledge, and current affairs. With a focus on accessibility and simplicity, the platform ensures that every learner has equal access to quality education and career-building resources.",
             freeCourses: "No, we do not offer free courses on this platform. To access our valuable training in Web Accessibility, HTML, Basic Computers, Interview Preparation, GK, and Current Affairs, you need to join by paying a one-time fee of ₹1000. This is a lifetime access fee, and there are no additional charges after that.",
@@ -253,64 +417,61 @@ This way, you can build a growing network and earn passive income while helping 
             updateAnswerAndFocus();
             wasArrowKeyUsed = false;
         });
-        // --- END: FAQ LOGIC (Existing) ---
+        // --- END: FAQ LOGIC ---
 
 
-        // --- START: FEEDBACK DISPLAY LOGIC (New) ---
-        const latestFeedbackContainer = document.getElementById('latestFeedbackContainer');
+        // --- START: FEEDBACK DISPLAY LOGIC (Updated to show full name) ---
 
         const renderFeedbackList = (feedbackList) => {
-            latestFeedbackContainer.innerHTML = ''; // Clear previous list
+            feedbackListContainer.innerHTML = ''; // Clear previous list
 
             if (!feedbackList || feedbackList.length === 0) {
-                latestFeedbackContainer.innerHTML = '<p>No feedback submitted yet. Be the first to share your thoughts! 🚀</p>';
+                feedbackListContainer.innerHTML = '<li style="text-align: center;">No feedback submitted yet.</li>';
                 return;
             }
 
             feedbackList.forEach(item => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'feedback-item';
-                itemDiv.setAttribute('role', 'listitem');
+                const itemLi = document.createElement('li');
+                itemLi.setAttribute('role', 'listitem');
 
+                // FIX: Use the full name instead of just the first name
+                const fullName = item.name || 'Anonymous'; 
+                
                 // Safely format the timestamp
                 const date = item.timestamp?.toDate ? item.timestamp.toDate().toLocaleDateString('en-US', {
                     year: 'numeric', month: 'short', day: 'numeric'
                 }) : 'N/A';
-                
-                // Escape HTML characters to prevent XSS (just in case)
-                const safeText = item.text ? item.text.replace(/</g, "&lt;").replace(/>/g, "&gt;") : 'No text provided.';
-                const safeName = item.name ? item.name.replace(/</g, "&lt;").replace(/>/g, "&gt;") : 'Anonymous';
 
-                itemDiv.innerHTML = `
-                    <strong>${safeText}</strong>
-                    <div class="meta">
-                        - ${safeName} (Topic: ${item.topic}) on ${date}
-                    </div>
+                // Escape HTML characters to prevent XSS
+                const safeText = item.text ? item.text.replace(/</g, "&lt;").replace(/>/g, "&gt;") : 'No message provided.';
+
+                // Display: Full Name, Date, then Message.
+                itemLi.innerHTML = `
+                    <span class="feedback-meta">
+                        ${fullName} on ${date}
+                    </span>
+                    <p class="feedback-message">${safeText}</p>
                 `;
-                latestFeedbackContainer.appendChild(itemDiv);
+                feedbackListContainer.appendChild(itemLi);
             });
         };
 
         const fetchAndDisplayFeedback = async () => {
             try {
-                latestFeedbackContainer.innerHTML = '<p>Loading recent user feedback...</p>';
-                
-                // Query the 'feedback' collection: order by newest first, limit to top 3
-                const q = query(collection(db, "feedback"), orderBy("timestamp", "desc"), limit(3));
+                feedbackListContainer.innerHTML = '<li style="text-align: center;">Loading recent user feedback...</li>';
+
+                const q = query(collection(db, "feedback"), orderBy("timestamp", "desc"), limit(5));
                 const snapshot = await getDocs(q);
-                
+
                 const feedbackList = snapshot.docs.map(doc => doc.data());
                 renderFeedbackList(feedbackList);
 
             } catch (error) {
                 console.error("Error fetching feedback:", error);
-                latestFeedbackContainer.innerHTML = '<p style="color: red;">Could not load recent feedback at this time. 😞</p>';
+                feedbackListContainer.innerHTML = '<li style="color: red; text-align: center;">Could not load recent feedback at this time. 😞</li>';
             }
         };
-
-        // Call the function to load feedback when the page loads
-        fetchAndDisplayFeedback();
-        // --- END: FEEDBACK DISPLAY LOGIC (New) ---
+        // --- END: FEEDBACK DISPLAY LOGIC ---
 
     </script>
 </body>

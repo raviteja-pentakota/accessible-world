@@ -1482,6 +1482,87 @@ el.innerHTML = "My name is " + name;
                         </code></pre>
 
                     </div>
+<p>Click on the next button to learn the 12th topic: String Length, Uppercase, and Lowercase.</p>
+
+                </div>
+                <div id="javascript-page12" class="javascript-page">
+<h2>Lesson 12: Working with String Length and Changing Case in JavaScript</h2>
+                    <a href="#video-js-lesson12">Jump to video lesson</a>
+<p>
+In JavaScript, a <b>string</b> is a set of characters enclosed within quotes.  
+For example: <code>let message = "Accessible World";</code>
+</p>
+
+<p>
+<b>1. Calculating String Length:</b><br>
+To find how many characters a string contains (including spaces), we use the <code>length</code> property.  
+<br>Example:  
+<code>message.length</code>  
+<br>If the text is "Accessible", the result will be <b>10</b> because it has 10 characters.
+</p>
+
+<p>
+<b>2. Converting to Uppercase:</b><br>
+To change all letters to capital letters, use <code>toUpperCase()</code> method.  
+<br>Example:  
+<code>message.toUpperCase()</code>  
+<br>If the string is "accessible world", the output will be <b>"ACCESSIBLE WORLD"</b>.
+</p>
+
+<p>
+<b>3. Converting to Lowercase:</b><br>
+To change all letters to small letters, use <code>toLowerCase()</code> method.  
+<br>Example:  
+<code>message.toLowerCase()</code>  
+<br>If the string is "ACCESSIBLE WORLD", the output will be <b>"accessible world"</b>.
+</p>
+
+<p>
+We can display these results on the webpage using the <code>document.getElementById</code> method and <code>innerHTML</code>.
+</p>
+<h3 id="video-js-lesson12">English video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/strings1-english.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <h3>Lesson 12 example code:</h3>
+                    <button id="viewCode21" aria-expanded="false" aria-controls="codeExample21">View example code</button>
+                    <div id="codeExample21" hidden>
+                        <p>All the below content is the HTML code for the 12th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Strings&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Strings Length, upperCase and lowerCase&lt;/h1&gt;
+
+&lt;p id="p1"&gt;&lt;/p&gt;
+&lt;p id="p2"&gt;&lt;/p&gt;
+&lt;p id="p3"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+    let message = "Welcome to Accessible World";
+    document.getElementById("p1").innerHTML = "String Length: " + message.length;
+    document.getElementById("p2").innerHTML = "Uppercase: " + message.toUpperCase();
+    document.getElementById("p3").innerHTML = "Lowercase: " + message.toLowerCase();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+
+                    </div>
                 </div>
 
 
