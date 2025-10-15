@@ -1478,7 +1478,130 @@ We can display these results on the webpage using the <code>document.getElementB
                         </code></pre>
 
                     </div>
+<p>Click on the next button to learn the 13th topic: String Split and Slice Example.</p>
                 </div>
+                <div id="javascript-page13" class="javascript-page">
+<h2>Lesson 13: Extracting Words from a String using Split and Slice Methods</h2>
+                    <a href="#video-js-lesson13">Jump to video lesson</a>
+<p>
+In JavaScript, strings are used to store text such as words or sentences.  
+Sometimes, we need to display only a part of a sentence or a single word.  
+To do this, we can use two useful string methods: <b>split()</b> and <b>slice()</b>.
+</p>
+
+<p>
+<b>1. The split() Method:</b><br>
+The <code>split()</code> method divides a string into smaller parts and stores them in an array.  
+We must tell JavaScript <b>where to cut</b> the string by giving a separator inside the brackets.
+</p>
+
+<p>
+For example:
+<br><code>let text = "Accessible World Tutorials";</code><br>
+<code>let words = text.split(" ");</code><br>
+The space (" ") inside <code>split(" ")</code> tells JavaScript to cut the text wherever it finds a space.  
+The result will be: <code>["Accessible", "World", "Tutorials"]</code>
+</p>
+
+<p>
+<b>Different Ways to Use split():</b><br>
+We can use any character or symbol instead of space:
+</p>
+
+<ul>
+  <li><code>split(" ")</code> → cuts by spaces between words.</li>
+  <li><code>split(",")</code> → cuts by commas.</li>
+  <li><code>split(".")</code> → cuts by dots.</li>
+  <li><code>split("|")</code> → cuts by the vertical bar symbol.</li>
+  <li><code>split("")</code> → cuts every single character.</li>
+</ul>
+
+<p>
+Example:
+<br><code>let text = "Apple,Banana,Cherry";</code><br>
+<code>let fruits = text.split(",");</code><br>
+Result: <code>["Apple", "Banana", "Cherry"]</code>
+</p>
+
+<p>
+<b>2. The slice() Method:</b><br>
+The <code>slice()</code> method extracts a specific part of the string using index numbers.  
+The first number tells where to start, and the second number tells where to stop (but the stop position is not included).
+</p>
+
+<p>
+Example:<br>
+<code>let text = "Accessible World";</code><br>
+<code>let part = text.slice(0, 10);</code><br>
+This will extract the first 10 characters — the word <b>"Accessible"</b>.
+</p>
+
+<p>
+<b>Using split() and slice() Together:</b><br>
+You can first split a sentence into words, then use slice() to take only a part of one word or phrase.
+</p>
+
+<p>
+Example:<br>
+<code>
+let text = "Accessible World Tutorials";<br>
+let words = text.split(" ");<br>
+let firstWord = words[0]; // "Accessible"<br>
+let sliced = text.slice(0, 10); // "Accessible"
+</code>
+</p>
+
+<p>
+By using these two methods, you can easily display specific words or parts of a sentence on your webpage using <code>document.getElementById</code> and <code>innerHTML</code>.
+</p>
+<h3 id="video-js-lesson13">Telugu video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/split-telugu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <h3>Lesson 12 example code:</h3>
+                    <button id="viewCode21" aria-expanded="false" aria-controls="codeExample21">View example code</button>
+                    <div id="codeExample21" hidden>
+                        <p>All the below content is the HTML code for the 12th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;String Split and Slice Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;String Split and Slice Example&lt;/h1&gt;
+
+&lt;p id="p1"&gt;&lt;/p&gt;
+&lt;p id="p2"&gt;&lt;/p&gt;
+&lt;p id="p3"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = "Accessible World Tutorials";
+let word = text.split("T");
+let firstWord = word[0];
+let sliceExample = text.slice(0, 10);
+document.getElementById("p1").innerHTML = "Full text: " + text;
+document.getElementById("p2").innerHTML = "First two words	: " + firstWord;
+document.getElementById("p3").innerHTML = "Slice example text: " + sliceExample;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+
+                    </div>
+                </div>
+
 
 
 
