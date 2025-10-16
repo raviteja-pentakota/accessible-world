@@ -1686,7 +1686,99 @@ document.getElementById("p3").innerHTML = "Slice example text: " + sliceExample;
                         </code></pre>
 
                     </div>
+<p>Click on the next button to learn the 14th topic: conditions: if and else.</p>
                 </div>
+                <div id="javascript-page14" class="javascript-page">
+<h2>Lesson 14: If and Else Statements in JavaScript</h2>
+                    <a href="#video-js-lesson14">Jump to video lesson</a>
+<p>
+In JavaScript, <b>conditional statements</b> help us make decisions in our program.  
+Sometimes, we want the program to do one thing if a condition is true and something else if it is false.  
+To handle this, we use <b>if</b> and <b>else</b> statements.
+</p>
+
+<p>
+<b>1. The if Statement:</b><br>
+The <code>if</code> statement checks whether a condition is true.  
+If the condition is true, JavaScript will run the code written inside the curly brackets <code>{}</code>.  
+If the condition is false, that part of the code will be skipped.
+</p>
+
+<p>
+<b>Example:</b><br>
+<code>
+let age = 20;<br>
+if (age >= 18) {<br>
+&nbsp;&nbsp; // Display "You are eligible to vote"<br>
+}
+</code>
+<br>
+Here, since the age is greater than 18, the message "You are eligible to vote" will be shown.
+</p>
+
+<p>
+<b>2. The else Statement:</b><br>
+The <code>else</code> statement is used when the <code>if</code> condition is false.  
+In that case, the code inside <code>else</code> will run.
+</p>
+
+<p>
+<b>Example:</b><br>
+<code>
+let age = 15;<br>
+if (age >= 18) {<br>
+&nbsp;&nbsp; // Display "You are eligible to vote"<br>
+} else {<br>
+&nbsp;&nbsp; // Display "You are not eligible to vote"<br>
+}
+</code>
+<br>
+Here, since the age is less than 18, JavaScript will run the <code>else</code> part and show "You are not eligible to vote".
+</p>
+<h3 id="video-js-lesson14">English video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/IfElse-english.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="controls">
+                            <button class="playPause">Play</button>
+                            <button class="mute">Mute</button>
+                            <button class="fullscreen">Fullscreen</button>
+                        </div>
+                    </div>
+                    <h3>Lesson 14 example code:</h3>
+                    <button id="viewCode23" aria-expanded="false" aria-controls="codeExample23">View example code</button>
+                    <div id="codeExample23" hidden>
+                        <p>All the below content is the HTML code for the 14th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;If and Else Example in JavaScript&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;If and Else Example in JavaScript&lt;/h1&gt;
+&lt;p id="p1"&gt;&lt;/p&gt;
+&lt;script&gt;
+    let age = 16;
+
+    if (age >= 18) {
+      document.getElementById("p1").innerHTML = "Yes, You are eligible for the  voting";
+    } else {
+      document.getElementById("p1").innerHTML = "Sorry, You are not eligible for the voting";
+    }
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+
+                    </div>
+                </div>
+
 
 
             <div class="pagination-controls" aria-label="Java Script Topics Pagination">
