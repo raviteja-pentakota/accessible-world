@@ -2038,6 +2038,111 @@ el.innerHTML = "You are a senior citizen";
                         </code></pre>
 
                     </div>
+<p>Click on the next button to learn the 16th topic: Switch statement.</p>
+                </div>
+                <div id="javascript-page16" class="javascript-page">
+<h2>Lesson 16: Switch Statement in JavaScript</h2>
+                    <a href="#video-js-lesson16">Jump to video lesson</a>
+<p>
+The switch statement in JavaScript is used to check one variable with many possible values. It helps to make the code cleaner instead of writing many if and else if statements.
+</p>
+
+<p>
+In a switch statement, we use three reserved keywords: case, break, and default. 
+</p>
+
+<p>
+The <b>case</b> keyword is used to check each possible value.  
+The <b>break</b> keyword stops the checking once the correct case is found.  
+The <b>default</b> keyword runs when none of the cases match.
+</p>
+
+<p>
+For example, if we want to display the day name based on a number, we can use the switch statement.  
+If the value of day is 1, it will display Monday.  
+If the value is 2, it will display Tuesday, and so on.  
+If none of the numbers match, then the default message will be displayed as "Invalid day number."
+</p>
+
+<p>
+Let’s understand another example — if the grade is A, the message will be "Excellent! Keep it up."  
+If it is B, the message will be "Very Good! You can still improve."  
+If none of these grades match, the default message will show "Invalid grade entered."
+</p>
+
+<p>
+In simple words, we use the switch statement when we need to compare one variable with many possible options. It makes the program easy to read and understand.
+</p>
+<h3 id="video-js-lesson16">English video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/switch-english.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+                    </div>
+                    <h3>Lesson 15 example code:</h3>
+                    <button id="viewCode25" aria-expanded="false" aria-controls="codeExample25">View example code</button>
+                    <div id="codeExample25" hidden>
+                        <p>All the below content is the HTML code for the 16th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Switch statement in JavaScript&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Switch statement Example in JavaScript&lt;/h1&gt;
+&lt;p id="p1"&gt;&lt;/p&gt;
+&lt;script&gt;
+let day = 5;
+let dayName;
+switch (day) {
+case 1:
+dayName = "Today is Monday";
+break;
+case 2:
+dayName = "Today is Tuesday";
+break;
+case 3:
+dayName = "Today is Wednesday";
+break;
+case 4:
+dayName = "Today is Thursday";
+break;
+case 5:
+dayName = "Today is Friday";
+break;
+case 6:
+dayName = "Today is Saturday";
+break;
+case 7:
+dayName = "Today is Sunday";
+break;
+default:
+dayName = "Invalid day number entered";
+}
+document.getElementById("p1").innerHTML = dayName;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+
+                    </div>
                 </div>
 
 
