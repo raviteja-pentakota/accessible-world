@@ -2228,7 +2228,195 @@ let el = document.getElementById("p1");
                         </code></pre>
 
                     </div>
+<p>Click on the next button to learn the 18th topic: Arrays in JavaScript.</p>
                 </div>
+                <div id="javascript-page18" class="javascript-page">
+<h2>Lesson 18: Arrays in JavaScript – Part 1</h2>
+                    <a href="#video-js-lesson18">Jump to video lesson</a>
+
+<p>
+An array in JavaScript is used to store multiple values in a single variable.  
+For example, if we want to store all days of the week, instead of creating seven different variables, we can keep them all together in one array.
+</p>
+
+<p>
+An array is written inside square brackets <code>[ ]</code> and each item is separated by a comma.  
+For example, we can write:  
+<code>const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];</code>
+</p>
+
+<p>
+Each item in an array has a position number called an <b>index</b>.  
+The index always starts from <b>0</b>.  
+That means:  
+Sunday → index 0,  
+Monday → index 1,  
+Tuesday → index 2, and so on.
+</p>
+
+<p>
+We can display any item from the array using its index number.  
+For example, <code>days[2]</code> will display <b>Tuesday</b> because it is in position 2.
+</p>
+
+<p>
+In simple words, an array helps us to store and manage a group of related values like names, numbers, or days, in a single variable. It makes our code short and easy to handle.
+</p>
+<h3 id="video-js-lesson18">English video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/arrays-english.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+                    </div>
+                    <h3>Lesson 18 example code:</h3>
+                    <button id="viewCode27" aria-expanded="false" aria-controls="codeExample27">View example code</button>
+                    <div id="codeExample27" hidden>
+                        <p>All the below content is the HTML code for the 18th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Arrays in JavaScript&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Arrays Example in JavaScript&lt;/h1&gt;
+&lt;p id="p1"&gt;&lt;/p&gt;
+&lt;script&gt;
+const weekDay = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+document.getElementById("p1").innerHTML = "Today is: " + weekDay[6];
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+
+                    </div>
+<p>Click on the next button to learn the 19th topic: JavaScript Arrays Part 2 –Modifying Arrays.</p>
+                </div>
+                <div id="javascript-page19" class="javascript-page">
+<h2>Lesson 19: JavaScript Arrays Part 2 – Modifying Arrays</h2>
+                    <a href="#video-js-lesson19">Jump to video lesson</a>
+
+<p>
+In this lesson, we will learn how to modify arrays in JavaScript.  
+We can change, add, or remove items in an array using different methods.
+</p>
+
+<p>
+Let’s take an example array of weekdays.  
+We can update any value using the index number. For example, we can replace “Wednesday” with “Holiday” using its index.
+</p>
+
+<p>
+To add new items, we use two methods:
+<ul>
+  <li><b>push()</b> – Adds a new item at the end of the array.</li>
+  <li><b>unshift()</b> – Adds a new item at the beginning of the array.</li>
+</ul>
+</p>
+
+<p>
+To remove items, we use:
+<ul>
+  <li><b>pop()</b> – Removes the last item in the array.</li>
+  <li><b>shift()</b> – Removes the first item in the array.</li>
+</ul>
+</p>
+
+<p>
+We can also find out how many items are present in the array by using the <b>length</b> property.  
+It returns the total number of items available in that array.
+</p>
+
+<p>
+Finally, we use the <b>join()</b> method to display all array items neatly.  
+The join method combines all elements of the array into a single string, separating them with any symbol you choose.  
+For example:
+<ul>
+  <li><b>join(", ")</b> will show: Monday, Tuesday, Wednesday</li>
+  <li><b>join(" | ")</b> will show: Monday | Tuesday | Wednesday</li>
+  <li><b>join("")</b> will show: MondayTuesdayWednesday</li>
+</ul>
+This method is very useful when displaying array values together in one line on a webpage.
+</p>
+<h3 id="video-js-lesson19">English video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/arrays-modification-english.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+                    </div>
+                    <h3>Lesson 19 example code:</h3>
+                    <button id="viewCode28" aria-expanded="false" aria-controls="codeExample28">View example code</button>
+                    <div id="codeExample28" hidden>
+                        <p>All the below content is the HTML code for the 19th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;JavaScript Arrays Part 2 - Modifying Arrays&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;JavaScript Arrays Part 2 - Modifying Arrays&lt;/h1&gt;
+
+  &lt;p id="p1"&gt;&lt;/p&gt;
+  &lt;p id="p2"&gt;&lt;/p&gt;
+  &lt;p id="p3"&gt;&lt;/p&gt;
+  &lt;p id="p4"&gt;&lt;/p&gt;
+  &lt;p id="p5"&gt;&lt;/p&gt;
+  &lt;p id="p6"&gt;&lt;/p&gt;
+  &lt;p id="p7"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+  let weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]; //complete weekdays
+  document.getElementById("p1").innerHTML = "Original weekdays: " + weekDays.join(", ");
+  weekDays.push("Saturday"); //Adding the day at the end
+  weekDays.unshift("Sunday"); //Adding the day at the beginning
+  document.getElementById("p2").innerHTML = "After adding: " + weekDays.join(", ");
+  weekDays[0] = "Holiday"; //Modifying the first day
+  document.getElementById("p3").innerHTML = "After modification: " + weekDays.join(", ");
+  weekDays.pop(); //Removing the last day
+  weekDays.shift(); //Removing the first day
+  document.getElementById("p4").innerHTML = "After removing the days: " + weekDays.join(", ");
+  &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+
+                    </div>
+                </div>
+
+
 
 
 
