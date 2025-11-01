@@ -2329,11 +2329,125 @@ This method is very useful when displaying array values together in one line on 
                         </code></pre>
 
                     </div>
+<p>Click on the next button to learn the 20th topic: Loops Part 1 –For loop and While loop.</p>
                 </div>
+                <div id="javascript-page20" class="javascript-page">
+<h2>Lesson 20: JavaScript Loops Part 1 – For Loop and While Loop</h2>
+                    <a href="#video-js-lesson20">Jump to video lesson</a>
+
+<p>
+In programming, we often need to repeat certain actions multiple times.  
+Instead of writing the same code again and again, we can use loops to make the task easier and faster.
+</p>
+
+<p>
+In JavaScript, a <b>loop</b> allows you to run a block of code several times based on a condition.  
+The loop continues until the condition becomes false.
+</p>
+
+<p>
+There are many types of loops in JavaScript, but the most commonly used ones are <b>for loop</b> and <b>while loop</b>.
+</p>
+
+<h2>For Loop</h2>
+<p>
+The <b>for loop</b> is used when you know exactly how many times you want to repeat something.  
+It has three main parts inside the brackets:
+<ul>
+  <li><b>Initialization</b> – It sets the starting point. Example: <b>let i = 1</b></li>
+  <li><b>Condition</b> – The loop will run until this condition is true. Example: <b>i &lt;= 5</b></li>
+  <li><b>Increment/Decrement</b> – It changes the value each time. Example: <b>i++</b></li>
+</ul>
+</p>
+
+<p>
+The <b>++</b> symbol is called the <b>increment operator</b>.  
+It increases the value of the variable by 1 every time the loop runs.  
+For example, if <b>i</b> starts at 1, then:
+<ul>
+  <li>After first run, i becomes 2</li>
+  <li>After second run, i becomes 3</li>
+  <li>and so on...</li>
+</ul>
+This helps the loop move forward and eventually stop when the condition becomes false.
+</p>
+
+<p>
+For example, if you want to display numbers from 1 to 5, you can use a <b>for loop</b>.  
+The loop starts from 1, checks if the value is less than or equal to 5, and increases by 1 each time until it reaches 5.
+</p>
+
+<h2>While Loop</h2>
+<p>
+The <b>while loop</b> is used when you don’t know how many times you need to repeat, but you know the condition.  
+The loop runs as long as the condition is true.
+</p>
+
+<p>
+For example, if you want to display numbers from 1 to 5, you first set a variable <b>let i = 1</b>.  
+Then the <b>while</b> loop will check the condition <b>i &lt;= 5</b>.  
+If true, it runs the code and increases <b>i</b> by 1 every time, until the condition becomes false.
+</p>
+
+<p>
+The difference between <b>for</b> and <b>while</b> loops is that in the for loop, the initialization, condition, and increment are written together in one line, while in the while loop, they are written separately.
+</p>
+<h3 id="video-js-lesson20">Telugu video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/loopsp1-telugu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+                    </div>
+                    <h3>Lesson 20 example code:</h3>
+                    <button id="viewCode29" aria-expanded="false" aria-controls="codeExample29">View example code</button>
+                    <div id="codeExample29" hidden>
+                        <p>All the below content is the HTML code for the 20th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;JavaScript Loops part 1- For loop and While loop&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;JavaScript Loops part 1&lt;/h1&gt;
+  &lt;h2&gt;For loop example&lt;/h2&gt;
+  &lt;p&gt;Displaying 1 to 10 numbers&lt;/p&gt;
+  &lt;script&gt;
+for (let i = 1; i <= 10; i++) {
+document.write(i + "<br>");
+}
+  &lt;/script&gt;
+  &lt;h2&gt;While loop example&lt;/h2&gt;
+  &lt;script&gt;
+let n = 1;
+while (n <= 10) {
+document.write(n + "<br>");
+n++;
+}
+  &lt;/script&gt;
 
 
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
 
-
+                    </div>
+                </div>
 
             <div class="pagination-controls" aria-label="Java Script Topics Pagination">
                 <button id="jsprevBtn" disabled>Previous</button>
