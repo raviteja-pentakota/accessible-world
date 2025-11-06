@@ -1101,10 +1101,10 @@ changing it everywhere in the program.
 In JavaScript, variables can hold different kinds of data like numbers, 
 text (strings), true/false (boolean), objects, arrays, and more.
 </p>
-                    <h3 id="video-js-lesson5">English video explanation with practical:</h3>
+                    <h3 id="video-js-lesson5">Telugu video explanation with practical:</h3>
                     <div class="video-container">
                         <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
-                            <source src="javascript_videos/variables-english.mp4" type="video/mp4">
+                            <source src="javascript_videos/variables-telugu.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
     <div class="controls">
@@ -2442,6 +2442,133 @@ n++;
   &lt;/script&gt;
 
 
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+
+                    </div>
+<p>Click on the next button to learn the 21st topic: JavaScript Objects.</p>
+                </div>
+                <div id="javascript-page21" class="javascript-page">
+<h2>Lesson 21: JavaScript Objects</h2>
+                    <a href="#video-js-lesson21">Jump to video lesson</a>
+
+
+<p>
+In JavaScript, an <b>object</b> is a special type of data that allows us to store information in the form of <b>key–value pairs</b>.  
+Objects are very useful when we want to group related information together.
+</p>
+
+<p>
+For example, if we want to store a person’s details such as name, age, and city, we can use an object instead of creating separate variables.
+</p>
+
+<pre><code>
+let person = {
+  name: "Ravi",
+  age: 30,
+  city: "Visakhapatnam"
+};
+</code></pre>
+
+<p>
+Here:
+<ul>
+  <li><b>name</b>, <b>age</b>, and <b>city</b> are called <b>keys</b> (or properties).</li>
+  <li><b>"Ravi"</b>, <b>30</b>, and <b>"Visakhapatnam"</b> are their <b>values</b>.</li>
+</ul>
+</p>
+
+<h2>Accessing Object Values</h2>
+
+<p>
+We can get the value of any property in two ways:
+</p>
+
+<pre><code>
+document.write(person.name);   // Output: Ravi
+document.write(person["city"]); // Output: Visakhapatnam
+</code></pre>
+
+<p>
+Both methods give the same result.  
+The first one uses a dot (<b>.</b>) and the second one uses square brackets (<b>[]</b>).
+</p>
+
+<h2>Updating Object Values</h2>
+
+<p>
+We can also change the value of a property after creating the object.
+</p>
+
+<pre><code>
+person.age = 31;
+document.write(person.age); // Output: 31
+</code></pre>
+
+<p>
+Here, we updated the <b>age</b> property from 30 to 31.
+</p>
+
+<h2>Adding a New Property</h2>
+
+<p>
+We can add a new key–value pair to the object anytime.
+</p>
+
+<pre><code>
+person.country = "India";
+document.write(person.country); // Output: India
+</code></pre>
+
+<h2>Summary</h2>
+
+<p>
+Objects are one of the most powerful parts of JavaScript.  
+They help us to store, update, and organize data easily using key–value pairs.
+</p>
+<h3 id="video-js-lesson21">Telugu video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/objects-telugu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+                    </div>
+                    <h3>Lesson 21 example code:</h3>
+                    <button id="viewCode30" aria-expanded="false" aria-controls="codeExample30">View example code</button>
+                    <div id="codeExample30" hidden>
+                        <p>All the below content is the HTML code for the 21st lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;JavaScript Objects&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;JavaScript Objects&lt;/h1&gt;
+  &lt;script&gt;
+let car = {name: "Maruthi", color: "Red"};
+document.write("Name is: " + car.name);
+document.write("My name is: " + car["name"]);
+car.number = 123;
+document.write("The car number is: " + car.number);
+car.color = "Black";
+document.write("The updated color is: " + car.color);
+  &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
                         </code></pre>
