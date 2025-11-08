@@ -2659,7 +2659,140 @@ document.write("The updated color is: " + car.color);
                         </code></pre>
 
                     </div>
+<p>Click on the next button to learn the 22nd topic: JavaScript Loops part 2  .</p>
                 </div>
+                <div id="javascript-page22" class="javascript-page">
+<h2>Lesson 22: Loops part 2 - for in and for of Loops</h2>
+                    <a href="#video-js-lesson22">Jump to video lesson</a>
+  <p>
+    In JavaScript, we use loops to repeat a set of statements multiple times.  
+    Earlier we have learned <b>for</b> and <b>while</b> loops which run based on a condition or counter.  
+    But sometimes we need to go through all the values of an array or all the properties of an object.  
+    In those cases, <b>for...in</b> and <b>for...of</b> loops make our work much easier.
+  </p>
+
+  <h2>for...in Loop</h2>
+  <p>
+    The <b>for...in</b> loop is used to go through all the properties of an <b>object</b>.  
+    An object in JavaScript stores information in key-value pairs.  
+    Each key is like a label, and each value is the data stored in it.  
+    The <b>for...in</b> loop helps us access both key and value one by one.  
+    Let us understand this with a simple example.
+  </p>
+<pre><code>
+  &lt;script&gt;
+    const person = {
+      name: "Ravi Teja",
+      age: 33,
+      city: "Vizianagaram"
+    };
+
+    for (let key in person) {
+      document.write(key + ": " + person[key] + "<br>");
+    }
+  &lt;/script&gt;
+</pre></code>
+
+  <p>
+    In this example, we created an object named <b>person</b> which contains three properties:  
+    name, age, and city.  
+    The <b>for...in</b> loop goes through each property name (also called key),  
+    and displays both the property name and its value.  
+    So the output will show:
+    <br>
+    name: Ravi Teja  
+    age: 33  
+    city: Vizianagaram
+  </p>
+
+  <h2>for...of Loop</h2>
+  <p>
+    The <b>for...of</b> loop is mainly used for <b>arrays</b> and <b>strings</b>.  
+    It helps us directly access the values inside them without using indexes.  
+    This loop is very useful when we just need the data and not the position number.
+  </p>
+
+                        <pre><code>
+   &lt;script&gt;
+    const fruits = ["Apple", "Banana", "Mango", "Orange"];
+
+    for (let fruit of fruits) {
+      document.write(fruit + "<br>");
+    }
+  &lt;/script&gt;
+                        </pre></code>
+
+  <p>
+    In this example, the <b>for...of</b> loop goes through each fruit name inside the array  
+    and displays them one after another.  
+    Unlike <b>for...in</b>, it does not give the position number (index);  
+    it directly gives the values such as Apple, Banana, Mango, and Orange.
+  </p>
+
+  <h2>Difference between for...in and for...of</h2>
+  <p>
+    The <b>for...in</b> loop is used for objects to get property names or keys.  
+    The <b>for...of</b> loop is used for arrays or strings to get the values.  
+    Remember this simple rule:  
+    <br><b>for...in → works with objects</b>  
+    <br><b>for...of → works with arrays or strings</b>
+  </p>
+<h3 id="video-js-lesson22">English video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/forin-english.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+                    </div>
+                    <h3>Lesson 22 example code:</h3>
+                    <button id="viewCode31" aria-expanded="false" aria-controls="codeExample31">View example code</button>
+                    <div id="codeExample31" hidden>
+                        <p>All the below content is the HTML code for the 22nd lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;JavaScript Loops part 2&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;JavaScript for in and for of &lt;/h1&gt;
+  &lt;h2&gt;For in loops&lt;/h2&gt;
+
+  &lt;script&gt;
+let person = {name: "Raviteja", age: 33, gender: "Male", city: "Vizianagaram"};
+for (let key in person) {
+document.write(key + ": " + person[key] + "<br>");
+}
+  &lt;/script&gt;
+  &lt;h2&gt;For of loops&lt;/h2&gt;
+  &lt;script&gt;
+  let weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]; 
+for (let day of weekDays) {
+document.write(day + ": ");
+}
+
+  &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+                    </div>
+                </div>
+
 
 
 
