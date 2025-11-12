@@ -2791,13 +2791,125 @@ document.write(day + ": ");
 &lt;/html&gt;
                         </code></pre>
                     </div>
+<p>Click on the next button to learn the 23rd topic: JavaScript Functions Part 1.</p>
                 </div>
+                <div id="javascript-page23" class="javascript-page">
+<h2>Lesson 23: JavaScript Functions – Part 1: Creating and Calling Functions</h2>
+                    <a href="#video-js-lesson23">Jump to video lesson</a>
 
+<p>
+In JavaScript, a <b>function</b> is a block of code that performs a specific task.  
+Instead of writing the same code again and again, we can put it inside a function and use it whenever we need.  
+This helps make our programs short, clean, and easy to understand.
+</p>
 
+<p>
+We create a function using the keyword <b>function</b>, followed by a name, and a pair of brackets ().  
+The brackets may contain values called <b>parameters</b>, but for now, we’ll create a simple function without them.  
+Inside the curly braces { }, we write the statements that we want the function to do.
+</p>
 
+<p>
+For example, let’s say we want to display a welcome message.  
+We can write a function like this:
+</p>
 
+<pre><code>
+function showMessage() {
+  document.write("Welcome to Accessible World Tutorials!");
+}
+</code></pre>
 
+<p>
+Here, <b>function</b> is the keyword used to create a function.  
+<b>showMessage</b> is the name of the function, and inside the curly braces we wrote what it should do —  
+in this case, it displays a welcome message on the screen.
+</p>
 
+<p>
+But creating a function alone does not make it run automatically.  
+We need to <b>call</b> or <b>invoke</b> the function to make it execute.  
+We can do this simply by writing its name followed by brackets, like this:
+</p>
+
+<pre><code>
+showMessage();
+</code></pre>
+
+<p>
+When the function is called, the JavaScript engine jumps into that block of code, executes the statements inside it,  
+and then comes back to continue with the rest of the program.  
+So when we call <b>showMessage()</b>, it will display the welcome message on the web page.
+</p>
+
+<p>
+We can also call the same function as many times as we want.  
+Every time we call it, it will repeat the same action.
+</p>
+
+<p>
+In the next topic, we will learn how to send data into a function and get results back using <b>parameters</b> and the <b>return</b> keyword.
+</p>
+<h3 id="video-js-lesson23">English video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/functionsP1-english.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+                    </div>
+                    <h3>Lesson 23 example code:</h3>
+                    <button id="viewCode32" aria-expanded="false" aria-controls="codeExample32">View example code</button>
+                    <div id="codeExample32" hidden>
+                        <p>All the below content is the HTML code for the 23rd lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;JavaScript Functions part 1&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Functions&lt;/h1&gt;
+  &lt;h2&gt;Example 1&lt;/h2&gt;
+
+  &lt;script&gt;
+function myMessage() {
+document.write("Hellow all, Welcome to Accessible World Tutorials");
+}
+myMessage();
+  &lt;/script&gt;
+  &lt;h2&gt;Example 2&lt;/h2&gt;
+  &lt;script&gt;
+function sum() {
+let a = 30;
+let b = 50;
+let c = a + b;
+document.write("The Total is: " + c);
+}
+sum();
+document.write("<h2>Example 3</h2>");
+sum();
+  &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+                    </div>
+<p>Click on the next button to learn the 24th topic: JavaScript Functions Part 2.</p>
+                </div>
 
             <div class="pagination-controls" aria-label="Java Script Topics Pagination">
                 <button id="jsprevBtn" disabled>Previous</button>
