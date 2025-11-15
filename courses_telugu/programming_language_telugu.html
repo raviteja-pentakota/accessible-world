@@ -2825,6 +2825,156 @@ sum();
                     </div>
 <p>Click on the next button to learn the 24th topic: JavaScript Functions Part 2.</p>
                 </div>
+                <div id="javascript-page24" class="javascript-page">
+<h2>Lesson 24: JavaScript Functions – Part 2: Parameters and Return Value</h2>
+                    <a href="#video-js-lesson24">Jump to video lesson</a>
+<p>
+In the previous topic, we learned how to create a simple function and call it.  
+But those functions used fixed values inside the code.  
+What if we want to send different values every time we call the function?  
+That’s where <b>parameters</b> and <b>return values</b> come in.
+</p>
+
+<h2>What are Parameters?</h2>
+
+<p>
+Parameters are like boxes that can hold values we send into a function.  
+When we create a function, we can give it one or more parameters inside the brackets ().  
+Then, whenever we call the function, we pass the actual values, which are called <b>arguments</b>.
+</p>
+
+<p>
+Let’s take an example where we send two numbers into a function to add them:
+</p>
+
+<pre><code>
+function addNumbers(a, b) {
+  const total = a + b;
+  document.write("The total is: " + total);
+}
+</code></pre>
+
+<p>
+Here, <b>a</b> and <b>b</b> are parameters.  
+They are just temporary names used inside the function.  
+When we call the function, we can send real values like this:
+</p>
+
+<pre><code>
+addNumbers(20, 30);
+</code></pre>
+
+<p>
+Now, <b>a</b> will take the value 20 and <b>b</b> will take 30.  
+The function adds them and displays “The total is: 50”.  
+If we call the same function again with different values,  
+for example <b>addNumbers(10, 5)</b>, the result will be 15.  
+This makes our function reusable for any numbers we choose.
+</p>
+
+<h2>What is Return?</h2>
+
+<p>
+Sometimes, instead of displaying the result directly inside the function,  
+we may want to send the result back to the main program for further use.  
+For that, we use the <b>return</b> keyword.
+</p>
+
+<p>
+Let’s look at this example:
+</p>
+
+<pre><code>
+function multiply(a, b) {
+  return a * b;
+}
+</code></pre>
+
+<p>
+Here, the function multiplies two numbers and sends the answer back using <b>return</b>.  
+To use that returned value, we can store it in a variable like this:
+</p>
+
+<pre><code>
+const result = multiply(5, 6);
+document.write("The multiplication result is: " + result);
+</code></pre>
+
+<p>
+In this example, <b>multiply(5, 6)</b> gives the value 30,  
+and that value is stored inside the variable <b>result</b>.  
+Then we display it using <b>document.write</b>.
+</p>
+
+<h2>Summary</h2>
+
+<p>
+- <b>Parameters</b> let us send values into a function.  
+- <b>Return</b> sends a result back from the function.  
+Using both together makes functions powerful and flexible,  
+allowing us to handle different inputs and get outputs easily.
+</p>
+
+<p>
+In the next topic, we will learn about <b>methods</b>,  
+which are built-in functions that come with JavaScript objects like strings and arrays.
+</p>
+
+<h3 id="video-js-lesson24">Telugu video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/functionsP2-telugu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+                    </div>
+                    <h3>Lesson 24 example code:</h3>
+                    <button id="viewCode34" aria-expanded="false" aria-controls="codeExample34">View example code</button>
+                    <div id="codeExample34" hidden>
+                        <p>All the below content is the HTML code for the 24th lesson:</p>
+                        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;JavaScript Functions part 2&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Functions Part 2&lt;/h1&gt;
+  &lt;script&gt;
+document.write("<h2>Example 1</h2>");
+function greet(name) {
+document.write("Hello " + name + "Welcome to Accessible World");
+}
+greet("Raviteja");
+  &lt;/script&gt;
+  &lt;script&gt;
+document.write("<h2>Example 2</h2>");
+function addNumber(a, b) {
+let sum = a + b;
+return sum;
+}
+let finalResult = addNumber(50, 100);
+document.write("The total of 50 and 100 is: " + finalResult);
+  &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+                    </div>
+                </div>
 
 
             <div class="pagination-controls" aria-label="Java Script Topics Pagination">
