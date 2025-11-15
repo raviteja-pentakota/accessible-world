@@ -756,9 +756,9 @@
             refs.forEach(r => {
                 let earning = 0;
                 if (r.paymentStatus === "Paid") {
-                    if (r.level === 1) earning = 150;
-                    else if (r.level === 2) earning = 100;
-                    else if (r.level === 3) earning = 50;
+                    if (r.level === 1) earning = 100;
+                    else if (r.level === 2) earning = 30;
+                    else if (r.level === 3) earning = 20;
                 }
                 calculatedReferralEarnings += earning;
                 const tr = document.createElement("tr");
