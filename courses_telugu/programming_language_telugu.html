@@ -2974,7 +2974,115 @@ document.write("The total of 50 and 100 is: " + finalResult);
 &lt;/html&gt;
                         </code></pre>
                     </div>
+<p>Click on the next button to learn the 25th topic: JavaScript Events Part 1.</p>
                 </div>
+                <div id="javascript-page25" class="javascript-page">
+<h2>Lesson 25: JavaScript Events – Part 1</h2>
+                    <a href="#video-js-lesson25">Jump to video lesson</a>
+
+<p>
+In JavaScript, an event is an action that happens on a web page.  
+For example, when a user presses a key, clicks a button, or submits a form, JavaScript can detect these actions and run some code.  
+Events help us make a webpage interactive.
+</p>
+
+<p>
+In this lesson, we will learn two important, keyboard-friendly events:  
+<b>onclick</b> and <b>onkeyup</b>.
+</p>
+
+<h2>1. onclick Event</h2>
+
+<p>
+The onclick event runs JavaScript code when a user presses the Enter key on a button or clicks the button.  
+This is one of the most commonly used events because it works well with keyboard and screen reader users.
+</p>
+
+<p>
+Example explanation:  
+You can create a button and whenever the user activates the button, a message can appear in a paragraph.  
+We use onclick inside the button to connect the button with a JavaScript function.
+</p>
+
+<h2>2. onkeyup Event</h2>
+
+<p>
+The onkeyup event runs JavaScript code when the user releases a key on the keyboard.  
+This event is very useful when you want to respond to typing — for example, live text preview, searching while typing, or showing the number of characters typed.
+</p>
+
+<p>
+Example explanation:  
+You can take an input box and every time the user types something and releases a key, JavaScript will display the typed text in a paragraph.  
+This helps screen reader users because the value updates immediately after typing.
+</p>
+
+<h2>Why These Events Are Useful</h2>
+
+<p>
+These two events are ideal for accessibility because:
+- They work perfectly with keyboard navigation.  
+- They support screen reader interactions.  
+- They help create interactive forms, live updates, and button actions without depending on mouse usage.
+</p>
+
+<p>
+In the next topic (Part 2), we will learn more useful events like onchange and onsubmit, which are important for forms.
+</p>
+<h3 id="video-js-lesson25">Telugu video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/eventsP1-telugu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+                    </div>
+                    <h3>Lesson 25 example code:</h3>
+                    <button id="viewCode35" aria-expanded="false" aria-controls="codeExample35">View example code</button>
+                    <div id="codeExample35" hidden>
+                        <p>All the below content is the HTML code for the 25th lesson:</p>
+<pre><code>
+ &lt;!DOCTYPE html&gt;
+ &lt;html lang="en"&gt; 
+&lt;head&gt;   
+&lt;meta charset="UTF-8"&gt;   
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;   
+&lt;title&gt;JavaScript Events Part 1&lt;/title&gt; 
+&lt;/head&gt; 
+&lt;body&gt; 
+&lt;h2&gt;On click event example&lt;/h2&gt; 
+&lt;p id="p1" aria-live="polite"&gt;&lt;/p&gt; 
+&lt;button onclick="showMessage()"&gt;Show Message&lt;/button&gt; 
+&lt;script&gt; 
+function showMessage() {
+document.getElementById("p1").innerHTML = "Hello all, This is the updated message."; } 
+&lt;/script&gt; 
+&lt;h2&gt;On key up example&lt;/h2&gt; 
+&lt;input type="text" id="input" onkeyup="inputMessage()" aria-label="Enter your message here"&gt; 
+&lt;p id="p2" aria-live="polite"&gt;&lt;/p&gt; 
+&lt;script&gt; 
+function inputMessage() {
+let update = document.getElementById("input").value;
+document.getElementById("p2").innerHTML = "You have entered " + update;
+} 
+&lt;/script&gt;
+&lt;/body&gt; 
+&lt;/html&gt; 
+</code></pre>                    
+</div>
+                </div>
+
 
 
             <div class="pagination-controls" aria-label="Java Script Topics Pagination">
