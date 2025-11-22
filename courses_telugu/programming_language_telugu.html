@@ -3081,6 +3081,187 @@ document.getElementById("p2").innerHTML = "You have entered " + update;
 &lt;/html&gt; 
 </code></pre>                    
 </div>
+<p>Click on the next button to learn the 26th topic: JavaScript Events Part 2.</p>
+
+                </div>
+                <div id="javascript-page26" class="javascript-page">
+<h2>Lesson 26: JavaScript Events – Part 2</h2>
+<a href="#video-js-lesson26">Jump to video lesson</a>
+
+<p>
+In this lesson, we will learn about the <b>onchange</b> event.  
+This event is used when you want to run JavaScript code after the value inside an input field is changed.
+</p>
+
+<p>
+The important point is that onchange does not run while the user is typing.  
+It runs only when the user finishes typing and moves to the next element, or selects a different value from a dropdown, radio button, or checkbox.
+</p>
+
+<p>
+For example, if the user types their name in a text box and then presses the Tab key to move to the next field, the onchange event will activate.  
+You can use this event to show messages, check values, or update something on the page.
+</p>
+
+<p>
+This event is very helpful for accessibility because it works perfectly with keyboard and screen reader users.  
+It allows the page to respond after the user completes their input, making it useful for validating single fields.
+</p>
+
+<p>
+In the demo example, we will take an dropdown and display a message when the user changes the option.  
+</p>
+<h3 id="video-js-lesson26">Telugu video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/eventsP2-telugu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+                    </div>
+                    <h3>Lesson 26 example code:</h3>
+                    <button id="viewCode36" aria-expanded="false" aria-controls="codeExample36">View example code</button>
+                    <div id="codeExample36" hidden>
+                        <p>All the below content is the HTML code for the 26th lesson:</p>
+<pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;JavaScript Events Part 2&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;JavaScript Events – Part 2 Demo&lt;/h1&gt;
+&lt;h2&gt;Onchange&lt;/h2&gt;
+
+&lt;select id="product" onchange="selectProduct()"&gt;
+  &lt;option value=""&gt;choose product&lt;/option&gt;
+  &lt;option value="Redmi"&gt;Redmi&lt;/option&gt;
+  &lt;option value="samsung"&gt;Samsung&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;p id="message"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function selectProduct() {
+  let product = document.getElementById("product").value;
+  document.getElementById("message").innerHTML = "You have selected " + product;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>                    
+</div>
+<p>Click on the next button to learn the 27th topic: JavaScript Events Part 3.</p>
+                </div>
+                <div id="javascript-page27" class="javascript-page">
+<h2>Lesson 27: JavaScript Events – Part 3</h2>
+<a href="#video-js-lesson27">Jump to video lesson</a>
+
+<p>
+In this lesson, we will learn about the <b>onsubmit</b> event.  
+This event is used in forms and it runs when the user submits the form by pressing the Enter key or by activating the submit button.
+</p>
+
+<p>
+The onsubmit event is very important when you want to check the form before it is submitted.  
+For example, you may want to verify if the user entered their name, email, or any required information.  
+If something is missing, you can stop the form from submitting and show a message.
+</p>
+
+<p>
+To stop a form from submitting, we use <b>event.preventDefault()</b>.  
+This tells the browser: “Do not submit the form yet.”  
+This is useful when you want the user to correct their mistakes before sending the form.
+</p>
+
+<p>
+In the demo example, we will take a form with one input field and a submit button.  
+When the user submits the form, JavaScript will check if the input box is empty.  
+If it is empty, we will show a message.  
+If it has a value, we will allow the form to continue.
+</p>
+
+<p>
+The onsubmit event is very useful for accessibility.  
+It works perfectly with keyboard navigation and screen readers and helps make forms easy and error-free for all users.
+</p>
+<h3 id="video-js-lesson27">Telugu video explanation with practical:</h3>
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/eventsP3-telugu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+                    </div>
+                    <h3>Lesson 27 example code:</h3>
+                    <button id="viewCode37" aria-expanded="false" aria-controls="codeExample37">View example code</button>
+                    <div id="codeExample37" hidden>
+                        <p>All the below content is the HTML code for the 27th lesson:</p>
+<pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;onsubmit Event Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;onsubmit Event – Demo&lt;/h1&gt;
+
+&lt;form onsubmit="return validateForm(event)"&gt;
+  &lt;label for="un"&gt;User Name&lt;/label&gt;
+  &lt;input type="text" id="un"&gt;&lt;br&gt;&lt;br&gt;
+  &lt;input type="submit"&gt;
+&lt;/form&gt;
+
+&lt;p id="message1"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function validateForm(event) {
+  let un = document.getElementById("un").value;
+  let message = document.getElementById("message1");
+
+  if (un === "") {
+    message.innerHTML = "Please provide the user name before submitting.";
+    event.preventDefault();
+    return false;
+  }
+  else {
+    window.alert("Your form has been submitted successfully.");
+    return true;
+  }
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>                    
+</div>
                 </div>
 
 

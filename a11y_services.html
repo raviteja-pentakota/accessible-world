@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>End-to-End Accessibility Testing & Development Services - Accessible World</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <style>
+        /* BASE & TYPOGRAPHY */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            line-height: 1.6; /* Improved readability */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 25px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Slightly softer shadow */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* HEADINGS */
+        h1 {
+            color: #004d66; /* Darker blue for high contrast */
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
+
+        /* LINKS & BUTTONS */
+        button {
+            width: 100%;
+            padding: 15px; /* Larger hit area */
+            margin: 15px 0;
+            background: #006699;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        /* ACCESSIBILITY: Focus and Hover States */
+        button:hover {
+            background: #004d73;
+        }
+        
+        button:focus {
+            outline: 3px solid #ffcc00; /* High-visibility yellow outline for focus */
+            outline-offset: 3px;
+        }
+
+        /* Custom style for the Contact Button (Matching Index.html) */
+        .contact-button {
+            background: #cc6600; /* A contrasting orange/brown color */
+        }
+        .contact-button:hover {
+            background: #a35200;
+        }
+        .contact-button:focus {
+             outline: 3px solid #000000; /* Black outline for max visibility on orange */
+            outline-offset: 3px;
+        }
+
+        /* SERVICE SECTIONS */
+        .service-section {
+            text-align: left;
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        
+        .service-section h3 {
+            color: #006699;
+            border-bottom: 2px solid #006699;
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+        
+        .service-list {
+            list-style: none; /* Removed default list style */
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+        
+        .service-list li {
+            position: relative;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            /* Accessible custom bullet point */
+            padding-left: 15px; 
+        }
+        
+        .service-list li::before {
+            content: "•";
+            color: #cc6600; 
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+
+        /* FOOTER STYLES */
+        .footer {
+            background: #333;
+            color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+            margin-top: auto;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .footer a {
+            color: #99ccff; /* Lighter color for contrast against dark background */
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer a:hover, .footer a:focus {
+            text-decoration: underline;
+            outline: 2px solid #ffcc00;
+            outline-offset: 2px;
+        }
+        
+        /* MOBILE OPTIMIZATION */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 15px;
+            }
+            button {
+                font-size: 1.1rem;
+                padding: 12px;
+            }
+            .footer {
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="main-content" class="container">
+        <h1>End-to-End Accessibility: Testing, Development, and QA</h1>
+        <p>
+            Partner with **Accessible World** to build, test, and maintain digital products that are high-quality, fully functional, and meet the highest global accessibility standards. Our team includes **experienced accessibility testers** and **expert developers**, ensuring we can not only find issues but also fix them efficiently.
+        </p>
+        
+        <div class="service-section">
+            <h3>🤝 Complete Web Accessibility Solutions</h3>
+            <p>We provide end-to-end accessibility services, from initial audit to final implementation, guaranteeing compliance with **WCAG 2.1/2.2 (A/AA)**.</p>
+            <ul class="service-list">
+                <li>**Comprehensive Audits & Testing:** Detailed manual testing and automated checks by our team of accessibility experts.</li>
+                <li>**Development to Fix Issues (Remediation):** Unlike many testing-only firms, we have **experienced developers** ready to integrate fixes directly into your code base.</li>
+                <li>**Documentation & Reporting:** Clear, actionable reports, including documentation for testing procedures and compliance reporting.</li>
+                <li>**Screen Reader & Assistive Technology Testing:** Specialized testing using tools like NVDA, JAWS, and VoiceOver for real-world validation.</li>
+            </ul>
+        </div>
+        
+        <div class="service-section">
+            <h3>💻 Custom Website Development</h3>
+            <p>Whether you need a new project built from the ground up or enhancements to an existing site, our development team delivers professional, scalable, and **accessible-by-design** solutions.</p>
+            <ul class="service-list">
+                <li>New website and web application development.</li>
+                <li>Maintenance, migration, and modernization of existing platforms.</li>
+                <li>Focus on clean code, performance, and cross-browser compatibility.</li>
+            </ul>
+        </div>
+        
+        <div class="service-section">
+            <h3>🔍 General Manual QA Testing</h3>
+            <p>Our dedicated QA team offers exhaustive manual testing services to ensure your product is flawless before launch, covering functionality and user experience.</p>
+            <ul class="service-list">
+                <li>**Functional Testing:** Verifying all features work as intended per specifications.</li>
+                <li>**User Interface (UI) Testing:** Ensuring a smooth, intuitive, and visually correct experience.</li>
+                <li>**Cross-Platform Testing:** Validation across different devices, operating systems, and browsers.</li>
+            </ul>
+        </div>
+
+        <p style="margin-top: 30px; font-weight: bold;">
+            We offer the unique advantage of having both **expert accessibility testers and experienced developers** under one roof—a true solution provider.
+        </p>
+        
+        <button class="contact-button" onclick="window.location.href='contact.html'">Get a Free Consultation</button>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Accessible World Tutorials</p>
+        <a href="privacy.html" target="_blank">Privacy Policy</a>
+        <a href="terms.html" target="_blank">Terms of Service</a>
+        <a href="contact.html" target="_blank">Contact Us</a>
+    </footer>
+</body>
+</html>
