@@ -3471,6 +3471,140 @@ document.write("Now the value of x is: " + x);
 &lt;/html&gt;
 </code></pre>                    
 </div>
+<p>Click on the next button to learn the 29th topic: JavaScript Operators part 2.</p>
+
+                </div>
+                <div id="javascript-page29" class="javascript-page">
+<h2>Lesson 29: JavaScript Operators – Part 2</h2>
+<a href="#video-js-lesson29">Jump to video lesson</a>
+
+<p>
+In this lesson, we will learn two very important types of operators used in JavaScript decisions:  
+<b>Comparison (Conditional) Operators</b> and <b>Logical Operators</b>.  
+These operators help JavaScript to compare values and make decisions.  
+You will use them mostly inside conditions like if, else if, while loops, and other logical situations.
+</p>
+
+<h2>1. Comparison (Conditional) Operators</h2>
+
+<p>
+Comparison operators are used to compare two values.  
+The result of every comparison is either true or false.  
+This is why they are mainly used in conditions.
+</p>
+
+<p>
+Common comparison operators:  
+ == (equal to) <br>
+ === (strict equal to: checks value and type)  <br>
+ != (not equal to)  <br>
+ > (greater than)  <br>
+ < (less than)  <br>
+ >= (greater than or equal to)  <br>
+ <= (less than or equal to)  <br>
+</p>
+
+<p>
+Example explanation:  
+If you want to check whether a person is 18 years old, you can compare the age variable with 18.  
+If the comparison becomes true, some code will run.  
+If it becomes false, another block can run.  
+These operators help JavaScript decide what action to take.
+</p>
+
+<h2>2. Logical Operators</h2>
+
+<p>
+Logical operators are used to combine two or more conditions.  
+They help JavaScript check multiple rules at the same time.  
+Logical operators also return true or false.
+</p>
+
+<p>
+The three main logical operators are:  
+ && (AND): All conditions must be true  <br>
+ || (OR): At least one condition must be true  <br>
+ ! (NOT): Changes true to false or false to true  
+</p>
+
+<p>
+Example explanation:  
+If you want to check whether a student passes an exam only if they score above 35 AND attend the exam, you can combine both conditions using &&.  
+If you want to check if today is Saturday OR Sunday, you can use ||.  
+If you want the opposite value of a condition, you can use ! to flip the result.
+</p>
+
+<h2>Why These Operators Are Important?</h2>
+
+<p>
+Most real JavaScript programs make decisions.  
+Comparison operators help check values, and logical operators help check multiple conditions together.  
+Whenever you write if, else if, or while loops, you will use these operators to control the flow of your program.
+</p>
+
+<p>
+In the demo example, we will compare values using comparison operators and then combine some conditions using logical operators to see how they work in real-life situations.
+</p>
+
+<h3 id="video-js-lesson29">    English video with practical:</h3>
+
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/operatorsP2-english.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+                    </div>
+                    <h3>Lesson 29 example code:</h3>
+                    <button id="viewCode39" aria-expanded="false" aria-controls="codeExample39">View example code</button>
+                    <div id="codeExample39" hidden>
+                        <p>All the below content is the HTML code for the 29th lesson:</p>
+<pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Logical Operators Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Logical Operators Demo (Marks &amp; Attendance)&lt;/h1&gt;
+
+&lt;p id="p1"&gt;&lt;/p&gt;
+&lt;p id="p2"&gt;&lt;/p&gt;
+&lt;p id="p3"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let marks = 35;
+let attendance = 100;
+
+//and operator example
+let result1 = (marks &gt;= 35 &amp;&amp; attendance === 100);
+document.getElementById("p1").innerHTML = "marks are &gt;= 35 and attendance is 100 " + result1;
+
+//Or operator example
+let result2 = (marks &gt;= 50 || attendance === 50);
+document.getElementById("p2").innerHTML = "marks are &gt;= 50 or attendance is 50 " + result2;
+
+//not operator example
+let result3 = !(marks &lt; 35);
+document.getElementById("p3").innerHTML = "Marks are &lt; 35 " + result3;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>                    
+</div>
                 </div>
 
 
