@@ -3546,7 +3546,7 @@ Whenever you write if, else if, or while loops, you will use these operators to 
 In the demo example, we will compare values using comparison operators and then combine some conditions using logical operators to see how they work in real-life situations.
 </p>
 
-<h3 id="video-js-lesson29">    English video with practical:</h3>
+<h3 id="video-js-lesson29">    English video explanation with practical:</h3>
 
                     <div class="video-container">
                         <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
@@ -3600,6 +3600,93 @@ document.getElementById("p2").innerHTML = "marks are &gt;= 50 or attendance is 5
 let result3 = !(marks &lt; 35);
 document.getElementById("p3").innerHTML = "Marks are &lt; 35 " + result3;
 &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>                    
+</div>
+<p>Click on the next button to learn the 30th topic: JavaScript forms.</p>
+
+                </div>
+                <div id="javascript-page30" class="javascript-page">
+<h2>Lesson 30: JavaScript Forms – Login Form Validation</h2>
+<a href="#video-js-lesson30">Jump to video lesson</a>
+
+<p> In JavaScript, forms are used to collect information from the user. Common examples are login forms, registration forms, contact forms, and search boxes. JavaScript can check the form fields before submitting, so the user gets instant feedback. </p> <p> In this lesson, we will take a simple and easy example: a login form with two fields — username and password. We will learn how JavaScript checks whether these fields are filled or empty before the form is submitted. </p> <h2>1. Why We Use JavaScript With Forms</h2> <p> JavaScript helps us to: - Check if the user entered a username. - Check if the password is not empty. - Show a message if anything is missing. - Stop the form submission until all fields are correct. This process is called form validation. </p> <h2>2. Checking Username and Password</h2> <p> Inside the form, we usually give IDs to input fields, like username and password. Using JavaScript and <b>document.getElementById</b>, we can get the text typed by the user. </p><p> For example, if the user clicks the Login button, JavaScript will check: - Is the username empty? - Is the password empty? If any of them is empty, we will show a message like "Please enter username" or "Please enter password". </p> <p> We use an <b>onsubmit</b> event for the form. This event runs JavaScript when the user presses the Login button or presses Enter on the button. </p> <h2>3. How Validation Works</h2> <p> When the user submits the form: - JavaScript reads the values using getElementById - It checks conditions using if, else if, and else - If the fields are empty, JavaScript shows an error message - If everything is correct, JavaScript allows the form to continue </p> <p> To stop the form submission when there is an error, we use the word <b>return false</b>. It prevents the page from refreshing or moving forward. </p>
+<h3 id="video-js-lesson30">    English video explanation with practical:</h3>
+
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/loginFormP1-english.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+                    </div>
+                    <h3>Lesson 30 example code:</h3>
+                    <button id="viewCode40" aria-expanded="false" aria-controls="codeExample40">View example code</button>
+                    <div id="codeExample40" hidden>
+                        <p>All the below content is the HTML code for the 30th lesson:</p>
+<pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;JavaScript Forms Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;h1&gt;JavaScript Forms – Login Form Example&lt;/h1&gt;
+
+  &lt;form onsubmit="return validateForm()"&gt;
+
+    &lt;label for="username"&gt;Username:&lt;/label&gt;&lt;br&gt;
+    &lt;input type="text" id="username" placeholder="Enter username"&gt;&lt;br&gt;&lt;br&gt;
+
+    &lt;label for="password"&gt;Password:&lt;/label&gt;&lt;br&gt;
+    &lt;input type="password" id="password" placeholder="Enter password"&gt;&lt;br&gt;&lt;br&gt;
+
+    &lt;button type="submit"&gt;Login&lt;/button&gt;
+  &lt;/form&gt;
+
+  &lt;p id="message"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+  function validateForm() {
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    let msg = document.getElementById("message");
+
+    // Username and password should not be empty
+    if (username === "" || password === "") {
+      msg.innerHTML = "Username and password should not be empty.";
+      msg.style.color = "red";
+      return false;
+    }
+
+    // Password should be at least 6 characters
+    if (password.length &lt; 6) {
+      msg.innerHTML = "Password must be at least 6 characters";
+      msg.style.color = "red";
+      return false;
+    }
+
+    // If all the fields are correct
+    msg.innerHTML = "Login successful";
+    return false;
+  }
+  &lt;/script&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;
