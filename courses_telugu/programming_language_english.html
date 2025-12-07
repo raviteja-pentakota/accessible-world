@@ -52,6 +52,23 @@
         </div>
         <div id="intro-content" class="tab-content active" role="tabpanel" aria-labelledby="intro-tab">
             <div id="intro-pages">
+<div role="region" aria-label="HTML Topic Search">
+  <label for="htmlSearch">HTML Search:</label>
+
+  <input 
+      type="text" 
+      id="htmlSearch" 
+      placeholder="Search HTML topics…" 
+      aria-label="Search HTML topics"
+      style="padding: 6px; margin-bottom: 6px; width: 260px;"
+  >
+
+  <!-- Screen reader live region -->
+  <div id="htmlResultCount" aria-live="polite" aria-atomic="true" style="position:absolute; left:-9999px;"></div>
+
+  <ul id="htmlResults" style="list-style: none; padding-left: 0; margin-top: 5px;"></ul>
+</div>
+
                 <div id="intro-page1" class="intro-page active">
                     <h2>Lesson 1: Introduction to HTML </h2>
 <a href="#video-lesson1">Jump to video lesson</a>
@@ -929,11 +946,44 @@ From an accessibility perspective, the charset meta tag ensures that text displa
             </div>
             <div class="pagination-controls" aria-label="HTML Topics Pagination">
                 <button id="prevBtn" disabled>Previous</button>
+<label for="topicDropdown">View all HTML Topics</label>
+        <select id="topicDropdown" aria-description="Press Alt+down Arrow to Expand" role="combobox">
+            <option value="1">Lesson 1: Introduction to HTML</option>
+            <option value="2">Lesson 2: Basic HTML Code</option>
+            <option value="3">Lesson3: Headings and paragraphs</option>
+            <option value="4">Lesson 4: Paragraph Formatting</option>
+            <option value="5">Lesson 5: Bringing Your Web Pages to Life with Images</option>
+            <option value="6">Lesson 6: Organizing Your Content with HTML Lists</option>            
+            <option value="7">Lesson 7: Connecting Your Web Pages with HTML Hyperlinks</option>
+            <option value="8">Lesson 8: Crafting Accessible Tables in HTML</option>
+            <option value="9">Lesson 9: HTML Forms part 1</option>
+            <option value="10">Lesson 10: HTML Forms part 2</option>
+            <option value="11">Lesson 11: Enhancing Your Web Pages with Accessible Audio and Video</option>
+            <option value="12">Lesson 12: Meta tags</option>
+        </select>
                 <span id="pageIndicator" aria-live="polite">Page 1 of 12</span> <button id="nextBtn">Next</button>
             </div>
         </div>
         <div id="javascript-content" class="tab-content" role="tabpanel" aria-labelledby="javascript-tab">
             <div id="javascript-pages">
+<div role="region" aria-label="JavaScript Topic Search">
+  <label for="jsSearch">JavaScript Search:</label>
+
+  <input 
+      type="text" 
+      id="jsSearch" 
+      placeholder="Search JavaScript topics…" 
+      aria-label="Search JavaScript topics"
+      style="padding: 6px; margin-bottom: 6px; width: 260px;"
+  >
+
+  <!-- Screen reader live region -->
+  <div id="jsResultCount" aria-live="polite" aria-atomic="true" style="position:absolute; left:-9999px;"></div>
+
+  <ul id="jsResults" style="list-style: none; padding-left: 0; margin-top: 5px;">
+  </ul>
+</div>
+
                 <div id="javascript-page1" class="javascript-page active">
                     <h2>Lesson 1: Introduction to JavaScript</h2>
                     <a href="#video-js-lesson1">Jump to video lesson</a>
@@ -3697,6 +3747,41 @@ document.getElementById("p3").innerHTML = "Marks are &lt; 35 " + result3;
 
             <div class="pagination-controls" aria-label="Java Script Topics Pagination">
                 <button id="jsprevBtn" disabled>Previous</button>
+<label for="jstopicDropdown">View all JavaScript Topics</label>
+        <select id="jstopicDropdown" aria-description="Press Alt+down Arrow to Expand" role="combobox">
+
+            <option value="1">Lesson 1: Introduction to JavaScript</option>
+            <option value="2">Lesson 2: Displaying Text in HTML using JavaScript</option>
+            <option value="3">Lesson 3: Show and Hide Elements using JavaScript</option>
+            <option value="4">Lesson 4: JavaScript Data Types</option>
+            <option value="5">Lesson 5: JavaScript Variables</option>
+            <option value="6">Lesson 6: JavaScript Variables – Practical Examples (Part 1)</option>            
+            <option value="7">Lesson 7: JavaScript Variables – Practical Examples (Part 2)</option>
+            <option value="8">Lesson 8: JavaScript Concatenation example 1</option>
+            <option value="9">Lesson 9: Concatenation Example 2: Joining Text with a Result</option>
+            <option value="10">Lesson 10: Variable Initialization and Modification</option>
+            <option value="11">Lesson 11: Variable Declaration</option>
+            <option value="12">Lesson 12: Working with String Length and Changing Case in JavaScript</option>
+            <option value="13">Lesson 13: Extracting Words from a String using Split and Slice Methods</option>
+            <option value="14">Lesson 14: If and Else Statements in JavaScript</option>
+            <option value="15">Lesson 15: Else If Statement in JavaScript</option>
+            <option value="16">Lesson 16: Switch Statement in JavaScript</option>            
+            <option value="17">Lesson 17: JavaScript Comments</option>
+            <option value="18">Lesson 18: Arrays in JavaScript – Part 1</option>
+            <option value="19">Lesson 19: JavaScript Arrays Part 2 – Modifying Arrays</option>
+            <option value="20">Lesson 20: JavaScript Loops Part 1 – For Loop and While Loop</option>
+            <option value="21">Lesson 21: JavaScript Objects</option>
+            <option value="22">Lesson 21: JavaScript Objects</option>
+            <option value="23">Lesson 23: JavaScript Functions – Part 1: Creating and Calling Functions</option>
+            <option value="24">Lesson 24: JavaScript Functions – Part 2: Parameters and Return Value</option>
+            <option value="25">Lesson 25: JavaScript Events – Part 1</option>
+            <option value="26">Lesson 26: JavaScript Events – Part 2</option>            
+            <option value="27">Lesson 27: JavaScript Events – Part 3</option>
+            <option value="28">Lesson 28: JavaScript Operators – Part 1</option>
+            <option value="29">Lesson 29: JavaScript Operators – Part 2</option>
+            <option value="30">Lesson 30: JavaScript Forms – Login Form Validation</option>
+        </select>
+
                 <span id="jspageIndicator" aria-live="polite">Page 1 of 5</span> <button id="jsnextBtn">Next</button>
             </div>
         </div>
@@ -3894,5 +3979,7 @@ document.getElementById("p3").innerHTML = "Marks are &lt; 35 " + result3;
         }
     </script>
     <script src="video_script.js"></script>
+<script src="topics-navigation.js"></script>
+
 </body>
 </html>
