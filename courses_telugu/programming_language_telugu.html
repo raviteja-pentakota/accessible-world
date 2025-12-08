@@ -52,6 +52,17 @@
         </div>
         <div id="intro-content" class="tab-content active" role="tabpanel" aria-labelledby="intro-tab">
             <div id="intro-pages">
+<div role="region" aria-label="Search">
+  <label for="Search HTML Topics">Search HTML topics:</label>
+
+  <input type="text" id="htmlSearch" placeholder="Enter topic name or any keyword" style="padding: 6px; margin-bottom: 6px; width: 260px;">
+
+  <!-- Screen reader live region -->
+  <div id="htmlResultCount" aria-live="polite" aria-atomic="true" style="position:absolute; left:-9999px;"></div>
+
+  <ul id="htmlResults" style="list-style: none; padding-left: 0; margin-top: 5px;"></ul>
+</div>
+
                 <div id="intro-page1" class="intro-page active">
                     <h2>Lesson 1: Introduction to HTML</h2>
                     <a href="#video-lesson1">Jump to video lesson</a>
@@ -866,6 +877,18 @@ Our subscription fee will be Rs 1000 and Only one time payment.&lt;/p&gt;
 
         <div id="javascript-content" class="tab-content" role="tabpanel" aria-labelledby="javascript-tab">
             <div id="javascript-pages">
+<div role="region" aria-label="JavaScript Topic Search">
+  <label for="jsSearch">Search JavaScript Topics:</label>
+
+  <input type="text" id="jsSearch" placeholder="Search by topic name or keyword…" style="padding: 6px; margin-bottom: 6px; width: 260px;">
+
+  <!-- Screen reader live region -->
+  <div id="jsResultCount" aria-live="polite" aria-atomic="true" style="position:absolute; left:-9999px;"></div>
+
+  <ul id="jsResults" style="list-style: none; padding-left: 0; margin-top: 5px;">
+  </ul>
+</div>
+
                 <div id="javascript-page1" class="javascript-page active">
                     <h2>Lesson 1: Introduction to JavaScript</h2>
                     <a href="#video-js-lesson1">Jump to video lesson</a>

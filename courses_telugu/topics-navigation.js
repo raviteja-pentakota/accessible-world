@@ -87,91 +87,6 @@ jsDropdown.addEventListener('change', function () {
 
 // Initialize JS pagination
 showJsPage(jsCurrentPage);
-//search
-const jsSearchInput = document.getElementById("jsSearch");
-const jsResultsList = document.getElementById("jsResults");
-const jsResultCount = document.getElementById("jsResultCount");
-
-// Collect JS lessons dynamically
-let jsLessons = [];
-jsPages.forEach((page, index) => {
-    const title = page.querySelector("h2").innerText;
-    jsLessons.push({ id: index + 1, title });
-});
-
-// SEARCH FUNCTION
-jsSearchInput.addEventListener("input", function () {
-    const query = this.value.trim().toLowerCase();
-    jsResultsList.innerHTML = "";
-
-    if (!query) {
-        jsResultCount.textContent = "";
-        return;
-    }
-
-    const matches = jsLessons.filter(lesson =>
-        lesson.title.toLowerCase().includes(query)
-    );
-
-    // Update screen reader count
-    if (matches.length === 0) {
-        jsResultCount.textContent = "No results found";
-        jsResultsList.innerHTML = `<li>No results found</li>`;
-        return;
-    } else if (matches.length === 1) {
-        jsResultCount.textContent = "1 result found";
-    } else {
-        jsResultCount.textContent = `${matches.length} results found`;
-    }
-
-    // Populate results
-    matches.forEach(lesson => {
-        const li = document.createElement("li");
-        li.textContent = lesson.title;
-        li.style.cursor = "pointer";
-        li.style.padding = "4px 0";
-        li.tabIndex = -1; // initially not focusable
-        jsResultsList.appendChild(li);
-
-        // Click to open
-        li.addEventListener("click", () => {
-            jsCurrentPage = lesson.id;
-            showJsPage(jsCurrentPage);
-            jsResultsList.innerHTML = "";
-            jsSearchInput.value = "";
-            jsSearchInput.focus();
-        });
-    });
-});
-
-// Arrow key navigation while staying in input
-jsSearchInput.addEventListener("keydown", (e) => {
-    const items = jsResultsList.querySelectorAll("li");
-    if (!items.length) return;
-
-    let currentIndex = Array.from(items).findIndex(item => item === document.activeElement);
-
-    if (e.key === "ArrowDown") {
-        e.preventDefault();
-        if (currentIndex === -1) {
-            items[0].focus();
-        } else if (currentIndex < items.length - 1) {
-            items[currentIndex + 1].focus();
-        }
-    } else if (e.key === "ArrowUp") {
-        e.preventDefault();
-        if (currentIndex > 0) {
-            items[currentIndex - 1].focus();
-        } else {
-            jsSearchInput.focus(); // back to input
-        }
-    } else if (e.key === "Escape") {
-        jsResultsList.innerHTML = "";
-        jsResultCount.textContent = "";
-        jsSearchInput.value = "";
-    }
-});
-
 //HTML search
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -265,4 +180,106 @@ function showHtmlPage(id) {
       }
   });
 
+});
+
+// JS search
+const jsSearchInput = document.getElementById("jsSearch");
+const jsResultsList = document.getElementById("jsResults");
+const jsResultCount = document.getElementById("jsResultCount");
+
+// Collect JS lessons dynamically
+let jsLessons = [];
+jsPages.forEach((page, index) => {
+    const title = page.querySelector("h2").innerText;
+    jsLessons.push({ id: index + 1, title });
+});
+
+// Show JS page + move focus to heading
+function openJsLesson(id) {
+    jsCurrentPage = id;
+    showJsPage(jsCurrentPage);
+
+    // Move focus to the heading of the opened page
+    const selected = document.getElementById(`javascript-page${id}`);
+    const heading = selected.querySelector("h2");
+
+    if (heading) {
+        heading.setAttribute("tabindex", "-1");
+        heading.focus();
+    }
+
+    // Clear search
+    jsResultsList.innerHTML = "";
+    jsSearchInput.value = "";
+}
+
+// SEARCH FUNCTION
+jsSearchInput.addEventListener("input", function () {
+    const query = this.value.trim().toLowerCase();
+    jsResultsList.innerHTML = "";
+
+    if (!query) {
+        jsResultCount.textContent = "";
+        return;
+    }
+
+    const matches = jsLessons.filter(lesson =>
+        lesson.title.toLowerCase().includes(query)
+    );
+
+    // Update screen reader count
+    if (matches.length === 0) {
+        jsResultCount.textContent = "No results found";
+        jsResultsList.innerHTML = `<li>No results found</li>`;
+        return;
+    } else if (matches.length === 1) {
+        jsResultCount.textContent = "1 result found";
+    } else {
+        jsResultCount.textContent = `${matches.length} results found`;
+    }
+
+    // Populate results
+    matches.forEach(lesson => {
+        const li = document.createElement("li");
+        li.textContent = lesson.title;
+        li.style.cursor = "pointer";
+        li.style.padding = "4px 0";
+        li.tabIndex = -1;
+        jsResultsList.appendChild(li);
+
+        // Click → open + focus on heading
+        li.addEventListener("click", () => openJsLesson(lesson.id));
+    });
+});
+
+// Arrow key navigation while staying in input
+jsSearchInput.addEventListener("keydown", (e) => {
+    const items = jsResultsList.querySelectorAll("li");
+    if (!items.length) return;
+
+    let currentIndex = Array.from(items).findIndex(item => item === document.activeElement);
+
+    if (e.key === "ArrowDown") {
+        e.preventDefault();
+        if (currentIndex === -1) {
+            items[0].focus();
+        } else if (currentIndex < items.length - 1) {
+            items[currentIndex + 1].focus();
+        }
+    } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        if (currentIndex > 0) {
+            items[currentIndex - 1].focus();
+        } else {
+            jsSearchInput.focus();
+        }
+    } else if (e.key === "Enter") {
+        if (currentIndex >= 0) {
+            openJsLesson(currentIndex + 1);
+        }
+    } else if (e.key === "Escape") {
+        jsResultsList.innerHTML = "";
+        jsResultCount.textContent = "";
+        jsSearchInput.value = "";
+    }
 });
