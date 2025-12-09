@@ -30,18 +30,21 @@
             <li><a href="/dashboard.html">Go to dashboard page</a></li>
         </ul>
     </nav>
-    <nav aria-label="Course Navigation">
-    <nav aria-label="Course Navigation">
-        <ul type="none">
-<li><a href="basic_computers_telugu.html">Basic Computers with Telugu explanation</a></li>
-            <li><a href="programming_language_telugu.html">Web Development with Telugu Explanation</a>
-            <li><a href="programming_language_english.html" aria-current="page">Web Development with English Explanation</a>
-            <li><a href="accessibility_telugu.html">Web Accessibility with Telugu Explanation</a></li>
-            <li><a href="accessibility_english.html">Web Accessibility with English Explanation</a></li>
-            <li><a href="interview.html">Interview Questions</a></li>
-            <li><a href="gk.html">GK Bits</a></li>
-        </ul>
-    </nav>
+<button id="toggleNavBtn" aria-expanded="false" class="nav-toggle-btn">
+    ☰ Open Course Navigation
+</button>
+
+<nav id="courseNav" aria-label="Course Navigation" hidden>
+    <ul id="menuList" role="menu" class="course-menu">
+        <li><a role="menuitem" href="basic_computers_telugu.html">Basic Computers with Telugu explanation</a></li>
+        <li><a role="menuitem" href="programming_language_telugu.html">Web Development with Telugu Explanation</a></li>
+        <li><a role="menuitem" href="programming_language_english.html" aria-current="page">Web Development with English Explanation</a></li>
+        <li><a role="menuitem" href="accessibility_telugu.html">Web Accessibility with Telugu Explanation</a></li>
+        <li><a role="menuitem" href="accessibility_english.html">Web Accessibility with English Explanation</a></li>
+        <li><a role="menuitem" href="interview.html">Interview Questions</a></li>
+        <li><a role="menuitem" href="gk.html">GK Bits</a></li>
+    </ul>
+</nav>
     <main id="main-content">
         <h1>Web Development Course (Telugu Explanation):</h1>
         <div class="tab-container">
@@ -3969,6 +3972,7 @@ document.getElementById("p3").innerHTML = "Marks are &lt; 35 " + result3;
     </script>
     <script src="video_script.js"></script>
 <script src="topics-navigation.js"></script>
+<script src="course_navigation.js"></script>
 
 </body>
 </html>

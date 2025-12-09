@@ -1,144 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="video_style.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accessible World Topics and Courses</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background-color: #007bff;
-            color: white;
-            padding: 8px;
-            z-index: 100;
-        }
-
-        .skip-link:focus {
-            top: 0;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            padding: 1em 20px; /* Added padding to the sides */
-            text-align: center;
-            position: relative; /* Needed for absolute positioning of profile dropdown */
-        }
-
-        header h1 {
-            margin-bottom: 10px; /* Adjust spacing below the title */
-        }
-
-        nav {
-            background-color: #ddd;
-            padding: 1em;
-            text-align: center;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin: 0 1em;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        nav h2 {
-            margin-top: 1em;
-            color: #555;
-            font-size: 1.2em;
-        }
-
-        main {
-            padding: 20px;
-            background-color: #fff;
-            margin: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 80px; /* Ensure space for fixed footer */
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        /* Styles for profile button and dropdown */
-        .profile-container {
-            position: absolute; /* Position relative to the header */
-            top: 10px;
-            right: 20px; /* Adjust as needed */
-            display: inline-block;
-        }
-
-        .profile-container button {
-            padding: 8px 15px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .profile-container button:hover {
-            background-color: #0056b3;
-        }
-
-        .profile-dropdown {
-            display: none; /* Hidden by default */
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 200px; /* Adjust width as needed */
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            right: 0; /* Align dropdown to the right of the button */
-            border-radius: 4px;
-            padding: 10px;
-            top: 45px; /* Position below the button */
-            color: #333; /* Ensure text is visible */
-            text-align: left;
-        }
-
-        .profile-dropdown p {
-            margin: 5px 0;
-            font-size: 14px;
-            padding: 0 5px; /* Add some padding inside the dropdown */
-        }
-
-        .profile-dropdown button {
-            width: calc(100% - 10px); /* Adjust width to fit padding */
-            margin: 10px 5px 0; /* Adjust margin for logout button */
-            background-color: #dc3545; /* Red for logout */
-        }
-
-        .profile-dropdown button:hover {
-            background-color: #c82333;
-        }
-    </style>
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -164,17 +31,21 @@
             <li><a href="/dashboard.html">Go to dashboard page</a></li>
         </ul>
     </nav>
-    <nav aria-label="Course Navigation">
-        <ul type="none">
-<li><a href="basic_computers_telugu.html">Basic Computers with Telugu explanation</a></li>
-            <li><a href="programming_language_telugu.html">Web Development with Telugu Explanation</a>
-            <li><a href="programming_language_english.html">Web Development with English Explanation</a>
-            <li><a href="accessibility_telugu.html">Web Accessibility with Telugu Explanation</a></li>
-            <li><a href="accessibility_english.html">Web Accessibility with English Explanation</a></li>
-            <li><a href="interview.html">Interview Questions</a></li>
-            <li><a href="gk.html">GK Bits</a></li>
-        </ul>
-    </nav>
+<button id="toggleNavBtn" aria-expanded="false" class="nav-toggle-btn">
+    ☰ Open Course Navigation
+</button>
+
+<nav id="courseNav" aria-label="Course Navigation" hidden>
+    <ul id="menuList" role="menu" class="course-menu">
+        <li><a role="menuitem" href="basic_computers_telugu.html">Basic Computers with Telugu explanation</a></li>
+        <li><a role="menuitem" href="programming_language_telugu.html">Web Development with Telugu Explanation</a></li>
+        <li><a role="menuitem" href="programming_language_english.html" aria-current="page">Web Development with English Explanation</a></li>
+        <li><a role="menuitem" href="accessibility_telugu.html">Web Accessibility with Telugu Explanation</a></li>
+        <li><a role="menuitem" href="accessibility_english.html">Web Accessibility with English Explanation</a></li>
+        <li><a role="menuitem" href="interview.html">Interview Questions</a></li>
+        <li><a role="menuitem" href="gk.html">GK Bits</a></li>
+    </ul>
+</nav>
     <main id="main-content">
         <h2>About Accessible World</h2>
         <p>Accessible World is dedicated to providing accessible learning resources for everyone. We believe that knowledge should be available to all, regardless of their abilities. Our platform offers a variety of topics and courses designed with accessibility in mind, ensuring a seamless learning experience for users with diverse needs.</p>
@@ -279,5 +150,7 @@ if (profileBtn) {
             }
         });
     </script>
+<script src="course_navigation.js"></script>
+
 </body>
 </html>

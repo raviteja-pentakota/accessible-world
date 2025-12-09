@@ -1,109 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="video_style.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>General Knoledge - Accessible World</title>
-    <style>
-        /* ... (Your existing CSS) ... */
-
-        .tab-content {
-            display: none;
-            padding: 15px;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .question-page {
-            display: none;
-        }
-
-        .question-page.active {
-            display: block;
-        }
-
-        .pagination-controls {
-            margin-top: 15px;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .pagination-controls button {
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .pagination-controls button:disabled {
-            background-color: #eee;
-            color: #999;
-            cursor: not-allowed;
-        }
-
-        .pagination-info {
-            font-size: 0.9em;
-            color: #777;
-        }
-        /* Styles for profile button and dropdown */
-        .profile-container {
-            position: absolute; /* Position relative to the header */
-            top: 10px;
-            right: 20px; /* Adjust as needed */
-            display: inline-block;
-        }
-
-        .profile-container button {
-            padding: 8px 15px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .profile-container button:hover {
-            background-color: #0056b3;
-        }
-
-        .profile-dropdown {
-            display: none; /* Hidden by default */
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 200px; /* Adjust width as needed */
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            right: 0; /* Align dropdown to the right of the button */
-            border-radius: 4px;
-            padding: 10px;
-            top: 45px; /* Position below the button */
-            color: #333; /* Ensure text is visible */
-            text-align: left;
-        }
-
-        .profile-dropdown p {
-            margin: 5px 0;
-            font-size: 14px;
-            padding: 0 5px; /* Add some padding inside the dropdown */
-        }
-
-        .profile-dropdown button {
-            width: calc(100% - 10px); /* Adjust width to fit padding */
-            margin: 10px 5px 0; /* Adjust margin for logout button */
-            background-color: #dc3545; /* Red for logout */
-        }
-
-        .profile-dropdown button:hover {
-            background-color: #c82333;
-        }
-
-
-
-    </style>
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -129,17 +31,21 @@
             <li><a href="/dashboard.html">Go to dashboard page</a></li>
         </ul>
     </nav>
-    <nav aria-label="Course Navigation">
-        <ul type="none">
-<li><a href="basic_computers_telugu.html">Basic Computers with Telugu explanation</a></li>
-            <li><a href="programming_language_telugu.html">Web Development with Telugu Explanation</a>
-            <li><a href="programming_language_english.html">Web Development with English Explanation</a>
-            <li><a href="accessibility_telugu.html">Web Accessibility with Telugu Explanation</a></li>
-            <li><a href="accessibility_english.html">Web Accessibility with English Explanation</a></li>
-            <li><a href="interview.html">Interview Questions</a></li>
-            <li><a href="gk.html" aria-current="true">GK Bits</a></li>
-        </ul>
-    </nav>
+<button id="toggleNavBtn" aria-expanded="false" class="nav-toggle-btn">
+    ☰ Open Course Navigation
+</button>
+
+<nav id="courseNav" aria-label="Course Navigation" hidden>
+    <ul id="menuList" role="menu" class="course-menu">
+        <li><a role="menuitem" href="basic_computers_telugu.html">Basic Computers with Telugu explanation</a></li>
+        <li><a role="menuitem" href="programming_language_telugu.html">Web Development with Telugu Explanation</a></li>
+        <li><a role="menuitem" href="programming_language_english.html" aria-current="page">Web Development with English Explanation</a></li>
+        <li><a role="menuitem" href="accessibility_telugu.html">Web Accessibility with Telugu Explanation</a></li>
+        <li><a role="menuitem" href="accessibility_english.html">Web Accessibility with English Explanation</a></li>
+        <li><a role="menuitem" href="interview.html">Interview Questions</a></li>
+        <li><a role="menuitem" href="gk.html">GK Bits</a></li>
+    </ul>
+</nav>
     <main id="main-content">
         <h2>General Knoledge Questions</h2>
 <p>Accessible World Tutorials offers a wide range of General Knowledge questions across topics like History, Science and Technology, Geography, and Indian Culture. Each topic contains over 450 carefully curated questions and answers—click on the tabs below to explore your favorite subject.</p>
@@ -2358,5 +2264,7 @@ pageNumSpan.textContent = `Page ${pageNumber}`;
             }
         });
     </script>
+<script src="course_navigation.js"></script>
+
 </body>
 </html>
