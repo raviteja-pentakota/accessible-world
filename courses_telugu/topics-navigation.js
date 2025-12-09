@@ -283,3 +283,113 @@ jsSearchInput.addEventListener("keydown", (e) => {
         jsSearchInput.value = "";
     }
 });
+
+
+// WCAG search
+// WCAG Elements
+const wcagPages = document.querySelectorAll('#wcag-pages .wcag-page');
+const prevWcagButton = document.getElementById('prev-wcag');
+const nextWcagButton = document.getElementById('next-wcag');
+const currentWcagNum = document.getElementById('current-wcag-num');
+const wcagSelect = document.getElementById("wcag-select");
+
+let currentWcagIndex = 0;
+
+// Function to show WCAG page
+function showPage(pages, index, prevButton, nextButton, currentNumSpan) {
+    pages.forEach(p => p.classList.remove('active'));
+    pages[index].classList.add('active');
+
+    currentNumSpan.textContent = `${index + 1} of ${pages.length}`;
+    prevButton.disabled = index === 0;
+    nextButton.disabled = index === pages.length - 1;
+}
+
+// WCAG list (titles)
+const criteriaList = [
+    '1.1.1 Non-text Content',
+    '1.2.1 Audio-only and Video-only (Prerecorded)',
+    '1.2.2 Captions (Prerecorded)'
+];
+
+// Build WCAG lesson mapping
+const wcagLessons = Array.from(wcagPages).map((page, index) => {
+    const title = criteriaList[index] || `WCAG Topic ${index + 1}`;
+    page.querySelector("h2").textContent = title;
+    return { index, title };
+});
+
+// Populate dropdown
+wcagLessons.forEach((lesson, idx) => {
+    const opt = document.createElement("option");
+    opt.value = idx;
+    opt.textContent = `${idx + 1}. ${lesson.title}`;
+    wcagSelect.appendChild(opt);
+});
+
+// Dropdown navigation
+wcagSelect.addEventListener("change", function () {
+    currentWcagIndex = parseInt(this.value);
+    showPage(wcagPages, currentWcagIndex, prevWcagButton, nextWcagButton, currentWcagNum);
+});
+
+// Buttons navigation
+prevWcagButton.addEventListener("click", () => {
+    if (currentWcagIndex > 0) {
+        currentWcagIndex--;
+        wcagSelect.value = currentWcagIndex;
+        showPage(wcagPages, currentWcagIndex, prevWcagButton, nextWcagButton, currentWcagNum);
+    }
+});
+
+nextWcagButton.addEventListener("click", () => {
+    if (currentWcagIndex < wcagPages.length - 1) {
+        currentWcagIndex++;
+        wcagSelect.value = currentWcagIndex;
+        showPage(wcagPages, currentWcagIndex, prevWcagButton, nextWcagButton, currentWcagNum);
+    }
+});
+
+// -------------------------
+// WCAG SEARCH
+// -------------------------
+const wcagSearchInput = document.getElementById("wcagSearch");
+const wcagResultsList = document.getElementById("wcagResults");
+const wcagResultCount = document.getElementById("wcagResultCount");
+
+wcagSearchInput.addEventListener("input", function () {
+    const query = this.value.trim().toLowerCase();
+    wcagResultsList.innerHTML = "";
+    wcagResultCount.textContent = "";
+
+    if (!query) return;
+
+    const matches = wcagLessons.filter(lesson =>
+        lesson.title.toLowerCase().includes(query)
+    );
+
+    wcagResultCount.textContent =
+        matches.length === 0
+            ? "No results found"
+            : `${matches.length} results found`;
+
+    matches.forEach(match => {
+        const li = document.createElement("li");
+        li.textContent = match.title;
+        li.style.cursor = "pointer";
+        li.tabIndex = -1;
+
+        li.addEventListener("click", () => {
+            currentWcagIndex = match.index;
+            wcagSelect.value = match.index;
+
+            showPage(wcagPages, currentWcagIndex, prevWcagButton, nextWcagButton, currentWcagNum);
+
+            wcagResultsList.innerHTML = "";
+            wcagSearchInput.value = "";
+            wcagPages[currentWcagIndex].querySelector("h2").focus();
+        });
+
+        wcagResultsList.appendChild(li);
+    });
+});

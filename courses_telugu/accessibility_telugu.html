@@ -414,6 +414,33 @@
         <div id="wcag-content" class="tab-content" role="tabpanel" aria-labelledby="wcag-tab">
             <h3>WCAG 2.1 and 2.2 Success Criteria</h3>
             <div id="wcag-pages">
+
+    <div id="wcag-page1" class="wcag-page active">
+        <h2>1.1.1 Non-text Content</h2>
+        <p>Content for WCAG 1.1.1</p>
+    </div>
+
+    <div id="wcag-page2" class="wcag-page">
+        <h2>1.2.1 Audio-only and Video-only (Prerecorded)</h2>
+        <p>Content for WCAG 1.2.1</p>
+    </div>
+
+    <div id="wcag-page3" class="wcag-page">
+        <h2>1.2.2 Captions (Prerecorded)</h2>
+        <p>Content for WCAG 1.2.2</p>
+    </div>
+</div>
+
+<!-- WCAG PAGINATION -->
+<div class="pagination-controls">
+    <button id="prev-wcag" disabled>Previous</button>
+
+    <label for="wcag-select">View All Success Criteria:</label>
+    <select id="wcag-select" aria-description="Press Alt+Down Arrow to expand"></select>
+
+    <span id="current-wcag-num" aria-live="polite"></span>
+    <button id="next-wcag">Next</button>
+</div>
                 <div id="wcag-page1" class="wcag-page active">
                     <h2>1.1.1: Non-text Content</h2>
 <p>Guideline Name: Text Alternatives</p>
@@ -5632,6 +5659,8 @@ Users must remember and type a password with no alternative login methods like b
 
 </div>
 </div>
+<script src="topics-navigation.js"></script>
+
 <div class="pagination-controls">
     <button id="prev-wcag" disabled>Previous</button>
 
