@@ -188,6 +188,14 @@
             background: #4a9fd6;
         }
 
+        /* --- NEW SERVICE BUTTON STYLE --- */
+        #serviceButton {
+            background: #5cb85c; /* Green - indicates a key service/action */
+        }
+        #serviceButton:hover {
+            background: #4cae4c;
+        }
+
     </style>
 </head>
 <body>
@@ -202,6 +210,7 @@
         <button id="showFeedbackButton" onclick="openModal()">Show Recent User Feedback</button>
         <button onclick="window.location.href='login.html'">Login</button>
         <button onclick="window.location.href='register.html'">Register</button>
+        <button id="serviceButton" onclick="window.location.href='a11y_services.html'">Accessibility Services for Clients</button>
 
         <h2>Question and answers</h2>
         <label for="questionSelect" class="sr-only">Select a question about Accessible World</label>
@@ -273,7 +282,7 @@
         const feedbackListContainer = document.getElementById('feedbackList');
         const closeModalButton = document.getElementById('closeModalButton');
         const mainContent = document.getElementById('main-content');
-        // We no longer need 'previouslyFocusedElement' in closeModal, as we will explicitly focus the showFeedbackButton.
+        
 
         // Find all focusable elements within the modal
         const getFocusableElements = () => {
@@ -283,11 +292,8 @@
         };
         // --- END: DOM ELEMENTS AND ACCESSIBILITY VARS ---
 
-        // --- START: MODAL FUNCTIONS (Updated) ---
+        // --- START: MODAL FUNCTIONS (FIXED: Exposed to global scope) ---
         const openModal = () => {
-            // 1. Store the currently focused element (not strictly needed since we hard-focus on close, but good practice)
-            // previouslyFocusedElement = document.activeElement; 
-            
             // 2. Make the main content inert to screen readers
             mainContent.setAttribute('aria-hidden', 'true');
             document.querySelector('.footer').setAttribute('aria-hidden', 'true');
@@ -302,6 +308,8 @@
             // 5. Move focus to the close button
             closeModalButton.focus();
         };
+        // EXPOSE openModal to the global window object for inline onclick handlers
+        window.openModal = openModal;
 
         const closeModal = () => {
             // 1. Hide the modal
@@ -312,15 +320,17 @@
             mainContent.removeAttribute('aria-hidden');
             document.querySelector('.footer').removeAttribute('aria-hidden');
 
-            // 3. Return focus explicitly to the 'Show Recent User Feedback' button (FIX)
-            showFeedbackButton.focus(); 
+            // 3. Return focus explicitly to the 'Show Recent User Feedback' button
+            showFeedbackButton.focus(); 
         };
+        // EXPOSE closeModal to the global window object (Optional, but good practice)
+        window.closeModal = closeModal;
 
         const trapFocus = (e) => {
             if (feedbackModalOverlay.classList.contains('is-visible')) {
                 const focusableElements = getFocusableElements();
                 // If there are no other focusable elements (only the close button), the trap is trivial
-                if (focusableElements.length <= 1) return; 
+                if (focusableElements.length <= 1) return; 
                 
                 const firstFocusableElement = focusableElements[0];
                 const lastFocusableElement = focusableElements[focusableElements.length - 1];
@@ -344,7 +354,7 @@
         };
         // --- END: MODAL FUNCTIONS ---
 
-        // --- START: MODAL EVENT LISTENERS (New) ---
+        // --- START: MODAL EVENT LISTENERS (Unchanged, but now calls exposed functions) ---
         showFeedbackButton.addEventListener('click', openModal);
         closeModalButton.addEventListener('click', closeModal);
         feedbackModalOverlay.addEventListener('click', (e) => {
@@ -356,7 +366,7 @@
         // --- END: MODAL EVENT LISTENERS ---
 
 
-        // --- START: FAQ LOGIC (Unchanged) ---
+        // --- START: FAQ LOGIC (Slightly modified listener) ---
         const answers = {
             about: "Accessible World Tutorials is an inclusive learning platform dedicated to empowering individuals, especially the visually impaired. It offers practical training in accessibility testing, HTML, basic computer skills, interview materials, general knowledge, and current affairs. With a focus on accessibility and simplicity, the platform ensures that every learner has equal access to quality education and career-building resources.",
             freeCourses: "No, we do not offer free courses on this platform. To access our valuable training in Web Accessibility, HTML, Basic Computers, Interview Preparation, GK, and Current Affairs, you need to join by paying a one-time fee of ₹1000. This is a lifetime access fee, and there are no additional charges after that.",
@@ -380,44 +390,23 @@ This way, you can build a growing network and earn passive income while helping 
             answerBox.textContent = answerText;
 
             if (answerText) {
+                // Set focus to the answer box, which is announced by aria-live="polite"
                 answerBox.focus();
             }
         }
 
-        let wasArrowKeyUsed = false;
+        // Simplify event handling to rely primarily on 'change' and 'blur'
+        questionSelect.addEventListener('change', updateAnswerAndFocus);
+        
+        // Ensure that if the user selects using only the keyboard (blur happens after selection), the answer updates.
+        questionSelect.addEventListener('blur', updateAnswerAndFocus);
+        
+        // Remove the complex keydown/arrowKey logic, which is generally unnecessary for standard select elements.
 
-        questionSelect.addEventListener('keydown', function(event) {
-            if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-                wasArrowKeyUsed = true;
-            } else if (event.key === 'Enter') {
-                event.preventDefault();
-                wasArrowKeyUsed = false;
-                updateAnswerAndFocus();
-            } else {
-                wasArrowKeyUsed = false;
-            }
-        });
-
-        questionSelect.addEventListener('change', function() {
-            if (wasArrowKeyUsed) {
-                wasArrowKeyUsed = false;
-                return;
-            }
-            updateAnswerAndFocus();
-        });
-
-        questionSelect.addEventListener('mousedown', function() {
-            wasArrowKeyUsed = false;
-        });
-
-        questionSelect.addEventListener('blur', function() {
-            updateAnswerAndFocus();
-            wasArrowKeyUsed = false;
-        });
         // --- END: FAQ LOGIC ---
 
 
-        // --- START: FEEDBACK DISPLAY LOGIC (Updated to show full name) ---
+        // --- START: FEEDBACK DISPLAY LOGIC (Unchanged) ---
 
         const renderFeedbackList = (feedbackList) => {
             feedbackListContainer.innerHTML = ''; // Clear previous list
@@ -432,7 +421,7 @@ This way, you can build a growing network and earn passive income while helping 
                 itemLi.setAttribute('role', 'listitem');
 
                 // FIX: Use the full name instead of just the first name
-                const fullName = item.name || 'Anonymous'; 
+                const fullName = item.name || 'Anonymous'; 
                 
                 // Safely format the timestamp
                 const date = item.timestamp?.toDate ? item.timestamp.toDate().toLocaleDateString('en-US', {
