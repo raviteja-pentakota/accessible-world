@@ -3647,7 +3647,184 @@ document.getElementById("p3").innerHTML = "Marks < 35 " + result3;
 &lt;/html&gt;
 </code></pre>                    
 </div>
+<p>Click on the next button to learn the 31st topic: JavaScript addEventListener.</p>
+
                 </div>
+                <div id="javascript-page31" class="javascript-page">
+<h2>Lesson 31: JavaScript addEventListener – Calculator Example</h2>
+
+<a href="#video-js-lesson30">Jump to video lesson</a>
+
+<p>
+In JavaScript, <b>addEventListener</b> is used to run JavaScript code when a user performs an action.
+These actions are called <b>events</b>.
+</p>
+
+<p>
+Common events are:
+</p>
+
+<p>
+- Clicking a button  
+- Typing in an input box  
+- Moving the mouse  
+</p>
+
+<p>
+In this lesson, we will learn <b>addEventListener</b> using a very simple and practical example:
+a <b>calculator</b>.
+</p>
+
+<p>
+The calculator will perform:
+</p>
+
+<p>
+- Addition  
+- Subtraction  
+- Multiplication  
+- Division  
+</p>
+
+<h2>1. Why We Use addEventListener</h2>
+
+<p>
+We use <b>addEventListener</b> because:
+</p>
+
+<p>
+- It keeps HTML and JavaScript separate  
+- It is easy to read and maintain  
+- It is better for accessibility  
+- It allows multiple events on the same element  
+</p>
+
+<p>
+Instead of writing JavaScript inside HTML like <b>onclick</b>,
+we attach the event inside JavaScript using <b>addEventListener</b>.
+</p>
+
+<h2>2. Calculator Example Explanation</h2>
+
+<p>
+In this calculator:
+</p>
+
+<p>
+- Two input boxes are used to enter numbers  
+- Four buttons are used for operations  
+- Each button has its own <b>click</b> event  
+</p>
+
+<p>
+When the user clicks a button:
+</p>
+
+<p>
+- JavaScript reads both numbers  
+- Converts them into numbers using <b>Number()</b>  
+- Performs the selected operation  
+- Displays the result on the page  
+</p>
+
+<p>
+The result paragraph uses <b>aria-live="polite"</b>,
+so screen readers announce the updated result automatically.
+</p>
+
+<h2>3. How addEventListener Works in This Example</h2>
+
+<p>
+Step-by-step process:
+</p>
+
+<p>
+- Get the button using <b>getElementById</b>  
+- Attach a <b>click</b> event  
+- Read input values  
+- Perform calculation  
+- Show output using <b>innerHTML</b>  
+</p>
+<h3 id="video-js-lesson31">    Telugu video with practical:</h3>
+
+                    <div class="video-container">
+                        <video class="custom-video" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" oncontextmenu="return false;">
+                            <source src="javascript_videos/addevent-telugu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+    <div class="controls">
+<label for="seek">Seek</label>
+        <input type="range" id="seek" class="seek-slider" value="0" min="0" max="100" step="0">
+
+        <button class="rewind">Rewind 10s</button>
+        <button class="playPause">Play</button>
+        <button class="forward">Forward 10s</button>
+        <button class="mute">Mute</button>
+<label for="volume">Volume</label>        
+<input type="range" id="volume" class="volume-slider" value="100" min="0" max="100" step="1">
+        <button class="fullscreen">Fullscreen</button>
+    </div>
+                    </div>
+                    <h3>Lesson 31 example code:</h3>
+                    <button id="viewCode41" aria-expanded="false" aria-controls="codeExample41">View example code</button>
+                    <div id="codeExample41" hidden>
+                        <p>All the below content is the HTML code for the 31st lesson:</p>
+<pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Calculator using addEventListener&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;JavaScript Calculator – Using addEventListener&lt;/h1&gt;
+
+&lt;label for="num1"&gt;First Number:&lt;/label&gt;&lt;br&gt;
+&lt;input type="number" id="num1"&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;label for="num2"&gt;Second Number:&lt;/label&gt;&lt;br&gt;
+&lt;input type="number" id="num2"&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;button id="addBtn"&gt;Addition&lt;/button&gt;
+&lt;button id="subBtn"&gt;Subtract&lt;/button&gt;
+&lt;button id="mulBtn"&gt;Multiply&lt;/button&gt;
+&lt;button id="divBtn"&gt;Divide&lt;/button&gt;
+
+&lt;p id="result" aria-live="polite"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+  let addBtn = document.getElementById("addBtn");
+  let subBtn = document.getElementById("subBtn");
+  let mulBtn = document.getElementById("mulBtn");
+  let divBtn = document.getElementById("divBtn");
+  let result = document.getElementById("result");
+
+  addBtn.addEventListener("click", function () {
+    let a = Number(document.getElementById("num1").value);
+    let b = Number(document.getElementById("num2").value);
+    result.innerHTML = "The addition is " + (a + b);
+  });
+
+  subBtn.addEventListener("click", function () {
+    let a = Number(document.getElementById("num1").value);
+    let b = Number(document.getElementById("num2").value);
+    result.innerHTML = "The subtraction is " + (a - b);
+  });
+
+  mulBtn.addEventListener("click", function () {
+    let a = Number(document.getElementById("num1").value);
+    let b = Number(document.getElementById("num2").value);
+    result.innerHTML = "The multiplication is " + (a * b);
+  });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>                    
+</div>
+                </div>
+
 
 
 
@@ -3687,6 +3864,8 @@ document.getElementById("p3").innerHTML = "Marks < 35 " + result3;
             <option value="28">Lesson 28: JavaScript Operators – Part 1</option>
             <option value="29">Lesson 29: JavaScript Operators – Part 2</option>
             <option value="30">Lesson 30: JavaScript Forms – Login Form Validation</option>
+            <option value="31">Lesson 31: JavaScript addEventListener – Calculator Example</option>
+
         </select>
                 <span id="jspageIndicator" aria-live="polite">Page 1 of 5</span> <button id="jsnextBtn">Next</button>
             </div>
