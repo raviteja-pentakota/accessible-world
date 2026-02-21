@@ -42,9 +42,10 @@
     .login-link a:hover { text-decoration: underline; }
   </style>
 
-  <script type="module">
+<script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    // Removed sendEmailVerification from the import below
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
     import { getFirestore, doc, setDoc, query, collection, where, getDocs, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -64,10 +65,9 @@
     const urlParams = new URLSearchParams(window.location.search);
     const referralCode = urlParams.get('ref');
 
-    let referrerName = ""; // Variable to store referrer's name
+    let referrerName = ""; 
     
     function isPasswordStrong(password) {
-      // Min 6 chars, at least 1 lowercase, 1 uppercase, 1 digit, 1 special character
       const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
       return regex.test(password);
     }
@@ -104,15 +104,14 @@
           uid,
           referralCode: generatedReferralCode,
           referredBy: referralCode || null,
-          referredByName: referrerName || null, // Store the referrer's name
+          referredByName: referrerName || null,
           paymentStatus: "pending",
           level1: [],
           level2: [],
           level3: [],
         });
 
-        // Update referral tree
-        if (referralCode && referrerName) { // Only if there's a code and a name.
+        if (referralCode && referrerName) {
           const q = query(collection(db, "users"), where("referralCode", "==", referralCode));
           const querySnapshot = await getDocs(q);
 
@@ -122,18 +121,14 @@
             await updateDoc(referrerRef, {
               level1: arrayUnion(uid)
             });
-            // Also update the new user's record with the referrer's name.
             await updateDoc(doc(db, "users", uid), {
                 referredByName: referrerName
             });
-          } else {
-            console.warn("Referrer not found with referral code:", referralCode);
           }
         }
 
-        // Send verification email
-        await sendEmailVerification(user);
-        alert("Registration successful! A verification email has been sent. Please verify your email before logging in. If you don’t see the email in your inbox, please check your spam or junk folder.");
+        // --- VERIFICATION REMOVED HERE ---
+        alert("Registration successful! You can now log in.");
         window.location.href = "login.html";
 
       } catch (error) {
@@ -144,7 +139,7 @@
 
     function togglePasswordVisibility(fieldId) {
         const passwordField = document.getElementById(fieldId);
-        const toggleButton = passwordField.nextElementSibling; // Assuming button is next sibling
+        const toggleButton = passwordField.nextElementSibling; 
         if (passwordField.type === "password") {
             passwordField.type = "text";
             toggleButton.textContent = "Hide";
@@ -156,13 +151,9 @@
 
     window.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("registerForm").addEventListener("submit", registerUser);
-
-      // Add event listeners for password toggle buttons
       document.getElementById("togglePassword").addEventListener("click", () => togglePasswordVisibility("password"));
       document.getElementById("toggleConfirmPassword").addEventListener("click", () => togglePasswordVisibility("confirmPassword"));
 
-
-      // Fetch and store referrer name if referral code is present
       if (referralCode) {
           const q = query(collection(db, "users"), where("referralCode", "==", referralCode));
           const querySnapshot = await getDocs(q);
@@ -170,10 +161,10 @@
               const referrerDoc = querySnapshot.docs[0];
               referrerName = referrerDoc.data().fullName;
           } else {
-              referrerName = "Referrer Not Found"; // IMPORTANT
+              referrerName = "Referrer Not Found";
           }
       } else {
-          referrerName = "No Referral"; // IMPORTANT
+          referrerName = "No Referral";
       }
     });
   </script>
