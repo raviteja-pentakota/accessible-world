@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Workspace Simulator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen font-sans">
+<div id="app-content">
+    <header class="bg-gray-800 border-b border-gray-700 px-6 py-4 flex justify-between items-center shadow-xl">
+        <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-chart-line text-emerald-400 text-2xl" aria-hidden="true"></i>
+            <h1 class="text-xl font-black text-white tracking-wide">VIRTUAL SIMULATOR</h1>
+        </div>
+        <div class="bg-gray-900 border border-gray-700 px-5 py-2 rounded-xl" aria-live="polite">
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Available Margin</span>
+            <div id="wallet-balance-display" class="text-lg font-mono font-black text-emerald-400">₹1,00,000.00</div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 pt-6">
+        <nav class="grid grid-cols-4 gap-2 bg-gray-800 p-1 rounded-xl border border-gray-700" role="tablist" aria-label="Workspace Views">
+            <button onclick="switchMainTab('dashboard-view')" id="tab-dashboard-view" role="tab" aria-selected="true" aria-controls="panel-dashboard-view" class="py-3 text-sm font-bold rounded-lg transition-all bg-gray-700 text-white text-center">Trading Dashboard</button>
+            <button onclick="switchMainTab('orders-view')" id="tab-orders-view" role="tab" aria-selected="false" aria-controls="panel-orders-view" class="py-3 text-sm font-bold rounded-lg transition-all text-gray-400 hover:text-white text-center">Pending Orders <span id="pending-badge-count" class="ml-1 bg-yellow-600/30 text-yellow-400 text-xs px-2 py-0.5 rounded-full hidden">0</span></button>
+            <button onclick="switchMainTab('positions-view')" id="tab-positions-view" role="tab" aria-selected="false" aria-controls="panel-positions-view" class="py-3 text-sm font-bold rounded-lg transition-all text-gray-400 hover:text-white text-center">Live Positions <span id="positions-badge-count" class="ml-1 bg-emerald-600/30 text-emerald-400 text-xs px-2 py-0.5 rounded-full hidden">0</span></button>
+            <button onclick="switchMainTab('reports-view')" id="tab-reports-view" role="tab" aria-selected="false" aria-controls="panel-reports-view" class="py-3 text-sm font-bold rounded-lg transition-all text-gray-400 hover:text-white text-center">Historical Reports</button>
+        </nav>
+    </div>
+
+    <div id="accessible-search-status-live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <main class="max-w-7xl mx-auto p-4 md:p-6">
+        
+        <section id="panel-dashboard-view" role="tabpanel" aria-labelledby="tab-dashboard-view" class="space-y-6">
+            
+            <div class="max-w-xl mx-auto bg-gray-800 p-1.5 rounded-xl border border-gray-700 flex space-x-2">
+                <button onclick="switchAssetSegment('equity')" id="subtab-equity" class="flex-1 py-2 text-xs font-black tracking-wide rounded-lg bg-emerald-600 text-white transition-all uppercase text-center">Equity Market (NSE/BSE)</button>
+                <button onclick="switchAssetSegment('commodity')" id="subtab-commodity" class="flex-1 py-2 text-xs font-black tracking-wide rounded-lg text-gray-400 hover:text-white transition-all uppercase flex items-center justify-center text-center">
+                    <i class="fa-solid fa-cubes text-amber-400 mr-1.5" aria-hidden="true"></i> Commodity Market (MCX)
+                </button>
+            </div>
+
+            <div class="relative max-w-xl mx-auto bg-gray-800 p-4 border border-gray-700 rounded-xl shadow-xl">
+                <label for="stock-search-input" class="block text-xs font-bold text-gray-400 mb-2">Search and Add Assets</label>
+                <input type="text" id="stock-search-input" autocomplete="off" placeholder="Search asset (e.g. GOLD, SILVER, TCS)..." class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white font-semibold focus:outline-none focus:border-emerald-500">
+                <div id="search-results-dropdown" class="absolute left-4 right-4 mt-2 bg-gray-800 border border-gray-700 rounded-lg shadow-2xl max-h-60 overflow-y-auto hidden z-50"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+                
+                <div class="lg:col-span-2 space-y-6">
+                    <div id="asset-section-equity" class="bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-xl">
+                        <table class="w-full text-left border-collapse">
+<thead>
+    <tr class="bg-gray-900/50 text-gray-400 text-xs uppercase border-b border-gray-700">
+        <th scope="col" class="px-6 py-3">Asset Name</th>
+        <th scope="col" class="px-6 py-3 text-right">LTP</th>
+        <th scope="col" class="px-6 py-3 text-right">High</th> <th scope="col" class="px-6 py-3 text-right">Low</th>  <th scope="col" class="px-6 py-3 text-center">Operations</th>
+    </tr>
+</thead>                            <tbody id="equity-rows-container" class="divide-y divide-gray-700/50">
+                                <tr id="empty-equity-placeholder"><td colspan="3" class="px-6 py-8 text-center text-gray-500">No active equity rows tracked. Use search field to populate.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="asset-section-commodity" class="bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-xl hidden">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-900/50 text-amber-400 text-xs uppercase border-b border-gray-700">
+                                    <th scope="col" class="px-6 py-3">MCX Commodity Contract</th>
+                                    <th scope="col" class="px-6 py-3 text-right">LTP</th>
+                                    <th scope="col" class="px-6 py-3 text-center">Operations</th>
+                                </tr>
+                            </thead>
+                            <tbody id="commodity-rows-container" class="divide-y divide-gray-700/50">
+                                <tr id="empty-commodity-placeholder"><td colspan="3" class="px-6 py-8 text-center text-gray-500">Awaiting incoming streaming data tick lines...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="analysis-panel-container" class="bg-gray-800 border border-gray-700 rounded-xl p-5 shadow-xl sticky top-6">
+                    <div class="flex justify-between items-center pb-3 border-b border-gray-700 mb-4">
+                        <div>
+                            <h3 id="analysis-asset-title" class="text-sm font-black text-white uppercase tracking-wider">Technical Analysis</h3>
+                            <p id="analysis-asset-subtitle" class="text-xs text-gray-400">Select any stock row to load analysis gauges</p>
+                        </div>
+                        <div class="flex items-center space-x-1 bg-gray-900 px-2 py-1 rounded-lg border border-gray-700 text-[10px] font-bold">
+                            <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse mr-1" aria-hidden="true"></span>
+                            <span class="text-emerald-400 uppercase tracking-wider">Live Meter</span>
+                        </div>
+                    </div>
+                    
+                    <div id="tradingview-accessibility-announcer" class="sr-only" aria-live="polite">
+                        Technical analysis indicators are currently waiting for an asset selection.
+                    </div>
+
+                    <div id="tradingview-gauge-target" class="w-full flex flex-col items-center justify-center min-h-[450px] bg-gray-900 rounded-xl p-4 overflow-hidden border border-gray-800">
+                        <div class="text-center text-gray-500 p-6">
+                            <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4 border border-gray-700 shadow-inner">
+                                <i class="fa-solid fa-gauge-high text-2xl text-gray-400" aria-hidden="true"></i>
+                            </div>
+                            <p class="text-sm font-semibold text-gray-300 mb-1">No Asset Selected</p>
+                            <p class="text-xs text-gray-400 max-w-xs mx-auto">Click anywhere on an asset name row to load accessible real-time TradingView technical gauges and summaries.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="panel-orders-view" role="tabpanel" aria-labelledby="tab-orders-view" class="hidden">
+            <h2 class="sr-only">Pending Structural Limit Orders</h2>
+            <div class="bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-xl" id="pending-orders-container"></div>
+        </section>
+
+        <section id="panel-positions-view" role="tabpanel" aria-labelledby="tab-positions-view" class="hidden">
+            <h2 class="sr-only">Live Active Positions Portfolio Exposure</h2>
+            <div class="bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-xl">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-gray-900/50 text-gray-400 text-xs uppercase">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">Asset Symbol</th>
+                            <th scope="col" class="px-6 py-3">Open Vol Qty</th>
+                            <th scope="col" class="px-6 py-3 text-right">Avg Execution Price</th>
+                            <th scope="col" class="px-6 py-3 text-right">Current LTP Value</th>
+                            <th scope="col" class="px-6 py-3 text-right">Unrealized P&L</th>
+                            <th scope="col" class="px-6 py-3 text-center">Liquidation Trigger</th>
+                        </tr>
+                    </thead>
+                    <tbody id="positions-rows-container" class="divide-y divide-gray-700/50"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="panel-reports-view" role="tabpanel" aria-labelledby="tab-reports-view" class="hidden">
+            <div class="bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-xl">
+                <div class="p-4 bg-gray-900/40 border-b border-gray-700">
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-gray-300">Account Statement & Historical Ledger</h2>
+                </div>
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-gray-900/80 text-gray-400 text-xs uppercase border-b border-gray-700">
+                        <tr>
+                            <th scope="col" class="px-6 py-3.5">Date & Time</th>
+                            <th scope="col" class="px-6 py-3.5">Stock Name</th>
+                            <th scope="col" class="px-6 py-3.5">Traded Qty</th>
+                            <th scope="col" class="px-6 py-3.5">Action Code</th>
+                            <th scope="col" class="px-6 py-3.5 text-right">Execution Price</th>
+                            <th scope="col" class="px-6 py-3.5 text-right">Realized P&L</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-rows-container" class="divide-y divide-gray-700/50">
+                        <tr><td colspan="6" class="px-6 py-8 text-center text-gray-500">No transactions recorded in history logs yet.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</div>
+    <div id="order-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-text" class="fixed inset-0 bg-black/70 backdrop-blur-xs z-50 flex items-center justify-center hidden" tabindex="-1">
+        <div class="bg-gray-800 border border-gray-700 w-full max-w-md rounded-xl p-6 relative shadow-2xl">
+            <h3 id="modal-title-text" class="text-lg font-black text-white mb-4">PLACE ORDER TICKET</h3>
+            <div class="space-y-4">
+                <div>
+                    <span class="text-xs font-bold text-gray-400 block mb-1">Current Base Value Price:</span>
+                    <div id="modal-live-price" class="text-xl font-mono font-bold text-emerald-400 bg-gray-900 px-3 py-2 rounded-lg">₹0.00</div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="order-qty-input" class="block text-xs font-bold text-gray-400 mb-1">Quantity</label>
+                        <input type="number" id="order-qty-input" value="1" min="1" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white font-mono font-bold">
+                    </div>
+                    <div>
+                        <label for="order-type-select" class="block text-xs font-bold text-gray-400 mb-1">Order Execution Type</label>
+                        <select id="order-type-select" onchange="togglePriceFieldState()" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white font-semibold">
+                            <option value="MARKET">MARKET</option>
+                            <option value="LIMIT">LIMIT</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="limit-price-input-container" class="hidden">
+                    <label class="block text-xs font-bold text-gray-400 mb-1" for="order-target-price-input">Trigger Execution Price Target (₹)</label>
+                    <input type="number" id="order-target-price-input" step="0.05" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white font-mono font-bold">
+                </div>
+                
+                <div class="border-t border-gray-700/60 pt-3 mt-2 grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="order-sl-input" class="block text-xs font-bold text-amber-400 mb-1">Stoploss Price (Optional)</label>
+                        <input type="number" id="order-sl-input" placeholder="0.00" step="0.05" min="0" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white font-mono text-sm">
+                    </div>
+                    <div>
+                        <label for="order-tgt-input" class="block text-xs font-bold text-emerald-400 mb-1">Target Price (Optional)</label>
+                        <input type="number" id="order-tgt-input" placeholder="0.00" step="0.05" min="0" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white font-mono text-sm">
+                    </div>
+                </div>
+
+                <button onclick="dispatchOrderExecutionRequest()" id="modal-submit-btn" class="w-full py-3 rounded-lg font-bold text-white bg-emerald-600 uppercase text-sm tracking-wide shadow-lg">Submit Execution Request</button>
+            </div>
+            <button onclick="closeOrderModal()" aria-label="Close Ticket Modal" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg" aria-hidden="true"></i></button>
+        </div>
+    </div>
+
+    <div id="modify-modal" role="dialog" aria-modal="true" aria-labelledby="modify-modal-title" class="fixed inset-0 bg-black/70 backdrop-blur-xs z-50 flex items-center justify-center hidden" tabindex="-1">
+        <div class="bg-gray-800 border border-gray-700 w-full max-w-md rounded-xl p-6 relative">
+            <h3 id="modify-modal-title" class="text-lg font-black text-white mb-4"><i class="fa-solid fa-wrench text-yellow-400 mr-2" aria-hidden="true"></i>Modify Entry Terms</h3>
+            <input type="hidden" id="modify-order-id">
+            <div class="space-y-4">
+                <div>
+                    <label for="modify-qty-input" class="block text-xs text-gray-400 mb-1">New Volume Qty:</label>
+                    <input type="number" id="modify-qty-input" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white font-mono font-bold">
+                </div>
+                <div>
+                    <label for="modify-price-input" class="block text-xs text-gray-400 mb-1">New Target Limit Price (₹):</label>
+                    <input type="number" id="modify-price-input" step="0.05" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white font-mono font-bold">
+                </div>
+                <button onclick="dispatchOrderModificationRequest()" class="w-full py-3 bg-yellow-600 hover:bg-yellow-500 rounded-lg font-bold text-white uppercase text-sm">Commit System Alteration</button>
+            </div>
+            <button onclick="closeModifyModal()" aria-label="Close Modification Modal" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg" aria-hidden="true"></i></button>
+        </div>
+    </div>
+
+  <!-- Link external JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+
+</html>
