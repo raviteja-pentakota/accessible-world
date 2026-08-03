@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RT Online Mart - Admin Portal</title>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 2; }
+        input, select { display: block; margin-bottom: 10px; padding: 8px; width: 300px; }
+        button { padding: 10px 20px; background-color: green; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>RT Online Mart - Add Product</h2>
+    
+    <input type="file" id="imageInput">
+    <input type="text" id="name" placeholder="Product Name">
+    <input type="text" id="weight" placeholder="Weight (e.g. 500g)">
+    <input type="number" id="price" placeholder="Price (Rupees)">
+    <input type="number" id="discount" placeholder="Discounted Price (Optional)">
+    <select id="category">
+        <option value="Grocery">Grocery</option>
+        <option value="Fruits">Fruits</option>
+        <option value="Vegetables">Vegetables</option>
+        <option value="Drinks">Drinks</option>
+        <option value="Dairy">Dairy</option>
+        <option value="Meat">Meat</option>
+        <option value="Home">Home</option>
+    </select>
+    <button onclick="uploadProduct()">Add Product to Database</button>
+
+    <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDIoAwjZsgAaMbVDjPQ_MPoQGbXWX5PBbw",
+            authDomain: "rt-online-mart.firebaseapp.com",
+            databaseURL: "https://rt-online-mart-default-rtdb.firebaseio.com",
+            projectId: "rt-online-mart",
+            storageBucket: "rt-online-mart.firebasestorage.app",
+            messagingSenderId: "753183334962",
+            appId: "1:753183334962:web:e7c4fb4fae141b3c7e122b",
+            measurementId: "G-EQBHD3NH4M"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+
+        async function uploadProduct() {
+            const file = document.getElementById('imageInput').files[0];
+            const name = document.getElementById('name').value;
+            
+            if (!file || !name) {
+                alert("Please select an image and enter a product name.");
+                return;
+            }
+
+            try {
+                // 1. Upload Image to Storage
+                const storageRef = storage.ref('products/' + name + '_' + Date.now());
+                await storageRef.put(file);
+                const imageUrl = await storageRef.getDownloadURL();
+
+                // 2. Save data to Firestore
+                await db.collection('products').add({
+                    name: name,
+                    weight: document.getElementById('weight').value,
+                    price: parseFloat(document.getElementById('price').value),
+                    discountedPrice: parseFloat(document.getElementById('discount').value) || 0,
+                    category: document.getElementById('category').value,
+                    imageUrl: imageUrl,
+                    qty: 0,
+                    inWatchlist: false
+                });
+
+                alert("Success! Product added to RT Online Mart.");
+                location.reload(); // Reset the form
+            } catch (error) {
+                console.error("Error adding product: ", error);
+                alert("Error: " + error.message);
+            }
+        }
+    </script>
+</body>
+</html>
