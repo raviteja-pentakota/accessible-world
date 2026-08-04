@@ -32,68 +32,68 @@
     </select>
     <button onclick="uploadProduct()">Add Product to Database</button>
 
-    <script>
-        // Your Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDIoAwjZsgAaMbVDjPQ_MPoQGbXWX5PBbw",
-            authDomain: "rt-online-mart.firebaseapp.com",
-            databaseURL: "https://rt-online-mart-default-rtdb.firebaseio.com",
-            projectId: "rt-online-mart",
-            messagingSenderId: "753183334962",
-            appId: "1:753183334962:web:e7c4fb4fae141b3c7e122b",
-            measurementId: "G-EQBHD3NH4M"
-        };
+<script>
+    // Your Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyDIoAwjZsgAaMbVDjPQ_MPoQGbXWX5PBbw",
+        authDomain: "rt-online-mart.firebaseapp.com",
+        databaseURL: "https://rt-online-mart-default-rtdb.firebaseio.com",
+        projectId: "rt-online-mart",
+        messagingSenderId: "753183334962",
+        appId: "1:753183334962:web:e7c4fb4fae141b3c7e122b",
+        measurementId: "G-EQBHD3NH4M"
+    };
+    
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    async function uploadProduct() {
+        const fileInput = document.getElementById('imageInput');
+        const file = fileInput.files[0];
+        const name = document.getElementById('name').value;
         
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        async function uploadProduct() {
-            const fileInput = document.getElementById('imageInput');
-            const file = fileInput.files[0];
-            const name = document.getElementById('name').value;
-            
-            if (!file || !name) {
-                alert("Please select an image and enter a product name.");
-                return;
-            }
-
-            try {
-                // 1. Upload image via our local server PHP script
-                const formData = new FormData();
-                formData.append('image', file);
-
-                const response = await fetch('upload.php', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const result = await response.json();
-
-                if (!result.success) {
-                    throw new Error(result.error || "Image upload failed.");
-                }
-
-                const imageUrl = result.imageUrl;
-
-                // 2. Save product info to Firebase Firestore
-                await db.collection('products').add({
-                    name: name,
-                    weight: document.getElementById('weight').value,
-                    price: parseFloat(document.getElementById('price').value),
-                    discountedPrice: parseFloat(document.getElementById('discount').value) || 0,
-                    category: document.getElementById('category').value,
-                    imageUrl: imageUrl,
-                    qty: 0,
-                    inWatchlist: false
-                });
-
-                alert("Success! Product and image added to RT Online Mart.");
-                location.reload(); 
-            } catch (error) {
-                console.error("Error adding product: ", error);
-                alert("Error: " + error.message);
-            }
+        if (!file || !name) {
+            alert("Please select an image and enter a product name.");
+            return;
         }
-    </script>
+
+        try {
+            // 1. Upload directly to Cloudflare R2 via public presigned-style URL or direct endpoint
+            const fileName = 'products/' + Date.now() + '_' + file.name;
+            const r2UploadUrl = "https://55e464ac4d3b4b7b828d60400d06e80a.r2.cloudflarestorage.com/rt-online-mart-images/" + fileName;
+            const publicUrl = "https://pub-04c5f3094f184e74bcbc91a01775e38c.r2.dev/" + fileName;
+
+            const uploadResponse = await fetch(r2UploadUrl, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': file.type
+                },
+                body: file
+            });
+
+            if (!uploadResponse.ok) {
+                throw new Error("Failed to upload image directly to R2. Check CORS settings.");
+            }
+
+            // 2. Save product info to Firebase Firestore
+            await db.collection('products').add({
+                name: name,
+                weight: document.getElementById('weight').value,
+                price: parseFloat(document.getElementById('price').value),
+                discountedPrice: parseFloat(document.getElementById('discount').value) || 0,
+                category: document.getElementById('category').value,
+                imageUrl: publicUrl,
+                qty: 0,
+                inWatchlist: false
+            });
+
+            alert("Success! Product and image added to RT Online Mart.");
+            location.reload(); 
+        } catch (error) {
+            console.error("Error adding product: ", error);
+            alert("Error: " + error.message);
+        }
+    }
+</script>
 </body>
 </html>
