@@ -63,27 +63,29 @@
     <h2>RT Online Mart - Add Product</h2>
 
     <label for="imageUrlInput">Cloudflare R2 Image Public URL</label>
-    <input type="text" id="imageUrlInput" placeholder="Paste R2 public URL here (e.g. https://pub-...).">
+    <input type="text" id="imageUrlInput" placeholder="Paste R2 public URL here">
 
     <label for="name">Product Name</label>
-    <input type="text" id="name" placeholder="Enter product name">
+    <input type="text" id="name" placeholder="Product Name">
 
     <label for="weight">Weight / Size</label>
-    <input type="text" id="weight" placeholder="e.g. 500 G, 1 Kg">
+    <input type="text" id="weight" placeholder="Weight (e.g. 500g)">
 
     <label for="price">Regular Price</label>
-    <input type="number" id="price" placeholder="Enter regular price">
+    <input type="number" id="price" placeholder="Price (Rupees)">
 
     <label for="discount">Discounted Price (Optional)</label>
-    <input type="number" id="discount" placeholder="Enter discounted price">
+    <input type="number" id="discount" placeholder="Discounted Price (Optional)">
 
     <label for="category">Category</label>
     <select id="category">
-        <option value="Vegetables">Vegetables</option>
-        <option value="Fruits">Fruits</option>
         <option value="Grocery">Grocery</option>
+        <option value="Fruits">Fruits</option>
+        <option value="Vegetables">Vegetables</option>
+        <option value="Drinks">Drinks</option>
         <option value="Dairy">Dairy</option>
-        <option value="Snacks">Snacks</option>
+        <option value="Meat">Meat</option>
+        <option value="Home">Home</option>
     </select>
 
     <button onclick="uploadProduct()">Add Product to Database</button>
@@ -114,7 +116,6 @@
         }
 
         try {
-            // Save product info and image URL directly to Firebase Firestore
             await db.collection('products').add({
                 name: name,
                 weight: document.getElementById('weight').value,
