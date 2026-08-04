@@ -1,8 +1,16 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_FILES['image'])) {
+        echo json_encode(['success' => false, 'error' => 'No image file received by PHP.']);
+        exit;
+    }
+
     $file = $_FILES['image'];
     
     // Cloudflare R2 S3-compatible details
@@ -26,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
 
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $curlError = curl_error($ch);
     curl_close($ch);
 
     if ($httpCode >= 200 && $httpCode < 300) {
@@ -36,10 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
     } else {
         echo json_encode([
             'success' => false,
-            'error' => 'Failed to upload to R2 storage.'
+            'error' => 'R2 Upload Failed. HTTP Code: ' . $httpCode . ' | cURL Error: ' . $curlError
         ]);
     }
 } else {
-    echo json_encode(['success' => false, 'error' => 'Invalid request.']);
+    echo json_encode(['success' => false, 'error' => 'Invalid request method.']);
 }
 ?>
