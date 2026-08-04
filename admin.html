@@ -2,35 +2,92 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RT Online Mart - Admin Portal</title>
-    <!-- Firebase SDK (Firestore only) -->
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    
     <style>
-        body { font-family: sans-serif; padding: 20px; line-height: 2; }
-        input, select { display: block; margin-bottom: 10px; padding: 8px; width: 300px; }
-        button { padding: 10px 20px; background-color: green; color: white; border: none; cursor: pointer; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #707070;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: #707070;
+            padding: 20px;
+        }
+        h2 {
+            color: #000;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #000;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background: #fff;
+        }
+        button {
+            background-color: #006400;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #004d00;
+        }
     </style>
 </head>
 <body>
+
+<div class="container">
     <h2>RT Online Mart - Add Product</h2>
-    
-    <input type="file" id="imageInput">
-    <input type="text" id="name" placeholder="Product Name">
-    <input type="text" id="weight" placeholder="Weight (e.g. 500g)">
-    <input type="number" id="price" placeholder="Price (Rupees)">
-    <input type="number" id="discount" placeholder="Discounted Price (Optional)">
+
+    <label for="imageUrlInput">Cloudflare R2 Image Public URL</label>
+    <input type="text" id="imageUrlInput" placeholder="Paste R2 public URL here (e.g. https://pub-...).">
+
+    <label for="name">Product Name</label>
+    <input type="text" id="name" placeholder="Enter product name">
+
+    <label for="weight">Weight / Size</label>
+    <input type="text" id="weight" placeholder="e.g. 500 G, 1 Kg">
+
+    <label for="price">Regular Price</label>
+    <input type="number" id="price" placeholder="Enter regular price">
+
+    <label for="discount">Discounted Price (Optional)</label>
+    <input type="number" id="discount" placeholder="Enter discounted price">
+
+    <label for="category">Category</label>
     <select id="category">
-        <option value="Grocery">Grocery</option>
-        <option value="Fruits">Fruits</option>
         <option value="Vegetables">Vegetables</option>
-        <option value="Drinks">Drinks</option>
+        <option value="Fruits">Fruits</option>
+        <option value="Grocery">Grocery</option>
         <option value="Dairy">Dairy</option>
-        <option value="Meat">Meat</option>
-        <option value="Home">Home</option>
+        <option value="Snacks">Snacks</option>
     </select>
+
     <button onclick="uploadProduct()">Add Product to Database</button>
+</div>
 
 <script>
     // Your Firebase configuration
@@ -48,46 +105,28 @@
     const db = firebase.firestore();
 
     async function uploadProduct() {
-        const fileInput = document.getElementById('imageInput');
-        const file = fileInput.files[0];
-        const name = document.getElementById('name').value;
+        const imageUrl = document.getElementById('imageUrlInput').value.trim();
+        const name = document.getElementById('name').value.trim();
         
-        if (!file || !name) {
-            alert("Please select an image and enter a product name.");
+        if (!imageUrl || !name) {
+            alert("Please provide both an image URL and a product name.");
             return;
         }
 
         try {
-            // 1. Upload directly to Cloudflare R2 via public presigned-style URL or direct endpoint
-            const fileName = 'products/' + Date.now() + '_' + file.name;
-            const r2UploadUrl = "https://55e464ac4d3b4b7b828d60400d06e80a.r2.cloudflarestorage.com/rt-online-mart-images/" + fileName;
-            const publicUrl = "https://pub-04c5f3094f184e74bcbc91a01775e38c.r2.dev/" + fileName;
-
-            const uploadResponse = await fetch(r2UploadUrl, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': file.type
-                },
-                body: file
-            });
-
-            if (!uploadResponse.ok) {
-                throw new Error("Failed to upload image directly to R2. Check CORS settings.");
-            }
-
-            // 2. Save product info to Firebase Firestore
+            // Save product info and image URL directly to Firebase Firestore
             await db.collection('products').add({
                 name: name,
                 weight: document.getElementById('weight').value,
-                price: parseFloat(document.getElementById('price').value),
+                price: parseFloat(document.getElementById('price').value) || 0,
                 discountedPrice: parseFloat(document.getElementById('discount').value) || 0,
                 category: document.getElementById('category').value,
-                imageUrl: publicUrl,
+                imageUrl: imageUrl,
                 qty: 0,
                 inWatchlist: false
             });
 
-            alert("Success! Product and image added to RT Online Mart.");
+            alert("Success! Product added to RT Online Mart.");
             location.reload(); 
         } catch (error) {
             console.error("Error adding product: ", error);
@@ -95,5 +134,6 @@
         }
     }
 </script>
+
 </body>
 </html>
