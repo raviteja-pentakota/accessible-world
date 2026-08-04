@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>RT Online Mart - Admin Portal</title>
-    <!-- Firebase SDKs -->
+    <!-- Firebase SDK (Firestore only) -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
     
     <style>
         body { font-family: sans-serif; padding: 20px; line-height: 2; }
@@ -15,7 +14,7 @@
     </style>
 </head>
 <body>
-    <h2>RT Online Mart - Add Product</h2>
+    <h2>RT Online Mart - Add Product (Cloudflare R2)</h2>
     
     <input type="file" id="imageInput">
     <input type="text" id="name" placeholder="Product Name">
@@ -34,25 +33,30 @@
     <button onclick="uploadProduct()">Add Product to Database</button>
 
     <script>
-        // Your Firebase configuration
+        // Your Firebase configuration (Firestore Database only)
         const firebaseConfig = {
             apiKey: "AIzaSyDIoAwjZsgAaMbVDjPQ_MPoQGbXWX5PBbw",
             authDomain: "rt-online-mart.firebaseapp.com",
             databaseURL: "https://rt-online-mart-default-rtdb.firebaseio.com",
             projectId: "rt-online-mart",
-            storageBucket: "rt-online-mart-images",
             messagingSenderId: "753183334962",
             appId: "1:753183334962:web:e7c4fb4fae141b3c7e122b",
             measurementId: "G-EQBHD3NH4M"
         };
         
-        // Initialize Firebase
+        // Initialize Firebase Firestore
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
-        const storage = firebase.storage();
+
+        // Cloudflare R2 Upload Endpoint
+        const R2_UPLOAD_ENDPOINT = "https://55e464ac4d3b4b7b828d60400d06e80a.r2.cloudflarestorage.com/rt-online-mart-images";
+        
+        // Cloudflare R2 Public URL
+        const R2_PUBLIC_URL = "https://pub-04c5f3094f184e74bcbc91a01775e38c.r2.dev";
 
         async function uploadProduct() {
-            const file = document.getElementById('imageInput').files[0];
+            const fileInput = document.getElementById('imageInput');
+            const file = fileInput.files[0];
             const name = document.getElementById('name').value;
             
             if (!file || !name) {
@@ -61,12 +65,26 @@
             }
 
             try {
-                // 1. Upload Image to Storage
-                const storageRef = storage.ref('products/' + name + '_' + Date.now());
-                await storageRef.put(file);
-                const imageUrl = await storageRef.getDownloadURL();
+                // 1. Upload Image directly to Cloudflare R2 S3 endpoint
+                const fileName = 'products/' + Date.now() + '_' + file.name;
+                const uploadUrl = `${R2_UPLOAD_ENDPOINT}/${fileName}`;
 
-                // 2. Save data to Firestore
+                const uploadResponse = await fetch(uploadUrl, {
+                    method: 'PUT',
+                    body: file,
+                    headers: {
+                        'Content-Type': file.type
+                    }
+                });
+
+                if (!uploadResponse.ok) {
+                    throw new Error("Failed to upload image to Cloudflare R2.");
+                }
+
+                // Public image URL generated via r2.dev
+                const imageUrl = `${R2_PUBLIC_URL}/${fileName}`;
+
+                // 2. Save product info to Firebase Firestore
                 await db.collection('products').add({
                     name: name,
                     weight: document.getElementById('weight').value,
@@ -78,8 +96,8 @@
                     inWatchlist: false
                 });
 
-                alert("Success! Product added to RT Online Mart.");
-                location.reload(); // Reset the form
+                alert("Success! Product and image added to RT Online Mart.");
+                location.reload(); 
             } catch (error) {
                 console.error("Error adding product: ", error);
                 alert("Error: " + error.message);
