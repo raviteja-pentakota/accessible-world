@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RT Online Mart - Manage Orders</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #707070;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .nav-bar {
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: flex-start;
+        }
+        .back-btn {
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .back-btn:hover {
+            background-color: #111;
+        }
+        .table-container {
+            width: 100%;
+            max-width: 1100px;
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+        h2, h3 {
+            color: #000;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background: #fff;
+        }
+        button {
+            background-color: #006400;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #004d00;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            font-size: 14px;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .btn-delete {
+            background-color: #b22222;
+        }
+        .btn-delete:hover {
+            background-color: #8b0000;
+        }
+        .btn-accept {
+            background-color: #2e8b57;
+        }
+        .btn-accept:hover {
+            background-color: #228b22;
+        }
+        .badge-pending { color: #d9822b; font-weight: bold; }
+        .badge-accepted { color: #008000; font-weight: bold; }
+        .badge-rejected { color: #b22222; font-weight: bold; }
+        
+        .clickable-link {
+            color: #0066cc;
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: bold;
+            background: none;
+            border: none;
+            padding: 0;
+            font: inherit;
+            text-align: left;
+        }
+        .clickable-link:hover {
+            color: #003366;
+        }
+
+        /* Popup Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 6% auto;
+            padding: 25px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .close-btn:hover,
+        .close-btn:focus {
+            color: black;
+        }
+        .modal-buttons {
+            margin-top: 25px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="appContainer" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+    <div class="nav-bar">
+        <a href="admin.html" class="back-btn">&larr; Back to Admin Dashboard</a>
+    </div>
+
+    <!-- Incoming Customer Orders Management Section -->
+    <div class="table-container">
+        <h3>Incoming Customer Orders</h3>
+        <p style="font-size: 13px; color: #555;">Click on any <strong>Order ID</strong> or <strong>Customer Name</strong> below to view complete details, products, and manage status inside the popup.</p>
+        <table aria-label="Customer Orders Management Table">
+            <thead>
+                <tr>
+                    <th>Order ID / Date</th>
+                    <th>Customer / Address</th>
+                    <th>Items List</th>
+                    <th>Payment Method</th>
+                    <th>Total (₹)</th>
+                    <th>Status</th>
+                    <th>Admin Comment</th>
+                </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+                <!-- Orders will be loaded dynamically via JS -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Order Details Popup Modal -->
+<div id="orderModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="display: none;">
+    <div class="modal-content">
+        <button type="button" id="modalCloseBtn" class="close-btn" onclick="closeOrderModal()" aria-label="Close modal">&times;</button>
+        <h2 id="modalTitle">Order Full Details</h2>
+        <div id="modalOrderDetailsBody">
+            <!-- Details loaded dynamically -->
+        </div>
+        <div class="modal-buttons" id="modalActionButtons">
+            <!-- Action buttons populated dynamically -->
+        </div>
+    </div>
+</div>
+
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyDIoAwjZsgAaMbVDjPQ_MPoQGbXWX5PBbw",
+        authDomain: "rt-online-mart.firebaseapp.com",
+        databaseURL: "https://rt-online-mart-default-rtdb.firebaseio.com",
+        projectId: "rt-online-mart",
+        messagingSenderId: "753183334962",
+        appId: "1:753183334962:web:e7c4fb4fae141b3c7e122b",
+        measurementId: "G-EQBHD3NH4M"
+    };
+    
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    let ordersCache = {};
+    let lastFocusedElement = null;
+
+    db.collection('orders').onSnapshot((snapshot) => {
+        const tbody = document.getElementById('ordersTableBody');
+        tbody.innerHTML = '';
+        ordersCache = {};
+
+        if (snapshot.empty) {
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">No incoming orders found.</td></tr>';
+            return;
+        }
+
+        snapshot.forEach((doc) => {
+            const order = doc.data();
+            const orderId = doc.id;
+            ordersCache[orderId] = order;
+            
+            let itemsHtml = '<ul>';
+            if (order.items && Array.isArray(order.items)) {
+                order.items.forEach(item => {
+                    itemsHtml += `<li>${escapeHtml(item.name || item.title || 'Item')} (x${item.qty || 1}) - ₹${item.price || 0}</li>`;
+                });
+            } else {
+                itemsHtml += '<li>No items specified</li>';
+            }
+            itemsHtml += '</ul>';
+
+            let statusClass = 'badge-pending';
+            let currentStatus = order.status || 'Pending';
+            if (currentStatus === 'Accepted') statusClass = 'badge-accepted';
+            if (currentStatus === 'Rejected') statusClass = 'badge-rejected';
+
+            const paymentMethod = escapeHtml(order.paymentMethod || 'N/A');
+            const customerName = escapeHtml(order.userName || order.customerName || 'Customer');
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>
+                    <button type="button" class="clickable-link" onclick="openOrderModal('${orderId}')">#${orderId}</button><br>
+                    <small>${order.createdAt ? new Date(order.createdAt.seconds * 1000).toLocaleString() : 'Just now'}</small>
+                </td>
+                <td>
+                    <button type="button" class="clickable-link" onclick="openOrderModal('${orderId}')">${customerName}</button><br>
+                    <small style="white-space: pre-line;">${escapeHtml(order.deliveryAddress || 'No address provided')}</small>
+                </td>
+                <td>${itemsHtml}</td>
+                <td><strong>${paymentMethod}</strong></td>
+                <td><strong>₹${order.totalAmount || order.total || 0}</strong></td>
+                <td><span class="${statusClass}" id="status_badge_${orderId}">${currentStatus}</span></td>
+                <td>
+                    <textarea id="comment_${orderId}" placeholder="Write comment here..." rows="2" aria-label="Admin comment for order ${orderId}" oninput="saveCommentInline('${orderId}')">${escapeHtml(order.adminComment || '')}</textarea>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    });
+
+    async function saveCommentInline(orderId) {
+        const commentBox = document.getElementById(`comment_${orderId}`);
+        if (!commentBox) return;
+        const commentText = commentBox.value.trim();
+        try {
+            await db.collection('orders').doc(orderId).update({
+                adminComment: commentText
+            });
+            if (ordersCache[orderId]) {
+                ordersCache[orderId].adminComment = commentText;
+            }
+        } catch (e) {
+            console.error("Error saving comment inline:", e);
+        }
+    }
+
+    window.openOrderModal = function(orderId) {
+        const order = ordersCache[orderId];
+        if (!order) {
+            alert("Order details could not be loaded.");
+            return;
+        }
+
+        lastFocusedElement = document.activeElement;
+
+        const modalBody = document.getElementById('modalOrderDetailsBody');
+        const modalButtons = document.getElementById('modalActionButtons');
+
+        let itemsListHtml = '<ul style="margin: 0; padding-left: 20px;">';
+        if (order.items && Array.isArray(order.items)) {
+            order.items.forEach(item => {
+                itemsListHtml += `<li style="margin-bottom: 6px;"><strong>${escapeHtml(item.name || item.title || 'Item')}</strong> — Qty: ${item.qty || 1} | Price: ₹${item.price || 0}</li>`;
+            });
+        } else {
+            itemsListHtml += '<li>No items specified</li>';
+        }
+        itemsListHtml += '</ul>';
+
+        modalBody.innerHTML = `
+            <p><strong>Order ID:</strong> #${orderId}</p>
+            <p><strong>Customer Name:</strong> ${escapeHtml(order.userName || order.customerName || 'Customer')}</p>
+            <p><strong>Delivery Address:</strong><br><span style="white-space: pre-line;">${escapeHtml(order.deliveryAddress || 'No address provided')}</span></p>
+            <p><strong>Payment Method:</strong> ${escapeHtml(order.paymentMethod || 'N/A')}</p>
+            <p><strong>Current Status:</strong> <span style="font-weight: bold; color: #333;">${escapeHtml(order.status || 'Pending')}</span></p>
+            <p><strong>Products List & Quantities:</strong></p>
+            <div style="background: #f9f9f9; padding: 12px; border-radius: 4px; border: 1px solid #ddd; max-height: 180px; overflow-y: auto;" tabindex="0" aria-label="Products list scrollable container">
+                ${itemsListHtml}
+            </div>
+            <p style="margin-top: 15px; font-size: 16px;"><strong>Total Amount:</strong> ₹${order.totalAmount || order.total || 0}</p>
+        `;
+
+        modalButtons.innerHTML = `
+            <button class="btn-accept" onclick="updateOrderStatusFromModal('${orderId}', 'Accepted', '${order.userId || ''}')">Accept Order</button>
+            <button class="btn-delete" onclick="updateOrderStatusFromModal('${orderId}', 'Rejected', '${order.userId || ''}')">Reject Order</button>
+            <button onclick="closeOrderModal()" style="background-color: #555;">Close</button>
+        `;
+
+        const modal = document.getElementById('orderModal');
+        modal.style.display = 'block';
+        document.getElementById('appContainer').setAttribute('aria-hidden', 'true');
+
+        // Focus the close button for accessibility
+        document.getElementById('modalCloseBtn').focus();
+        
+        // Add event listener for keydown (Trap focus and Escape key)
+        document.addEventListener('keydown', handleModalKeydown);
+    }
+
+    window.closeOrderModal = function() {
+        const modal = document.getElementById('orderModal');
+        modal.style.display = 'none';
+        document.getElementById('appContainer').removeAttribute('aria-hidden');
+        document.removeEventListener('keydown', handleModalKeydown);
+
+        if (lastFocusedElement) {
+            lastFocusedElement.focus();
+        }
+    }
+
+    function handleModalKeydown(event) {
+        const modal = document.getElementById('orderModal');
+        if (modal.style.display !== 'block') return;
+
+        if (event.key === 'Escape') {
+            closeOrderModal();
+            return;
+        }
+
+        // Focus Trap implementation
+        if (event.key === 'Tab') {
+            const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (focusableElements.length === 0) return;
+
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (event.shiftKey) { /* shift + tab */
+                if (document.activeElement === firstElement) {
+                    lastElement.focus();
+                    event.preventDefault();
+                }
+            } else { /* tab */
+                if (document.activeElement === lastElement) {
+                    firstElement.focus();
+                    event.preventDefault();
+                }
+            }
+        }
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById('orderModal');
+        if (event.target === modal) {
+            closeOrderModal();
+        }
+    }
+
+    window.updateOrderStatusFromModal = async function(orderId, status, userId) {
+        await updateOrderStatus(orderId, status, userId);
+        closeOrderModal();
+    }
+
+    window.updateOrderStatus = async function(orderId, status, userId) {
+        const commentBox = document.getElementById(`comment_${orderId}`);
+        const commentText = commentBox ? commentBox.value.trim() : '';
+
+        try {
+            await db.collection('orders').doc(orderId).update({
+                status: status,
+                adminComment: commentText,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+
+            if (userId) {
+                let notificationTitle = status === 'Accepted' ? 'Order Accepted!' : 'Order Rejected';
+                let notificationBody = status === 'Accepted'
+                    ? 'Great news! Your order has been accepted by the store.'
+                    : 'Unfortunately, your order has been rejected.';
+
+                if (commentText) {
+                    notificationBody += ` Note: ${commentText}`;
+                }
+
+                await db.collection('notifications').add({
+                    userId: userId,
+                    title: notificationTitle,
+                    body: notificationBody,
+                    isRead: false,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+            }
+
+            alert(`Order successfully marked as ${status}!`);
+        } catch (error) {
+            console.error("Error updating order status: ", error);
+            alert("Error: " + error.message);
+        }
+    }
+
+    function escapeHtml(str) {
+        return (str || '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+</script>
+
+</body>
+</html>

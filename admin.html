@@ -17,18 +17,40 @@
             flex-direction: column;
             align-items: center;
         }
+        .nav-bar {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .nav-link-btn {
+            background-color: #004d00;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .nav-link-btn:hover {
+            background-color: #003300;
+        }
         .container {
             width: 100%;
-            max-width: 600px;
-            background: #707070;
+            max-width: 800px;
+            background: #fff;
             padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         .table-container {
             width: 100%;
-            max-width: 1000px;
+            max-width: 1100px;
             background: #fff;
             padding: 20px;
-            margin-top: 30px;
+            margin-bottom: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             overflow-x: auto;
@@ -42,7 +64,7 @@
             font-weight: bold;
             color: #000;
         }
-        input, select {
+        input, select, textarea {
             width: 100%;
             padding: 10px;
             margin-top: 5px;
@@ -75,6 +97,7 @@
             padding: 10px;
             text-align: left;
             font-size: 14px;
+            vertical-align: top;
         }
         th {
             background-color: #f4f4f4;
@@ -90,6 +113,7 @@
             padding: 6px 10px;
             font-size: 12px;
             margin-right: 5px;
+            margin-bottom: 5px;
         }
         .btn-edit {
             background-color: #ff8c00;
@@ -107,6 +131,20 @@
 </head>
 <body>
 
+<!-- Navigation to Manage Orders Page -->
+<div class="nav-bar">
+    <a href="manage_orders.html" class="nav-link-btn">📦 Manage Customer Orders &rarr;</a>
+</div>
+
+<!-- Daily Announcement Management Section -->
+<div class="container">
+    <h2>RT Online Mart - Daily Offer Announcement</h2>
+    <label for="dailyMessageInput">Today's Offer / Message</label>
+    <input type="text" id="dailyMessageInput" placeholder="e.g. Today offer, you will get onion only for 5 rupees shopping above 150">
+    <button onclick="saveDailyMessage()">Update Daily Message</button>
+</div>
+
+<!-- Add/Edit Product Section -->
 <div class="container">
     <h2 id="form-title">RT Online Mart - Add Product</h2>
     <input type="hidden" id="editProductId" value="">
@@ -116,9 +154,6 @@
 
     <label for="name">Product Name</label>
     <input type="text" id="name" placeholder="Product Name">
-
-    <label for="weight">Weight / Size</label>
-    <input type="text" id="weight" placeholder="Weight (e.g. 500g)">
 
     <label for="price">Regular Price</label>
     <input type="number" id="price" placeholder="Price (Rupees)">
@@ -141,6 +176,7 @@
     <button id="cancelBtn" onclick="resetForm()" style="background-color: #555; display:none; margin-left: 10px;">Cancel Edit</button>
 </div>
 
+<!-- Manage Existing Products Table -->
 <div class="table-container">
     <h3>Manage Existing Products</h3>
     <table aria-label="Product Management Table">
@@ -149,7 +185,6 @@
                 <th>Image</th>
                 <th>Name</th>
                 <th>Category</th>
-                <th>Weight</th>
                 <th>Price (₹)</th>
                 <th>Actions</th>
             </tr>
@@ -161,7 +196,6 @@
 </div>
 
 <script>
-    // Your Firebase configuration
     const firebaseConfig = {
         apiKey: "AIzaSyDIoAwjZsgAaMbVDjPQ_MPoQGbXWX5PBbw",
         authDomain: "rt-online-mart.firebaseapp.com",
@@ -175,13 +209,35 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
+    // Load current daily message in real-time
+    db.collection('settings').doc('daily_message').onSnapshot((doc) => {
+        if (doc.exists) {
+            document.getElementById('dailyMessageInput').value = doc.data().message || '';
+        }
+    });
+
+    // Save/Update daily message function
+    async function saveDailyMessage() {
+        const messageText = document.getElementById('dailyMessageInput').value.trim();
+        try {
+            await db.collection('settings').doc('daily_message').set({
+                message: messageText,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            alert("Success! Daily message updated.");
+        } catch (error) {
+            console.error("Error updating daily message: ", error);
+            alert("Error: " + error.message);
+        }
+    }
+
     // Load products into the table in real-time
     db.collection('products').onSnapshot((snapshot) => {
         const tbody = document.getElementById('productTableBody');
         tbody.innerHTML = '';
 
         if (snapshot.empty) {
-            tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No products found.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No products found.</td></tr>';
             return;
         }
 
@@ -194,10 +250,9 @@
                 <td><img src="${prod.imageUrl || ''}" alt="" class="thumb" onerror="this.src='https://via.placeholder.com/40'"></td>
                 <td>${escapeHtml(prod.name || '')}</td>
                 <td>${escapeHtml(prod.category || '')}</td>
-                <td>${escapeHtml(prod.weight || '')}</td>
                 <td>₹${prod.price || 0}</td>
                 <td class="action-btns">
-                    <button class="btn-edit" onclick="editProduct('${id}', '${escapeAttr(prod.name)}', '${escapeAttr(prod.weight)}', '${prod.price}', '${prod.discountedPrice || 0}', '${escapeAttr(prod.category)}', '${escapeAttr(prod.imageUrl)}')">Edit</button>
+                    <button class="btn-edit" onclick="editProduct('${id}', '${escapeAttr(prod.name)}', '${prod.price}', '${prod.discountedPrice || 0}', '${escapeAttr(prod.category)}', '${escapeAttr(prod.imageUrl)}')">Edit</button>
                     <button class="btn-delete" onclick="deleteProduct('${id}')">Delete</button>
                 </td>
             `;
@@ -217,7 +272,6 @@
 
         const productData = {
             name: name,
-            weight: document.getElementById('weight').value,
             price: parseFloat(document.getElementById('price').value) || 0,
             discountedPrice: parseFloat(document.getElementById('discount').value) || 0,
             category: document.getElementById('category').value,
@@ -226,11 +280,9 @@
 
         try {
             if (editId) {
-                // Update existing product
                 await db.collection('products').doc(editId).update(productData);
                 alert("Success! Product updated.");
             } else {
-                // Add new product
                 productData.qty = 0;
                 productData.inWatchlist = false;
                 await db.collection('products').add(productData);
@@ -243,11 +295,10 @@
         }
     }
 
-    function editProduct(id, name, weight, price, discount, category, imageUrl) {
+    function editProduct(id, name, price, discount, category, imageUrl) {
         document.getElementById('editProductId').value = id;
         document.getElementById('imageUrlInput').value = imageUrl;
         document.getElementById('name').value = name;
-        document.getElementById('weight').value = weight;
         document.getElementById('price').value = price;
         document.getElementById('discount').value = discount;
         document.getElementById('category').value = category;
@@ -274,7 +325,6 @@
         document.getElementById('editProductId').value = '';
         document.getElementById('imageUrlInput').value = '';
         document.getElementById('name').value = '';
-        document.getElementById('weight').value = '';
         document.getElementById('price').value = '';
         document.getElementById('discount').value = '';
         document.getElementById('category').selectedIndex = 0;
@@ -285,7 +335,7 @@
     }
 
     function escapeHtml(str) {
-        return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        return (str || '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     }
 
     function escapeAttr(str) {
